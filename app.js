@@ -55,6 +55,7 @@ const supabaseClient = HAS_ONLINE_CONFIG
 
 let onlineProfile = null;
 let onlineReady = false;
+let onlineErrorMessage = "";
 let hydratingFromCloud = false;
 let cloudSaveTimer = null;
 let passwordSetupRequired = false;
@@ -226,7 +227,8 @@ const NAV = {
     ["wellbeing", "Welzijn"],
     ["sleep", "Slaap"],
     ["water", "Water"],
-    ["agenda", "Agenda"]
+    ["agenda", "Agenda"],
+    ["finance", "Financien"]
   ],
   client: [
     ["client-home", "Mijn dashboard"],
@@ -241,6 +243,7 @@ const NAV = {
   ]
 };
 
+const DEFAULT_RATE_ID = "rate-default";
 let state = normalizeState(loadState());
 let currentView = state.ui.role === "client" ? "client-home" : "trainer-dashboard";
 let recipeOptions = [];
@@ -259,6 +262,11 @@ function seedState() {
     },
     trainerAccount: null,
     trainerCalc: [],
+    trainerFinance: {
+      rates: [
+        { id: DEFAULT_RATE_ID, name: "Standaard sessie", amount: 60 }
+      ]
+    },
     clients: [
       {
         id: "c1",
@@ -367,6 +375,16 @@ function normalizeState(raw) {
     password: String(next.trainerAccount.password || "")
   } : null;
   next.trainerCalc = Array.isArray(next.trainerCalc) ? next.trainerCalc : [];
+  next.trainerFinance = next.trainerFinance && typeof next.trainerFinance === "object" ? next.trainerFinance : {};
+  next.trainerFinance.rates = Array.isArray(next.trainerFinance.rates) ? next.trainerFinance.rates : [];
+  if (!next.trainerFinance.rates.length) {
+    next.trainerFinance.rates.push({ id: DEFAULT_RATE_ID, name: "Standaard sessie", amount: 60 });
+  }
+  next.trainerFinance.rates.forEach((rate, index) => {
+    rate.id ||= `rate-${Date.now()}-${index}`;
+    rate.name ||= "Tarief";
+    rate.amount = number(rate.amount, 0);
+  });
   next.clients = Array.isArray(next.clients) ? next.clients : seedState().clients;
   next.clients.forEach((item) => {
     item.email = String(item.email || "").trim().toLowerCase();
@@ -436,6 +454,9 @@ function normalizeState(raw) {
       }
       appt.day = dayNameFromDate(appt.date) || appt.day || "Maandag";
       appt.id ||= `a${Date.now()}${Math.random().toString(16).slice(2)}`;
+      appt.rateId ||= "";
+      appt.rateName ||= "";
+      appt.amount = appt.amount === "" || appt.amount === undefined ? "" : number(appt.amount, 0);
     });
   });
   if (!next.clients.some((item) => item.id === next.ui.selectedClientId)) {
@@ -564,6 +585,16 @@ function trainingAttendanceOptions(selectedValue) {
     .join("");
 }
 
+function attendanceLabel(value) {
+  return value || "Nog niet ingevuld";
+}
+
+function attendanceClass(value) {
+  if (value === "Geweest") return "ok";
+  if (value === "Niet geweest") return "bad";
+  return "";
+}
+
 function normalizeWaterWeek(value) {
   if (Array.isArray(value)) return normalizeWeek(value, "value");
   const total = number(value);
@@ -627,6 +658,12 @@ function collectTrackerDay(type, index) {
       weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[dayIndex][key] = input.value;
     });
   }
+  if (type === "wellbeing") {
+    document.querySelectorAll(`[data-wellbeing-day="${dayIndex}"]`).forEach((input) => {
+      const [, key] = input.dataset.wellbeing.split(":");
+      weekArray(selected, "wellbeingByWeek", "energy", { stress: "", motivation: "", mood: "" })[dayIndex][key] = input.value;
+    });
+  }
   if (type === "water") {
     const input = document.querySelector(`[data-water-day-input="${dayIndex}"]`);
     if (input) setWaterDay(selected, dayIndex, input.value);
@@ -646,6 +683,7 @@ function collectTrackerDay(type, index) {
 function renderTrackerSection(type) {
   if (type === "training") renderTraining();
   if (type === "steps") renderSteps();
+  if (type === "wellbeing") renderWellbeing();
   if (type === "sleep") renderSleep();
   if (type === "water") renderWater();
   renderClientHome();
@@ -881,6 +919,61 @@ function macroTotals(selected) {
   return sumFoodEntries(dailyNutritionEntries(selected));
 }
 
+function currency(value) {
+  return number(value).toLocaleString("nl-NL", { style: "currency", currency: "EUR" });
+}
+
+function financeRates() {
+  state.trainerFinance = state.trainerFinance && typeof state.trainerFinance === "object" ? state.trainerFinance : {};
+  state.trainerFinance.rates = Array.isArray(state.trainerFinance.rates) ? state.trainerFinance.rates : [];
+  if (!state.trainerFinance.rates.length) {
+    state.trainerFinance.rates.push({ id: DEFAULT_RATE_ID, name: "Standaard sessie", amount: 60 });
+  }
+  return state.trainerFinance.rates;
+}
+
+function rateById(rateId) {
+  return financeRates().find((rate) => rate.id === rateId);
+}
+
+function rateOptions(selectedRateId = "") {
+  return financeRates()
+    .map((rate) => `<option value="${rate.id}" ${rate.id === selectedRateId ? "selected" : ""}>${rate.name} - ${currency(rate.amount)}</option>`)
+    .join("");
+}
+
+function appointmentAmount(appointment) {
+  if (appointment.amount !== "" && appointment.amount !== undefined && appointment.amount !== null) return number(appointment.amount);
+  const rate = rateById(appointment.rateId);
+  return rate ? number(rate.amount) : 0;
+}
+
+function allAppointments() {
+  return state.clients.flatMap((item) =>
+    item.appointments.map((appt) => ({
+      ...appt,
+      source: appt,
+      clientId: item.id,
+      clientName: item.name
+    }))
+  );
+}
+
+function monthKey(dateValue) {
+  return dateValue ? dateValue.slice(0, 7) : "Geen datum";
+}
+
+function monthLabel(key) {
+  if (!/^\d{4}-\d{2}$/.test(key)) return key;
+  const date = new Date(`${key}-01T12:00:00`);
+  return date.toLocaleDateString("nl-NL", { month: "long", year: "numeric" });
+}
+
+function findAppointment(clientId, appointmentId) {
+  const selected = state.clients.find((item) => item.id === clientId);
+  return selected?.appointments.find((item) => item.id === appointmentId);
+}
+
 function nextAppointment(selected) {
   const nowKey = todayISO();
   return selected.appointments
@@ -944,7 +1037,13 @@ function renderOnlineStatus() {
       ? "Online modus actief: accounts en data synchroniseren via Supabase."
       : "Demo modus: vul config.js met Supabase-gegevens om accounts tussen apparaten te synchroniseren.";
   }
-  syncStatus(isOnlineMode() ? (onlineReady ? "Online opgeslagen" : (isLoggedIn() ? "Online verbinden..." : "Online klaar")) : "Lokale demo");
+  if (!isOnlineMode()) {
+    syncStatus("Lokale demo");
+  } else if (onlineErrorMessage) {
+    syncStatus(onlineErrorMessage, "error");
+  } else {
+    syncStatus(onlineReady ? "Online opgeslagen" : (isLoggedIn() ? "Online verbinden..." : "Online klaar"), onlineReady ? "ok" : "");
+  }
 }
 
 function remoteStateSnapshot() {
@@ -984,19 +1083,26 @@ async function saveStateToCloud() {
   if (!trainerId) return { ok: false, error: new Error("Geen trainerworkspace gevonden.") };
   syncStatus("Online opslaan...");
   try {
-    const { error } = await supabaseClient
-      .from("coach_workspaces")
-      .upsert({
-        trainer_id: trainerId,
-        state: remoteStateSnapshot(),
-        updated_at: new Date().toISOString()
-      }, { onConflict: "trainer_id" });
+    const payload = {
+      state: remoteStateSnapshot(),
+      updated_at: new Date().toISOString()
+    };
+    const { error } = onlineProfile.role === "trainer"
+      ? await supabaseClient
+          .from("coach_workspaces")
+          .upsert({ trainer_id: trainerId, ...payload }, { onConflict: "trainer_id" })
+      : await supabaseClient
+          .from("coach_workspaces")
+          .update(payload)
+          .eq("trainer_id", trainerId);
     if (error) throw error;
   } catch (error) {
+    onlineErrorMessage = "Opslaan mislukt";
     syncStatus("Opslaan mislukt", "error");
     console.error(error);
     return { ok: false, error };
   }
+  onlineErrorMessage = "";
   syncStatus("Online opgeslagen", "ok");
   return { ok: true };
 }
@@ -1098,6 +1204,7 @@ function applyOnlineState(remoteState, profile) {
   }
   onlineProfile = profile;
   onlineReady = true;
+  onlineErrorMessage = "";
   renderNav();
   renderAll();
   showView(currentView);
@@ -1134,6 +1241,7 @@ async function hydrateOnlineUser(roleHint = "", nameHint = "") {
     return true;
   } catch (error) {
     onlineReady = false;
+    onlineErrorMessage = "Online fout";
     syncStatus("Online fout", "error");
     throw error;
   }
@@ -1281,6 +1389,10 @@ function renderSelectors() {
   $("#clientSelect").closest(".field").style.display = isTrainer() ? "grid" : "none";
   $("#appointmentClient").innerHTML = options;
   $("#appointmentClient").disabled = !state.clients.length;
+  const rateSelect = $("#appointmentRate");
+  if (rateSelect) {
+    rateSelect.innerHTML = `<option value="">Geen tarief</option>${rateOptions()}`;
+  }
   const productOptions = PRODUCTS.map((item) => `<option value="${item.id}">${item.name}</option>`).join("");
   $("#productSelect").innerHTML = productOptions;
   $("#clientProductSelect").innerHTML = productOptions;
@@ -1441,7 +1553,7 @@ function renderTraining() {
       .filter((exercise) => exercise.day === day);
     return `
       <div class="training-day">
-        <h3>${day}<span>${formatShortDate(dates[dayIndex].date)}</span></h3>
+        <h3>${day}<span>${formatShortDate(dates[dayIndex].date)}</span><em class="status ${attendanceClass(dayAttendance.status)}">${attendanceLabel(dayAttendance.status)}</em></h3>
         <div class="exercise-row">
           <div class="exercise-card training-status-card">
             <strong>Aanwezigheid</strong>
@@ -1687,6 +1799,10 @@ function renderWellbeing() {
     return;
   }
   const wellbeing = weekArray(selected, "wellbeingByWeek", "energy", { stress: "", motivation: "", mood: "" });
+  const dates = weekDates(activeWeekStart());
+  wellbeing.forEach((item, index) => {
+    item.date = dates[index].date;
+  });
   $("#wellbeingGoalStrip").innerHTML = goalPills([["Doel welzijn", selected.goals.wellbeing]]);
   $("#wellbeingGrid").innerHTML = wellbeing
     .map((item, index) => {
@@ -1695,15 +1811,18 @@ function renderWellbeing() {
       return `
         <div class="day-cell">
           <strong>${item.day}</strong>
-          <label>Energie<input data-wellbeing="${index}:energy" type="number" min="1" max="10" value="${item.energy}" /></label>
-          <label>Stress<input data-wellbeing="${index}:stress" type="number" min="1" max="10" value="${item.stress}" /></label>
-          <label>Motivatie<input data-wellbeing="${index}:motivation" type="number" min="1" max="10" value="${item.motivation}" /></label>
+          <small>${formatShortDate(dates[index].date)}</small>
+          <label>Energie<input data-wellbeing-day="${index}" data-wellbeing="${index}:energy" type="number" min="1" max="10" value="${item.energy}" /></label>
+          <label>Stress<input data-wellbeing-day="${index}" data-wellbeing="${index}:stress" type="number" min="1" max="10" value="${item.stress}" /></label>
+          <label>Motivatie<input data-wellbeing-day="${index}" data-wellbeing="${index}:motivation" type="number" min="1" max="10" value="${item.motivation}" /></label>
           <label>Stemming
-            <select data-wellbeing="${index}:mood">
+            <select data-wellbeing-day="${index}" data-wellbeing="${index}:mood">
               ${["", "Goed", "Neutraal", "Laag"].map((value) => `<option value="${value}" ${value === item.mood ? "selected" : ""}>${value || "-"}</option>`).join("")}
             </select>
           </label>
           <span class="status ${statusClass(avg, selected.goals.wellbeing)}">Gem. ${fmt(avg, 1)}</span>
+          <button class="primary-btn tracker-save-btn" data-save-wellbeing-day="${index}" type="button">Opslaan</button>
+          <span class="save-feedback" data-save-feedback="wellbeing-${index}"></span>
         </div>
       `;
     })
@@ -1784,12 +1903,34 @@ function renderWater() {
     .join("");
 }
 
+function renderPreviousAppointments(selected) {
+  const block = $("#previousAppointmentsBlock");
+  const list = $("#previousAppointmentsList");
+  if (!block || !list) return;
+  const today = todayISO();
+  const items = isTrainer()
+    ? allAppointments()
+    : (hasSelectedClient(selected) ? selected.appointments.map((appt) => ({ ...appt, source: appt, clientName: selected.name, clientId: selected.id })) : []);
+  const previous = items
+    .filter((item) => item.date && item.date < today)
+    .sort((a, b) => `${b.date} ${b.time || ""}`.localeCompare(`${a.date} ${a.time || ""}`));
+  list.innerHTML = previous.length
+    ? previous.map((item) => `
+        <div class="history-item">
+          <strong>${item.date} ${item.time || ""} - ${item.type || "Afspraak"}</strong>
+          <span>${item.clientName || ""}${appointmentAmount(item.source) ? ` | ${currency(appointmentAmount(item.source))}` : ""}</span>
+        </div>
+      `).join("")
+    : `<div class="empty-state">Geen vorige afspraken.</div>`;
+}
+
 function renderAgenda() {
   const selected = client();
   const calendar = $("#weekCalendar");
   $("#appointmentForm").style.display = isTrainer() && state.clients.length ? "block" : "none";
   $("#calendarControls").style.display = isTrainer() ? "flex" : "none";
   $("#agendaPanelTitle").textContent = isTrainer() ? "Weekagenda" : "Mijn afspraken";
+  renderPreviousAppointments(selected);
 
   if (!isTrainer()) {
     const appointments = selected.appointments
@@ -1825,6 +1966,7 @@ function renderAgenda() {
   calendar.innerHTML = days.map(({ day, date }) => {
     const items = all
       .filter((item) => item.date === date)
+      .filter((item) => !item.date || item.date >= todayISO())
       .sort((a, b) => String(a.time || "").localeCompare(String(b.time || "")));
     return `
       <div class="calendar-day" data-calendar-date="${date}">
@@ -1844,6 +1986,74 @@ function renderAgenda() {
       </div>
     `;
   }).join("");
+}
+
+function renderFinance() {
+  if (!isTrainer()) return;
+  const rates = financeRates();
+  const appointments = allAppointments().sort((a, b) => `${b.date || ""} ${b.time || ""}`.localeCompare(`${a.date || ""} ${a.time || ""}`));
+  const totalRevenue = appointments.reduce((sum, item) => sum + appointmentAmount(item.source), 0);
+  const currentMonth = todayISO().slice(0, 7);
+  const monthRevenue = appointments
+    .filter((item) => monthKey(item.date) === currentMonth)
+    .reduce((sum, item) => sum + appointmentAmount(item.source), 0);
+
+  $("#financeRatesList").innerHTML = rates
+    .map((rate) => `
+      <div class="rate-row">
+        <input data-rate-name="${rate.id}" value="${rate.name}" />
+        <input data-rate-amount="${rate.id}" type="number" min="0" step="0.01" value="${rate.amount}" />
+        <button class="secondary-btn" data-save-rate="${rate.id}" type="button">Opslaan</button>
+      </div>
+    `)
+    .join("");
+
+  $("#financeKpis").innerHTML = [
+    ["Omzet totaal", currency(totalRevenue), "alle afspraken"],
+    ["Deze maand", currency(monthRevenue), monthLabel(currentMonth)],
+    ["Afspraken", appointments.length, "met of zonder tarief"],
+    ["Clienten", state.clients.length, "gekoppeld"]
+  ]
+    .map(([label, value, sub]) => `<div class="kpi"><span>${label}</span><strong>${value}</strong><small>${sub}</small></div>`)
+    .join("");
+
+  $("#financeAppointmentTable").innerHTML = appointments.length
+    ? appointments.map((item) => `
+        <tr>
+          <td data-label="Datum">${item.date || "-"} ${item.time || ""}</td>
+          <td data-label="Client">${item.clientName}</td>
+          <td data-label="Afspraak">${item.type || "Afspraak"}</td>
+          <td data-label="Tarief">
+            <select data-finance-rate="${item.clientId}:${item.id}">
+              <option value="">Geen tarief</option>
+              ${rateOptions(item.source.rateId || "")}
+            </select>
+          </td>
+          <td data-label="Bedrag"><input data-finance-amount="${item.clientId}:${item.id}" type="number" min="0" step="0.01" value="${appointmentAmount(item.source) || ""}" /></td>
+          <td data-label="Omzet"><strong>${currency(appointmentAmount(item.source))}</strong></td>
+          <td data-label=""><button class="primary-btn" data-save-finance="${item.clientId}:${item.id}" type="button">Opslaan</button></td>
+        </tr>
+      `).join("")
+    : `<tr><td colspan="7">Nog geen afspraken om omzet aan te koppelen.</td></tr>`;
+
+  const byClient = new Map();
+  appointments.forEach((item) => {
+    byClient.set(item.clientName, (byClient.get(item.clientName) || 0) + appointmentAmount(item.source));
+  });
+  $("#financeClientTable").innerHTML = [...byClient.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([name, total]) => `<tr><td data-label="Client">${name}</td><td data-label="Omzet">${currency(total)}</td></tr>`)
+    .join("") || `<tr><td colspan="2">Nog geen omzet.</td></tr>`;
+
+  const byMonth = new Map();
+  appointments.forEach((item) => {
+    const key = monthKey(item.date);
+    byMonth.set(key, (byMonth.get(key) || 0) + appointmentAmount(item.source));
+  });
+  $("#financeMonthTable").innerHTML = [...byMonth.entries()]
+    .sort((a, b) => b[0].localeCompare(a[0]))
+    .map(([key, total]) => `<tr><td data-label="Maand">${monthLabel(key)}</td><td data-label="Omzet">${currency(total)}</td></tr>`)
+    .join("") || `<tr><td colspan="2">Nog geen omzet.</td></tr>`;
 }
 
 function renderRoleVisibility() {
@@ -1878,6 +2088,7 @@ function renderAll() {
   renderSleep();
   renderWater();
   renderAgenda();
+  renderFinance();
 }
 
 function createClientProfile({ name, email, password = "", goal = "", registered = false }) {
@@ -2097,6 +2308,33 @@ document.addEventListener("click", (event) => {
     state.trainerCalc.splice(Number(target.dataset.removeCalc), 1);
     renderAll();
   }
+  if (target.dataset.resetCalc !== undefined) {
+    state.trainerCalc = [];
+    renderAll();
+    return;
+  }
+  if (target.dataset.saveRate) {
+    const rate = rateById(target.dataset.saveRate);
+    if (!rate) return;
+    const nameInput = document.querySelector(`[data-rate-name="${rate.id}"]`);
+    const amountInput = document.querySelector(`[data-rate-amount="${rate.id}"]`);
+    rate.name = String(nameInput?.value || rate.name).trim() || "Tarief";
+    rate.amount = number(amountInput?.value, 0);
+    renderAll();
+    return;
+  }
+  if (target.dataset.saveFinance) {
+    const [clientId, appointmentId] = target.dataset.saveFinance.split(":");
+    const appointment = findAppointment(clientId, appointmentId);
+    if (!appointment) return;
+    const rateId = document.querySelector(`[data-finance-rate="${clientId}:${appointmentId}"]`)?.value || "";
+    const rate = rateById(rateId);
+    appointment.rateId = rate?.id || "";
+    appointment.rateName = rate?.name || "";
+    appointment.amount = number(document.querySelector(`[data-finance-amount="${clientId}:${appointmentId}"]`)?.value, rate ? rate.amount : 0);
+    renderAll();
+    return;
+  }
   if (target.dataset.removeMeal) {
     client().nutritionPlan.splice(Number(target.dataset.removeMeal), 1);
     renderAll();
@@ -2134,6 +2372,10 @@ document.addEventListener("click", (event) => {
   }
   if (target.dataset.saveStepsDay) {
     saveTrackerDay("steps", target.dataset.saveStepsDay);
+    return;
+  }
+  if (target.dataset.saveWellbeingDay) {
+    saveTrackerDay("wellbeing", target.dataset.saveWellbeingDay);
     return;
   }
   if (target.dataset.saveSleepDay) {
@@ -2406,6 +2648,7 @@ $("#logoutButton").addEventListener("click", async () => {
     await supabaseClient.auth.signOut();
     onlineProfile = null;
     onlineReady = false;
+    onlineErrorMessage = "";
   }
   logout();
 });
@@ -2516,6 +2759,19 @@ $("#macroForm").addEventListener("submit", (event) => {
   renderAll();
 });
 
+$("#financeRateForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!isTrainer()) return;
+  const data = new FormData(event.currentTarget);
+  financeRates().push({
+    id: `rate-${Date.now()}${Math.random().toString(16).slice(2)}`,
+    name: String(data.get("name") || "").trim() || "Tarief",
+    amount: number(data.get("amount"), 0)
+  });
+  event.currentTarget.reset();
+  renderAll();
+});
+
 $("#foodEntryForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
@@ -2561,12 +2817,16 @@ $("#appointmentForm").addEventListener("submit", (event) => {
   const data = new FormData(event.currentTarget);
   const selected = state.clients.find((item) => item.id === data.get("clientId"));
   if (!selected) return;
+  const rate = rateById(data.get("rateId"));
   selected.appointments.push({
     id: `a${Date.now()}`,
     date: data.get("date"),
     day: dayNameFromDate(data.get("date")),
     time: data.get("time"),
-    type: data.get("type") || "Afspraak"
+    type: data.get("type") || "Afspraak",
+    rateId: rate?.id || "",
+    rateName: rate?.name || "",
+    amount: rate ? number(rate.amount) : ""
   });
   event.currentTarget.reset();
   renderAll();
@@ -2663,6 +2923,11 @@ document.addEventListener("change", (event) => {
   if (target.dataset.trainingAttendance) {
     trainingAttendanceWeek(selected)[Number(target.dataset.trainingAttendance)].status = target.value;
   }
+  if (target.dataset.financeRate) {
+    const amountInput = document.querySelector(`[data-finance-amount="${target.dataset.financeRate}"]`);
+    const rate = rateById(target.value);
+    if (amountInput && rate) amountInput.value = number(rate.amount, 0);
+  }
   if (target.dataset.mealStatus) {
     mealWeekLog(selected.nutritionPlan[Number(target.dataset.mealStatus)]).status = target.value;
     renderAll();
@@ -2713,9 +2978,11 @@ async function init() {
         if (event === "SIGNED_OUT" || !session) {
           onlineProfile = null;
           onlineReady = false;
+          onlineErrorMessage = "";
         }
       });
     } catch (error) {
+      onlineErrorMessage = "Online fout";
       syncStatus("Online fout", "error");
       const message = $("#loginMessage");
       if (message && !isLoggedIn()) {
