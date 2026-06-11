@@ -59,6 +59,7 @@ let hydratingFromCloud = false;
 let cloudSaveTimer = null;
 let passwordSetupRequired = false;
 let passwordSetupContext = "";
+let navMenuOpen = false;
 
 window.addEventListener("error", (event) => {
   showRuntimeError(event.message || "Onbekende fout");
@@ -286,6 +287,7 @@ function seedState() {
           { day: "Maandag", exercise: "Bench press", sets: 4, reps: "6-8", tempo: "2-1-1", rest: "120s" },
           { day: "Donderdag", exercise: "Deadlift", sets: 3, reps: "5", tempo: "2-1-1", rest: "150s" }
         ],
+        trainingAttendanceByWeek: {},
         nutritionPlan: [
           { meal: "Ontbijt", items: "Havermout 80g, whey 30g, banaan 120g", kcal: 527, protein: 36, carbs: 84, fat: 8 },
           { meal: "Lunch", items: "Kipfilet 200g, rijst 180g, groenten", kcal: 520, protein: 52, carbs: 55, fat: 5 }
@@ -338,6 +340,7 @@ function seedState() {
         },
         planSummary: "3 full body trainingen per week, progressief verhogen en slaap consistent houden.",
         trainingPlan: [],
+        trainingAttendanceByWeek: {},
         nutritionPlan: [],
         foodLog: [],
         steps: DAYS.map((day) => ({ day, value: "" })),
@@ -386,6 +389,12 @@ function normalizeState(raw) {
         };
       }
     });
+    item.trainingAttendanceByWeek = normalizeWeekStore(
+      item.trainingAttendanceByWeek,
+      currentTrackingWeek,
+      item.trainingAttendance,
+      "status"
+    );
     item.nutritionPlan = Array.isArray(item.nutritionPlan) ? item.nutritionPlan : [];
     item.nutritionPlan.forEach((meal) => {
       meal.status ||= "";
@@ -537,6 +546,24 @@ function weekArray(selected, storeKey, primaryKey, rest = {}) {
   return selected[storeKey][activeWeekStart()];
 }
 
+function hasSelectedClient(selected = client()) {
+  return Boolean(selected?.id);
+}
+
+function emptyTrackerState(message = "Voeg eerst een client toe om deze tracker te gebruiken.") {
+  return `<div class="empty-state">${message}</div>`;
+}
+
+function trainingAttendanceWeek(selected) {
+  return weekArray(selected, "trainingAttendanceByWeek", "status");
+}
+
+function trainingAttendanceOptions(selectedValue) {
+  return ["", "Geweest", "Niet geweest"]
+    .map((value) => `<option value="${value}" ${value === selectedValue ? "selected" : ""}>${value || "Nog niet ingevuld"}</option>`)
+    .join("");
+}
+
 function normalizeWaterWeek(value) {
   if (Array.isArray(value)) return normalizeWeek(value, "value");
   const total = number(value);
@@ -576,6 +603,78 @@ function mealWeekLog(meal) {
   meal.logsByWeek = meal.logsByWeek && typeof meal.logsByWeek === "object" ? meal.logsByWeek : {};
   meal.logsByWeek[activeWeekStart()] ||= { status: "", alternative: "" };
   return meal.logsByWeek[activeWeekStart()];
+}
+
+function setSaveFeedback(key, message, isError = false) {
+  const target = document.querySelector(`[data-save-feedback="${key}"]`);
+  if (!target) return;
+  target.textContent = message;
+  target.classList.toggle("error", isError);
+  target.classList.toggle("ok", !isError && Boolean(message));
+}
+
+function collectTrackerDay(type, index) {
+  const selected = client();
+  if (!hasSelectedClient(selected)) return false;
+  const dayIndex = Number(index);
+  if (type === "steps") {
+    const input = document.querySelector(`[data-step-index="${dayIndex}"]`);
+    if (input) weekArray(selected, "stepsByWeek", "value")[dayIndex].value = input.value;
+  }
+  if (type === "sleep") {
+    document.querySelectorAll(`[data-sleep-day="${dayIndex}"]`).forEach((input) => {
+      const [, key] = input.dataset.sleep.split(":");
+      weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[dayIndex][key] = input.value;
+    });
+  }
+  if (type === "water") {
+    const input = document.querySelector(`[data-water-day-input="${dayIndex}"]`);
+    if (input) setWaterDay(selected, dayIndex, input.value);
+  }
+  if (type === "training") {
+    const status = document.querySelector(`[data-training-attendance="${dayIndex}"]`);
+    if (status) trainingAttendanceWeek(selected)[dayIndex].status = status.value;
+    document.querySelectorAll(`[data-training-log-day="${dayIndex}"]`).forEach((input) => {
+      const [exerciseIndex, key] = input.dataset.trainingLog.split(":");
+      const exercise = selected.trainingPlan[Number(exerciseIndex)];
+      if (exercise) exerciseWeekLog(exercise)[key] = input.value;
+    });
+  }
+  return true;
+}
+
+function renderTrackerSection(type) {
+  if (type === "training") renderTraining();
+  if (type === "steps") renderSteps();
+  if (type === "sleep") renderSleep();
+  if (type === "water") renderWater();
+  renderClientHome();
+  renderTrainerDashboard();
+}
+
+async function saveTrackerDay(type, index) {
+  const key = `${type}-${index}`;
+  if (!collectTrackerDay(type, index)) {
+    setSaveFeedback(key, "Geen client geselecteerd.", true);
+    return;
+  }
+
+  saveState();
+  try {
+    if (isOnlineMode() && onlineProfile && !onlineReady) {
+      throw new Error("Online verbinding is nog niet klaar.");
+    }
+    if (isOnlineMode() && onlineReady && onlineProfile) {
+      window.clearTimeout(cloudSaveTimer);
+      const result = await saveStateToCloud();
+      if (!result?.ok) throw result?.error || new Error("Supabase opslaan mislukt.");
+    }
+    renderTrackerSection(type);
+    setSaveFeedback(key, "Opgeslagen");
+  } catch (error) {
+    renderTrackerSection(type);
+    setSaveFeedback(key, `Opslaan mislukt: ${error.message}`, true);
+  }
 }
 
 function productById(id) {
@@ -695,6 +794,7 @@ function emptyClient() {
     goals: { ...DEFAULT_GOALS },
     planSummary: "Voeg eerst een client toe.",
     trainingPlan: [],
+    trainingAttendanceByWeek: {},
     nutritionPlan: [],
     foodLog: [],
     steps: DAYS.map((day) => ({ day, value: "" })),
@@ -844,7 +944,7 @@ function renderOnlineStatus() {
       ? "Online modus actief: accounts en data synchroniseren via Supabase."
       : "Demo modus: vul config.js met Supabase-gegevens om accounts tussen apparaten te synchroniseren.";
   }
-  syncStatus(isOnlineMode() ? (onlineReady ? "Online opgeslagen" : "Online verbinden...") : "Lokale demo");
+  syncStatus(isOnlineMode() ? (onlineReady ? "Online opgeslagen" : (isLoggedIn() ? "Online verbinden..." : "Online klaar")) : "Lokale demo");
 }
 
 function remoteStateSnapshot() {
@@ -879,23 +979,26 @@ function scheduleCloudSave() {
 }
 
 async function saveStateToCloud() {
-  if (!isOnlineMode() || !onlineProfile) return;
+  if (!isOnlineMode() || !onlineProfile) return { ok: true };
   const trainerId = trainerWorkspaceId();
-  if (!trainerId) return;
+  if (!trainerId) return { ok: false, error: new Error("Geen trainerworkspace gevonden.") };
   syncStatus("Online opslaan...");
-  const { error } = await supabaseClient
-    .from("coach_workspaces")
-    .upsert({
-      trainer_id: trainerId,
-      state: remoteStateSnapshot(),
-      updated_at: new Date().toISOString()
-    }, { onConflict: "trainer_id" });
-  if (error) {
+  try {
+    const { error } = await supabaseClient
+      .from("coach_workspaces")
+      .upsert({
+        trainer_id: trainerId,
+        state: remoteStateSnapshot(),
+        updated_at: new Date().toISOString()
+      }, { onConflict: "trainer_id" });
+    if (error) throw error;
+  } catch (error) {
     syncStatus("Opslaan mislukt", "error");
     console.error(error);
-    return;
+    return { ok: false, error };
   }
   syncStatus("Online opgeslagen", "ok");
+  return { ok: true };
 }
 
 function profileDisplayName(user, fallback = "") {
@@ -1143,12 +1246,17 @@ function renderNav() {
   const nav = $("#nav");
   const items = allowedViews();
   if (!items.some(([id]) => id === currentView)) currentView = items[0][0];
+  const currentLabel = items.find(([id]) => id === currentView)?.[1] || "Menu";
+  nav.classList.toggle("menu-open", navMenuOpen);
   nav.innerHTML = `
     <button class="nav-arrow prev" data-nav-step="-1" type="button" aria-label="Vorige tab">‹</button>
-    <div class="nav-track">
+    <div class="nav-menu-wrap">
+      <button class="nav-current" data-nav-menu-toggle="true" aria-expanded="${navMenuOpen}" type="button">${currentLabel}</button>
+      <div class="nav-track">
       ${items
         .map(([id, label]) => `<button class="nav-btn ${id === currentView ? "active" : ""}" data-view="${id}" type="button">${label}</button>`)
         .join("")}
+      </div>
     </div>
     <button class="nav-arrow next" data-nav-step="1" type="button" aria-label="Volgende tab">›</button>
   `;
@@ -1165,10 +1273,14 @@ function showView(id) {
 
 function renderSelectors() {
   const selected = client();
-  const options = state.clients.map((item) => `<option value="${item.id}" ${item.id === selected.id ? "selected" : ""}>${item.name}</option>`).join("");
+  const options = state.clients.length
+    ? state.clients.map((item) => `<option value="${item.id}" ${item.id === selected.id ? "selected" : ""}>${item.name}</option>`).join("")
+    : `<option value="">Geen clienten</option>`;
   $("#clientSelect").innerHTML = options;
+  $("#clientSelect").disabled = !state.clients.length;
   $("#clientSelect").closest(".field").style.display = isTrainer() ? "grid" : "none";
   $("#appointmentClient").innerHTML = options;
+  $("#appointmentClient").disabled = !state.clients.length;
   const productOptions = PRODUCTS.map((item) => `<option value="${item.id}">${item.name}</option>`).join("");
   $("#productSelect").innerHTML = productOptions;
   $("#clientProductSelect").innerHTML = productOptions;
@@ -1225,13 +1337,17 @@ function renderTrainerDashboard() {
       `;
     })
     .join("");
-  $("#memberTable").innerHTML = rows || `<tr><td colspan="8">Geen resultaten.</td></tr>`;
+  $("#memberTable").innerHTML = rows || `<tr><td colspan="8">${state.clients.length ? "Geen resultaten." : "Nog geen clienten gekoppeld. Voeg eerst een client toe."}</td></tr>`;
 
   return selected;
 }
 
 function renderClientHome() {
   const selected = client();
+  if (!hasSelectedClient(selected)) {
+    $("#clientSummary").innerHTML = emptyTrackerState("Er is nog geen client gekoppeld aan dit account.");
+    return;
+  }
   const totals = macroTotals(selected);
   const appt = nextAppointment(selected);
   const stepsAvg = average(weekArray(selected, "stepsByWeek", "value").map((step) => step.value));
@@ -1263,7 +1379,7 @@ function renderClientHome() {
 }
 
 function renderClients() {
-  $("#clientCards").innerHTML = state.clients
+  $("#clientCards").innerHTML = state.clients.length ? state.clients
     .map(
       (item) => `
         <div class="client-card ${item.id === state.ui.selectedClientId ? "active" : ""}">
@@ -1279,14 +1395,15 @@ function renderClients() {
         </div>
       `
     )
-    .join("");
+    .join("") : `<div class="empty-state">Nog geen clienten gekoppeld. Voeg een lid toe via e-mail.</div>`;
 }
 
 function renderGoalForm() {
   const selected = client();
   const form = $("#goalForm");
   if (!form) return;
-  form.style.display = isTrainer() ? "block" : "none";
+  form.style.display = isTrainer() && hasSelectedClient(selected) ? "block" : "none";
+  if (!hasSelectedClient(selected)) return;
   $("#goalFormTitle").textContent = `Doelen bewerken: ${selected.name}`;
   $("#goalFormHint").textContent = "Kies hierboven een coachee en sla hier het plan, calorieen en trackerdoelen op.";
   form.elements.planSummary.value = selected.planSummary || "";
@@ -1298,7 +1415,18 @@ function renderGoalForm() {
 
 function renderTraining() {
   const selected = client();
-  $("#trainingForm").style.display = isTrainer() ? "grid" : "none";
+  const hasClient = hasSelectedClient(selected);
+  $("#trainingForm").style.display = isTrainer() && hasClient ? "grid" : "none";
+  if (!hasClient) {
+    $("#trainingGoalStrip").innerHTML = "";
+    $("#trainingDays").innerHTML = emptyTrackerState("Voeg eerst een client toe voordat je een trainingsschema beheert.");
+    return;
+  }
+  const attendance = trainingAttendanceWeek(selected);
+  const dates = weekDates(activeWeekStart());
+  attendance.forEach((item, index) => {
+    item.date = dates[index].date;
+  });
   $("#trainingGoalStrip").innerHTML = goalPills([
     ["Plan", selected.goal || "-"],
     ["Stappen", selected.goals.steps],
@@ -1306,13 +1434,26 @@ function renderTraining() {
   ]);
 
   $("#trainingDays").innerHTML = DAYS.map((day) => {
+    const dayIndex = DAYS.indexOf(day);
+    const dayAttendance = attendance[dayIndex] || { status: "" };
     const exercises = selected.trainingPlan
       .map((exercise, index) => ({ ...exercise, index, source: exercise }))
       .filter((exercise) => exercise.day === day);
     return `
       <div class="training-day">
-        <h3>${day}</h3>
+        <h3>${day}<span>${formatShortDate(dates[dayIndex].date)}</span></h3>
         <div class="exercise-row">
+          <div class="exercise-card training-status-card">
+            <strong>Aanwezigheid</strong>
+            <label class="field">
+              <span>Status</span>
+              <select data-training-attendance="${dayIndex}">
+                ${trainingAttendanceOptions(dayAttendance.status || "")}
+              </select>
+            </label>
+            <button class="primary-btn" data-save-training-day="${dayIndex}" type="button">Opslaan</button>
+            <span class="save-feedback" data-save-feedback="training-${dayIndex}"></span>
+          </div>
           ${
             exercises.length
               ? exercises.map((exercise) => `
@@ -1324,9 +1465,9 @@ function renderTraining() {
                     ${exercise.rest ? ` | rust ${exercise.rest}` : ""}
                   </div>
                   <div class="exercise-log">
-                    <label>Gedane sets<input data-training-log="${exercise.index}:actualSets" type="number" min="0" value="${exerciseWeekLog(exercise.source).actualSets ?? ""}" /></label>
-                    <label>Gedane reps<input data-training-log="${exercise.index}:actualReps" value="${exerciseWeekLog(exercise.source).actualReps ?? ""}" placeholder="bijv. 8/8/7/6" /></label>
-                    <textarea data-training-log="${exercise.index}:notes" placeholder="Opmerkingen">${exerciseWeekLog(exercise.source).notes ?? ""}</textarea>
+                    <label>Gedane sets<input data-training-log-day="${dayIndex}" data-training-log="${exercise.index}:actualSets" type="number" min="0" value="${exerciseWeekLog(exercise.source).actualSets ?? ""}" /></label>
+                    <label>Gedane reps<input data-training-log-day="${dayIndex}" data-training-log="${exercise.index}:actualReps" value="${exerciseWeekLog(exercise.source).actualReps ?? ""}" placeholder="bijv. 8/8/7/6" /></label>
+                    <textarea data-training-log-day="${dayIndex}" data-training-log="${exercise.index}:notes" placeholder="Opmerkingen">${exerciseWeekLog(exercise.source).notes ?? ""}</textarea>
                   </div>
                   ${isTrainer() ? `<button class="danger-btn" data-remove-training="${exercise.index}" type="button">Verwijder</button>` : ""}
                 </div>
@@ -1341,6 +1482,18 @@ function renderTraining() {
 
 function renderNutrition() {
   const selected = client();
+  if (!hasSelectedClient(selected)) {
+    $("#nutritionPlanForm").style.display = "none";
+    $("#recipePanel").style.display = "none";
+    $("#clientFoodPanel").style.display = "block";
+    $("#plannedMealChecklist").innerHTML = emptyTrackerState("Voeg eerst een client toe om voeding te loggen.");
+    $("#dailyFoodTotals").innerHTML = "";
+    $("#actualFoodLogTable").innerHTML = `<tr><td colspan="9">Voeg eerst een client toe.</td></tr>`;
+    $("#macroCalculatorPanel").style.display = isTrainer() ? "block" : "none";
+    $("#macroTotals").innerHTML = "";
+    $("#foodLogTable").innerHTML = `<tr><td colspan="7">Nog geen trainerberekening.</td></tr>`;
+    return;
+  }
   $("#nutritionPlanForm").style.display = isTrainer() ? "block" : "none";
   $("#recipePanel").style.display = isTrainer() ? "block" : "none";
   $("#macroCalculatorPanel").style.display = isTrainer() ? "block" : "none";
@@ -1453,7 +1606,16 @@ function renderNutrition() {
 
 function renderSteps() {
   const selected = client();
+  if (!hasSelectedClient(selected)) {
+    $("#stepsGoalStrip").innerHTML = "";
+    $("#stepsGrid").innerHTML = emptyTrackerState();
+    return;
+  }
   const steps = weekArray(selected, "stepsByWeek", "value");
+  const dates = weekDates(activeWeekStart());
+  steps.forEach((item, index) => {
+    item.date = dates[index].date;
+  });
   $("#stepsGoalStrip").innerHTML = goalPills([["Dagdoel stappen", selected.goals.steps]]);
   $("#stepsGrid").innerHTML = steps
     .map(
@@ -1461,9 +1623,12 @@ function renderSteps() {
         <div class="day-cell">
           <label>
             ${item.day}
+            <small>${formatShortDate(dates[index].date)}</small>
             <input data-step-index="${index}" type="number" min="0" value="${item.value}" placeholder="Stappen" />
           </label>
           <span class="status ${statusClass(item.value, selected.goals.steps)}">${statusText(item.value, selected.goals.steps)}</span>
+          <button class="primary-btn tracker-save-btn" data-save-steps-day="${index}" type="button">Opslaan</button>
+          <span class="save-feedback" data-save-feedback="steps-${index}"></span>
         </div>
       `
     )
@@ -1472,6 +1637,12 @@ function renderSteps() {
 
 function renderProgress() {
   const selected = client();
+  if (!hasSelectedClient(selected)) {
+    $("#progressGoalStrip").innerHTML = "";
+    $("#dailyWeightGrid").innerHTML = emptyTrackerState();
+    $("#measurementTable").innerHTML = `<tr><td colspan="7">Voeg eerst een client toe.</td></tr>`;
+    return;
+  }
   const avgWeight = average(selected.dailyWeight.map((item) => item.value));
   $("#progressGoalStrip").innerHTML = goalPills([["Doelgewicht", selected.goals.targetWeight, "kg"], ["Weekgemiddelde", avgWeight, "kg"]]);
   $("#dailyWeightGrid").innerHTML =
@@ -1510,6 +1681,11 @@ function renderProgress() {
 
 function renderWellbeing() {
   const selected = client();
+  if (!hasSelectedClient(selected)) {
+    $("#wellbeingGoalStrip").innerHTML = "";
+    $("#wellbeingGrid").innerHTML = emptyTrackerState();
+    return;
+  }
   const wellbeing = weekArray(selected, "wellbeingByWeek", "energy", { stress: "", motivation: "", mood: "" });
   $("#wellbeingGoalStrip").innerHTML = goalPills([["Doel welzijn", selected.goals.wellbeing]]);
   $("#wellbeingGrid").innerHTML = wellbeing
@@ -1536,7 +1712,16 @@ function renderWellbeing() {
 
 function renderSleep() {
   const selected = client();
+  if (!hasSelectedClient(selected)) {
+    $("#sleepGoalStrip").innerHTML = "";
+    $("#sleepGrid").innerHTML = emptyTrackerState();
+    return;
+  }
   const sleep = weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" });
+  const dates = weekDates(activeWeekStart());
+  sleep.forEach((item, index) => {
+    item.date = dates[index].date;
+  });
   $("#sleepGoalStrip").innerHTML = goalPills([["Doel slaap", selected.goals.sleep, "u"]]);
   $("#sleepGrid").innerHTML = sleep
     .map((item, index) => {
@@ -1544,11 +1729,14 @@ function renderSleep() {
       return `
         <div class="day-cell">
           <strong>${item.day}</strong>
-          <label>Uren<input data-sleep="${index}:hours" type="number" min="0" step="0.1" value="${item.hours}" /></label>
-          <label>Kwaliteit<input data-sleep="${index}:quality" type="number" min="1" max="10" value="${item.quality}" /></label>
-          <label>Naar bed<input data-sleep="${index}:bed" type="time" value="${item.bed}" /></label>
-          <label>Wakker<input data-sleep="${index}:wake" type="time" value="${item.wake}" /></label>
+          <small>${formatShortDate(dates[index].date)}</small>
+          <label>Uren<input data-sleep-day="${index}" data-sleep="${index}:hours" type="number" min="0" step="0.1" value="${item.hours}" /></label>
+          <label>Kwaliteit<input data-sleep-day="${index}" data-sleep="${index}:quality" type="number" min="1" max="10" value="${item.quality}" /></label>
+          <label>Naar bed<input data-sleep-day="${index}" data-sleep="${index}:bed" type="time" value="${item.bed}" /></label>
+          <label>Wakker<input data-sleep-day="${index}" data-sleep="${index}:wake" type="time" value="${item.wake}" /></label>
           <span class="status ${statusClass(recovery, 0.85)}">Herstel ${fmt(recovery * 100, 0)}%</span>
+          <button class="primary-btn tracker-save-btn" data-save-sleep-day="${index}" type="button">Opslaan</button>
+          <span class="save-feedback" data-save-feedback="sleep-${index}"></span>
         </div>
       `;
     })
@@ -1557,7 +1745,17 @@ function renderSleep() {
 
 function renderWater() {
   const selected = client();
+  if (!hasSelectedClient(selected)) {
+    $("#waterGoalStrip").innerHTML = "";
+    $("#waterDisplay").innerHTML = "";
+    $("#waterDayGrid").innerHTML = emptyTrackerState();
+    return;
+  }
   const waterEntries = weekWaterEntries(selected);
+  const dates = weekDates(activeWeekStart());
+  waterEntries.forEach((item, index) => {
+    item.date = dates[index].date;
+  });
   const water = weekWater(selected);
   const weekTarget = number(selected.goals.water) * 7;
   const pct = weekTarget ? Math.min(100, water / weekTarget * 100) : 0;
@@ -1567,6 +1765,7 @@ function renderWater() {
     .map((item, index) => `
       <div class="water-day-card">
         <strong>${item.day}</strong>
+        <small>${formatShortDate(dates[index].date)}</small>
         <label>
           Liters
           <input data-water-day-input="${index}" type="number" min="0" step="0.25" value="${item.value}" placeholder="0" />
@@ -1578,6 +1777,8 @@ function renderWater() {
           <button class="primary-btn" data-water-day="${index}:0.5" type="button">+500 ml</button>
           <button class="secondary-btn" data-water-day="${index}:reset" type="button">Reset</button>
         </div>
+        <button class="primary-btn tracker-save-btn" data-save-water-day="${index}" type="button">Opslaan</button>
+        <span class="save-feedback" data-save-feedback="water-${index}"></span>
       </div>
     `)
     .join("");
@@ -1586,7 +1787,7 @@ function renderWater() {
 function renderAgenda() {
   const selected = client();
   const calendar = $("#weekCalendar");
-  $("#appointmentForm").style.display = isTrainer() ? "block" : "none";
+  $("#appointmentForm").style.display = isTrainer() && state.clients.length ? "block" : "none";
   $("#calendarControls").style.display = isTrainer() ? "flex" : "none";
   $("#agendaPanelTitle").textContent = isTrainer() ? "Weekagenda" : "Mijn afspraken";
 
@@ -1610,6 +1811,11 @@ function renderAgenda() {
   const days = weekDates(weekStart);
   const weekEnd = days[6].date;
   $("#calendarWeekLabel").textContent = `${formatShortDate(weekStart)} - ${formatShortDate(weekEnd)}`;
+  if (!state.clients.length) {
+    calendar.className = "client-appointments";
+    calendar.innerHTML = emptyTrackerState("Nog geen clienten gekoppeld. Voeg eerst een client toe om afspraken te plannen.");
+    return;
+  }
   const dateInput = $("#appointmentForm").elements.date;
   if (!dateInput.value || dateInput.value < weekStart || dateInput.value > weekEnd) {
     dateInput.value = weekStart;
@@ -1698,6 +1904,7 @@ function createClientProfile({ name, email, password = "", goal = "", registered
     },
     planSummary: "Plan nog invullen.",
     trainingPlan: [],
+    trainingAttendanceByWeek: {},
     nutritionPlan: [],
     foodLog: [],
     steps: DAYS.map((day) => ({ day, value: "" })),
@@ -1834,14 +2041,28 @@ document.addEventListener("click", (event) => {
   if (!target) return;
 
   if (target.dataset.navStep) {
+    navMenuOpen = false;
     const items = allowedViews();
     if (!items.length) return;
     const currentIndex = Math.max(0, items.findIndex(([id]) => id === currentView));
     const nextIndex = (currentIndex + Number(target.dataset.navStep) + items.length) % items.length;
     showView(items[nextIndex][0]);
+    return;
   }
-  if (target.dataset.view) showView(target.dataset.view);
-  if (target.dataset.action === "open-view") showView(target.dataset.target);
+  if (target.dataset.navMenuToggle) {
+    navMenuOpen = !navMenuOpen;
+    renderNav();
+    return;
+  }
+  if (target.dataset.view) {
+    navMenuOpen = false;
+    showView(target.dataset.view);
+    return;
+  }
+  if (target.dataset.action === "open-view") {
+    navMenuOpen = false;
+    showView(target.dataset.target);
+  }
   if (target.id === "themeToggle") {
     state.ui.theme = state.ui.theme === "dark" ? "light" : "dark";
     renderAll();
@@ -1903,7 +2124,25 @@ document.addEventListener("click", (event) => {
     const [index, amount] = target.dataset.waterDay.split(":");
     if (amount === "reset") setWaterDay(selected, index, "");
     else addWaterDay(selected, index, amount);
-    renderAll();
+    renderWater();
+    renderClientHome();
+    renderTrainerDashboard();
+  }
+  if (target.dataset.saveTrainingDay) {
+    saveTrackerDay("training", target.dataset.saveTrainingDay);
+    return;
+  }
+  if (target.dataset.saveStepsDay) {
+    saveTrackerDay("steps", target.dataset.saveStepsDay);
+    return;
+  }
+  if (target.dataset.saveSleepDay) {
+    saveTrackerDay("sleep", target.dataset.saveSleepDay);
+    return;
+  }
+  if (target.dataset.saveWaterDay) {
+    saveTrackerDay("water", target.dataset.saveWaterDay);
+    return;
   }
   if (target.dataset.trackingWeek) {
     if (target.dataset.trackingWeek === "today") {
@@ -2193,7 +2432,12 @@ $("#goalForm").addEventListener("submit", (event) => {
 $("#trainingForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
-  client().trainingPlan.push({
+  const selected = client();
+  if (!hasSelectedClient(selected)) {
+    alert("Voeg eerst een client toe.");
+    return;
+  }
+  selected.trainingPlan.push({
     day: data.get("day"),
     exercise: data.get("exercise"),
     sets: number(data.get("sets")),
@@ -2211,7 +2455,12 @@ $("#trainingForm").addEventListener("submit", (event) => {
 $("#nutritionPlanForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
-  client().nutritionPlan.push({
+  const selected = client();
+  if (!hasSelectedClient(selected)) {
+    alert("Voeg eerst een client toe.");
+    return;
+  }
+  selected.nutritionPlan.push({
     meal: data.get("meal"),
     items: data.get("items"),
     kcal: number(data.get("kcal")),
@@ -2274,7 +2523,12 @@ $("#foodEntryForm").addEventListener("submit", (event) => {
   const amount = number(data.get("amount"));
   const unit = data.get("unit");
   if (!product || !amount) return;
-  client().foodLog.push({
+  const selected = client();
+  if (!hasSelectedClient(selected)) {
+    alert("Voeg eerst een client toe.");
+    return;
+  }
+  selected.foodLog.push({
     ...foodEntryFromProduct(product, amount, unit, data.get("note") || ""),
     date: data.get("date") || activeWeekStart()
   });
@@ -2285,7 +2539,12 @@ $("#foodEntryForm").addEventListener("submit", (event) => {
 $("#measurementForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
-  client().measurements.push({
+  const selected = client();
+  if (!hasSelectedClient(selected)) {
+    alert("Voeg eerst een client toe.");
+    return;
+  }
+  selected.measurements.push({
     week: data.get("week"),
     weight: number(data.get("weight")),
     waist: number(data.get("waist")),
@@ -2329,12 +2588,10 @@ document.addEventListener("input", (event) => {
     const [index, key] = target.dataset.trainingLog.split(":");
     if (selected.trainingPlan[Number(index)]) {
       exerciseWeekLog(selected.trainingPlan[Number(index)])[key] = target.value;
-      saveState();
     }
   }
   if (target.dataset.stepIndex) {
     weekArray(selected, "stepsByWeek", "value")[Number(target.dataset.stepIndex)].value = target.value;
-    saveState();
   }
   if (target.dataset.weightIndex) {
     selected.dailyWeight[Number(target.dataset.weightIndex)].value = target.value;
@@ -2348,11 +2605,9 @@ document.addEventListener("input", (event) => {
   if (target.dataset.sleep) {
     const [index, key] = target.dataset.sleep.split(":");
     weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[Number(index)][key] = target.value;
-    saveState();
   }
   if (target.dataset.waterDayInput) {
     setWaterDay(selected, target.dataset.waterDayInput, target.value);
-    saveState();
   }
   if (target.dataset.mealAlternative) {
     mealWeekLog(selected.nutritionPlan[Number(target.dataset.mealAlternative)]).alternative = target.value;
@@ -2399,11 +2654,14 @@ document.addEventListener("change", (event) => {
   if (target.dataset.sleep) {
     const [index, key] = target.dataset.sleep.split(":");
     weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[Number(index)][key] = target.value;
-    renderAll();
+    renderSleep();
   }
   if (target.dataset.waterDayInput) {
     setWaterDay(selected, target.dataset.waterDayInput, target.value);
-    renderAll();
+    renderWater();
+  }
+  if (target.dataset.trainingAttendance) {
+    trainingAttendanceWeek(selected)[Number(target.dataset.trainingAttendance)].status = target.value;
   }
   if (target.dataset.mealStatus) {
     mealWeekLog(selected.nutritionPlan[Number(target.dataset.mealStatus)]).status = target.value;
