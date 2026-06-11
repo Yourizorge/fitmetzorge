@@ -427,6 +427,7 @@
             <div id="macroCalculatorPanel" class="panel trainer-tool">
               <div class="panel-head">
                 <h2>Trainer product calculator</h2>
+                <button class="secondary-btn" data-reset-calc type="button">Calculator resetten</button>
               </div>
               <form id="macroForm" class="inline-form">
                 <select name="product" id="productSelect"></select>
@@ -607,6 +608,10 @@
                 <span>Type</span>
                 <input name="type" placeholder="Training, check-in, meting" />
               </label>
+              <label class="field">
+                <span>Tarief</span>
+                <select name="rateId" id="appointmentRate"></select>
+              </label>
               <button class="primary-btn" type="submit">Inplannen</button>
             </form>
             <div class="panel">
@@ -620,6 +625,92 @@
                 </div>
               </div>
               <div id="weekCalendar" class="week-calendar"></div>
+              <details id="previousAppointmentsBlock" class="history-block">
+                <summary>Vorige afspraken</summary>
+                <div id="previousAppointmentsList" class="history-list"></div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section id="finance" class="view" data-view-title="Financien">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Trainer</p>
+              <h1>Financien</h1>
+            </div>
+          </div>
+          <div class="finance-layout">
+            <form id="financeRateForm" class="panel form-panel">
+              <h2>Tarieven beheren</h2>
+              <label class="field">
+                <span>Naam tarief</span>
+                <input name="name" placeholder="Personal training" required />
+              </label>
+              <label class="field">
+                <span>Bedrag</span>
+                <input name="amount" type="number" min="0" step="0.01" placeholder="60" required />
+              </label>
+              <button class="primary-btn" type="submit">Tarief opslaan</button>
+            </form>
+            <div class="panel">
+              <div class="panel-head">
+                <h2>Actieve tarieven</h2>
+              </div>
+              <div id="financeRatesList" class="rate-list"></div>
+            </div>
+          </div>
+          <div id="financeKpis" class="kpi-grid"></div>
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Omzet per afspraak</h2>
+              <span class="muted">Koppel tarieven en pas bedragen handmatig aan</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Datum</th>
+                    <th>Client</th>
+                    <th>Afspraak</th>
+                    <th>Tarief</th>
+                    <th>Bedrag</th>
+                    <th>Omzet</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="financeAppointmentTable"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="split-layout finance-totals">
+            <div class="panel">
+              <h2>Omzet per client</h2>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Client</th>
+                      <th>Omzet</th>
+                    </tr>
+                  </thead>
+                  <tbody id="financeClientTable"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel">
+              <h2>Omzet per maand</h2>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Maand</th>
+                      <th>Omzet</th>
+                    </tr>
+                  </thead>
+                  <tbody id="financeMonthTable"></tbody>
+                </table>
+              </div>
             </div>
           </div>
         </section>
