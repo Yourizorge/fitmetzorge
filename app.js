@@ -130,10 +130,19 @@ const PRODUCTS = [
 
 const MEAL_LABELS = {
   breakfast: "Ontbijt",
-  lunch: "Middag",
-  dinner: "Avond",
-  snack: "Tussendoortje"
+  snack: "Tussendoor",
+  lunch: "Middageten",
+  dinner: "Avondeten",
+  late: "Late night snack"
 };
+
+const MEAL_SECTIONS = [
+  ["breakfast", "Ontbijt"],
+  ["snack", "Tussendoor"],
+  ["lunch", "Middageten"],
+  ["dinner", "Avondeten"],
+  ["late", "Late night snack"]
+];
 
 const RECIPE_TEMPLATES = {
   breakfast: [
@@ -365,7 +374,7 @@ function seedState() {
 
 function normalizeState(raw) {
   const next = raw && typeof raw === "object" ? raw : seedState();
-  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), ...(next.ui || {}) };
+  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), openNutritionMeal: "breakfast", ...(next.ui || {}) };
   next.ui.calendarWeekStart = startOfWeekISO(next.ui.calendarWeekStart || todayISO());
   next.ui.trackingWeekStart = startOfWeekISO(next.ui.trackingWeekStart || todayISO());
   const currentTrackingWeek = next.ui.trackingWeekStart;
@@ -415,6 +424,7 @@ function normalizeState(raw) {
     );
     item.nutritionPlan = Array.isArray(item.nutritionPlan) ? item.nutritionPlan : [];
     item.nutritionPlan.forEach((meal) => {
+      meal.mealType = normalizeMealType(meal.mealType || meal.type || meal.meal);
       meal.status ||= "";
       meal.alternative ||= "";
       meal.logsByWeek = meal.logsByWeek && typeof meal.logsByWeek === "object" ? meal.logsByWeek : {};
@@ -1599,7 +1609,7 @@ function renderNutrition() {
     $("#clientFoodPanel").style.display = "block";
     $("#plannedMealChecklist").innerHTML = emptyTrackerState("Voeg eerst een client toe om voeding te loggen.");
     $("#dailyFoodTotals").innerHTML = "";
-    $("#actualFoodLogTable").innerHTML = `<tr><td colspan="9">Voeg eerst een client toe.</td></tr>`;
+    $("#actualFoodLogCards").innerHTML = emptyTrackerState("Voeg eerst een client toe om voeding te loggen.");
     $("#macroCalculatorPanel").style.display = isTrainer() ? "block" : "none";
     $("#macroTotals").innerHTML = "";
     $("#foodLogTable").innerHTML = `<tr><td colspan="7">Nog geen trainerberekening.</td></tr>`;
@@ -1655,64 +1665,16 @@ function renderNutrition() {
       )
       .join("") || `<tr><td colspan="7">Nog geen trainerberekening.</td></tr>`;
 
-  $("#nutritionPlanList").innerHTML =
-    selected.nutritionPlan
-      .map(
-        (item, index) => `
-          <div class="list-item">
-            <strong>${item.meal}</strong>
-            <span>${item.items}</span>
-            <p>${fmt(item.kcal)} kcal | ${fmt(item.protein)}g eiwit | ${fmt(item.carbs)}g kh | ${fmt(item.fat)}g vet</p>
-            ${isTrainer() ? `<button class="danger-btn" data-remove-meal="${index}" type="button">Verwijder</button>` : ""}
-          </div>
-        `
-      )
-      .join("") || `<div class="empty-state">Nog geen voedingsschema.</div>`;
+  $("#nutritionPlanList").innerHTML = selected.nutritionPlan.length
+    ? renderMealAccordion(selected, { checklist: false })
+    : `<div class="empty-state">Nog geen voedingsschema.</div>`;
 
-  $("#plannedMealChecklist").innerHTML =
-    selected.nutritionPlan
-      .map((item, index) => {
-        const mealLog = mealWeekLog(item);
-        return `
-        <div class="list-item">
-          <strong>${item.meal}</strong>
-          <span>${item.items}</span>
-          <p>Plan: ${fmt(item.kcal)} kcal | ${fmt(item.protein)}g eiwit | ${fmt(item.carbs)}g kh | ${fmt(item.fat)}g vet</p>
-          <label class="field">
-            <span>Uitvoering</span>
-            <select data-meal-status="${index}">
-              ${["", "Gegeten zoals plan", "Anders gegeten", "Niet gegeten"].map((value) => `<option value="${value}" ${value === mealLog.status ? "selected" : ""}>${value || "Nog niet ingevuld"}</option>`).join("")}
-            </select>
-          </label>
-          <label class="field">
-            <span>Opmerking / vervanging</span>
-            <textarea data-meal-alternative="${index}" rows="2" placeholder="Bij anders gegeten: wat was anders?">${mealLog.alternative || ""}</textarea>
-          </label>
-        </div>
-      `;
-      })
-      .join("") || `<div class="empty-state">Geen gepland voedingsschema om af te vinken.</div>`;
+  $("#plannedMealChecklist").innerHTML = selected.nutritionPlan.length
+    ? renderMealAccordion(selected, { checklist: true })
+    : `<div class="empty-state">Geen gepland voedingsschema om af te vinken.</div>`;
 
   const todayEntries = todayFoodLog(selected);
-  $("#actualFoodLogTable").innerHTML =
-    todayEntries
-      .map((item) => {
-        const originalIndex = selected.foodLog.indexOf(item);
-        return `
-          <tr>
-            <td data-label="Product">${item.name}</td>
-            <td data-label="Datum">${item.date || "-"}</td>
-            <td data-label="Hoeveelheid">${fmt(item.amount ?? item.grams, item.unit === "l" ? 2 : 0)}${item.unit || "g"}</td>
-            <td data-label="Kcal">${fmt(item.kcal)}</td>
-            <td data-label="Eiwit">${fmt(item.protein)}</td>
-            <td data-label="KH">${fmt(item.carbs)}</td>
-            <td data-label="Vet">${fmt(item.fat)}</td>
-            <td data-label="Opmerking">${item.note || "-"}</td>
-            <td data-label=""><button class="danger-btn" data-remove-food="${originalIndex}" type="button">Verwijder</button></td>
-          </tr>
-        `;
-      })
-      .join("") || `<tr><td colspan="9">In deze week is nog niets gelogd.</td></tr>`;
+  $("#actualFoodLogCards").innerHTML = renderFoodLogCards(selected, todayEntries);
 }
 
 function renderSteps() {
@@ -2183,6 +2145,129 @@ function mealTypeLabel(mealType) {
   return MEAL_LABELS[mealType] || "Maaltijd";
 }
 
+function normalizeMealType(value = "") {
+  const key = String(value || "").trim().toLowerCase();
+  if (MEAL_LABELS[key]) return key;
+  if (/ontbijt|breakfast/.test(key)) return "breakfast";
+  if (/late|nacht|avond snack|night/.test(key)) return "late";
+  if (/tussendoor|tussendoortje|snack/.test(key)) return "snack";
+  if (/lunch|middag/.test(key)) return "lunch";
+  if (/diner|dinner|avond/.test(key)) return "dinner";
+  return "lunch";
+}
+
+function mealTypeOptions(selected = "breakfast") {
+  return MEAL_SECTIONS
+    .map(([id, label]) => `<option value="${id}" ${id === selected ? "selected" : ""}>${label}</option>`)
+    .join("");
+}
+
+function openNutritionMeal() {
+  const current = state.ui.openNutritionMeal;
+  return MEAL_SECTIONS.some(([id]) => id === current) ? current : "";
+}
+
+function renderMealAccordion(selected, { checklist = false } = {}) {
+  const open = openNutritionMeal();
+  return MEAL_SECTIONS
+    .map(([mealType, label]) => {
+      const items = selected.nutritionPlan
+        .map((item, index) => ({ item, index }))
+        .filter(({ item }) => normalizeMealType(item.mealType || item.meal) === mealType);
+      const totalKcal = items.reduce((sum, { item }) => sum + number(item.kcal), 0);
+      const isOpen = open === mealType;
+      return `
+        <div class="meal-accordion ${isOpen ? "open" : ""}">
+          <button class="meal-accordion-head" data-nutrition-group="${mealType}" type="button" aria-expanded="${isOpen}">
+            <span>${label}</span>
+            <small>${items.length} optie${items.length === 1 ? "" : "s"}${totalKcal ? ` | ${fmt(totalKcal)} kcal` : ""}</small>
+          </button>
+          <div class="meal-accordion-body">
+            ${
+              isOpen
+                ? (items.length ? items.map(({ item, index }) => renderMealOption(item, index, checklist)).join("") : `<div class="empty-state">Nog geen opties voor ${label.toLowerCase()}.</div>`)
+                : ""
+            }
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function renderMealOption(item, index, checklist = false) {
+  const mealLog = mealWeekLog(item);
+  return `
+    <div class="meal-option-card">
+      <div class="meal-option-main">
+        <strong>${item.meal}</strong>
+        <span>${item.items || "-"}</span>
+        <p>${fmt(item.kcal)} kcal | ${fmt(item.protein)}g eiwit | ${fmt(item.carbs)}g kh | ${fmt(item.fat)}g vet</p>
+      </div>
+      ${
+        checklist
+          ? `
+            <label class="field">
+              <span>Uitvoering</span>
+              <select data-meal-status="${index}">
+                ${["", "Gegeten zoals plan", "Anders gegeten", "Niet gegeten"].map((value) => `<option value="${value}" ${value === mealLog.status ? "selected" : ""}>${value || "Nog niet ingevuld"}</option>`).join("")}
+              </select>
+            </label>
+            <label class="field">
+              <span>Opmerking / vervanging</span>
+              <textarea data-meal-alternative="${index}" rows="2" placeholder="Bij anders gegeten: wat was anders?">${mealLog.alternative || ""}</textarea>
+            </label>
+          `
+          : `${isTrainer() ? `<button class="danger-btn" data-remove-meal="${index}" type="button">Verwijder</button>` : ""}`
+      }
+    </div>
+  `;
+}
+
+function renderFoodLogCards(selected, entries) {
+  if (!entries.length) return `<div class="empty-state">In deze week is nog niets gelogd.</div>`;
+  const byDate = new Map();
+  entries.forEach((item) => {
+    const date = item.date || todayISO();
+    if (!byDate.has(date)) byDate.set(date, []);
+    byDate.get(date).push(item);
+  });
+  return [...byDate.entries()]
+    .sort((a, b) => b[0].localeCompare(a[0]))
+    .map(([date, items]) => {
+      const totals = sumFoodEntries(items);
+      return `
+        <div class="food-log-day">
+          <div class="food-log-day-head">
+            <strong>${formatLongDutchDate(date)}</strong>
+            <span>${fmt(totals.kcal)} kcal | ${fmt(totals.protein)}g eiwit | ${fmt(totals.carbs)}g kh | ${fmt(totals.fat)}g vet</span>
+          </div>
+          <div class="food-log-list">
+            ${items.map((item) => {
+              const originalIndex = selected.foodLog.indexOf(item);
+              return `
+                <div class="food-log-card">
+                  <div>
+                    <strong>${item.name}</strong>
+                    <span>${fmt(item.amount ?? item.grams, item.unit === "l" ? 2 : 0)}${item.unit || "g"}${item.note ? ` | ${item.note}` : ""}</span>
+                  </div>
+                  <div class="food-log-macros">
+                    <span>${fmt(item.kcal)} kcal</span>
+                    <span>${fmt(item.protein)}g E</span>
+                    <span>${fmt(item.carbs)}g KH</span>
+                    <span>${fmt(item.fat)}g V</span>
+                  </div>
+                  <button class="danger-btn" data-remove-food="${originalIndex}" type="button">Verwijder</button>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+}
+
 function mergeRecipeParts(parts) {
   const merged = new Map();
   parts.forEach((part) => {
@@ -2224,7 +2309,8 @@ function buildRecipeFromTemplate(template, target, mealType) {
 }
 
 function generateRecipes(target, mealType, style) {
-  const templates = RECIPE_TEMPLATES[mealType] || Object.values(RECIPE_TEMPLATES).flat();
+  const templateKey = mealType === "late" ? "snack" : mealType;
+  const templates = RECIPE_TEMPLATES[templateKey] || Object.values(RECIPE_TEMPLATES).flat();
   const preferred = style === "all" ? templates : templates.filter((item) => item.style === style);
   const fallback = templates.filter((item) => !preferred.includes(item));
   return [...preferred, ...fallback].slice(0, 6).map((template) => buildRecipeFromTemplate(template, target, mealType));
@@ -2272,6 +2358,12 @@ document.addEventListener("click", (event) => {
   if (target.dataset.action === "open-view") {
     navMenuOpen = false;
     showView(target.dataset.target);
+  }
+  if (target.dataset.nutritionGroup) {
+    state.ui.openNutritionMeal = state.ui.openNutritionMeal === target.dataset.nutritionGroup ? "" : target.dataset.nutritionGroup;
+    renderNutrition();
+    saveState();
+    return;
   }
   if (target.id === "themeToggle") {
     state.ui.theme = state.ui.theme === "dark" ? "light" : "dark";
@@ -2343,6 +2435,7 @@ document.addEventListener("click", (event) => {
     if (!recipe) return;
     client().nutritionPlan.push({
       meal: `${mealTypeLabel(recipe.mealType)} - ${recipe.name}`,
+      mealType: normalizeMealType(recipe.mealType),
       items: recipeIngredients(recipe),
       kcal: Math.round(recipe.totals.kcal),
       protein: Math.round(recipe.totals.protein),
@@ -2351,6 +2444,7 @@ document.addEventListener("click", (event) => {
       status: "",
       alternative: ""
     });
+    state.ui.openNutritionMeal = normalizeMealType(recipe.mealType);
     saveState();
     target.textContent = "Toegevoegd";
     target.disabled = true;
@@ -2704,6 +2798,7 @@ $("#nutritionPlanForm").addEventListener("submit", (event) => {
   }
   selected.nutritionPlan.push({
     meal: data.get("meal"),
+    mealType: normalizeMealType(data.get("mealType")),
     items: data.get("items"),
     kcal: number(data.get("kcal")),
     protein: number(data.get("protein")),
@@ -2712,6 +2807,7 @@ $("#nutritionPlanForm").addEventListener("submit", (event) => {
     status: "",
     alternative: ""
   });
+  state.ui.openNutritionMeal = normalizeMealType(data.get("mealType"));
   event.currentTarget.reset();
   renderAll();
 });
