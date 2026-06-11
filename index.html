@@ -322,8 +322,18 @@
             <form id="nutritionPlanForm" class="panel form-panel">
               <h2>Voedingsplan toevoegen</h2>
               <label class="field">
-                <span>Maaltijd</span>
-                <input name="meal" placeholder="Ontbijt" required />
+                <span>Eetmoment</span>
+                <select name="mealType" required>
+                  <option value="breakfast">Ontbijt</option>
+                  <option value="snack">Tussendoor</option>
+                  <option value="lunch">Middageten</option>
+                  <option value="dinner">Avondeten</option>
+                  <option value="late">Late night snack</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Optie naam</span>
+                <input name="meal" placeholder="Bijv. Kwark bowl" required />
               </label>
               <label class="field">
                 <span>Producten</span>
@@ -365,9 +375,10 @@
               <form id="recipeForm" class="inline-form recipe-form">
                 <select name="mealType">
                   <option value="breakfast">Ontbijt</option>
-                  <option value="lunch">Middag</option>
-                  <option value="dinner">Avond</option>
-                  <option value="snack">Tussendoortje</option>
+                  <option value="snack">Tussendoor</option>
+                  <option value="lunch">Middageten</option>
+                  <option value="dinner">Avondeten</option>
+                  <option value="late">Late night snack</option>
                 </select>
                 <input name="kcal" type="number" min="200" value="650" placeholder="Kcal" />
                 <input name="protein" type="number" min="10" value="45" placeholder="Eiwit" />
@@ -404,24 +415,7 @@
                 <button class="primary-btn" type="submit">Voeding loggen</button>
               </form>
               <div id="dailyFoodTotals" class="macro-totals"></div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Product</th>
-                      <th>Datum</th>
-                      <th>Hoeveelheid</th>
-                      <th>Kcal</th>
-                      <th>Eiwit</th>
-                      <th>KH</th>
-                      <th>Vet</th>
-                      <th>Opmerking</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody id="actualFoodLogTable"></tbody>
-                </table>
-              </div>
+              <div id="actualFoodLogCards" class="food-log-cards"></div>
             </div>
 
             <div id="macroCalculatorPanel" class="panel trainer-tool">
