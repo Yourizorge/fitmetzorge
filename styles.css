@@ -1,0 +1,1416 @@
+:root {
+  color-scheme: dark;
+  --bg: #070707;
+  --surface: #111315;
+  --surface-2: #181c20;
+  --surface-3: #20262c;
+  --text: #f4f7f8;
+  --muted: #9aa7b2;
+  --line: #303842;
+  --gold: #d7b24d;
+  --gold-2: #f0ce73;
+  --blue: #073b5a;
+  --blue-2: #0b4f78;
+  --danger: #f07171;
+  --ok: #76d39b;
+  --radius: 8px;
+  --shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+}
+
+body.light {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-2: #eef3f7;
+  --surface-3: #e6edf2;
+  --text: #111315;
+  --muted: #5d6872;
+  --line: #d8e0e7;
+  --gold: #b88917;
+  --gold-2: #d5a633;
+  --blue: #073b5a;
+  --blue-2: #e7f0f6;
+  --shadow: 0 14px 34px rgba(24, 35, 45, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.runtime-error {
+  position: fixed;
+  z-index: 9999;
+  left: 12px;
+  right: 12px;
+  top: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(240, 113, 113, 0.7);
+  border-radius: 8px;
+  background: #2b0505;
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 248px 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.logged-out .app-shell {
+  display: none;
+}
+
+.logged-in .login-screen {
+  display: none;
+}
+
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: var(--bg);
+}
+
+.login-card {
+  width: min(440px, 100%);
+  display: grid;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.login-logo {
+  width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.auth-tab {
+  min-height: 42px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.auth-tab.active {
+  background: var(--gold);
+  color: #111;
+}
+
+.auth-panel {
+  display: none;
+}
+
+.auth-panel.active {
+  display: grid;
+}
+
+.login-form {
+  display: grid;
+  gap: 10px;
+}
+
+.login-form.auth-panel {
+  display: none;
+}
+
+.login-form.auth-panel.active {
+  display: grid;
+}
+
+.login-message {
+  min-height: 20px;
+  color: var(--danger);
+  margin: 0;
+}
+
+.auth-note,
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.form-note {
+  min-height: 18px;
+}
+
+.form-note.error,
+.login-message.error {
+  color: var(--danger);
+}
+
+.form-note.ok,
+.login-message.ok {
+  color: var(--ok);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.checkbox-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gold);
+}
+
+.current-user {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sync-status {
+  min-width: max-content;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 12px 22px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.brand-logo-wrap {
+  width: 190px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(215, 178, 77, 0.45);
+  border-radius: 6px;
+  background: #fff;
+  padding: 6px 10px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 10px 26px rgba(0, 0, 0, 0.18);
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+}
+
+.brand strong,
+.brand span {
+  display: block;
+}
+
+.brand strong {
+  color: var(--gold-2);
+  font-size: 17px;
+}
+
+.brand span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar {
+  grid-row: 2;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  padding: 16px 12px;
+  overflow: auto;
+}
+
+.nav {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+  color: var(--text);
+  background: var(--surface-2);
+  border-color: var(--line);
+}
+
+.nav-btn.active::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.content {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 22px;
+  overflow: auto;
+}
+
+.view {
+  display: none;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.view.active {
+  display: block;
+}
+
+.view-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--gold-2);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-head h2 {
+  margin: 0;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  min-height: 104px;
+}
+
+.kpi span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.kpi strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 26px;
+}
+
+.kpi small {
+  color: var(--muted);
+}
+
+.split-layout {
+  display: grid;
+  grid-template-columns: minmax(290px, 390px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.agenda-layout {
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+}
+
+.nutrition-layout {
+  display: grid;
+  grid-template-columns: minmax(290px, 360px) minmax(330px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.nutrition-plan-panel {
+  min-height: 100%;
+}
+
+.trainer-tool {
+  grid-column: span 1;
+}
+
+.client-food-panel {
+  grid-column: 1 / -1;
+}
+
+.meal-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.summary-layout {
+  display: grid;
+  grid-template-columns: minmax(270px, 420px) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.client-card,
+.list-item,
+.recipe-output {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 12px;
+}
+
+.client-card.active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px rgba(215, 178, 77, 0.24);
+}
+
+.client-card strong,
+.list-item strong {
+  display: block;
+}
+
+.client-card span,
+.list-item span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stack-list {
+  display: grid;
+  gap: 10px;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.card-actions button {
+  flex: 1 1 120px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field.compact {
+  min-width: 180px;
+  margin: 0;
+}
+
+input,
+select,
+textarea,
+.small-select {
+  width: 100%;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  min-height: 40px;
+  padding: 9px 10px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.inline-form {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(90px, 1fr)) auto;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.goal-form-grid {
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+}
+
+.recipe-form {
+  grid-template-columns: repeat(6, minmax(90px, 1fr)) auto;
+}
+
+.food-entry-form {
+  grid-template-columns: minmax(130px, 0.8fr) minmax(160px, 1.2fr) minmax(110px, 0.7fr) minmax(100px, 0.7fr) minmax(180px, 1fr) auto;
+}
+
+.primary-btn,
+.secondary-btn,
+.icon-btn,
+.seg-btn,
+.danger-btn {
+  min-height: 40px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 9px 13px;
+  font-weight: 700;
+}
+
+.primary-btn {
+  background: var(--gold);
+  color: #111;
+}
+
+.secondary-btn {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.danger-btn {
+  background: transparent;
+  border-color: rgba(240, 113, 113, 0.5);
+  color: var(--danger);
+}
+
+.icon-btn {
+  width: 42px;
+  padding: 0;
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.segmented {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.seg-btn {
+  border: 0;
+  border-radius: 0;
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.seg-btn.active {
+  color: #fff;
+  background: var(--blue);
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  color: var(--gold-2);
+  background: var(--surface-2);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+td {
+  color: var(--text);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--surface-3);
+  color: var(--muted);
+}
+
+.status.ok {
+  color: #072414;
+  background: var(--ok);
+}
+
+.status.warn {
+  color: #1a1300;
+  background: var(--gold-2);
+}
+
+.status.bad {
+  color: #2b0505;
+  background: var(--danger);
+}
+
+.macro-totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(95px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.goal-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.week-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.week-toolbar strong {
+  min-width: 140px;
+  text-align: center;
+  color: var(--gold-2);
+}
+
+.goal-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid rgba(215, 178, 77, 0.45);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.training-days {
+  display: grid;
+  gap: 12px;
+}
+
+.week-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(210px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.training-day {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  min-height: 180px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.calendar-day {
+  min-width: 210px;
+  min-height: 430px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.training-day h3 {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 14px;
+  border-right: 1px solid var(--line);
+  color: var(--gold-2);
+  font-size: 15px;
+}
+
+.calendar-day h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--gold-2);
+  font-size: 14px;
+}
+
+.calendar-day h3 span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calendar-controls strong {
+  min-width: 130px;
+  text-align: center;
+}
+
+.calendar-add {
+  width: calc(100% - 20px);
+  margin: 10px 10px 0;
+}
+
+.recipe-output {
+  display: grid;
+  gap: 12px;
+}
+
+.recipe-output-head {
+  display: grid;
+  gap: 4px;
+}
+
+.recipe-output-head span,
+.recipe-style {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.recipe-option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.recipe-option-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 12px;
+}
+
+.recipe-style {
+  display: block;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.ingredient-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ingredient-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.ingredient-list strong {
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.exercise-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(250px, 320px);
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.exercise-card,
+.appointment-card {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.exercise-row .exercise-card {
+  margin: 0;
+}
+
+.trainer-calendar .appointment-card {
+  min-height: 96px;
+}
+
+.client-appointments {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.client-appointment-card {
+  min-height: 110px;
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 18px;
+}
+
+.client-appointment-card strong {
+  color: var(--gold-2);
+  font-size: 24px;
+}
+
+.client-appointment-card span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.exercise-card strong,
+.appointment-card strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.exercise-meta {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.exercise-log {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.exercise-log label {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.exercise-log textarea {
+  grid-column: 1 / -1;
+  min-height: 58px;
+}
+
+.empty-mini {
+  margin: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.macro-totals div,
+.metric-tile {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px;
+}
+
+.metric-tile span,
+.macro-totals span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metric-tile strong,
+.macro-totals strong {
+  display: block;
+  font-size: 20px;
+}
+
+.week-grid,
+.tracker-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(135px, 1fr);
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.tracker-grid {
+  grid-auto-columns: minmax(190px, 1fr);
+}
+
+.day-cell {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px;
+}
+
+.day-cell label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.day-cell input,
+.day-cell select {
+  margin-top: 6px;
+}
+
+.water-panel {
+  min-height: 320px;
+  display: grid;
+  align-content: start;
+  justify-items: stretch;
+  gap: 18px;
+}
+
+.water-display {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 10px solid var(--blue);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--surface-2);
+  justify-self: center;
+}
+
+.water-display strong {
+  display: block;
+  font-size: 34px;
+}
+
+.water-display span {
+  color: var(--muted);
+}
+
+.water-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.water-day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.water-day-card {
+  min-width: 150px;
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 12px;
+}
+
+.water-day-card strong {
+  color: var(--gold-2);
+}
+
+.water-day-card label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.water-day-card span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.water-day-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.water-day-actions button {
+  min-height: 34px;
+  padding: 7px 8px;
+  font-size: 12px;
+}
+
+.empty-state {
+  color: var(--muted);
+  padding: 12px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 1120px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .topbar {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar-controls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .sidebar {
+    grid-row: 2;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .content {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .split-layout,
+  .nutrition-layout,
+  .summary-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+
+  .inline-form,
+  .recipe-form,
+  .food-entry-form,
+  .goal-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .app-shell {
+    display: block;
+    min-height: 100dvh;
+    padding-bottom: 84px;
+  }
+
+  .content {
+    padding: 14px 12px 96px;
+    overflow: visible;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .topbar-controls {
+    width: 100%;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .topbar-controls .field.compact {
+    min-width: 126px;
+    flex: 1 1 auto;
+  }
+
+  .current-user {
+    display: none;
+  }
+
+  #logoutButton {
+    min-height: 36px;
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  #themeToggle {
+    width: 36px;
+    min-height: 36px;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    box-shadow: 0 -12px 34px rgba(0, 0, 0, 0.32);
+  }
+
+  .nav {
+    display: flex;
+    grid-template-columns: none;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scroll-snap-type: x proximity;
+  }
+
+  .nav-btn {
+    flex: 0 0 auto;
+    justify-content: center;
+    min-width: 106px;
+    min-height: 44px;
+    padding: 9px 11px;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    scroll-snap-align: center;
+  }
+
+  .nav-btn.active {
+    border-color: rgba(215, 178, 77, 0.7);
+  }
+
+  .nav-btn.active::after {
+    display: none;
+  }
+
+  .view-head,
+  .panel-head {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .brand {
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 8px;
+  }
+
+  .brand-logo-wrap {
+    width: 148px;
+    height: 54px;
+    padding: 4px 7px;
+  }
+
+  .brand strong {
+    font-size: 14px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .panel {
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: none;
+  }
+
+  .kpi {
+    min-height: 86px;
+    padding: 12px;
+  }
+
+  .kpi strong {
+    font-size: 21px;
+  }
+
+  .week-toolbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .week-toolbar strong {
+    grid-column: 1 / -1;
+    min-width: 0;
+    order: -1;
+  }
+
+  .training-day {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .training-day h3 {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 10px 12px;
+  }
+
+  .exercise-row {
+    grid-auto-columns: minmax(235px, 82vw);
+  }
+
+  .calendar-day {
+    min-height: 320px;
+  }
+
+  .client-appointment-card strong {
+    font-size: 18px;
+  }
+
+  .login-screen {
+    align-items: start;
+    padding: 16px 12px;
+  }
+
+  .login-card {
+    padding: 16px;
+  }
+
+  .login-logo {
+    max-height: 92px;
+  }
+
+  .kpi-grid,
+  .form-grid,
+  .macro-totals,
+  .inline-form,
+  .recipe-form,
+  .food-entry-form,
+  .goal-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #nutrition .panel {
+    padding: 12px;
+  }
+
+  #nutrition .meal-plan-grid,
+  #nutrition .recipe-option-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #nutrition .table-wrap {
+    overflow: visible;
+  }
+
+  #nutrition table,
+  #nutrition thead,
+  #nutrition tbody,
+  #nutrition tr,
+  #nutrition td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #nutrition table {
+    min-width: 0;
+  }
+
+  #nutrition thead {
+    display: none;
+  }
+
+  #nutrition tr {
+    margin-bottom: 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    padding: 8px;
+  }
+
+  #nutrition td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  #nutrition td:last-child {
+    border-bottom: 0;
+  }
+
+  #nutrition td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  #nutrition td[colspan] {
+    display: block;
+    text-align: left;
+  }
+
+  #nutrition td[colspan]::before {
+    content: "";
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}

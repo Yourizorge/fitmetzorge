@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" role="img" aria-label="Fit Met Zorge">
+  <rect width="220" height="220" rx="28" fill="#080808"/>
+  <path d="M42 158V58h74v20H66v22h42v19H66v39H42Z" fill="#D8B04C"/>
+  <path d="M119 158V58h26l27 46 27-46h25v100h-23V96l-23 39h-12l-23-39v62h-20Z" fill="#073B5A"/>
+  <path d="M43 177h134" stroke="#D8B04C" stroke-width="7" stroke-linecap="round"/>
+  <path d="M72 194h106" stroke="#073B5A" stroke-width="7" stroke-linecap="round"/>
+</svg>
