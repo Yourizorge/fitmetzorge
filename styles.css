@@ -241,6 +241,14 @@ button {
   font-weight: 700;
 }
 
+.sync-status[data-state="ok"] {
+  color: var(--ok);
+}
+
+.sync-status[data-state="error"] {
+  color: var(--danger);
+}
+
 .topbar {
   grid-column: 1 / -1;
   display: flex;
@@ -490,6 +498,17 @@ h2 {
   align-items: start;
 }
 
+.finance-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.finance-totals {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .nutrition-plan-panel {
   min-height: 100%;
 }
@@ -559,6 +578,18 @@ h2 {
 
 .card-actions button {
   flex: 1 1 120px;
+}
+
+.rate-list {
+  display: grid;
+  gap: 10px;
+}
+
+.rate-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(100px, 0.45fr) auto;
+  gap: 8px;
+  align-items: center;
 }
 
 .muted {
@@ -822,11 +853,16 @@ td {
 }
 
 .training-day h3 span,
+.training-day h3 em,
 .day-cell small,
 .water-day-card small {
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
+}
+
+.training-day h3 em {
+  font-style: normal;
 }
 
 .calendar-day h3 {
@@ -964,6 +1000,40 @@ td {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 12px;
+}
+
+.history-block {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.history-block summary {
+  cursor: pointer;
+  padding: 12px;
+  color: var(--gold-2);
+  font-weight: 800;
+}
+
+.history-list {
+  display: grid;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.history-item {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 10px;
+}
+
+.history-item span {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .client-appointment-card {
@@ -1229,6 +1299,8 @@ td {
 
   .split-layout,
   .nutrition-layout,
+  .finance-layout,
+  .finance-totals,
   .summary-layout {
     grid-template-columns: 1fr;
   }
