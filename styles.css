@@ -824,7 +824,7 @@ td {
 
 .training-day {
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
   min-height: 180px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -839,30 +839,36 @@ td {
   background: var(--surface-2);
 }
 
-.training-day h3 {
+.training-day-header {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(170px, 220px) auto minmax(110px, 150px);
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.training-day-title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 4px;
   margin: 0;
-  padding: 14px;
-  border-right: 1px solid var(--line);
+  min-width: 0;
+}
+
+.training-day-title strong {
   color: var(--gold-2);
   font-size: 15px;
 }
 
-.training-day h3 span,
-.training-day h3 em,
+.training-day-title span,
 .day-cell small,
 .water-day-card small {
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
-}
-
-.training-day h3 em {
-  font-style: normal;
 }
 
 .calendar-day h3 {
@@ -979,16 +985,6 @@ td {
 }
 
 .exercise-row .exercise-card {
-  margin: 0;
-}
-
-.training-status-card {
-  align-content: start;
-  display: grid;
-  gap: 10px;
-}
-
-.training-status-card .field {
   margin: 0;
 }
 
@@ -1399,6 +1395,7 @@ td {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     width: 100%;
     min-width: 0;
     min-height: 44px;
@@ -1410,6 +1407,23 @@ td {
     font-size: 13px;
     font-weight: 900;
     text-align: center;
+  }
+
+  .nav-current span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-current strong {
+    color: var(--gold-2);
+    font-size: 15px;
+    line-height: 1;
+    transition: transform 0.18s ease;
+  }
+
+  .nav.menu-open .nav-current strong {
+    transform: rotate(180deg);
   }
 
   .nav-track {
@@ -1463,8 +1477,8 @@ td {
 
   .nav-btn.active {
     color: var(--text);
-    background: var(--surface-2);
-    border-color: rgba(215, 178, 77, 0.7);
+    background: color-mix(in srgb, var(--gold) 18%, var(--surface-2));
+    border-color: rgba(215, 178, 77, 0.9);
   }
 
   .nav-btn.active::after {
@@ -1525,13 +1539,13 @@ td {
   }
 
   .training-day {
-    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
     min-height: 0;
   }
 
-  .training-day h3 {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
+  .training-day-header {
+    grid-template-columns: 1fr;
+    align-items: stretch;
     padding: 10px 12px;
   }
 
