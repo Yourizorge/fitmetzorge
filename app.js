@@ -1359,7 +1359,7 @@ function renderNav() {
   nav.innerHTML = `
     <button class="nav-arrow prev" data-nav-step="-1" type="button" aria-label="Vorige tab">‹</button>
     <div class="nav-menu-wrap">
-      <button class="nav-current" data-nav-menu-toggle="true" aria-expanded="${navMenuOpen}" type="button">${currentLabel}</button>
+      <button class="nav-current" data-nav-menu-toggle="true" aria-expanded="${navMenuOpen}" type="button" aria-label="Open tabmenu"><span>${currentLabel}</span><strong aria-hidden="true">^</strong></button>
       <div class="nav-track">
       ${items
         .map(([id, label]) => `<button class="nav-btn ${id === currentView ? "active" : ""}" data-view="${id}" type="button">${label}</button>`)
@@ -1553,19 +1553,18 @@ function renderTraining() {
       .filter((exercise) => exercise.day === day);
     return `
       <div class="training-day">
-        <h3>${day}<span>${formatShortDate(dates[dayIndex].date)}</span><em class="status ${attendanceClass(dayAttendance.status)}">${attendanceLabel(dayAttendance.status)}</em></h3>
-        <div class="exercise-row">
-          <div class="exercise-card training-status-card">
-            <strong>Aanwezigheid</strong>
-            <label class="field">
-              <span>Status</span>
-              <select data-training-attendance="${dayIndex}">
-                ${trainingAttendanceOptions(dayAttendance.status || "")}
-              </select>
-            </label>
-            <button class="primary-btn" data-save-training-day="${dayIndex}" type="button">Opslaan</button>
-            <span class="save-feedback" data-save-feedback="training-${dayIndex}"></span>
+        <div class="training-day-header">
+          <div class="training-day-title">
+            <strong>${day}</strong>
+            <span>${formatShortDate(dates[dayIndex].date)}</span>
           </div>
+          <select data-training-attendance="${dayIndex}" aria-label="Aanwezigheid ${day}">
+            ${trainingAttendanceOptions(dayAttendance.status || "")}
+          </select>
+          <button class="primary-btn" data-save-training-day="${dayIndex}" type="button">Dag opslaan</button>
+          <span class="save-feedback" data-save-feedback="training-${dayIndex}"></span>
+        </div>
+        <div class="exercise-row">
           ${
             exercises.length
               ? exercises.map((exercise) => `
