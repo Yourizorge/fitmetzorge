@@ -44,6 +44,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Segoe UI, Arial, sans-serif;
@@ -88,6 +89,14 @@ button {
 }
 
 .logged-in .login-screen {
+  display: none;
+}
+
+.password-required .login-screen {
+  display: grid;
+}
+
+.password-required .app-shell {
   display: none;
 }
 
@@ -137,6 +146,21 @@ button {
 .auth-tab.active {
   background: var(--gold);
   color: #111;
+}
+
+.link-btn {
+  min-height: 34px;
+  border: 0;
+  background: transparent;
+  color: var(--gold-2);
+  padding: 4px 0;
+  text-align: left;
+  font-weight: 800;
+}
+
+.link-btn:hover {
+  color: var(--gold);
+  text-decoration: underline;
 }
 
 .auth-panel {
@@ -293,6 +317,15 @@ button {
   gap: 6px;
 }
 
+.nav-track {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-arrow {
+  display: none;
+}
+
 .nav-btn {
   display: flex;
   align-items: center;
@@ -327,10 +360,12 @@ button {
   grid-row: 2;
   padding: 22px;
   overflow: auto;
+  min-width: 0;
 }
 
 .view {
   display: none;
+  min-width: 0;
   max-width: 1500px;
   margin: 0 auto;
 }
@@ -380,6 +415,7 @@ h2 {
   box-shadow: var(--shadow);
   padding: 16px;
   margin-bottom: 16px;
+  min-width: 0;
 }
 
 .panel-head {
@@ -1010,6 +1046,12 @@ td {
   margin-top: 6px;
 }
 
+.weight-grid .day-cell:last-child {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+}
+
 .water-panel {
   min-height: 320px;
   display: grid;
@@ -1213,27 +1255,51 @@ td {
   }
 
   .nav {
-    display: flex;
-    grid-template-columns: none;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    align-items: center;
     gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 2px;
-    scroll-snap-type: x proximity;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .nav-track {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .nav-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-height: 44px;
+    border: 1px solid rgba(215, 178, 77, 0.55);
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--gold-2);
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 1;
   }
 
   .nav-btn {
-    flex: 0 0 auto;
+    display: none;
+    width: 100%;
     justify-content: center;
-    min-width: 106px;
+    min-width: 0;
     min-height: 44px;
     padding: 9px 11px;
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 900;
     text-align: center;
-    white-space: nowrap;
-    scroll-snap-align: center;
+    white-space: normal;
   }
 
   .nav-btn.active {
+    display: flex;
+    color: var(--text);
+    background: var(--surface-2);
     border-color: rgba(215, 178, 77, 0.7);
   }
 
@@ -1338,6 +1404,126 @@ td {
   .food-entry-form,
   .goal-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  #progress {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  #progress .agenda-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  #progress .form-panel,
+  #progress .panel,
+  #progress .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  #progress .goal-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #progress .goal-pill {
+    flex: 1 1 140px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #progress .week-grid,
+  #progress .tracker-grid {
+    grid-auto-flow: row;
+    grid-auto-columns: initial;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  #progress .day-cell {
+    min-width: 0;
+    padding: 9px;
+  }
+
+  #progress .day-cell label {
+    min-width: 0;
+    font-size: 11px;
+  }
+
+  #progress .day-cell input {
+    min-width: 0;
+    padding: 8px;
+  }
+
+  #progress .weight-grid .day-cell:last-child {
+    grid-column: 1 / -1;
+    min-height: 56px;
+    text-align: center;
+  }
+
+  #progress table,
+  #progress thead,
+  #progress tbody,
+  #progress tr,
+  #progress td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #progress table {
+    min-width: 0;
+  }
+
+  #progress thead {
+    display: none;
+  }
+
+  #progress tr {
+    margin-bottom: 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    padding: 8px;
+  }
+
+  #progress td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  #progress td:last-child {
+    border-bottom: 0;
+  }
+
+  #progress td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  #progress td[colspan] {
+    display: block;
+    text-align: left;
+  }
+
+  #progress td[colspan]::before {
+    content: "";
   }
 
   #nutrition .panel {

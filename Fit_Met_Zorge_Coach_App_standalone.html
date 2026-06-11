@@ -1,3 +1,2246 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fit Met Zorge Coach App</title>
+    <style>
+:root {
+  color-scheme: dark;
+  --bg: #070707;
+  --surface: #111315;
+  --surface-2: #181c20;
+  --surface-3: #20262c;
+  --text: #f4f7f8;
+  --muted: #9aa7b2;
+  --line: #303842;
+  --gold: #d7b24d;
+  --gold-2: #f0ce73;
+  --blue: #073b5a;
+  --blue-2: #0b4f78;
+  --danger: #f07171;
+  --ok: #76d39b;
+  --radius: 8px;
+  --shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+}
+
+body.light {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-2: #eef3f7;
+  --surface-3: #e6edf2;
+  --text: #111315;
+  --muted: #5d6872;
+  --line: #d8e0e7;
+  --gold: #b88917;
+  --gold-2: #d5a633;
+  --blue: #073b5a;
+  --blue-2: #e7f0f6;
+  --shadow: 0 14px 34px rgba(24, 35, 45, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.runtime-error {
+  position: fixed;
+  z-index: 9999;
+  left: 12px;
+  right: 12px;
+  top: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(240, 113, 113, 0.7);
+  border-radius: 8px;
+  background: #2b0505;
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 248px 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.logged-out .app-shell {
+  display: none;
+}
+
+.logged-in .login-screen {
+  display: none;
+}
+
+.password-required .login-screen {
+  display: grid;
+}
+
+.password-required .app-shell {
+  display: none;
+}
+
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: var(--bg);
+}
+
+.login-card {
+  width: min(440px, 100%);
+  display: grid;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.login-logo {
+  width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.auth-tab {
+  min-height: 42px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.auth-tab.active {
+  background: var(--gold);
+  color: #111;
+}
+
+.link-btn {
+  min-height: 34px;
+  border: 0;
+  background: transparent;
+  color: var(--gold-2);
+  padding: 4px 0;
+  text-align: left;
+  font-weight: 800;
+}
+
+.link-btn:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.auth-panel {
+  display: none;
+}
+
+.auth-panel.active {
+  display: grid;
+}
+
+.login-form {
+  display: grid;
+  gap: 10px;
+}
+
+.login-form.auth-panel {
+  display: none;
+}
+
+.login-form.auth-panel.active {
+  display: grid;
+}
+
+.login-message {
+  min-height: 20px;
+  color: var(--danger);
+  margin: 0;
+}
+
+.auth-note,
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.form-note {
+  min-height: 18px;
+}
+
+.form-note.error,
+.login-message.error {
+  color: var(--danger);
+}
+
+.form-note.ok,
+.login-message.ok {
+  color: var(--ok);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.checkbox-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gold);
+}
+
+.current-user {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sync-status {
+  min-width: max-content;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 12px 22px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.brand-logo-wrap {
+  width: 190px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(215, 178, 77, 0.45);
+  border-radius: 6px;
+  background: #fff;
+  padding: 6px 10px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 10px 26px rgba(0, 0, 0, 0.18);
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+}
+
+.brand strong,
+.brand span {
+  display: block;
+}
+
+.brand strong {
+  color: var(--gold-2);
+  font-size: 17px;
+}
+
+.brand span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar {
+  grid-row: 2;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  padding: 16px 12px;
+  overflow: auto;
+}
+
+.nav {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-track {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-arrow {
+  display: none;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+  color: var(--text);
+  background: var(--surface-2);
+  border-color: var(--line);
+}
+
+.nav-btn.active::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.content {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 22px;
+  overflow: auto;
+  min-width: 0;
+}
+
+.view {
+  display: none;
+  min-width: 0;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.view.active {
+  display: block;
+}
+
+.view-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--gold-2);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 16px;
+  min-width: 0;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-head h2 {
+  margin: 0;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  min-height: 104px;
+}
+
+.kpi span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.kpi strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 26px;
+}
+
+.kpi small {
+  color: var(--muted);
+}
+
+.split-layout {
+  display: grid;
+  grid-template-columns: minmax(290px, 390px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.agenda-layout {
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+}
+
+.nutrition-layout {
+  display: grid;
+  grid-template-columns: minmax(290px, 360px) minmax(330px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.nutrition-plan-panel {
+  min-height: 100%;
+}
+
+.trainer-tool {
+  grid-column: span 1;
+}
+
+.client-food-panel {
+  grid-column: 1 / -1;
+}
+
+.meal-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.summary-layout {
+  display: grid;
+  grid-template-columns: minmax(270px, 420px) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.client-card,
+.list-item,
+.recipe-output {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 12px;
+}
+
+.client-card.active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px rgba(215, 178, 77, 0.24);
+}
+
+.client-card strong,
+.list-item strong {
+  display: block;
+}
+
+.client-card span,
+.list-item span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stack-list {
+  display: grid;
+  gap: 10px;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.card-actions button {
+  flex: 1 1 120px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field.compact {
+  min-width: 180px;
+  margin: 0;
+}
+
+input,
+select,
+textarea,
+.small-select {
+  width: 100%;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  min-height: 40px;
+  padding: 9px 10px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.inline-form {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(90px, 1fr)) auto;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.goal-form-grid {
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+}
+
+.recipe-form {
+  grid-template-columns: repeat(6, minmax(90px, 1fr)) auto;
+}
+
+.food-entry-form {
+  grid-template-columns: minmax(130px, 0.8fr) minmax(160px, 1.2fr) minmax(110px, 0.7fr) minmax(100px, 0.7fr) minmax(180px, 1fr) auto;
+}
+
+.primary-btn,
+.secondary-btn,
+.icon-btn,
+.seg-btn,
+.danger-btn {
+  min-height: 40px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 9px 13px;
+  font-weight: 700;
+}
+
+.primary-btn {
+  background: var(--gold);
+  color: #111;
+}
+
+.secondary-btn {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.danger-btn {
+  background: transparent;
+  border-color: rgba(240, 113, 113, 0.5);
+  color: var(--danger);
+}
+
+.icon-btn {
+  width: 42px;
+  padding: 0;
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.segmented {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.seg-btn {
+  border: 0;
+  border-radius: 0;
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.seg-btn.active {
+  color: #fff;
+  background: var(--blue);
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  color: var(--gold-2);
+  background: var(--surface-2);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+td {
+  color: var(--text);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--surface-3);
+  color: var(--muted);
+}
+
+.status.ok {
+  color: #072414;
+  background: var(--ok);
+}
+
+.status.warn {
+  color: #1a1300;
+  background: var(--gold-2);
+}
+
+.status.bad {
+  color: #2b0505;
+  background: var(--danger);
+}
+
+.macro-totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(95px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.goal-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.week-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.week-toolbar strong {
+  min-width: 140px;
+  text-align: center;
+  color: var(--gold-2);
+}
+
+.goal-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid rgba(215, 178, 77, 0.45);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.training-days {
+  display: grid;
+  gap: 12px;
+}
+
+.week-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(210px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.training-day {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  min-height: 180px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.calendar-day {
+  min-width: 210px;
+  min-height: 430px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.training-day h3 {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 14px;
+  border-right: 1px solid var(--line);
+  color: var(--gold-2);
+  font-size: 15px;
+}
+
+.calendar-day h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--gold-2);
+  font-size: 14px;
+}
+
+.calendar-day h3 span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calendar-controls strong {
+  min-width: 130px;
+  text-align: center;
+}
+
+.calendar-add {
+  width: calc(100% - 20px);
+  margin: 10px 10px 0;
+}
+
+.recipe-output {
+  display: grid;
+  gap: 12px;
+}
+
+.recipe-output-head {
+  display: grid;
+  gap: 4px;
+}
+
+.recipe-output-head span,
+.recipe-style {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.recipe-option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.recipe-option-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 12px;
+}
+
+.recipe-style {
+  display: block;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.ingredient-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ingredient-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.ingredient-list strong {
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.exercise-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(250px, 320px);
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.exercise-card,
+.appointment-card {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.exercise-row .exercise-card {
+  margin: 0;
+}
+
+.trainer-calendar .appointment-card {
+  min-height: 96px;
+}
+
+.client-appointments {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.client-appointment-card {
+  min-height: 110px;
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 18px;
+}
+
+.client-appointment-card strong {
+  color: var(--gold-2);
+  font-size: 24px;
+}
+
+.client-appointment-card span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.exercise-card strong,
+.appointment-card strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.exercise-meta {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.exercise-log {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.exercise-log label {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.exercise-log textarea {
+  grid-column: 1 / -1;
+  min-height: 58px;
+}
+
+.empty-mini {
+  margin: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.macro-totals div,
+.metric-tile {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px;
+}
+
+.metric-tile span,
+.macro-totals span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metric-tile strong,
+.macro-totals strong {
+  display: block;
+  font-size: 20px;
+}
+
+.week-grid,
+.tracker-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(135px, 1fr);
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.tracker-grid {
+  grid-auto-columns: minmax(190px, 1fr);
+}
+
+.day-cell {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px;
+}
+
+.day-cell label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.day-cell input,
+.day-cell select {
+  margin-top: 6px;
+}
+
+.weight-grid .day-cell:last-child {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+}
+
+.water-panel {
+  min-height: 320px;
+  display: grid;
+  align-content: start;
+  justify-items: stretch;
+  gap: 18px;
+}
+
+.water-display {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 10px solid var(--blue);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--surface-2);
+  justify-self: center;
+}
+
+.water-display strong {
+  display: block;
+  font-size: 34px;
+}
+
+.water-display span {
+  color: var(--muted);
+}
+
+.water-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.water-day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.water-day-card {
+  min-width: 150px;
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 12px;
+}
+
+.water-day-card strong {
+  color: var(--gold-2);
+}
+
+.water-day-card label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.water-day-card span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.water-day-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.water-day-actions button {
+  min-height: 34px;
+  padding: 7px 8px;
+  font-size: 12px;
+}
+
+.empty-state {
+  color: var(--muted);
+  padding: 12px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 1120px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .topbar {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar-controls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .sidebar {
+    grid-row: 2;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .content {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .split-layout,
+  .nutrition-layout,
+  .summary-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+
+  .inline-form,
+  .recipe-form,
+  .food-entry-form,
+  .goal-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .app-shell {
+    display: block;
+    min-height: 100dvh;
+    padding-bottom: 84px;
+  }
+
+  .content {
+    padding: 14px 12px 96px;
+    overflow: visible;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .topbar-controls {
+    width: 100%;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .topbar-controls .field.compact {
+    min-width: 126px;
+    flex: 1 1 auto;
+  }
+
+  .current-user {
+    display: none;
+  }
+
+  #logoutButton {
+    min-height: 36px;
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  #themeToggle {
+    width: 36px;
+    min-height: 36px;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    box-shadow: 0 -12px 34px rgba(0, 0, 0, 0.32);
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    align-items: center;
+    gap: 8px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .nav-track {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .nav-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-height: 44px;
+    border: 1px solid rgba(215, 178, 77, 0.55);
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--gold-2);
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .nav-btn {
+    display: none;
+    width: 100%;
+    justify-content: center;
+    min-width: 0;
+    min-height: 44px;
+    padding: 9px 11px;
+    font-size: 13px;
+    font-weight: 900;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .nav-btn.active {
+    display: flex;
+    color: var(--text);
+    background: var(--surface-2);
+    border-color: rgba(215, 178, 77, 0.7);
+  }
+
+  .nav-btn.active::after {
+    display: none;
+  }
+
+  .view-head,
+  .panel-head {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .brand {
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 8px;
+  }
+
+  .brand-logo-wrap {
+    width: 148px;
+    height: 54px;
+    padding: 4px 7px;
+  }
+
+  .brand strong {
+    font-size: 14px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .panel {
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: none;
+  }
+
+  .kpi {
+    min-height: 86px;
+    padding: 12px;
+  }
+
+  .kpi strong {
+    font-size: 21px;
+  }
+
+  .week-toolbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .week-toolbar strong {
+    grid-column: 1 / -1;
+    min-width: 0;
+    order: -1;
+  }
+
+  .training-day {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .training-day h3 {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 10px 12px;
+  }
+
+  .exercise-row {
+    grid-auto-columns: minmax(235px, 82vw);
+  }
+
+  .calendar-day {
+    min-height: 320px;
+  }
+
+  .client-appointment-card strong {
+    font-size: 18px;
+  }
+
+  .login-screen {
+    align-items: start;
+    padding: 16px 12px;
+  }
+
+  .login-card {
+    padding: 16px;
+  }
+
+  .login-logo {
+    max-height: 92px;
+  }
+
+  .kpi-grid,
+  .form-grid,
+  .macro-totals,
+  .inline-form,
+  .recipe-form,
+  .food-entry-form,
+  .goal-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #progress {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  #progress .agenda-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  #progress .form-panel,
+  #progress .panel,
+  #progress .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  #progress .goal-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #progress .goal-pill {
+    flex: 1 1 140px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #progress .week-grid,
+  #progress .tracker-grid {
+    grid-auto-flow: row;
+    grid-auto-columns: initial;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  #progress .day-cell {
+    min-width: 0;
+    padding: 9px;
+  }
+
+  #progress .day-cell label {
+    min-width: 0;
+    font-size: 11px;
+  }
+
+  #progress .day-cell input {
+    min-width: 0;
+    padding: 8px;
+  }
+
+  #progress .weight-grid .day-cell:last-child {
+    grid-column: 1 / -1;
+    min-height: 56px;
+    text-align: center;
+  }
+
+  #progress table,
+  #progress thead,
+  #progress tbody,
+  #progress tr,
+  #progress td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #progress table {
+    min-width: 0;
+  }
+
+  #progress thead {
+    display: none;
+  }
+
+  #progress tr {
+    margin-bottom: 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    padding: 8px;
+  }
+
+  #progress td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  #progress td:last-child {
+    border-bottom: 0;
+  }
+
+  #progress td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  #progress td[colspan] {
+    display: block;
+    text-align: left;
+  }
+
+  #progress td[colspan]::before {
+    content: "";
+  }
+
+  #nutrition .panel {
+    padding: 12px;
+  }
+
+  #nutrition .meal-plan-grid,
+  #nutrition .recipe-option-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #nutrition .table-wrap {
+    overflow: visible;
+  }
+
+  #nutrition table,
+  #nutrition thead,
+  #nutrition tbody,
+  #nutrition tr,
+  #nutrition td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #nutrition table {
+    min-width: 0;
+  }
+
+  #nutrition thead {
+    display: none;
+  }
+
+  #nutrition tr {
+    margin-bottom: 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    padding: 8px;
+  }
+
+  #nutrition td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  #nutrition td:last-child {
+    border-bottom: 0;
+  }
+
+  #nutrition td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  #nutrition td[colspan] {
+    display: block;
+    text-align: left;
+  }
+
+  #nutrition td[colspan]::before {
+    content: "";
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+</style>
+  </head>
+  <body class="logged-out">
+    <section id="loginScreen" class="login-screen">
+      <div class="login-card">
+        <img src="data:image/png;base64,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" alt="Fit Met Zorge logo" class="login-logo" />
+        <div class="auth-tabs" aria-label="Login keuze">
+          <button class="auth-tab active" data-auth-mode="login" type="button">Inloggen</button>
+          <button class="auth-tab" data-auth-mode="register" type="button">Registreren</button>
+        </div>
+
+        <form id="registerForm" class="login-form auth-panel" data-auth-panel="register">
+          <h1>Registreren</h1>
+          <label class="field">
+            <span>Account type</span>
+            <select name="role" required>
+              <option value="trainer">Trainer</option>
+              <option value="client">Lid</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Naam</span>
+            <input name="name" required placeholder="Naam" />
+          </label>
+          <label class="field">
+            <span>E-mail</span>
+            <input name="email" type="email" autocomplete="email" required placeholder="email@voorbeeld.nl" />
+          </label>
+          <label class="field">
+            <span>Wachtwoord</span>
+            <input name="password" type="password" autocomplete="new-password" required placeholder="Minimaal 4 tekens" />
+          </label>
+          <button class="primary-btn" type="submit">Account registreren</button>
+          <label class="checkbox-row">
+            <input name="remember" type="checkbox" checked />
+            <span>Inloggegevens onthouden op dit apparaat</span>
+          </label>
+          <p id="registerMessage" class="login-message"></p>
+        </form>
+
+        <form id="loginForm" class="login-form auth-panel active" data-auth-panel="login">
+          <h1>Inloggen</h1>
+          <label class="field">
+            <span>Account type</span>
+            <select name="role" required>
+              <option value="trainer">Trainer</option>
+              <option value="client">Lid</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>E-mail</span>
+            <input name="email" type="email" autocomplete="email" required placeholder="email@voorbeeld.nl" />
+          </label>
+          <label class="field">
+            <span>Wachtwoord</span>
+            <input name="password" type="password" autocomplete="current-password" required placeholder="Wachtwoord" />
+          </label>
+          <button class="primary-btn" type="submit">Inloggen</button>
+          <button class="link-btn" data-auth-mode="forgot" type="button">Wachtwoord vergeten?</button>
+          <label class="checkbox-row">
+            <input name="remember" type="checkbox" checked />
+            <span>Inloggegevens onthouden op dit apparaat</span>
+          </label>
+          <p id="loginMessage" class="login-message"></p>
+        </form>
+
+        <form id="forgotPasswordForm" class="login-form auth-panel" data-auth-panel="forgot">
+          <h1>Wachtwoord vergeten?</h1>
+          <p class="auth-note">Vul je e-mailadres in. Je krijgt een link waarmee je een nieuw wachtwoord kunt instellen.</p>
+          <label class="field">
+            <span>E-mail</span>
+            <input name="email" type="email" autocomplete="email" required placeholder="email@voorbeeld.nl" />
+          </label>
+          <button class="primary-btn" type="submit">Resetlink versturen</button>
+          <button class="link-btn" data-auth-mode="login" type="button">Terug naar inloggen</button>
+          <p id="forgotPasswordMessage" class="login-message"></p>
+        </form>
+
+        <form id="setPasswordForm" class="login-form auth-panel" data-auth-panel="set-password">
+          <h1 id="setPasswordTitle">Maak je wachtwoord aan</h1>
+          <p id="setPasswordIntro" class="auth-note">Kies een eigen wachtwoord. Daarna kun je normaal inloggen met e-mail en wachtwoord.</p>
+          <label class="field">
+            <span>Nieuw wachtwoord</span>
+            <input name="password" type="password" autocomplete="new-password" required placeholder="Minimaal 6 tekens" />
+          </label>
+          <label class="field">
+            <span>Herhaal wachtwoord</span>
+            <input name="passwordConfirm" type="password" autocomplete="new-password" required placeholder="Herhaal wachtwoord" />
+          </label>
+          <button class="primary-btn" type="submit">Wachtwoord opslaan</button>
+          <p id="setPasswordMessage" class="login-message"></p>
+        </form>
+        <p id="onlineStatus" class="auth-note"></p>
+      </div>
+    </section>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-logo-wrap">
+            <img src="data:image/png;base64,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" alt="Fit Met Zorge logo" class="brand-logo" />
+          </div>
+          <div>
+            <strong>Fit Met Zorge</strong>
+            <span>Coach platform</span>
+          </div>
+        </div>
+
+        <div class="topbar-controls">
+          <label class="field compact">
+            <span>Client</span>
+            <select id="clientSelect"></select>
+          </label>
+          <span id="syncStatus" class="sync-status"></span>
+          <span id="currentUserLabel" class="current-user"></span>
+          <button id="logoutButton" class="secondary-btn" type="button">Uitloggen</button>
+          <button id="themeToggle" class="icon-btn" type="button" aria-label="Thema wisselen" title="Thema wisselen">◐</button>
+        </div>
+      </header>
+
+      <aside class="sidebar">
+        <nav id="nav" class="nav"></nav>
+      </aside>
+
+      <main class="content">
+        <section id="trainer-dashboard" class="view active" data-view-title="Trainer dashboard">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Trainer</p>
+              <h1>Dashboard</h1>
+            </div>
+            <button class="primary-btn" data-action="open-view" data-target="clients" type="button">Client toevoegen</button>
+          </div>
+
+          <div id="trainerKpis" class="kpi-grid"></div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Ledenoverzicht</h2>
+              <select id="memberFilter" class="small-select">
+                <option value="all">Alle leden</option>
+                <option value="attention">Aandacht nodig</option>
+                <option value="today">Vandaag afspraak</option>
+              </select>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Client</th>
+                    <th>Doel</th>
+                    <th>Kcal</th>
+                    <th>Stappen</th>
+                    <th>Slaap</th>
+                    <th>Welzijn</th>
+                    <th>Water</th>
+                    <th>Volgende afspraak</th>
+                  </tr>
+                </thead>
+                <tbody id="memberTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="client-home" class="view" data-view-title="Client dashboard">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Client</p>
+              <h1>Mijn plan</h1>
+            </div>
+            <button class="primary-btn" data-action="open-view" data-target="water" type="button">Water bijhouden</button>
+          </div>
+          <div id="clientSummary" class="summary-layout"></div>
+        </section>
+
+        <section id="clients" class="view" data-view-title="Clienten">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Beheer</p>
+              <h1>Clienten koppelen</h1>
+            </div>
+          </div>
+
+          <div class="split-layout">
+            <form id="clientForm" class="panel form-panel">
+              <h2>Lid toevoegen via e-mail</h2>
+              <label class="field">
+                <span>Naam</span>
+                <input name="name" required placeholder="Naam client" />
+              </label>
+              <label class="field">
+                <span>E-mail</span>
+                <input name="email" type="email" required placeholder="client@email.nl" />
+              </label>
+              <label class="field">
+                <span>Tijdelijk wachtwoord</span>
+                <input name="password" value="client123" required />
+              </label>
+              <label class="field">
+                <span>Doel</span>
+                <input name="goal" placeholder="Bijv. 8 kg afvallen" />
+              </label>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Kcal training</span>
+                  <input name="kcalTraining" type="number" min="0" value="2600" />
+                </label>
+                <label class="field">
+                  <span>Kcal rust</span>
+                  <input name="kcalRest" type="number" min="0" value="2300" />
+                </label>
+                <label class="field">
+                  <span>Eiwit</span>
+                  <input name="protein" type="number" min="0" value="180" />
+                </label>
+                <label class="field">
+                  <span>Stappen</span>
+                  <input name="steps" type="number" min="0" value="10000" />
+                </label>
+              </div>
+              <button class="primary-btn" type="submit">Account koppelen</button>
+              <p id="clientInviteMessage" class="form-note"></p>
+            </form>
+
+            <div class="panel">
+              <div class="panel-head">
+                <h2>Gekoppelde clienten</h2>
+              </div>
+              <div id="clientCards" class="client-grid"></div>
+            </div>
+          </div>
+
+          <form id="goalForm" class="panel form-panel">
+            <div class="panel-head">
+              <h2 id="goalFormTitle">Doelen bewerken</h2>
+              <span id="goalFormHint" class="muted">Zichtbaar voor de client in alle trackers</span>
+            </div>
+            <label class="field">
+              <span>Plan in het kort</span>
+              <textarea name="planSummary" rows="3"></textarea>
+            </label>
+            <label class="field">
+              <span>Hoofddoel</span>
+              <input name="goal" />
+            </label>
+            <div class="form-grid goal-form-grid">
+              <label class="field"><span>Kcal training</span><input name="kcalTraining" type="number" min="0" /></label>
+              <label class="field"><span>Kcal rust</span><input name="kcalRest" type="number" min="0" /></label>
+              <label class="field"><span>Eiwit g</span><input name="protein" type="number" min="0" /></label>
+              <label class="field"><span>KH training g</span><input name="carbsTraining" type="number" min="0" /></label>
+              <label class="field"><span>KH rust g</span><input name="carbsRest" type="number" min="0" /></label>
+              <label class="field"><span>Vet g</span><input name="fat" type="number" min="0" /></label>
+              <label class="field"><span>Stappen per dag</span><input name="steps" type="number" min="0" /></label>
+              <label class="field"><span>Slaap uren</span><input name="sleep" type="number" min="0" step="0.1" /></label>
+              <label class="field"><span>Water liters</span><input name="water" type="number" min="0" step="0.1" /></label>
+              <label class="field"><span>Welzijn score</span><input name="wellbeing" type="number" min="0" max="10" step="0.1" /></label>
+              <label class="field"><span>Doelgewicht</span><input name="targetWeight" type="number" min="0" step="0.1" /></label>
+            </div>
+            <button class="primary-btn" type="submit">Doelen opslaan</button>
+          </form>
+        </section>
+
+        <section id="training" class="view" data-view-title="Trainingsschema">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Schema</p>
+              <h1>Trainingsschema</h1>
+            </div>
+          </div>
+
+          <div class="panel">
+            <form id="trainingForm" class="inline-form">
+              <select name="day" required>
+                <option value="Maandag">Maandag</option>
+                <option value="Dinsdag">Dinsdag</option>
+                <option value="Woensdag">Woensdag</option>
+                <option value="Donderdag">Donderdag</option>
+                <option value="Vrijdag">Vrijdag</option>
+                <option value="Zaterdag">Zaterdag</option>
+                <option value="Zondag">Zondag</option>
+              </select>
+              <input name="exercise" placeholder="Oefening" required />
+              <input name="sets" type="number" min="1" placeholder="Doel sets" required />
+              <input name="reps" placeholder="Doel reps" required />
+              <input name="tempo" placeholder="Tempo" />
+              <input name="rest" placeholder="Rust" />
+              <button class="primary-btn" type="submit">Toevoegen</button>
+            </form>
+            <div class="week-toolbar">
+              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+              <strong data-week-label></strong>
+              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+            </div>
+            <div class="goal-strip" id="trainingGoalStrip"></div>
+            <div id="trainingDays" class="training-days"></div>
+          </div>
+        </section>
+
+        <section id="nutrition" class="view" data-view-title="Voedingsschema">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Voeding</p>
+              <h1>Voedingsschema en macro's</h1>
+            </div>
+          </div>
+          <div class="week-toolbar">
+            <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+            <strong data-week-label></strong>
+            <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+            <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+          </div>
+
+          <div class="nutrition-layout">
+            <form id="nutritionPlanForm" class="panel form-panel">
+              <h2>Voedingsplan toevoegen</h2>
+              <label class="field">
+                <span>Maaltijd</span>
+                <input name="meal" placeholder="Ontbijt" required />
+              </label>
+              <label class="field">
+                <span>Producten</span>
+                <textarea name="items" rows="4" placeholder="Havermout 80g, whey 30g"></textarea>
+              </label>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Kcal</span>
+                  <input name="kcal" type="number" min="0" />
+                </label>
+                <label class="field">
+                  <span>Eiwit</span>
+                  <input name="protein" type="number" min="0" />
+                </label>
+                <label class="field">
+                  <span>KH</span>
+                  <input name="carbs" type="number" min="0" />
+                </label>
+                <label class="field">
+                  <span>Vet</span>
+                  <input name="fat" type="number" min="0" />
+                </label>
+              </div>
+              <button class="primary-btn" type="submit">Schema toevoegen</button>
+            </form>
+
+            <div class="panel nutrition-plan-panel">
+              <div class="panel-head">
+                <h2>Voedingsplan client</h2>
+                <span class="muted">Wat de client moet eten</span>
+              </div>
+              <div id="nutritionPlanList" class="meal-plan-grid"></div>
+            </div>
+
+            <div id="recipePanel" class="panel trainer-tool">
+              <div class="panel-head">
+                <h2>Trainer AI receptgenerator</h2>
+              </div>
+              <form id="recipeForm" class="inline-form recipe-form">
+                <select name="mealType">
+                  <option value="breakfast">Ontbijt</option>
+                  <option value="lunch">Middag</option>
+                  <option value="dinner">Avond</option>
+                  <option value="snack">Tussendoortje</option>
+                </select>
+                <input name="kcal" type="number" min="200" value="650" placeholder="Kcal" />
+                <input name="protein" type="number" min="10" value="45" placeholder="Eiwit" />
+                <input name="carbs" type="number" min="0" value="70" placeholder="KH" />
+                <input name="fat" type="number" min="0" value="18" placeholder="Vet" />
+                <select name="style">
+                  <option value="all">Alle variaties</option>
+                  <option value="balanced">Gebalanceerd</option>
+                  <option value="high-carb">High carb</option>
+                  <option value="low-carb">Low carb</option>
+                  <option value="vegetarian">Vegetarisch</option>
+                </select>
+                <button class="secondary-btn" type="submit">Opties maken</button>
+              </form>
+              <div id="recipeOutput" class="recipe-output"></div>
+            </div>
+
+            <div id="clientFoodPanel" class="panel client-food-panel">
+              <div class="panel-head">
+                <h2>Voedingsdagboek client</h2>
+                <span class="muted">Plan afvinken of afwijkende voeding loggen</span>
+              </div>
+              <div id="plannedMealChecklist" class="meal-plan-grid"></div>
+              <form id="foodEntryForm" class="inline-form food-entry-form">
+                <input name="date" id="foodEntryDate" type="date" />
+                <select name="product" id="clientProductSelect"></select>
+                <input name="amount" type="number" min="0" step="0.1" value="100" placeholder="Hoeveelheid" />
+                <select name="unit">
+                  <option value="g">gram</option>
+                  <option value="ml">ml</option>
+                  <option value="l">liter</option>
+                </select>
+                <input name="note" placeholder="Opmerking / anders gegeten" />
+                <button class="primary-btn" type="submit">Voeding loggen</button>
+              </form>
+              <div id="dailyFoodTotals" class="macro-totals"></div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Datum</th>
+                      <th>Hoeveelheid</th>
+                      <th>Kcal</th>
+                      <th>Eiwit</th>
+                      <th>KH</th>
+                      <th>Vet</th>
+                      <th>Opmerking</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="actualFoodLogTable"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div id="macroCalculatorPanel" class="panel trainer-tool">
+              <div class="panel-head">
+                <h2>Trainer product calculator</h2>
+              </div>
+              <form id="macroForm" class="inline-form">
+                <select name="product" id="productSelect"></select>
+                <input name="grams" type="number" min="1" value="100" placeholder="Gram" />
+                <button class="primary-btn" type="submit">Toevoegen</button>
+              </form>
+              <div id="macroTotals" class="macro-totals"></div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Gram</th>
+                      <th>Kcal</th>
+                      <th>Eiwit</th>
+                      <th>KH</th>
+                      <th>Vet</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="foodLogTable"></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <section id="steps" class="view" data-view-title="Stappen">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Tracker</p>
+              <h1>Stappen</h1>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="week-toolbar">
+              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+              <strong data-week-label></strong>
+              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+            </div>
+            <div class="goal-strip" id="stepsGoalStrip"></div>
+            <div id="stepsGrid" class="week-grid"></div>
+          </div>
+        </section>
+
+        <section id="progress" class="view" data-view-title="Voortgang">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Metingen</p>
+              <h1>Voortgang</h1>
+            </div>
+          </div>
+          <div class="split-layout agenda-layout">
+            <form id="measurementForm" class="panel form-panel">
+              <h2>Weekmeting</h2>
+              <div class="form-grid">
+                <input name="week" placeholder="Week" value="Week 1" />
+                <input name="weight" type="number" step="0.1" placeholder="Gewicht" />
+                <input name="waist" type="number" step="0.1" placeholder="Taille" />
+                <input name="chest" type="number" step="0.1" placeholder="Borst" />
+                <input name="arm" type="number" step="0.1" placeholder="Arm" />
+                <input name="leg" type="number" step="0.1" placeholder="Been" />
+              </div>
+              <button class="primary-btn" type="submit">Meting opslaan</button>
+            </form>
+            <div class="panel">
+              <h2>Dagelijks gewicht</h2>
+              <div class="goal-strip" id="progressGoalStrip"></div>
+              <div id="dailyWeightGrid" class="week-grid weight-grid"></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Week</th>
+                    <th>Gewicht</th>
+                    <th>Taille</th>
+                    <th>Borst</th>
+                    <th>Arm</th>
+                    <th>Been</th>
+                    <th>Verschil</th>
+                  </tr>
+                </thead>
+                <tbody id="measurementTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="wellbeing" class="view" data-view-title="Welzijn">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Check-in</p>
+              <h1>Welzijn</h1>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="week-toolbar">
+              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+              <strong data-week-label></strong>
+              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+            </div>
+            <div class="goal-strip" id="wellbeingGoalStrip"></div>
+            <div id="wellbeingGrid" class="tracker-grid"></div>
+          </div>
+        </section>
+
+        <section id="sleep" class="view" data-view-title="Slaap">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Herstel</p>
+              <h1>Slaaptracker</h1>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="week-toolbar">
+              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+              <strong data-week-label></strong>
+              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+            </div>
+            <div class="goal-strip" id="sleepGoalStrip"></div>
+            <div id="sleepGrid" class="tracker-grid"></div>
+          </div>
+        </section>
+
+        <section id="water" class="view" data-view-title="Water">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Hydratatie</p>
+              <h1>Water</h1>
+            </div>
+          </div>
+          <div class="panel water-panel">
+            <div class="week-toolbar">
+              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+              <strong data-week-label></strong>
+              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+            </div>
+            <div class="goal-strip" id="waterGoalStrip"></div>
+            <div id="waterDisplay" class="water-display"></div>
+            <div id="waterDayGrid" class="water-day-grid"></div>
+          </div>
+        </section>
+
+        <section id="agenda" class="view" data-view-title="Agenda">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Planning</p>
+              <h1>Agenda</h1>
+            </div>
+            <button id="notificationPermission" class="secondary-btn" type="button">Meldingen aanzetten</button>
+          </div>
+          <div class="split-layout">
+            <form id="appointmentForm" class="panel form-panel">
+              <h2>Afspraak plannen</h2>
+              <label class="field">
+                <span>Client</span>
+                <select name="clientId" id="appointmentClient"></select>
+              </label>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Datum</span>
+                  <input name="date" type="date" required />
+                </label>
+                <label class="field">
+                  <span>Tijd</span>
+                  <input name="time" type="time" required />
+                </label>
+              </div>
+              <label class="field">
+                <span>Type</span>
+                <input name="type" placeholder="Training, check-in, meting" />
+              </label>
+              <button class="primary-btn" type="submit">Inplannen</button>
+            </form>
+            <div class="panel">
+              <div class="panel-head">
+                <h2 id="agendaPanelTitle">Weekagenda</h2>
+                <div id="calendarControls" class="calendar-controls">
+                  <button id="prevWeek" class="secondary-btn" type="button">Vorige</button>
+                  <strong id="calendarWeekLabel"></strong>
+                  <button id="todayWeek" class="secondary-btn" type="button">Deze week</button>
+                  <button id="nextWeek" class="secondary-btn" type="button">Volgende</button>
+                </div>
+              </div>
+              <div id="weekCalendar" class="week-calendar"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+  window.FMZ_CONFIG = {
+  SUPABASE_URL: "https://hgoygcviutmynaihcvpd.supabase.co",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhnb3lnY3ZpdXRteW5haWhjdnBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMzQ2NDcsImV4cCI6MjA5NjcxMDY0N30.RjyRbPJeWhD-SrSxYX1Iwyr5ty9up_LkcG5qf7nfCCI",
+  INVITE_FUNCTION_NAME: "invite-client"
+};
+
+
+</script>
+    <script>
 const STORE_KEY = "fmz-coach-app-v1";
 const REMEMBER_KEY = "fmz-remember-login";
 const REMEMBER_DETAILS_KEY = "fmz-remembered-account";
@@ -2469,3 +4712,7 @@ async function init() {
 }
 
 init();
+
+</script>
+  </body>
+</html>
