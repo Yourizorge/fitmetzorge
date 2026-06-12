@@ -231,6 +231,7 @@ const NAV = {
     ["clients", "Clienten"],
     ["training", "Trainingsschema"],
     ["nutrition", "Voedingsschema"],
+    ["nutrition-log", "Voedingslog"],
     ["steps", "Stappen"],
     ["progress", "Voortgang"],
     ["wellbeing", "Welzijn"],
@@ -243,6 +244,7 @@ const NAV = {
     ["client-home", "Mijn dashboard"],
     ["training", "Training"],
     ["nutrition", "Voeding"],
+    ["nutrition-log", "Voedingslog"],
     ["steps", "Stappen"],
     ["progress", "Voortgang"],
     ["wellbeing", "Welzijn"],
@@ -423,7 +425,8 @@ function normalizeState(raw) {
       "status"
     );
     item.nutritionPlan = Array.isArray(item.nutritionPlan) ? item.nutritionPlan : [];
-    item.nutritionPlan.forEach((meal) => {
+    item.nutritionPlan.forEach((meal, mealIndex) => {
+      meal.id ||= `meal-${Date.now()}-${mealIndex}-${Math.random().toString(16).slice(2)}`;
       meal.mealType = normalizeMealType(meal.mealType || meal.type || meal.meal);
       meal.status ||= "";
       meal.alternative ||= "";
@@ -437,7 +440,11 @@ function normalizeState(raw) {
     });
     item.foodLog = Array.isArray(item.foodLog) ? item.foodLog : [];
     item.foodLog.forEach((entry) => {
+      entry.id ||= `food-${Date.now()}-${Math.random().toString(16).slice(2)}`;
       entry.date ||= todayISO();
+      entry.mealType = entry.mealType ? normalizeMealType(entry.mealType) : "";
+      entry.status ||= "";
+      entry.planMealId ||= "";
       entry.unit ||= "g";
       entry.amount ??= entry.grams ?? "";
       entry.note ||= "";
@@ -1405,7 +1412,6 @@ function renderSelectors() {
   }
   const productOptions = PRODUCTS.map((item) => `<option value="${item.id}">${item.name}</option>`).join("");
   $("#productSelect").innerHTML = productOptions;
-  $("#clientProductSelect").innerHTML = productOptions;
 }
 
 function renderTrainerDashboard() {
@@ -1606,10 +1612,6 @@ function renderNutrition() {
   if (!hasSelectedClient(selected)) {
     $("#nutritionPlanForm").style.display = "none";
     $("#recipePanel").style.display = "none";
-    $("#clientFoodPanel").style.display = "block";
-    $("#plannedMealChecklist").innerHTML = emptyTrackerState("Voeg eerst een client toe om voeding te loggen.");
-    $("#dailyFoodTotals").innerHTML = "";
-    $("#actualFoodLogCards").innerHTML = emptyTrackerState("Voeg eerst een client toe om voeding te loggen.");
     $("#macroCalculatorPanel").style.display = isTrainer() ? "block" : "none";
     $("#macroTotals").innerHTML = "";
     $("#foodLogTable").innerHTML = `<tr><td colspan="7">Nog geen trainerberekening.</td></tr>`;
@@ -1618,26 +1620,7 @@ function renderNutrition() {
   $("#nutritionPlanForm").style.display = isTrainer() ? "block" : "none";
   $("#recipePanel").style.display = isTrainer() ? "block" : "none";
   $("#macroCalculatorPanel").style.display = isTrainer() ? "block" : "none";
-  const foodDate = $("#foodEntryDate");
-  if (foodDate) {
-    foodDate.min = activeWeekStart();
-    foodDate.max = activeWeekEnd();
-    if (!foodDate.value || !isDateInActiveWeek(foodDate.value)) {
-      foodDate.value = isDateInActiveWeek(todayISO()) ? todayISO() : activeWeekStart();
-    }
-  }
-  const totals = macroTotals(selected);
-  const goal = todayKcalGoal(selected) * 7;
   const trainerTotals = sumFoodEntries(state.trainerCalc);
-
-  $("#dailyFoodTotals").innerHTML = [
-    ["Kcal week", fmt(totals.kcal), fmt(goal)],
-    ["Eiwit week", fmt(totals.protein), fmt(selected.goals.protein * 7)],
-    ["KH week", fmt(totals.carbs), fmt(selected.goals.carbsTraining * 7)],
-    ["Vet week", fmt(totals.fat), fmt(selected.goals.fat * 7)]
-  ]
-    .map(([label, value, target]) => `<div><span>${label}</span><strong>${value}</strong><span>doel ${target}</span></div>`)
-    .join("");
 
   $("#macroTotals").innerHTML = [
     ["Kcal", fmt(trainerTotals.kcal), ""],
@@ -1669,12 +1652,6 @@ function renderNutrition() {
     ? renderMealAccordion(selected, { checklist: false })
     : `<div class="empty-state">Nog geen voedingsschema.</div>`;
 
-  $("#plannedMealChecklist").innerHTML = selected.nutritionPlan.length
-    ? renderMealAccordion(selected, { checklist: true })
-    : `<div class="empty-state">Geen gepland voedingsschema om af te vinken.</div>`;
-
-  const todayEntries = todayFoodLog(selected);
-  $("#actualFoodLogCards").innerHTML = renderFoodLogCards(selected, todayEntries);
 }
 
 function renderSteps() {
@@ -1940,6 +1917,10 @@ function renderAgenda() {
                 <strong>${item.time || "--:--"} ${item.type || "Afspraak"}</strong>
                 <span>${item.clientName}${item.date ? ` | ${item.date}` : ""}</span>
                 <button class="secondary-btn" data-notify="${item.clientId}:${item.id}" type="button">Melding</button>
+                ${isTrainer() ? `<div class="appointment-actions">
+                  <button class="secondary-btn" data-edit-appointment="${item.clientId}:${item.id}" type="button">Bewerken</button>
+                  <button class="danger-btn" data-delete-appointment="${item.clientId}:${item.id}" type="button">Verwijderen</button>
+                </div>` : ""}
               </div>
             `).join("")
             : `<div class="empty-mini">Geen afspraken.</div>`
@@ -2043,6 +2024,7 @@ function renderAll() {
   renderGoalForm();
   renderTraining();
   renderNutrition();
+  renderNutritionLog();
   renderSteps();
   renderProgress();
   renderWellbeing();
@@ -2249,7 +2231,7 @@ function renderFoodLogCards(selected, entries) {
                 <div class="food-log-card">
                   <div>
                     <strong>${item.name}</strong>
-                    <span>${fmt(item.amount ?? item.grams, item.unit === "l" ? 2 : 0)}${item.unit || "g"}${item.note ? ` | ${item.note}` : ""}</span>
+                    <span>${item.logType === "nutrition-log" ? `${mealTypeLabel(item.mealType)} | ${item.status || "Nog niet ingevuld"}` : `${fmt(item.amount ?? item.grams, item.unit === "l" ? 2 : 0)}${item.unit || "g"}`}${item.note ? ` | ${item.note}` : ""}</span>
                   </div>
                   <div class="food-log-macros">
                     <span>${fmt(item.kcal)} kcal</span>
@@ -2257,7 +2239,7 @@ function renderFoodLogCards(selected, entries) {
                     <span>${fmt(item.carbs)}g KH</span>
                     <span>${fmt(item.fat)}g V</span>
                   </div>
-                  <button class="danger-btn" data-remove-food="${originalIndex}" type="button">Verwijder</button>
+                  ${isTrainer() ? "" : `<button class="danger-btn" data-remove-food="${originalIndex}" type="button">Verwijder</button>`}
                 </div>
               `;
             }).join("")}
@@ -2266,6 +2248,140 @@ function renderFoodLogCards(selected, entries) {
       `;
     })
     .join("");
+}
+
+function nutritionLogEntries(selected) {
+  return selected.foodLog.filter((item) => item.logType === "nutrition-log" && isDateInActiveWeek(item.date || ""));
+}
+
+function nutritionLogEntry(selected, date, mealType) {
+  return selected.foodLog.find((item) => item.logType === "nutrition-log" && item.date === date && item.mealType === mealType);
+}
+
+function mealOptionsForType(selected, mealType) {
+  return selected.nutritionPlan.filter((item) => normalizeMealType(item.mealType || item.meal) === mealType);
+}
+
+function plannedMealOptionOptions(selected, mealType, selectedId = "") {
+  const options = mealOptionsForType(selected, mealType);
+  return `<option value="">Kies optie uit schema</option>${options
+    .map((item) => `<option value="${item.id}" ${item.id === selectedId ? "selected" : ""}>${item.meal}</option>`)
+    .join("")}`;
+}
+
+function savedNutritionLogTotals(selected) {
+  return sumFoodEntries(nutritionLogEntries(selected).filter((item) => item.status === "Gegeten zoals plan"));
+}
+
+function renderWeeklyFoodLogGrid(selected) {
+  const days = weekDates(activeWeekStart());
+  return `
+    <div class="food-log-week">
+      ${days.map(({ day, date }) => `
+        <div class="food-log-day-column">
+          <div class="food-log-column-head">
+            <strong>${day}</strong>
+            <span>${formatShortDate(date)}</span>
+          </div>
+          ${MEAL_SECTIONS.map(([mealType, label]) => {
+            const entry = nutritionLogEntry(selected, date, mealType) || {};
+            const options = mealOptionsForType(selected, mealType);
+            return `
+              <div class="food-log-meal-cell">
+                <strong>${label}</strong>
+                <select data-food-plan="${date}:${mealType}" ${options.length ? "" : "disabled"}>
+                  ${plannedMealOptionOptions(selected, mealType, entry.planMealId || "")}
+                </select>
+                <select data-food-status="${date}:${mealType}">
+                  ${["", "Gegeten zoals plan", "Anders gegeten", "Niet gegeten"].map((value) => `<option value="${value}" ${value === (entry.status || "") ? "selected" : ""}>${value || "Nog niet ingevuld"}</option>`).join("")}
+                </select>
+                <textarea data-food-note="${date}:${mealType}" rows="2" placeholder="Opmerking">${entry.note || ""}</textarea>
+                <button class="primary-btn tracker-save-btn" data-save-food-log="${date}:${mealType}" type="button">Opslaan</button>
+                <span class="save-feedback" data-save-feedback="food-${date}-${mealType}">${entry.savedAt ? "Opgeslagen" : ""}</span>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderNutritionLog() {
+  const selected = client();
+  if (!hasSelectedClient(selected)) {
+    $("#dailyFoodTotals").innerHTML = "";
+    $("#weeklyFoodLogGrid").innerHTML = emptyTrackerState("Voeg eerst een client toe om voeding te loggen.");
+    $("#actualFoodLogCards").innerHTML = "";
+    return;
+  }
+  const totals = savedNutritionLogTotals(selected);
+  $("#dailyFoodTotals").innerHTML = [
+    ["Kcal opgeslagen", fmt(totals.kcal), "deze week"],
+    ["Eiwit", `${fmt(totals.protein)}g`, "opgeslagen"],
+    ["KH", `${fmt(totals.carbs)}g`, "opgeslagen"],
+    ["Vet", `${fmt(totals.fat)}g`, "opgeslagen"]
+  ]
+    .map(([label, value, sub]) => `<div><span>${label}</span><strong>${value}</strong><span>${sub}</span></div>`)
+    .join("");
+
+  if (isTrainer()) {
+    $("#weeklyFoodLogGrid").innerHTML = emptyTrackerState("Trainerweergave: hieronder staan de opgeslagen voedingslogs van de client.");
+  } else {
+    $("#weeklyFoodLogGrid").innerHTML = selected.nutritionPlan.length
+      ? renderWeeklyFoodLogGrid(selected)
+      : emptyTrackerState("Je trainer heeft nog geen voedingsschema klaargezet.");
+  }
+  $("#actualFoodLogCards").innerHTML = renderFoodLogCards(selected, nutritionLogEntries(selected));
+}
+
+async function saveFoodLogEntry(date, mealType) {
+  const selected = client();
+  if (!hasSelectedClient(selected)) return;
+  const key = `food-${date}-${mealType}`;
+  const planMealId = document.querySelector(`[data-food-plan="${date}:${mealType}"]`)?.value || "";
+  const status = document.querySelector(`[data-food-status="${date}:${mealType}"]`)?.value || "";
+  const note = document.querySelector(`[data-food-note="${date}:${mealType}"]`)?.value || "";
+  const planned = selected.nutritionPlan.find((item) => item.id === planMealId);
+  let entry = nutritionLogEntry(selected, date, mealType);
+  if (!entry) {
+    entry = {
+      id: `food-${Date.now()}${Math.random().toString(16).slice(2)}`,
+      logType: "nutrition-log",
+      date,
+      mealType
+    };
+    selected.foodLog.push(entry);
+  }
+  entry.planMealId = planMealId;
+  entry.name = planned?.meal || mealTypeLabel(mealType);
+  entry.status = status;
+  entry.note = note;
+  entry.unit = "plan";
+  entry.amount = status === "Gegeten zoals plan" ? 1 : "";
+  entry.grams = "";
+  entry.kcal = status === "Gegeten zoals plan" ? number(planned?.kcal) : 0;
+  entry.protein = status === "Gegeten zoals plan" ? number(planned?.protein) : 0;
+  entry.carbs = status === "Gegeten zoals plan" ? number(planned?.carbs) : 0;
+  entry.fat = status === "Gegeten zoals plan" ? number(planned?.fat) : 0;
+  entry.savedAt = new Date().toISOString();
+
+  saveState();
+  try {
+    if (isOnlineMode() && onlineProfile && !onlineReady) {
+      throw new Error("Online verbinding is nog niet klaar.");
+    }
+    if (isOnlineMode() && onlineReady && onlineProfile) {
+      window.clearTimeout(cloudSaveTimer);
+      const result = await saveStateToCloud();
+      if (!result?.ok) throw result?.error || new Error("Supabase opslaan mislukt.");
+    }
+    renderNutritionLog();
+    setSaveFeedback(key, "Opgeslagen");
+  } catch (error) {
+    renderNutritionLog();
+    setSaveFeedback(key, `Opslaan mislukt: ${error.message}`, true);
+  }
 }
 
 function mergeRecipeParts(parts) {
@@ -2479,6 +2595,11 @@ document.addEventListener("click", (event) => {
     saveTrackerDay("water", target.dataset.saveWaterDay);
     return;
   }
+  if (target.dataset.saveFoodLog) {
+    const [date, mealType] = target.dataset.saveFoodLog.split(":");
+    saveFoodLogEntry(date, mealType);
+    return;
+  }
   if (target.dataset.trackingWeek) {
     if (target.dataset.trackingWeek === "today") {
       state.ui.trackingWeekStart = startOfWeekISO();
@@ -2490,6 +2611,35 @@ document.addEventListener("click", (event) => {
   if (target.dataset.notify) {
     const [clientId, appointmentId] = target.dataset.notify.split(":");
     notifyAppointment(clientId, appointmentId);
+  }
+  if (target.dataset.editAppointment) {
+    if (!isTrainer()) return;
+    const [clientId, appointmentId] = target.dataset.editAppointment.split(":");
+    const appointment = findAppointment(clientId, appointmentId);
+    if (!appointment) return;
+    const nextDate = prompt("Datum aanpassen (YYYY-MM-DD)", appointment.date || todayISO());
+    if (nextDate === null) return;
+    const nextTime = prompt("Tijd aanpassen (HH:MM)", appointment.time || "09:00");
+    if (nextTime === null) return;
+    const nextType = prompt("Type afspraak", appointment.type || "Afspraak");
+    if (nextType === null) return;
+    appointment.date = nextDate || appointment.date;
+    appointment.day = dayNameFromDate(appointment.date);
+    appointment.time = nextTime || appointment.time;
+    appointment.type = nextType || appointment.type || "Afspraak";
+    renderAll();
+    return;
+  }
+  if (target.dataset.deleteAppointment) {
+    if (!isTrainer()) return;
+    const [clientId, appointmentId] = target.dataset.deleteAppointment.split(":");
+    const selected = state.clients.find((item) => item.id === clientId);
+    const appointment = selected?.appointments.find((item) => item.id === appointmentId);
+    if (!selected || !appointment) return;
+    if (!confirm(`Afspraak ${appointment.date || ""} ${appointment.time || ""} verwijderen?`)) return;
+    selected.appointments = selected.appointments.filter((item) => item.id !== appointmentId);
+    renderAll();
+    return;
   }
   if (target.id === "prevWeek") {
     state.ui.calendarWeekStart = addDaysISO(state.ui.calendarWeekStart, -7);
@@ -2864,26 +3014,6 @@ $("#financeRateForm").addEventListener("submit", (event) => {
     amount: number(data.get("amount"), 0)
   });
   event.currentTarget.reset();
-  renderAll();
-});
-
-$("#foodEntryForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  const product = productById(data.get("product"));
-  const amount = number(data.get("amount"));
-  const unit = data.get("unit");
-  if (!product || !amount) return;
-  const selected = client();
-  if (!hasSelectedClient(selected)) {
-    alert("Voeg eerst een client toe.");
-    return;
-  }
-  selected.foodLog.push({
-    ...foodEntryFromProduct(product, amount, unit, data.get("note") || ""),
-    date: data.get("date") || activeWeekStart()
-  });
-  event.currentTarget.elements.note.value = "";
   renderAll();
 });
 
