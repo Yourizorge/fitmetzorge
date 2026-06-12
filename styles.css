@@ -662,6 +662,54 @@ h2 {
   font-weight: 800;
 }
 
+.food-log-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(260px, 1fr));
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.food-log-day-column {
+  min-width: 260px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.food-log-column-head {
+  display: grid;
+  gap: 3px;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.food-log-column-head strong {
+  color: var(--gold-2);
+}
+
+.food-log-column-head span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.food-log-meal-cell {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.food-log-meal-cell:last-child {
+  border-bottom: 0;
+}
+
+.food-log-meal-cell > strong {
+  color: var(--text);
+}
+
 .summary-layout {
   display: grid;
   grid-template-columns: minmax(270px, 420px) minmax(0, 1fr);
@@ -1192,6 +1240,13 @@ td {
 .appointment-card strong {
   display: block;
   margin-bottom: 4px;
+}
+
+.appointment-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 8px;
 }
 
 .exercise-meta {
@@ -1860,6 +1915,19 @@ td {
 
   .food-log-macros {
     justify-content: flex-start;
+  }
+
+  .food-log-week {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .food-log-day-column {
+    min-width: 0;
+  }
+
+  .appointment-actions {
+    grid-template-columns: 1fr;
   }
 
   #nutrition .table-wrap {
