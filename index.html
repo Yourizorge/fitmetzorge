@@ -396,28 +396,6 @@
               <div id="recipeOutput" class="recipe-output"></div>
             </div>
 
-            <div id="clientFoodPanel" class="panel client-food-panel">
-              <div class="panel-head">
-                <h2>Voedingsdagboek client</h2>
-                <span class="muted">Plan afvinken of afwijkende voeding loggen</span>
-              </div>
-              <div id="plannedMealChecklist" class="meal-plan-grid"></div>
-              <form id="foodEntryForm" class="inline-form food-entry-form">
-                <input name="date" id="foodEntryDate" type="date" />
-                <select name="product" id="clientProductSelect"></select>
-                <input name="amount" type="number" min="0" step="0.1" value="100" placeholder="Hoeveelheid" />
-                <select name="unit">
-                  <option value="g">gram</option>
-                  <option value="ml">ml</option>
-                  <option value="l">liter</option>
-                </select>
-                <input name="note" placeholder="Opmerking / anders gegeten" />
-                <button class="primary-btn" type="submit">Voeding loggen</button>
-              </form>
-              <div id="dailyFoodTotals" class="macro-totals"></div>
-              <div id="actualFoodLogCards" class="food-log-cards"></div>
-            </div>
-
             <div id="macroCalculatorPanel" class="panel trainer-tool">
               <div class="panel-head">
                 <h2>Trainer product calculator</h2>
@@ -447,6 +425,30 @@
               </div>
             </div>
 
+          </div>
+        </section>
+
+        <section id="nutrition-log" class="view" data-view-title="Voedingslog">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Voeding</p>
+              <h1>Voedingslog</h1>
+            </div>
+          </div>
+          <div class="week-toolbar">
+            <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+            <strong data-week-label></strong>
+            <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+            <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+          </div>
+          <div id="clientFoodPanel" class="panel client-food-panel">
+            <div class="panel-head">
+              <h2>Voedingslog per dag</h2>
+              <span class="muted">Gebaseerd op het voedingsschema van de trainer</span>
+            </div>
+            <div id="dailyFoodTotals" class="macro-totals"></div>
+            <div id="weeklyFoodLogGrid" class="food-log-week-grid"></div>
+            <div id="actualFoodLogCards" class="food-log-cards"></div>
           </div>
         </section>
 
