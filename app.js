@@ -314,6 +314,7 @@ function seedState() {
         foodLog: [],
         steps: DAYS.map((day, index) => ({ day, value: index < 3 ? 10500 + index * 750 : "" })),
         dailyWeight: DAYS.map((day) => ({ day, value: "" })),
+        dailyWeightByWeek: {},
         measurements: [
           { week: "Week 1", weight: 94.2, waist: 98, chest: 108, arm: 38, leg: 61 }
         ],
@@ -364,6 +365,7 @@ function seedState() {
         foodLog: [],
         steps: DAYS.map((day) => ({ day, value: "" })),
         dailyWeight: DAYS.map((day) => ({ day, value: "" })),
+        dailyWeightByWeek: {},
         measurements: [],
         wellbeing: DAYS.map((day) => ({ day, energy: "", stress: "", motivation: "", mood: "" })),
         sleep: DAYS.map((day) => ({ day, hours: "", quality: "", bed: "", wake: "" })),
@@ -452,6 +454,7 @@ function normalizeState(raw) {
     item.steps = normalizeWeek(item.steps, "value");
     item.stepsByWeek = normalizeWeekStore(item.stepsByWeek, currentTrackingWeek, item.steps, "value");
     item.dailyWeight = normalizeWeek(item.dailyWeight, "value");
+    item.dailyWeightByWeek = normalizeWeekStore(item.dailyWeightByWeek, currentTrackingWeek, item.dailyWeight, "value");
     item.wellbeing = normalizeWeek(item.wellbeing, "energy", { stress: "", motivation: "", mood: "" });
     item.wellbeingByWeek = normalizeWeekStore(item.wellbeingByWeek, currentTrackingWeek, item.wellbeing, "energy", { stress: "", motivation: "", mood: "" });
     item.sleep = normalizeWeek(item.sleep, "hours", { quality: "", bed: "", wake: "" });
@@ -855,6 +858,7 @@ function emptyClient() {
     steps: DAYS.map((day) => ({ day, value: "" })),
     stepsByWeek: {},
     dailyWeight: DAYS.map((day) => ({ day, value: "" })),
+    dailyWeightByWeek: {},
     measurements: [],
     wellbeing: DAYS.map((day) => ({ day, energy: "", stress: "", motivation: "", mood: "" })),
     wellbeingByWeek: {},
@@ -1480,7 +1484,7 @@ function renderClientHome() {
   const appt = nextAppointment(selected);
   const stepsAvg = average(weekArray(selected, "stepsByWeek", "value").map((step) => step.value));
   const sleepAvg = average(weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" }).map((sleep) => sleep.hours));
-  const weightAvg = average(selected.dailyWeight.map((item) => item.value));
+  const weightAvg = average(weekArray(selected, "dailyWeightByWeek", "value").map((item) => item.value));
 
   $("#clientSummary").innerHTML = `
     <div class="panel">
@@ -1693,15 +1697,23 @@ function renderProgress() {
     $("#measurementTable").innerHTML = `<tr><td colspan="7">Voeg eerst een client toe.</td></tr>`;
     return;
   }
-  const avgWeight = average(selected.dailyWeight.map((item) => item.value));
+  const weightEntries = weekArray(selected, "dailyWeightByWeek", "value");
+  const dates = weekDates(activeWeekStart());
+  weightEntries.forEach((item, index) => {
+    item.date = dates[index].date;
+  });
+  selected.dailyWeight = weightEntries;
+  const avgWeight = average(weightEntries.map((item) => item.value));
   $("#progressGoalStrip").innerHTML = goalPills([["Doelgewicht", selected.goals.targetWeight, "kg"], ["Weekgemiddelde", avgWeight, "kg"]]);
   $("#dailyWeightGrid").innerHTML =
-    selected.dailyWeight
+    weightEntries
       .map(
         (item, index) => `
           <div class="day-cell">
+            <strong>${item.day}</strong>
+            <small>${formatShortDate(dates[index].date)}</small>
             <label>
-              ${item.day}
+              Gewicht
               <input data-weight-index="${index}" type="number" step="0.1" min="0" value="${item.value}" placeholder="kg" />
             </label>
           </div>
@@ -2064,6 +2076,7 @@ function createClientProfile({ name, email, password = "", goal = "", registered
     steps: DAYS.map((day) => ({ day, value: "" })),
     stepsByWeek: {},
     dailyWeight: DAYS.map((day) => ({ day, value: "" })),
+    dailyWeightByWeek: {},
     measurements: [],
     wellbeing: DAYS.map((day) => ({ day, energy: "", stress: "", motivation: "", mood: "" })),
     wellbeingByWeek: {},
@@ -3079,7 +3092,9 @@ document.addEventListener("input", (event) => {
     weekArray(selected, "stepsByWeek", "value")[Number(target.dataset.stepIndex)].value = target.value;
   }
   if (target.dataset.weightIndex) {
-    selected.dailyWeight[Number(target.dataset.weightIndex)].value = target.value;
+    const weightEntries = weekArray(selected, "dailyWeightByWeek", "value");
+    weightEntries[Number(target.dataset.weightIndex)].value = target.value;
+    selected.dailyWeight = weightEntries;
     saveState();
   }
   if (target.dataset.wellbeing) {
@@ -3128,7 +3143,9 @@ document.addEventListener("change", (event) => {
   const target = event.target;
   const selected = client();
   if (target.dataset.weightIndex) {
-    selected.dailyWeight[Number(target.dataset.weightIndex)].value = target.value;
+    const weightEntries = weekArray(selected, "dailyWeightByWeek", "value");
+    weightEntries[Number(target.dataset.weightIndex)].value = target.value;
+    selected.dailyWeight = weightEntries;
     renderAll();
   }
   if (target.dataset.wellbeing) {
