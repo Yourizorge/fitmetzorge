@@ -493,6 +493,12 @@
             </form>
             <div class="panel">
               <h2>Dagelijks gewicht</h2>
+              <div class="week-toolbar">
+                <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+                <strong data-week-label></strong>
+                <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+                <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+              </div>
               <div class="goal-strip" id="progressGoalStrip"></div>
               <div id="dailyWeightGrid" class="week-grid weight-grid"></div>
             </div>
