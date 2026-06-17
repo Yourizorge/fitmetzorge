@@ -1089,6 +1089,132 @@ td {
   margin: 10px 10px 0;
 }
 
+.agenda-table-view {
+  min-width: 0;
+}
+
+.agenda-table-wrap {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.agenda-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.agenda-table th,
+.agenda-table td {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+  vertical-align: top;
+}
+
+.agenda-table th:last-child,
+.agenda-table td:last-child {
+  border-right: 0;
+}
+
+.agenda-table tbody tr:last-child th,
+.agenda-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.agenda-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface);
+}
+
+.agenda-time-head,
+.agenda-time-cell {
+  width: 86px;
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: var(--surface);
+  color: var(--gold-2);
+  text-align: left;
+}
+
+.agenda-time-cell {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.agenda-day-head {
+  display: grid;
+  gap: 5px;
+}
+
+.agenda-day-head span {
+  color: var(--gold-2);
+  font-size: 14px;
+}
+
+.agenda-day-head small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.agenda-day-head .calendar-add {
+  width: 100%;
+  min-height: 32px;
+  margin: 3px 0 0;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.agenda-table td {
+  min-height: 74px;
+  height: 74px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.compact-appointment {
+  min-height: 0;
+  display: grid;
+  gap: 4px;
+  margin: 0 0 8px;
+  padding: 8px;
+}
+
+.compact-appointment:last-child {
+  margin-bottom: 0;
+}
+
+.compact-appointment strong {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.compact-appointment span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.compact-appointment .appointment-actions {
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.compact-appointment .appointment-actions button {
+  min-height: 30px;
+  padding: 5px 7px;
+  font-size: 11px;
+}
+
 .recipe-output {
   display: grid;
   gap: 12px;
@@ -1247,6 +1373,41 @@ td {
   grid-template-columns: 1fr 1fr;
   gap: 6px;
   margin-top: 8px;
+}
+
+.trainer-calendar .appointment-card.compact-appointment {
+  min-height: 0;
+  display: grid;
+  gap: 4px;
+  margin: 0 0 8px;
+  padding: 8px;
+}
+
+.trainer-calendar .appointment-card.compact-appointment:last-child {
+  margin-bottom: 0;
+}
+
+.trainer-calendar .appointment-card.compact-appointment strong {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.trainer-calendar .appointment-card.compact-appointment span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.trainer-calendar .appointment-card.compact-appointment .appointment-actions {
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.trainer-calendar .appointment-card.compact-appointment .appointment-actions button {
+  min-height: 30px;
+  padding: 5px 7px;
+  font-size: 11px;
 }
 
 .exercise-meta {
@@ -1746,6 +1907,24 @@ td {
 
   .calendar-day {
     min-height: 320px;
+  }
+
+  .agenda-table-wrap {
+    max-width: 100%;
+  }
+
+  .agenda-table {
+    min-width: 840px;
+  }
+
+  .agenda-time-head,
+  .agenda-time-cell {
+    width: 72px;
+  }
+
+  .agenda-table th,
+  .agenda-table td {
+    padding: 6px;
   }
 
   .client-appointment-card strong {
