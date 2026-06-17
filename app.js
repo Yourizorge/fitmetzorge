@@ -688,6 +688,12 @@ function collectTrackerDay(type, index) {
     const input = document.querySelector(`[data-water-day-input="${dayIndex}"]`);
     if (input) setWaterDay(selected, dayIndex, input.value);
   }
+  if (type === "progress") {
+    const input = document.querySelector(`[data-weight-index="${dayIndex}"]`);
+    const weightEntries = weekArray(selected, "dailyWeightByWeek", "value");
+    if (input) weightEntries[dayIndex].value = input.value;
+    selected.dailyWeight = weightEntries;
+  }
   if (type === "training") {
     const status = document.querySelector(`[data-training-attendance="${dayIndex}"]`);
     if (status) trainingAttendanceWeek(selected)[dayIndex].status = status.value;
@@ -706,6 +712,7 @@ function renderTrackerSection(type) {
   if (type === "wellbeing") renderWellbeing();
   if (type === "sleep") renderSleep();
   if (type === "water") renderWater();
+  if (type === "progress") renderProgress();
   renderClientHome();
   renderTrainerDashboard();
 }
@@ -1716,6 +1723,8 @@ function renderProgress() {
               Gewicht
               <input data-weight-index="${index}" type="number" step="0.1" min="0" value="${item.value}" placeholder="kg" />
             </label>
+            <button class="primary-btn tracker-save-btn" data-save-progress-day="${index}" type="button">Opslaan</button>
+            <span class="save-feedback" data-save-feedback="progress-${index}"></span>
           </div>
         `
       )
@@ -2606,6 +2615,10 @@ document.addEventListener("click", (event) => {
   }
   if (target.dataset.saveWaterDay) {
     saveTrackerDay("water", target.dataset.saveWaterDay);
+    return;
+  }
+  if (target.dataset.saveProgressDay) {
+    saveTrackerDay("progress", target.dataset.saveProgressDay);
     return;
   }
   if (target.dataset.saveFoodLog) {
