@@ -1883,6 +1883,80 @@ function renderPreviousAppointments(selected) {
     : `<div class="empty-state">Geen vorige afspraken.</div>`;
 }
 
+function normalizeAgendaTime(value) {
+  const match = String(value || "").match(/^(\d{1,2}):(\d{2})/);
+  if (!match) return "no-time";
+  return `${match[1].padStart(2, "0")}:${match[2]}`;
+}
+
+function agendaTimeSlots(items) {
+  const slots = new Set();
+  for (let hour = 6; hour <= 22; hour += 1) {
+    slots.add(`${String(hour).padStart(2, "0")}:00`);
+  }
+  items.forEach((item) => slots.add(normalizeAgendaTime(item.time)));
+  return [...slots].sort((a, b) => {
+    if (a === "no-time") return 1;
+    if (b === "no-time") return -1;
+    return a.localeCompare(b);
+  });
+}
+
+function renderAgendaAppointment(item) {
+  return `
+    <div class="appointment-card compact-appointment" draggable="true" data-drag-appointment="${item.clientId}:${item.id}">
+      <strong>${item.time || "--:--"} ${item.type || "Afspraak"}</strong>
+      <span>${item.clientName}</span>
+      <div class="appointment-actions">
+        <button class="secondary-btn" data-notify="${item.clientId}:${item.id}" type="button">Melding</button>
+        <button class="secondary-btn" data-edit-appointment="${item.clientId}:${item.id}" type="button">Bewerken</button>
+        <button class="danger-btn" data-delete-appointment="${item.clientId}:${item.id}" type="button">Verwijderen</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderAgendaTable(days, appointments) {
+  const slots = agendaTimeSlots(appointments);
+  return `
+    <div class="agenda-table-wrap">
+      <table class="agenda-table">
+        <thead>
+          <tr>
+            <th class="agenda-time-head">Tijd</th>
+            ${days.map(({ day, date }) => `
+              <th>
+                <div class="agenda-day-head">
+                  <span>${day}</span>
+                  <small>${formatShortDate(date)}</small>
+                  <button class="secondary-btn calendar-add" data-set-appointment-date="${date}" type="button">Afspraak</button>
+                </div>
+              </th>
+            `).join("")}
+          </tr>
+        </thead>
+        <tbody>
+          ${slots.map((slot) => `
+            <tr>
+              <th class="agenda-time-cell">${slot === "no-time" ? "Zonder tijd" : slot}</th>
+              ${days.map(({ date }) => {
+                const items = appointments
+                  .filter((item) => item.date === date && normalizeAgendaTime(item.time) === slot)
+                  .sort((a, b) => String(a.time || "").localeCompare(String(b.time || "")));
+                return `
+                  <td data-calendar-date="${date}" data-calendar-time="${slot}">
+                    ${items.map(renderAgendaAppointment).join("")}
+                  </td>
+                `;
+              }).join("")}
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
 function renderAgenda() {
   const selected = client();
   const calendar = $("#weekCalendar");
@@ -1906,7 +1980,7 @@ function renderAgenda() {
     return;
   }
 
-  calendar.className = "week-calendar trainer-calendar";
+  calendar.className = "agenda-table-view trainer-calendar";
   const weekStart = state.ui.calendarWeekStart;
   const days = weekDates(weekStart);
   const weekEnd = days[6].date;
@@ -1921,34 +1995,11 @@ function renderAgenda() {
     dateInput.value = weekStart;
   }
   const all = state.clients.flatMap((item) => item.appointments.map((appt) => ({ ...appt, clientName: item.name, clientId: item.id })));
-
-  calendar.innerHTML = days.map(({ day, date }) => {
-    const items = all
-      .filter((item) => item.date === date)
-      .filter((item) => !item.date || item.date >= todayISO())
-      .sort((a, b) => String(a.time || "").localeCompare(String(b.time || "")));
-    return `
-      <div class="calendar-day" data-calendar-date="${date}">
-        <h3>${day}<span>${formatShortDate(date)}</span></h3>
-        ${isTrainer() ? `<button class="secondary-btn calendar-add" data-set-appointment-date="${date}" type="button">Afspraak</button>` : ""}
-        ${
-          items.length
-            ? items.map((item) => `
-              <div class="appointment-card" ${isTrainer() ? `draggable="true" data-drag-appointment="${item.clientId}:${item.id}"` : ""}>
-                <strong>${item.time || "--:--"} ${item.type || "Afspraak"}</strong>
-                <span>${item.clientName}${item.date ? ` | ${item.date}` : ""}</span>
-                <button class="secondary-btn" data-notify="${item.clientId}:${item.id}" type="button">Melding</button>
-                ${isTrainer() ? `<div class="appointment-actions">
-                  <button class="secondary-btn" data-edit-appointment="${item.clientId}:${item.id}" type="button">Bewerken</button>
-                  <button class="danger-btn" data-delete-appointment="${item.clientId}:${item.id}" type="button">Verwijderen</button>
-                </div>` : ""}
-              </div>
-            `).join("")
-            : `<div class="empty-mini">Geen afspraken.</div>`
-        }
-      </div>
-    `;
-  }).join("");
+  const weekAppointments = all
+    .filter((item) => item.date >= weekStart && item.date <= weekEnd)
+    .filter((item) => !item.date || item.date >= todayISO())
+    .sort((a, b) => `${a.date || ""} ${a.time || ""}`.localeCompare(`${b.date || ""} ${b.time || ""}`));
+  calendar.innerHTML = renderAgendaTable(days, weekAppointments);
 }
 
 function renderFinance() {
@@ -3148,6 +3199,9 @@ document.addEventListener("drop", (event) => {
   const appointment = selected?.appointments.find((item) => item.id === appointmentId);
   if (!appointment) return;
   appointment.date = column.dataset.calendarDate;
+  if (column.dataset.calendarTime && column.dataset.calendarTime !== "no-time") {
+    appointment.time = column.dataset.calendarTime;
+  }
   appointment.day = dayNameFromDate(appointment.date);
   renderAll();
 });
