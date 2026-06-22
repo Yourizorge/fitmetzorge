@@ -84,6 +84,82 @@ function showRuntimeError(message) {
 
 const DAYS = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"];
 
+const EXERCISE_IMAGE_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 260'%3E%3Crect width='360' height='260' rx='28' fill='%23eef2f5'/%3E%3Ccircle cx='115' cy='92' r='34' fill='%2318232f' opacity='.32'/%3E%3Cpath d='M72 185c48-58 108-58 168 0' fill='none' stroke='%2318232f' stroke-width='18' stroke-linecap='round' opacity='.32'/%3E%3Ctext x='180' y='225' text-anchor='middle' font-family='Arial' font-size='22' font-weight='700' fill='%2371808f'%3EVoeg oefeningfoto toe%3C/text%3E%3C/svg%3E";
+
+const DEFAULT_EXERCISE_LIBRARY = [
+  ["Bench Press", "Borst", "Barbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif"],
+  ["Incline Barbell Bench Press", "Borst", "Barbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Barbell-Bench-Press.gif"],
+  ["Incline Dumbbell Press", "Borst", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif"],
+  ["Pec Deck Fly", "Borst", "Machine", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pec-Deck-Fly.gif"],
+  ["Chest Press Machine", "Borst", "Machine", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Chest-Press-Machine.gif"],
+  ["Push-up", "Borst", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Push-Up.gif"],
+  ["Cable Crossover", "Borst", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Cable-Crossover.gif"],
+  ["High Cable Crossover", "Borst", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/02/High-Cable-Crossover.gif"],
+  ["Incline Cable Fly", "Borst", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Cable-Fly.gif"],
+  ["Lat Pulldown", "Rug", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif"],
+  ["Pull-up", "Rug", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pull-up.gif"],
+  ["Seated Cable Row", "Rug", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Cable-Row.gif"],
+  ["Barbell Bent Over Row", "Rug", "Barbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif"],
+  ["Dumbbell Row", "Rug", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif"],
+  ["T-Bar Row", "Rug", "Machine", "https://fitnessprogramer.com/wp-content/uploads/2021/06/T-Bar-Row.gif"],
+  ["Face Pull", "Rug", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Face-Pull.gif"],
+  ["Dumbbell Shoulder Press", "Schouders", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif"],
+  ["Dumbbell Lateral Raise", "Schouders", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif"],
+  ["Cable Lateral Raise", "Schouders", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Cable-Lateral-Raise.gif"],
+  ["Rear Delt Machine Fly", "Schouders", "Machine", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Delt-Machine-Flys.gif"],
+  ["Arnold Press", "Schouders", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Arnold-Press.gif"],
+  ["Dumbbell Front Raise", "Schouders", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Front-Raise.gif"],
+  ["Dumbbell Shrug", "Schouders", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Shrug.gif"],
+  ["Barbell Curl", "Biceps", "Barbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Curl.gif"],
+  ["Dumbbell Curl", "Biceps", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif"],
+  ["Hammer Curl", "Biceps", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Hammer-Curl.gif"],
+  ["Rope Pushdown", "Triceps", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/06/Rope-Pushdown.gif"],
+  ["Cable Rope Overhead Triceps Extension", "Triceps", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/04/Cable-Rope-Overhead-Triceps-Extension.gif"],
+  ["Close Grip Bench Press", "Triceps", "Barbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Close-Grip-Bench-Press.gif"],
+  ["Triceps Dips", "Triceps", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Triceps-Dips.gif"],
+  ["Bodyweight Squat", "Benen", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/05/Bodyweight-Squat.gif"],
+  ["Lever Horizontal Leg Press", "Benen", "Machine", "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lever-Horizontal-Leg-Press.gif"],
+  ["Seated Leg Curl", "Benen", "Machine", "https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif"],
+  ["Barbell Romanian Deadlift", "Benen", "Barbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Romanian-Deadlift.gif"],
+  ["Dumbbell Romanian Deadlift", "Benen", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Romanian-Deadlift.gif"],
+  ["Dumbbell Lunge", "Benen", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif"],
+  ["Dumbbell Bulgarian Split Squat", "Benen", "Dumbbell", "https://fitnessprogramer.com/wp-content/uploads/2021/05/Dumbbell-Bulgarian-Split-Squat.gif"],
+  ["Standing Calf Raise", "Benen", "Machine", "https://fitnessprogramer.com/wp-content/uploads/2021/06/Standing-Calf-Raise.gif"],
+  ["Barbell Hip Thrust", "Billen", "Barbell", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Hip-Thrust.gif"],
+  ["Barbell Glute Bridge", "Billen", "Barbell", "https://fitnessprogramer.com/wp-content/uploads/2021/12/Barbell-Glute-Bridge.gif"],
+  ["Weighted Front Plank", "Buikspieren", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/04/Weighted-Front-Plank.gif"],
+  ["Kneeling Cable Crunch", "Buikspieren", "Cable", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Kneeling-Cable-Crunch.gif"],
+  ["Russian Twist", "Buikspieren", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Russian-Twist.gif"],
+  ["Bicycle Crunch", "Buikspieren", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bicycle-Crunch.gif"],
+  ["Cross Crunch", "Buikspieren", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2022/07/Cross-Crunch.gif"],
+  ["Lying Leg Raise", "Buikspieren", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lying-Leg-Raise.gif"],
+  ["Ab Wheel Rollout", "Buikspieren", "Ab wheel", "https://fitnessprogramer.com/wp-content/uploads/2021/06/Ab-Wheel-Rollout.gif"],
+  ["Dead Bug", "Buikspieren", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dead-Bug.gif"],
+  ["Flutter Kicks", "Buikspieren", "Bodyweight", "https://fitnessprogramer.com/wp-content/uploads/2021/02/Flutter-Kicks.gif"],
+  ["Medicine Ball Crunch", "Buikspieren", "Medicine ball", "https://fitnessprogramer.com/wp-content/uploads/2022/07/Medicine-Ball-Crunch.gif"],
+  ["Stability Ball Knee Tuck", "Buikspieren", "Stability ball", "https://fitnessprogramer.com/wp-content/uploads/2021/06/Stability-Ball-Knee-Tuck.gif"],
+  ["Loopband", "Cardio", "Cardio apparaat", "cardio:treadmill"],
+  ["Hardlopen", "Cardio", "Cardio apparaat", "cardio:treadmill"],
+  ["Incline lopen op loopband", "Cardio", "Cardio apparaat", "cardio:treadmill"],
+  ["Stationary Bike", "Cardio", "Cardio apparaat", "cardio:bike"],
+  ["StairMaster", "Cardio", "Cardio apparaat", "cardio:stair"],
+  ["Crosstrainer", "Cardio", "Cardio apparaat", "https://fitnessprogramer.com/wp-content/uploads/2021/10/Elliptical-Machine.gif"],
+  ["Rowing Machine", "Cardio", "Cardio apparaat", "https://fitnessprogramer.com/wp-content/uploads/2021/06/Rowing-Machine.gif"],
+  ["Kettlebell Swing", "Billen", "Kettlebell", "https://fitnessprogramer.com/wp-content/uploads/2021/09/Kettlebell-Swings.gif"],
+  ["Turkish Get Up", "Full body", "Kettlebell", "https://fitnessprogramer.com/wp-content/uploads/2021/08/Turkish-Get-Up.gif"],
+  ["Kettlebell Windmill", "Buikspieren", "Kettlebell", "https://fitnessprogramer.com/wp-content/uploads/2021/09/Kettlebell-Windmill.gif"],
+  ["Kettlebell Figure 8", "Full body", "Kettlebell", "https://fitnessprogramer.com/wp-content/uploads/2022/09/Kettlebell-Figure-8.gif"],
+  ["Kettlebell Clean and Press", "Full body", "Kettlebell", "https://fitnessprogramer.com/wp-content/uploads/2023/06/Kettlebell-Clean-and-Press.gif"],
+  ["Medicine Ball Overhead Throw", "Full body", "Medicine ball", "https://fitnessprogramer.com/wp-content/uploads/2023/09/Medicine-Ball-Overhead-Throw.gif"],
+  ["Bosu Ball Push-Up", "Borst", "Bosu ball", "https://fitnessprogramer.com/wp-content/uploads/2022/07/Bosu-Ball-Push-Up.gif"]
+].map(([name, group, equipment, image], index) => ({
+  id: `lib-${index}`,
+  name,
+  group,
+  equipment,
+  image
+}));
+
 const PRODUCTS = [
   { id: "havermout", name: "Havermout", kcal: 379, protein: 13.2, carbs: 67.7, fat: 6.5 },
   { id: "kipfilet", name: "Kipfilet", kcal: 110, protein: 23, carbs: 0, fat: 1.5 },
@@ -378,9 +454,10 @@ function seedState() {
 
 function normalizeState(raw) {
   const next = raw && typeof raw === "object" ? raw : seedState();
-  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), openNutritionMeal: "breakfast", ...(next.ui || {}) };
+  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", ...(next.ui || {}) };
   next.ui.calendarWeekStart = startOfWeekISO(next.ui.calendarWeekStart || todayISO());
   next.ui.trackingWeekStart = startOfWeekISO(next.ui.trackingWeekStart || todayISO());
+  if (!DAYS.includes(next.ui.trainingDay)) next.ui.trainingDay = "Maandag";
   const currentTrackingWeek = next.ui.trackingWeekStart;
   next.trainerAccount = next.trainerAccount && typeof next.trainerAccount === "object" ? {
     name: next.trainerAccount.name || "Trainer",
@@ -388,6 +465,15 @@ function normalizeState(raw) {
     password: String(next.trainerAccount.password || "")
   } : null;
   next.trainerCalc = Array.isArray(next.trainerCalc) ? next.trainerCalc : [];
+  next.exerciseLibrary = Array.isArray(next.exerciseLibrary) ? next.exerciseLibrary : [];
+  next.exerciseLibrary.forEach((exercise, index) => {
+    exercise.id ||= `custom-ex-${Date.now()}-${index}`;
+    exercise.name ||= "Eigen oefening";
+    exercise.group ||= "Overig";
+    exercise.equipment ||= "Eigen";
+    exercise.image ||= EXERCISE_IMAGE_FALLBACK;
+  });
+  const exerciseLookup = [...next.exerciseLibrary, ...DEFAULT_EXERCISE_LIBRARY];
   next.trainerFinance = next.trainerFinance && typeof next.trainerFinance === "object" ? next.trainerFinance : {};
   next.trainerFinance.rates = Array.isArray(next.trainerFinance.rates) ? next.trainerFinance.rates : [];
   if (!next.trainerFinance.rates.length) {
@@ -406,19 +492,34 @@ function normalizeState(raw) {
     item.goals = { ...DEFAULT_GOALS, ...(item.goals || {}) };
     item.planSummary ||= "Plan nog invullen.";
     item.trainingPlan = Array.isArray(item.trainingPlan) ? item.trainingPlan : [];
-    item.trainingPlan.forEach((exercise) => {
+    item.trainingPlan.forEach((exercise, exerciseIndex) => {
+      const libraryMatch = exerciseLookup.find((entry) => entry.name.toLowerCase() === String(exercise.exercise || "").trim().toLowerCase());
+      exercise.id ||= `training-${Date.now()}-${exerciseIndex}-${Math.random().toString(16).slice(2)}`;
       exercise.day ||= "Maandag";
+      exercise.exercise ||= libraryMatch?.name || "Oefening";
+      exercise.group ||= libraryMatch?.group || "";
+      exercise.equipment ||= libraryMatch?.equipment || "";
+      exercise.image ||= libraryMatch?.image || "";
+      exercise.targetWeight ??= exercise.weight ?? "";
       exercise.actualSets ??= "";
       exercise.actualReps ??= "";
+      exercise.actualWeight ??= "";
       exercise.notes ??= "";
       exercise.logsByWeek = exercise.logsByWeek && typeof exercise.logsByWeek === "object" ? exercise.logsByWeek : {};
       if (!exercise.logsByWeek[currentTrackingWeek]) {
         exercise.logsByWeek[currentTrackingWeek] = {
           actualSets: exercise.actualSets || "",
           actualReps: exercise.actualReps || "",
+          actualWeight: exercise.actualWeight || "",
           notes: exercise.notes || ""
         };
       }
+      Object.keys(exercise.logsByWeek).forEach((week) => {
+        exercise.logsByWeek[week].actualSets ??= "";
+        exercise.logsByWeek[week].actualReps ??= "";
+        exercise.logsByWeek[week].actualWeight ??= "";
+        exercise.logsByWeek[week].notes ??= "";
+      });
     });
     item.trainingAttendanceByWeek = normalizeWeekStore(
       item.trainingAttendanceByWeek,
@@ -646,7 +747,8 @@ function addWaterDay(selected, index, amount) {
 
 function exerciseWeekLog(exercise) {
   exercise.logsByWeek = exercise.logsByWeek && typeof exercise.logsByWeek === "object" ? exercise.logsByWeek : {};
-  exercise.logsByWeek[activeWeekStart()] ||= { actualSets: "", actualReps: "", notes: "" };
+  exercise.logsByWeek[activeWeekStart()] ||= { actualSets: "", actualReps: "", actualWeight: "", notes: "" };
+  exercise.logsByWeek[activeWeekStart()].actualWeight ??= "";
   return exercise.logsByWeek[activeWeekStart()];
 }
 
@@ -845,6 +947,51 @@ function saveState() {
 
 function $(selector) {
   return document.querySelector(selector);
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function cardioIllustration(type) {
+  const machines = {
+    treadmill: "<rect x='56' y='182' width='248' height='24' rx='10' fill='#edf2f6' stroke='#8896a3' stroke-width='5'/><path d='M90 182 L138 104 H252' fill='none' stroke='#8896a3' stroke-width='7' stroke-linecap='round'/><rect x='232' y='74' width='56' height='38' rx='9' fill='#ffffff' stroke='#8896a3' stroke-width='5'/><path d='M74 208 H314' stroke='#c9d2dc' stroke-width='5' stroke-linecap='round'/>",
+    bike: "<circle cx='96' cy='178' r='38' fill='#ffffff' stroke='#8896a3' stroke-width='7'/><circle cx='238' cy='178' r='38' fill='#ffffff' stroke='#8896a3' stroke-width='7'/><path d='M96 178 L154 124 L238 178 M154 124 L180 178 M154 124 H214' fill='none' stroke='#8896a3' stroke-width='7' stroke-linecap='round'/><path d='M214 124 H252' stroke='#8896a3' stroke-width='7' stroke-linecap='round'/><circle cx='180' cy='178' r='7' fill='#c9d2dc'/>",
+    stair: "<path d='M72 200 H288 V176 H232 V152 H176 V128 H120 V104 H72 Z' fill='#edf2f6' stroke='#8896a3' stroke-width='6' stroke-linejoin='round'/><path d='M92 88 H270 M100 88 L72 200 M262 88 L288 200' fill='none' stroke='#8896a3' stroke-width='7' stroke-linecap='round'/><path d='M120 128 H176 M176 152 H232 M232 176 H288' stroke='#c9d2dc' stroke-width='5' stroke-linecap='round'/>"
+  };
+  const bodyPose = type === "bike"
+    ? "<circle cx='174' cy='70' r='15' fill='#515d6b'/><path d='M170 88 L146 126 L188 142 L214 122' fill='none' stroke='#515d6b' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/><path d='M188 142 L180 178 M188 142 L230 178' stroke='#515d6b' stroke-width='7' stroke-linecap='round'/><path d='M152 114 L120 178' stroke='#c74235' stroke-width='12' stroke-linecap='round' opacity='.9'/>"
+    : "<circle cx='176' cy='58' r='15' fill='#515d6b'/><path d='M174 76 L154 126 L186 150 L216 118' fill='none' stroke='#515d6b' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/><path d='M186 150 L160 196 M186 150 L226 190' stroke='#515d6b' stroke-width='7' stroke-linecap='round'/><path d='M158 126 L188 150' stroke='#c74235' stroke-width='12' stroke-linecap='round' opacity='.9'/>";
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 260'><rect width='360' height='260' rx='24' fill='#ffffff'/><rect x='12' y='12' width='336' height='236' rx='18' fill='#fbfcfd' stroke='#dde3ea' stroke-width='4'/>${machines[type] || machines.treadmill}${bodyPose}<text x='26' y='36' font-family='Arial' font-size='18' font-weight='800' fill='#515d6b'>Fit Met Zorge</text></svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
+function exerciseImageSrc(image) {
+  if (String(image || "").startsWith("cardio:")) return cardioIllustration(String(image).split(":")[1]);
+  return image || EXERCISE_IMAGE_FALLBACK;
+}
+
+function renderExerciseImage(item, className = "exercise-photo") {
+  return `<div class="${className}"><img src="${escapeHTML(exerciseImageSrc(item?.image))}" alt="Foto van ${escapeHTML(item?.name || item?.exercise || "oefening")}" loading="lazy" onerror="this.src='${EXERCISE_IMAGE_FALLBACK}'" /></div>`;
+}
+
+function fullExerciseLibrary() {
+  const custom = Array.isArray(state.exerciseLibrary) ? state.exerciseLibrary : [];
+  return [...custom, ...DEFAULT_EXERCISE_LIBRARY];
+}
+
+function exerciseLibraryItemById(id) {
+  return fullExerciseLibrary().find((item) => item.id === id);
+}
+
+function exerciseLibraryMatch(name) {
+  const needle = String(name || "").trim().toLowerCase();
+  return fullExerciseLibrary().find((item) => item.name.toLowerCase() === needle);
 }
 
 function emptyClient() {
@@ -1552,17 +1699,95 @@ function renderGoalForm() {
   });
 }
 
+function trainingDayStats(selected, day) {
+  const exercises = selected.trainingPlan.filter((item) => item.day === day);
+  const sets = exercises.reduce((sum, item) => sum + number(item.sets), 0);
+  return { exercises: exercises.length, sets };
+}
+
+function renderTrainingDayTabs(selected, dates) {
+  const activeDay = DAYS.includes(state.ui.trainingDay) ? state.ui.trainingDay : "Maandag";
+  return DAYS.map((day, index) => {
+    const stats = hasSelectedClient(selected) ? trainingDayStats(selected, day) : { sets: 0, exercises: 0 };
+    return `
+      <button class="training-day-tab ${day === activeDay ? "active" : ""}" data-training-day="${day}" type="button">
+        <strong>${day}</strong>
+        <span>${formatShortDate(dates[index].date)}</span>
+        <small>${stats.sets} sets | ${stats.exercises} oefeningen</small>
+      </button>
+    `;
+  }).join("");
+}
+
+function renderExerciseLibrary() {
+  if (!isTrainer()) return;
+  const list = $("#exerciseLibraryList");
+  if (!list) return;
+  const search = String(state.ui.exerciseSearch || "").toLowerCase();
+  const filter = state.ui.exerciseFilter || "Alles";
+  const library = fullExerciseLibrary();
+  const filtered = library.filter((item) => {
+    const haystack = `${item.name} ${item.group} ${item.equipment}`.toLowerCase();
+    const matchesSearch = !search || haystack.includes(search);
+    const matchesFilter = filter === "Alles" || item.group === filter || item.equipment === filter || (filter === "Ballen" && /ball/i.test(item.equipment));
+    return matchesSearch && matchesFilter;
+  });
+
+  const searchInput = $("#exerciseSearch");
+  const filterInput = $("#exerciseFilter");
+  if (searchInput && document.activeElement !== searchInput) searchInput.value = state.ui.exerciseSearch || "";
+  if (filterInput) filterInput.value = filter;
+  $("#exerciseLibraryCount").textContent = `${library.length} oefeningen`;
+  list.innerHTML = filtered.length
+    ? filtered.map((item) => `
+      <div class="exercise-library-item">
+        ${renderExerciseImage(item, "exercise-library-photo")}
+        <div>
+          <strong>${escapeHTML(item.name)}</strong>
+          <span>${escapeHTML(item.group)} | ${escapeHTML(item.equipment)}</span>
+        </div>
+        <button class="secondary-btn icon-only-btn" data-add-library-exercise="${escapeHTML(item.id)}" type="button">+</button>
+      </div>
+    `).join("")
+    : `<div class="empty-state">Geen oefeningen gevonden. Voeg zelf een oefening toe met foto URL.</div>`;
+}
+
+function renderTrainingTarget(exercise, index, key, label, type = "text") {
+  const value = exercise[key] ?? "";
+  if (!isTrainer()) return `<span class="target-pill">${label}: ${escapeHTML(value || "-")}</span>`;
+  return `
+    <label class="mini-target">
+      <span>${label}</span>
+      <input data-training-plan="${index}:${key}" type="${type}" ${type === "number" ? 'min="0" step="0.5"' : ""} value="${escapeHTML(value)}" />
+    </label>
+  `;
+}
+
 function renderTraining() {
   const selected = client();
   const hasClient = hasSelectedClient(selected);
-  $("#trainingForm").style.display = isTrainer() && hasClient ? "grid" : "none";
+  const dates = weekDates(activeWeekStart());
+  const activeDay = DAYS.includes(state.ui.trainingDay) ? state.ui.trainingDay : "Maandag";
+  const activeIndex = DAYS.indexOf(activeDay);
+  const form = $("#trainingForm");
+  const libraryPanel = $("#exerciseLibraryPanel");
+  const libraryForm = $("#exerciseLibraryForm");
+  const formDay = $("#trainingFormDay");
+
+  if (form) form.style.display = isTrainer() && hasClient ? "grid" : "none";
+  if (libraryPanel) libraryPanel.style.display = isTrainer() && hasClient ? "grid" : "none";
+  if (libraryForm) libraryForm.style.display = isTrainer() && hasClient ? "grid" : "none";
+  if (formDay) formDay.value = activeDay;
+
+  $("#trainingDayTabs").innerHTML = renderTrainingDayTabs(selected, dates);
+
   if (!hasClient) {
     $("#trainingGoalStrip").innerHTML = "";
     $("#trainingDays").innerHTML = emptyTrackerState("Voeg eerst een client toe voordat je een trainingsschema beheert.");
     return;
   }
+
   const attendance = trainingAttendanceWeek(selected);
-  const dates = weekDates(activeWeekStart());
   attendance.forEach((item, index) => {
     item.date = dates[index].date;
   });
@@ -1572,50 +1797,64 @@ function renderTraining() {
     ["Slaap", selected.goals.sleep, "u"]
   ]);
 
-  $("#trainingDays").innerHTML = DAYS.map((day) => {
-    const dayIndex = DAYS.indexOf(day);
-    const dayAttendance = attendance[dayIndex] || { status: "" };
-    const exercises = selected.trainingPlan
-      .map((exercise, index) => ({ ...exercise, index, source: exercise }))
-      .filter((exercise) => exercise.day === day);
-    return `
-      <div class="training-day">
-        <div class="training-day-header">
-          <div class="training-day-title">
-            <strong>${day}</strong>
-            <span>${formatShortDate(dates[dayIndex].date)}</span>
-          </div>
-          <select data-training-attendance="${dayIndex}" aria-label="Aanwezigheid ${day}">
-            ${trainingAttendanceOptions(dayAttendance.status || "")}
-          </select>
-          <button class="primary-btn" data-save-training-day="${dayIndex}" type="button">Dag opslaan</button>
-          <span class="save-feedback" data-save-feedback="training-${dayIndex}"></span>
+  const dayAttendance = attendance[activeIndex] || { status: "" };
+  const exercises = selected.trainingPlan
+    .map((exercise, index) => ({ ...exercise, index, source: exercise }))
+    .filter((exercise) => exercise.day === activeDay);
+
+  $("#trainingDays").innerHTML = `
+    <div class="training-day active-training-day">
+      <div class="training-day-header">
+        <div class="training-day-title">
+          <strong>${activeDay}</strong>
+          <span>${formatShortDate(dates[activeIndex].date)}</span>
         </div>
-        <div class="exercise-row">
-          ${
-            exercises.length
-              ? exercises.map((exercise) => `
-                <div class="exercise-card">
-                  <strong>${exercise.exercise}</strong>
-                  <div class="exercise-meta">
-                    Doel: ${exercise.sets} sets x ${exercise.reps} reps
-                    ${exercise.tempo ? ` | tempo ${exercise.tempo}` : ""}
-                    ${exercise.rest ? ` | rust ${exercise.rest}` : ""}
-                  </div>
-                  <div class="exercise-log">
-                    <label>Gedane sets<input data-training-log-day="${dayIndex}" data-training-log="${exercise.index}:actualSets" type="number" min="0" value="${exerciseWeekLog(exercise.source).actualSets ?? ""}" /></label>
-                    <label>Gedane reps<input data-training-log-day="${dayIndex}" data-training-log="${exercise.index}:actualReps" value="${exerciseWeekLog(exercise.source).actualReps ?? ""}" placeholder="bijv. 8/8/7/6" /></label>
-                    <textarea data-training-log-day="${dayIndex}" data-training-log="${exercise.index}:notes" placeholder="Opmerkingen">${exerciseWeekLog(exercise.source).notes ?? ""}</textarea>
-                  </div>
-                  ${isTrainer() ? `<button class="danger-btn" data-remove-training="${exercise.index}" type="button">Verwijder</button>` : ""}
-                </div>
-              `).join("")
-              : `<div class="empty-mini">Geen oefeningen.</div>`
-          }
-        </div>
+        <select data-training-attendance="${activeIndex}" aria-label="Aanwezigheid ${activeDay}">
+          ${trainingAttendanceOptions(dayAttendance.status || "")}
+        </select>
+        <button class="primary-btn" data-save-training-day="${activeIndex}" type="button">Dag opslaan</button>
+        <span class="save-feedback" data-save-feedback="training-${activeIndex}"></span>
       </div>
-    `;
-  }).join("");
+      <div class="exercise-row training-session-list">
+        ${
+          exercises.length
+            ? exercises.map((exercise) => {
+              const log = exerciseWeekLog(exercise.source);
+              return `
+                <div class="exercise-card training-exercise-card">
+                  ${renderExerciseImage({ name: exercise.exercise, image: exercise.image || exerciseLibraryMatch(exercise.exercise)?.image }, "exercise-photo")}
+                  <div class="exercise-card-main">
+                    <div class="exercise-title-row">
+                      <div>
+                        <strong>${escapeHTML(exercise.exercise)}</strong>
+                        <span>${escapeHTML(exercise.group || "Oefening")} ${exercise.equipment ? `| ${escapeHTML(exercise.equipment)}` : ""}</span>
+                      </div>
+                      ${isTrainer() ? `<button class="danger-btn" data-remove-training="${exercise.index}" type="button">Verwijder</button>` : ""}
+                    </div>
+                    <div class="exercise-target-grid">
+                      ${renderTrainingTarget(exercise, exercise.index, "sets", "Sets", "number")}
+                      ${renderTrainingTarget(exercise, exercise.index, "reps", "Reps")}
+                      ${renderTrainingTarget(exercise, exercise.index, "targetWeight", "Doel kg", "number")}
+                      ${renderTrainingTarget(exercise, exercise.index, "rest", "Rust")}
+                    </div>
+                    ${exercise.tempo ? `<div class="exercise-meta">Tempo: ${escapeHTML(exercise.tempo)}</div>` : ""}
+                    <div class="exercise-log">
+                      <label>Gedane sets<input data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:actualSets" type="number" min="0" value="${escapeHTML(log.actualSets ?? "")}" /></label>
+                      <label>Gedane reps<input data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:actualReps" value="${escapeHTML(log.actualReps ?? "")}" placeholder="bijv. 8/8/7/6" /></label>
+                      <label>Gedaan gewicht<input data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:actualWeight" type="number" min="0" step="0.5" value="${escapeHTML(log.actualWeight ?? "")}" placeholder="kg" /></label>
+                      <label class="exercise-notes-field">Opmerkingen<textarea data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:notes" placeholder="Bijv. zwaar, pijnvrij, techniek voelde goed">${escapeHTML(log.notes ?? "")}</textarea></label>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join("")
+            : `<div class="empty-mini">Geen oefeningen op deze dag.</div>`
+        }
+      </div>
+    </div>
+  `;
+
+  renderExerciseLibrary();
 }
 
 function renderNutrition() {
@@ -2544,6 +2783,12 @@ document.addEventListener("click", (event) => {
     showView(target.dataset.view);
     return;
   }
+  if (target.dataset.trainingDay) {
+    state.ui.trainingDay = target.dataset.trainingDay;
+    renderTraining();
+    saveState();
+    return;
+  }
   if (target.dataset.action === "open-view") {
     navMenuOpen = false;
     showView(target.dataset.target);
@@ -2579,6 +2824,30 @@ document.addEventListener("click", (event) => {
   if (target.dataset.removeTraining) {
     client().trainingPlan.splice(Number(target.dataset.removeTraining), 1);
     renderAll();
+  }
+  if (target.dataset.addLibraryExercise) {
+    const selected = client();
+    const item = exerciseLibraryItemById(target.dataset.addLibraryExercise);
+    if (!hasSelectedClient(selected) || !item) return;
+    selected.trainingPlan.push({
+      id: `training-${Date.now()}${Math.random().toString(16).slice(2)}`,
+      day: state.ui.trainingDay || "Maandag",
+      exercise: item.name,
+      group: item.group,
+      equipment: item.equipment,
+      image: item.image,
+      sets: 3,
+      reps: "8-10",
+      targetWeight: "",
+      tempo: "",
+      rest: "90s",
+      actualSets: "",
+      actualReps: "",
+      actualWeight: "",
+      notes: ""
+    });
+    renderAll();
+    return;
   }
   if (target.dataset.removeFood) {
     client().foodLog.splice(Number(target.dataset.removeFood), 1);
@@ -3000,16 +3269,39 @@ $("#trainingForm").addEventListener("submit", (event) => {
     alert("Voeg eerst een client toe.");
     return;
   }
+  const match = exerciseLibraryMatch(data.get("exercise"));
   selected.trainingPlan.push({
-    day: data.get("day"),
+    id: `training-${Date.now()}${Math.random().toString(16).slice(2)}`,
+    day: data.get("day") || state.ui.trainingDay || "Maandag",
     exercise: data.get("exercise"),
+    group: match?.group || "",
+    equipment: match?.equipment || "",
+    image: String(data.get("image") || "").trim() || match?.image || "",
     sets: number(data.get("sets")),
     reps: data.get("reps"),
+    targetWeight: data.get("targetWeight") === "" ? "" : number(data.get("targetWeight")),
     tempo: data.get("tempo"),
     rest: data.get("rest"),
     actualSets: "",
     actualReps: "",
+    actualWeight: "",
     notes: ""
+  });
+  event.currentTarget.reset();
+  $("#trainingFormDay").value = state.ui.trainingDay || "Maandag";
+  renderAll();
+});
+
+$("#exerciseLibraryForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!isTrainer()) return;
+  const data = new FormData(event.currentTarget);
+  state.exerciseLibrary.unshift({
+    id: `custom-ex-${Date.now()}${Math.random().toString(16).slice(2)}`,
+    name: String(data.get("name") || "").trim() || "Eigen oefening",
+    group: data.get("group") || "Overig",
+    equipment: data.get("equipment") || "Eigen",
+    image: String(data.get("image") || "").trim() || EXERCISE_IMAGE_FALLBACK
   });
   event.currentTarget.reset();
   renderAll();
@@ -3152,6 +3444,16 @@ document.addEventListener("input", (event) => {
       exerciseWeekLog(selected.trainingPlan[Number(index)])[key] = target.value;
     }
   }
+  if (target.dataset.trainingPlan) {
+    const [index, key] = target.dataset.trainingPlan.split(":");
+    const exercise = selected.trainingPlan[Number(index)];
+    if (exercise) exercise[key] = key === "sets" || key === "targetWeight" ? (target.value === "" ? "" : number(target.value)) : target.value;
+    saveState();
+  }
+  if (target.id === "exerciseSearch") {
+    state.ui.exerciseSearch = target.value;
+    renderExerciseLibrary();
+  }
   if (target.dataset.stepIndex) {
     weekArray(selected, "stepsByWeek", "value")[Number(target.dataset.stepIndex)].value = target.value;
   }
@@ -3214,6 +3516,16 @@ document.addEventListener("change", (event) => {
     weightEntries[Number(target.dataset.weightIndex)].value = target.value;
     selected.dailyWeight = weightEntries;
     renderAll();
+  }
+  if (target.dataset.trainingPlan) {
+    const [index, key] = target.dataset.trainingPlan.split(":");
+    const exercise = selected.trainingPlan[Number(index)];
+    if (exercise) exercise[key] = key === "sets" || key === "targetWeight" ? (target.value === "" ? "" : number(target.value)) : target.value;
+    renderTraining();
+  }
+  if (target.id === "exerciseFilter") {
+    state.ui.exerciseFilter = target.value;
+    renderExerciseLibrary();
   }
   if (target.dataset.wellbeing) {
     const [index, key] = target.dataset.wellbeing.split(":");
