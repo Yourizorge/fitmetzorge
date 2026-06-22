@@ -997,6 +997,243 @@ td {
   gap: 12px;
 }
 
+.training-panel {
+  overflow: hidden;
+}
+
+.training-builder {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) 320px;
+  gap: 12px;
+  align-items: start;
+}
+
+.training-day-sidebar,
+.training-session-area,
+.exercise-library-panel {
+  min-width: 0;
+}
+
+.compact-head {
+  margin-bottom: 10px;
+}
+
+.training-day-tabs {
+  display: grid;
+  gap: 8px;
+}
+
+.training-day-tab {
+  width: 100%;
+  display: grid;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+}
+
+.training-day-tab.active {
+  border-color: rgba(215, 178, 77, 0.75);
+  background: rgba(215, 178, 77, 0.12);
+}
+
+.training-day-tab strong {
+  color: var(--gold-2);
+}
+
+.training-day-tab span,
+.training-day-tab small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.training-form {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.2fr) repeat(3, minmax(80px, 0.6fr)) minmax(90px, 0.7fr) minmax(90px, 0.7fr) minmax(150px, 1fr) auto;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.training-form input,
+.library-controls input,
+.library-controls select,
+.manual-exercise-form input,
+.manual-exercise-form select {
+  width: 100%;
+}
+
+.library-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.manual-exercise-form {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 10px;
+}
+
+.manual-exercise-form h3 {
+  margin: 0;
+  color: var(--gold-2);
+  font-size: 14px;
+}
+
+.exercise-library-list {
+  display: grid;
+  gap: 8px;
+  max-height: 620px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.exercise-library-item {
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  padding: 8px;
+}
+
+.exercise-library-item strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.exercise-library-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.exercise-library-photo,
+.exercise-photo {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.exercise-library-photo {
+  width: 66px;
+  height: 50px;
+}
+
+.exercise-photo {
+  width: 116px;
+  min-height: 88px;
+  height: 88px;
+}
+
+.exercise-library-photo img,
+.exercise-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #fff;
+}
+
+.icon-only-btn {
+  min-width: 36px;
+  min-height: 36px;
+  padding: 6px 8px;
+  font-size: 18px;
+}
+
+.active-training-day {
+  min-height: 0;
+}
+
+.training-session-list {
+  grid-auto-flow: row;
+  grid-auto-columns: initial;
+  grid-template-columns: 1fr;
+  overflow: visible;
+}
+
+.training-exercise-card {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 12px;
+}
+
+.exercise-card-main {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.exercise-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.exercise-title-row strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.exercise-title-row span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.exercise-target-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mini-target {
+  display: grid;
+  gap: 4px;
+}
+
+.mini-target span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.target-pill {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  padding: 4px 9px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .week-calendar {
   display: grid;
   grid-template-columns: repeat(7, minmax(210px, 1fr));
@@ -1434,6 +1671,15 @@ td {
   min-height: 58px;
 }
 
+.exercise-notes-field {
+  grid-column: 1 / -1;
+}
+
+.exercise-notes-field textarea {
+  margin-top: 4px;
+  resize: vertical;
+}
+
 .empty-mini {
   margin: 10px;
   color: var(--muted);
@@ -1659,8 +1905,22 @@ td {
   .inline-form,
   .recipe-form,
   .food-entry-form,
-  .goal-form-grid {
+  .goal-form-grid,
+  .training-form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .training-builder {
+    grid-template-columns: 180px minmax(0, 1fr);
+  }
+
+  .exercise-library-panel {
+    grid-column: 1 / -1;
+  }
+
+  .exercise-library-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: none;
   }
 }
 
@@ -1899,6 +2159,36 @@ td {
     grid-template-columns: 1fr;
     align-items: stretch;
     padding: 10px 12px;
+  }
+
+  .training-builder {
+    grid-template-columns: 1fr;
+  }
+
+  .training-day-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .training-form,
+  .library-controls,
+  .exercise-target-grid,
+  .exercise-log,
+  .exercise-library-list {
+    grid-template-columns: 1fr;
+  }
+
+  .training-exercise-card {
+    grid-template-columns: 1fr;
+  }
+
+  .exercise-photo {
+    width: 100%;
+    height: 170px;
+  }
+
+  .exercise-title-row {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .exercise-row {
