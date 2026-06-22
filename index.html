@@ -275,24 +275,7 @@
             </div>
           </div>
 
-          <div class="panel">
-            <form id="trainingForm" class="inline-form">
-              <select name="day" required>
-                <option value="Maandag">Maandag</option>
-                <option value="Dinsdag">Dinsdag</option>
-                <option value="Woensdag">Woensdag</option>
-                <option value="Donderdag">Donderdag</option>
-                <option value="Vrijdag">Vrijdag</option>
-                <option value="Zaterdag">Zaterdag</option>
-                <option value="Zondag">Zondag</option>
-              </select>
-              <input name="exercise" placeholder="Oefening" required />
-              <input name="sets" type="number" min="1" placeholder="Doel sets" required />
-              <input name="reps" placeholder="Doel reps" required />
-              <input name="tempo" placeholder="Tempo" />
-              <input name="rest" placeholder="Rust" />
-              <button class="primary-btn" type="submit">Toevoegen</button>
-            </form>
+          <div class="panel training-panel">
             <div class="week-toolbar">
               <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
               <strong data-week-label></strong>
@@ -300,7 +283,84 @@
               <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
             </div>
             <div class="goal-strip" id="trainingGoalStrip"></div>
-            <div id="trainingDays" class="training-days"></div>
+            <div class="training-builder">
+              <aside class="training-day-sidebar">
+                <div class="panel-head compact-head">
+                  <h2>Dagen</h2>
+                </div>
+                <div id="trainingDayTabs" class="training-day-tabs"></div>
+              </aside>
+
+              <div class="training-session-area">
+                <form id="trainingForm" class="training-form">
+                  <input id="trainingFormDay" name="day" type="hidden" value="Maandag" />
+                  <input name="exercise" placeholder="Oefening handmatig toevoegen" required />
+                  <input name="sets" type="number" min="1" placeholder="Sets" required />
+                  <input name="reps" placeholder="Reps" required />
+                  <input name="targetWeight" type="number" min="0" step="0.5" placeholder="Doel kg" />
+                  <input name="tempo" placeholder="Tempo" />
+                  <input name="rest" placeholder="Rust" />
+                  <input name="image" placeholder="Foto URL optioneel" />
+                  <button class="primary-btn" type="submit">Toevoegen</button>
+                </form>
+                <div id="trainingDays" class="training-days"></div>
+              </div>
+
+              <aside id="exerciseLibraryPanel" class="exercise-library-panel">
+                <div class="panel-head compact-head">
+                  <h2>Oefenbibliotheek</h2>
+                  <span id="exerciseLibraryCount" class="muted"></span>
+                </div>
+                <div class="library-controls">
+                  <input id="exerciseSearch" placeholder="Zoek oefening..." />
+                  <select id="exerciseFilter">
+                    <option>Alles</option>
+                    <option>Borst</option>
+                    <option>Rug</option>
+                    <option>Schouders</option>
+                    <option>Biceps</option>
+                    <option>Triceps</option>
+                    <option>Benen</option>
+                    <option>Billen</option>
+                    <option>Buikspieren</option>
+                    <option>Cardio</option>
+                    <option>Kettlebell</option>
+                    <option>Ballen</option>
+                  </select>
+                </div>
+                <form id="exerciseLibraryForm" class="manual-exercise-form">
+                  <h3>Eigen oefening toevoegen</h3>
+                  <input name="name" placeholder="Naam oefening" required />
+                  <select name="group">
+                    <option>Borst</option>
+                    <option>Rug</option>
+                    <option>Schouders</option>
+                    <option>Biceps</option>
+                    <option>Triceps</option>
+                    <option>Benen</option>
+                    <option>Billen</option>
+                    <option>Buikspieren</option>
+                    <option>Cardio</option>
+                    <option>Full body</option>
+                  </select>
+                  <select name="equipment">
+                    <option>Machine</option>
+                    <option>Dumbbell</option>
+                    <option>Barbell</option>
+                    <option>Cable</option>
+                    <option>Bodyweight</option>
+                    <option>Kettlebell</option>
+                    <option>Medicine ball</option>
+                    <option>Stability ball</option>
+                    <option>Bosu ball</option>
+                    <option>Cardio apparaat</option>
+                  </select>
+                  <input name="image" placeholder="Foto URL" />
+                  <button class="secondary-btn" type="submit">Toevoegen aan bibliotheek</button>
+                </form>
+                <div id="exerciseLibraryList" class="exercise-library-list"></div>
+              </aside>
+            </div>
           </div>
         </section>
 
