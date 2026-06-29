@@ -701,76 +701,182 @@
               <p class="eyebrow">Trainer</p>
               <h1>Financien</h1>
             </div>
+            <div class="finance-toolbar">
+              <label class="field compact">
+                <span>Maand</span>
+                <input id="financeMonthFilter" type="month" />
+              </label>
+              <label class="field compact">
+                <span>Client</span>
+                <select id="financeClientFilter"></select>
+              </label>
+            </div>
           </div>
-          <div class="finance-layout">
-            <form id="financeRateForm" class="panel form-panel">
-              <h2>Tarieven beheren</h2>
-              <label class="field">
-                <span>Naam tarief</span>
-                <input name="name" placeholder="Personal training" required />
-              </label>
-              <label class="field">
-                <span>Bedrag</span>
-                <input name="amount" type="number" min="0" step="0.01" placeholder="60" required />
-              </label>
-              <button class="primary-btn" type="submit">Tarief opslaan</button>
-            </form>
+          <div id="financeTabs" class="finance-tabs"></div>
+          <div id="financeKpis" class="kpi-grid finance-kpis"></div>
+
+          <div class="finance-panel active" data-finance-panel="overview">
+            <div class="finance-overview-grid">
+              <div class="panel">
+                <div class="panel-head">
+                  <h2>Administratie acties</h2>
+                  <span class="muted">Open betalingen en taken</span>
+                </div>
+                <div id="financeAdminHighlights" class="finance-card-list"></div>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <h2>Omzet per maand</h2>
+                  <span class="muted">Automatische totalen</span>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Maand</th>
+                        <th>Omzet</th>
+                        <th>Betaald</th>
+                      </tr>
+                    </thead>
+                    <tbody id="financeMonthTable"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="finance-panel" data-finance-panel="appointments">
             <div class="panel">
               <div class="panel-head">
-                <h2>Actieve tarieven</h2>
+                <h2>Afspraken en omzet</h2>
+                <span class="muted">Tarief, bedrag en betaalstatus per afspraak</span>
               </div>
-              <div id="financeRatesList" class="rate-list"></div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Datum</th>
+                      <th>Client</th>
+                      <th>Afspraak</th>
+                      <th>Tarief</th>
+                      <th>Bedrag</th>
+                      <th>Status</th>
+                      <th>Omzet</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="financeAppointmentTable"></tbody>
+                </table>
+              </div>
             </div>
           </div>
-          <div id="financeKpis" class="kpi-grid"></div>
-          <div class="panel">
-            <div class="panel-head">
-              <h2>Omzet per afspraak</h2>
-              <span class="muted">Koppel tarieven en pas bedragen handmatig aan</span>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Datum</th>
-                    <th>Client</th>
-                    <th>Afspraak</th>
-                    <th>Tarief</th>
-                    <th>Bedrag</th>
-                    <th>Omzet</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="financeAppointmentTable"></tbody>
-              </table>
+
+          <div class="finance-panel" data-finance-panel="administration">
+            <div class="finance-layout">
+              <form id="financeAdminForm" class="panel form-panel">
+                <h2>Administratie toevoegen</h2>
+                <label class="field">
+                  <span>Type</span>
+                  <select name="type">
+                    <option value="invoice">Factuur</option>
+                    <option value="payment">Betaling</option>
+                    <option value="expense">Kosten / bon</option>
+                    <option value="note">Notitie</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span>Client</span>
+                  <select name="clientId" id="financeAdminClient"></select>
+                </label>
+                <label class="field">
+                  <span>Omschrijving</span>
+                  <input name="description" placeholder="Bijv. PT sessie juni" required />
+                </label>
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Datum</span>
+                    <input name="date" type="date" />
+                  </label>
+                  <label class="field">
+                    <span>Vervaldatum</span>
+                    <input name="dueDate" type="date" />
+                  </label>
+                </div>
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Bedrag</span>
+                    <input name="amount" type="number" min="0" step="0.01" placeholder="0,00" />
+                  </label>
+                  <label class="field">
+                    <span>Status</span>
+                    <select name="status">
+                      <option value="unpaid">Niet betaald</option>
+                      <option value="paid">Betaald</option>
+                    </select>
+                  </label>
+                </div>
+                <button class="primary-btn" type="submit">Administratie opslaan</button>
+              </form>
+              <div class="panel">
+                <div class="panel-head">
+                  <h2>Administratie overzicht</h2>
+                  <span class="muted">Facturen, betalingen, bonnen en notities</span>
+                </div>
+                <div id="financeAdminList" class="finance-card-list"></div>
+              </div>
             </div>
           </div>
-          <div class="split-layout finance-totals">
+
+          <div class="finance-panel" data-finance-panel="invoices">
             <div class="panel">
-              <h2>Omzet per client</h2>
+              <div class="panel-head">
+                <h2>Facturen</h2>
+                <span class="muted">Facturen uit afspraken en administratie downloaden</span>
+              </div>
+              <div id="financeInvoiceList" class="finance-card-list"></div>
+            </div>
+          </div>
+
+          <div class="finance-panel" data-finance-panel="rates">
+            <div class="finance-layout">
+              <form id="financeRateForm" class="panel form-panel">
+                <h2>Tarieven beheren</h2>
+                <label class="field">
+                  <span>Naam tarief</span>
+                  <input name="name" placeholder="Personal training" required />
+                </label>
+                <label class="field">
+                  <span>Bedrag</span>
+                  <input name="amount" type="number" min="0" step="0.01" placeholder="60" required />
+                </label>
+                <button class="primary-btn" type="submit">Tarief opslaan</button>
+              </form>
+              <div class="panel">
+                <div class="panel-head">
+                  <h2>Actieve tarieven</h2>
+                </div>
+                <div id="financeRatesList" class="rate-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="finance-panel" data-finance-panel="clients">
+            <div class="panel">
+              <div class="panel-head">
+                <h2>Omzet per client</h2>
+                <span class="muted">Gesorteerd op hoogste omzet</span>
+              </div>
               <div class="table-wrap">
                 <table>
                   <thead>
                     <tr>
                       <th>Client</th>
                       <th>Omzet</th>
+                      <th>Betaald</th>
+                      <th>Niet betaald</th>
                     </tr>
                   </thead>
                   <tbody id="financeClientTable"></tbody>
-                </table>
-              </div>
-            </div>
-            <div class="panel">
-              <h2>Omzet per maand</h2>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Maand</th>
-                      <th>Omzet</th>
-                    </tr>
-                  </thead>
-                  <tbody id="financeMonthTable"></tbody>
                 </table>
               </div>
             </div>
