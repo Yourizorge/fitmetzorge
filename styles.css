@@ -505,6 +505,131 @@ h2 {
   align-items: start;
 }
 
+.finance-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.finance-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.finance-tabs .seg-btn {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-2);
+}
+
+.finance-panel {
+  display: none;
+}
+
+.finance-panel.active {
+  display: block;
+}
+
+.finance-kpis .kpi:nth-child(2) {
+  border-color: rgba(34, 197, 94, 0.28);
+}
+
+.finance-kpis .kpi:nth-child(3) {
+  border-color: rgba(215, 178, 77, 0.45);
+}
+
+.finance-overview-grid {
+  display: grid;
+  grid-template-columns: minmax(290px, 0.85fr) minmax(0, 1.15fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.finance-card-list {
+  display: grid;
+  gap: 10px;
+}
+
+.finance-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  padding: 12px;
+}
+
+.finance-card strong,
+.finance-card span,
+.finance-card small {
+  display: block;
+}
+
+.finance-card strong {
+  color: var(--text);
+}
+
+.finance-card span,
+.finance-card small,
+.finance-status-line {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.finance-card-actions {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-card {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, auto);
+}
+
+.invoice-card {
+  grid-template-columns: minmax(0, 1fr) minmax(240px, auto);
+}
+
+.invoice-actions {
+  grid-template-columns: minmax(120px, 1fr) auto;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.status-badge.paid {
+  border-color: rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--ok);
+}
+
+.status-badge.unpaid {
+  border-color: rgba(215, 178, 77, 0.45);
+  background: rgba(215, 178, 77, 0.13);
+  color: var(--gold-2);
+}
+
 .finance-totals {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1971,6 +2096,7 @@ td {
   .nutrition-layout,
   .finance-layout,
   .finance-totals,
+  .finance-overview-grid,
   .summary-layout {
     grid-template-columns: 1fr;
   }
@@ -2179,6 +2305,18 @@ td {
     align-items: stretch;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .finance-toolbar,
+  .finance-tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .finance-card,
+  .admin-card,
+  .finance-card-actions {
+    grid-template-columns: 1fr;
   }
 
   .brand {
