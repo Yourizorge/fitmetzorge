@@ -331,6 +331,20 @@ const NAV = {
 };
 
 const DEFAULT_RATE_ID = "rate-default";
+const FINANCE_TABS = [
+  ["overview", "Overzicht"],
+  ["appointments", "Afspraken"],
+  ["administration", "Administratie"],
+  ["invoices", "Facturen"],
+  ["rates", "Tarieven"],
+  ["clients", "Per client"]
+];
+const ADMIN_TYPES = {
+  invoice: "Factuur",
+  payment: "Betaling",
+  expense: "Kosten / bon",
+  note: "Notitie"
+};
 let state = normalizeState(loadState());
 let currentView = state.ui.role === "client" ? "client-home" : "trainer-dashboard";
 let recipeOptions = [];
@@ -352,7 +366,8 @@ function seedState() {
     trainerFinance: {
       rates: [
         { id: DEFAULT_RATE_ID, name: "Standaard sessie", amount: 60 }
-      ]
+      ],
+      adminItems: []
     },
     clients: [
       {
@@ -454,10 +469,13 @@ function seedState() {
 
 function normalizeState(raw) {
   const next = raw && typeof raw === "object" ? raw : seedState();
-  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", ...(next.ui || {}) };
+  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", financeTab: "overview", financeMonth: todayISO().slice(0, 7), financeClientId: "", ...(next.ui || {}) };
   next.ui.calendarWeekStart = startOfWeekISO(next.ui.calendarWeekStart || todayISO());
   next.ui.trackingWeekStart = startOfWeekISO(next.ui.trackingWeekStart || todayISO());
   if (!DAYS.includes(next.ui.trainingDay)) next.ui.trainingDay = "Maandag";
+  if (!FINANCE_TABS.some(([id]) => id === next.ui.financeTab)) next.ui.financeTab = "overview";
+  next.ui.financeMonth = /^\d{4}-\d{2}$/.test(next.ui.financeMonth || "") ? next.ui.financeMonth : todayISO().slice(0, 7);
+  next.ui.financeClientId = String(next.ui.financeClientId || "");
   const currentTrackingWeek = next.ui.trackingWeekStart;
   next.trainerAccount = next.trainerAccount && typeof next.trainerAccount === "object" ? {
     name: next.trainerAccount.name || "Trainer",
@@ -476,6 +494,7 @@ function normalizeState(raw) {
   const exerciseLookup = [...next.exerciseLibrary, ...DEFAULT_EXERCISE_LIBRARY];
   next.trainerFinance = next.trainerFinance && typeof next.trainerFinance === "object" ? next.trainerFinance : {};
   next.trainerFinance.rates = Array.isArray(next.trainerFinance.rates) ? next.trainerFinance.rates : [];
+  next.trainerFinance.adminItems = Array.isArray(next.trainerFinance.adminItems) ? next.trainerFinance.adminItems : [];
   if (!next.trainerFinance.rates.length) {
     next.trainerFinance.rates.push({ id: DEFAULT_RATE_ID, name: "Standaard sessie", amount: 60 });
   }
@@ -483,6 +502,17 @@ function normalizeState(raw) {
     rate.id ||= `rate-${Date.now()}-${index}`;
     rate.name ||= "Tarief";
     rate.amount = number(rate.amount, 0);
+  });
+  next.trainerFinance.adminItems.forEach((item, index) => {
+    item.id ||= `admin-${Date.now()}-${index}`;
+    item.type = ADMIN_TYPES[item.type] ? item.type : "invoice";
+    item.clientId ||= "";
+    item.appointmentId ||= "";
+    item.description ||= "Administratie item";
+    item.date ||= todayISO();
+    item.dueDate ||= "";
+    item.amount = item.amount === "" || item.amount === undefined ? "" : number(item.amount, 0);
+    item.status = item.status === "paid" ? "paid" : "unpaid";
   });
   next.clients = Array.isArray(next.clients) ? next.clients : seedState().clients;
   next.clients.forEach((item) => {
@@ -578,10 +608,15 @@ function normalizeState(raw) {
       appt.rateId ||= "";
       appt.rateName ||= "";
       appt.amount = appt.amount === "" || appt.amount === undefined ? "" : number(appt.amount, 0);
+      appt.paymentStatus = appt.paymentStatus === "paid" || appt.paid === true ? "paid" : "unpaid";
+      appt.adminItemId ||= "";
     });
   });
   if (!next.clients.some((item) => item.id === next.ui.selectedClientId)) {
     next.ui.selectedClientId = next.clients[0]?.id || "";
+  }
+  if (next.ui.financeClientId && !next.clients.some((item) => item.id === next.ui.financeClientId)) {
+    next.ui.financeClientId = "";
   }
   if (next.ui.loggedIn && next.ui.role === "client") {
     const authClient = next.clients.find((item) => item.email === next.ui.authEmail);
@@ -1117,10 +1152,201 @@ function rateOptions(selectedRateId = "") {
     .join("");
 }
 
+function financeAdminItems() {
+  state.trainerFinance = state.trainerFinance && typeof state.trainerFinance === "object" ? state.trainerFinance : {};
+  state.trainerFinance.adminItems = Array.isArray(state.trainerFinance.adminItems) ? state.trainerFinance.adminItems : [];
+  return state.trainerFinance.adminItems;
+}
+
 function appointmentAmount(appointment) {
   if (appointment.amount !== "" && appointment.amount !== undefined && appointment.amount !== null) return number(appointment.amount);
   const rate = rateById(appointment.rateId);
   return rate ? number(rate.amount) : 0;
+}
+
+function paymentStatus(appointment) {
+  return appointment?.paymentStatus === "paid" ? "paid" : "unpaid";
+}
+
+function paymentStatusLabel(status) {
+  return status === "paid" ? "Betaald" : "Niet betaald";
+}
+
+function paymentStatusOptions(selectedStatus = "unpaid") {
+  return ["unpaid", "paid"]
+    .map((status) => `<option value="${status}" ${status === selectedStatus ? "selected" : ""}>${paymentStatusLabel(status)}</option>`)
+    .join("");
+}
+
+function statusBadge(status) {
+  const clean = status === "paid" ? "paid" : "unpaid";
+  return `<span class="status-badge ${clean}">${paymentStatusLabel(clean)}</span>`;
+}
+
+function adminTypeLabel(type) {
+  return ADMIN_TYPES[type] || "Administratie";
+}
+
+function clientNameById(clientId) {
+  if (!clientId) return "Geen client";
+  return state.clients.find((item) => item.id === clientId)?.name || "Onbekende client";
+}
+
+function invoiceNumber(item) {
+  const datePart = String(item.date || todayISO()).replace(/-/g, "");
+  const idPart = String(item.id || "").replace(/[^a-z0-9]/gi, "").slice(-5).toUpperCase() || "00001";
+  return `FMZ-${datePart}-${idPart}`;
+}
+
+function invoiceDescriptionFromAppointment(appointment) {
+  const dateLabel = appointment.date ? formatLongDutchDate(appointment.date) : "datum onbekend";
+  const timeLabel = appointment.time ? ` om ${appointment.time}` : "";
+  return `${appointment.type || "Afspraak"} - ${dateLabel}${timeLabel}`;
+}
+
+function createAppointmentAdminItem(selected, appointment) {
+  const id = `invoice-${Date.now()}${Math.random().toString(16).slice(2)}`;
+  return {
+    id,
+    type: "invoice",
+    clientId: selected.id,
+    appointmentId: appointment.id,
+    description: invoiceDescriptionFromAppointment(appointment),
+    date: appointment.date || todayISO(),
+    dueDate: addDaysISO(appointment.date || todayISO(), 14),
+    amount: appointmentAmount(appointment),
+    status: paymentStatus(appointment)
+  };
+}
+
+function syncAppointmentAdminItem(selected, appointment) {
+  if (!selected || !appointment) return null;
+  const items = financeAdminItems();
+  let item = appointment.adminItemId ? items.find((entry) => entry.id === appointment.adminItemId) : null;
+  if (!item) {
+    item = createAppointmentAdminItem(selected, appointment);
+    appointment.adminItemId = item.id;
+    items.push(item);
+  }
+  if (!item) return null;
+  item.type = "invoice";
+  item.clientId = selected.id;
+  item.appointmentId = appointment.id;
+  item.description = invoiceDescriptionFromAppointment(appointment);
+  item.date = appointment.date || item.date || todayISO();
+  item.dueDate ||= addDaysISO(item.date, 14);
+  item.amount = appointmentAmount(appointment);
+  item.status = paymentStatus(appointment);
+  return item;
+}
+
+function syncAppointmentFromAdminItem(item) {
+  if (!item?.appointmentId || !item.clientId) return;
+  const appointment = findAppointment(item.clientId, item.appointmentId);
+  if (!appointment) return;
+  appointment.paymentStatus = item.status === "paid" ? "paid" : "unpaid";
+  if (item.amount !== "" && item.amount !== undefined) appointment.amount = number(item.amount, 0);
+}
+
+function ensureAppointmentAdminItems() {
+  let changed = false;
+  state.clients.forEach((selected) => {
+    selected.appointments.forEach((appointment) => {
+      const linkedItemExists = appointment.adminItemId && financeAdminItems().some((item) => item.id === appointment.adminItemId);
+      if (!linkedItemExists) {
+        syncAppointmentAdminItem(selected, appointment);
+        changed = true;
+      }
+    });
+  });
+  return changed;
+}
+
+function invoiceHTML(item) {
+  const trainer = state.trainerAccount || {};
+  const clientName = clientNameById(item.clientId);
+  const amount = number(item.amount, 0);
+  const invoiceNo = invoiceNumber(item);
+  return `<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Factuur ${escapeHTML(invoiceNo)}</title>
+  <style>
+    body { margin: 0; background: #f4f7fa; color: #101827; font-family: Arial, sans-serif; }
+    .invoice { width: min(840px, calc(100% - 32px)); margin: 24px auto; background: #fff; border: 1px solid #dbe3eb; border-radius: 10px; padding: 34px; }
+    .top { display: flex; justify-content: space-between; gap: 24px; border-bottom: 2px solid #d7b24d; padding-bottom: 18px; }
+    h1 { margin: 0; font-size: 34px; }
+    h2 { margin: 26px 0 8px; font-size: 16px; }
+    p { margin: 4px 0; color: #516174; }
+    .brand { color: #c89312; font-weight: 800; font-size: 20px; }
+    .meta { text-align: right; }
+    table { width: 100%; border-collapse: collapse; margin-top: 22px; }
+    th, td { border-bottom: 1px solid #dbe3eb; padding: 12px; text-align: left; }
+    th { background: #eef3f7; color: #516174; font-size: 12px; text-transform: uppercase; }
+    .total { display: grid; justify-content: end; margin-top: 20px; }
+    .total div { min-width: 260px; display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid #dbe3eb; padding: 10px 0; font-weight: 800; }
+    .status { display: inline-block; border-radius: 999px; padding: 7px 12px; background: ${item.status === "paid" ? "#e8f6ef" : "#fff7dc"}; color: ${item.status === "paid" ? "#157a4f" : "#8a6200"}; font-weight: 800; }
+    .actions { width: min(840px, calc(100% - 32px)); margin: 0 auto 24px; display: flex; justify-content: flex-end; }
+    button { min-height: 40px; border: 0; border-radius: 8px; background: #c89312; color: #111; padding: 9px 14px; font-weight: 800; cursor: pointer; }
+    @media print { body { background: #fff; } .invoice { border: 0; margin: 0; width: 100%; border-radius: 0; } .actions { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="invoice">
+    <div class="top">
+      <div>
+        <div class="brand">Fit Met Zorge</div>
+        <h1>Factuur</h1>
+        <p>${escapeHTML(trainer.name || "Trainer")}</p>
+        <p>${escapeHTML(trainer.email || "")}</p>
+      </div>
+      <div class="meta">
+        <p><strong>Factuurnummer</strong><br>${escapeHTML(invoiceNo)}</p>
+        <p><strong>Factuurdatum</strong><br>${escapeHTML(formatLongDutchDate(item.date || todayISO()))}</p>
+        <p><strong>Vervaldatum</strong><br>${escapeHTML(item.dueDate ? formatLongDutchDate(item.dueDate) : "-")}</p>
+        <p><span class="status">${paymentStatusLabel(item.status)}</span></p>
+      </div>
+    </div>
+    <h2>Factuur aan</h2>
+    <p><strong>${escapeHTML(clientName)}</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Omschrijving</th>
+          <th>Datum</th>
+          <th>Bedrag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>${escapeHTML(item.description)}</td>
+          <td>${escapeHTML(formatLongDutchDate(item.date || todayISO()))}</td>
+          <td>${currency(amount)}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="total">
+      <div><span>Totaal</span><span>${currency(amount)}</span></div>
+    </div>
+  </div>
+  <div class="actions"><button onclick="window.print()">Print of opslaan als PDF</button></div>
+</body>
+</html>`;
+}
+
+function downloadInvoice(adminItemId) {
+  const item = financeAdminItems().find((entry) => entry.id === adminItemId && entry.type === "invoice");
+  if (!item) return;
+  const blob = new Blob([invoiceHTML(item)], { type: "text/html;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `${invoiceNumber(item)}-${clientNameById(item.clientId).replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "") || "client"}.html`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
 
 function allAppointments() {
@@ -1567,6 +1793,14 @@ function renderSelectors() {
   const rateSelect = $("#appointmentRate");
   if (rateSelect) {
     rateSelect.innerHTML = `<option value="">Geen tarief</option>${rateOptions()}`;
+  }
+  const financeClientFilter = $("#financeClientFilter");
+  if (financeClientFilter) {
+    financeClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${item.id}" ${item.id === state.ui.financeClientId ? "selected" : ""}>${item.name}</option>`).join("")}`;
+  }
+  const financeAdminClient = $("#financeAdminClient");
+  if (financeAdminClient) {
+    financeAdminClient.innerHTML = `<option value="">Geen client</option>${state.clients.map((item) => `<option value="${item.id}">${item.name}</option>`).join("")}`;
   }
   const productOptions = PRODUCTS.map((item) => `<option value="${item.id}">${item.name}</option>`).join("");
   $("#productSelect").innerHTML = productOptions;
@@ -2243,13 +2477,49 @@ function renderAgenda() {
 
 function renderFinance() {
   if (!isTrainer()) return;
+  const adminChanged = ensureAppointmentAdminItems();
+  if (adminChanged) saveState();
   const rates = financeRates();
-  const appointments = allAppointments().sort((a, b) => `${b.date || ""} ${b.time || ""}`.localeCompare(`${a.date || ""} ${a.time || ""}`));
+  const adminItems = financeAdminItems();
+  const activeTab = state.ui.financeTab || "overview";
+  const monthFilter = state.ui.financeMonth || "";
+  const clientFilter = state.ui.financeClientId || "";
+  const monthInput = $("#financeMonthFilter");
+  if (monthInput) monthInput.value = monthFilter;
+  const clientFilterSelect = $("#financeClientFilter");
+  if (clientFilterSelect) clientFilterSelect.value = clientFilter;
+
+  $("#financeTabs").innerHTML = FINANCE_TABS
+    .map(([id, label]) => `<button class="seg-btn ${id === activeTab ? "active" : ""}" data-finance-tab="${id}" type="button">${label}</button>`)
+    .join("");
+  document.querySelectorAll("[data-finance-panel]").forEach((panel) => {
+    panel.classList.toggle("active", panel.dataset.financePanel === activeTab);
+  });
+
+  const matchesFinanceFilters = (item) => {
+    const itemMonth = monthKey(item.date || item.dueDate || "");
+    const monthOk = !monthFilter || itemMonth === monthFilter;
+    const clientOk = !clientFilter || item.clientId === clientFilter;
+    return monthOk && clientOk;
+  };
+  const appointments = allAppointments()
+    .filter(matchesFinanceFilters)
+    .sort((a, b) => `${b.date || ""} ${b.time || ""}`.localeCompare(`${a.date || ""} ${a.time || ""}`));
+  const filteredAdminItems = adminItems
+    .filter(matchesFinanceFilters)
+    .sort((a, b) => `${b.dueDate || b.date || ""}`.localeCompare(`${a.dueDate || a.date || ""}`));
+  const invoiceItems = filteredAdminItems.filter((item) => item.type === "invoice");
   const totalRevenue = appointments.reduce((sum, item) => sum + appointmentAmount(item.source), 0);
-  const currentMonth = todayISO().slice(0, 7);
-  const monthRevenue = appointments
-    .filter((item) => monthKey(item.date) === currentMonth)
+  const paidRevenue = appointments
+    .filter((item) => paymentStatus(item.source) === "paid")
     .reduce((sum, item) => sum + appointmentAmount(item.source), 0);
+  const unpaidRevenue = appointments
+    .filter((item) => paymentStatus(item.source) !== "paid")
+    .reduce((sum, item) => sum + appointmentAmount(item.source), 0);
+  const adminOpen = filteredAdminItems.filter((item) => item.status !== "paid").length;
+  const expenses = filteredAdminItems
+    .filter((item) => item.type === "expense")
+    .reduce((sum, item) => sum + number(item.amount), 0);
 
   $("#financeRatesList").innerHTML = rates
     .map((rate) => `
@@ -2262,13 +2532,27 @@ function renderFinance() {
     .join("");
 
   $("#financeKpis").innerHTML = [
-    ["Omzet totaal", currency(totalRevenue), "alle afspraken"],
-    ["Deze maand", currency(monthRevenue), monthLabel(currentMonth)],
-    ["Afspraken", appointments.length, "met of zonder tarief"],
-    ["Clienten", state.clients.length, "gekoppeld"]
+    ["Omzet", currency(totalRevenue), monthFilter ? monthLabel(monthFilter) : "alle maanden"],
+    ["Betaald", currency(paidRevenue), "afspraken op betaald"],
+    ["Niet betaald", currency(unpaidRevenue), "nog openstaand"],
+    ["Administratie", adminOpen, `open acties, ${currency(expenses)} kosten`]
   ]
     .map(([label, value, sub]) => `<div class="kpi"><span>${label}</span><strong>${value}</strong><small>${sub}</small></div>`)
     .join("");
+
+  $("#financeAdminHighlights").innerHTML = filteredAdminItems
+    .filter((item) => item.status !== "paid")
+    .slice(0, 5)
+    .map((item) => `
+      <div class="finance-card">
+        <div>
+          <strong>${escapeHTML(item.description)}</strong>
+          <span>${adminTypeLabel(item.type)}${item.clientId ? ` | ${escapeHTML(clientNameById(item.clientId))}` : ""}${item.dueDate ? ` | vervalt ${escapeHTML(item.dueDate)}` : ""}</span>
+        </div>
+        ${statusBadge(item.status)}
+      </div>
+    `)
+    .join("") || `<div class="empty-mini">Geen open administratie-acties voor deze selectie.</div>`;
 
   $("#financeAppointmentTable").innerHTML = appointments.length
     ? appointments.map((item) => `
@@ -2283,30 +2567,83 @@ function renderFinance() {
             </select>
           </td>
           <td data-label="Bedrag"><input data-finance-amount="${item.clientId}:${item.id}" type="number" min="0" step="0.01" value="${appointmentAmount(item.source) || ""}" /></td>
-          <td data-label="Omzet"><strong>${currency(appointmentAmount(item.source))}</strong></td>
+          <td data-label="Status">
+            <select data-finance-payment="${item.clientId}:${item.id}">
+              ${paymentStatusOptions(paymentStatus(item.source))}
+            </select>
+          </td>
+          <td data-label="Omzet"><strong>${currency(appointmentAmount(item.source))}</strong><small class="finance-status-line">${paymentStatusLabel(paymentStatus(item.source))}</small></td>
           <td data-label=""><button class="primary-btn" data-save-finance="${item.clientId}:${item.id}" type="button">Opslaan</button></td>
         </tr>
       `).join("")
-    : `<tr><td colspan="7">Nog geen afspraken om omzet aan te koppelen.</td></tr>`;
+    : `<tr><td colspan="8">Nog geen afspraken voor deze selectie.</td></tr>`;
 
   const byClient = new Map();
   appointments.forEach((item) => {
-    byClient.set(item.clientName, (byClient.get(item.clientName) || 0) + appointmentAmount(item.source));
+    const current = byClient.get(item.clientName) || { total: 0, paid: 0, unpaid: 0 };
+    const amount = appointmentAmount(item.source);
+    current.total += amount;
+    if (paymentStatus(item.source) === "paid") current.paid += amount;
+    else current.unpaid += amount;
+    byClient.set(item.clientName, current);
   });
   $("#financeClientTable").innerHTML = [...byClient.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .map(([name, total]) => `<tr><td data-label="Client">${name}</td><td data-label="Omzet">${currency(total)}</td></tr>`)
-    .join("") || `<tr><td colspan="2">Nog geen omzet.</td></tr>`;
+    .sort((a, b) => b[1].total - a[1].total)
+    .map(([name, totals]) => `<tr><td data-label="Client">${name}</td><td data-label="Omzet">${currency(totals.total)}</td><td data-label="Betaald">${currency(totals.paid)}</td><td data-label="Niet betaald">${currency(totals.unpaid)}</td></tr>`)
+    .join("") || `<tr><td colspan="4">Nog geen omzet voor deze selectie.</td></tr>`;
 
   const byMonth = new Map();
-  appointments.forEach((item) => {
+  allAppointments()
+    .filter((item) => !clientFilter || item.clientId === clientFilter)
+    .forEach((item) => {
     const key = monthKey(item.date);
-    byMonth.set(key, (byMonth.get(key) || 0) + appointmentAmount(item.source));
+    const current = byMonth.get(key) || { total: 0, paid: 0 };
+    const amount = appointmentAmount(item.source);
+    current.total += amount;
+    if (paymentStatus(item.source) === "paid") current.paid += amount;
+    byMonth.set(key, current);
   });
   $("#financeMonthTable").innerHTML = [...byMonth.entries()]
     .sort((a, b) => b[0].localeCompare(a[0]))
-    .map(([key, total]) => `<tr><td data-label="Maand">${monthLabel(key)}</td><td data-label="Omzet">${currency(total)}</td></tr>`)
-    .join("") || `<tr><td colspan="2">Nog geen omzet.</td></tr>`;
+    .map(([key, totals]) => `<tr><td data-label="Maand">${monthLabel(key)}</td><td data-label="Omzet">${currency(totals.total)}</td><td data-label="Betaald">${currency(totals.paid)}</td></tr>`)
+    .join("") || `<tr><td colspan="3">Nog geen omzet.</td></tr>`;
+
+  $("#financeAdminList").innerHTML = filteredAdminItems.length
+    ? filteredAdminItems.map((item) => `
+        <div class="finance-card admin-card">
+          <div>
+            <strong>${escapeHTML(item.description)}</strong>
+            <span>${adminTypeLabel(item.type)}${item.clientId ? ` | ${escapeHTML(clientNameById(item.clientId))}` : ""}${item.date ? ` | ${escapeHTML(item.date)}` : ""}${item.dueDate ? ` | vervalt ${escapeHTML(item.dueDate)}` : ""}</span>
+            <small>${currency(item.amount || 0)}</small>
+          </div>
+          <div class="finance-card-actions">
+            <select data-admin-status="${item.id}">
+              ${paymentStatusOptions(item.status)}
+            </select>
+            <button class="secondary-btn" data-save-admin="${item.id}" type="button">Opslaan</button>
+            <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijder</button>
+          </div>
+        </div>
+      `).join("")
+    : `<div class="empty-mini">Nog geen administratie voor deze selectie.</div>`;
+
+  $("#financeInvoiceList").innerHTML = invoiceItems.length
+    ? invoiceItems.map((item) => `
+        <div class="finance-card invoice-card">
+          <div>
+            <strong>${escapeHTML(invoiceNumber(item))}</strong>
+            <span>${escapeHTML(item.description)}${item.clientId ? ` | ${escapeHTML(clientNameById(item.clientId))}` : ""}</span>
+            <small>${item.date ? `Factuurdatum ${escapeHTML(item.date)}` : ""}${item.dueDate ? ` | vervalt ${escapeHTML(item.dueDate)}` : ""} | ${currency(item.amount || 0)}</small>
+          </div>
+          <div class="finance-card-actions invoice-actions">
+            <select data-admin-status="${item.id}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
+              ${paymentStatusOptions(item.status)}
+            </select>
+            <button class="secondary-btn" data-download-invoice="${item.id}" type="button">Download factuur</button>
+          </div>
+        </div>
+      `).join("")
+    : `<div class="empty-mini">Nog geen facturen voor deze selectie. Plan een afspraak of voeg administratie van type Factuur toe.</div>`;
 }
 
 function renderRoleVisibility() {
@@ -2862,6 +3199,12 @@ document.addEventListener("click", (event) => {
     renderAll();
     return;
   }
+  if (target.dataset.financeTab) {
+    state.ui.financeTab = target.dataset.financeTab;
+    renderFinance();
+    saveState();
+    return;
+  }
   if (target.dataset.saveRate) {
     const rate = rateById(target.dataset.saveRate);
     if (!rate) return;
@@ -2874,6 +3217,7 @@ document.addEventListener("click", (event) => {
   }
   if (target.dataset.saveFinance) {
     const [clientId, appointmentId] = target.dataset.saveFinance.split(":");
+    const selected = state.clients.find((item) => item.id === clientId);
     const appointment = findAppointment(clientId, appointmentId);
     if (!appointment) return;
     const rateId = document.querySelector(`[data-finance-rate="${clientId}:${appointmentId}"]`)?.value || "";
@@ -2881,6 +3225,27 @@ document.addEventListener("click", (event) => {
     appointment.rateId = rate?.id || "";
     appointment.rateName = rate?.name || "";
     appointment.amount = number(document.querySelector(`[data-finance-amount="${clientId}:${appointmentId}"]`)?.value, rate ? rate.amount : 0);
+    appointment.paymentStatus = document.querySelector(`[data-finance-payment="${clientId}:${appointmentId}"]`)?.value === "paid" ? "paid" : "unpaid";
+    syncAppointmentAdminItem(selected, appointment);
+    renderAll();
+    return;
+  }
+  if (target.dataset.saveAdmin) {
+    const item = financeAdminItems().find((entry) => entry.id === target.dataset.saveAdmin);
+    if (!item) return;
+    const statusInput = target.closest(".finance-card")?.querySelector(`[data-admin-status="${item.id}"]`) || document.querySelector(`[data-admin-status="${item.id}"]`);
+    item.status = statusInput?.value === "paid" ? "paid" : "unpaid";
+    syncAppointmentFromAdminItem(item);
+    renderAll();
+    return;
+  }
+  if (target.dataset.downloadInvoice) {
+    downloadInvoice(target.dataset.downloadInvoice);
+    return;
+  }
+  if (target.dataset.removeAdmin) {
+    if (!confirm("Administratie-item verwijderen?")) return;
+    state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.id !== target.dataset.removeAdmin);
     renderAll();
     return;
   }
@@ -2961,6 +3326,7 @@ document.addEventListener("click", (event) => {
   if (target.dataset.editAppointment) {
     if (!isTrainer()) return;
     const [clientId, appointmentId] = target.dataset.editAppointment.split(":");
+    const selected = state.clients.find((item) => item.id === clientId);
     const appointment = findAppointment(clientId, appointmentId);
     if (!appointment) return;
     const nextDate = prompt("Datum aanpassen (YYYY-MM-DD)", appointment.date || todayISO());
@@ -2973,6 +3339,7 @@ document.addEventListener("click", (event) => {
     appointment.day = dayNameFromDate(appointment.date);
     appointment.time = nextTime || appointment.time;
     appointment.type = nextType || appointment.type || "Afspraak";
+    syncAppointmentAdminItem(selected, appointment);
     renderAll();
     return;
   }
@@ -3386,6 +3753,26 @@ $("#financeRateForm").addEventListener("submit", (event) => {
   renderAll();
 });
 
+$("#financeAdminForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!isTrainer()) return;
+  const data = new FormData(event.currentTarget);
+  const date = data.get("date") || todayISO();
+  const type = ADMIN_TYPES[data.get("type")] ? data.get("type") : "invoice";
+  financeAdminItems().push({
+    id: `admin-${Date.now()}${Math.random().toString(16).slice(2)}`,
+    type,
+    clientId: data.get("clientId") || "",
+    description: String(data.get("description") || "").trim() || "Administratie item",
+    date,
+    dueDate: data.get("dueDate") || (type === "invoice" ? addDaysISO(date, 14) : ""),
+    amount: data.get("amount") === "" ? "" : number(data.get("amount"), 0),
+    status: data.get("status") === "paid" ? "paid" : "unpaid"
+  });
+  event.currentTarget.reset();
+  renderAll();
+});
+
 $("#measurementForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
@@ -3412,16 +3799,19 @@ $("#appointmentForm").addEventListener("submit", (event) => {
   const selected = state.clients.find((item) => item.id === data.get("clientId"));
   if (!selected) return;
   const rate = rateById(data.get("rateId"));
-  selected.appointments.push({
-    id: `a${Date.now()}`,
+  const appointment = {
+    id: `a${Date.now()}${Math.random().toString(16).slice(2)}`,
     date: data.get("date"),
     day: dayNameFromDate(data.get("date")),
     time: data.get("time"),
     type: data.get("type") || "Afspraak",
     rateId: rate?.id || "",
     rateName: rate?.name || "",
-    amount: rate ? number(rate.amount) : ""
-  });
+    amount: rate ? number(rate.amount) : "",
+    paymentStatus: "unpaid"
+  };
+  selected.appointments.push(appointment);
+  syncAppointmentAdminItem(selected, appointment);
   event.currentTarget.reset();
   renderAll();
 });
@@ -3548,6 +3938,36 @@ document.addEventListener("change", (event) => {
     const amountInput = document.querySelector(`[data-finance-amount="${target.dataset.financeRate}"]`);
     const rate = rateById(target.value);
     if (amountInput && rate) amountInput.value = number(rate.amount, 0);
+  }
+  if (target.id === "financeMonthFilter") {
+    state.ui.financeMonth = target.value || "";
+    renderFinance();
+    saveState();
+  }
+  if (target.id === "financeClientFilter") {
+    state.ui.financeClientId = target.value || "";
+    renderFinance();
+    saveState();
+  }
+  if (target.dataset.financePayment) {
+    const [clientId, appointmentId] = target.dataset.financePayment.split(":");
+    const selected = state.clients.find((item) => item.id === clientId);
+    const appointment = findAppointment(clientId, appointmentId);
+    if (appointment) {
+      appointment.paymentStatus = target.value === "paid" ? "paid" : "unpaid";
+      syncAppointmentAdminItem(selected, appointment);
+      renderFinance();
+      saveState();
+    }
+  }
+  if (target.dataset.adminStatus) {
+    const item = financeAdminItems().find((entry) => entry.id === target.dataset.adminStatus);
+    if (item) {
+      item.status = target.value === "paid" ? "paid" : "unpaid";
+      syncAppointmentFromAdminItem(item);
+      renderFinance();
+      saveState();
+    }
   }
   if (target.dataset.mealStatus) {
     mealWeekLog(selected.nutritionPlan[Number(target.dataset.mealStatus)]).status = target.value;
