@@ -346,11 +346,13 @@ const ADMIN_TYPES = {
   note: "Notitie"
 };
 const DEFAULT_APPOINTMENT_TYPES = [
-  { id: "appt-pt", name: "Personal training", duration: 60, price: 60, color: "#c89312" },
-  { id: "appt-intake", name: "Intake", duration: 45, price: 0, color: "#2563eb" },
-  { id: "appt-checkin", name: "Check-in", duration: 30, price: 0, color: "#16a34a" },
-  { id: "appt-nutrition", name: "Voedingscheck", duration: 30, price: 0, color: "#db2777" },
-  { id: "appt-online", name: "Online coaching", duration: 30, price: 0, color: "#7c3aed" }
+  { id: "appt-intake", name: "Intake", duration: 45, price: 0, color: "#2563eb", category: "Kennismaking", location: "Hoogerheide", capacity: 1 },
+  { id: "appt-pt", name: "Personal training", duration: 60, price: 60, color: "#c89312", category: "Training", location: "Hoogerheide", capacity: 1 },
+  { id: "appt-checkin", name: "Check-in", duration: 30, price: 0, color: "#16a34a", category: "Begeleiding", location: "Online", capacity: 1 },
+  { id: "appt-measurement", name: "Meting", duration: 30, price: 0, color: "#0ea5e9", category: "Voortgang", location: "Hoogerheide", capacity: 1 },
+  { id: "appt-nutrition", name: "Voedingscheck", duration: 30, price: 0, color: "#db2777", category: "Voeding", location: "Online", capacity: 1 },
+  { id: "appt-online", name: "Online coaching", duration: 30, price: 0, color: "#7c3aed", category: "Online", location: "Online", capacity: 1 },
+  { id: "appt-evaluation", name: "Evaluatiegesprek", duration: 45, price: 0, color: "#475569", category: "Evaluatie", location: "Hoogerheide", capacity: 1 }
 ];
 let state = normalizeState(loadState());
 let currentView = state.ui.role === "client" ? "client-home" : "trainer-dashboard";
@@ -474,6 +476,26 @@ function seedState() {
   };
 }
 
+function defaultClientProfileData() {
+  return {
+    firstName: "",
+    lastName: "",
+    phone: "",
+    birthDate: "",
+    age: "",
+    height: "",
+    currentWeight: "",
+    address: "",
+    postalCode: "",
+    city: "",
+    country: "Nederland",
+    emergencyName: "",
+    emergencyPhone: "",
+    injuries: "",
+    package: ""
+  };
+}
+
 function normalizeState(raw) {
   const next = raw && typeof raw === "object" ? raw : seedState();
   next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", financeTab: "overview", financeMonth: todayISO().slice(0, 7), financeClientId: "", ...(next.ui || {}) };
@@ -516,6 +538,9 @@ function normalizeState(raw) {
     type.duration = type.duration === "" || type.duration === undefined ? "" : number(type.duration, 0);
     type.price = type.price === "" || type.price === undefined ? "" : number(type.price, 0);
     type.color ||= "#c89312";
+    type.category ||= "";
+    type.location ||= "";
+    type.capacity = type.capacity === "" || type.capacity === undefined ? "" : number(type.capacity, 0);
   });
   next.trainerFinance.rates.forEach((rate, index) => {
     rate.id ||= `rate-${Date.now()}-${index}`;
@@ -546,6 +571,11 @@ function normalizeState(raw) {
     item.email = String(item.email || "").trim().toLowerCase();
     item.password ||= "client123";
     item.registered = item.registered ?? true;
+    item.profile = { ...defaultClientProfileData(), ...(item.profile || {}) };
+    if (!item.profile.firstName && item.name) item.profile.firstName = String(item.name).split(" ")[0] || "";
+    if (!item.profile.lastName && item.name) item.profile.lastName = String(item.name).split(" ").slice(1).join(" ");
+    item.startDate ||= todayISO();
+    item.profile.package ||= item.package || "";
     item.goals = { ...DEFAULT_GOALS, ...(item.goals || {}) };
     item.planSummary ||= "Plan nog invullen.";
     item.trainingPlan = Array.isArray(item.trainingPlan) ? item.trainingPlan : [];
@@ -638,6 +668,8 @@ function normalizeState(raw) {
       const apptType = next.trainerFinance.appointmentTypes.find((type) => type.id === appt.appointmentTypeId);
       appt.duration = appt.duration === "" || appt.duration === undefined ? (apptType?.duration ?? "") : number(appt.duration, 0);
       appt.color ||= apptType?.color || "#c89312";
+      appt.location ||= apptType?.location || "";
+      appt.repeat ||= "";
       appt.rateId ||= "";
       appt.rateName ||= "";
       appt.amount = appt.amount === "" || appt.amount === undefined ? "" : number(appt.amount, 0);
@@ -1091,6 +1123,7 @@ function emptyClient() {
     email: "",
     password: "",
     registered: false,
+    profile: defaultClientProfileData(),
     goal: "",
     startDate: todayISO(),
     goals: { ...DEFAULT_GOALS },
@@ -2065,6 +2098,7 @@ function renderClientHome() {
   const stepsAvg = average(weekArray(selected, "stepsByWeek", "value").map((step) => step.value));
   const sleepAvg = average(weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" }).map((sleep) => sleep.hours));
   const weightAvg = average(weekArray(selected, "dailyWeightByWeek", "value").map((item) => item.value));
+  const profile = selected.profile || defaultClientProfileData();
 
   $("#clientSummary").innerHTML = `
     <div class="panel">
@@ -2087,6 +2121,19 @@ function renderClientHome() {
         <div class="kpi"><span>Gewicht week</span><strong>${fmt(weightAvg, 1)}</strong><small>gemiddelde</small></div>
       </div>
     </div>
+    <div class="panel">
+      <h2>Mijn profielgegevens</h2>
+      <div class="profile-summary-grid">
+        <div><span>Telefoon</span><strong>${escapeHTML(profile.phone || "-")}</strong></div>
+        <div><span>Geboortedatum</span><strong>${escapeHTML(profile.birthDate || "-")}</strong></div>
+        <div><span>Lengte</span><strong>${fmt(profile.height, 1)} cm</strong></div>
+        <div><span>Huidig gewicht</span><strong>${fmt(profile.currentWeight, 1)} kg</strong></div>
+        <div><span>Adres</span><strong>${escapeHTML([profile.address, profile.postalCode, profile.city].filter(Boolean).join(", ") || "-")}</strong></div>
+        <div><span>Noodcontact</span><strong>${escapeHTML([profile.emergencyName, profile.emergencyPhone].filter(Boolean).join(" - ") || "-")}</strong></div>
+        <div><span>Pakket</span><strong>${escapeHTML(profile.package || "-")}</strong></div>
+        <div><span>Blessures/opmerkingen</span><strong>${escapeHTML(profile.injuries || "-")}</strong></div>
+      </div>
+    </div>
   `;
 }
 
@@ -2097,6 +2144,8 @@ function renderClients() {
         <div class="client-card ${item.id === state.ui.selectedClientId ? "active" : ""}">
           <strong>${item.name}</strong>
           <span>${item.email}</span>
+          <span>${item.profile?.phone || "Geen telefoon"}${item.profile?.city ? ` | ${escapeHTML(item.profile.city)}` : ""}</span>
+          <span>${item.profile?.package ? `Pakket: ${escapeHTML(item.profile.package)}` : "Geen pakket ingevuld"}</span>
           <span>${item.registered ? "Geregistreerd" : "Uitgenodigd, nog niet geregistreerd"}</span>
           <span>${item.goal || "Geen doel ingevuld"}</span>
           <div class="card-actions">
@@ -2122,6 +2171,11 @@ function renderGoalForm() {
   $("#goalFormHint").textContent = "Kies hierboven een coachee en sla hier het plan, calorieen en trackerdoelen op.";
   form.elements.planSummary.value = selected.planSummary || "";
   form.elements.goal.value = selected.goal || "";
+  const profile = selected.profile || defaultClientProfileData();
+  Object.entries(profile).forEach(([key, value]) => {
+    if (form.elements[key]) form.elements[key].value = value ?? "";
+  });
+  if (form.elements.startDate) form.elements.startDate.value = selected.startDate || "";
   Object.entries(selected.goals).forEach(([key, value]) => {
     if (form.elements[key]) form.elements[key].value = value ?? "";
   });
@@ -2580,7 +2634,7 @@ function renderAgendaAppointment(item) {
     <div class="appointment-card compact-appointment" draggable="true" data-drag-appointment="${item.clientId}:${item.id}" style="border-left-color:${escapeHTML(color)}">
       <strong>${item.time || "--:--"} ${apptType?.name || item.type || "Afspraak"}</strong>
       <span>${item.clientName}</span>
-      ${item.type && apptType?.name && item.type !== apptType.name ? `<small>${escapeHTML(item.type)}</small>` : ""}
+      <small>${[item.source?.duration ? `${item.source.duration} min` : "", item.source?.location || apptType?.location || "", item.type && apptType?.name && item.type !== apptType.name ? item.type : ""].filter(Boolean).map(escapeHTML).join(" | ")}</small>
       <div class="appointment-actions">
         <button class="secondary-btn" data-notify="${item.clientId}:${item.id}" type="button">Melding</button>
         <button class="secondary-btn" data-edit-appointment="${item.clientId}:${item.id}" type="button">Bewerken</button>
@@ -2600,10 +2654,13 @@ function renderAppointmentTypes() {
     .map((type) => {
       const inUse = allAppointments().some((item) => item.source.appointmentTypeId === type.id);
       return `
-        <div class="appointment-type-row">
+        <div class="appointment-type-row" draggable="true" data-drag-appointment-type="${type.id}" style="border-left-color:${escapeHTML(type.color || "#c89312")}">
           <input data-appointment-type-name="${type.id}" value="${escapeHTML(type.name)}" />
           <input data-appointment-type-duration="${type.id}" type="number" min="0" step="5" value="${escapeHTML(type.duration ?? "")}" placeholder="min" />
           <input data-appointment-type-price="${type.id}" type="number" min="0" step="0.01" value="${escapeHTML(type.price ?? "")}" placeholder="prijs" />
+          <input data-appointment-type-category="${type.id}" value="${escapeHTML(type.category || "")}" placeholder="Categorie" />
+          <input data-appointment-type-location="${type.id}" value="${escapeHTML(type.location || "")}" placeholder="Locatie" />
+          <input data-appointment-type-capacity="${type.id}" type="number" min="1" step="1" value="${escapeHTML(type.capacity ?? "")}" placeholder="Max" />
           <input data-appointment-type-color="${type.id}" type="color" value="${escapeHTML(type.color || "#c89312")}" />
           <button class="secondary-btn" data-save-appointment-type="${type.id}" type="button">Opslaan</button>
           <button class="danger-btn" data-remove-appointment-type="${type.id}" ${inUse ? "disabled title=\"In gebruik bij afspraken\"" : ""} type="button">Verwijderen</button>
@@ -2669,11 +2726,15 @@ function renderAgenda() {
       .sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`));
     calendar.className = "client-appointments";
     calendar.innerHTML = appointments.length
-      ? appointments.map((item) => `
+      ? appointments.map((item) => {
+        const apptType = appointmentTypeById(item.appointmentTypeId);
+        return `
         <div class="client-appointment-card">
-          <strong>${item.type || "Afspraak"} ${formatLongDutchDate(item.date)} ${item.time || "--:--"}</strong>
+          <strong>${apptType?.name || item.type || "Afspraak"} ${formatLongDutchDate(item.date)} ${item.time || "--:--"}</strong>
+          <span>${escapeHTML(item.location || apptType?.location || "")}${item.duration ? ` | ${item.duration} min` : ""}</span>
         </div>
-      `).join("")
+      `;
+      }).join("")
       : `<div class="empty-state">Er staan nog geen afspraken ingepland.</div>`;
     return;
   }
@@ -2926,15 +2987,18 @@ function renderAll() {
   renderAdministration();
 }
 
-function createClientProfile({ name, email, password = "", goal = "", registered = false }) {
+function createClientProfile({ name, email, password = "", goal = "", registered = false, profile = {}, startDate = "" }) {
+  const profileData = { ...defaultClientProfileData(), ...profile };
+  const cleanName = name.trim() || `${profileData.firstName} ${profileData.lastName}`.trim();
   return {
     id: `c${Date.now()}${Math.random().toString(16).slice(2)}`,
-    name: name.trim(),
+    name: cleanName,
     email: String(email).trim().toLowerCase(),
     password,
     registered,
+    profile: profileData,
     goal: goal.trim(),
-    startDate: todayISO(),
+    startDate: startDate || todayISO(),
     goals: {
       kcalTraining: 2600,
       kcalRest: 2300,
@@ -2971,6 +3035,24 @@ function createClientProfile({ name, email, password = "", goal = "", registered
 async function addClient(form) {
   const data = new FormData(form);
   const email = String(data.get("email")).trim().toLowerCase();
+  const profileData = {
+    firstName: String(data.get("firstName") || "").trim(),
+    lastName: String(data.get("lastName") || "").trim(),
+    phone: String(data.get("phone") || "").trim(),
+    birthDate: data.get("birthDate") || "",
+    age: data.get("age") === "" ? "" : number(data.get("age")),
+    height: data.get("height") === "" ? "" : number(data.get("height")),
+    currentWeight: data.get("currentWeight") === "" ? "" : number(data.get("currentWeight")),
+    address: String(data.get("address") || "").trim(),
+    postalCode: String(data.get("postalCode") || "").trim(),
+    city: String(data.get("city") || "").trim(),
+    country: String(data.get("country") || "").trim() || "Nederland",
+    emergencyName: String(data.get("emergencyName") || "").trim(),
+    emergencyPhone: String(data.get("emergencyPhone") || "").trim(),
+    injuries: String(data.get("injuries") || "").trim(),
+    package: String(data.get("package") || "").trim()
+  };
+  const name = `${profileData.firstName} ${profileData.lastName}`.trim();
   const message = $("#clientInviteMessage");
   if (message) {
     message.className = "form-note";
@@ -2981,16 +3063,19 @@ async function addClient(form) {
     return;
   }
   const profile = createClientProfile({
-    name: data.get("name").trim(),
+    name,
     email,
     password: data.get("password") || "client123",
     goal: data.get("goal").trim(),
-    registered: false
+    registered: false,
+    profile: profileData,
+    startDate: data.get("startDate") || todayISO()
   });
   profile.goals.kcalTraining = number(data.get("kcalTraining"));
   profile.goals.kcalRest = number(data.get("kcalRest"));
   profile.goals.protein = number(data.get("protein"));
   profile.goals.steps = number(data.get("steps"));
+  profile.goals.targetWeight = data.get("targetWeight") === "" ? "" : number(data.get("targetWeight"));
   state.clients.push(profile);
   state.ui.selectedClientId = profile.id;
   form.reset();
@@ -3490,6 +3575,9 @@ document.addEventListener("click", async (event) => {
     type.name = String(document.querySelector(`[data-appointment-type-name="${type.id}"]`)?.value || type.name).trim() || "Afspraaksoort";
     type.duration = document.querySelector(`[data-appointment-type-duration="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-duration="${type.id}"]`)?.value, 0);
     type.price = document.querySelector(`[data-appointment-type-price="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-price="${type.id}"]`)?.value, 0);
+    type.category = String(document.querySelector(`[data-appointment-type-category="${type.id}"]`)?.value || "").trim();
+    type.location = String(document.querySelector(`[data-appointment-type-location="${type.id}"]`)?.value || "").trim();
+    type.capacity = document.querySelector(`[data-appointment-type-capacity="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-capacity="${type.id}"]`)?.value, 0);
     type.color = document.querySelector(`[data-appointment-type-color="${type.id}"]`)?.value || "#c89312";
     await persistActionFeedback(null, "Afspraaksoort opgeslagen");
     return;
@@ -3660,10 +3748,13 @@ document.addEventListener("click", async (event) => {
     if (nextTime === null) return;
     const nextType = prompt("Type afspraak", appointment.type || "Afspraak");
     if (nextType === null) return;
+    const nextLocation = prompt("Locatie", appointment.location || appointmentTypeById(appointment.appointmentTypeId)?.location || "");
+    if (nextLocation === null) return;
     appointment.date = nextDate || appointment.date;
     appointment.day = dayNameFromDate(appointment.date);
     appointment.time = nextTime || appointment.time;
     appointment.type = nextType || appointment.type || "Afspraak";
+    appointment.location = nextLocation || appointment.location || "";
     syncAppointmentAdminItem(selected, appointment);
     renderAll();
     return;
@@ -3676,6 +3767,7 @@ document.addEventListener("click", async (event) => {
     if (!selected || !appointment) return;
     if (!confirm(`Afspraak ${appointment.date || ""} ${appointment.time || ""} verwijderen?`)) return;
     selected.appointments = selected.appointments.filter((item) => item.id !== appointmentId);
+    state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.appointmentId !== appointmentId);
     renderAll();
     return;
   }
@@ -3945,6 +4037,15 @@ $("#goalForm").addEventListener("submit", (event) => {
   const data = new FormData(event.currentTarget);
   selected.planSummary = data.get("planSummary") || "";
   selected.goal = data.get("goal") || "";
+  selected.profile = selected.profile || defaultClientProfileData();
+  Object.keys(defaultClientProfileData()).forEach((key) => {
+    if (!event.currentTarget.elements[key]) return;
+    const value = data.get(key);
+    selected.profile[key] = ["age", "height", "currentWeight"].includes(key) && value !== "" ? number(value) : String(value || "").trim();
+  });
+  selected.startDate = data.get("startDate") || selected.startDate || todayISO();
+  const profileName = `${selected.profile.firstName || ""} ${selected.profile.lastName || ""}`.trim();
+  if (profileName) selected.name = profileName;
   Object.keys(DEFAULT_GOALS).forEach((key) => {
     if (!event.currentTarget.elements[key]) return;
     const value = data.get(key);
@@ -4110,6 +4211,9 @@ $("#appointmentTypeForm").addEventListener("submit", async (event) => {
     name: String(data.get("name") || "").trim() || "Afspraaksoort",
     duration: data.get("duration") === "" ? "" : number(data.get("duration"), 0),
     price: data.get("price") === "" ? "" : number(data.get("price"), 0),
+    category: String(data.get("category") || "").trim(),
+    location: String(data.get("location") || "").trim(),
+    capacity: data.get("capacity") === "" ? "" : number(data.get("capacity"), 0),
     color: data.get("color") || "#c89312"
   });
   event.currentTarget.reset();
@@ -4144,7 +4248,8 @@ $("#appointmentForm").addEventListener("submit", (event) => {
   if (!selected) return;
   const rate = rateById(data.get("rateId"));
   const appointmentType = appointmentTypeById(data.get("appointmentTypeId"));
-  const amount = rate ? number(rate.amount) : (appointmentType?.price !== "" && appointmentType?.price !== undefined ? number(appointmentType.price) : "");
+  const manualAmount = data.get("amount");
+  const amount = manualAmount !== "" ? number(manualAmount) : (rate ? number(rate.amount) : (appointmentType?.price !== "" && appointmentType?.price !== undefined ? number(appointmentType.price) : ""));
   const appointment = {
     id: `a${Date.now()}${Math.random().toString(16).slice(2)}`,
     date: data.get("date"),
@@ -4154,6 +4259,8 @@ $("#appointmentForm").addEventListener("submit", (event) => {
     type: String(data.get("type") || "").trim() || appointmentType?.name || "Afspraak",
     duration: appointmentType?.duration ?? "",
     color: appointmentType?.color || "#c89312",
+    location: String(data.get("location") || "").trim() || appointmentType?.location || "",
+    repeat: data.get("repeat") || "",
     rateId: rate?.id || "",
     rateName: rate?.name || "",
     amount,
@@ -4222,9 +4329,14 @@ document.addEventListener("input", (event) => {
 });
 
 document.addEventListener("dragstart", (event) => {
+  const typeCard = event.target.closest("[data-drag-appointment-type]");
+  if (typeCard) {
+    event.dataTransfer.setData("text/plain", `type:${typeCard.dataset.dragAppointmentType}`);
+    return;
+  }
   const card = event.target.closest("[data-drag-appointment]");
   if (!card) return;
-  event.dataTransfer.setData("text/plain", card.dataset.dragAppointment);
+  event.dataTransfer.setData("text/plain", `appointment:${card.dataset.dragAppointment}`);
 });
 
 document.addEventListener("dragover", (event) => {
@@ -4236,7 +4348,22 @@ document.addEventListener("drop", (event) => {
   if (!column) return;
   event.preventDefault();
   const payload = event.dataTransfer.getData("text/plain");
-  const [clientId, appointmentId] = payload.split(":");
+  if (payload.startsWith("type:")) {
+    const typeId = payload.slice(5);
+    const form = $("#appointmentForm");
+    const type = appointmentTypeById(typeId);
+    if (form && type) {
+      form.elements.date.value = column.dataset.calendarDate;
+      if (column.dataset.calendarTime && column.dataset.calendarTime !== "no-time") form.elements.time.value = column.dataset.calendarTime;
+      form.elements.appointmentTypeId.value = type.id;
+      form.elements.location.value = type.location || "";
+      form.elements.amount.value = type.price !== "" && type.price !== undefined ? type.price : "";
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    return;
+  }
+  const cleanPayload = payload.startsWith("appointment:") ? payload.slice(12) : payload;
+  const [clientId, appointmentId] = cleanPayload.split(":");
   const selected = state.clients.find((item) => item.id === clientId);
   const appointment = selected?.appointments.find((item) => item.id === appointmentId);
   if (!appointment) return;
@@ -4288,6 +4415,14 @@ document.addEventListener("change", (event) => {
     const amountInput = document.querySelector(`[data-finance-amount="${target.dataset.financeRate}"]`);
     const rate = rateById(target.value);
     if (amountInput && rate) amountInput.value = number(rate.amount, 0);
+  }
+  if (target.id === "appointmentTypeSelect") {
+    const type = appointmentTypeById(target.value);
+    const form = $("#appointmentForm");
+    if (type && form) {
+      form.elements.location.value = type.location || "";
+      form.elements.amount.value = type.price !== "" && type.price !== undefined ? type.price : "";
+    }
   }
   if (target.id === "financeMonthFilter" || target.id === "adminMonthFilter") {
     state.ui.financeMonth = target.value || "";

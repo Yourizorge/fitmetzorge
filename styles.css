@@ -681,6 +681,91 @@ h2 {
   padding: 4px;
 }
 
+.agenda-dashboard {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.agenda-sidebar {
+  display: grid;
+  gap: 14px;
+}
+
+.agenda-calendar-panel {
+  min-width: 0;
+}
+
+.form-step-label {
+  margin: 12px 0 4px;
+  color: var(--gold-2);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.appointment-type-row {
+  border-left: 6px solid var(--gold);
+}
+
+.appointment-type-row[draggable="true"] {
+  cursor: grab;
+}
+
+.profile-edit-grid,
+.profile-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.profile-edit-grid {
+  margin-top: 14px;
+}
+
+.profile-edit-grid .wide {
+  grid-column: 1 / -1;
+}
+
+.profile-summary-grid div {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.profile-summary-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.profile-summary-grid strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--text);
+  word-break: break-word;
+}
+
+@media (max-width: 980px) {
+  .agenda-dashboard,
+  .profile-edit-grid,
+  .profile-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment-type-form,
+  .appointment-type-row,
+  .schema-copy-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
 .nutrition-plan-panel {
   min-height: 100%;
 }

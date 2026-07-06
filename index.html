@@ -191,21 +191,38 @@
           <div class="split-layout">
             <form id="clientForm" class="panel form-panel">
               <h2>Lid toevoegen via e-mail</h2>
-              <label class="field">
-                <span>Naam</span>
-                <input name="name" required placeholder="Naam client" />
-              </label>
-              <label class="field">
-                <span>E-mail</span>
-                <input name="email" type="email" required placeholder="client@email.nl" />
-              </label>
+              <div class="form-grid">
+                <label class="field"><span>Voornaam</span><input name="firstName" required placeholder="Voornaam" /></label>
+                <label class="field"><span>Achternaam</span><input name="lastName" required placeholder="Achternaam" /></label>
+              </div>
+              <label class="field"><span>E-mail</span><input name="email" type="email" required placeholder="client@email.nl" /></label>
+              <div class="form-grid">
+                <label class="field"><span>Telefoonnummer</span><input name="phone" placeholder="06..." /></label>
+                <label class="field"><span>Geboortedatum</span><input name="birthDate" type="date" /></label>
+                <label class="field"><span>Leeftijd</span><input name="age" type="number" min="0" /></label>
+                <label class="field"><span>Lengte cm</span><input name="height" type="number" min="0" step="0.1" /></label>
+                <label class="field"><span>Huidig gewicht</span><input name="currentWeight" type="number" min="0" step="0.1" /></label>
+                <label class="field"><span>Doelgewicht</span><input name="targetWeight" type="number" min="0" step="0.1" /></label>
+              </div>
+              <label class="field"><span>Adres</span><input name="address" placeholder="Straat en huisnummer" /></label>
+              <div class="form-grid">
+                <label class="field"><span>Postcode</span><input name="postalCode" /></label>
+                <label class="field"><span>Plaats</span><input name="city" /></label>
+                <label class="field"><span>Land</span><input name="country" value="Nederland" /></label>
+              </div>
+              <div class="form-grid">
+                <label class="field"><span>Noodcontact naam</span><input name="emergencyName" /></label>
+                <label class="field"><span>Noodcontact telefoon</span><input name="emergencyPhone" /></label>
+              </div>
+              <label class="field"><span>Trainingsdoel</span><input name="goal" placeholder="Bijv. 8 kg afvallen" /></label>
+              <label class="field"><span>Blessures/opmerkingen</span><textarea name="injuries" rows="3"></textarea></label>
+              <div class="form-grid">
+                <label class="field"><span>Startdatum</span><input name="startDate" type="date" /></label>
+                <label class="field"><span>Pakket/abonnement</span><input name="package" placeholder="Bijv. Basis, Progressie" /></label>
+              </div>
               <label class="field">
                 <span>Tijdelijk wachtwoord</span>
                 <input name="password" value="client123" required />
-              </label>
-              <label class="field">
-                <span>Doel</span>
-                <input name="goal" placeholder="Bijv. 8 kg afvallen" />
               </label>
               <div class="form-grid">
                 <label class="field">
@@ -262,6 +279,24 @@
               <label class="field"><span>Water liters</span><input name="water" type="number" min="0" step="0.1" /></label>
               <label class="field"><span>Welzijn score</span><input name="wellbeing" type="number" min="0" max="10" step="0.1" /></label>
               <label class="field"><span>Doelgewicht</span><input name="targetWeight" type="number" min="0" step="0.1" /></label>
+            </div>
+            <div class="profile-edit-grid">
+              <label class="field"><span>Voornaam</span><input name="firstName" /></label>
+              <label class="field"><span>Achternaam</span><input name="lastName" /></label>
+              <label class="field"><span>Telefoonnummer</span><input name="phone" /></label>
+              <label class="field"><span>Geboortedatum</span><input name="birthDate" type="date" /></label>
+              <label class="field"><span>Leeftijd</span><input name="age" type="number" min="0" /></label>
+              <label class="field"><span>Lengte cm</span><input name="height" type="number" min="0" step="0.1" /></label>
+              <label class="field"><span>Huidig gewicht</span><input name="currentWeight" type="number" min="0" step="0.1" /></label>
+              <label class="field"><span>Adres</span><input name="address" /></label>
+              <label class="field"><span>Postcode</span><input name="postalCode" /></label>
+              <label class="field"><span>Plaats</span><input name="city" /></label>
+              <label class="field"><span>Land</span><input name="country" /></label>
+              <label class="field"><span>Noodcontact naam</span><input name="emergencyName" /></label>
+              <label class="field"><span>Noodcontact telefoon</span><input name="emergencyPhone" /></label>
+              <label class="field"><span>Startdatum</span><input name="startDate" type="date" /></label>
+              <label class="field"><span>Pakket/abonnement</span><input name="package" /></label>
+              <label class="field wide"><span>Blessures/opmerkingen</span><textarea name="injuries" rows="3"></textarea></label>
             </div>
             <button class="primary-btn" type="submit">Doelen opslaan</button>
           </form>
@@ -665,9 +700,11 @@
             </div>
             <button id="notificationPermission" class="secondary-btn" type="button">Meldingen aanzetten</button>
           </div>
-          <div class="split-layout">
+          <div class="agenda-dashboard">
+            <div class="agenda-sidebar">
             <form id="appointmentForm" class="panel form-panel">
               <h2>Afspraak plannen</h2>
+              <div class="form-step-label">1. Basisgegevens</div>
               <label class="field">
                 <span>Client</span>
                 <select name="clientId" id="appointmentClient"></select>
@@ -691,12 +728,50 @@
                 <input name="type" placeholder="Bijv. extra notitie" />
               </label>
               <label class="field">
+                <span>Locatie</span>
+                <input name="location" placeholder="Bijv. Hoogerheide" />
+              </label>
+              <div class="form-step-label">2. Prijs</div>
+              <label class="field">
                 <span>Tarief</span>
                 <select name="rateId" id="appointmentRate"></select>
               </label>
+              <label class="field">
+                <span>Bedrag handmatig</span>
+                <input name="amount" type="number" min="0" step="0.01" placeholder="Optioneel" />
+              </label>
+              <div class="form-step-label">3. Herhalen</div>
+              <label class="field">
+                <span>Herhalen</span>
+                <select name="repeat">
+                  <option value="">Niet herhalen</option>
+                  <option value="weekly">Wekelijks</option>
+                  <option value="biweekly">Elke 2 weken</option>
+                  <option value="monthly">Maandelijks</option>
+                </select>
+              </label>
+              <div class="form-step-label">4. Bevestiging</div>
               <button class="primary-btn" type="submit">Inplannen</button>
             </form>
-            <div class="panel">
+            <div id="appointmentTypeManager" class="panel appointment-type-manager">
+              <div class="panel-head">
+                <h2>Afspraaksoorten</h2>
+                <span class="muted">Sleepbaar als blokken, of kies in het formulier</span>
+              </div>
+              <form id="appointmentTypeForm" class="appointment-type-form">
+                <input name="name" placeholder="Afspraaksoort" required />
+                <input name="duration" type="number" min="0" step="5" placeholder="Duur min" />
+                <input name="price" type="number" min="0" step="0.01" placeholder="Prijs" />
+                <input name="category" placeholder="Categorie" />
+                <input name="location" placeholder="Standaardlocatie" />
+                <input name="capacity" type="number" min="1" step="1" placeholder="Max plaatsen" />
+                <input name="color" type="color" value="#c89312" title="Kleur" />
+                <button class="primary-btn" type="submit">Toevoegen</button>
+              </form>
+              <div id="appointmentTypeList" class="appointment-type-list"></div>
+            </div>
+            </div>
+            <div class="panel agenda-calendar-panel">
               <div class="panel-head">
                 <h2 id="agendaPanelTitle">Weekagenda</h2>
                 <div id="calendarControls" class="calendar-controls">
@@ -712,20 +787,6 @@
                 <div id="previousAppointmentsList" class="history-list"></div>
               </details>
             </div>
-          </div>
-          <div id="appointmentTypeManager" class="panel appointment-type-manager">
-            <div class="panel-head">
-              <h2>Afspraaksoorten</h2>
-              <span class="muted">Alleen zichtbaar voor trainer</span>
-            </div>
-            <form id="appointmentTypeForm" class="appointment-type-form">
-              <input name="name" placeholder="Afspraaksoort" required />
-              <input name="duration" type="number" min="0" step="5" placeholder="Duur min" />
-              <input name="price" type="number" min="0" step="0.01" placeholder="Prijs" />
-              <input name="color" type="color" value="#c89312" title="Kleur" />
-              <button class="primary-btn" type="submit">Afspraaksoort toevoegen</button>
-            </form>
-            <div id="appointmentTypeList" class="appointment-type-list"></div>
           </div>
         </section>
 
