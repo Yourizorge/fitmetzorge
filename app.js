@@ -345,6 +345,13 @@ const ADMIN_TYPES = {
   expense: "Kosten / bon",
   note: "Notitie"
 };
+const DEFAULT_APPOINTMENT_TYPES = [
+  { id: "appt-pt", name: "Personal training", duration: 60, price: 60, color: "#c89312" },
+  { id: "appt-intake", name: "Intake", duration: 45, price: 0, color: "#2563eb" },
+  { id: "appt-checkin", name: "Check-in", duration: 30, price: 0, color: "#16a34a" },
+  { id: "appt-nutrition", name: "Voedingscheck", duration: 30, price: 0, color: "#db2777" },
+  { id: "appt-online", name: "Online coaching", duration: 30, price: 0, color: "#7c3aed" }
+];
 let state = normalizeState(loadState());
 let currentView = state.ui.role === "client" ? "client-home" : "trainer-dashboard";
 let recipeOptions = [];
@@ -495,9 +502,21 @@ function normalizeState(raw) {
   next.trainerFinance = next.trainerFinance && typeof next.trainerFinance === "object" ? next.trainerFinance : {};
   next.trainerFinance.rates = Array.isArray(next.trainerFinance.rates) ? next.trainerFinance.rates : [];
   next.trainerFinance.adminItems = Array.isArray(next.trainerFinance.adminItems) ? next.trainerFinance.adminItems : [];
+  next.trainerFinance.appointmentTypes = Array.isArray(next.trainerFinance.appointmentTypes) ? next.trainerFinance.appointmentTypes : DEFAULT_APPOINTMENT_TYPES.map((entry) => ({ ...entry }));
+  next.trainerFinance.invoiceSequenceNext = Math.max(number(next.trainerFinance.invoiceSequenceNext, 1) || 1, 1);
   if (!next.trainerFinance.rates.length) {
     next.trainerFinance.rates.push({ id: DEFAULT_RATE_ID, name: "Standaard sessie", amount: 60 });
   }
+  if (!next.trainerFinance.appointmentTypes.length) {
+    next.trainerFinance.appointmentTypes = DEFAULT_APPOINTMENT_TYPES.map((entry) => ({ ...entry }));
+  }
+  next.trainerFinance.appointmentTypes.forEach((type, index) => {
+    type.id ||= `appt-type-${Date.now()}-${index}`;
+    type.name ||= "Afspraaksoort";
+    type.duration = type.duration === "" || type.duration === undefined ? "" : number(type.duration, 0);
+    type.price = type.price === "" || type.price === undefined ? "" : number(type.price, 0);
+    type.color ||= "#c89312";
+  });
   next.trainerFinance.rates.forEach((rate, index) => {
     rate.id ||= `rate-${Date.now()}-${index}`;
     rate.name ||= "Tarief";
@@ -513,6 +532,14 @@ function normalizeState(raw) {
     item.dueDate ||= "";
     item.amount = item.amount === "" || item.amount === undefined ? "" : number(item.amount, 0);
     item.status = item.status === "paid" ? "paid" : "unpaid";
+    if (item.type === "invoice") item.invoiceNo ||= "";
+  });
+  const highestExistingInvoice = highestInvoiceNumberSequence(next.trainerFinance.adminItems.map((item) => item.invoiceNo).filter(Boolean));
+  next.trainerFinance.invoiceSequenceNext = Math.max(next.trainerFinance.invoiceSequenceNext, highestExistingInvoice + 1);
+  next.trainerFinance.adminItems.forEach((item) => {
+    if (item.type === "invoice" && !item.invoiceNo) {
+      item.invoiceNo = nextInvoiceNumber(next.trainerFinance);
+    }
   });
   next.clients = Array.isArray(next.clients) ? next.clients : seedState().clients;
   next.clients.forEach((item) => {
@@ -530,6 +557,7 @@ function normalizeState(raw) {
       exercise.group ||= libraryMatch?.group || "";
       exercise.equipment ||= libraryMatch?.equipment || "";
       exercise.image ||= libraryMatch?.image || "";
+      exercise.schemaName ||= "Trainingsschema";
       exercise.targetWeight ??= exercise.weight ?? "";
       exercise.actualSets ??= "";
       exercise.actualReps ??= "";
@@ -561,6 +589,7 @@ function normalizeState(raw) {
     item.nutritionPlan.forEach((meal, mealIndex) => {
       meal.id ||= `meal-${Date.now()}-${mealIndex}-${Math.random().toString(16).slice(2)}`;
       meal.mealType = normalizeMealType(meal.mealType || meal.type || meal.meal);
+      meal.schemaName ||= "Voedingsschema";
       meal.status ||= "";
       meal.alternative ||= "";
       meal.logsByWeek = meal.logsByWeek && typeof meal.logsByWeek === "object" ? meal.logsByWeek : {};
@@ -605,11 +634,16 @@ function normalizeState(raw) {
       }
       appt.day = dayNameFromDate(appt.date) || appt.day || "Maandag";
       appt.id ||= `a${Date.now()}${Math.random().toString(16).slice(2)}`;
+      appt.appointmentTypeId ||= "";
+      const apptType = next.trainerFinance.appointmentTypes.find((type) => type.id === appt.appointmentTypeId);
+      appt.duration = appt.duration === "" || appt.duration === undefined ? (apptType?.duration ?? "") : number(appt.duration, 0);
+      appt.color ||= apptType?.color || "#c89312";
       appt.rateId ||= "";
       appt.rateName ||= "";
       appt.amount = appt.amount === "" || appt.amount === undefined ? "" : number(appt.amount, 0);
       appt.paymentStatus = appt.paymentStatus === "paid" || appt.paid === true ? "paid" : "unpaid";
       appt.adminItemId ||= "";
+      appt.adminItemSuppressed = appt.adminItemSuppressed === true;
     });
   });
   if (!next.clients.some((item) => item.id === next.ui.selectedClientId)) {
@@ -876,6 +910,27 @@ async function saveTrackerDay(type, index) {
   } catch (error) {
     renderTrackerSection(type);
     setSaveFeedback(key, `Opslaan mislukt: ${error.message}`, true);
+  }
+}
+
+async function persistActionFeedback(key, successMessage, render = renderAll) {
+  saveState();
+  try {
+    if (isOnlineMode() && onlineProfile && !onlineReady) {
+      throw new Error("Online verbinding is nog niet klaar.");
+    }
+    if (isOnlineMode() && onlineReady && onlineProfile) {
+      window.clearTimeout(cloudSaveTimer);
+      const result = await saveStateToCloud();
+      if (!result?.ok) throw result?.error || new Error("Supabase opslaan mislukt.");
+    }
+    render();
+    if (key) setSaveFeedback(key, successMessage);
+    return true;
+  } catch (error) {
+    render();
+    if (key) setSaveFeedback(key, `${successMessage} mislukt: ${error.message}`, true);
+    return false;
   }
 }
 
@@ -1187,15 +1242,59 @@ function adminTypeLabel(type) {
   return ADMIN_TYPES[type] || "Administratie";
 }
 
+function appointmentTypes() {
+  state.trainerFinance = state.trainerFinance && typeof state.trainerFinance === "object" ? state.trainerFinance : {};
+  state.trainerFinance.appointmentTypes = Array.isArray(state.trainerFinance.appointmentTypes) ? state.trainerFinance.appointmentTypes : DEFAULT_APPOINTMENT_TYPES.map((item) => ({ ...item }));
+  if (!state.trainerFinance.appointmentTypes.length) state.trainerFinance.appointmentTypes = DEFAULT_APPOINTMENT_TYPES.map((item) => ({ ...item }));
+  return state.trainerFinance.appointmentTypes;
+}
+
+function appointmentTypeById(typeId) {
+  return appointmentTypes().find((item) => item.id === typeId);
+}
+
+function appointmentTypeOptions(selectedTypeId = "") {
+  return appointmentTypes()
+    .map((type) => `<option value="${type.id}" ${type.id === selectedTypeId ? "selected" : ""}>${escapeHTML(type.name)}${type.duration ? ` - ${type.duration} min` : ""}${type.price !== "" && type.price !== undefined ? ` - ${currency(type.price)}` : ""}</option>`)
+    .join("");
+}
+
 function clientNameById(clientId) {
   if (!clientId) return "Geen client";
   return state.clients.find((item) => item.id === clientId)?.name || "Onbekende client";
 }
 
-function invoiceNumber(item) {
+function legacyInvoiceNumber(item) {
   const datePart = String(item.date || todayISO()).replace(/-/g, "");
   const idPart = String(item.id || "").replace(/[^a-z0-9]/gi, "").slice(-5).toUpperCase() || "00001";
   return `FMZ-${datePart}-${idPart}`;
+}
+
+function invoiceSequenceFromNumber(invoiceNo) {
+  const match = String(invoiceNo || "").match(/^FMZ-\d{4}-(\d+)$/i);
+  return match ? number(match[1], 0) : 0;
+}
+
+function highestInvoiceNumberSequence(invoiceNumbers) {
+  return invoiceNumbers.reduce((max, invoiceNo) => Math.max(max, invoiceSequenceFromNumber(invoiceNo)), 0);
+}
+
+function nextInvoiceNumber(finance = state.trainerFinance) {
+  finance.invoiceSequenceNext = Math.max(number(finance.invoiceSequenceNext, 1) || 1, 1);
+  const year = new Date().getFullYear();
+  const invoiceNo = `FMZ-${year}-${String(finance.invoiceSequenceNext).padStart(2, "0")}`;
+  finance.invoiceSequenceNext += 1;
+  return invoiceNo;
+}
+
+function invoiceNumber(item) {
+  if (item?.invoiceNo) return item.invoiceNo;
+  if (item?.type === "invoice") {
+    item.invoiceNo = nextInvoiceNumber();
+    saveState();
+    return item.invoiceNo;
+  }
+  return legacyInvoiceNumber(item);
 }
 
 function invoiceDescriptionFromAppointment(appointment) {
@@ -1215,12 +1314,14 @@ function createAppointmentAdminItem(selected, appointment) {
     date: appointment.date || todayISO(),
     dueDate: addDaysISO(appointment.date || todayISO(), 14),
     amount: appointmentAmount(appointment),
-    status: paymentStatus(appointment)
+    status: paymentStatus(appointment),
+    invoiceNo: nextInvoiceNumber()
   };
 }
 
 function syncAppointmentAdminItem(selected, appointment) {
   if (!selected || !appointment) return null;
+  appointment.adminItemSuppressed = false;
   const items = financeAdminItems();
   let item = appointment.adminItemId ? items.find((entry) => entry.id === appointment.adminItemId) : null;
   if (!item) {
@@ -1253,7 +1354,7 @@ function ensureAppointmentAdminItems() {
   state.clients.forEach((selected) => {
     selected.appointments.forEach((appointment) => {
       const linkedItemExists = appointment.adminItemId && financeAdminItems().some((item) => item.id === appointment.adminItemId);
-      if (!linkedItemExists) {
+      if (!linkedItemExists && !appointment.adminItemSuppressed) {
         syncAppointmentAdminItem(selected, appointment);
         changed = true;
       }
@@ -1283,7 +1384,57 @@ function resetFinanceOnly() {
 
 function resetAdministrationOnly() {
   state.trainerFinance = state.trainerFinance && typeof state.trainerFinance === "object" ? state.trainerFinance : {};
-  state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.appointmentId);
+  state.trainerFinance.adminItems = [];
+  state.clients.forEach((selected) => {
+    selected.appointments.forEach((appointment) => {
+      delete appointment.adminItemId;
+      appointment.adminItemSuppressed = true;
+    });
+  });
+}
+
+function cloneTrainingExercise(exercise, schemaName) {
+  const copy = JSON.parse(JSON.stringify(exercise));
+  copy.id = `training-${Date.now()}${Math.random().toString(16).slice(2)}`;
+  copy.schemaName = schemaName;
+  copy.actualSets = "";
+  copy.actualReps = "";
+  copy.actualWeight = "";
+  copy.notes = "";
+  copy.logsByWeek = {};
+  return copy;
+}
+
+function cloneNutritionMeal(meal, schemaName) {
+  const copy = JSON.parse(JSON.stringify(meal));
+  copy.id = `meal-${Date.now()}${Math.random().toString(16).slice(2)}`;
+  copy.schemaName = schemaName;
+  copy.status = "";
+  copy.alternative = "";
+  copy.logsByWeek = {};
+  return copy;
+}
+
+function copyTrainingSchemaToClient(targetClientId) {
+  const source = client();
+  const target = state.clients.find((item) => item.id === targetClientId);
+  if (!hasSelectedClient(source) || !target || !source.trainingPlan.length) return false;
+  const sourceName = source.trainingPlan[0]?.schemaName || "Trainingsschema";
+  const schemaName = `Kopie van ${sourceName}`;
+  target.trainingPlan.push(...source.trainingPlan.map((exercise) => cloneTrainingExercise(exercise, schemaName)));
+  state.ui.selectedClientId = target.id;
+  return true;
+}
+
+function copyNutritionSchemaToClient(targetClientId) {
+  const source = client();
+  const target = state.clients.find((item) => item.id === targetClientId);
+  if (!hasSelectedClient(source) || !target || !source.nutritionPlan.length) return false;
+  const sourceName = source.nutritionPlan[0]?.schemaName || "Voedingsschema";
+  const schemaName = `Kopie van ${sourceName}`;
+  target.nutritionPlan.push(...source.nutritionPlan.map((meal) => cloneNutritionMeal(meal, schemaName)));
+  state.ui.selectedClientId = target.id;
+  return true;
 }
 
 function invoiceHTML(item) {
@@ -1467,7 +1618,7 @@ function renderOnlineStatus() {
   } else if (onlineErrorMessage) {
     syncStatus(onlineErrorMessage, "error");
   } else {
-    syncStatus(onlineReady ? "Online opgeslagen" : (isLoggedIn() ? "Online verbinden..." : "Online klaar"), onlineReady ? "ok" : "");
+    syncStatus(onlineReady ? "Online opgeslagen" : (isLoggedIn() && onlineProfile ? "Online verbinden..." : "Online klaar"), onlineReady ? "ok" : "");
   }
 }
 
@@ -1688,7 +1839,8 @@ async function inviteClientOnline(profile) {
       clientId: profile.id,
       email: profile.email,
       name: profile.name,
-      redirectTo: APP_AUTH_REDIRECT_URL
+      redirectTo: APP_AUTH_REDIRECT_URL,
+      resend: true
     })
   });
   const payload = await response.json().catch(() => ({}));
@@ -1819,6 +1971,17 @@ function renderSelectors() {
   if (rateSelect) {
     rateSelect.innerHTML = `<option value="">Geen tarief</option>${rateOptions()}`;
   }
+  const appointmentTypeSelect = $("#appointmentTypeSelect");
+  if (appointmentTypeSelect) {
+    appointmentTypeSelect.innerHTML = `<option value="">Kies afspraaksoort</option>${appointmentTypeOptions()}`;
+  }
+  const copyOptions = state.clients.length
+    ? state.clients.map((item) => `<option value="${item.id}" ${item.id === selected.id ? "selected" : ""}>${item.name}${item.id === selected.id ? " (zelfde client)" : ""}</option>`).join("")
+    : `<option value="">Geen clienten</option>`;
+  const trainingCopyTarget = $("#trainingCopyTarget");
+  if (trainingCopyTarget) trainingCopyTarget.innerHTML = copyOptions;
+  const nutritionCopyTarget = $("#nutritionCopyTarget");
+  if (nutritionCopyTarget) nutritionCopyTarget.innerHTML = copyOptions;
   const financeClientFilter = $("#financeClientFilter");
   if (financeClientFilter) {
     financeClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${item.id}" ${item.id === state.ui.financeClientId ? "selected" : ""}>${item.name}</option>`).join("")}`;
@@ -1939,8 +2102,10 @@ function renderClients() {
           <div class="card-actions">
             <button class="secondary-btn" data-select-client="${item.id}" type="button">Selecteer</button>
             <button class="primary-btn" data-edit-goals="${item.id}" type="button">Doelen bewerken</button>
+            <button class="secondary-btn" data-resend-invite="${item.id}" type="button">Uitnodiging opnieuw versturen</button>
             <button class="danger-btn" data-delete-client="${item.id}" type="button">Client verwijderen</button>
           </div>
+          <span class="save-feedback" data-save-feedback="invite-${item.id}"></span>
         </div>
       `
     )
@@ -2036,10 +2201,12 @@ function renderTraining() {
   const libraryPanel = $("#exerciseLibraryPanel");
   const libraryForm = $("#exerciseLibraryForm");
   const formDay = $("#trainingFormDay");
+  const copyPanel = $("#trainingCopyPanel");
 
   if (form) form.style.display = isTrainer() && hasClient ? "grid" : "none";
   if (libraryPanel) libraryPanel.style.display = isTrainer() && hasClient ? "grid" : "none";
   if (libraryForm) libraryForm.style.display = isTrainer() && hasClient ? "grid" : "none";
+  if (copyPanel) copyPanel.style.display = isTrainer() && hasClient ? "flex" : "none";
   if (formDay) formDay.value = activeDay;
 
   $("#trainingDayTabs").innerHTML = renderTrainingDayTabs(selected, dates);
@@ -2100,7 +2267,7 @@ function renderTraining() {
                       ${renderTrainingTarget(exercise, exercise.index, "targetWeight", "Doel kg", "number")}
                       ${renderTrainingTarget(exercise, exercise.index, "rest", "Rust")}
                     </div>
-                    ${exercise.tempo ? `<div class="exercise-meta">Tempo: ${escapeHTML(exercise.tempo)}</div>` : ""}
+                    <div class="exercise-meta">${escapeHTML(exercise.schemaName || "Trainingsschema")}${exercise.tempo ? ` | Tempo: ${escapeHTML(exercise.tempo)}` : ""}</div>
                     <div class="exercise-log">
                       <label>Gedane sets<input data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:actualSets" type="number" min="0" value="${escapeHTML(log.actualSets ?? "")}" /></label>
                       <label>Gedane reps<input data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:actualReps" value="${escapeHTML(log.actualReps ?? "")}" placeholder="bijv. 8/8/7/6" /></label>
@@ -2125,6 +2292,7 @@ function renderNutrition() {
   if (!hasSelectedClient(selected)) {
     $("#nutritionPlanForm").style.display = "none";
     $("#recipePanel").style.display = "none";
+    $("#nutritionCopyPanel").style.display = "none";
     $("#macroCalculatorPanel").style.display = isTrainer() ? "block" : "none";
     $("#macroTotals").innerHTML = "";
     $("#foodLogTable").innerHTML = `<tr><td colspan="7">Nog geen trainerberekening.</td></tr>`;
@@ -2132,6 +2300,7 @@ function renderNutrition() {
   }
   $("#nutritionPlanForm").style.display = isTrainer() ? "block" : "none";
   $("#recipePanel").style.display = isTrainer() ? "block" : "none";
+  $("#nutritionCopyPanel").style.display = isTrainer() ? "flex" : "none";
   $("#macroCalculatorPanel").style.display = isTrainer() ? "block" : "none";
   const trainerTotals = sumFoodEntries(state.trainerCalc);
 
@@ -2405,10 +2574,13 @@ function agendaTimeSlots(items) {
 }
 
 function renderAgendaAppointment(item) {
+  const apptType = appointmentTypeById(item.source?.appointmentTypeId || item.appointmentTypeId);
+  const color = apptType?.color || item.source?.color || "#c89312";
   return `
-    <div class="appointment-card compact-appointment" draggable="true" data-drag-appointment="${item.clientId}:${item.id}">
-      <strong>${item.time || "--:--"} ${item.type || "Afspraak"}</strong>
+    <div class="appointment-card compact-appointment" draggable="true" data-drag-appointment="${item.clientId}:${item.id}" style="border-left-color:${escapeHTML(color)}">
+      <strong>${item.time || "--:--"} ${apptType?.name || item.type || "Afspraak"}</strong>
       <span>${item.clientName}</span>
+      ${item.type && apptType?.name && item.type !== apptType.name ? `<small>${escapeHTML(item.type)}</small>` : ""}
       <div class="appointment-actions">
         <button class="secondary-btn" data-notify="${item.clientId}:${item.id}" type="button">Melding</button>
         <button class="secondary-btn" data-edit-appointment="${item.clientId}:${item.id}" type="button">Bewerken</button>
@@ -2416,6 +2588,29 @@ function renderAgendaAppointment(item) {
       </div>
     </div>
   `;
+}
+
+function renderAppointmentTypes() {
+  const manager = $("#appointmentTypeManager");
+  const list = $("#appointmentTypeList");
+  if (!manager || !list) return;
+  manager.style.display = isTrainer() ? "block" : "none";
+  if (!isTrainer()) return;
+  list.innerHTML = appointmentTypes()
+    .map((type) => {
+      const inUse = allAppointments().some((item) => item.source.appointmentTypeId === type.id);
+      return `
+        <div class="appointment-type-row">
+          <input data-appointment-type-name="${type.id}" value="${escapeHTML(type.name)}" />
+          <input data-appointment-type-duration="${type.id}" type="number" min="0" step="5" value="${escapeHTML(type.duration ?? "")}" placeholder="min" />
+          <input data-appointment-type-price="${type.id}" type="number" min="0" step="0.01" value="${escapeHTML(type.price ?? "")}" placeholder="prijs" />
+          <input data-appointment-type-color="${type.id}" type="color" value="${escapeHTML(type.color || "#c89312")}" />
+          <button class="secondary-btn" data-save-appointment-type="${type.id}" type="button">Opslaan</button>
+          <button class="danger-btn" data-remove-appointment-type="${type.id}" ${inUse ? "disabled title=\"In gebruik bij afspraken\"" : ""} type="button">Verwijderen</button>
+        </div>
+      `;
+    })
+    .join("") || `<div class="empty-state">Nog geen afspraaksoorten.</div>`;
 }
 
 function renderAgendaTable(days, appointments) {
@@ -2463,6 +2658,7 @@ function renderAgenda() {
   const selected = client();
   const calendar = $("#weekCalendar");
   $("#appointmentForm").style.display = isTrainer() && state.clients.length ? "block" : "none";
+  renderAppointmentTypes();
   $("#calendarControls").style.display = isTrainer() ? "flex" : "none";
   $("#agendaPanelTitle").textContent = isTrainer() ? "Weekagenda" : "Mijn afspraken";
   renderPreviousAppointments(selected);
@@ -2667,7 +2863,7 @@ function renderAdministration() {
               ${paymentStatusOptions(item.status)}
             </select>
             <button class="secondary-btn" data-save-admin="${item.id}" type="button">Opslaan</button>
-            <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijder</button>
+            <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijderen</button>
           </div>
         </div>
       `).join("")
@@ -2686,6 +2882,7 @@ function renderAdministration() {
               ${paymentStatusOptions(item.status)}
             </select>
             <button class="secondary-btn" data-download-invoice="${item.id}" type="button">Download factuur</button>
+            <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijderen</button>
           </div>
         </div>
       `).join("")
@@ -2879,6 +3076,7 @@ function renderMealOption(item, index, checklist = false) {
     <div class="meal-option-card">
       <div class="meal-option-main">
         <strong>${item.meal}</strong>
+        <small>${escapeHTML(item.schemaName || "Voedingsschema")}</small>
         <span>${item.items || "-"}</span>
         <p>${fmt(item.kcal)} kcal | ${fmt(item.protein)}g eiwit | ${fmt(item.carbs)}g kh | ${fmt(item.fat)}g vet</p>
       </div>
@@ -3144,7 +3342,7 @@ function notifyAppointment(clientId, appointmentId) {
   }
 }
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
   const target = event.target.closest("button");
   if (!target) return;
 
@@ -3196,6 +3394,23 @@ document.addEventListener("click", (event) => {
     showView("clients");
     setTimeout(() => $("#goalForm")?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
   }
+  if (target.dataset.resendInvite) {
+    if (!isTrainer()) return;
+    const selectedClient = state.clients.find((item) => item.id === target.dataset.resendInvite);
+    if (!selectedClient) return;
+    const key = `invite-${selectedClient.id}`;
+    setSaveFeedback(key, "Uitnodiging versturen...");
+    try {
+      if (!isOnlineMode() || !onlineProfile || onlineProfile.role !== "trainer") {
+        throw new Error("Log online in als trainer om uitnodigingen te versturen.");
+      }
+      await inviteClientOnline(selectedClient);
+      setSaveFeedback(key, "Uitnodiging verzonden");
+    } catch (error) {
+      setSaveFeedback(key, `Versturen mislukt: ${error.message}`, true);
+    }
+    return;
+  }
   if (target.dataset.deleteClient) {
     if (!isTrainer()) return;
     const selectedClient = state.clients.find((item) => item.id === target.dataset.deleteClient);
@@ -3208,6 +3423,15 @@ document.addEventListener("click", (event) => {
   if (target.dataset.removeTraining) {
     client().trainingPlan.splice(Number(target.dataset.removeTraining), 1);
     renderAll();
+  }
+  if (target.dataset.copyTrainingSchema !== undefined) {
+    const targetClientId = $("#trainingCopyTarget")?.value || client().id;
+    if (!copyTrainingSchemaToClient(targetClientId)) {
+      setSaveFeedback("training-copy", "Geen trainingsschema om te kopieren.", true);
+      return;
+    }
+    await persistActionFeedback("training-copy", "Schema gekopieerd");
+    return;
   }
   if (target.dataset.addLibraryExercise) {
     const selected = client();
@@ -3249,13 +3473,36 @@ document.addEventListener("click", (event) => {
   if (target.dataset.resetFinance !== undefined) {
     if (!confirm("Alleen financiele invoer resetten? Clienten, afspraken, schema's en logs blijven bewaard.")) return;
     resetFinanceOnly();
-    renderAll();
+    const ok = await persistActionFeedback(null, "Financien gereset");
+    alert(ok ? "Financien gereset" : "Financien resetten mislukt.");
     return;
   }
   if (target.dataset.resetAdministration !== undefined) {
-    if (!confirm("Alleen handmatige administratie resetten? Clienten, afspraken, schema's, logs en afspraakfacturen blijven bewaard.")) return;
+    if (!confirm("Weet je zeker dat je alle administratiegegevens wilt verwijderen?")) return;
     resetAdministrationOnly();
-    renderAll();
+    const ok = await persistActionFeedback(null, "Administratie gereset");
+    alert(ok ? "Administratie gereset" : "Administratie resetten mislukt.");
+    return;
+  }
+  if (target.dataset.saveAppointmentType) {
+    const type = appointmentTypes().find((item) => item.id === target.dataset.saveAppointmentType);
+    if (!type) return;
+    type.name = String(document.querySelector(`[data-appointment-type-name="${type.id}"]`)?.value || type.name).trim() || "Afspraaksoort";
+    type.duration = document.querySelector(`[data-appointment-type-duration="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-duration="${type.id}"]`)?.value, 0);
+    type.price = document.querySelector(`[data-appointment-type-price="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-price="${type.id}"]`)?.value, 0);
+    type.color = document.querySelector(`[data-appointment-type-color="${type.id}"]`)?.value || "#c89312";
+    await persistActionFeedback(null, "Afspraaksoort opgeslagen");
+    return;
+  }
+  if (target.dataset.removeAppointmentType) {
+    const inUse = allAppointments().some((item) => item.source.appointmentTypeId === target.dataset.removeAppointmentType);
+    if (inUse) {
+      alert("Deze afspraaksoort is nog in gebruik bij afspraken.");
+      return;
+    }
+    if (!confirm("Afspraaksoort verwijderen? Bestaande afspraken blijven bewaard.")) return;
+    state.trainerFinance.appointmentTypes = appointmentTypes().filter((item) => item.id !== target.dataset.removeAppointmentType);
+    await persistActionFeedback(null, "Afspraaksoort verwijderd");
     return;
   }
   if (target.dataset.financeTab) {
@@ -3304,13 +3551,31 @@ document.addEventListener("click", (event) => {
   }
   if (target.dataset.removeAdmin) {
     if (!confirm("Dit verwijdert alleen dit administratie-item. Clienten, afspraken, schema's en logs blijven bewaard. Doorgaan?")) return;
+    const removed = financeAdminItems().find((item) => item.id === target.dataset.removeAdmin);
+    if (removed?.appointmentId && removed.clientId) {
+      const appointment = findAppointment(removed.clientId, removed.appointmentId);
+      if (appointment?.adminItemId === removed.id) {
+        delete appointment.adminItemId;
+        appointment.adminItemSuppressed = true;
+      }
+    }
     state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.id !== target.dataset.removeAdmin);
-    renderAll();
+    const ok = await persistActionFeedback(null, "Verwijderd");
+    alert(ok ? "Verwijderd" : "Verwijderen mislukt.");
     return;
   }
   if (target.dataset.removeMeal) {
     client().nutritionPlan.splice(Number(target.dataset.removeMeal), 1);
     renderAll();
+  }
+  if (target.dataset.copyNutritionSchema !== undefined) {
+    const targetClientId = $("#nutritionCopyTarget")?.value || client().id;
+    if (!copyNutritionSchemaToClient(targetClientId)) {
+      setSaveFeedback("nutrition-copy", "Geen voedingsschema om te kopieren.", true);
+      return;
+    }
+    await persistActionFeedback("nutrition-copy", "Schema gekopieerd");
+    return;
   }
   if (target.dataset.addRecipeOption) {
     const recipe = recipeOptions[Number(target.dataset.addRecipeOption)];
@@ -3323,6 +3588,7 @@ document.addEventListener("click", (event) => {
       protein: Math.round(recipe.totals.protein),
       carbs: Math.round(recipe.totals.carbs),
       fat: Math.round(recipe.totals.fat),
+      schemaName: "Voedingsschema",
       status: "",
       alternative: ""
     });
@@ -3703,6 +3969,7 @@ $("#trainingForm").addEventListener("submit", (event) => {
     group: match?.group || "",
     equipment: match?.equipment || "",
     image: String(data.get("image") || "").trim() || match?.image || "",
+    schemaName: "Trainingsschema",
     sets: number(data.get("sets")),
     reps: data.get("reps"),
     targetWeight: data.get("targetWeight") === "" ? "" : number(data.get("targetWeight")),
@@ -3749,6 +4016,7 @@ $("#nutritionPlanForm").addEventListener("submit", (event) => {
     protein: number(data.get("protein")),
     carbs: number(data.get("carbs")),
     fat: number(data.get("fat")),
+    schemaName: "Voedingsschema",
     status: "",
     alternative: ""
   });
@@ -3826,10 +4094,27 @@ $("#financeAdminForm").addEventListener("submit", (event) => {
     date,
     dueDate: data.get("dueDate") || (type === "invoice" ? addDaysISO(date, 14) : ""),
     amount: data.get("amount") === "" ? "" : number(data.get("amount"), 0),
-    status: data.get("status") === "paid" ? "paid" : "unpaid"
+    status: data.get("status") === "paid" ? "paid" : "unpaid",
+    invoiceNo: type === "invoice" ? nextInvoiceNumber() : ""
   });
   event.currentTarget.reset();
   renderAll();
+});
+
+$("#appointmentTypeForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!isTrainer()) return;
+  const data = new FormData(event.currentTarget);
+  appointmentTypes().push({
+    id: `appt-type-${Date.now()}${Math.random().toString(16).slice(2)}`,
+    name: String(data.get("name") || "").trim() || "Afspraaksoort",
+    duration: data.get("duration") === "" ? "" : number(data.get("duration"), 0),
+    price: data.get("price") === "" ? "" : number(data.get("price"), 0),
+    color: data.get("color") || "#c89312"
+  });
+  event.currentTarget.reset();
+  event.currentTarget.elements.color.value = "#c89312";
+  await persistActionFeedback(null, "Afspraaksoort toegevoegd");
 });
 
 $("#measurementForm").addEventListener("submit", (event) => {
@@ -3858,16 +4143,22 @@ $("#appointmentForm").addEventListener("submit", (event) => {
   const selected = state.clients.find((item) => item.id === data.get("clientId"));
   if (!selected) return;
   const rate = rateById(data.get("rateId"));
+  const appointmentType = appointmentTypeById(data.get("appointmentTypeId"));
+  const amount = rate ? number(rate.amount) : (appointmentType?.price !== "" && appointmentType?.price !== undefined ? number(appointmentType.price) : "");
   const appointment = {
     id: `a${Date.now()}${Math.random().toString(16).slice(2)}`,
     date: data.get("date"),
     day: dayNameFromDate(data.get("date")),
     time: data.get("time"),
-    type: data.get("type") || "Afspraak",
+    appointmentTypeId: appointmentType?.id || "",
+    type: String(data.get("type") || "").trim() || appointmentType?.name || "Afspraak",
+    duration: appointmentType?.duration ?? "",
+    color: appointmentType?.color || "#c89312",
     rateId: rate?.id || "",
     rateName: rate?.name || "",
-    amount: rate ? number(rate.amount) : "",
-    paymentStatus: "unpaid"
+    amount,
+    paymentStatus: "unpaid",
+    adminItemSuppressed: false
   };
   selected.appointments.push(appointment);
   syncAppointmentAdminItem(selected, appointment);

@@ -634,6 +634,53 @@ h2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.schema-copy-panel,
+.appointment-type-form,
+.appointment-type-row {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.schema-copy-panel {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.appointment-type-manager {
+  margin-top: 18px;
+}
+
+.appointment-type-form,
+.appointment-type-row {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.appointment-type-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.appointment-type-row input,
+.appointment-type-form input {
+  min-width: 120px;
+}
+
+.appointment-type-row input[type="color"],
+.appointment-type-form input[type="color"] {
+  min-width: 48px;
+  width: 54px;
+  padding: 4px;
+}
+
 .nutrition-plan-panel {
   min-height: 100%;
 }
