@@ -702,6 +702,7 @@
               <h1>Financien</h1>
             </div>
             <div class="finance-toolbar">
+              <button id="resetFinance" class="danger-btn" data-reset-finance type="button">Financien resetten</button>
               <label class="field compact">
                 <span>Maand</span>
                 <input id="financeMonthFilter" type="month" />
@@ -717,13 +718,6 @@
 
           <div class="finance-panel active" data-finance-panel="overview">
             <div class="finance-overview-grid">
-              <div class="panel">
-                <div class="panel-head">
-                  <h2>Administratie acties</h2>
-                  <span class="muted">Open betalingen en taken</span>
-                </div>
-                <div id="financeAdminHighlights" class="finance-card-list"></div>
-              </div>
               <div class="panel">
                 <div class="panel-head">
                   <h2>Omzet per maand</h2>
@@ -771,72 +765,6 @@
             </div>
           </div>
 
-          <div class="finance-panel" data-finance-panel="administration">
-            <div class="finance-layout">
-              <form id="financeAdminForm" class="panel form-panel">
-                <h2>Administratie toevoegen</h2>
-                <label class="field">
-                  <span>Type</span>
-                  <select name="type">
-                    <option value="invoice">Factuur</option>
-                    <option value="payment">Betaling</option>
-                    <option value="expense">Kosten / bon</option>
-                    <option value="note">Notitie</option>
-                  </select>
-                </label>
-                <label class="field">
-                  <span>Client</span>
-                  <select name="clientId" id="financeAdminClient"></select>
-                </label>
-                <label class="field">
-                  <span>Omschrijving</span>
-                  <input name="description" placeholder="Bijv. PT sessie juni" required />
-                </label>
-                <div class="form-grid">
-                  <label class="field">
-                    <span>Datum</span>
-                    <input name="date" type="date" />
-                  </label>
-                  <label class="field">
-                    <span>Vervaldatum</span>
-                    <input name="dueDate" type="date" />
-                  </label>
-                </div>
-                <div class="form-grid">
-                  <label class="field">
-                    <span>Bedrag</span>
-                    <input name="amount" type="number" min="0" step="0.01" placeholder="0,00" />
-                  </label>
-                  <label class="field">
-                    <span>Status</span>
-                    <select name="status">
-                      <option value="unpaid">Niet betaald</option>
-                      <option value="paid">Betaald</option>
-                    </select>
-                  </label>
-                </div>
-                <button class="primary-btn" type="submit">Administratie opslaan</button>
-              </form>
-              <div class="panel">
-                <div class="panel-head">
-                  <h2>Administratie overzicht</h2>
-                  <span class="muted">Facturen, betalingen, bonnen en notities</span>
-                </div>
-                <div id="financeAdminList" class="finance-card-list"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="finance-panel" data-finance-panel="invoices">
-            <div class="panel">
-              <div class="panel-head">
-                <h2>Facturen</h2>
-                <span class="muted">Facturen uit afspraken en administratie downloaden</span>
-              </div>
-              <div id="financeInvoiceList" class="finance-card-list"></div>
-            </div>
-          </div>
-
           <div class="finance-panel" data-finance-panel="rates">
             <div class="finance-layout">
               <form id="financeRateForm" class="panel form-panel">
@@ -880,6 +808,87 @@
                 </table>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="administration" class="view" data-view-title="Administratie">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Trainer</p>
+              <h1>Administratie</h1>
+            </div>
+            <div class="finance-toolbar">
+              <button id="resetAdministration" class="danger-btn" data-reset-administration type="button">Administratie resetten</button>
+              <label class="field compact">
+                <span>Maand</span>
+                <input id="adminMonthFilter" type="month" />
+              </label>
+              <label class="field compact">
+                <span>Client</span>
+                <select id="adminClientFilter"></select>
+              </label>
+            </div>
+          </div>
+          <div id="adminKpis" class="kpi-grid finance-kpis"></div>
+          <div class="finance-layout">
+            <form id="financeAdminForm" class="panel form-panel">
+              <h2>Administratie toevoegen</h2>
+              <label class="field">
+                <span>Type</span>
+                <select name="type">
+                  <option value="invoice">Factuur</option>
+                  <option value="payment">Betaling</option>
+                  <option value="expense">Kosten / bon</option>
+                  <option value="note">Notitie</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Client</span>
+                <select name="clientId" id="financeAdminClient"></select>
+              </label>
+              <label class="field">
+                <span>Omschrijving</span>
+                <input name="description" placeholder="Bijv. PT sessie juni" required />
+              </label>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Datum</span>
+                  <input name="date" type="date" />
+                </label>
+                <label class="field">
+                  <span>Vervaldatum</span>
+                  <input name="dueDate" type="date" />
+                </label>
+              </div>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Bedrag</span>
+                  <input name="amount" type="number" min="0" step="0.01" placeholder="0,00" />
+                </label>
+                <label class="field">
+                  <span>Status</span>
+                  <select name="status">
+                    <option value="unpaid">Niet betaald</option>
+                    <option value="paid">Betaald</option>
+                  </select>
+                </label>
+              </div>
+              <button class="primary-btn" type="submit">Administratie opslaan</button>
+            </form>
+            <div class="panel">
+              <div class="panel-head">
+                <h2>Administratie overzicht</h2>
+                <span class="muted">Facturen, betalingen, bonnen en notities</span>
+              </div>
+              <div id="financeAdminList" class="finance-card-list"></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Facturen</h2>
+              <span class="muted">Facturen uit afspraken en administratie downloaden</span>
+            </div>
+            <div id="financeInvoiceList" class="finance-card-list"></div>
           </div>
         </section>
       </main>

@@ -1,7 +1,8 @@
 const STORE_KEY = "fmz-coach-app-v1";
 const REMEMBER_KEY = "fmz-remember-login";
 const REMEMBER_DETAILS_KEY = "fmz-remembered-account";
-const PASSWORD_RESET_REDIRECT_URL = "https://www.fitmetzorge.com";
+const APP_AUTH_REDIRECT_URL = "https://appfmz.nl";
+const PASSWORD_RESET_REDIRECT_URL = APP_AUTH_REDIRECT_URL;
 const INITIAL_AUTH_LINK_TYPE = (() => {
   const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
   const search = new URLSearchParams(window.location.search);
@@ -314,7 +315,8 @@ const NAV = {
     ["sleep", "Slaap"],
     ["water", "Water"],
     ["agenda", "Agenda"],
-    ["finance", "Financien"]
+    ["finance", "Financien"],
+    ["administration", "Administratie"]
   ],
   client: [
     ["client-home", "Mijn dashboard"],
@@ -334,8 +336,6 @@ const DEFAULT_RATE_ID = "rate-default";
 const FINANCE_TABS = [
   ["overview", "Overzicht"],
   ["appointments", "Afspraken"],
-  ["administration", "Administratie"],
-  ["invoices", "Facturen"],
   ["rates", "Tarieven"],
   ["clients", "Per client"]
 ];
@@ -1262,6 +1262,30 @@ function ensureAppointmentAdminItems() {
   return changed;
 }
 
+function resetFinanceOnly() {
+  state.trainerFinance = state.trainerFinance && typeof state.trainerFinance === "object" ? state.trainerFinance : {};
+  state.trainerFinance.rates = [{ id: DEFAULT_RATE_ID, name: "Standaard sessie", amount: 60 }];
+  state.clients.forEach((selected) => {
+    selected.appointments.forEach((appointment) => {
+      appointment.rateId = "";
+      appointment.rateName = "";
+      appointment.amount = "";
+      appointment.paymentStatus = "unpaid";
+    });
+  });
+  financeAdminItems().forEach((item) => {
+    if (item.appointmentId) {
+      item.amount = "";
+      item.status = "unpaid";
+    }
+  });
+}
+
+function resetAdministrationOnly() {
+  state.trainerFinance = state.trainerFinance && typeof state.trainerFinance === "object" ? state.trainerFinance : {};
+  state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.appointmentId);
+}
+
 function invoiceHTML(item) {
   const trainer = state.trainerAccount || {};
   const clientName = clientNameById(item.clientId);
@@ -1663,7 +1687,8 @@ async function inviteClientOnline(profile) {
     body: JSON.stringify({
       clientId: profile.id,
       email: profile.email,
-      name: profile.name
+      name: profile.name,
+      redirectTo: APP_AUTH_REDIRECT_URL
     })
   });
   const payload = await response.json().catch(() => ({}));
@@ -1797,6 +1822,10 @@ function renderSelectors() {
   const financeClientFilter = $("#financeClientFilter");
   if (financeClientFilter) {
     financeClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${item.id}" ${item.id === state.ui.financeClientId ? "selected" : ""}>${item.name}</option>`).join("")}`;
+  }
+  const adminClientFilter = $("#adminClientFilter");
+  if (adminClientFilter) {
+    adminClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${item.id}" ${item.id === state.ui.financeClientId ? "selected" : ""}>${item.name}</option>`).join("")}`;
   }
   const financeAdminClient = $("#financeAdminClient");
   if (financeAdminClient) {
@@ -2480,7 +2509,6 @@ function renderFinance() {
   const adminChanged = ensureAppointmentAdminItems();
   if (adminChanged) saveState();
   const rates = financeRates();
-  const adminItems = financeAdminItems();
   const activeTab = state.ui.financeTab || "overview";
   const monthFilter = state.ui.financeMonth || "";
   const clientFilter = state.ui.financeClientId || "";
@@ -2505,10 +2533,6 @@ function renderFinance() {
   const appointments = allAppointments()
     .filter(matchesFinanceFilters)
     .sort((a, b) => `${b.date || ""} ${b.time || ""}`.localeCompare(`${a.date || ""} ${a.time || ""}`));
-  const filteredAdminItems = adminItems
-    .filter(matchesFinanceFilters)
-    .sort((a, b) => `${b.dueDate || b.date || ""}`.localeCompare(`${a.dueDate || a.date || ""}`));
-  const invoiceItems = filteredAdminItems.filter((item) => item.type === "invoice");
   const totalRevenue = appointments.reduce((sum, item) => sum + appointmentAmount(item.source), 0);
   const paidRevenue = appointments
     .filter((item) => paymentStatus(item.source) === "paid")
@@ -2516,10 +2540,9 @@ function renderFinance() {
   const unpaidRevenue = appointments
     .filter((item) => paymentStatus(item.source) !== "paid")
     .reduce((sum, item) => sum + appointmentAmount(item.source), 0);
-  const adminOpen = filteredAdminItems.filter((item) => item.status !== "paid").length;
-  const expenses = filteredAdminItems
-    .filter((item) => item.type === "expense")
-    .reduce((sum, item) => sum + number(item.amount), 0);
+  const monthRevenue = appointments
+    .filter((item) => monthFilter && monthKey(item.date) === monthFilter)
+    .reduce((sum, item) => sum + appointmentAmount(item.source), 0);
 
   $("#financeRatesList").innerHTML = rates
     .map((rate) => `
@@ -2535,24 +2558,10 @@ function renderFinance() {
     ["Omzet", currency(totalRevenue), monthFilter ? monthLabel(monthFilter) : "alle maanden"],
     ["Betaald", currency(paidRevenue), "afspraken op betaald"],
     ["Niet betaald", currency(unpaidRevenue), "nog openstaand"],
-    ["Administratie", adminOpen, `open acties, ${currency(expenses)} kosten`]
+    ["Maandtotaal", currency(monthFilter ? monthRevenue : totalRevenue), monthFilter ? "geselecteerde maand" : "alle afspraken"]
   ]
     .map(([label, value, sub]) => `<div class="kpi"><span>${label}</span><strong>${value}</strong><small>${sub}</small></div>`)
     .join("");
-
-  $("#financeAdminHighlights").innerHTML = filteredAdminItems
-    .filter((item) => item.status !== "paid")
-    .slice(0, 5)
-    .map((item) => `
-      <div class="finance-card">
-        <div>
-          <strong>${escapeHTML(item.description)}</strong>
-          <span>${adminTypeLabel(item.type)}${item.clientId ? ` | ${escapeHTML(clientNameById(item.clientId))}` : ""}${item.dueDate ? ` | vervalt ${escapeHTML(item.dueDate)}` : ""}</span>
-        </div>
-        ${statusBadge(item.status)}
-      </div>
-    `)
-    .join("") || `<div class="empty-mini">Geen open administratie-acties voor deze selectie.</div>`;
 
   $("#financeAppointmentTable").innerHTML = appointments.length
     ? appointments.map((item) => `
@@ -2607,6 +2616,43 @@ function renderFinance() {
     .sort((a, b) => b[0].localeCompare(a[0]))
     .map(([key, totals]) => `<tr><td data-label="Maand">${monthLabel(key)}</td><td data-label="Omzet">${currency(totals.total)}</td><td data-label="Betaald">${currency(totals.paid)}</td></tr>`)
     .join("") || `<tr><td colspan="3">Nog geen omzet.</td></tr>`;
+
+}
+
+function renderAdministration() {
+  if (!isTrainer()) return;
+  const adminChanged = ensureAppointmentAdminItems();
+  if (adminChanged) saveState();
+  const adminItems = financeAdminItems();
+  const monthFilter = state.ui.financeMonth || "";
+  const clientFilter = state.ui.financeClientId || "";
+  const monthInput = $("#adminMonthFilter");
+  if (monthInput) monthInput.value = monthFilter;
+  const clientFilterSelect = $("#adminClientFilter");
+  if (clientFilterSelect) clientFilterSelect.value = clientFilter;
+  const matchesAdminFilters = (item) => {
+    const itemMonth = monthKey(item.date || item.dueDate || "");
+    const monthOk = !monthFilter || itemMonth === monthFilter;
+    const clientOk = !clientFilter || item.clientId === clientFilter;
+    return monthOk && clientOk;
+  };
+  const filteredAdminItems = adminItems
+    .filter(matchesAdminFilters)
+    .sort((a, b) => `${b.dueDate || b.date || ""}`.localeCompare(`${a.dueDate || a.date || ""}`));
+  const invoiceItems = filteredAdminItems.filter((item) => item.type === "invoice");
+  const openItems = filteredAdminItems.filter((item) => item.status !== "paid");
+  const paidItems = filteredAdminItems.filter((item) => item.status === "paid");
+  const expenses = filteredAdminItems
+    .filter((item) => item.type === "expense")
+    .reduce((sum, item) => sum + number(item.amount), 0);
+  $("#adminKpis").innerHTML = [
+    ["Open acties", openItems.length, "nog te verwerken"],
+    ["Betaald", paidItems.length, "afgeronde items"],
+    ["Facturen", invoiceItems.length, "downloadbaar"],
+    ["Kosten", currency(expenses), "bonnen en uitgaven"]
+  ]
+    .map(([label, value, sub]) => `<div class="kpi"><span>${label}</span><strong>${value}</strong><small>${sub}</small></div>`)
+    .join("");
 
   $("#financeAdminList").innerHTML = filteredAdminItems.length
     ? filteredAdminItems.map((item) => `
@@ -2680,6 +2726,7 @@ function renderAll() {
   renderWater();
   renderAgenda();
   renderFinance();
+  renderAdministration();
 }
 
 function createClientProfile({ name, email, password = "", goal = "", registered = false }) {
@@ -3199,6 +3246,18 @@ document.addEventListener("click", (event) => {
     renderAll();
     return;
   }
+  if (target.dataset.resetFinance !== undefined) {
+    if (!confirm("Alleen financiele invoer resetten? Clienten, afspraken, schema's en logs blijven bewaard.")) return;
+    resetFinanceOnly();
+    renderAll();
+    return;
+  }
+  if (target.dataset.resetAdministration !== undefined) {
+    if (!confirm("Alleen handmatige administratie resetten? Clienten, afspraken, schema's, logs en afspraakfacturen blijven bewaard.")) return;
+    resetAdministrationOnly();
+    renderAll();
+    return;
+  }
   if (target.dataset.financeTab) {
     state.ui.financeTab = target.dataset.financeTab;
     renderFinance();
@@ -3244,7 +3303,7 @@ document.addEventListener("click", (event) => {
     return;
   }
   if (target.dataset.removeAdmin) {
-    if (!confirm("Administratie-item verwijderen?")) return;
+    if (!confirm("Dit verwijdert alleen dit administratie-item. Clienten, afspraken, schema's en logs blijven bewaard. Doorgaan?")) return;
     state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.id !== target.dataset.removeAdmin);
     renderAll();
     return;
@@ -3483,7 +3542,7 @@ $("#registerForm").addEventListener("submit", async (event) => {
         password,
         options: {
           data: { role, name },
-          emailRedirectTo: window.location.href.split("#")[0]
+          emailRedirectTo: APP_AUTH_REDIRECT_URL
         }
       });
       if (error) throw error;
@@ -3939,14 +3998,17 @@ document.addEventListener("change", (event) => {
     const rate = rateById(target.value);
     if (amountInput && rate) amountInput.value = number(rate.amount, 0);
   }
-  if (target.id === "financeMonthFilter") {
+  if (target.id === "financeMonthFilter" || target.id === "adminMonthFilter") {
     state.ui.financeMonth = target.value || "";
     renderFinance();
+    renderAdministration();
     saveState();
   }
-  if (target.id === "financeClientFilter") {
+  if (target.id === "financeClientFilter" || target.id === "adminClientFilter") {
     state.ui.financeClientId = target.value || "";
+    renderSelectors();
     renderFinance();
+    renderAdministration();
     saveState();
   }
   if (target.dataset.financePayment) {
@@ -3957,6 +4019,7 @@ document.addEventListener("change", (event) => {
       appointment.paymentStatus = target.value === "paid" ? "paid" : "unpaid";
       syncAppointmentAdminItem(selected, appointment);
       renderFinance();
+      renderAdministration();
       saveState();
     }
   }
