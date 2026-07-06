@@ -693,100 +693,182 @@
         </section>
 
         <section id="agenda" class="view" data-view-title="Agenda">
-          <div class="view-head">
+          <div class="view-head agenda-view-head">
             <div>
               <p class="eyebrow">Planning</p>
               <h1>Agenda</h1>
             </div>
-            <button id="notificationPermission" class="secondary-btn" type="button">Meldingen aanzetten</button>
+            <div class="agenda-head-actions">
+              <button id="notificationPermission" class="secondary-btn" type="button">Meldingen aanzetten</button>
+              <button id="openAppointmentForm" class="primary-btn" type="button">Afspraak toevoegen</button>
+            </div>
           </div>
-          <div class="agenda-dashboard">
-            <div class="agenda-sidebar">
-            <form id="appointmentForm" class="panel form-panel">
-              <h2>Afspraak plannen</h2>
-              <div class="form-step-label">1. Basisgegevens</div>
-              <label class="field">
-                <span>Client</span>
-                <select name="clientId" id="appointmentClient"></select>
-              </label>
-              <div class="form-grid">
+
+          <div id="agendaError" class="agenda-message" role="status"></div>
+
+          <div class="agenda-shell">
+            <div class="agenda-main">
+              <form id="appointmentForm" class="panel form-panel agenda-planner" hidden>
+                <input name="appointmentId" type="hidden" />
+                <div class="agenda-form-head">
+                  <div>
+                    <p class="eyebrow">Boeking</p>
+                    <h2 id="appointmentFormTitle">Afspraak toevoegen</h2>
+                  </div>
+                  <button class="secondary-btn" data-close-appointment-form type="button">Sluiten</button>
+                </div>
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Client</span>
+                    <select name="clientId" id="appointmentClient" required></select>
+                  </label>
+                  <label class="field">
+                    <span>Afspraaksoort</span>
+                    <select name="appointmentTypeId" id="appointmentTypeSelect" required></select>
+                  </label>
+                </div>
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Datum</span>
+                    <input name="date" type="date" required />
+                  </label>
+                  <label class="field">
+                    <span>Starttijd</span>
+                    <input name="time" type="time" required />
+                  </label>
+                  <label class="field">
+                    <span>Eindtijd</span>
+                    <input name="endTime" type="time" required />
+                  </label>
+                </div>
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Locatie</span>
+                    <input name="location" placeholder="Hoogerheide" />
+                  </label>
+                  <label class="field">
+                    <span>Prijs</span>
+                    <input name="amount" type="number" min="0" step="0.01" placeholder="0,00" />
+                  </label>
+                  <label class="field">
+                    <span>Status</span>
+                    <select name="status">
+                      <option value="planned">Gepland</option>
+                      <option value="done">Geweest</option>
+                      <option value="cancelled">Geannuleerd</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Herhalen</span>
+                    <select name="repeat">
+                      <option value="none">Niet herhalen</option>
+                      <option value="weekly">Wekelijks</option>
+                      <option value="monthly">Maandelijks</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Titel</span>
+                    <input name="type" placeholder="Optionele titel" />
+                  </label>
+                </div>
                 <label class="field">
-                  <span>Datum</span>
-                  <input name="date" type="date" required />
+                  <span>Notities</span>
+                  <textarea name="notes" rows="3" placeholder="Interne notitie"></textarea>
                 </label>
-                <label class="field">
-                  <span>Tijd</span>
-                  <input name="time" type="time" required />
-                </label>
-              </div>
-              <label class="field">
-                <span>Afspraaksoort</span>
-                <select name="appointmentTypeId" id="appointmentTypeSelect"></select>
-              </label>
-              <label class="field">
-                <span>Omschrijving</span>
-                <input name="type" placeholder="Bijv. extra notitie" />
-              </label>
-              <label class="field">
-                <span>Locatie</span>
-                <input name="location" placeholder="Bijv. Hoogerheide" />
-              </label>
-              <div class="form-step-label">2. Prijs</div>
-              <label class="field">
-                <span>Tarief</span>
-                <select name="rateId" id="appointmentRate"></select>
-              </label>
-              <label class="field">
-                <span>Bedrag handmatig</span>
-                <input name="amount" type="number" min="0" step="0.01" placeholder="Optioneel" />
-              </label>
-              <div class="form-step-label">3. Herhalen</div>
-              <label class="field">
-                <span>Herhalen</span>
-                <select name="repeat">
-                  <option value="">Niet herhalen</option>
-                  <option value="weekly">Wekelijks</option>
-                  <option value="biweekly">Elke 2 weken</option>
-                  <option value="monthly">Maandelijks</option>
-                </select>
-              </label>
-              <div class="form-step-label">4. Bevestiging</div>
-              <button class="primary-btn" type="submit">Inplannen</button>
-            </form>
-            <div id="appointmentTypeManager" class="panel appointment-type-manager">
-              <div class="panel-head">
-                <h2>Afspraaksoorten</h2>
-                <span class="muted">Sleepbaar als blokken, of kies in het formulier</span>
-              </div>
-              <form id="appointmentTypeForm" class="appointment-type-form">
-                <input name="name" placeholder="Afspraaksoort" required />
-                <input name="duration" type="number" min="0" step="5" placeholder="Duur min" />
-                <input name="price" type="number" min="0" step="0.01" placeholder="Prijs" />
-                <input name="category" placeholder="Categorie" />
-                <input name="location" placeholder="Standaardlocatie" />
-                <input name="capacity" type="number" min="1" step="1" placeholder="Max plaatsen" />
-                <input name="color" type="color" value="#c89312" title="Kleur" />
-                <button class="primary-btn" type="submit">Toevoegen</button>
+                <div class="form-actions">
+                  <button id="appointmentDeleteButton" class="danger-btn" data-delete-current-appointment type="button" hidden>Verwijderen</button>
+                  <button class="primary-btn" type="submit">Opslaan</button>
+                </div>
               </form>
-              <div id="appointmentTypeList" class="appointment-type-list"></div>
+
+              <div class="panel agenda-calendar-panel">
+                <div class="panel-head agenda-calendar-head">
+                  <div>
+                    <p class="eyebrow">Weekplanning</p>
+                    <h2 id="agendaPanelTitle">Weekagenda</h2>
+                  </div>
+                  <div id="calendarControls" class="calendar-controls">
+                    <button id="prevWeek" class="secondary-btn" type="button">Vorige</button>
+                    <strong id="calendarWeekLabel"></strong>
+                    <button id="todayWeek" class="secondary-btn" type="button">Vandaag</button>
+                    <button id="nextWeek" class="secondary-btn" type="button">Volgende</button>
+                  </div>
+                </div>
+                <div id="agendaFilters" class="agenda-filters">
+                  <label class="field compact">
+                    <span>Client</span>
+                    <select id="agendaClientFilter"></select>
+                  </label>
+                  <label class="field compact">
+                    <span>Afspraaksoort</span>
+                    <select id="agendaTypeFilter"></select>
+                  </label>
+                </div>
+                <div id="agendaStats" class="agenda-stats"></div>
+                <div id="weekCalendar" class="week-calendar"></div>
+              </div>
+
+              <div class="agenda-list-grid">
+                <section class="panel">
+                  <div class="panel-head">
+                    <div>
+                      <p class="eyebrow">Planning</p>
+                      <h2>Aankomende afspraken</h2>
+                    </div>
+                  </div>
+                  <div id="upcomingAppointmentsList" class="agenda-list"></div>
+                </section>
+                <details id="previousAppointmentsBlock" class="panel history-block">
+                  <summary>Vorige afspraken</summary>
+                  <div id="previousAppointmentsList" class="history-list"></div>
+                </details>
+              </div>
             </div>
-            </div>
-            <div class="panel agenda-calendar-panel">
+
+            <aside id="appointmentTypeManager" class="panel appointment-type-manager agenda-types-sidebar">
               <div class="panel-head">
-                <h2 id="agendaPanelTitle">Weekagenda</h2>
-                <div id="calendarControls" class="calendar-controls">
-                  <button id="prevWeek" class="secondary-btn" type="button">Vorige</button>
-                  <strong id="calendarWeekLabel"></strong>
-                  <button id="todayWeek" class="secondary-btn" type="button">Deze week</button>
-                  <button id="nextWeek" class="secondary-btn" type="button">Volgende</button>
+                <div>
+                  <p class="eyebrow">Bibliotheek</p>
+                  <h2>Afspraaksoorten</h2>
                 </div>
               </div>
-              <div id="weekCalendar" class="week-calendar"></div>
-              <details id="previousAppointmentsBlock" class="history-block">
-                <summary>Vorige afspraken</summary>
-                <div id="previousAppointmentsList" class="history-list"></div>
-              </details>
-            </div>
+              <form id="appointmentTypeForm" class="appointment-type-form">
+                <input name="typeId" type="hidden" />
+                <label class="field">
+                  <span>Naam</span>
+                  <input name="name" placeholder="Personal training" required />
+                </label>
+                <div class="form-grid two">
+                  <label class="field">
+                    <span>Duur</span>
+                    <input name="duration" type="number" min="0" step="5" placeholder="60" />
+                  </label>
+                  <label class="field">
+                    <span>Prijs</span>
+                    <input name="price" type="number" min="0" step="0.01" placeholder="60" />
+                  </label>
+                </div>
+                <label class="field">
+                  <span>Locatie</span>
+                  <input name="location" placeholder="Hoogerheide" />
+                </label>
+                <label class="field">
+                  <span>Categorie</span>
+                  <input name="category" placeholder="Training" />
+                </label>
+                <label class="field color-field">
+                  <span>Kleur</span>
+                  <input name="color" type="color" value="#c89312" title="Kleur" />
+                </label>
+                <div class="form-actions">
+                  <button class="secondary-btn" data-reset-appointment-type-form type="button">Nieuw</button>
+                  <button class="primary-btn" type="submit">Opslaan</button>
+                </div>
+              </form>
+              <div id="appointmentTypeList" class="appointment-type-list"></div>
+            </aside>
           </div>
         </section>
 
