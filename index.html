@@ -1,1079 +1,137 @@
-<!doctype html>
-<html lang="nl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fit Met Zorge Coach App</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="logged-out">
-    <section id="loginScreen" class="login-screen">
-      <div class="login-card">
-        <img src="assets/fit-met-zorge-logo-cropped.png" alt="Fit Met Zorge logo" class="login-logo" />
-        <div class="auth-tabs" aria-label="Login keuze">
-          <button class="auth-tab active" data-auth-mode="login" type="button">Inloggen</button>
-          <button class="auth-tab" data-auth-mode="register" type="button">Registreren</button>
-        </div>
+import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 
-        <form id="registerForm" class="login-form auth-panel" data-auth-panel="register">
-          <h1>Registreren</h1>
-          <label class="field">
-            <span>Account type</span>
-            <select name="role" required>
-              <option value="trainer">Trainer</option>
-              <option value="client">Lid</option>
-            </select>
-          </label>
-          <label class="field">
-            <span>Naam</span>
-            <input name="name" required placeholder="Naam" />
-          </label>
-          <label class="field">
-            <span>E-mail</span>
-            <input name="email" type="email" autocomplete="email" required placeholder="email@voorbeeld.nl" />
-          </label>
-          <label class="field">
-            <span>Wachtwoord</span>
-            <input name="password" type="password" autocomplete="new-password" required placeholder="Minimaal 4 tekens" />
-          </label>
-          <button class="primary-btn" type="submit">Account registreren</button>
-          <label class="checkbox-row">
-            <input name="remember" type="checkbox" checked />
-            <span>Inloggegevens onthouden op dit apparaat</span>
-          </label>
-          <p id="registerMessage" class="login-message"></p>
-        </form>
+const WEBAPP_URL = "https://appfmz.nl";
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS"
+};
 
-        <form id="loginForm" class="login-form auth-panel active" data-auth-panel="login">
-          <h1>Inloggen</h1>
-          <label class="field">
-            <span>Account type</span>
-            <select name="role" required>
-              <option value="trainer">Trainer</option>
-              <option value="client">Lid</option>
-            </select>
-          </label>
-          <label class="field">
-            <span>E-mail</span>
-            <input name="email" type="email" autocomplete="email" required placeholder="email@voorbeeld.nl" />
-          </label>
-          <label class="field">
-            <span>Wachtwoord</span>
-            <input name="password" type="password" autocomplete="current-password" required placeholder="Wachtwoord" />
-          </label>
-          <button class="primary-btn" type="submit">Inloggen</button>
-          <button class="link-btn" data-auth-mode="forgot" type="button">Wachtwoord vergeten?</button>
-          <label class="checkbox-row">
-            <input name="remember" type="checkbox" checked />
-            <span>Inloggegevens onthouden op dit apparaat</span>
-          </label>
-          <p id="loginMessage" class="login-message"></p>
-        </form>
+function jsonResponse(body: Record<string, unknown>, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders, "Content-Type": "application/json" }
+  });
+}
 
-        <form id="forgotPasswordForm" class="login-form auth-panel" data-auth-panel="forgot">
-          <h1>Wachtwoord vergeten?</h1>
-          <p class="auth-note">Vul je e-mailadres in. Je krijgt een link waarmee je een nieuw wachtwoord kunt instellen.</p>
-          <label class="field">
-            <span>E-mail</span>
-            <input name="email" type="email" autocomplete="email" required placeholder="email@voorbeeld.nl" />
-          </label>
-          <button class="primary-btn" type="submit">Resetlink versturen</button>
-          <button class="link-btn" data-auth-mode="login" type="button">Terug naar inloggen</button>
-          <p id="forgotPasswordMessage" class="login-message"></p>
-        </form>
+function cleanEmail(value: unknown) {
+  return String(value || "").trim().toLowerCase();
+}
 
-        <form id="setPasswordForm" class="login-form auth-panel" data-auth-panel="set-password">
-          <h1 id="setPasswordTitle">Maak je wachtwoord aan</h1>
-          <p id="setPasswordIntro" class="auth-note">Kies een eigen wachtwoord. Daarna kun je normaal inloggen met e-mail en wachtwoord.</p>
-          <label class="field">
-            <span>Nieuw wachtwoord</span>
-            <input name="password" type="password" autocomplete="new-password" required placeholder="Minimaal 6 tekens" />
-          </label>
-          <label class="field">
-            <span>Herhaal wachtwoord</span>
-            <input name="passwordConfirm" type="password" autocomplete="new-password" required placeholder="Herhaal wachtwoord" />
-          </label>
-          <button class="primary-btn" type="submit">Wachtwoord opslaan</button>
-          <p id="setPasswordMessage" class="login-message"></p>
-        </form>
-        <p id="onlineStatus" class="auth-note"></p>
-      </div>
-    </section>
+function safeWebappRedirect(value: unknown) {
+  const requested = String(value || "").trim();
+  const candidates = [requested, Deno.env.get("WEBAPP_URL"), WEBAPP_URL].filter(Boolean);
+  for (const candidate of candidates) {
+    try {
+      const url = new URL(String(candidate));
+      if (url.protocol === "https:" && url.hostname === "appfmz.nl") {
+        return url.origin;
+      }
+    } catch {
+      // Ignore invalid redirect values.
+    }
+  }
+  return WEBAPP_URL;
+}
 
-    <div class="app-shell">
-      <header class="topbar">
-        <div class="brand">
-          <div class="brand-logo-wrap">
-            <img src="assets/fit-met-zorge-logo-cropped.png" alt="Fit Met Zorge logo" class="brand-logo" />
-          </div>
-          <div>
-            <strong>Fit Met Zorge</strong>
-            <span>Coach platform</span>
-          </div>
-        </div>
+function isExistingUserError(error: unknown) {
+  const message = String((error as { message?: string })?.message || error || "").toLowerCase();
+  return message.includes("already") || message.includes("registered") || message.includes("exists");
+}
 
-        <div class="topbar-controls">
-          <label class="field compact">
-            <span>Client</span>
-            <select id="clientSelect"></select>
-          </label>
-          <span id="syncStatus" class="sync-status"></span>
-          <span id="currentUserLabel" class="current-user"></span>
-          <button id="logoutButton" class="secondary-btn" type="button">Uitloggen</button>
-          <button id="themeToggle" class="icon-btn" type="button" aria-label="Thema wisselen" title="Thema wisselen">◐</button>
-        </div>
-      </header>
+serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+  if (req.method !== "POST") {
+    return jsonResponse({ error: "Alleen POST is toegestaan." }, 405);
+  }
 
-      <aside class="sidebar">
-        <nav id="nav" class="nav"></nav>
-      </aside>
+  const supabaseUrl = Deno.env.get("SUPABASE_URL");
+  const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+  const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!supabaseUrl || !anonKey || !serviceRoleKey) {
+    return jsonResponse({ error: "Supabase secrets ontbreken voor invite-client." }, 500);
+  }
 
-      <main class="content">
-        <section id="trainer-dashboard" class="view active" data-view-title="Trainer dashboard">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Trainer</p>
-              <h1>Dashboard</h1>
-            </div>
-            <button class="primary-btn" data-action="open-view" data-target="clients" type="button">Client toevoegen</button>
-          </div>
+  const authorization = req.headers.get("Authorization") || "";
+  if (!authorization.startsWith("Bearer ")) {
+    return jsonResponse({ error: "Log opnieuw in als trainer om een uitnodiging te sturen." }, 401);
+  }
 
-          <div id="trainerKpis" class="kpi-grid"></div>
+  const userClient = createClient(supabaseUrl, anonKey, {
+    global: { headers: { Authorization: authorization } }
+  });
+  const adminClient = createClient(supabaseUrl, serviceRoleKey, {
+    auth: { autoRefreshToken: false, persistSession: false }
+  });
 
-          <div class="panel">
-            <div class="panel-head">
-              <h2>Ledenoverzicht</h2>
-              <select id="memberFilter" class="small-select">
-                <option value="all">Alle leden</option>
-                <option value="attention">Aandacht nodig</option>
-                <option value="today">Vandaag afspraak</option>
-              </select>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Client</th>
-                    <th>Doel</th>
-                    <th>Kcal</th>
-                    <th>Stappen</th>
-                    <th>Slaap</th>
-                    <th>Welzijn</th>
-                    <th>Water</th>
-                    <th>Volgende afspraak</th>
-                  </tr>
-                </thead>
-                <tbody id="memberTable"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+  const { data: userData, error: userError } = await userClient.auth.getUser();
+  if (userError || !userData?.user) {
+    return jsonResponse({ error: "Trainer sessie kon niet worden gecontroleerd." }, 401);
+  }
 
-        <section id="client-home" class="view" data-view-title="Client dashboard">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Client</p>
-              <h1>Mijn plan</h1>
-            </div>
-            <button class="primary-btn" data-action="open-view" data-target="water" type="button">Water bijhouden</button>
-          </div>
-          <div id="clientSummary" class="summary-layout"></div>
-        </section>
+  const { data: trainerProfile, error: trainerError } = await userClient
+    .from("profiles")
+    .select("id, role, email, name")
+    .eq("id", userData.user.id)
+    .maybeSingle();
 
-        <section id="clients" class="view" data-view-title="Clienten">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Beheer</p>
-              <h1>Clienten koppelen</h1>
-            </div>
-          </div>
+  if (trainerError) {
+    return jsonResponse({ error: trainerError.message }, 500);
+  }
+  if (!trainerProfile || trainerProfile.role !== "trainer") {
+    return jsonResponse({ error: "Alleen trainers kunnen clienten uitnodigen." }, 403);
+  }
 
-          <div class="split-layout">
-            <form id="clientForm" class="panel form-panel">
-              <h2>Lid toevoegen via e-mail</h2>
-              <div class="form-grid">
-                <label class="field"><span>Voornaam</span><input name="firstName" required placeholder="Voornaam" /></label>
-                <label class="field"><span>Achternaam</span><input name="lastName" required placeholder="Achternaam" /></label>
-              </div>
-              <label class="field"><span>E-mail</span><input name="email" type="email" required placeholder="client@email.nl" /></label>
-              <div class="form-grid">
-                <label class="field"><span>Telefoonnummer</span><input name="phone" placeholder="06..." /></label>
-                <label class="field"><span>Geboortedatum</span><input name="birthDate" type="date" /></label>
-                <label class="field"><span>Leeftijd</span><input name="age" type="number" min="0" /></label>
-                <label class="field"><span>Lengte cm</span><input name="height" type="number" min="0" step="0.1" /></label>
-                <label class="field"><span>Huidig gewicht</span><input name="currentWeight" type="number" min="0" step="0.1" /></label>
-                <label class="field"><span>Doelgewicht</span><input name="targetWeight" type="number" min="0" step="0.1" /></label>
-              </div>
-              <label class="field"><span>Adres</span><input name="address" placeholder="Straat en huisnummer" /></label>
-              <div class="form-grid">
-                <label class="field"><span>Postcode</span><input name="postalCode" /></label>
-                <label class="field"><span>Plaats</span><input name="city" /></label>
-                <label class="field"><span>Land</span><input name="country" value="Nederland" /></label>
-              </div>
-              <div class="form-grid">
-                <label class="field"><span>Noodcontact naam</span><input name="emergencyName" /></label>
-                <label class="field"><span>Noodcontact telefoon</span><input name="emergencyPhone" /></label>
-              </div>
-              <label class="field"><span>Trainingsdoel</span><input name="goal" placeholder="Bijv. 8 kg afvallen" /></label>
-              <label class="field"><span>Blessures/opmerkingen</span><textarea name="injuries" rows="3"></textarea></label>
-              <div class="form-grid">
-                <label class="field"><span>Startdatum</span><input name="startDate" type="date" /></label>
-                <label class="field"><span>Pakket/abonnement</span><input name="package" placeholder="Bijv. Basis, Progressie" /></label>
-              </div>
-              <label class="field">
-                <span>Demo/noodwachtwoord</span>
-                <input name="password" value="client123" required />
-              </label>
-              <p class="auth-note">Online krijgt de client een uitnodigingsmail en kiest daarna zelf een wachtwoord. Dit veld is alleen voor lokale demo of noodinlog.</p>
-              <div class="form-grid">
-                <label class="field">
-                  <span>Kcal training</span>
-                  <input name="kcalTraining" type="number" min="0" value="2600" />
-                </label>
-                <label class="field">
-                  <span>Kcal rust</span>
-                  <input name="kcalRest" type="number" min="0" value="2300" />
-                </label>
-                <label class="field">
-                  <span>Eiwit</span>
-                  <input name="protein" type="number" min="0" value="180" />
-                </label>
-                <label class="field">
-                  <span>Stappen</span>
-                  <input name="steps" type="number" min="0" value="10000" />
-                </label>
-              </div>
-              <button class="primary-btn" type="submit">Account koppelen</button>
-              <p id="clientInviteMessage" class="form-note"></p>
-            </form>
+  const body = await req.json().catch(() => ({}));
+  const email = cleanEmail(body.email);
+  const name = String(body.name || email.split("@")[0] || "Client").trim();
+  const clientId = String(body.clientId || "").trim();
+  const redirectTo = safeWebappRedirect(body.redirectTo);
 
-            <div class="panel">
-              <div class="panel-head">
-                <h2>Gekoppelde clienten</h2>
-              </div>
-              <div id="clientCards" class="client-grid"></div>
-            </div>
-          </div>
+  if (!email || !email.includes("@")) {
+    return jsonResponse({ error: "Vul een geldig e-mailadres in." }, 400);
+  }
 
-          <form id="goalForm" class="panel form-panel">
-            <div class="panel-head">
-              <h2 id="goalFormTitle">Doelen bewerken</h2>
-              <span id="goalFormHint" class="muted">Zichtbaar voor de client in alle trackers</span>
-            </div>
-            <label class="field">
-              <span>Plan in het kort</span>
-              <textarea name="planSummary" rows="3"></textarea>
-            </label>
-            <label class="field">
-              <span>Hoofddoel</span>
-              <input name="goal" />
-            </label>
-            <div class="form-grid goal-form-grid">
-              <label class="field"><span>Kcal training</span><input name="kcalTraining" type="number" min="0" /></label>
-              <label class="field"><span>Kcal rust</span><input name="kcalRest" type="number" min="0" /></label>
-              <label class="field"><span>Eiwit g</span><input name="protein" type="number" min="0" /></label>
-              <label class="field"><span>KH training g</span><input name="carbsTraining" type="number" min="0" /></label>
-              <label class="field"><span>KH rust g</span><input name="carbsRest" type="number" min="0" /></label>
-              <label class="field"><span>Vet g</span><input name="fat" type="number" min="0" /></label>
-              <label class="field"><span>Stappen per dag</span><input name="steps" type="number" min="0" /></label>
-              <label class="field"><span>Slaap uren</span><input name="sleep" type="number" min="0" step="0.1" /></label>
-              <label class="field"><span>Water liters</span><input name="water" type="number" min="0" step="0.1" /></label>
-              <label class="field"><span>Welzijn score</span><input name="wellbeing" type="number" min="0" max="10" step="0.1" /></label>
-              <label class="field"><span>Doelgewicht</span><input name="targetWeight" type="number" min="0" step="0.1" /></label>
-            </div>
-            <div class="profile-edit-grid">
-              <label class="field"><span>Voornaam</span><input name="firstName" /></label>
-              <label class="field"><span>Achternaam</span><input name="lastName" /></label>
-              <label class="field"><span>Telefoonnummer</span><input name="phone" /></label>
-              <label class="field"><span>Geboortedatum</span><input name="birthDate" type="date" /></label>
-              <label class="field"><span>Leeftijd</span><input name="age" type="number" min="0" /></label>
-              <label class="field"><span>Lengte cm</span><input name="height" type="number" min="0" step="0.1" /></label>
-              <label class="field"><span>Huidig gewicht</span><input name="currentWeight" type="number" min="0" step="0.1" /></label>
-              <label class="field"><span>Adres</span><input name="address" /></label>
-              <label class="field"><span>Postcode</span><input name="postalCode" /></label>
-              <label class="field"><span>Plaats</span><input name="city" /></label>
-              <label class="field"><span>Land</span><input name="country" /></label>
-              <label class="field"><span>Noodcontact naam</span><input name="emergencyName" /></label>
-              <label class="field"><span>Noodcontact telefoon</span><input name="emergencyPhone" /></label>
-              <label class="field"><span>Startdatum</span><input name="startDate" type="date" /></label>
-              <label class="field"><span>Pakket/abonnement</span><input name="package" /></label>
-              <label class="field wide"><span>Blessures/opmerkingen</span><textarea name="injuries" rows="3"></textarea></label>
-            </div>
-            <button class="primary-btn" type="submit">Doelen opslaan</button>
-          </form>
-        </section>
+  const userMetadata = {
+    role: "client",
+    trainer_id: trainerProfile.id,
+    client_id: clientId,
+    name
+  };
 
-        <section id="training" class="view" data-view-title="Trainingsschema">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Schema</p>
-              <h1>Trainingsschema</h1>
-            </div>
-          </div>
+  const invite = await adminClient.auth.admin.inviteUserByEmail(email, {
+    redirectTo,
+    data: userMetadata
+  });
 
-          <div class="panel training-panel">
-            <div class="week-toolbar">
-              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-              <strong data-week-label></strong>
-              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-            </div>
-            <div id="trainingCopyPanel" class="schema-copy-panel">
-              <label class="field compact">
-                <span>Kopieren naar</span>
-                <select id="trainingCopyTarget"></select>
-              </label>
-              <button class="secondary-btn" data-copy-training-schema type="button">Schema kopieren</button>
-              <span class="save-feedback" data-save-feedback="training-copy"></span>
-            </div>
-            <div class="goal-strip" id="trainingGoalStrip"></div>
-            <div class="training-builder">
-              <aside class="training-day-sidebar">
-                <div class="panel-head compact-head">
-                  <h2>Dagen</h2>
-                </div>
-                <div id="trainingDayTabs" class="training-day-tabs"></div>
-              </aside>
+  if (!invite.error) {
+    return jsonResponse({
+      ok: true,
+      mode: "invite",
+      redirectTo,
+      message: "Uitnodiging verzonden."
+    });
+  }
 
-              <div class="training-session-area">
-                <form id="trainingForm" class="training-form">
-                  <input id="trainingFormDay" name="day" type="hidden" value="Maandag" />
-                  <input name="exercise" placeholder="Oefening handmatig toevoegen" required />
-                  <input name="sets" type="number" min="1" placeholder="Sets" required />
-                  <input name="reps" placeholder="Reps" required />
-                  <input name="targetWeight" type="number" min="0" step="0.5" placeholder="Doel kg" />
-                  <input name="tempo" placeholder="Tempo" />
-                  <input name="rest" placeholder="Rust" />
-                  <input name="image" placeholder="Foto URL optioneel" />
-                  <button class="primary-btn" type="submit">Toevoegen</button>
-                </form>
-                <div id="trainingDays" class="training-days"></div>
-              </div>
+  if (!isExistingUserError(invite.error)) {
+    return jsonResponse({ error: invite.error.message || "Uitnodiging kon niet worden verzonden." }, 400);
+  }
 
-              <aside id="exerciseLibraryPanel" class="exercise-library-panel">
-                <div class="panel-head compact-head">
-                  <h2>Oefenbibliotheek</h2>
-                  <span id="exerciseLibraryCount" class="muted"></span>
-                </div>
-                <div class="library-controls">
-                  <input id="exerciseSearch" placeholder="Zoek oefening..." />
-                  <select id="exerciseFilter">
-                    <option>Alles</option>
-                    <option>Borst</option>
-                    <option>Rug</option>
-                    <option>Schouders</option>
-                    <option>Biceps</option>
-                    <option>Triceps</option>
-                    <option>Benen</option>
-                    <option>Billen</option>
-                    <option>Buikspieren</option>
-                    <option>Cardio</option>
-                    <option>Kettlebell</option>
-                    <option>Ballen</option>
-                  </select>
-                </div>
-                <form id="exerciseLibraryForm" class="manual-exercise-form">
-                  <h3>Eigen oefening toevoegen</h3>
-                  <input name="name" placeholder="Naam oefening" required />
-                  <select name="group">
-                    <option>Borst</option>
-                    <option>Rug</option>
-                    <option>Schouders</option>
-                    <option>Biceps</option>
-                    <option>Triceps</option>
-                    <option>Benen</option>
-                    <option>Billen</option>
-                    <option>Buikspieren</option>
-                    <option>Cardio</option>
-                    <option>Full body</option>
-                  </select>
-                  <select name="equipment">
-                    <option>Machine</option>
-                    <option>Dumbbell</option>
-                    <option>Barbell</option>
-                    <option>Cable</option>
-                    <option>Bodyweight</option>
-                    <option>Kettlebell</option>
-                    <option>Medicine ball</option>
-                    <option>Stability ball</option>
-                    <option>Bosu ball</option>
-                    <option>Cardio apparaat</option>
-                  </select>
-                  <input name="image" placeholder="Foto URL" />
-                  <button class="secondary-btn" type="submit">Toevoegen aan bibliotheek</button>
-                </form>
-                <div id="exerciseLibraryList" class="exercise-library-list"></div>
-              </aside>
-            </div>
-          </div>
-        </section>
+  const recovery = await adminClient.auth.resetPasswordForEmail(email, {
+    redirectTo
+  });
 
-        <section id="nutrition" class="view" data-view-title="Voedingsschema">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Voeding</p>
-              <h1>Voedingsschema en macro's</h1>
-            </div>
-          </div>
-          <div class="week-toolbar">
-            <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-            <strong data-week-label></strong>
-            <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-            <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-          </div>
+  if (recovery.error) {
+    return jsonResponse({ error: recovery.error.message || "Uitnodiging kon niet opnieuw worden verzonden." }, 400);
+  }
 
-          <div class="nutrition-layout">
-            <form id="nutritionPlanForm" class="panel form-panel">
-              <h2>Voedingsplan toevoegen</h2>
-              <label class="field">
-                <span>Eetmoment</span>
-                <select name="mealType" required>
-                  <option value="breakfast">Ontbijt</option>
-                  <option value="snack">Tussendoor</option>
-                  <option value="lunch">Middageten</option>
-                  <option value="dinner">Avondeten</option>
-                  <option value="late">Late night snack</option>
-                </select>
-              </label>
-              <label class="field">
-                <span>Optie naam</span>
-                <input name="meal" placeholder="Bijv. Kwark bowl" required />
-              </label>
-              <label class="field">
-                <span>Producten</span>
-                <textarea name="items" rows="4" placeholder="Havermout 80g, whey 30g"></textarea>
-              </label>
-              <div class="form-grid">
-                <label class="field">
-                  <span>Kcal</span>
-                  <input name="kcal" type="number" min="0" />
-                </label>
-                <label class="field">
-                  <span>Eiwit</span>
-                  <input name="protein" type="number" min="0" />
-                </label>
-                <label class="field">
-                  <span>KH</span>
-                  <input name="carbs" type="number" min="0" />
-                </label>
-                <label class="field">
-                  <span>Vet</span>
-                  <input name="fat" type="number" min="0" />
-                </label>
-              </div>
-              <button class="primary-btn" type="submit">Schema toevoegen</button>
-            </form>
-
-            <div class="panel nutrition-plan-panel">
-              <div class="panel-head">
-                <h2>Voedingsplan client</h2>
-                <span class="muted">Wat de client moet eten</span>
-              </div>
-              <div id="nutritionCopyPanel" class="schema-copy-panel">
-                <label class="field compact">
-                  <span>Kopieren naar</span>
-                  <select id="nutritionCopyTarget"></select>
-                </label>
-                <button class="secondary-btn" data-copy-nutrition-schema type="button">Schema kopieren</button>
-                <span class="save-feedback" data-save-feedback="nutrition-copy"></span>
-              </div>
-              <div id="nutritionPlanList" class="meal-plan-grid"></div>
-            </div>
-
-            <div id="recipePanel" class="panel trainer-tool">
-              <div class="panel-head">
-                <h2>Trainer AI receptgenerator</h2>
-              </div>
-              <form id="recipeForm" class="inline-form recipe-form">
-                <select name="mealType">
-                  <option value="breakfast">Ontbijt</option>
-                  <option value="snack">Tussendoor</option>
-                  <option value="lunch">Middageten</option>
-                  <option value="dinner">Avondeten</option>
-                  <option value="late">Late night snack</option>
-                </select>
-                <input name="kcal" type="number" min="200" value="650" placeholder="Kcal" />
-                <input name="protein" type="number" min="10" value="45" placeholder="Eiwit" />
-                <input name="carbs" type="number" min="0" value="70" placeholder="KH" />
-                <input name="fat" type="number" min="0" value="18" placeholder="Vet" />
-                <select name="style">
-                  <option value="all">Alle variaties</option>
-                  <option value="balanced">Gebalanceerd</option>
-                  <option value="high-carb">High carb</option>
-                  <option value="low-carb">Low carb</option>
-                  <option value="vegetarian">Vegetarisch</option>
-                </select>
-                <button class="secondary-btn" type="submit">Opties maken</button>
-              </form>
-              <div id="recipeOutput" class="recipe-output"></div>
-            </div>
-
-            <div id="macroCalculatorPanel" class="panel trainer-tool">
-              <div class="panel-head">
-                <h2>Trainer product calculator</h2>
-                <button class="secondary-btn" data-reset-calc type="button">Calculator resetten</button>
-              </div>
-              <form id="macroForm" class="inline-form">
-                <select name="product" id="productSelect"></select>
-                <input name="grams" type="number" min="1" value="100" placeholder="Gram" />
-                <button class="primary-btn" type="submit">Toevoegen</button>
-              </form>
-              <div id="macroTotals" class="macro-totals"></div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Product</th>
-                      <th>Gram</th>
-                      <th>Kcal</th>
-                      <th>Eiwit</th>
-                      <th>KH</th>
-                      <th>Vet</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody id="foodLogTable"></tbody>
-                </table>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <section id="nutrition-log" class="view" data-view-title="Voedingslog">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Voeding</p>
-              <h1>Voedingslog</h1>
-            </div>
-          </div>
-          <div class="week-toolbar">
-            <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-            <strong data-week-label></strong>
-            <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-            <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-          </div>
-          <div id="clientFoodPanel" class="panel client-food-panel">
-            <div class="panel-head">
-              <h2>Voedingslog per dag</h2>
-              <span class="muted">Gebaseerd op het voedingsschema van de trainer</span>
-            </div>
-            <div id="dailyFoodTotals" class="macro-totals"></div>
-            <div id="weeklyFoodLogGrid" class="food-log-week-grid"></div>
-            <div id="actualFoodLogCards" class="food-log-cards"></div>
-          </div>
-        </section>
-
-        <section id="steps" class="view" data-view-title="Stappen">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Tracker</p>
-              <h1>Stappen</h1>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="week-toolbar">
-              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-              <strong data-week-label></strong>
-              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-            </div>
-            <div class="goal-strip" id="stepsGoalStrip"></div>
-            <div id="stepsGrid" class="week-grid"></div>
-          </div>
-        </section>
-
-        <section id="progress" class="view" data-view-title="Voortgang">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Metingen</p>
-              <h1>Voortgang</h1>
-            </div>
-          </div>
-          <div class="split-layout agenda-layout">
-            <form id="measurementForm" class="panel form-panel">
-              <h2>Weekmeting</h2>
-              <div class="form-grid">
-                <input name="week" placeholder="Week" value="Week 1" />
-                <input name="weight" type="number" step="0.1" placeholder="Gewicht" />
-                <input name="waist" type="number" step="0.1" placeholder="Taille" />
-                <input name="chest" type="number" step="0.1" placeholder="Borst" />
-                <input name="arm" type="number" step="0.1" placeholder="Arm" />
-                <input name="leg" type="number" step="0.1" placeholder="Been" />
-              </div>
-              <button class="primary-btn" type="submit">Meting opslaan</button>
-            </form>
-            <div class="panel">
-              <h2>Dagelijks gewicht</h2>
-              <div class="week-toolbar">
-                <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-                <strong data-week-label></strong>
-                <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-                <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-              </div>
-              <div class="goal-strip" id="progressGoalStrip"></div>
-              <div id="dailyWeightGrid" class="week-grid weight-grid"></div>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Week</th>
-                    <th>Gewicht</th>
-                    <th>Taille</th>
-                    <th>Borst</th>
-                    <th>Arm</th>
-                    <th>Been</th>
-                    <th>Verschil</th>
-                  </tr>
-                </thead>
-                <tbody id="measurementTable"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        <section id="wellbeing" class="view" data-view-title="Welzijn">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Check-in</p>
-              <h1>Welzijn</h1>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="week-toolbar">
-              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-              <strong data-week-label></strong>
-              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-            </div>
-            <div class="goal-strip" id="wellbeingGoalStrip"></div>
-            <div id="wellbeingGrid" class="tracker-grid"></div>
-          </div>
-        </section>
-
-        <section id="sleep" class="view" data-view-title="Slaap">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Herstel</p>
-              <h1>Slaaptracker</h1>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="week-toolbar">
-              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-              <strong data-week-label></strong>
-              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-            </div>
-            <div class="goal-strip" id="sleepGoalStrip"></div>
-            <div id="sleepGrid" class="tracker-grid"></div>
-          </div>
-        </section>
-
-        <section id="water" class="view" data-view-title="Water">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Hydratatie</p>
-              <h1>Water</h1>
-            </div>
-          </div>
-          <div class="panel water-panel">
-            <div class="week-toolbar">
-              <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-              <strong data-week-label></strong>
-              <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-              <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-            </div>
-            <div class="goal-strip" id="waterGoalStrip"></div>
-            <div id="waterDisplay" class="water-display"></div>
-            <div id="waterDayGrid" class="water-day-grid"></div>
-          </div>
-        </section>
-
-        <section id="agenda" class="view" data-view-title="Agenda">
-          <div class="view-head agenda-view-head">
-            <div>
-              <p class="eyebrow">Planning</p>
-              <h1>Agenda</h1>
-            </div>
-            <div class="agenda-head-actions">
-              <button id="notificationPermission" class="secondary-btn" type="button">Meldingen aanzetten</button>
-              <button id="openAppointmentForm" class="primary-btn" type="button">Afspraak toevoegen</button>
-            </div>
-          </div>
-
-          <div id="agendaError" class="agenda-message" role="status"></div>
-
-          <div class="agenda-shell">
-            <div class="agenda-main">
-              <form id="appointmentForm" class="panel form-panel agenda-planner" hidden>
-                <input name="appointmentId" type="hidden" />
-                <div class="agenda-form-head">
-                  <div>
-                    <p class="eyebrow">Boeking</p>
-                    <h2 id="appointmentFormTitle">Afspraak toevoegen</h2>
-                  </div>
-                  <button class="secondary-btn" data-close-appointment-form type="button">Sluiten</button>
-                </div>
-                <div class="form-grid">
-                  <label class="field">
-                    <span>Client</span>
-                    <select name="clientId" id="appointmentClient" required></select>
-                  </label>
-                  <label class="field">
-                    <span>Afspraaksoort</span>
-                    <select name="appointmentTypeId" id="appointmentTypeSelect" required></select>
-                  </label>
-                </div>
-                <div class="form-grid">
-                  <label class="field">
-                    <span>Datum</span>
-                    <input name="date" type="date" required />
-                  </label>
-                  <label class="field">
-                    <span>Starttijd</span>
-                    <input name="time" type="time" required />
-                  </label>
-                  <label class="field">
-                    <span>Eindtijd</span>
-                    <input name="endTime" type="time" required />
-                  </label>
-                </div>
-                <div class="form-grid">
-                  <label class="field">
-                    <span>Locatie</span>
-                    <input name="location" placeholder="Hoogerheide" />
-                  </label>
-                  <label class="field">
-                    <span>Prijs</span>
-                    <input name="amount" type="number" min="0" step="0.01" placeholder="0,00" />
-                  </label>
-                  <label class="field">
-                    <span>Status</span>
-                    <select name="status">
-                      <option value="planned">Gepland</option>
-                      <option value="done">Geweest</option>
-                      <option value="cancelled">Geannuleerd</option>
-                    </select>
-                  </label>
-                </div>
-                <div class="form-grid">
-                  <label class="field">
-                    <span>Herhalen</span>
-                    <select name="repeat">
-                      <option value="none">Niet herhalen</option>
-                      <option value="weekly">Wekelijks</option>
-                      <option value="monthly">Maandelijks</option>
-                    </select>
-                  </label>
-                  <label class="field">
-                    <span>Titel</span>
-                    <input name="type" placeholder="Optionele titel" />
-                  </label>
-                </div>
-                <label class="field">
-                  <span>Notities</span>
-                  <textarea name="notes" rows="3" placeholder="Interne notitie"></textarea>
-                </label>
-                <div class="form-actions">
-                  <button id="appointmentDeleteButton" class="danger-btn" data-delete-current-appointment type="button" hidden>Verwijderen</button>
-                  <button class="primary-btn" type="submit">Opslaan</button>
-                </div>
-              </form>
-
-              <div class="panel agenda-calendar-panel">
-                <div class="panel-head agenda-calendar-head">
-                  <div>
-                    <p class="eyebrow">Weekplanning</p>
-                    <h2 id="agendaPanelTitle">Weekagenda</h2>
-                  </div>
-                  <div id="calendarControls" class="calendar-controls">
-                    <button id="prevWeek" class="secondary-btn" type="button">Vorige</button>
-                    <strong id="calendarWeekLabel"></strong>
-                    <button id="todayWeek" class="secondary-btn" type="button">Vandaag</button>
-                    <button id="nextWeek" class="secondary-btn" type="button">Volgende</button>
-                  </div>
-                </div>
-                <div id="agendaFilters" class="agenda-filters">
-                  <label class="field compact">
-                    <span>Client</span>
-                    <select id="agendaClientFilter"></select>
-                  </label>
-                  <label class="field compact">
-                    <span>Afspraaksoort</span>
-                    <select id="agendaTypeFilter"></select>
-                  </label>
-                </div>
-                <div id="agendaStats" class="agenda-stats"></div>
-                <div id="weekCalendar" class="week-calendar"></div>
-              </div>
-
-              <div class="agenda-list-grid">
-                <section class="panel">
-                  <div class="panel-head">
-                    <div>
-                      <p class="eyebrow">Planning</p>
-                      <h2>Aankomende afspraken</h2>
-                    </div>
-                  </div>
-                  <div id="upcomingAppointmentsList" class="agenda-list"></div>
-                </section>
-                <details id="previousAppointmentsBlock" class="panel history-block">
-                  <summary>Vorige afspraken</summary>
-                  <div id="previousAppointmentsList" class="history-list"></div>
-                </details>
-              </div>
-            </div>
-
-            <aside id="appointmentTypeManager" class="panel appointment-type-manager agenda-types-sidebar">
-              <div class="panel-head">
-                <div>
-                  <p class="eyebrow">Bibliotheek</p>
-                  <h2>Afspraaksoorten</h2>
-                </div>
-              </div>
-              <form id="appointmentTypeForm" class="appointment-type-form">
-                <input name="typeId" type="hidden" />
-                <label class="field">
-                  <span>Naam</span>
-                  <input name="name" placeholder="Personal training" required />
-                </label>
-                <div class="form-grid two">
-                  <label class="field">
-                    <span>Duur</span>
-                    <input name="duration" type="number" min="0" step="5" placeholder="60" />
-                  </label>
-                  <label class="field">
-                    <span>Prijs</span>
-                    <input name="price" type="number" min="0" step="0.01" placeholder="60" />
-                  </label>
-                </div>
-                <label class="field">
-                  <span>Locatie</span>
-                  <input name="location" placeholder="Hoogerheide" />
-                </label>
-                <label class="field">
-                  <span>Categorie</span>
-                  <input name="category" placeholder="Training" />
-                </label>
-                <label class="field color-field">
-                  <span>Kleur</span>
-                  <input name="color" type="color" value="#c89312" title="Kleur" />
-                </label>
-                <div class="form-actions">
-                  <button class="secondary-btn" data-reset-appointment-type-form type="button">Nieuw</button>
-                  <button class="primary-btn" type="submit">Opslaan</button>
-                </div>
-              </form>
-              <div id="appointmentTypeList" class="appointment-type-list"></div>
-            </aside>
-          </div>
-        </section>
-
-        <section id="finance" class="view" data-view-title="Financien">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Trainer</p>
-              <h1>Financien</h1>
-            </div>
-            <div class="finance-toolbar">
-              <button id="resetFinance" class="danger-btn" data-reset-finance type="button">Financien resetten</button>
-              <label class="field compact">
-                <span>Maand</span>
-                <input id="financeMonthFilter" type="month" />
-              </label>
-              <label class="field compact">
-                <span>Client</span>
-                <select id="financeClientFilter"></select>
-              </label>
-            </div>
-          </div>
-          <div id="financeTabs" class="finance-tabs"></div>
-          <div id="financeKpis" class="kpi-grid finance-kpis"></div>
-
-          <div class="finance-panel active" data-finance-panel="overview">
-            <div class="finance-overview-grid">
-              <div class="panel">
-                <div class="panel-head">
-                  <h2>Omzet per maand</h2>
-                  <span class="muted">Automatische totalen</span>
-                </div>
-                <div class="table-wrap">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Maand</th>
-                        <th>Omzet</th>
-                        <th>Betaald</th>
-                      </tr>
-                    </thead>
-                    <tbody id="financeMonthTable"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="finance-panel" data-finance-panel="appointments">
-            <div class="panel">
-              <div class="panel-head">
-                <h2>Afspraken en omzet</h2>
-                <span class="muted">Tarief, bedrag en betaalstatus per afspraak</span>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Datum</th>
-                      <th>Client</th>
-                      <th>Afspraak</th>
-                      <th>Tarief</th>
-                      <th>Bedrag</th>
-                      <th>Status</th>
-                      <th>Omzet</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody id="financeAppointmentTable"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="finance-panel" data-finance-panel="rates">
-            <div class="finance-layout">
-              <form id="financeRateForm" class="panel form-panel">
-                <h2>Tarieven beheren</h2>
-                <label class="field">
-                  <span>Naam tarief</span>
-                  <input name="name" placeholder="Personal training" required />
-                </label>
-                <label class="field">
-                  <span>Bedrag</span>
-                  <input name="amount" type="number" min="0" step="0.01" placeholder="60" required />
-                </label>
-                <button class="primary-btn" type="submit">Tarief opslaan</button>
-              </form>
-              <div class="panel">
-                <div class="panel-head">
-                  <h2>Actieve tarieven</h2>
-                </div>
-                <div id="financeRatesList" class="rate-list"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="finance-panel" data-finance-panel="clients">
-            <div class="panel">
-              <div class="panel-head">
-                <h2>Omzet per client</h2>
-                <span class="muted">Gesorteerd op hoogste omzet</span>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Client</th>
-                      <th>Omzet</th>
-                      <th>Betaald</th>
-                      <th>Niet betaald</th>
-                    </tr>
-                  </thead>
-                  <tbody id="financeClientTable"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="administration" class="view" data-view-title="Administratie">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Trainer</p>
-              <h1>Administratie</h1>
-            </div>
-            <div class="finance-toolbar">
-              <button id="resetAdministration" class="danger-btn" data-reset-administration type="button">Administratie resetten</button>
-              <label class="field compact">
-                <span>Maand</span>
-                <input id="adminMonthFilter" type="month" />
-              </label>
-              <label class="field compact">
-                <span>Client</span>
-                <select id="adminClientFilter"></select>
-              </label>
-            </div>
-          </div>
-          <div id="adminKpis" class="kpi-grid finance-kpis"></div>
-          <div class="finance-layout">
-            <form id="financeAdminForm" class="panel form-panel">
-              <h2>Administratie toevoegen</h2>
-              <label class="field">
-                <span>Type</span>
-                <select name="type">
-                  <option value="invoice">Factuur</option>
-                  <option value="payment">Betaling</option>
-                  <option value="expense">Kosten / bon</option>
-                  <option value="note">Notitie</option>
-                </select>
-              </label>
-              <label class="field">
-                <span>Client</span>
-                <select name="clientId" id="financeAdminClient"></select>
-              </label>
-              <label class="field">
-                <span>Omschrijving</span>
-                <input name="description" placeholder="Bijv. PT sessie juni" required />
-              </label>
-              <div class="form-grid">
-                <label class="field">
-                  <span>Datum</span>
-                  <input name="date" type="date" />
-                </label>
-                <label class="field">
-                  <span>Vervaldatum</span>
-                  <input name="dueDate" type="date" />
-                </label>
-              </div>
-              <div class="form-grid">
-                <label class="field">
-                  <span>Bedrag</span>
-                  <input name="amount" type="number" min="0" step="0.01" placeholder="0,00" />
-                </label>
-                <label class="field">
-                  <span>Status</span>
-                  <select name="status">
-                    <option value="unpaid">Niet betaald</option>
-                    <option value="paid">Betaald</option>
-                  </select>
-                </label>
-              </div>
-              <button class="primary-btn" type="submit">Administratie opslaan</button>
-            </form>
-            <div class="panel">
-              <div class="panel-head">
-                <h2>Administratie overzicht</h2>
-                <span class="muted">Facturen, betalingen, bonnen en notities</span>
-              </div>
-              <div id="financeAdminList" class="finance-card-list"></div>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-head">
-              <h2>Facturen</h2>
-              <span class="muted">Facturen uit afspraken en administratie downloaden</span>
-            </div>
-            <div id="financeInvoiceList" class="finance-card-list"></div>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="config.js"></script>
-    <script src="app.js"></script>
-  </body>
-</html>
+  return jsonResponse({
+    ok: true,
+    mode: "password-reset-existing-user",
+    redirectTo,
+    message: "Uitnodiging verzonden."
+  });
+});
