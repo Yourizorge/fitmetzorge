@@ -31,7 +31,7 @@ const authStorage = {
       other.removeItem(key);
     } catch {
       // If storage is blocked, Supabase simply cannot persist the session.
-    }
+    } 
   },
   removeItem(key) {
     try {
