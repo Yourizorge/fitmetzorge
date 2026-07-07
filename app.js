@@ -57,10 +57,12 @@ const supabaseClient = HAS_ONLINE_CONFIG
 let onlineProfile = null;
 let onlineReady = false;
 let onlineErrorMessage = "";
+let agendaCloudErrorMessage = "";
 let hydratingFromCloud = false;
 let cloudSaveTimer = null;
 let passwordSetupRequired = false;
 let passwordSetupContext = "";
+let authLinkPasswordHandled = false;
 let navMenuOpen = false;
 
 window.addEventListener("error", (event) => {
@@ -354,6 +356,19 @@ const DEFAULT_APPOINTMENT_TYPES = [
   { id: "appt-online", name: "Online coaching", duration: 30, price: 0, color: "#7c3aed", category: "Online", location: "Online", capacity: 1 },
   { id: "appt-evaluation", name: "Evaluatiegesprek", duration: 45, price: 0, color: "#475569", category: "Evaluatie", location: "Hoogerheide", capacity: 1 }
 ];
+const AGENDA_DAY_START_HOUR = 6;
+const AGENDA_DAY_END_HOUR = 22;
+const AGENDA_SLOT_MINUTES = 30;
+const AGENDA_STATUS_LABELS = {
+  planned: "Gepland",
+  done: "Geweest",
+  cancelled: "Geannuleerd"
+};
+const AGENDA_REPEAT_LABELS = {
+  none: "Niet herhalen",
+  weekly: "Wekelijks",
+  monthly: "Maandelijks"
+};
 let state = normalizeState(loadState());
 let currentView = state.ui.role === "client" ? "client-home" : "trainer-dashboard";
 let recipeOptions = [];
@@ -498,13 +513,18 @@ function defaultClientProfileData() {
 
 function normalizeState(raw) {
   const next = raw && typeof raw === "object" ? raw : seedState();
-  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", financeTab: "overview", financeMonth: todayISO().slice(0, 7), financeClientId: "", ...(next.ui || {}) };
+  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", financeTab: "overview", financeMonth: todayISO().slice(0, 7), financeClientId: "", agendaClientFilter: "", agendaTypeFilter: "", agendaFormOpen: false, editingAppointmentId: "", editingAppointmentClientId: "", ...(next.ui || {}) };
   next.ui.calendarWeekStart = startOfWeekISO(next.ui.calendarWeekStart || todayISO());
   next.ui.trackingWeekStart = startOfWeekISO(next.ui.trackingWeekStart || todayISO());
   if (!DAYS.includes(next.ui.trainingDay)) next.ui.trainingDay = "Maandag";
   if (!FINANCE_TABS.some(([id]) => id === next.ui.financeTab)) next.ui.financeTab = "overview";
   next.ui.financeMonth = /^\d{4}-\d{2}$/.test(next.ui.financeMonth || "") ? next.ui.financeMonth : todayISO().slice(0, 7);
   next.ui.financeClientId = String(next.ui.financeClientId || "");
+  next.ui.agendaClientFilter = String(next.ui.agendaClientFilter || "");
+  next.ui.agendaTypeFilter = String(next.ui.agendaTypeFilter || "");
+  next.ui.agendaFormOpen = Boolean(next.ui.agendaFormOpen);
+  next.ui.editingAppointmentId = String(next.ui.editingAppointmentId || "");
+  next.ui.editingAppointmentClientId = String(next.ui.editingAppointmentClientId || "");
   const currentTrackingWeek = next.ui.trackingWeekStart;
   next.trainerAccount = next.trainerAccount && typeof next.trainerAccount === "object" ? {
     name: next.trainerAccount.name || "Trainer",
@@ -667,9 +687,12 @@ function normalizeState(raw) {
       appt.appointmentTypeId ||= "";
       const apptType = next.trainerFinance.appointmentTypes.find((type) => type.id === appt.appointmentTypeId);
       appt.duration = appt.duration === "" || appt.duration === undefined ? (apptType?.duration ?? "") : number(appt.duration, 0);
+      appt.endTime ||= addMinutesToTime(appt.time || "09:00", number(appt.duration || apptType?.duration || 60, 60));
       appt.color ||= apptType?.color || "#c89312";
       appt.location ||= apptType?.location || "";
-      appt.repeat ||= "";
+      appt.repeat = AGENDA_REPEAT_LABELS[appt.repeat] ? appt.repeat : (appt.repeat === "weekly" || appt.repeat === "monthly" ? appt.repeat : "none");
+      appt.status = AGENDA_STATUS_LABELS[appt.status] ? appt.status : (appt.status === "geweest" ? "done" : "planned");
+      appt.notes ||= "";
       appt.rateId ||= "";
       appt.rateName ||= "";
       appt.amount = appt.amount === "" || appt.amount === undefined ? "" : number(appt.amount, 0);
@@ -683,6 +706,12 @@ function normalizeState(raw) {
   }
   if (next.ui.financeClientId && !next.clients.some((item) => item.id === next.ui.financeClientId)) {
     next.ui.financeClientId = "";
+  }
+  if (next.ui.agendaClientFilter && !next.clients.some((item) => item.id === next.ui.agendaClientFilter)) {
+    next.ui.agendaClientFilter = "";
+  }
+  if (next.ui.agendaTypeFilter && !next.trainerFinance.appointmentTypes.some((item) => item.id === next.ui.agendaTypeFilter)) {
+    next.ui.agendaTypeFilter = "";
   }
   if (next.ui.loggedIn && next.ui.role === "client") {
     const authClient = next.clients.find((item) => item.email === next.ui.authEmail);
@@ -742,6 +771,23 @@ function addDaysISO(dateValue, days) {
   const date = new Date(`${dateValue}T12:00:00`);
   date.setDate(date.getDate() + days);
   return date.toISOString().slice(0, 10);
+}
+
+function timeToMinutes(value) {
+  const match = String(value || "").match(/^(\d{1,2}):(\d{2})/);
+  if (!match) return 0;
+  return Math.max(0, Math.min(24 * 60, number(match[1]) * 60 + number(match[2])));
+}
+
+function minutesToTime(totalMinutes) {
+  const clean = Math.max(0, Math.min(24 * 60 - 1, Math.round(number(totalMinutes, 0))));
+  const hours = Math.floor(clean / 60);
+  const minutes = clean % 60;
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+}
+
+function addMinutesToTime(value, minutes) {
+  return minutesToTime(timeToMinutes(value) + number(minutes, 0));
 }
 
 function formatShortDate(dateValue) {
@@ -1386,6 +1432,12 @@ function ensureAppointmentAdminItems() {
   let changed = false;
   state.clients.forEach((selected) => {
     selected.appointments.forEach((appointment) => {
+      const existingByAppointment = financeAdminItems().find((item) => item.appointmentId === appointment.id && item.clientId === selected.id);
+      if (!appointment.adminItemId && existingByAppointment) {
+        appointment.adminItemId = existingByAppointment.id;
+        syncAppointmentFromAdminItem(existingByAppointment);
+        changed = true;
+      }
       const linkedItemExists = appointment.adminItemId && financeAdminItems().some((item) => item.id === appointment.adminItemId);
       if (!linkedItemExists && !appointment.adminItemSuppressed) {
         syncAppointmentAdminItem(selected, appointment);
@@ -1632,6 +1684,14 @@ function isOnlineMode() {
   return Boolean(supabaseClient);
 }
 
+function isInviteAuthLink() {
+  return INITIAL_AUTH_LINK_TYPE === "invite";
+}
+
+function isRecoveryAuthLink() {
+  return INITIAL_AUTH_LINK_TYPE === "recovery";
+}
+
 function syncStatus(text, stateName = "") {
   const target = $("#syncStatus");
   if (!target) return;
@@ -1840,6 +1900,8 @@ async function loadOnlineWorkspace(profile) {
       .upsert({ trainer_id: profile.id, state: remoteState, updated_at: new Date().toISOString() }, { onConflict: "trainer_id" });
   }
   applyOnlineState(remoteState, profile);
+  await loadAgendaCloudData(profile);
+  renderAll();
 }
 
 async function hydrateOnlineUser(roleHint = "", nameHint = "") {
@@ -1934,6 +1996,7 @@ function requirePasswordSetup(context = "invite") {
 function finishPasswordSetup() {
   passwordSetupRequired = false;
   passwordSetupContext = "";
+  authLinkPasswordHandled = true;
   window.history.replaceState({}, document.title, window.location.pathname);
 }
 
@@ -2000,13 +2063,18 @@ function renderSelectors() {
   $("#clientSelect").closest(".field").style.display = isTrainer() ? "grid" : "none";
   $("#appointmentClient").innerHTML = options;
   $("#appointmentClient").disabled = !state.clients.length;
-  const rateSelect = $("#appointmentRate");
-  if (rateSelect) {
-    rateSelect.innerHTML = `<option value="">Geen tarief</option>${rateOptions()}`;
-  }
   const appointmentTypeSelect = $("#appointmentTypeSelect");
   if (appointmentTypeSelect) {
     appointmentTypeSelect.innerHTML = `<option value="">Kies afspraaksoort</option>${appointmentTypeOptions()}`;
+  }
+  const agendaClientFilter = $("#agendaClientFilter");
+  if (agendaClientFilter) {
+    agendaClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${item.id}" ${item.id === state.ui.agendaClientFilter ? "selected" : ""}>${escapeHTML(item.name)}</option>`).join("")}`;
+    agendaClientFilter.disabled = !isTrainer() || !state.clients.length;
+  }
+  const agendaTypeFilter = $("#agendaTypeFilter");
+  if (agendaTypeFilter) {
+    agendaTypeFilter.innerHTML = `<option value="">Alle afspraaksoorten</option>${appointmentTypes().map((type) => `<option value="${type.id}" ${type.id === state.ui.agendaTypeFilter ? "selected" : ""}>${escapeHTML(type.name)}</option>`).join("")}`;
   }
   const copyOptions = state.clients.length
     ? state.clients.map((item) => `<option value="${item.id}" ${item.id === selected.id ? "selected" : ""}>${item.name}${item.id === selected.id ? " (zelfde client)" : ""}</option>`).join("")
@@ -2587,25 +2655,19 @@ function renderWater() {
     .join("");
 }
 
-function renderPreviousAppointments(selected) {
-  const block = $("#previousAppointmentsBlock");
-  const list = $("#previousAppointmentsList");
-  if (!block || !list) return;
-  const today = todayISO();
-  const items = isTrainer()
-    ? allAppointments()
-    : (hasSelectedClient(selected) ? selected.appointments.map((appt) => ({ ...appt, source: appt, clientName: selected.name, clientId: selected.id })) : []);
-  const previous = items
-    .filter((item) => item.date && item.date < today)
-    .sort((a, b) => `${b.date} ${b.time || ""}`.localeCompare(`${a.date} ${a.time || ""}`));
-  list.innerHTML = previous.length
-    ? previous.map((item) => `
-        <div class="history-item">
-          <strong>${item.date} ${item.time || ""} - ${item.type || "Afspraak"}</strong>
-          <span>${item.clientName || ""}${appointmentAmount(item.source) ? ` | ${currency(appointmentAmount(item.source))}` : ""}</span>
-        </div>
-      `).join("")
-    : `<div class="empty-state">Geen vorige afspraken.</div>`;
+function agendaSetMessage(message = "", stateName = "") {
+  const target = $("#agendaError");
+  if (!target) return;
+  target.textContent = message;
+  target.dataset.state = stateName;
+}
+
+function agendaStatusLabel(status) {
+  return AGENDA_STATUS_LABELS[status] || AGENDA_STATUS_LABELS.planned;
+}
+
+function agendaRepeatLabel(repeat) {
+  return AGENDA_REPEAT_LABELS[repeat] || AGENDA_REPEAT_LABELS.none;
 }
 
 function normalizeAgendaTime(value) {
@@ -2616,15 +2678,96 @@ function normalizeAgendaTime(value) {
 
 function agendaTimeSlots(items) {
   const slots = new Set();
-  for (let hour = 6; hour <= 22; hour += 1) {
-    slots.add(`${String(hour).padStart(2, "0")}:00`);
+  for (let minutes = AGENDA_DAY_START_HOUR * 60; minutes <= AGENDA_DAY_END_HOUR * 60; minutes += AGENDA_SLOT_MINUTES) {
+    slots.add(minutesToTime(minutes));
   }
   items.forEach((item) => slots.add(normalizeAgendaTime(item.time)));
   return [...slots].sort((a, b) => {
     if (a === "no-time") return 1;
     if (b === "no-time") return -1;
-    return a.localeCompare(b);
+    return timeToMinutes(a) - timeToMinutes(b);
   });
+}
+
+function agendaAppointmentType(item) {
+  return appointmentTypeById(item.source?.appointmentTypeId || item.appointmentTypeId);
+}
+
+function agendaAppointmentTitle(item) {
+  const apptType = agendaAppointmentType(item);
+  return item.type || apptType?.name || "Afspraak";
+}
+
+function agendaAppointmentColor(item) {
+  const apptType = agendaAppointmentType(item);
+  return item.source?.color || item.color || apptType?.color || "#c89312";
+}
+
+function agendaAppointmentMeta(item, includeFinance = false) {
+  const source = item.source || item;
+  const apptType = agendaAppointmentType(item);
+  const duration = source.duration || apptType?.duration || "";
+  const location = source.location || apptType?.location || "";
+  const endTime = source.endTime || (source.time && duration ? addMinutesToTime(source.time, duration) : "");
+  const parts = [
+    source.time && endTime ? `${source.time} - ${endTime}` : source.time || "",
+    location,
+    duration ? `${duration} min` : "",
+    agendaStatusLabel(source.status),
+    source.repeat && source.repeat !== "none" ? agendaRepeatLabel(source.repeat) : ""
+  ];
+  if (includeFinance && appointmentAmount(source)) {
+    parts.push(`${currency(appointmentAmount(source))} - ${paymentStatusLabel(paymentStatus(source))}`);
+  }
+  return parts.filter(Boolean).map(escapeHTML).join(" | ");
+}
+
+function agendaAppointmentsForRole() {
+  const selected = client();
+  const items = isTrainer()
+    ? allAppointments()
+    : (hasSelectedClient(selected) ? selected.appointments.map((appt) => ({ ...appt, source: appt, clientName: selected.name, clientId: selected.id })) : []);
+  return items
+    .filter((item) => !isTrainer() || !state.ui.agendaClientFilter || item.clientId === state.ui.agendaClientFilter)
+    .filter((item) => !state.ui.agendaTypeFilter || (item.source?.appointmentTypeId || item.appointmentTypeId) === state.ui.agendaTypeFilter)
+    .sort((a, b) => `${a.date || ""} ${a.time || ""}`.localeCompare(`${b.date || ""} ${b.time || ""}`));
+}
+
+function renderUpcomingAppointments() {
+  const list = $("#upcomingAppointmentsList");
+  if (!list) return;
+  const today = todayISO();
+  const upcoming = agendaAppointmentsForRole()
+    .filter((item) => !item.date || item.date >= today)
+    .slice(0, 12);
+  list.innerHTML = upcoming.length
+    ? upcoming.map((item) => `
+        <div class="agenda-list-item" style="--event-color:${escapeHTML(agendaAppointmentColor(item))}">
+          <strong>${escapeHTML(formatLongDutchDate(item.date))} - ${escapeHTML(agendaAppointmentTitle(item))}</strong>
+          <span>${escapeHTML(isTrainer() ? item.clientName || "Client" : "Mijn afspraak")}</span>
+          <span>${agendaAppointmentMeta(item, isTrainer())}</span>
+        </div>
+      `).join("")
+    : `<div class="empty-state">Geen aankomende afspraken.</div>`;
+}
+
+function renderPreviousAppointments() {
+  const list = $("#previousAppointmentsList");
+  if (!list) return;
+  const today = todayISO();
+  const previous = agendaAppointmentsForRole()
+    .filter((item) => item.date && item.date < today)
+    .sort((a, b) => `${b.date || ""} ${b.time || ""}`.localeCompare(`${a.date || ""} ${a.time || ""}`))
+    .slice(0, 40);
+  list.innerHTML = previous.length
+    ? previous.map((item) => `
+        <div class="history-item" style="--event-color:${escapeHTML(agendaAppointmentColor(item))}">
+          <strong>${escapeHTML(formatLongDutchDate(item.date))} - ${escapeHTML(agendaAppointmentTitle(item))}</strong>
+          <span>${escapeHTML(isTrainer() ? item.clientName || "Client" : "Mijn afspraak")}</span>
+          <span>${agendaAppointmentMeta(item, isTrainer())}</span>
+        </div>
+      `).join("")
+    : `<div class="empty-state">Geen vorige afspraken.</div>`;
 }
 
 function renderAgendaStats(appointments) {
@@ -2636,17 +2779,17 @@ function renderAgendaStats(appointments) {
   }
   const revenue = appointments.reduce((sum, item) => sum + number(appointmentAmount(item.source || item), 0), 0);
   const paid = appointments
-    .filter((item) => (item.source?.paymentStatus || item.paymentStatus) === "paid")
+    .filter((item) => paymentStatus(item.source || item) === "paid")
     .reduce((sum, item) => sum + number(appointmentAmount(item.source || item), 0), 0);
   const clients = new Set(appointments.map((item) => item.clientId).filter(Boolean)).size;
   const open = Math.max(0, revenue - paid);
   target.innerHTML = `
     <div class="agenda-stat-card">
-      <span>Afspraken deze week</span>
+      <span>Afspraken</span>
       <strong>${appointments.length}</strong>
     </div>
     <div class="agenda-stat-card">
-      <span>Clienten gepland</span>
+      <span>Clienten</span>
       <strong>${clients}</strong>
     </div>
     <div class="agenda-stat-card">
@@ -2661,22 +2804,17 @@ function renderAgendaStats(appointments) {
 }
 
 function renderAgendaAppointment(item) {
-  const apptType = appointmentTypeById(item.source?.appointmentTypeId || item.appointmentTypeId);
-  const color = apptType?.color || item.source?.color || "#c89312";
-  const duration = item.source?.duration || apptType?.duration || "";
-  const location = item.source?.location || apptType?.location || "";
-  const amount = appointmentAmount(item.source || item);
-  const paymentStatus = (item.source?.paymentStatus || item.paymentStatus) === "paid" ? "Betaald" : "Niet betaald";
-  const title = apptType?.name || item.type || "Afspraak";
-  const note = item.type && apptType?.name && item.type !== apptType.name ? item.type : "";
+  const source = item.source || item;
+  const color = agendaAppointmentColor(item);
+  const status = source.status || "planned";
   return `
-    <div class="agenda-event" draggable="true" data-drag-appointment="${item.clientId}:${item.id}" style="--event-color:${escapeHTML(color)}">
+    <div class="agenda-event status-${escapeHTML(status)}" draggable="true" data-drag-appointment="${item.clientId}:${item.id}" style="--event-color:${escapeHTML(color)}">
       <div class="agenda-event-top">
-        <span class="agenda-event-time">${escapeHTML(item.time || "--:--")}</span>
-        <span class="agenda-event-chip">${escapeHTML(title)}</span>
+        <span class="agenda-event-time">${escapeHTML(source.time || "--:--")}</span>
+        <span class="agenda-event-chip">${escapeHTML(agendaAppointmentTitle(item))}</span>
       </div>
       <strong>${escapeHTML(item.clientName || "Client")}</strong>
-      <small>${[duration ? `${duration} min` : "", location, amount ? `${currency(amount)} - ${paymentStatus}` : "", note].filter(Boolean).map(escapeHTML).join(" | ")}</small>
+      <small>${agendaAppointmentMeta(item, true)}</small>
       <div class="agenda-event-actions">
         <button class="secondary-btn" data-notify="${item.clientId}:${item.id}" type="button">Melding</button>
         <button class="secondary-btn" data-edit-appointment="${item.clientId}:${item.id}" type="button">Bewerken</button>
@@ -2690,14 +2828,14 @@ function renderAppointmentTypes() {
   const manager = $("#appointmentTypeManager");
   const list = $("#appointmentTypeList");
   if (!manager || !list) return;
-  manager.style.display = isTrainer() ? "block" : "none";
+  manager.style.display = isTrainer() ? "grid" : "none";
   if (!isTrainer()) return;
   list.innerHTML = appointmentTypes()
     .map((type) => {
       const inUse = allAppointments().some((item) => item.source.appointmentTypeId === type.id);
       const color = type.color || "#c89312";
       return `
-        <div class="appointment-type-row appointment-type-card" draggable="true" data-drag-appointment-type="${type.id}" style="--type-color:${escapeHTML(color)}">
+        <div class="appointment-type-card" draggable="true" data-drag-appointment-type="${type.id}" style="--type-color:${escapeHTML(color)}">
           <div class="appointment-type-summary">
             <span class="type-swatch" style="background:${escapeHTML(color)}"></span>
             <div>
@@ -2705,17 +2843,8 @@ function renderAppointmentTypes() {
               <small>${[type.category, type.location, type.duration ? `${type.duration} min` : "", type.price !== "" && type.price !== undefined ? currency(type.price) : ""].filter(Boolean).map(escapeHTML).join(" | ")}</small>
             </div>
           </div>
-          <div class="appointment-type-fields">
-            <input data-appointment-type-name="${type.id}" value="${escapeHTML(type.name)}" />
-            <input data-appointment-type-duration="${type.id}" type="number" min="0" step="5" value="${escapeHTML(type.duration ?? "")}" placeholder="min" />
-            <input data-appointment-type-price="${type.id}" type="number" min="0" step="0.01" value="${escapeHTML(type.price ?? "")}" placeholder="prijs" />
-            <input data-appointment-type-category="${type.id}" value="${escapeHTML(type.category || "")}" placeholder="Categorie" />
-            <input data-appointment-type-location="${type.id}" value="${escapeHTML(type.location || "")}" placeholder="Locatie" />
-            <input data-appointment-type-capacity="${type.id}" type="number" min="1" step="1" value="${escapeHTML(type.capacity ?? "")}" placeholder="Max" />
-            <input data-appointment-type-color="${type.id}" type="color" value="${escapeHTML(color)}" />
-          </div>
           <div class="appointment-type-actions">
-            <button class="secondary-btn" data-save-appointment-type="${type.id}" type="button">Opslaan</button>
+            <button class="secondary-btn" data-edit-appointment-type="${type.id}" type="button">Bewerken</button>
             <button class="danger-btn" data-remove-appointment-type="${type.id}" ${inUse ? "disabled title=\"In gebruik bij afspraken\"" : ""} type="button">Verwijderen</button>
           </div>
         </div>
@@ -2732,12 +2861,12 @@ function renderAgendaTable(days, appointments) {
         <div class="agenda-board-head">
           <div class="agenda-time-corner">Tijd</div>
           ${days.map(({ day, date }) => `
-            <div class="agenda-day-head">
+            <div class="agenda-day-head ${date === todayISO() ? "today" : ""}">
               <div>
                 <span>${day}</span>
                 <small>${formatShortDate(date)}</small>
               </div>
-              <button class="secondary-btn calendar-add" data-set-appointment-date="${date}" type="button">+</button>
+              <button class="secondary-btn calendar-add" data-set-appointment-date="${date}" data-set-appointment-time="09:00" type="button">+</button>
             </div>
           `).join("")}
         </div>
@@ -2765,29 +2894,35 @@ function renderAgendaTable(days, appointments) {
 function renderAgenda() {
   const selected = client();
   const calendar = $("#weekCalendar");
-  $("#appointmentForm").style.display = isTrainer() && state.clients.length ? "block" : "none";
+  if (!calendar) return;
+  const form = $("#appointmentForm");
+  const openButton = $("#openAppointmentForm");
+  const filters = $("#agendaFilters");
+  const isTrainerView = isTrainer();
+  if (openButton) openButton.style.display = isTrainerView ? "inline-flex" : "none";
+  if (filters) filters.style.display = isTrainerView ? "grid" : "none";
+  if (form) form.hidden = !(isTrainerView && state.ui.agendaFormOpen && state.clients.length);
+  const deleteButton = $("#appointmentDeleteButton");
+  if (deleteButton) deleteButton.hidden = !(state.ui.editingAppointmentId && state.ui.editingAppointmentClientId);
   renderAppointmentTypes();
-  $("#calendarControls").style.display = isTrainer() ? "flex" : "none";
-  $("#agendaPanelTitle").textContent = isTrainer() ? "Weekagenda" : "Mijn afspraken";
-  renderPreviousAppointments(selected);
+  $("#calendarControls").style.display = isTrainerView ? "flex" : "none";
+  $("#agendaPanelTitle").textContent = isTrainerView ? "Weekagenda" : "Mijn afspraken";
+  agendaSetMessage(agendaCloudErrorMessage, agendaCloudErrorMessage ? "error" : "");
+  renderUpcomingAppointments();
+  renderPreviousAppointments();
 
-  if (!isTrainer()) {
-    const appointments = selected.appointments
-      .filter((item) => !item.date || item.date >= todayISO())
-      .sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`));
+  if (!isTrainerView) {
+    const appointments = agendaAppointmentsForRole().filter((item) => !item.date || item.date >= todayISO());
     renderAgendaStats([]);
     calendar.className = "client-appointments";
     calendar.innerHTML = appointments.length
-      ? appointments.map((item) => {
-        const apptType = appointmentTypeById(item.appointmentTypeId);
-        return `
-        <div class="client-appointment-card">
-          <span class="client-appointment-date">${formatLongDutchDate(item.date)} om ${item.time || "--:--"}</span>
-          <strong>${escapeHTML(apptType?.name || item.type || "Afspraak")}</strong>
-          <span>${[item.location || apptType?.location || "", item.duration ? `${item.duration} min` : ""].filter(Boolean).map(escapeHTML).join(" | ")}</span>
+      ? appointments.map((item) => `
+        <div class="client-appointment-card" style="--event-color:${escapeHTML(agendaAppointmentColor(item))}">
+          <span>${escapeHTML(formatLongDutchDate(item.date))}</span>
+          <strong>${escapeHTML(agendaAppointmentTitle(item))}</strong>
+          <span>${agendaAppointmentMeta(item, false)}</span>
         </div>
-      `;
-      }).join("")
+      `).join("")
       : `<div class="empty-state">Er staan nog geen afspraken ingepland.</div>`;
     return;
   }
@@ -2799,19 +2934,16 @@ function renderAgenda() {
   $("#calendarWeekLabel").textContent = `${formatShortDate(weekStart)} - ${formatShortDate(weekEnd)}`;
   if (!state.clients.length) {
     calendar.className = "client-appointments";
-    calendar.innerHTML = emptyTrackerState("Nog geen clienten gekoppeld. Voeg eerst een client toe om afspraken te plannen.");
+    calendar.innerHTML = emptyTrackerState("Nog geen clienten gekoppeld.");
     renderAgendaStats([]);
     return;
   }
-  const dateInput = $("#appointmentForm").elements.date;
-  if (!dateInput.value || dateInput.value < weekStart || dateInput.value > weekEnd) {
+  const dateInput = form?.elements.date;
+  if (dateInput && (!dateInput.value || dateInput.value < weekStart || dateInput.value > weekEnd)) {
     dateInput.value = weekStart;
   }
-  const all = state.clients.flatMap((item) => item.appointments.map((appt) => ({ ...appt, clientName: item.name, clientId: item.id })));
-  const weekAppointments = all
-    .filter((item) => item.date >= weekStart && item.date <= weekEnd)
-    .filter((item) => !item.date || item.date >= todayISO())
-    .sort((a, b) => `${a.date || ""} ${a.time || ""}`.localeCompare(`${b.date || ""} ${b.time || ""}`));
+  const weekAppointments = agendaAppointmentsForRole()
+    .filter((item) => item.date >= weekStart && item.date <= weekEnd);
   renderAgendaStats(weekAppointments);
   calendar.innerHTML = renderAgendaTable(days, weekAppointments);
 }
@@ -3470,6 +3602,433 @@ function recipeIngredients(recipe) {
   return recipe.rows.map((item) => `${item.name} ${formatRecipeAmount(item.grams)}`).join(", ");
 }
 
+function agendaId(prefix) {
+  return `${prefix}-${Date.now()}${Math.random().toString(16).slice(2)}`;
+}
+
+function agendaTrainerId() {
+  return trainerWorkspaceId() || (onlineProfile?.role === "trainer" ? onlineProfile.id : onlineProfile?.trainer_id) || "";
+}
+
+function agendaCanWriteCloud() {
+  return Boolean(isOnlineMode() && onlineReady && onlineProfile?.role === "trainer" && agendaTrainerId());
+}
+
+function appointmentTypeToRow(type) {
+  return {
+    id: type.id,
+    trainer_id: agendaTrainerId(),
+    name: type.name || "Afspraaksoort",
+    color: type.color || "#c89312",
+    default_duration_minutes: type.duration === "" || type.duration === undefined ? null : number(type.duration, 0),
+    default_price: type.price === "" || type.price === undefined ? null : number(type.price, 0),
+    default_location: type.location || "",
+    category: type.category || "",
+    archived: false,
+    updated_at: new Date().toISOString()
+  };
+}
+
+function appointmentTypeFromRow(row) {
+  return {
+    id: row.id,
+    name: row.name || "Afspraaksoort",
+    duration: row.default_duration_minutes ?? "",
+    price: row.default_price ?? "",
+    color: row.color || "#c89312",
+    category: row.category || "",
+    location: row.default_location || "",
+    capacity: 1
+  };
+}
+
+function appointmentToRow(appointment, clientId) {
+  return {
+    id: appointment.id,
+    trainer_id: agendaTrainerId(),
+    client_id: clientId,
+    appointment_type_id: appointment.appointmentTypeId || null,
+    title: appointment.type || agendaAppointmentTitle(appointment),
+    date: appointment.date || todayISO(),
+    start_time: appointment.time || "09:00",
+    end_time: appointment.endTime || addMinutesToTime(appointment.time || "09:00", appointment.duration || 60),
+    location: appointment.location || "",
+    price: appointment.amount === "" || appointment.amount === undefined ? null : number(appointment.amount, 0),
+    notes: appointment.notes || "",
+    repeat_rule: appointment.repeat || "none",
+    status: appointment.status || "planned",
+    color: appointment.color || agendaAppointmentColor(appointment),
+    updated_at: new Date().toISOString()
+  };
+}
+
+function appointmentFromRow(row) {
+  const apptType = row.appointment_type_id ? appointmentTypeById(row.appointment_type_id) : null;
+  const startTime = String(row.start_time || "09:00").slice(0, 5);
+  const endTime = String(row.end_time || addMinutesToTime(startTime, apptType?.duration || 60)).slice(0, 5);
+  return {
+    id: row.id,
+    date: row.date || todayISO(),
+    day: dayNameFromDate(row.date),
+    time: startTime,
+    endTime,
+    appointmentTypeId: row.appointment_type_id || "",
+    type: row.title || row.appointment_type_name || apptType?.name || "Afspraak",
+    duration: Math.max(0, timeToMinutes(endTime) - timeToMinutes(startTime)) || apptType?.duration || "",
+    color: row.color || apptType?.color || "#c89312",
+    location: row.location || apptType?.location || "",
+    repeat: row.repeat_rule || "none",
+    status: row.status || "planned",
+    notes: row.notes || "",
+    amount: row.price === null || row.price === undefined ? "" : number(row.price, 0),
+    paymentStatus: "unpaid",
+    adminItemSuppressed: false
+  };
+}
+
+function publicAppointmentFromRow(row) {
+  const startTime = String(row.start_time || "09:00").slice(0, 5);
+  const endTime = String(row.end_time || addMinutesToTime(startTime, 60)).slice(0, 5);
+  return {
+    id: row.id,
+    date: row.date || todayISO(),
+    day: dayNameFromDate(row.date),
+    time: startTime,
+    endTime,
+    appointmentTypeId: row.appointment_type_id || "",
+    type: row.title || row.appointment_type_name || "Afspraak",
+    duration: Math.max(0, timeToMinutes(endTime) - timeToMinutes(startTime)) || "",
+    color: row.color || "#c89312",
+    location: row.location || "",
+    repeat: row.repeat_rule || "none",
+    status: row.status || "planned",
+    notes: "",
+    amount: "",
+    paymentStatus: "unpaid",
+    adminItemSuppressed: true
+  };
+}
+
+async function upsertAppointmentTypesCloud(types) {
+  if (!agendaCanWriteCloud()) return;
+  const rows = types.map(appointmentTypeToRow);
+  if (!rows.length) return;
+  const { error } = await supabaseClient.from("appointment_types").upsert(rows, { onConflict: "trainer_id,id" });
+  if (error) throw error;
+}
+
+async function deleteAppointmentTypeCloud(typeId) {
+  if (!agendaCanWriteCloud()) return;
+  const { error } = await supabaseClient.from("appointment_types").delete().eq("id", typeId).eq("trainer_id", agendaTrainerId());
+  if (error) throw error;
+}
+
+async function upsertAppointmentsCloud(entries) {
+  if (!agendaCanWriteCloud()) return;
+  const rows = entries.map(({ appointment, clientId }) => appointmentToRow(appointment, clientId));
+  if (!rows.length) return;
+  const { error } = await supabaseClient.from("appointments").upsert(rows, { onConflict: "trainer_id,id" });
+  if (error) throw error;
+}
+
+async function deleteAppointmentCloud(appointmentId) {
+  if (!agendaCanWriteCloud()) return;
+  const { error } = await supabaseClient.from("appointments").delete().eq("id", appointmentId).eq("trainer_id", agendaTrainerId());
+  if (error) throw error;
+}
+
+async function persistAgendaWorkspace(successMessage) {
+  saveState();
+  if (isOnlineMode() && onlineProfile && !onlineReady) {
+    throw new Error("Online verbinding is nog niet klaar.");
+  }
+  if (isOnlineMode() && onlineReady && onlineProfile) {
+    window.clearTimeout(cloudSaveTimer);
+    const result = await saveStateToCloud();
+    if (!result?.ok) throw result?.error || new Error("Supabase opslaan mislukt.");
+  }
+  renderAll();
+  agendaSetMessage(successMessage, "ok");
+}
+
+function resetAppointmentForm(defaults = {}) {
+  const form = $("#appointmentForm");
+  if (!form) return;
+  form.reset();
+  state.ui.editingAppointmentId = "";
+  state.ui.editingAppointmentClientId = "";
+  form.elements.appointmentId.value = "";
+  form.elements.clientId.value = defaults.clientId || state.ui.selectedClientId || state.clients[0]?.id || "";
+  form.elements.date.value = defaults.date || state.ui.calendarWeekStart || todayISO();
+  form.elements.time.value = defaults.time || "09:00";
+  form.elements.endTime.value = defaults.endTime || addMinutesToTime(form.elements.time.value, 60);
+  form.elements.repeat.value = "none";
+  form.elements.status.value = "planned";
+  const firstType = appointmentTypes()[0];
+  form.elements.appointmentTypeId.value = defaults.appointmentTypeId || firstType?.id || "";
+  applyAppointmentTypeDefaultsToForm(false);
+  $("#appointmentFormTitle").textContent = "Afspraak toevoegen";
+}
+
+function applyAppointmentTypeDefaultsToForm(overwriteTitle = false) {
+  const form = $("#appointmentForm");
+  if (!form) return;
+  const type = appointmentTypeById(form.elements.appointmentTypeId.value);
+  if (!type) return;
+  if (!form.elements.location.value) form.elements.location.value = type.location || "";
+  if (!form.elements.amount.value && type.price !== "" && type.price !== undefined) form.elements.amount.value = type.price;
+  if (overwriteTitle || !form.elements.type.value) form.elements.type.value = type.name || "";
+  const duration = number(type.duration, 60) || 60;
+  if (!form.elements.endTime.value || timeToMinutes(form.elements.endTime.value) <= timeToMinutes(form.elements.time.value)) {
+    form.elements.endTime.value = addMinutesToTime(form.elements.time.value || "09:00", duration);
+  }
+}
+
+function openAppointmentForm(defaults = {}) {
+  if (!isTrainer()) return;
+  if (!state.clients.length) {
+    agendaSetMessage("Voeg eerst een client toe om een afspraak te plannen.", "error");
+    return;
+  }
+  state.ui.agendaFormOpen = true;
+  resetAppointmentForm(defaults);
+  renderAgenda();
+  $("#appointmentForm")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function openAppointmentEditor(clientId, appointmentId) {
+  const selected = state.clients.find((item) => item.id === clientId);
+  const appointment = findAppointment(clientId, appointmentId);
+  if (!isTrainer() || !selected || !appointment) return;
+  state.ui.agendaFormOpen = true;
+  state.ui.editingAppointmentId = appointmentId;
+  state.ui.editingAppointmentClientId = clientId;
+  renderAgenda();
+  const form = $("#appointmentForm");
+  if (!form) return;
+  form.elements.appointmentId.value = appointment.id;
+  form.elements.clientId.value = clientId;
+  form.elements.appointmentTypeId.value = appointment.appointmentTypeId || "";
+  form.elements.date.value = appointment.date || todayISO();
+  form.elements.time.value = appointment.time || "09:00";
+  form.elements.endTime.value = appointment.endTime || addMinutesToTime(appointment.time || "09:00", appointment.duration || 60);
+  form.elements.location.value = appointment.location || "";
+  form.elements.amount.value = appointment.amount === "" || appointment.amount === undefined ? "" : appointment.amount;
+  form.elements.status.value = appointment.status || "planned";
+  form.elements.repeat.value = appointment.repeat || "none";
+  form.elements.type.value = appointment.type || "";
+  form.elements.notes.value = appointment.notes || "";
+  $("#appointmentFormTitle").textContent = "Afspraak bewerken";
+  form.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function resetAppointmentTypeForm() {
+  const form = $("#appointmentTypeForm");
+  if (!form) return;
+  form.reset();
+  form.elements.typeId.value = "";
+  form.elements.color.value = "#c89312";
+}
+
+function openAppointmentTypeEditor(typeId) {
+  const type = appointmentTypeById(typeId);
+  const form = $("#appointmentTypeForm");
+  if (!type || !form) return;
+  form.elements.typeId.value = type.id;
+  form.elements.name.value = type.name || "";
+  form.elements.duration.value = type.duration ?? "";
+  form.elements.price.value = type.price ?? "";
+  form.elements.location.value = type.location || "";
+  form.elements.category.value = type.category || "";
+  form.elements.color.value = type.color || "#c89312";
+  form.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function appointmentFromForm(form) {
+  const data = new FormData(form);
+  const appointmentType = appointmentTypeById(data.get("appointmentTypeId"));
+  const startTime = data.get("time") || "09:00";
+  const endTime = data.get("endTime") || addMinutesToTime(startTime, appointmentType?.duration || 60);
+  const amount = data.get("amount") === "" ? (appointmentType?.price ?? "") : number(data.get("amount"), 0);
+  return {
+    id: data.get("appointmentId") || agendaId("appt"),
+    date: data.get("date") || todayISO(),
+    day: dayNameFromDate(data.get("date") || todayISO()),
+    time: startTime,
+    endTime,
+    appointmentTypeId: appointmentType?.id || "",
+    type: String(data.get("type") || "").trim() || appointmentType?.name || "Afspraak",
+    duration: Math.max(0, timeToMinutes(endTime) - timeToMinutes(startTime)) || appointmentType?.duration || "",
+    color: appointmentType?.color || "#c89312",
+    location: String(data.get("location") || "").trim() || appointmentType?.location || "",
+    repeat: AGENDA_REPEAT_LABELS[data.get("repeat")] ? data.get("repeat") : "none",
+    status: AGENDA_STATUS_LABELS[data.get("status")] ? data.get("status") : "planned",
+    notes: String(data.get("notes") || "").trim(),
+    rateId: "",
+    rateName: "",
+    amount,
+    paymentStatus: "unpaid",
+    adminItemSuppressed: false
+  };
+}
+
+async function saveAppointmentFromForm(form) {
+  const data = new FormData(form);
+  const selected = state.clients.find((item) => item.id === data.get("clientId"));
+  if (!selected) throw new Error("Kies eerst een client.");
+  const appointment = appointmentFromForm(form);
+  const existingClientId = state.ui.editingAppointmentClientId;
+  const existingAppointmentId = state.ui.editingAppointmentId;
+  const oldAppointment = existingClientId && existingAppointmentId ? findAppointment(existingClientId, existingAppointmentId) : null;
+  if (oldAppointment) {
+    appointment.adminItemId = oldAppointment.adminItemId || "";
+    appointment.paymentStatus = oldAppointment.paymentStatus || appointment.paymentStatus;
+    appointment.adminItemSuppressed = oldAppointment.adminItemSuppressed === true;
+  }
+  await upsertAppointmentsCloud([{ appointment, clientId: selected.id }]);
+  if (existingAppointmentId) {
+    const oldClient = state.clients.find((item) => item.id === existingClientId);
+    if (oldClient && oldClient.id !== selected.id) {
+      oldClient.appointments = oldClient.appointments.filter((item) => item.id !== existingAppointmentId);
+      selected.appointments.push(appointment);
+    } else {
+      const current = selected.appointments.find((item) => item.id === existingAppointmentId);
+      if (current) Object.assign(current, appointment);
+      else selected.appointments.push(appointment);
+    }
+  } else {
+    selected.appointments.push(appointment);
+  }
+  syncAppointmentAdminItem(selected, appointment);
+  state.ui.agendaFormOpen = false;
+  state.ui.editingAppointmentId = "";
+  state.ui.editingAppointmentClientId = "";
+  form.reset();
+  await persistAgendaWorkspace("Afspraak opgeslagen.");
+}
+
+async function deleteAppointment(clientId, appointmentId) {
+  const selected = state.clients.find((item) => item.id === clientId);
+  const appointment = selected?.appointments.find((item) => item.id === appointmentId);
+  if (!selected || !appointment) return;
+  if (!confirm(`Afspraak ${appointment.date || ""} ${appointment.time || ""} verwijderen?`)) return;
+  await deleteAppointmentCloud(appointmentId);
+  selected.appointments = selected.appointments.filter((item) => item.id !== appointmentId);
+  state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.appointmentId !== appointmentId || item.clientId !== clientId);
+  state.ui.editingAppointmentId = "";
+  state.ui.editingAppointmentClientId = "";
+  state.ui.agendaFormOpen = false;
+  await persistAgendaWorkspace("Afspraak verwijderd.");
+}
+
+async function moveAppointment(clientId, appointmentId, date, time) {
+  const selected = state.clients.find((item) => item.id === clientId);
+  const appointment = selected?.appointments.find((item) => item.id === appointmentId);
+  if (!selected || !appointment) return;
+  const duration = Math.max(AGENDA_SLOT_MINUTES, timeToMinutes(appointment.endTime) - timeToMinutes(appointment.time)) || appointment.duration || 60;
+  const moved = {
+    ...appointment,
+    date,
+    day: dayNameFromDate(date),
+    time: time && time !== "no-time" ? time : appointment.time,
+    endTime: time && time !== "no-time" ? addMinutesToTime(time, duration) : appointment.endTime
+  };
+  await upsertAppointmentsCloud([{ appointment: moved, clientId }]);
+  Object.assign(appointment, moved);
+  syncAppointmentAdminItem(selected, appointment);
+  await persistAgendaWorkspace("Afspraak verplaatst.");
+}
+
+async function saveAppointmentTypeFromForm(form) {
+  const data = new FormData(form);
+  const typeId = data.get("typeId") || agendaId("appt-type");
+  const nextType = {
+    id: typeId,
+    name: String(data.get("name") || "").trim() || "Afspraaksoort",
+    duration: data.get("duration") === "" ? "" : number(data.get("duration"), 0),
+    price: data.get("price") === "" ? "" : number(data.get("price"), 0),
+    category: String(data.get("category") || "").trim(),
+    location: String(data.get("location") || "").trim(),
+    capacity: 1,
+    color: data.get("color") || "#c89312"
+  };
+  await upsertAppointmentTypesCloud([nextType]);
+  const existing = appointmentTypes().find((item) => item.id === typeId);
+  if (existing) Object.assign(existing, nextType);
+  else appointmentTypes().push(nextType);
+  resetAppointmentTypeForm();
+  await persistAgendaWorkspace("Afspraaksoort opgeslagen.");
+}
+
+async function removeAppointmentType(typeId) {
+  const inUse = allAppointments().some((item) => item.source.appointmentTypeId === typeId);
+  if (inUse) {
+    agendaSetMessage("Deze afspraaksoort is nog in gebruik bij afspraken.", "error");
+    return;
+  }
+  if (!confirm("Afspraaksoort verwijderen?")) return;
+  await deleteAppointmentTypeCloud(typeId);
+  state.trainerFinance.appointmentTypes = appointmentTypes().filter((item) => item.id !== typeId);
+  resetAppointmentTypeForm();
+  await persistAgendaWorkspace("Afspraaksoort verwijderd.");
+}
+
+function replaceAppointmentsFromRows(rows) {
+  const grouped = new Map();
+  rows.forEach((row) => {
+    if (!grouped.has(row.client_id)) grouped.set(row.client_id, []);
+    grouped.get(row.client_id).push(appointmentFromRow(row));
+  });
+  state.clients.forEach((item) => {
+    item.appointments = grouped.get(item.id) || [];
+  });
+}
+
+async function loadAgendaCloudData(profile = onlineProfile) {
+  if (!isOnlineMode() || !profile) return;
+  const trainerId = profile.role === "trainer" ? profile.id : profile.trainer_id;
+  if (!trainerId) return;
+  try {
+    agendaCloudErrorMessage = "";
+    if (profile.role === "trainer") {
+      const { data: typeRows, error: typeError } = await supabaseClient
+        .from("appointment_types")
+        .select("*")
+        .eq("trainer_id", trainerId)
+        .eq("archived", false)
+        .order("name");
+      if (typeError) throw typeError;
+      if (typeRows?.length) {
+        state.trainerFinance.appointmentTypes = typeRows.map(appointmentTypeFromRow);
+      } else {
+        await upsertAppointmentTypesCloud(appointmentTypes());
+      }
+      const legacyAppointments = allAppointments();
+      const { data: appointmentRows, error: appointmentError } = await supabaseClient
+        .from("appointments")
+        .select("*")
+        .eq("trainer_id", trainerId)
+        .order("date", { ascending: true })
+        .order("start_time", { ascending: true });
+      if (appointmentError) throw appointmentError;
+      if (appointmentRows?.length) {
+        replaceAppointmentsFromRows(appointmentRows);
+      } else if (legacyAppointments.length) {
+        await upsertAppointmentsCloud(legacyAppointments.map((item) => ({ appointment: item.source, clientId: item.clientId })));
+      }
+    } else {
+      const { data: appointmentRows, error } = await supabaseClient.rpc("get_my_appointments");
+      if (error) throw error;
+      const linkedClient = state.clients.find((item) => item.id === profile.client_id) || state.clients.find((item) => item.email === profile.email);
+      if (linkedClient) linkedClient.appointments = (appointmentRows || []).map(publicAppointmentFromRow);
+    }
+    saveState();
+  } catch (error) {
+    agendaCloudErrorMessage = `Agenda opslag niet bereikbaar: ${error.message}`;
+    console.error(error);
+  }
+}
+
 function notifyAppointment(clientId, appointmentId) {
   const selected = state.clients.find((item) => item.id === clientId);
   const appointment = selected?.appointments.find((item) => item.id === appointmentId);
@@ -3503,6 +4062,35 @@ document.addEventListener("click", async (event) => {
   if (target.dataset.view) {
     navMenuOpen = false;
     showView(target.dataset.view);
+    return;
+  }
+  if (target.id === "openAppointmentForm") {
+    openAppointmentForm();
+    return;
+  }
+  if (target.dataset.closeAppointmentForm !== undefined) {
+    state.ui.agendaFormOpen = false;
+    state.ui.editingAppointmentId = "";
+    state.ui.editingAppointmentClientId = "";
+    renderAgenda();
+    return;
+  }
+  if (target.dataset.resetAppointmentTypeForm !== undefined) {
+    resetAppointmentTypeForm();
+    return;
+  }
+  if (target.dataset.editAppointmentType) {
+    openAppointmentTypeEditor(target.dataset.editAppointmentType);
+    return;
+  }
+  if (target.dataset.deleteCurrentAppointment !== undefined) {
+    if (!state.ui.editingAppointmentId || !state.ui.editingAppointmentClientId) return;
+    try {
+      await deleteAppointment(state.ui.editingAppointmentClientId, state.ui.editingAppointmentId);
+    } catch (error) {
+      renderAll();
+      agendaSetMessage(`Verwijderen mislukt: ${error.message}`, "error");
+    }
     return;
   }
   if (target.dataset.trainingDay) {
@@ -3624,28 +4212,13 @@ document.addEventListener("click", async (event) => {
     alert(ok ? "Administratie gereset" : "Administratie resetten mislukt.");
     return;
   }
-  if (target.dataset.saveAppointmentType) {
-    const type = appointmentTypes().find((item) => item.id === target.dataset.saveAppointmentType);
-    if (!type) return;
-    type.name = String(document.querySelector(`[data-appointment-type-name="${type.id}"]`)?.value || type.name).trim() || "Afspraaksoort";
-    type.duration = document.querySelector(`[data-appointment-type-duration="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-duration="${type.id}"]`)?.value, 0);
-    type.price = document.querySelector(`[data-appointment-type-price="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-price="${type.id}"]`)?.value, 0);
-    type.category = String(document.querySelector(`[data-appointment-type-category="${type.id}"]`)?.value || "").trim();
-    type.location = String(document.querySelector(`[data-appointment-type-location="${type.id}"]`)?.value || "").trim();
-    type.capacity = document.querySelector(`[data-appointment-type-capacity="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-capacity="${type.id}"]`)?.value, 0);
-    type.color = document.querySelector(`[data-appointment-type-color="${type.id}"]`)?.value || "#c89312";
-    await persistActionFeedback(null, "Afspraaksoort opgeslagen");
-    return;
-  }
   if (target.dataset.removeAppointmentType) {
-    const inUse = allAppointments().some((item) => item.source.appointmentTypeId === target.dataset.removeAppointmentType);
-    if (inUse) {
-      alert("Deze afspraaksoort is nog in gebruik bij afspraken.");
-      return;
+    try {
+      await removeAppointmentType(target.dataset.removeAppointmentType);
+    } catch (error) {
+      renderAll();
+      agendaSetMessage(`Afspraaksoort verwijderen mislukt: ${error.message}`, "error");
     }
-    if (!confirm("Afspraaksoort verwijderen? Bestaande afspraken blijven bewaard.")) return;
-    state.trainerFinance.appointmentTypes = appointmentTypes().filter((item) => item.id !== target.dataset.removeAppointmentType);
-    await persistActionFeedback(null, "Afspraaksoort verwijderd");
     return;
   }
   if (target.dataset.financeTab) {
@@ -3669,14 +4242,20 @@ document.addEventListener("click", async (event) => {
     const selected = state.clients.find((item) => item.id === clientId);
     const appointment = findAppointment(clientId, appointmentId);
     if (!appointment) return;
-    const rateId = document.querySelector(`[data-finance-rate="${clientId}:${appointmentId}"]`)?.value || "";
-    const rate = rateById(rateId);
-    appointment.rateId = rate?.id || "";
-    appointment.rateName = rate?.name || "";
-    appointment.amount = number(document.querySelector(`[data-finance-amount="${clientId}:${appointmentId}"]`)?.value, rate ? rate.amount : 0);
-    appointment.paymentStatus = document.querySelector(`[data-finance-payment="${clientId}:${appointmentId}"]`)?.value === "paid" ? "paid" : "unpaid";
-    syncAppointmentAdminItem(selected, appointment);
-    renderAll();
+    try {
+      const rateId = document.querySelector(`[data-finance-rate="${clientId}:${appointmentId}"]`)?.value || "";
+      const rate = rateById(rateId);
+      appointment.rateId = rate?.id || "";
+      appointment.rateName = rate?.name || "";
+      appointment.amount = number(document.querySelector(`[data-finance-amount="${clientId}:${appointmentId}"]`)?.value, rate ? rate.amount : 0);
+      appointment.paymentStatus = document.querySelector(`[data-finance-payment="${clientId}:${appointmentId}"]`)?.value === "paid" ? "paid" : "unpaid";
+      await upsertAppointmentsCloud([{ appointment, clientId }]);
+      syncAppointmentAdminItem(selected, appointment);
+      renderAll();
+    } catch (error) {
+      renderAll();
+      agendaSetMessage(`Afspraakbedrag opslaan mislukt: ${error.message}`, "error");
+    }
     return;
   }
   if (target.dataset.saveAdmin) {
@@ -3794,36 +4373,18 @@ document.addEventListener("click", async (event) => {
   if (target.dataset.editAppointment) {
     if (!isTrainer()) return;
     const [clientId, appointmentId] = target.dataset.editAppointment.split(":");
-    const selected = state.clients.find((item) => item.id === clientId);
-    const appointment = findAppointment(clientId, appointmentId);
-    if (!appointment) return;
-    const nextDate = prompt("Datum aanpassen (YYYY-MM-DD)", appointment.date || todayISO());
-    if (nextDate === null) return;
-    const nextTime = prompt("Tijd aanpassen (HH:MM)", appointment.time || "09:00");
-    if (nextTime === null) return;
-    const nextType = prompt("Type afspraak", appointment.type || "Afspraak");
-    if (nextType === null) return;
-    const nextLocation = prompt("Locatie", appointment.location || appointmentTypeById(appointment.appointmentTypeId)?.location || "");
-    if (nextLocation === null) return;
-    appointment.date = nextDate || appointment.date;
-    appointment.day = dayNameFromDate(appointment.date);
-    appointment.time = nextTime || appointment.time;
-    appointment.type = nextType || appointment.type || "Afspraak";
-    appointment.location = nextLocation || appointment.location || "";
-    syncAppointmentAdminItem(selected, appointment);
-    renderAll();
+    openAppointmentEditor(clientId, appointmentId);
     return;
   }
   if (target.dataset.deleteAppointment) {
     if (!isTrainer()) return;
     const [clientId, appointmentId] = target.dataset.deleteAppointment.split(":");
-    const selected = state.clients.find((item) => item.id === clientId);
-    const appointment = selected?.appointments.find((item) => item.id === appointmentId);
-    if (!selected || !appointment) return;
-    if (!confirm(`Afspraak ${appointment.date || ""} ${appointment.time || ""} verwijderen?`)) return;
-    selected.appointments = selected.appointments.filter((item) => item.id !== appointmentId);
-    state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.appointmentId !== appointmentId);
-    renderAll();
+    try {
+      await deleteAppointment(clientId, appointmentId);
+    } catch (error) {
+      renderAll();
+      agendaSetMessage(`Verwijderen mislukt: ${error.message}`, "error");
+    }
     return;
   }
   if (target.id === "prevWeek") {
@@ -3839,12 +4400,12 @@ document.addEventListener("click", async (event) => {
     renderAll();
   }
   if (target.dataset.setAppointmentDate) {
-    const form = $("#appointmentForm");
-    form.elements.date.value = target.dataset.setAppointmentDate;
-    if (target.dataset.setAppointmentTime && target.dataset.setAppointmentTime !== "no-time") {
-      form.elements.time.value = target.dataset.setAppointmentTime;
-    }
-    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    const time = target.dataset.setAppointmentTime && target.dataset.setAppointmentTime !== "no-time" ? target.dataset.setAppointmentTime : "09:00";
+    openAppointmentForm({
+      date: target.dataset.setAppointmentDate,
+      time,
+      endTime: addMinutesToTime(time, appointmentTypeById($("#appointmentTypeSelect")?.value)?.duration || 60)
+    });
   }
 });
 
@@ -3921,7 +4482,7 @@ $("#setPasswordForm").addEventListener("submit", async (event) => {
     const { error } = await supabaseClient.auth.updateUser({ password });
     if (error) throw error;
     message.className = "login-message ok";
-    message.textContent = "Wachtwoord aangepast. Je wordt nu ingelogd...";
+    message.textContent = "Wachtwoord opgeslagen. Je kunt voortaan inloggen met je e-mail en dit wachtwoord.";
     form.reset();
     const setupContext = passwordSetupContext;
     finishPasswordSetup();
@@ -4265,20 +4826,12 @@ $("#financeAdminForm").addEventListener("submit", (event) => {
 $("#appointmentTypeForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!isTrainer()) return;
-  const data = new FormData(event.currentTarget);
-  appointmentTypes().push({
-    id: `appt-type-${Date.now()}${Math.random().toString(16).slice(2)}`,
-    name: String(data.get("name") || "").trim() || "Afspraaksoort",
-    duration: data.get("duration") === "" ? "" : number(data.get("duration"), 0),
-    price: data.get("price") === "" ? "" : number(data.get("price"), 0),
-    category: String(data.get("category") || "").trim(),
-    location: String(data.get("location") || "").trim(),
-    capacity: data.get("capacity") === "" ? "" : number(data.get("capacity"), 0),
-    color: data.get("color") || "#c89312"
-  });
-  event.currentTarget.reset();
-  event.currentTarget.elements.color.value = "#c89312";
-  await persistActionFeedback(null, "Afspraaksoort toegevoegd");
+  try {
+    await saveAppointmentTypeFromForm(event.currentTarget);
+  } catch (error) {
+    renderAll();
+    agendaSetMessage(`Afspraaksoort opslaan mislukt: ${error.message}`, "error");
+  }
 });
 
 $("#measurementForm").addEventListener("submit", (event) => {
@@ -4301,36 +4854,14 @@ $("#measurementForm").addEventListener("submit", (event) => {
   renderAll();
 });
 
-$("#appointmentForm").addEventListener("submit", (event) => {
+$("#appointmentForm").addEventListener("submit", async (event) => {
   event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  const selected = state.clients.find((item) => item.id === data.get("clientId"));
-  if (!selected) return;
-  const rate = rateById(data.get("rateId"));
-  const appointmentType = appointmentTypeById(data.get("appointmentTypeId"));
-  const manualAmount = data.get("amount");
-  const amount = manualAmount !== "" ? number(manualAmount) : (rate ? number(rate.amount) : (appointmentType?.price !== "" && appointmentType?.price !== undefined ? number(appointmentType.price) : ""));
-  const appointment = {
-    id: `a${Date.now()}${Math.random().toString(16).slice(2)}`,
-    date: data.get("date"),
-    day: dayNameFromDate(data.get("date")),
-    time: data.get("time"),
-    appointmentTypeId: appointmentType?.id || "",
-    type: String(data.get("type") || "").trim() || appointmentType?.name || "Afspraak",
-    duration: appointmentType?.duration ?? "",
-    color: appointmentType?.color || "#c89312",
-    location: String(data.get("location") || "").trim() || appointmentType?.location || "",
-    repeat: data.get("repeat") || "",
-    rateId: rate?.id || "",
-    rateName: rate?.name || "",
-    amount,
-    paymentStatus: "unpaid",
-    adminItemSuppressed: false
-  };
-  selected.appointments.push(appointment);
-  syncAppointmentAdminItem(selected, appointment);
-  event.currentTarget.reset();
-  renderAll();
+  try {
+    await saveAppointmentFromForm(event.currentTarget);
+  } catch (error) {
+    renderAll();
+    agendaSetMessage(`Afspraak opslaan mislukt: ${error.message}`, "error");
+  }
 });
 
 $("#notificationPermission").addEventListener("click", async () => {
@@ -4360,6 +4891,12 @@ document.addEventListener("input", (event) => {
   if (target.id === "exerciseSearch") {
     state.ui.exerciseSearch = target.value;
     renderExerciseLibrary();
+  }
+  if (target.name === "time" && target.closest("#appointmentForm")) {
+    const form = $("#appointmentForm");
+    const type = appointmentTypeById(form.elements.appointmentTypeId.value);
+    const duration = Math.max(AGENDA_SLOT_MINUTES, timeToMinutes(form.elements.endTime.value) - timeToMinutes(target.value)) || type?.duration || 60;
+    form.elements.endTime.value = addMinutesToTime(target.value || "09:00", duration);
   }
   if (target.dataset.stepIndex) {
     weekArray(selected, "stepsByWeek", "value")[Number(target.dataset.stepIndex)].value = target.value;
@@ -4403,36 +4940,33 @@ document.addEventListener("dragover", (event) => {
   if (event.target.closest("[data-calendar-date]")) event.preventDefault();
 });
 
-document.addEventListener("drop", (event) => {
+document.addEventListener("drop", async (event) => {
   const column = event.target.closest("[data-calendar-date]");
   if (!column) return;
   event.preventDefault();
   const payload = event.dataTransfer.getData("text/plain");
   if (payload.startsWith("type:")) {
     const typeId = payload.slice(5);
-    const form = $("#appointmentForm");
     const type = appointmentTypeById(typeId);
-    if (form && type) {
-      form.elements.date.value = column.dataset.calendarDate;
-      if (column.dataset.calendarTime && column.dataset.calendarTime !== "no-time") form.elements.time.value = column.dataset.calendarTime;
-      form.elements.appointmentTypeId.value = type.id;
-      form.elements.location.value = type.location || "";
-      form.elements.amount.value = type.price !== "" && type.price !== undefined ? type.price : "";
-      form.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (type) {
+      const time = column.dataset.calendarTime && column.dataset.calendarTime !== "no-time" ? column.dataset.calendarTime : "09:00";
+      openAppointmentForm({
+        date: column.dataset.calendarDate,
+        time,
+        endTime: addMinutesToTime(time, type.duration || 60),
+        appointmentTypeId: type.id
+      });
     }
     return;
   }
   const cleanPayload = payload.startsWith("appointment:") ? payload.slice(12) : payload;
   const [clientId, appointmentId] = cleanPayload.split(":");
-  const selected = state.clients.find((item) => item.id === clientId);
-  const appointment = selected?.appointments.find((item) => item.id === appointmentId);
-  if (!appointment) return;
-  appointment.date = column.dataset.calendarDate;
-  if (column.dataset.calendarTime && column.dataset.calendarTime !== "no-time") {
-    appointment.time = column.dataset.calendarTime;
+  try {
+    await moveAppointment(clientId, appointmentId, column.dataset.calendarDate, column.dataset.calendarTime);
+  } catch (error) {
+    renderAll();
+    agendaSetMessage(`Verplaatsen mislukt: ${error.message}`, "error");
   }
-  appointment.day = dayNameFromDate(appointment.date);
-  renderAll();
 });
 
 document.addEventListener("change", (event) => {
@@ -4477,12 +5011,23 @@ document.addEventListener("change", (event) => {
     if (amountInput && rate) amountInput.value = number(rate.amount, 0);
   }
   if (target.id === "appointmentTypeSelect") {
-    const type = appointmentTypeById(target.value);
     const form = $("#appointmentForm");
-    if (type && form) {
-      form.elements.location.value = type.location || "";
-      form.elements.amount.value = type.price !== "" && type.price !== undefined ? type.price : "";
+    if (form) {
+      form.elements.location.value = "";
+      form.elements.amount.value = "";
+      form.elements.endTime.value = "";
+      applyAppointmentTypeDefaultsToForm(true);
     }
+  }
+  if (target.id === "agendaClientFilter") {
+    state.ui.agendaClientFilter = target.value || "";
+    renderAgenda();
+    saveState();
+  }
+  if (target.id === "agendaTypeFilter") {
+    state.ui.agendaTypeFilter = target.value || "";
+    renderAgenda();
+    saveState();
   }
   if (target.id === "financeMonthFilter" || target.id === "adminMonthFilter") {
     state.ui.financeMonth = target.value || "";
@@ -4538,10 +5083,9 @@ async function init() {
     try {
       const { data } = await supabaseClient.auth.getSession();
       if (data?.session) {
-        if (INITIAL_AUTH_LINK_TYPE === "recovery") {
+        if (isRecoveryAuthLink()) {
           requirePasswordSetup("recovery");
-        } else if (INITIAL_AUTH_LINK_TYPE === "invite") {
-          await hydrateOnlineUser("client");
+        } else if (isInviteAuthLink()) {
           requirePasswordSetup("invite");
         } else {
           await hydrateOnlineUser();
@@ -4552,17 +5096,8 @@ async function init() {
           requirePasswordSetup("recovery");
           return;
         }
-        if (event === "SIGNED_IN" && session && INITIAL_AUTH_LINK_TYPE === "invite" && !passwordSetupRequired) {
-          try {
-            await hydrateOnlineUser("client");
-            requirePasswordSetup("invite");
-          } catch (error) {
-            const message = $("#setPasswordMessage");
-            if (message) {
-              message.className = "login-message error";
-              message.textContent = error.message;
-            }
-          }
+        if (event === "SIGNED_IN" && session && isInviteAuthLink() && !passwordSetupRequired && !authLinkPasswordHandled) {
+          requirePasswordSetup("invite");
           return;
         }
         if (event === "SIGNED_OUT" || !session) {
