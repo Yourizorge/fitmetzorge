@@ -62,6 +62,7 @@ let hydratingFromCloud = false;
 let cloudSaveTimer = null;
 let passwordSetupRequired = false;
 let passwordSetupContext = "";
+let authLinkPasswordHandled = false;
 let navMenuOpen = false;
 
 window.addEventListener("error", (event) => {
@@ -1683,6 +1684,14 @@ function isOnlineMode() {
   return Boolean(supabaseClient);
 }
 
+function isInviteAuthLink() {
+  return INITIAL_AUTH_LINK_TYPE === "invite";
+}
+
+function isRecoveryAuthLink() {
+  return INITIAL_AUTH_LINK_TYPE === "recovery";
+}
+
 function syncStatus(text, stateName = "") {
   const target = $("#syncStatus");
   if (!target) return;
@@ -1987,6 +1996,7 @@ function requirePasswordSetup(context = "invite") {
 function finishPasswordSetup() {
   passwordSetupRequired = false;
   passwordSetupContext = "";
+  authLinkPasswordHandled = true;
   window.history.replaceState({}, document.title, window.location.pathname);
 }
 
@@ -4472,7 +4482,7 @@ $("#setPasswordForm").addEventListener("submit", async (event) => {
     const { error } = await supabaseClient.auth.updateUser({ password });
     if (error) throw error;
     message.className = "login-message ok";
-    message.textContent = "Wachtwoord aangepast. Je wordt nu ingelogd...";
+    message.textContent = "Wachtwoord opgeslagen. Je kunt voortaan inloggen met je e-mail en dit wachtwoord.";
     form.reset();
     const setupContext = passwordSetupContext;
     finishPasswordSetup();
@@ -5073,10 +5083,9 @@ async function init() {
     try {
       const { data } = await supabaseClient.auth.getSession();
       if (data?.session) {
-        if (INITIAL_AUTH_LINK_TYPE === "recovery") {
+        if (isRecoveryAuthLink()) {
           requirePasswordSetup("recovery");
-        } else if (INITIAL_AUTH_LINK_TYPE === "invite") {
-          await hydrateOnlineUser("client");
+        } else if (isInviteAuthLink()) {
           requirePasswordSetup("invite");
         } else {
           await hydrateOnlineUser();
@@ -5087,17 +5096,8 @@ async function init() {
           requirePasswordSetup("recovery");
           return;
         }
-        if (event === "SIGNED_IN" && session && INITIAL_AUTH_LINK_TYPE === "invite" && !passwordSetupRequired) {
-          try {
-            await hydrateOnlineUser("client");
-            requirePasswordSetup("invite");
-          } catch (error) {
-            const message = $("#setPasswordMessage");
-            if (message) {
-              message.className = "login-message error";
-              message.textContent = error.message;
-            }
-          }
+        if (event === "SIGNED_IN" && session && isInviteAuthLink() && !passwordSetupRequired && !authLinkPasswordHandled) {
+          requirePasswordSetup("invite");
           return;
         }
         if (event === "SIGNED_OUT" || !session) {
