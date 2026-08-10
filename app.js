@@ -1478,12 +1478,24 @@ function invoiceNumber(item) {
   return legacyInvoiceNumber(item);
 }
 
+function appointmentMonthSequence(selected, appointment) {
+  if (!selected || !appointment?.date) return 1;
+  const month = monthKey(appointment.date);
+  const appointments = (selected.appointments || [])
+    .filter((item) => item.date && monthKey(item.date) === month)
+    .sort((a, b) => `${a.date || ""} ${a.time || ""} ${a.id || ""}`.localeCompare(`${b.date || ""} ${b.time || ""} ${b.id || ""}`));
+  const index = appointments.findIndex((item) => item.id === appointment.id);
+  return index >= 0 ? index + 1 : appointments.length + 1;
+}
+
 function invoiceDescriptionFromAppointment(appointment) {
   const dateLabel = appointment.date ? formatLongDutchDate(appointment.date) : "datum onbekend";
   const timeLabel = appointment.time ? ` om ${appointment.time}` : "";
   const selected = state.clients.find((item) => item.appointments?.some((appt) => appt.id === appointment.id));
   const packageText = selected ? clientPackageLabel(selected) : "";
-  return `${packageText && packageText !== "Geen pakket gekozen" ? `Pakket: ${packageText}` : "Pakket nog niet gekozen"} | Afspraak: ${appointment.type || "Afspraak"} - ${dateLabel}${timeLabel}`;
+  const sequence = selected ? appointmentMonthSequence(selected, appointment) : 1;
+  const monthText = appointment.date ? monthLabel(monthKey(appointment.date)) : "maand onbekend";
+  return `Afspraak ${sequence} (${monthText}) | ${packageText && packageText !== "Geen pakket gekozen" ? `Pakket: ${packageText}` : "Pakket nog niet gekozen"} | ${appointment.type || "Afspraak"} - ${dateLabel}${timeLabel}`;
 }
 
 function createAppointmentAdminItem(selected, appointment) {
@@ -1495,7 +1507,7 @@ function createAppointmentAdminItem(selected, appointment) {
     appointmentId: appointment.id,
     description: invoiceDescriptionFromAppointment(appointment),
     date: appointment.date || todayISO(),
-    dueDate: addDaysISO(appointment.date || todayISO(), 14),
+    dueDate: addDaysISO(appointment.date || todayISO(), number(invoiceSettings().paymentTermDays, 14)),
     amount: "",
     status: paymentStatus(appointment),
     invoiceNo: nextInvoiceNumber()
@@ -1505,6 +1517,7 @@ function createAppointmentAdminItem(selected, appointment) {
 function syncAppointmentAdminItem(selected, appointment) {
   if (!selected || !appointment) return null;
   appointment.adminItemSuppressed = false;
+  appointment.monthSequence = appointmentMonthSequence(selected, appointment);
   const items = financeAdminItems();
   let item = appointment.adminItemId ? items.find((entry) => entry.id === appointment.adminItemId) : null;
   if (!item) {
@@ -1516,6 +1529,8 @@ function syncAppointmentAdminItem(selected, appointment) {
   item.type = "invoice";
   item.clientId = selected.id;
   item.appointmentId = appointment.id;
+  item.appointmentSequence = appointment.monthSequence;
+  item.appointmentMonth = monthKey(appointment.date || item.date || todayISO());
   item.description = invoiceDescriptionFromAppointment(appointment);
   item.date = appointment.date || item.date || todayISO();
   item.dueDate ||= addDaysISO(item.date, 14);
@@ -1540,6 +1555,11 @@ function ensureAppointmentAdminItems() {
       if (!linkedItemExists && !appointment.adminItemSuppressed) {
         syncAppointmentAdminItem(selected, appointment);
         changed = true;
+      } else if (linkedItemExists && !appointment.adminItemSuppressed) {
+        const before = JSON.stringify(financeAdminItems().find((item) => item.id === appointment.adminItemId) || {});
+        syncAppointmentAdminItem(selected, appointment);
+        const after = JSON.stringify(financeAdminItems().find((item) => item.id === appointment.adminItemId) || {});
+        if (before !== after) changed = true;
       }
     });
   });
@@ -1626,6 +1646,12 @@ function invoiceSettings() {
   return state.trainerFinance.invoiceSettings;
 }
 
+function invoiceLogoMarkup(settings) {
+  const fallback = `<div class="invoice-logo-fallback"><div class="bar"></div><div class="logo-line"><span class="weight-mark">|||</span><strong>FIT MET ZORGE</strong><span class="weight-mark">|||</span></div><small>Fit met Zorge zonder zorgen</small><div class="bar"></div></div>`;
+  if (!settings.logoUrl) return fallback;
+  return `<div class="invoice-logo-wrap"><img src="${escapeHTML(settings.logoUrl)}" alt="${escapeHTML(settings.businessName || "Fit Met Zorge")}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" /><div style="display:none">${fallback}</div></div>`;
+}
+
 function invoiceHTML(item) {
   const trainer = state.trainerAccount || {};
   const settings = invoiceSettings();
@@ -1651,6 +1677,12 @@ function invoiceHTML(item) {
     h2 { margin: 26px 0 8px; font-size: 16px; }
     p { margin: 4px 0; color: #516174; }
     .brand { color: #c89312; font-weight: 800; font-size: 20px; }
+    .invoice-logo-wrap img { max-width: 190px; max-height: 90px; object-fit: contain; margin-bottom: 10px; }
+    .invoice-logo-fallback { width: 210px; max-width: 100%; display: grid; gap: 8px; margin-bottom: 12px; color: #8a6500; text-align: center; font-weight: 900; }
+    .invoice-logo-fallback .bar { height: 3px; background: #8a6500; }
+    .invoice-logo-fallback .logo-line { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 18px; letter-spacing: 0; }
+    .invoice-logo-fallback .weight-mark { font-weight: 950; letter-spacing: 2px; }
+    .invoice-logo-fallback small { color: #8a6500; font-size: 11px; }
     .meta { text-align: right; }
     table { width: 100%; border-collapse: collapse; margin-top: 22px; }
     th, td { border-bottom: 1px solid #dbe3eb; padding: 12px; text-align: left; }
@@ -1667,7 +1699,7 @@ function invoiceHTML(item) {
   <div class="invoice">
     <div class="top">
       <div>
-        ${settings.logoUrl ? `<img src="${escapeHTML(settings.logoUrl)}" alt="${escapeHTML(settings.businessName || "Fit Met Zorge")}" style="max-width:150px;max-height:80px;object-fit:contain;margin-bottom:10px" />` : ""}
+        ${invoiceLogoMarkup(settings)}
         <div class="brand">${escapeHTML(settings.businessName || "Fit Met Zorge")}</div>
         <h1>Factuur</h1>
         <p>${escapeHTML(settings.ownerName || trainer.name || "Trainer")}</p>
@@ -1688,6 +1720,7 @@ function invoiceHTML(item) {
     <h2>Factuur aan</h2>
     <p><strong>${escapeHTML(clientName)}</strong></p>
     <p><strong>Pakket:</strong> ${escapeHTML(packageText)}</p>
+    ${item.appointmentSequence ? `<p><strong>Afspraaknummer deze maand:</strong> ${escapeHTML(item.appointmentSequence)} (${escapeHTML(monthLabel(item.appointmentMonth || monthKey(item.date || "")))})</p>` : ""}
     <table>
       <thead>
         <tr>
@@ -3688,6 +3721,7 @@ function renderAdministration() {
     ? filteredAdminItems.map((item) => `
         <div class="finance-card admin-card">
           <div>
+            ${item.appointmentSequence ? `<span class="appointment-sequence-badge">Afspraak ${escapeHTML(item.appointmentSequence)} van ${escapeHTML(monthLabel(item.appointmentMonth || monthKey(item.date || "")))}</span>` : ""}
             <strong>${escapeHTML(item.description)}</strong>
             <span>${adminTypeLabel(item.type)}${item.clientId ? ` | ${escapeHTML(clientNameById(item.clientId))}` : ""}${item.date ? ` | ${escapeHTML(item.date)}` : ""}${item.dueDate ? ` | vervalt ${escapeHTML(item.dueDate)}` : ""}</span>
             <small>${currency(item.amount || 0)}</small>
@@ -3708,6 +3742,7 @@ function renderAdministration() {
         <div class="finance-card invoice-card premium-invoice-card">
           <div>
             <span class="eyebrow">${paymentStatusLabel(item.status)}</span>
+            ${item.appointmentSequence ? `<span class="appointment-sequence-badge">Afspraak ${escapeHTML(item.appointmentSequence)} van ${escapeHTML(monthLabel(item.appointmentMonth || monthKey(item.date || "")))}</span>` : ""}
             <strong>${escapeHTML(invoiceNumber(item))}</strong>
             <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
             <span class="muted">Pakket: ${escapeHTML(item.clientId ? clientPackageLabel(state.clients.find((clientItem) => clientItem.id === item.clientId)) : "Geen pakket gekozen")}</span>
@@ -3751,6 +3786,7 @@ function renderInvoicePage() {
       <div class="finance-card invoice-card premium-invoice-card">
         <div>
           <span class="eyebrow">${paymentStatusLabel(item.status)}</span>
+          ${item.appointmentSequence ? `<span class="appointment-sequence-badge">Afspraak ${escapeHTML(item.appointmentSequence)} van ${escapeHTML(monthLabel(item.appointmentMonth || monthKey(item.date || "")))}</span>` : ""}
           <strong>${escapeHTML(invoiceNumber(item))}</strong>
           <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
           <span class="muted">Pakket: ${escapeHTML(item.clientId ? clientPackageLabel(state.clients.find((clientItem) => clientItem.id === item.clientId)) : "Geen pakket gekozen")}</span>
@@ -4704,7 +4740,8 @@ document.addEventListener("click", async (event) => {
     const statusInput = target.closest(".finance-card")?.querySelector(`[data-admin-status="${item.id}"]`) || document.querySelector(`[data-admin-status="${item.id}"]`);
     item.status = statusInput?.value === "paid" ? "paid" : "unpaid";
     syncAppointmentFromAdminItem(item);
-    renderAll();
+    const ok = await persistActionFeedback(null, "Administratie opgeslagen");
+    if (!ok) alert("Administratie opslaan mislukt.");
     return;
   }
   if (target.dataset.saveInvoice) {
@@ -4749,7 +4786,11 @@ document.addEventListener("click", async (event) => {
       invoiceNo: nextInvoiceNumber()
     };
     financeAdminItems().push(invoice);
-    await persistActionFeedback(null, "Pakketfactuur aangemaakt");
+    const ok = await persistActionFeedback(null, "Pakketfactuur aangemaakt");
+    if (!ok) {
+      alert("Pakketfactuur opslaan mislukt.");
+      return;
+    }
     showView("administration");
     return;
   }
@@ -5388,7 +5429,7 @@ $("#financeAdminForm").addEventListener("submit", async (event) => {
   if (!isTrainer()) return;
   const data = new FormData(event.currentTarget);
   const date = data.get("date") || todayISO();
-  const type = ADMIN_TYPES[data.get("type")] ? data.get("type") : "invoice";
+  const type = "invoice";
   const selectedClient = state.clients.find((item) => item.id === data.get("clientId"));
   const fallbackPackageAmount = type === "invoice" && selectedClient ? clientPackageAmount(selectedClient) : "";
   const description = String(data.get("description") || "").trim() || (selectedClient ? `Pakket: ${clientPackageLabel(selectedClient)}` : "Administratie item");
@@ -5398,14 +5439,14 @@ $("#financeAdminForm").addEventListener("submit", async (event) => {
     clientId: data.get("clientId") || "",
     description,
     date,
-    dueDate: data.get("dueDate") || (type === "invoice" ? addDaysISO(date, 14) : ""),
+    dueDate: data.get("dueDate") || addDaysISO(date, number(invoiceSettings().paymentTermDays, 14)),
     amount: data.get("amount") === "" ? fallbackPackageAmount : number(data.get("amount"), 0),
     status: data.get("status") === "paid" ? "paid" : "unpaid",
     invoiceNo: type === "invoice" ? nextInvoiceNumber() : ""
   });
   event.currentTarget.reset();
-  const ok = await persistActionFeedback(null, type === "invoice" ? "Factuur opgeslagen" : "Administratie opgeslagen");
-  if (!ok) alert(type === "invoice" ? "Factuur opslaan mislukt." : "Administratie opslaan mislukt.");
+  const ok = await persistActionFeedback(null, "Factuur opgeslagen");
+  if (!ok) alert("Factuur opslaan mislukt.");
 });
 
 $("#appointmentTypeForm").addEventListener("submit", async (event) => {
