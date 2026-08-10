@@ -5750,3 +5750,85 @@ body.client-mode .training-log-results {
     border-radius: 22px;
   }
 }
+
+/* Definitieve agenda-layout: deze staat bewust onderaan zodat oude agenda-regels niet meer terugwinnen. */
+body.trainer-mode #agenda .agenda-dashboard.agenda-pro {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr) !important;
+  align-items: start;
+  gap: 18px;
+}
+
+body.trainer-mode #agenda .agenda-type-side {
+  order: 1 !important;
+  width: 100%;
+  min-width: 0;
+  position: sticky;
+  top: 88px;
+}
+
+body.trainer-mode #agenda .agenda-calendar-panel {
+  order: 2 !important;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  overflow: hidden;
+}
+
+body.trainer-mode #agenda .agenda-command-panel {
+  display: contents !important;
+}
+
+body.trainer-mode #agenda .agenda-command-panel #appointmentTypeManager {
+  display: none !important;
+}
+
+body.trainer-mode #agenda .agenda-board-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.trainer-mode #agenda .agenda-board {
+  min-width: 1180px !important;
+}
+
+body.trainer-mode #agenda .agenda-board-head,
+body.trainer-mode #agenda .agenda-board-body {
+  grid-template-columns: 82px repeat(7, minmax(154px, 1fr)) !important;
+}
+
+@media (min-width: 1280px) {
+  body.trainer-mode #agenda .agenda-dashboard.agenda-pro {
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) !important;
+  }
+
+  body.trainer-mode #agenda .agenda-board {
+    min-width: 1280px !important;
+  }
+
+  body.trainer-mode #agenda .agenda-board-head,
+  body.trainer-mode #agenda .agenda-board-body {
+    grid-template-columns: 84px repeat(7, minmax(170px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 980px) {
+  body.trainer-mode #agenda .agenda-dashboard.agenda-pro {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.trainer-mode #agenda .agenda-type-side {
+    position: static;
+  }
+
+  body.trainer-mode #agenda .agenda-board {
+    min-width: 860px !important;
+  }
+
+  body.trainer-mode #agenda .agenda-board-head,
+  body.trainer-mode #agenda .agenda-board-body {
+    grid-template-columns: 64px repeat(7, minmax(108px, 1fr)) !important;
+  }
+}
