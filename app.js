@@ -1333,6 +1333,29 @@ function packageOptions(selectedValue = "") {
   }).join("")}${hasCustom ? `<option value="${escapeHTML(clean)}" selected>${escapeHTML(clean)}</option>` : ""}`;
 }
 
+function readImageFileAsDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const maxSide = 1280;
+        const scale = Math.min(1, maxSide / Math.max(img.width || maxSide, img.height || maxSide));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round((img.width || maxSide) * scale));
+        canvas.height = Math.max(1, Math.round((img.height || maxSide) * scale));
+        const context = canvas.getContext("2d");
+        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL("image/jpeg", 0.78));
+      };
+      img.onerror = () => resolve(String(reader.result || ""));
+      img.src = String(reader.result || "");
+    };
+    reader.onerror = () => reject(reader.error || new Error("Foto lezen mislukt."));
+    reader.readAsDataURL(file);
+  });
+}
+
 function paymentStatus(appointment) {
   return appointment?.paymentStatus === "paid" ? "paid" : "unpaid";
 }
@@ -2915,7 +2938,14 @@ function renderClientTrackerOverview(selected) {
             ["photoSide", "Zijkant"],
             ["photoBack", "Achterkant"],
             ["photoExtra", "Extra foto"]
-          ].map(([key, label]) => `<label class="field photo-url-field"><span>${label}</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:${key}" value="${escapeHTML(progressEntry[key] || "")}" placeholder="Foto URL of bestandsnaam" /></label>`).join("")}
+          ].map(([key, label]) => `
+            <label class="field photo-upload-field">
+              <span>${label}</span>
+              ${progressEntry[key] ? `<img class="progress-photo-preview" src="${escapeHTML(progressEntry[key])}" alt="${label}" />` : `<span class="photo-upload-empty">Nog geen foto</span>`}
+              <input data-progress-file="${activeIndex}:${key}" type="file" accept="image/*" />
+              <small>Tik om foto uit je galerij of bestanden te kiezen.</small>
+            </label>
+          `).join("")}
         </div>
         <button class="primary-btn tracker-save-btn" data-save-progress-day="${activeIndex}" type="button">Voortgang opslaan</button>
         <span class="save-feedback" data-save-feedback="progress-${activeIndex}"></span>
@@ -5458,7 +5488,7 @@ document.addEventListener("input", (event) => {
   }
 });
 
-document.addEventListener("change", (event) => {
+document.addEventListener("change", async (event) => {
   const target = event.target;
   const selected = client();
   if (target.dataset.weightIndex) {
@@ -5473,6 +5503,32 @@ document.addEventListener("change", (event) => {
     weightEntries[Number(index)][key] = target.value;
     selected.dailyWeight = weightEntries;
     renderAll();
+  }
+  if (target.dataset.progressFile) {
+    const [index, key] = target.dataset.progressFile.split(":");
+    const file = target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      alert("Kies een afbeelding.");
+      target.value = "";
+      return;
+    }
+    if (file.size > 12 * 1024 * 1024) {
+      alert("Deze foto is te groot. Kies een foto onder 12 MB zodat de app soepel blijft werken.");
+      target.value = "";
+      return;
+    }
+    try {
+      const weightEntries = progressWeekEntries(selected);
+      weightEntries[Number(index)][key] = await readImageFileAsDataURL(file);
+      selected.dailyWeight = weightEntries;
+      saveState();
+      renderTrackersOverview();
+      renderProgress();
+      renderClientHome();
+    } catch (error) {
+      alert(`Foto opslaan mislukt: ${error.message}`);
+    }
   }
   if (target.dataset.trainingPlan) {
     const [index, key] = target.dataset.trainingPlan.split(":");

@@ -3488,6 +3488,7 @@ textarea,
   background: rgba(255, 255, 255, 0.07);
 }
 
+select,
 #clientSelect {
   color: #f8fafc;
   background: #101820;
@@ -3495,21 +3496,44 @@ textarea,
   font-weight: 900;
 }
 
+select option,
 #clientSelect option {
   color: #101820;
   background: #ffffff;
   font-weight: 800;
 }
 
+body.light select,
 body.light #clientSelect {
   color: #101820;
   background: #ffffff;
   border-color: rgba(184, 138, 21, 0.45);
 }
 
+body.light select option,
 body.light #clientSelect option {
   color: #101820;
   background: #ffffff;
+}
+
+.field select,
+.form-panel select,
+.finance-card select,
+.agenda-planner select,
+.settings-card select,
+.tracker-input-card select {
+  color: #f8fafc;
+  background-color: #101820;
+}
+
+body.light .field select,
+body.light .form-panel select,
+body.light .finance-card select,
+body.light .agenda-planner select,
+body.light .settings-card select,
+body.light .tracker-input-card select {
+  color: #101820;
+  background-color: #ffffff;
 }
 
 .primary-btn,
@@ -5384,6 +5408,45 @@ body.client-mode .food-log-card {
   box-shadow: none;
 }
 
+.photo-upload-field {
+  gap: 9px;
+}
+
+.photo-upload-field input[type="file"] {
+  min-height: 48px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.photo-upload-empty,
+.progress-photo-preview {
+  width: 100%;
+  min-height: 104px;
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.photo-upload-empty {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.progress-photo-preview {
+  display: block;
+  height: 138px;
+  object-fit: cover;
+}
+
+.photo-upload-field small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .client-training-advice {
   margin-bottom: 0;
 }
@@ -5399,6 +5462,76 @@ body.client-mode .food-log-card {
   .client-combined-circles,
   .client-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  body.client-mode .content {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  body.client-mode .tracker-client-grid,
+  body.client-mode .tracker-input-grid,
+  body.client-mode .tracker-week-stack,
+  body.client-mode .form-grid.compact,
+  body.client-mode .progress-photo-grid,
+  body.client-mode .client-preview-grid.two,
+  body.client-mode .client-preview-grid.three,
+  body.client-mode .agenda-dashboard,
+  body.client-mode .agenda-pro,
+  body.client-mode .client-appointments {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.client-mode .tracker-input-card,
+  body.client-mode .tracker-week-block,
+  body.client-mode .agenda-calendar-panel,
+  body.client-mode .client-appointment-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  body.client-mode .tracker-input-card .field,
+  body.client-mode .tracker-input-card input,
+  body.client-mode .tracker-input-card select,
+  body.client-mode .tracker-input-card textarea {
+    width: 100%;
+    min-width: 0;
+  }
+
+  body.client-mode .tracker-card-head,
+  body.client-mode .tracker-overview-head,
+  body.client-mode .week-toolbar,
+  body.client-mode .agenda-calendar-head,
+  body.client-mode .calendar-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  body.client-mode .week-toolbar,
+  body.client-mode .calendar-controls {
+    gap: 8px;
+  }
+
+  body.client-mode .agenda-type-side,
+  body.client-mode .agenda-command-panel {
+    display: none !important;
+  }
+
+  body.client-mode #weekCalendar,
+  body.client-mode .client-appointments {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  body.client-mode .client-appointment-card {
+    margin: 0;
+  }
+
+  body.client-mode .photo-upload-field input[type="file"] {
+    font-size: 14px;
   }
 
   body.client-mode .nav-btn {
