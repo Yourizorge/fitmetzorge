@@ -112,19 +112,38 @@
           </div>
         </div>
 
+        <div class="trainer-top-brand">
+          <img src="assets/fit-met-zorge-logo-cropped.png" alt="Fit Met Zorge logo" />
+          <div>
+            <strong>Fit Met Zorge</strong>
+            <span>Traineromgeving 2.0</span>
+          </div>
+        </div>
+
+        <div class="topbar-search" aria-label="Snel zoeken">
+          <span>Zoeken</span>
+          <input id="globalSearch" placeholder="Client, afspraak, schema..." />
+        </div>
+
         <div class="topbar-controls">
           <label class="field compact">
-            <span>Client</span>
+            <span>Lid</span>
             <select id="clientSelect"></select>
           </label>
           <span id="syncStatus" class="sync-status"></span>
           <span id="currentUserLabel" class="current-user"></span>
           <button id="logoutButton" class="secondary-btn" type="button">Uitloggen</button>
-          <button id="themeToggle" class="icon-btn" type="button" aria-label="Thema wisselen" title="Thema wisselen">◐</button>
+          <button id="themeToggle" class="icon-btn hidden" type="button" hidden aria-hidden="true">◐</button>
         </div>
       </header>
 
       <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-logo-wrap">
+            <img src="assets/fit-met-zorge-logo-cropped.png" alt="Fit Met Zorge logo" class="brand-logo" />
+          </div>
+          <small>Traineromgeving 2.0</small>
+        </div>
         <nav id="nav" class="nav"></nav>
       </aside>
 
@@ -139,6 +158,8 @@
           </div>
 
           <div id="trainerKpis" class="kpi-grid"></div>
+
+          <div id="trainerPreviewGrid" class="trainer-preview-grid"></div>
 
           <div class="panel">
             <div class="panel-head">
@@ -184,7 +205,7 @@
           <div class="view-head">
             <div>
               <p class="eyebrow">Beheer</p>
-              <h1>Clienten koppelen</h1>
+              <h1>Leden koppelen</h1>
             </div>
           </div>
 
@@ -248,7 +269,7 @@
 
             <div class="panel">
               <div class="panel-head">
-                <h2>Gekoppelde clienten</h2>
+                <h2>Gekoppelde leden</h2>
               </div>
               <div id="clientCards" class="client-grid"></div>
             </div>
@@ -323,6 +344,7 @@
                 <select id="trainingCopyTarget"></select>
               </label>
               <button class="secondary-btn" data-copy-training-schema type="button">Schema kopieren</button>
+              <button class="primary-btn" data-publish-training-schema type="button">Beschikbaar stellen voor lid</button>
               <span class="save-feedback" data-save-feedback="training-copy"></span>
             </div>
             <div class="goal-strip" id="trainingGoalStrip"></div>
@@ -407,11 +429,21 @@
           </div>
         </section>
 
-        <section id="nutrition" class="view" data-view-title="Voedingsschema">
+        <section id="training-log" class="view" data-view-title="Trainingslog">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Logboek</p>
+              <h1>Trainingslog</h1>
+            </div>
+          </div>
+          <div id="trainingLogOverview"></div>
+        </section>
+
+        <section id="nutrition" class="view" data-view-title="Voeding">
           <div class="view-head">
             <div>
               <p class="eyebrow">Voeding</p>
-              <h1>Voedingsschema en macro's</h1>
+              <h1>Voeding</h1>
             </div>
           </div>
           <div class="week-toolbar">
@@ -474,9 +506,23 @@
                   <select id="nutritionCopyTarget"></select>
                 </label>
                 <button class="secondary-btn" data-copy-nutrition-schema type="button">Schema kopieren</button>
+                <button class="primary-btn" data-publish-nutrition-schema type="button">Beschikbaar stellen voor lid</button>
                 <span class="save-feedback" data-save-feedback="nutrition-copy"></span>
               </div>
               <div id="nutritionPlanList" class="meal-plan-grid"></div>
+            </div>
+
+            <div id="clientFoodPanel" class="panel client-food-panel nutrition-log-panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Voedingslog</p>
+                  <h2>Per dag en per maaltijd opslaan</h2>
+                </div>
+                <span class="muted">Gebaseerd op het voedingsschema van de trainer</span>
+              </div>
+              <div id="dailyFoodTotals" class="macro-totals"></div>
+              <div id="weeklyFoodLogGrid" class="food-log-week-grid"></div>
+              <div id="actualFoodLogCards" class="food-log-cards"></div>
             </div>
 
             <div id="recipePanel" class="panel trainer-tool">
@@ -539,28 +585,8 @@
           </div>
         </section>
 
-        <section id="nutrition-log" class="view" data-view-title="Voedingslog">
-          <div class="view-head">
-            <div>
-              <p class="eyebrow">Voeding</p>
-              <h1>Voedingslog</h1>
-            </div>
-          </div>
-          <div class="week-toolbar">
-            <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
-            <strong data-week-label></strong>
-            <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
-            <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
-          </div>
-          <div id="clientFoodPanel" class="panel client-food-panel">
-            <div class="panel-head">
-              <h2>Voedingslog per dag</h2>
-              <span class="muted">Gebaseerd op het voedingsschema van de trainer</span>
-            </div>
-            <div id="dailyFoodTotals" class="macro-totals"></div>
-            <div id="weeklyFoodLogGrid" class="food-log-week-grid"></div>
-            <div id="actualFoodLogCards" class="food-log-cards"></div>
-          </div>
+        <section id="trackers" class="view" data-view-title="Trackers">
+          <div id="trackerOverview"></div>
         </section>
 
         <section id="steps" class="view" data-view-title="Stappen">
@@ -696,11 +722,17 @@
           <div class="view-head">
             <div>
               <p class="eyebrow">Planning</p>
-              <h1>Agenda</h1>
+              <h1>Professionele planning als hart van de app.</h1>
             </div>
-            <button id="notificationPermission" class="secondary-btn" type="button">Meldingen aanzetten</button>
+            <div class="agenda-head-actions">
+              <button class="secondary-btn agenda-settings-button" data-action="open-settings-appointment-types" type="button">Nieuwe afspraaksoort</button>
+              <button class="primary-btn agenda-new-button" data-action="focus-appointment-form" type="button">Nieuwe afspraak</button>
+            </div>
           </div>
           <div class="agenda-dashboard agenda-pro">
+            <aside class="agenda-type-side">
+              <div id="agendaQuickTypes" class="agenda-quick-types"></div>
+            </aside>
             <aside class="agenda-sidebar agenda-command-panel">
             <form id="appointmentForm" class="panel form-panel agenda-planner">
               <div class="agenda-form-head">
@@ -708,7 +740,10 @@
                   <p class="eyebrow">Nieuwe boeking</p>
                   <h2>Afspraak plannen</h2>
                 </div>
-                <span class="agenda-form-pill">4 stappen</span>
+                <div class="agenda-modal-actions">
+                  <span class="agenda-form-pill">4 stappen</span>
+                  <button class="secondary-btn icon-only-btn" data-action="close-appointment-modal" type="button" aria-label="Sluit afspraak pop-up">×</button>
+                </div>
               </div>
               <div class="form-step-label">1. Basisgegevens</div>
               <label class="field">
@@ -765,7 +800,7 @@
                   <p class="eyebrow">Agenda bibliotheek</p>
                   <h2>Afspraaksoorten</h2>
                 </div>
-                <span class="muted">Kies of sleep naar het rooster</span>
+                <span class="muted">Klik om direct in te plannen</span>
               </div>
               <form id="appointmentTypeForm" class="appointment-type-form">
                 <input name="name" placeholder="Afspraaksoort" required />
@@ -919,11 +954,11 @@
           </div>
         </section>
 
-        <section id="administration" class="view" data-view-title="Administratie">
+        <section id="administration" class="view" data-view-title="Administratie & facturen">
           <div class="view-head">
             <div>
               <p class="eyebrow">Trainer</p>
-              <h1>Administratie</h1>
+              <h1>Administratie & facturen</h1>
             </div>
             <div class="finance-toolbar">
               <button id="resetAdministration" class="danger-btn" data-reset-administration type="button">Administratie resetten</button>
@@ -993,11 +1028,42 @@
           </div>
           <div class="panel">
             <div class="panel-head">
-              <h2>Facturen</h2>
-              <span class="muted">Facturen uit afspraken en administratie downloaden</span>
+              <h2>Facturen beheren</h2>
+              <span class="muted">Aanpassen, betaalstatus wijzigen, downloaden of verwijderen</span>
             </div>
             <div id="financeInvoiceList" class="finance-card-list"></div>
           </div>
+        </section>
+
+        <section id="invoice" class="view" data-view-title="Facturen">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Trainer</p>
+              <h1>Facturen</h1>
+            </div>
+            <button class="primary-btn" data-action="open-view" data-target="administration" type="button">Factuur toevoegen</button>
+          </div>
+          <div id="invoicePageKpis" class="kpi-grid finance-kpis"></div>
+          <div class="panel invoice-page-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Administratie</p>
+                <h2>Alle facturen</h2>
+              </div>
+              <span class="muted">Status aanpassen, downloaden of verwijderen</span>
+            </div>
+            <div id="invoicePageList" class="finance-card-list invoice-page-list"></div>
+          </div>
+        </section>
+
+        <section id="settings" class="view" data-view-title="Instellingen">
+          <div class="view-head">
+            <div>
+              <p class="eyebrow">Trainer</p>
+              <h1>Instellingen</h1>
+            </div>
+          </div>
+          <div id="settingsOverview"></div>
         </section>
       </main>
     </div>

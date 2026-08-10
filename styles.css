@@ -1,20 +1,20 @@
 :root {
   color-scheme: dark;
-  --bg: #070707;
-  --surface: #111315;
-  --surface-2: #181c20;
-  --surface-3: #20262c;
+  --bg: #070b12;
+  --surface: rgba(255, 255, 255, 0.075);
+  --surface-2: rgba(255, 255, 255, 0.055);
+  --surface-3: rgba(255, 255, 255, 0.105);
   --text: #f4f7f8;
   --muted: #9aa7b2;
-  --line: #303842;
+  --line: rgba(255, 255, 255, 0.12);
   --gold: #d7b24d;
   --gold-2: #f0ce73;
   --blue: #073b5a;
   --blue-2: #0b4f78;
   --danger: #f07171;
   --ok: #76d39b;
-  --radius: 8px;
-  --shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+  --radius: 18px;
+  --shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
 }
 
 body.light {
@@ -26,8 +26,8 @@ body.light {
   --text: #111315;
   --muted: #5d6872;
   --line: #d8e0e7;
-  --gold: #b88917;
-  --gold-2: #d5a633;
+  --gold: #94680a;
+  --gold-2: #7b5608;
   --blue: #073b5a;
   --blue-2: #e7f0f6;
   --shadow: 0 14px 34px rgba(24, 35, 45, 0.12);
@@ -45,7 +45,10 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 18% -10%, rgba(184, 138, 21, 0.24), transparent 34%),
+    radial-gradient(circle at 100% 0%, rgba(29, 78, 216, 0.18), transparent 36%),
+    var(--bg);
   color: var(--text);
   font-family: Inter, Segoe UI, Arial, sans-serif;
   font-size: 14px;
@@ -80,8 +83,9 @@ button {
 .app-shell {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 248px 1fr;
+  grid-template-columns: 286px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
+  gap: 0;
 }
 
 .logged-out .app-shell {
@@ -250,17 +254,25 @@ button {
 }
 
 .topbar {
-  grid-column: 1 / -1;
+  grid-column: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 12px 22px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
+  margin: 16px 20px 0 8px;
+  padding: 14px 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
   position: sticky;
   top: 0;
   z-index: 5;
+}
+
+.topbar > .brand {
+  display: none;
 }
 
 .brand {
@@ -271,14 +283,14 @@ button {
 }
 
 .brand-logo-wrap {
-  width: 154px;
+  width: 132px;
   height: 54px;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
   border: 1px solid rgba(215, 178, 77, 0.45);
-  border-radius: 6px;
-  background: #fff;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
   padding: 4px 8px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
 }
@@ -297,7 +309,7 @@ button {
 }
 
 .brand strong {
-  color: var(--gold-2);
+  color: var(--text);
   font-size: 17px;
 }
 
@@ -313,11 +325,40 @@ button {
 }
 
 .sidebar {
-  grid-row: 2;
-  background: var(--surface);
-  border-right: 1px solid var(--line);
-  padding: 16px 12px;
+  grid-column: 1;
+  grid-row: 1 / -1;
+  position: sticky;
+  top: 16px;
+  height: calc(100vh - 32px);
+  margin: 16px 0 16px 16px;
+  background: rgba(7, 11, 18, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  padding: 14px;
   overflow: auto;
+}
+
+.sidebar-brand {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid rgba(215, 178, 77, 0.2);
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.03));
+}
+
+.sidebar-brand .brand-logo-wrap {
+  width: 100%;
+  height: 88px;
+  border-radius: 18px;
+}
+
+.sidebar-brand small {
+  color: var(--muted);
+  font-weight: 800;
 }
 
 .nav {
@@ -347,21 +388,42 @@ button {
 .nav-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 11px;
   width: 100%;
-  min-height: 42px;
-  padding: 10px 12px;
+  min-height: 46px;
+  padding: 11px 12px;
   border: 1px solid transparent;
-  border-radius: var(--radius);
+  border-radius: 16px;
   background: transparent;
   color: var(--muted);
   text-align: left;
 }
 
+.nav-btn i {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--gold);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.nav-btn span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .nav-btn.active,
 .nav-btn:hover {
   color: var(--text);
-  background: var(--surface-2);
+  background: linear-gradient(135deg, rgba(184, 138, 21, 0.23), rgba(16, 35, 60, 0.44));
   border-color: var(--line);
 }
 
@@ -376,7 +438,7 @@ button {
 .content {
   grid-column: 2;
   grid-row: 2;
-  padding: 22px;
+  padding: 22px 20px 44px 8px;
   overflow: auto;
   min-width: 0;
 }
@@ -384,7 +446,7 @@ button {
 .view {
   display: none;
   min-width: 0;
-  max-width: 1500px;
+  max-width: 1320px;
   margin: 0 auto;
 }
 
@@ -398,6 +460,11 @@ button {
   align-items: center;
   gap: 16px;
   margin-bottom: 18px;
+  border: 1px solid rgba(215, 178, 77, 0.22);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(215, 178, 77, 0.17), rgba(255, 255, 255, 0.055));
+  box-shadow: var(--shadow);
+  padding: 20px;
 }
 
 .eyebrow {
@@ -417,8 +484,9 @@ p {
 
 h1 {
   margin-bottom: 0;
-  font-size: 28px;
+  font-size: clamp(31px, 4vw, 52px);
   line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 h2 {
@@ -427,9 +495,9 @@ h2 {
 }
 
 .panel {
-  background: var(--surface);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.04));
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: 24px;
   box-shadow: var(--shadow);
   padding: 16px;
   margin-bottom: 16px;
@@ -456,9 +524,9 @@ h2 {
 }
 
 .kpi {
-  background: var(--surface);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.04));
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: 22px;
   padding: 14px;
   min-height: 104px;
 }
@@ -2545,8 +2613,188 @@ td {
   color: var(--ok);
 }
 
+.tracker-overview-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.tracker-overview-head h1 {
+  margin: 0;
+}
+
+.tracker-client-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tracker-input-card,
+.tracker-week-block {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.tracker-input-card.wide {
+  grid-column: 1 / -1;
+}
+
+.tracker-card-head,
+.tracker-week-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tracker-card-head h2,
+.tracker-week-head h2 {
+  margin: 0 0 4px;
+}
+
+.form-grid.compact {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.progress-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.photo-url-field {
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  background: var(--surface-2);
+}
+
+.tracker-kpis {
+  margin-bottom: 16px;
+}
+
+.tracker-week-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.tracker-week-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(128px, 1fr));
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.tracker-week-day {
+  min-height: 100px;
+  display: grid;
+  align-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+  padding: 12px;
+}
+
+.tracker-week-day.today {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 12%, var(--surface));
+}
+
+.tracker-week-day span,
+.tracker-week-day small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.tracker-week-day strong {
+  color: var(--text);
+  font-size: 20px;
+}
+
+.tracker-detail-table {
+  display: grid;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.tracker-detail-row {
+  display: grid;
+  grid-template-columns: 130px repeat(7, minmax(92px, 1fr));
+  min-width: 860px;
+  gap: 8px;
+}
+
+.tracker-detail-row > div {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 9px;
+  font-size: 12px;
+}
+
+.tracker-detail-row > div:first-child {
+  color: var(--gold-2);
+  font-weight: 900;
+}
+
+.tracker-action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 12px;
+}
+
+body.light .eyebrow,
+body.light th,
+body.light .water-day-card strong,
+body.light .tracker-detail-row > div:first-child {
+  color: #6f4d05;
+}
+
+body.light .topbar,
+body.light .panel,
+body.light .kpi,
+body.light .tracker-input-card,
+body.light .tracker-week-block,
+body.light .tracker-week-day,
+body.light .tracker-detail-row > div {
+  background: #ffffff;
+}
+
+body.light .sidebar {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+body.light .nav-btn.active,
+body.light .nav-btn:hover {
+  color: var(--text);
+  background: rgba(184, 138, 21, 0.16);
+}
+
+body.light .view-head {
+  background: linear-gradient(145deg, rgba(184, 138, 21, 0.14), rgba(255, 255, 255, 0.96));
+}
+
+body.light .tracker-week-day.today {
+  background: rgba(184, 138, 21, 0.14);
+}
+
 .save-feedback.error {
   color: var(--danger);
+}
+
+#themeToggle,
+#settingsThemeToggle {
+  display: none !important;
 }
 
 .empty-state {
@@ -3232,5 +3480,1909 @@ td {
 
   h1 {
     font-size: 24px;
+  }
+}
+
+/* Traineromgeving 2.0 visual system: keeps existing functionality, replaces the old look. */
+input,
+select,
+textarea,
+.small-select {
+  min-height: 46px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.primary-btn,
+.secondary-btn,
+.icon-btn,
+.seg-btn,
+.danger-btn {
+  min-height: 44px;
+  border-radius: 16px;
+  font-weight: 900;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--gold), #e2b848);
+  color: #17120a;
+}
+
+.secondary-btn,
+.seg-btn {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.client-card,
+.list-item,
+.recipe-output,
+.meal-accordion,
+.meal-option-card,
+.training-day-tab,
+.training-day,
+.exercise-card,
+.appointment-card,
+.metric-tile,
+.day-cell,
+.water-day-card,
+.food-log-card,
+.food-day-card,
+.finance-card,
+.rate-row,
+.appointment-type-row,
+.agenda-stat-card,
+.client-appointment-card {
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--line);
+}
+
+.exercise-card,
+.appointment-card {
+  border-radius: 20px;
+  padding: 14px;
+}
+
+.training-day-tab.active,
+.client-card.active,
+.meal-accordion.open .meal-accordion-head {
+  background: rgba(215, 178, 77, 0.14);
+}
+
+.training-day-tab strong,
+.training-day-title strong,
+.meal-accordion-head span {
+  color: var(--gold);
+}
+
+.table-wrap {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+table {
+  min-width: 860px;
+}
+
+th {
+  color: var(--gold);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.tracker-overview-head {
+  border: 1px solid rgba(215, 178, 77, 0.22);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(215, 178, 77, 0.17), rgba(255, 255, 255, 0.055));
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+body.light input,
+body.light select,
+body.light textarea,
+body.light .small-select,
+body.light .client-card,
+body.light .list-item,
+body.light .recipe-output,
+body.light .meal-accordion,
+body.light .meal-option-card,
+body.light .training-day-tab,
+body.light .training-day,
+body.light .exercise-card,
+body.light .appointment-card,
+body.light .metric-tile,
+body.light .day-cell,
+body.light .water-day-card,
+body.light .food-log-card,
+body.light .food-day-card,
+body.light .finance-card,
+body.light .rate-row,
+body.light .appointment-type-row,
+body.light .agenda-stat-card,
+body.light .client-appointment-card {
+  background: #ffffff;
+}
+
+body.light .sidebar-brand {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+body.light .tracker-overview-head {
+  background: linear-gradient(145deg, rgba(184, 138, 21, 0.14), rgba(255, 255, 255, 0.96));
+}
+
+.tracker-day-tabs {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.tracker-day-tab {
+  min-height: 72px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.tracker-day-tab strong,
+.tracker-day-tab span {
+  display: block;
+}
+
+.tracker-day-tab span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.tracker-day-tab:hover,
+.tracker-day-tab.active {
+  transform: translateY(-1px);
+  border-color: rgba(215, 178, 77, 0.65);
+  background: rgba(215, 178, 77, 0.16);
+}
+
+.tracker-day-tab.today:not(.active) {
+  border-color: rgba(215, 178, 77, 0.32);
+}
+
+.tracker-client-grid {
+  align-items: start;
+}
+
+.tracker-input-card.wide {
+  grid-column: 1 / -1;
+}
+
+.progress-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+#trainer-dashboard .view-head,
+#agenda .view-head,
+#clients .view-head,
+#nutrition .view-head,
+#nutrition-log .view-head,
+#finance .view-head,
+#administration .view-head,
+#invoice .view-head,
+#settings .view-head {
+  border: 1px solid rgba(215, 178, 77, 0.22);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(215, 178, 77, 0.14), rgba(255, 255, 255, 0.05));
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+#trainer-dashboard .panel,
+#agenda .panel,
+#clients .panel,
+#nutrition .panel,
+#nutrition-log .panel,
+#finance .panel,
+#administration .panel,
+#invoice .panel,
+#settings .panel {
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+}
+
+.agenda-pro {
+  align-items: start;
+  gap: 18px;
+}
+
+.agenda-command-panel {
+  border-radius: 26px;
+}
+
+.week-calendar,
+.agenda-board-wrap {
+  border-radius: 24px;
+}
+
+.agenda-slot {
+  transition: background 0.16s ease, border-color 0.16s ease;
+}
+
+.agenda-slot:hover {
+  border-color: rgba(215, 178, 77, 0.42);
+  background: rgba(215, 178, 77, 0.08);
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.settings-card h2 {
+  margin: 4px 0 8px;
+}
+
+.premium-invoice-card {
+  align-items: center;
+}
+
+.premium-invoice-card > div:first-child {
+  display: grid;
+  gap: 5px;
+}
+
+body.light .tracker-day-tab,
+body.light #trainer-dashboard .view-head,
+body.light #agenda .view-head,
+body.light #clients .view-head,
+body.light #nutrition .view-head,
+body.light #nutrition-log .view-head,
+body.light #finance .view-head,
+body.light #administration .view-head,
+body.light #invoice .view-head,
+body.light #settings .view-head {
+  background: #ffffff;
+}
+
+body.light .tracker-day-tab.active {
+  background: rgba(184, 138, 21, 0.16);
+}
+
+body.light .training-day-tab strong,
+body.light .training-day-title strong,
+body.light .meal-accordion-head span,
+body.light th,
+body.light .eyebrow {
+  color: #8a6500;
+}
+
+@media (max-width: 900px) {
+  .tracker-day-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .progress-photo-grid,
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Definitieve preview-overname: dezelfde premium structuur als Traineromgeving 2.0. */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% -10%, rgba(184, 138, 21, 0.24), transparent 34%),
+    radial-gradient(circle at 100% 0%, rgba(16, 35, 60, 0.72), transparent 36%),
+    var(--bg);
+}
+
+body.light {
+  --bg: #f5f2e9;
+  --surface: rgba(255, 255, 255, 0.82);
+  --surface-2: rgba(255, 255, 255, 0.72);
+  --surface-3: #eef1f3;
+  --text: #101417;
+  --muted: #64748b;
+  --line: rgba(15, 23, 42, 0.12);
+  background:
+    radial-gradient(circle at 20% -10%, rgba(184, 138, 21, 0.18), transparent 34%),
+    radial-gradient(circle at 96% 8%, rgba(16, 35, 60, 0.16), transparent 36%),
+    var(--bg);
+}
+
+.app-shell {
+  grid-template-columns: 286px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+}
+
+.sidebar {
+  top: 16px;
+  height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0 16px 16px;
+  padding: 14px;
+  border-radius: 28px;
+  background: rgba(7, 11, 18, 0.9);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+body.light .sidebar,
+body.light .topbar {
+  background: rgba(245, 242, 233, 0.9);
+}
+
+.sidebar-brand {
+  margin-bottom: 0;
+  padding: 12px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025));
+}
+
+.sidebar-brand .brand-logo-wrap {
+  height: auto;
+  min-height: 84px;
+  background: transparent;
+}
+
+.sidebar-brand .brand-logo {
+  width: 170px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.nav {
+  gap: 7px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-right: 2px;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-btn {
+  min-height: 46px;
+  border: 0;
+  border-radius: 14px;
+  color: var(--muted);
+  background: transparent;
+  font-weight: 850;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(184, 138, 21, 0.22), rgba(16, 35, 60, 0.44));
+}
+
+.nav-btn i {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--gold-2);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  display: grid;
+  grid-template-columns: auto minmax(220px, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin: 0;
+  padding: 22px clamp(18px, 3vw, 34px) 18px 8px;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(180deg, rgba(7, 11, 18, 0.98) 65%, transparent);
+  box-shadow: none;
+}
+
+.trainer-top-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.trainer-top-brand img {
+  width: 118px;
+  height: auto;
+  object-fit: contain;
+}
+
+.trainer-top-brand strong,
+.trainer-top-brand span {
+  display: block;
+}
+
+.trainer-top-brand span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.topbar-search {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.topbar-search span {
+  color: var(--gold-2);
+  font-size: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.topbar-search input {
+  width: 100%;
+  min-height: auto;
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  background: transparent;
+}
+
+.topbar-controls {
+  justify-content: flex-end;
+}
+
+.content {
+  padding: 0 clamp(18px, 3vw, 34px) 42px 8px;
+}
+
+.view {
+  max-width: 1480px;
+}
+
+.view.active {
+  animation: fmzRise 0.24s ease both;
+}
+
+@keyframes fmzRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.view-head,
+.tracker-overview-head,
+.preview-hero-panel {
+  border-color: rgba(215, 178, 77, 0.24);
+  background: linear-gradient(145deg, rgba(215, 178, 77, 0.18), rgba(255, 255, 255, 0.055));
+}
+
+.view-head h1 {
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.panel,
+.kpi,
+.metric-tile,
+.tracker-input-card,
+.tracker-week-block,
+.client-card,
+.meal-accordion,
+.meal-option-card,
+.food-log-card,
+.food-log-meal-cell,
+.training-day,
+.exercise-card,
+.agenda-calendar-panel,
+.agenda-planner,
+.appointment-type-manager,
+.finance-card,
+.rate-row,
+.appointment-type-row {
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+  box-shadow: var(--shadow);
+}
+
+.kpi strong {
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1;
+}
+
+.trainer-preview-grid,
+.client-dashboard-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr) minmax(260px, 0.75fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.client-dashboard-hero {
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+}
+
+.preview-hero-panel h2,
+.preview-focus-panel h2 {
+  margin: 0 0 10px;
+  font-size: clamp(26px, 4vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.preview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.preview-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.preview-mini-grid div,
+.profile-summary-grid div {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.preview-mini-grid span,
+.profile-summary-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.preview-mini-grid strong,
+.profile-summary-grid strong {
+  display: block;
+  margin-top: 6px;
+}
+
+.client-today-grid {
+  grid-template-columns: repeat(6, minmax(140px, 1fr));
+}
+
+.tracker-day-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  scrollbar-width: none;
+}
+
+.tracker-day-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tracker-day-tab {
+  flex: 0 0 150px;
+  min-height: 72px;
+  border-radius: 16px;
+}
+
+.training-builder .training-day-tabs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  overflow: visible;
+  padding-bottom: 0;
+}
+
+.training-builder .training-day-tab {
+  width: 100%;
+  min-height: 72px;
+  border-radius: 16px;
+}
+
+.training-day-tab.active,
+.tracker-day-tab.active {
+  color: #17120a;
+  border-color: transparent;
+  background: var(--gold-2);
+}
+
+.training-day-tab.active strong,
+.tracker-day-tab.active strong,
+.training-day-tab.active span,
+.tracker-day-tab.active span,
+.training-day-tab.active small {
+  color: #17120a;
+}
+
+.exercise-row.training-session-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.training-exercise-card {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: start;
+}
+
+.exercise-log {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.exercise-log label,
+.mini-target,
+.field {
+  min-width: 0;
+}
+
+.macro-totals {
+  gap: 10px;
+}
+
+.macro-totals > div {
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.food-log-week {
+  gap: 12px;
+}
+
+.food-log-day-column {
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: none;
+}
+
+.food-log-meal-cell {
+  box-shadow: none;
+}
+
+.agenda-pro {
+  grid-template-columns: 360px minmax(0, 1fr);
+}
+
+.agenda-board,
+.week-calendar {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.agenda-event,
+.appointment-card {
+  border-radius: 16px;
+}
+
+.finance-tabs {
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.finance-tab.active {
+  color: #17120a;
+  background: var(--gold-2);
+}
+
+body.light .panel,
+body.light .kpi,
+body.light .metric-tile,
+body.light .tracker-input-card,
+body.light .tracker-week-block,
+body.light .client-card,
+body.light .meal-accordion,
+body.light .meal-option-card,
+body.light .food-log-card,
+body.light .food-log-meal-cell,
+body.light .training-day,
+body.light .exercise-card,
+body.light .agenda-calendar-panel,
+body.light .agenda-planner,
+body.light .appointment-type-manager,
+body.light .finance-card,
+body.light .rate-row,
+body.light .appointment-type-row,
+body.light .preview-mini-grid div,
+body.light .profile-summary-grid div {
+  background: rgba(255, 255, 255, 0.86);
+}
+
+@media (max-width: 1180px) {
+  .trainer-preview-grid,
+  .client-dashboard-hero,
+  .agenda-pro {
+    grid-template-columns: 1fr;
+  }
+
+  .client-today-grid {
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+  }
+
+  .exercise-log {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .trainer-top-brand,
+  .topbar-search {
+    display: none;
+  }
+
+  body.trainer-mode .app-shell {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    padding-bottom: 0;
+  }
+
+  body.trainer-mode .sidebar {
+    position: sticky;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: auto;
+    height: calc(100dvh - 16px);
+    margin: 8px 0 8px 8px;
+    padding: 8px;
+    border-radius: 22px;
+  }
+
+  body.trainer-mode .sidebar-brand small,
+  body.trainer-mode .nav-btn span,
+  body.trainer-mode .mobile-nav-label,
+  body.trainer-mode .mobile-nav-arrow {
+    display: none;
+  }
+
+  body.trainer-mode .sidebar-brand {
+    padding: 6px;
+  }
+
+  body.trainer-mode .sidebar-brand .brand-logo {
+    width: 58px;
+  }
+
+  body.trainer-mode .nav-btn {
+    justify-content: center;
+    padding: 9px;
+  }
+
+  body.trainer-mode .topbar,
+  body.trainer-mode .content {
+    grid-column: 2;
+  }
+
+  body.client-mode .sidebar {
+    border-radius: 22px 22px 0 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .client-today-grid,
+  .kpi-grid,
+  .preview-mini-grid,
+  .exercise-log {
+    grid-template-columns: 1fr;
+  }
+
+  .training-exercise-card {
+    grid-template-columns: 1fr;
+  }
+
+  .view-head h1 {
+    font-size: 30px;
+  }
+}
+
+/* Navigatie en instellingen volgens de nieuwe preview-richting. */
+body.light .sidebar {
+  background: rgba(245, 242, 233, 0.94);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light .nav-btn {
+  color: #64748b;
+  background: transparent;
+}
+
+body.light .nav-btn i {
+  background: transparent;
+  color: #d2a32b;
+}
+
+body.light .nav-btn.active,
+body.light .nav-btn:hover {
+  color: #101417;
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+body.light .nav-btn.active span,
+body.light .nav-btn:hover span {
+  color: #101417;
+}
+
+.settings-layout {
+  display: grid;
+  gap: 16px;
+}
+
+.training-log-week {
+  display: grid;
+  gap: 14px;
+}
+
+.training-next-note-panel {
+  display: grid;
+  gap: 14px;
+  border-color: rgba(215, 178, 77, 0.24);
+}
+
+.training-next-note-panel textarea {
+  min-height: 118px;
+  resize: vertical;
+}
+
+.training-next-note-panel .primary-btn {
+  justify-self: flex-start;
+}
+
+.training-log-day {
+  display: grid;
+  gap: 12px;
+}
+
+.training-log-day-head,
+.training-log-summary,
+.training-log-title,
+.training-log-targets,
+.training-log-results {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.training-log-day-head {
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.training-log-day-head strong {
+  display: block;
+  color: var(--gold-2);
+  font-size: 22px;
+}
+
+.training-log-day-head span,
+.training-log-summary span,
+.training-log-title span,
+.training-log-targets span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.training-log-summary {
+  justify-content: flex-start;
+}
+
+.training-log-summary span,
+.training-log-targets span {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.training-log-exercises {
+  display: grid;
+  gap: 10px;
+}
+
+.training-log-exercise {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.training-log-exercise.filled {
+  border-color: rgba(215, 178, 77, 0.34);
+  background: rgba(215, 178, 77, 0.08);
+}
+
+.training-log-photo {
+  width: 84px;
+  height: 84px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.training-log-exercise-main {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.training-log-title {
+  justify-content: space-between;
+}
+
+.training-log-title strong {
+  font-size: 17px;
+}
+
+.training-log-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.training-log-results div {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.training-log-results span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.training-log-results strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.training-log-note {
+  margin: 0;
+  border-radius: 16px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+body.light .training-log-exercise,
+body.light .training-log-summary span,
+body.light .training-log-targets span,
+body.light .training-log-results div,
+body.light .training-log-note {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.settings-invoice-card {
+  border-color: rgba(215, 178, 77, 0.28);
+}
+
+.settings-form-grid,
+.invoice-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.settings-form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.settings-save-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.premium-invoice-card {
+  grid-template-columns: minmax(0, 1fr) minmax(240px, auto);
+  gap: 18px;
+}
+
+.premium-invoice-card .finance-card-actions {
+  align-content: start;
+}
+
+@media (max-width: 1100px) {
+  .settings-form-grid,
+  .invoice-edit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .settings-form-grid,
+  .invoice-edit-grid,
+  .premium-invoice-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Instellingen + agenda volgens de nieuwe referentiebeelden. */
+.settings-hero {
+  display: grid;
+  gap: 18px;
+  padding: 4px 0 10px;
+}
+
+.settings-hero h1 {
+  margin: 0;
+  max-width: 1200px;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.settings-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.settings-feature-card {
+  min-height: 176px;
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  padding: 28px 24px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 24px 70px rgba(16, 20, 23, 0.1);
+  text-align: left;
+}
+
+.settings-feature-card strong {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.settings-feature-card span {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.settings-subtitle {
+  grid-column: 1 / -1;
+  margin: 8px 0 0;
+  font-size: 18px;
+}
+
+.compact-settings-form {
+  margin-bottom: 16px;
+}
+
+.settings-type-list,
+.settings-rate-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.settings-type-row,
+.settings-rate-row {
+  display: grid;
+  grid-template-columns: 18px 1.4fr 0.7fr 0.7fr 1fr 1fr 70px auto auto;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.settings-rate-row {
+  grid-template-columns: minmax(160px, 1fr) 160px auto;
+}
+
+#agenda .view-head {
+  align-items: end;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding: 0 0 16px;
+}
+
+#agenda .view-head h1 {
+  max-width: 900px;
+  font-size: clamp(50px, 6vw, 76px);
+}
+
+.agenda-new-button {
+  min-width: 188px;
+  min-height: 82px;
+  border-radius: 18px;
+  font-size: 20px;
+}
+
+.agenda-pro {
+  grid-template-columns: minmax(0, 1fr) 390px;
+  align-items: start;
+}
+
+.agenda-calendar-panel {
+  order: 1;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.agenda-command-panel {
+  order: 2;
+  position: sticky;
+  top: 100px;
+  display: grid;
+  gap: 16px;
+}
+
+#appointmentTypeManager {
+  order: 1;
+}
+
+#appointmentForm {
+  order: 2;
+}
+
+.agenda-stats {
+  display: none;
+}
+
+.agenda-board-wrap {
+  border-radius: 28px;
+  background: #ffffff;
+}
+
+.agenda-board {
+  min-width: 980px;
+}
+
+.agenda-board-head,
+.agenda-board-body {
+  grid-template-columns: 90px repeat(7, minmax(150px, 1fr));
+}
+
+.agenda-time-corner,
+.agenda-day-head,
+.agenda-time-cell {
+  background: #ffffff;
+  color: #64748b;
+}
+
+.agenda-day-head span,
+.agenda-time-corner {
+  color: #d0a22a;
+  font-size: 20px;
+  font-weight: 950;
+}
+
+.agenda-slot {
+  min-height: 130px;
+  background: #ffffff;
+}
+
+.agenda-event {
+  border: 0;
+  border-left: 5px solid var(--event-color, var(--gold));
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 42px rgba(16, 20, 23, 0.12);
+  color: #101417;
+}
+
+.agenda-event strong,
+.agenda-event-chip {
+  color: #101417;
+}
+
+.agenda-event-actions {
+  display: none;
+}
+
+.agenda-event:hover .agenda-event-actions {
+  display: grid;
+}
+
+.appointment-type-manager,
+.agenda-planner {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.appointment-type-list {
+  gap: 18px;
+}
+
+.appointment-type-card {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  min-height: 72px;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: none;
+  padding: 10px 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.appointment-type-card .type-swatch {
+  width: 14px;
+  height: 44px;
+  border-radius: 999px;
+}
+
+.appointment-type-card .appointment-type-summary {
+  display: contents;
+}
+
+.appointment-type-card strong {
+  color: #101417;
+  font-size: 18px;
+}
+
+.appointment-type-card small {
+  color: #101417;
+  font-size: 16px;
+  text-align: right;
+}
+
+.appointment-type-card:hover {
+  background: rgba(200, 147, 18, 0.08);
+}
+
+body:not(.light) .settings-feature-card,
+body:not(.light) .agenda-calendar-panel,
+body:not(.light) .appointment-type-manager,
+body:not(.light) .agenda-planner,
+body:not(.light) .agenda-board-wrap,
+body:not(.light) .agenda-time-corner,
+body:not(.light) .agenda-day-head,
+body:not(.light) .agenda-time-cell,
+body:not(.light) .agenda-slot {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1180px) {
+  .settings-feature-grid,
+  .agenda-pro {
+    grid-template-columns: 1fr;
+  }
+
+  .agenda-command-panel {
+    position: static;
+  }
+
+  .settings-type-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Laatste agenda- en administratie-afwerking. */
+.sidebar {
+  top: 8px;
+  height: calc(100vh - 16px);
+  margin: 8px 0 8px 8px;
+  padding: 10px;
+  gap: 8px;
+}
+
+.sidebar-brand {
+  padding: 8px;
+  gap: 6px;
+}
+
+.sidebar-brand .brand-logo-wrap {
+  min-height: 54px;
+}
+
+.sidebar-brand .brand-logo {
+  width: 132px;
+  max-height: 58px;
+}
+
+.nav {
+  gap: 4px;
+  overflow: visible;
+}
+
+.nav-btn {
+  min-height: 39px;
+  padding: 7px 10px;
+  border-radius: 13px;
+  font-size: 14px;
+}
+
+.nav-btn i {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+.agenda-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.agenda-settings-button {
+  min-height: 56px;
+  border-radius: 18px;
+  padding-inline: 20px;
+}
+
+.agenda-quick-types {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 18px 54px rgba(16, 20, 23, 0.08);
+}
+
+.agenda-quick-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.agenda-quick-head h2 {
+  margin: 2px 0 0;
+  font-size: 26px;
+}
+
+.agenda-type-chip-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.agenda-type-chip {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 10px 12px;
+  align-items: center;
+  min-height: 76px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 14px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.92);
+  text-align: left;
+  box-shadow: 0 14px 34px rgba(16, 20, 23, 0.08);
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+}
+
+.agenda-type-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--type-color, var(--gold));
+  box-shadow: 0 20px 42px rgba(16, 20, 23, 0.14);
+}
+
+.agenda-type-chip .type-swatch {
+  grid-row: 1 / span 2;
+  width: 12px;
+  height: 42px;
+  border-radius: 999px;
+}
+
+.agenda-type-chip strong,
+.agenda-type-chip small {
+  min-width: 0;
+}
+
+.agenda-type-chip strong {
+  font-size: 17px;
+}
+
+.agenda-type-chip small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+#agenda #appointmentTypeForm {
+  display: none;
+}
+
+.agenda-pro {
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+}
+
+.agenda-slot {
+  min-height: 118px;
+}
+
+.agenda-type-side {
+  order: 1;
+  position: sticky;
+  top: 88px;
+}
+
+.agenda-calendar-panel {
+  order: 2;
+}
+
+.agenda-command-panel {
+  display: contents;
+}
+
+.agenda-command-panel #appointmentTypeManager {
+  display: none !important;
+}
+
+.agenda-planner {
+  display: none !important;
+}
+
+body.appointment-modal-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(7, 11, 18, 0.64);
+  backdrop-filter: blur(8px);
+}
+
+body.appointment-modal-open .agenda-planner {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+  display: grid !important;
+  width: min(620px, calc(100vw - 28px));
+  max-height: calc(100vh - 34px);
+  overflow: auto;
+  transform: translate(-50%, -50%);
+  border-radius: 28px;
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.34);
+}
+
+.agenda-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.schema-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nutrition-publish-actions {
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.agenda-event {
+  will-change: transform;
+}
+
+#administration .premium-invoice-card {
+  align-items: stretch;
+}
+
+#administration .invoice-edit-grid {
+  margin-top: 12px;
+}
+
+body:not(.light) .agenda-quick-types,
+body:not(.light) .agenda-type-chip {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body:not(.light) .agenda-type-chip {
+  color: var(--text);
+}
+
+body:not(.light) .appointment-type-card strong,
+body:not(.light) .appointment-type-card small {
+  color: var(--text);
+}
+
+@media (max-width: 980px) {
+  .agenda-head-actions,
+  .agenda-quick-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .agenda-new-button,
+  .agenda-settings-button {
+    width: 100%;
+  }
+
+  .agenda-type-chip-row {
+    grid-template-columns: 1fr;
+  }
+
+  .agenda-type-side {
+    position: static;
+  }
+}
+
+/* Ledenomgeving gebaseerd op de lid-preview, gekoppeld aan echte app-data. */
+body.client-mode {
+  background:
+    radial-gradient(circle at 20% -10%, rgba(184, 138, 21, 0.24), transparent 34%),
+    radial-gradient(circle at 100% 0%, rgba(29, 78, 216, 0.2), transparent 36%),
+    var(--bg);
+}
+
+body.client-mode .app-shell {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-bottom: 98px;
+}
+
+body.client-mode .topbar {
+  left: 0;
+  grid-column: 1;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(180deg, rgba(7, 11, 18, 0.96) 68%, transparent);
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+body.client-mode .topbar-search,
+body.client-mode #clientSelect,
+body.client-mode #clientSelect.closest {
+  display: none;
+}
+
+body.client-mode .topbar .field.compact {
+  display: none !important;
+}
+
+body.client-mode .sidebar {
+  position: fixed;
+  left: 50%;
+  right: auto;
+  bottom: 14px;
+  top: auto;
+  z-index: 60;
+  width: min(720px, calc(100% - 24px));
+  height: auto;
+  margin: 0;
+  padding: 8px;
+  transform: translateX(-50%);
+  border-radius: 22px;
+  background: rgba(7, 11, 18, 0.9);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+body.client-mode .sidebar-brand {
+  display: none;
+}
+
+body.client-mode .nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+body.client-mode .nav-arrow,
+body.client-mode .nav-current {
+  display: none;
+}
+
+body.client-mode .nav-menu-wrap {
+  display: contents;
+}
+
+body.client-mode .nav-track {
+  display: contents;
+  position: static;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.client-mode .nav-btn {
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  border: 0;
+  border-radius: 16px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+body.client-mode .nav-btn i {
+  display: none;
+}
+
+body.client-mode .nav-btn.active {
+  color: #17120a;
+  background: var(--gold-2);
+}
+
+body.client-mode .content {
+  grid-column: 1;
+  padding: 12px clamp(14px, 3vw, 30px) 0;
+}
+
+body.client-mode .view-head {
+  display: none;
+}
+
+.client-preview-shell {
+  display: grid;
+  gap: 14px;
+}
+
+.client-preview-hero,
+.client-preview-card {
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+  box-shadow: var(--shadow);
+}
+
+.client-preview-hero {
+  border-color: rgba(215, 178, 77, 0.24);
+  background: linear-gradient(145deg, rgba(215, 178, 77, 0.18), rgba(255, 255, 255, 0.055));
+}
+
+.client-preview-hero h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(34px, 7vw, 58px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.client-preview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.client-preview-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.client-preview-grid.two {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.client-preview-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.client-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.client-row.compact {
+  margin-top: 12px;
+}
+
+.client-preview-card.highlight {
+  border-color: rgba(215, 178, 77, 0.38);
+  background: linear-gradient(145deg, rgba(215, 178, 77, 0.18), rgba(255, 255, 255, 0.055));
+}
+
+.client-combined-circles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.client-progress-circle {
+  min-height: 154px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  text-align: center;
+  background:
+    radial-gradient(circle, rgba(7, 11, 18, 0.9) 52%, transparent 53%),
+    conic-gradient(var(--gold-2) 0 var(--progress, 0%), rgba(255, 255, 255, 0.12) var(--progress, 0%) 100%);
+}
+
+.client-progress-circle.water {
+  background:
+    radial-gradient(circle, rgba(7, 11, 18, 0.9) 52%, transparent 53%),
+    conic-gradient(#60a5fa 0 var(--progress, 0%), rgba(255, 255, 255, 0.12) var(--progress, 0%) 100%);
+}
+
+.client-progress-circle strong {
+  display: block;
+  color: var(--text);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.client-progress-circle small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.client-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.client-preview-card.metric {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.client-preview-card.metric strong {
+  display: block;
+  font-size: 28px;
+}
+
+body.client-mode .training-panel,
+body.client-mode .nutrition-layout > .panel,
+body.client-mode .client-food-panel,
+body.client-mode .tracker-input-card,
+body.client-mode .tracker-week-block,
+body.client-mode .agenda-calendar-panel,
+body.client-mode .client-appointment-card {
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+  box-shadow: var(--shadow);
+}
+
+body.client-mode .training-builder {
+  display: grid;
+  gap: 14px;
+}
+
+body.client-mode .training-day-sidebar {
+  width: 100%;
+}
+
+body.client-mode .training-day-tabs,
+body.client-mode .tracker-day-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+body.client-mode .training-day-tabs::-webkit-scrollbar,
+body.client-mode .tracker-day-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+body.client-mode .training-day-tab,
+body.client-mode .tracker-day-tab {
+  flex: 0 0 auto;
+  border-radius: 16px;
+}
+
+body.client-mode .training-builder .training-day-tabs {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: visible;
+  padding-bottom: 0;
+}
+
+body.client-mode .training-builder .training-day-tab {
+  width: 100%;
+}
+
+body.client-mode .training-session-area {
+  display: grid;
+  gap: 14px;
+}
+
+body.client-mode .exercise-card,
+body.client-mode .meal-option-card,
+body.client-mode .food-log-card {
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: none;
+}
+
+.client-training-advice {
+  margin-bottom: 0;
+}
+
+@media (max-width: 850px) {
+  .client-preview-grid.two,
+  .client-preview-grid.three {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .client-combined-circles,
+  .client-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.client-mode .nav-btn {
+    font-size: 11px;
   }
 }

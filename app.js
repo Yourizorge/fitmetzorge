@@ -305,29 +305,21 @@ const DEFAULT_GOALS = {
 const NAV = {
   trainer: [
     ["trainer-dashboard", "Dashboard"],
-    ["clients", "Clienten"],
-    ["training", "Trainingsschema"],
-    ["nutrition", "Voedingsschema"],
-    ["nutrition-log", "Voedingslog"],
-    ["steps", "Stappen"],
-    ["progress", "Voortgang"],
-    ["wellbeing", "Welzijn"],
-    ["sleep", "Slaap"],
-    ["water", "Water"],
     ["agenda", "Agenda"],
+    ["clients", "Leden"],
+    ["training", "Schema builder"],
+    ["training-log", "Trainingslog"],
+    ["nutrition", "Voeding"],
+    ["trackers", "Trackers"],
+    ["administration", "Administratie"],
     ["finance", "Financien"],
-    ["administration", "Administratie"]
+    ["settings", "Instellingen"]
   ],
   client: [
     ["client-home", "Mijn dashboard"],
     ["training", "Training"],
     ["nutrition", "Voeding"],
-    ["nutrition-log", "Voedingslog"],
-    ["steps", "Stappen"],
-    ["progress", "Voortgang"],
-    ["wellbeing", "Welzijn"],
-    ["sleep", "Slaap"],
-    ["water", "Water"],
+    ["trackers", "Trackers"],
     ["agenda", "Agenda"]
   ]
 };
@@ -368,7 +360,8 @@ function seedState() {
       theme: "dark",
       selectedClientId: "c1",
       calendarWeekStart: startOfWeekISO(),
-      trackingWeekStart: startOfWeekISO()
+      trackingWeekStart: startOfWeekISO(),
+      trackerDayIndex: todayIndex()
     },
     trainerAccount: null,
     trainerCalc: [],
@@ -498,9 +491,11 @@ function defaultClientProfileData() {
 
 function normalizeState(raw) {
   const next = raw && typeof raw === "object" ? raw : seedState();
-  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", financeTab: "overview", financeMonth: todayISO().slice(0, 7), financeClientId: "", ...(next.ui || {}) };
+  next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trackerDayIndex: todayIndex(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", financeTab: "overview", financeMonth: todayISO().slice(0, 7), financeClientId: "", ...(next.ui || {}) };
   next.ui.calendarWeekStart = startOfWeekISO(next.ui.calendarWeekStart || todayISO());
   next.ui.trackingWeekStart = startOfWeekISO(next.ui.trackingWeekStart || todayISO());
+  next.ui.theme = "dark";
+  next.ui.trackerDayIndex = Math.max(0, Math.min(6, number(next.ui.trackerDayIndex, todayIndex())));
   if (!DAYS.includes(next.ui.trainingDay)) next.ui.trainingDay = "Maandag";
   if (!FINANCE_TABS.some(([id]) => id === next.ui.financeTab)) next.ui.financeTab = "overview";
   next.ui.financeMonth = /^\d{4}-\d{2}$/.test(next.ui.financeMonth || "") ? next.ui.financeMonth : todayISO().slice(0, 7);
@@ -522,6 +517,25 @@ function normalizeState(raw) {
   });
   const exerciseLookup = [...next.exerciseLibrary, ...DEFAULT_EXERCISE_LIBRARY];
   next.trainerFinance = next.trainerFinance && typeof next.trainerFinance === "object" ? next.trainerFinance : {};
+  next.trainerFinance.invoiceSettings = {
+    businessName: "Fit Met Zorge",
+    ownerName: next.trainerAccount?.name || "Youri Zorge",
+    logoUrl: "assets/fit-met-zorge-logo-cropped.png",
+    email: next.trainerAccount?.email || "",
+    phone: "0630422117",
+    address: "",
+    postalCity: "Hoogerheide",
+    country: "Nederland",
+    vatNumber: "",
+    chamberNumber: "",
+    iban: "",
+    paymentTermDays: 14,
+    vatPercent: 21,
+    note: "Bedankt voor je vertrouwen in Fit Met Zorge.",
+    ...(next.trainerFinance.invoiceSettings || {})
+  };
+  next.trainerFinance.invoiceSettings.paymentTermDays = number(next.trainerFinance.invoiceSettings.paymentTermDays, 14);
+  next.trainerFinance.invoiceSettings.vatPercent = number(next.trainerFinance.invoiceSettings.vatPercent, 21);
   next.trainerFinance.rates = Array.isArray(next.trainerFinance.rates) ? next.trainerFinance.rates : [];
   next.trainerFinance.adminItems = Array.isArray(next.trainerFinance.adminItems) ? next.trainerFinance.adminItems : [];
   next.trainerFinance.appointmentTypes = Array.isArray(next.trainerFinance.appointmentTypes) ? next.trainerFinance.appointmentTypes : DEFAULT_APPOINTMENT_TYPES.map((entry) => ({ ...entry }));
@@ -578,6 +592,7 @@ function normalizeState(raw) {
     item.profile.package ||= item.package || "";
     item.goals = { ...DEFAULT_GOALS, ...(item.goals || {}) };
     item.planSummary ||= "Plan nog invullen.";
+    item.coachNotesByWeek = item.coachNotesByWeek && typeof item.coachNotesByWeek === "object" ? item.coachNotesByWeek : {};
     item.trainingPlan = Array.isArray(item.trainingPlan) ? item.trainingPlan : [];
     item.trainingPlan.forEach((exercise, exerciseIndex) => {
       const libraryMatch = exerciseLookup.find((entry) => entry.name.toLowerCase() === String(exercise.exercise || "").trim().toLowerCase());
@@ -588,6 +603,7 @@ function normalizeState(raw) {
       exercise.equipment ||= libraryMatch?.equipment || "";
       exercise.image ||= libraryMatch?.image || "";
       exercise.schemaName ||= "Trainingsschema";
+      exercise.published ??= true;
       exercise.targetWeight ??= exercise.weight ?? "";
       exercise.actualSets ??= "";
       exercise.actualReps ??= "";
@@ -620,6 +636,7 @@ function normalizeState(raw) {
       meal.id ||= `meal-${Date.now()}-${mealIndex}-${Math.random().toString(16).slice(2)}`;
       meal.mealType = normalizeMealType(meal.mealType || meal.type || meal.meal);
       meal.schemaName ||= "Voedingsschema";
+      meal.published ??= true;
       meal.status ||= "";
       meal.alternative ||= "";
       meal.logsByWeek = meal.logsByWeek && typeof meal.logsByWeek === "object" ? meal.logsByWeek : {};
@@ -643,8 +660,8 @@ function normalizeState(raw) {
     });
     item.steps = normalizeWeek(item.steps, "value");
     item.stepsByWeek = normalizeWeekStore(item.stepsByWeek, currentTrackingWeek, item.steps, "value");
-    item.dailyWeight = normalizeWeek(item.dailyWeight, "value");
-    item.dailyWeightByWeek = normalizeWeekStore(item.dailyWeightByWeek, currentTrackingWeek, item.dailyWeight, "value");
+    item.dailyWeight = normalizeWeek(item.dailyWeight, "value", { waist: "", chest: "", armLeft: "", armRight: "", legLeft: "", legRight: "", note: "", photoFront: "", photoSide: "", photoBack: "", photoExtra: "" });
+    item.dailyWeightByWeek = normalizeWeekStore(item.dailyWeightByWeek, currentTrackingWeek, item.dailyWeight, "value", { waist: "", chest: "", armLeft: "", armRight: "", legLeft: "", legRight: "", note: "", photoFront: "", photoSide: "", photoBack: "", photoExtra: "" });
     item.wellbeing = normalizeWeek(item.wellbeing, "energy", { stress: "", motivation: "", mood: "" });
     item.wellbeingByWeek = normalizeWeekStore(item.wellbeingByWeek, currentTrackingWeek, item.wellbeing, "energy", { stress: "", motivation: "", mood: "" });
     item.sleep = normalizeWeek(item.sleep, "hours", { quality: "", bed: "", wake: "" });
@@ -738,6 +755,11 @@ function startOfWeekISO(dateValue = todayISO()) {
   return date.toISOString().slice(0, 10);
 }
 
+function todayIndex(dateValue = todayISO()) {
+  const date = new Date(`${dateValue}T12:00:00`);
+  return (date.getDay() + 6) % 7;
+}
+
 function addDaysISO(dateValue, days) {
   const date = new Date(`${dateValue}T12:00:00`);
   date.setDate(date.getDate() + days);
@@ -799,6 +821,13 @@ function emptyTrackerState(message = "Voeg eerst een client toe om deze tracker 
 
 function trainingAttendanceWeek(selected) {
   return weekArray(selected, "trainingAttendanceByWeek", "status");
+}
+
+function coachWeekNote(selected) {
+  selected.coachNotesByWeek = selected.coachNotesByWeek && typeof selected.coachNotesByWeek === "object" ? selected.coachNotesByWeek : {};
+  selected.coachNotesByWeek[activeWeekStart()] ||= { nextTraining: "" };
+  selected.coachNotesByWeek[activeWeekStart()].nextTraining ??= "";
+  return selected.coachNotesByWeek[activeWeekStart()];
 }
 
 function trainingAttendanceOptions(selectedValue) {
@@ -892,9 +921,13 @@ function collectTrackerDay(type, index) {
     if (input) setWaterDay(selected, dayIndex, input.value);
   }
   if (type === "progress") {
+    const weightEntries = weekArray(selected, "dailyWeightByWeek", "value", { waist: "", chest: "", armLeft: "", armRight: "", legLeft: "", legRight: "", note: "", photoFront: "", photoSide: "", photoBack: "", photoExtra: "" });
     const input = document.querySelector(`[data-weight-index="${dayIndex}"]`);
-    const weightEntries = weekArray(selected, "dailyWeightByWeek", "value");
     if (input) weightEntries[dayIndex].value = input.value;
+    document.querySelectorAll(`[data-progress-day="${dayIndex}"]`).forEach((field) => {
+      const [, key] = field.dataset.progress.split(":");
+      weightEntries[dayIndex][key] = field.value;
+    });
     selected.dailyWeight = weightEntries;
   }
   if (type === "training") {
@@ -916,6 +949,7 @@ function renderTrackerSection(type) {
   if (type === "sleep") renderSleep();
   if (type === "water") renderWater();
   if (type === "progress") renderProgress();
+  if (type === "trackers") renderTrackersOverview();
   renderClientHome();
   renderTrainerDashboard();
 }
@@ -1195,6 +1229,7 @@ function todayFoodLog(selected) {
 function plannedMealEntries(selected) {
   return selected.nutritionPlan
     .map((item) => ({ item, log: mealWeekLog(item) }))
+    .filter(({ item }) => item.published !== false)
     .filter(({ log }) => log.status === "Gegeten zoals plan")
     .map(({ item }) => ({
       name: item.meal,
@@ -1290,6 +1325,40 @@ function appointmentTypeOptions(selectedTypeId = "") {
   return appointmentTypes()
     .map((type) => `<option value="${type.id}" ${type.id === selectedTypeId ? "selected" : ""}>${escapeHTML(type.name)}${type.duration ? ` - ${type.duration} min` : ""}${type.price !== "" && type.price !== undefined ? ` - ${currency(type.price)}` : ""}</option>`)
     .join("");
+}
+
+function openAppointmentModal(options = {}) {
+  const form = $("#appointmentForm");
+  if (!form || !isTrainer()) return false;
+  if (!state.clients.length) {
+    alert("Voeg eerst een lid toe voordat je een afspraak plant.");
+    return false;
+  }
+  if (options.date && form.elements.date) form.elements.date.value = options.date;
+  if (options.time && options.time !== "no-time" && form.elements.time) form.elements.time.value = options.time;
+  document.body.classList.add("appointment-modal-open");
+  setTimeout(() => form.elements.clientId?.focus(), 0);
+  return true;
+}
+
+function closeAppointmentModal() {
+  document.body.classList.remove("appointment-modal-open");
+}
+
+function applyAppointmentTypeToForm(typeId, options = {}) {
+  const form = $("#appointmentForm");
+  const type = appointmentTypeById(typeId);
+  if (!form || !type) return false;
+  if (!openAppointmentModal(options)) return false;
+  if (options.date && form.elements.date) form.elements.date.value = options.date;
+  if (options.time && options.time !== "no-time" && form.elements.time) form.elements.time.value = options.time;
+  if (form.elements.appointmentTypeId) form.elements.appointmentTypeId.value = type.id;
+  if (form.elements.type) form.elements.type.value = type.name || "";
+  if (form.elements.location) form.elements.location.value = type.location || "";
+  if (form.elements.amount) {
+    form.elements.amount.value = type.price !== "" && type.price !== undefined ? type.price : "";
+  }
+  return true;
 }
 
 function clientNameById(clientId) {
@@ -1470,10 +1539,20 @@ function copyNutritionSchemaToClient(targetClientId) {
   return true;
 }
 
+function invoiceSettings() {
+  state.trainerFinance ||= {};
+  state.trainerFinance.invoiceSettings ||= {};
+  return state.trainerFinance.invoiceSettings;
+}
+
 function invoiceHTML(item) {
   const trainer = state.trainerAccount || {};
+  const settings = invoiceSettings();
   const clientName = clientNameById(item.clientId);
   const amount = number(item.amount, 0);
+  const vatPercent = number(settings.vatPercent, 0);
+  const baseAmount = vatPercent ? amount / (1 + vatPercent / 100) : amount;
+  const vatAmount = amount - baseAmount;
   const invoiceNo = invoiceNumber(item);
   return `<!doctype html>
 <html lang="nl">
@@ -1505,10 +1584,16 @@ function invoiceHTML(item) {
   <div class="invoice">
     <div class="top">
       <div>
-        <div class="brand">Fit Met Zorge</div>
+        ${settings.logoUrl ? `<img src="${escapeHTML(settings.logoUrl)}" alt="${escapeHTML(settings.businessName || "Fit Met Zorge")}" style="max-width:150px;max-height:80px;object-fit:contain;margin-bottom:10px" />` : ""}
+        <div class="brand">${escapeHTML(settings.businessName || "Fit Met Zorge")}</div>
         <h1>Factuur</h1>
-        <p>${escapeHTML(trainer.name || "Trainer")}</p>
-        <p>${escapeHTML(trainer.email || "")}</p>
+        <p>${escapeHTML(settings.ownerName || trainer.name || "Trainer")}</p>
+        <p>${escapeHTML(settings.email || trainer.email || "")}</p>
+        <p>${escapeHTML(settings.phone || "")}</p>
+        <p>${escapeHTML([settings.address, settings.postalCity, settings.country].filter(Boolean).join(", "))}</p>
+        ${settings.vatNumber ? `<p><strong>BTW</strong> ${escapeHTML(settings.vatNumber)}</p>` : ""}
+        ${settings.chamberNumber ? `<p><strong>KvK</strong> ${escapeHTML(settings.chamberNumber)}</p>` : ""}
+        ${settings.iban ? `<p><strong>IBAN</strong> ${escapeHTML(settings.iban)}</p>` : ""}
       </div>
       <div class="meta">
         <p><strong>Factuurnummer</strong><br>${escapeHTML(invoiceNo)}</p>
@@ -1536,8 +1621,10 @@ function invoiceHTML(item) {
       </tbody>
     </table>
     <div class="total">
+      ${vatPercent ? `<div><span>Bedrag excl. btw</span><span>${currency(baseAmount)}</span></div><div><span>BTW ${fmt(vatPercent)}%</span><span>${currency(vatAmount)}</span></div>` : ""}
       <div><span>Totaal</span><span>${currency(amount)}</span></div>
     </div>
+    ${settings.note ? `<p>${escapeHTML(settings.note)}</p>` : ""}
   </div>
   <div class="actions"><button onclick="window.print()">Print of opslaan als PDF</button></div>
 </body>
@@ -1739,7 +1826,7 @@ function createOnlineTrainerState(profile) {
     authEmail: profile.email,
     authName: profile.name,
     selectedClientId: "",
-    theme: state.ui.theme || fresh.ui.theme
+    theme: "dark"
   };
   return normalizeState(fresh);
 }
@@ -1793,13 +1880,12 @@ async function ensureOnlineProfile(roleHint = "", nameHint = "") {
 
 function applyOnlineState(remoteState, profile) {
   hydratingFromCloud = true;
-  const previousTheme = state.ui.theme;
   state = normalizeState(remoteState || seedState());
   state.ui.loggedIn = true;
   state.ui.role = profile.role;
   state.ui.authEmail = profile.email;
   state.ui.authName = profile.name;
-  state.ui.theme = previousTheme || state.ui.theme;
+  state.ui.theme = "dark";
   if (profile.role === "trainer") {
     state.trainerAccount = { name: profile.name, email: profile.email, password: "" };
     currentView = "trainer-dashboard";
@@ -1973,7 +2059,7 @@ function renderNav() {
       <button class="nav-current" data-nav-menu-toggle="true" aria-expanded="${navMenuOpen}" type="button" aria-label="Open tabmenu"><span>${currentLabel}</span><strong aria-hidden="true">^</strong></button>
       <div class="nav-track">
       ${items
-        .map(([id, label]) => `<button class="nav-btn ${id === currentView ? "active" : ""}" data-view="${id}" type="button">${label}</button>`)
+        .map(([id, label]) => `<button class="nav-btn ${id === currentView ? "active" : ""}" data-view="${id}" type="button"><i>${escapeHTML(label.slice(0, 1))}</i><span>${escapeHTML(label)}</span></button>`)
         .join("")}
       </div>
     </div>
@@ -1994,7 +2080,7 @@ function renderSelectors() {
   const selected = client();
   const options = state.clients.length
     ? state.clients.map((item) => `<option value="${item.id}" ${item.id === selected.id ? "selected" : ""}>${item.name}</option>`).join("")
-    : `<option value="">Geen clienten</option>`;
+    : `<option value="">Geen leden</option>`;
   $("#clientSelect").innerHTML = options;
   $("#clientSelect").disabled = !state.clients.length;
   $("#clientSelect").closest(".field").style.display = isTrainer() ? "grid" : "none";
@@ -2010,7 +2096,7 @@ function renderSelectors() {
   }
   const copyOptions = state.clients.length
     ? state.clients.map((item) => `<option value="${item.id}" ${item.id === selected.id ? "selected" : ""}>${item.name}${item.id === selected.id ? " (zelfde client)" : ""}</option>`).join("")
-    : `<option value="">Geen clienten</option>`;
+    : `<option value="">Geen leden</option>`;
   const trainingCopyTarget = $("#trainingCopyTarget");
   if (trainingCopyTarget) trainingCopyTarget.innerHTML = copyOptions;
   const nutritionCopyTarget = $("#nutritionCopyTarget");
@@ -2050,6 +2136,50 @@ function renderTrainerDashboard() {
   ]
     .map(([label, value, sub]) => `<div class="kpi"><span>${label}</span><strong>${value}</strong><small>${sub}</small></div>`)
     .join("");
+
+  const today = todayISO();
+  const todaysAppointments = allAppointments().filter((item) => item.date === today);
+  const weekRevenue = allAppointments()
+    .filter((item) => isDateInActiveWeek(item.date || ""))
+    .reduce((sum, item) => sum + number(appointmentAmount(item.source || item), 0), 0);
+  const selectedStats = hasSelectedClient(selected)
+    ? {
+        steps: average(weekArray(selected, "stepsByWeek", "value").map((step) => step.value)),
+        sleep: average(weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" }).map((sleep) => sleep.hours)),
+        water: weekWater(selected),
+        weight: average(weekArray(selected, "dailyWeightByWeek", "value").map((item) => item.value))
+      }
+    : { steps: 0, sleep: 0, water: 0, weight: 0 };
+  const previewGrid = $("#trainerPreviewGrid");
+  if (previewGrid) {
+    previewGrid.innerHTML = `
+      <section class="panel preview-hero-panel">
+        <p class="eyebrow">Vandaag</p>
+        <h2>${todaysAppointments.length ? `${todaysAppointments.length} afspraak${todaysAppointments.length === 1 ? "" : "en"} vandaag` : "Rustige dag in de agenda"}</h2>
+        <p class="muted">Alles wat leden invullen komt hier terug in dezelfde weekstructuur: training, voeding, trackers, agenda en administratie.</p>
+        <div class="preview-actions">
+          <button class="primary-btn" data-action="open-view" data-target="agenda" type="button">Agenda openen</button>
+          <button class="secondary-btn" data-action="open-view" data-target="trackers" type="button">Trackers bekijken</button>
+        </div>
+      </section>
+      <section class="panel preview-focus-panel">
+        <p class="eyebrow">Geselecteerde client</p>
+        <h2>${hasSelectedClient(selected) ? escapeHTML(selected.name) : "Geen client geselecteerd"}</h2>
+        <div class="preview-mini-grid">
+          <div><span>Stappen</span><strong>${fmt(selectedStats.steps)}</strong></div>
+          <div><span>Slaap</span><strong>${fmt(selectedStats.sleep, 1)}u</strong></div>
+          <div><span>Water</span><strong>${fmt(selectedStats.water, 1)}L</strong></div>
+          <div><span>Gewicht</span><strong>${fmt(selectedStats.weight, 1)}kg</strong></div>
+        </div>
+      </section>
+      <section class="panel preview-focus-panel">
+        <p class="eyebrow">Financien</p>
+        <h2>${currency(weekRevenue)}</h2>
+        <p class="muted">Omzet uit afspraken in de huidige week.</p>
+        <button class="secondary-btn" data-action="open-view" data-target="finance" type="button">Financien openen</button>
+      </section>
+    `;
+  }
 
   const filter = $("#memberFilter").value;
   const rows = state.clients
@@ -2099,39 +2229,105 @@ function renderClientHome() {
   const sleepAvg = average(weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" }).map((sleep) => sleep.hours));
   const weightAvg = average(weekArray(selected, "dailyWeightByWeek", "value").map((item) => item.value));
   const profile = selected.profile || defaultClientProfileData();
+  const todayIdx = todayIndex();
+  const todaySteps = weekArray(selected, "stepsByWeek", "value")[todayIdx]?.value || "";
+  const todayWater = weekWaterEntries(selected)[todayIdx]?.value || "";
+  const todaySleep = weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[todayIdx] || {};
+  const todayWellbeing = weekArray(selected, "wellbeingByWeek", "energy", { stress: "", motivation: "", mood: "" })[todayIdx] || {};
+  const todayWeight = weekArray(selected, "dailyWeightByWeek", "value")[todayIdx]?.value || "";
+  const stepGoal = number(selected.goals.steps, 10000) || 10000;
+  const waterGoal = number(selected.goals.water, 2.5) || 2.5;
+  const stepPercent = Math.max(0, Math.min(100, number(todaySteps) / stepGoal * 100));
+  const waterPercent = Math.max(0, Math.min(100, number(todayWater) / waterGoal * 100));
+  const scoreOptions = (value) => ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    .map((option) => `<option value="${option}" ${String(option) === String(value || "") ? "selected" : ""}>${option || "-"}</option>`)
+    .join("");
 
   $("#clientSummary").innerHTML = `
-    <div class="panel">
-      <h2>${selected.name}</h2>
-      <div class="stack-list">
-        <div class="metric-tile"><span>Doel</span><strong>${selected.goal || "-"}</strong></div>
-        <div class="metric-tile"><span>Startdatum</span><strong>${selected.startDate}</strong></div>
-        <div class="metric-tile"><span>Volgende afspraak</span><strong>${appt ? `${appt.date} ${appt.time}` : "-"}</strong></div>
+    <div class="client-preview-shell">
+      <div class="client-preview-hero">
+        <p class="eyebrow">Vandaag</p>
+        <h1>Goedemorgen ${escapeHTML(selected.name.split(" ")[0] || selected.name)}.</h1>
+        <p class="muted">${escapeHTML(selected.planSummary || "Je training staat klaar. Vul vandaag je training, voeding en trackers in.")}</p>
+        <div class="client-preview-actions">
+          <button class="primary-btn" data-action="open-view" data-target="training" type="button">Training starten</button>
+          <button class="secondary-btn" data-action="open-view" data-target="nutrition" type="button">Voeding invullen</button>
+          <button class="secondary-btn" data-action="open-view" data-target="trackers" type="button">Trackers invullen</button>
+        </div>
       </div>
-    </div>
-    <div class="panel">
-      <h2>Plan kort</h2>
-      <p>${selected.planSummary}</p>
-      <div class="kpi-grid">
-        <div class="kpi"><span>Kcal vandaag</span><strong>${fmt(todayKcalGoal(selected))}</strong><small>doel</small></div>
-        <div class="kpi"><span>Deze week gegeten</span><strong>${fmt(totals.kcal)}</strong><small>kcal</small></div>
-        <div class="kpi"><span>Stappen</span><strong>${fmt(stepsAvg)}</strong><small>doel ${fmt(selected.goals.steps)}</small></div>
-        <div class="kpi"><span>Slaap</span><strong>${fmt(sleepAvg, 1)}u</strong><small>doel ${fmt(selected.goals.sleep)}u</small></div>
-        <div class="kpi"><span>Water week</span><strong>${fmt(weekWater(selected), 1)}L</strong><small>doel ${fmt(selected.goals.water * 7, 1)}L</small></div>
-        <div class="kpi"><span>Gewicht week</span><strong>${fmt(weightAvg, 1)}</strong><small>gemiddelde</small></div>
+
+      <div class="client-preview-grid two">
+        <section class="client-preview-card">
+          <div class="client-row">
+            <div>
+              <h2>Stappen + water</h2>
+              <p class="muted">Samen in een snelle tracker.</p>
+            </div>
+            <span class="status ok">Vandaag</span>
+          </div>
+          <div class="client-combined-circles">
+            <div class="client-progress-circle" style="--progress:${stepPercent}%">
+              <span><strong>${fmt(todaySteps)}</strong><small>van ${fmt(stepGoal)} stappen</small></span>
+            </div>
+            <div class="client-progress-circle water" style="--progress:${waterPercent}%">
+              <span><strong>${fmt(todayWater, 1)}L</strong><small>van ${fmt(waterGoal, 1)}L water</small></span>
+            </div>
+          </div>
+          <div class="client-row compact">
+            <button class="primary-btn" data-water-day="${todayIdx}:0.25" type="button">+250 ml</button>
+            <button class="secondary-btn" data-action="open-view" data-target="trackers" type="button">Alles invullen</button>
+          </div>
+        </section>
+
+        <section class="client-preview-card highlight">
+          <div class="client-row">
+            <div>
+              <h2>Welzijn check-in</h2>
+              <p class="muted">Kies per onderdeel een score van 1 tot 10.</p>
+            </div>
+            <span class="status ${todayWellbeing.energy && todayWellbeing.stress && todayWellbeing.motivation ? "ok" : ""}">${todayWellbeing.energy ? "Ingevuld" : "Nog invullen"}</span>
+          </div>
+          <div class="client-form-grid">
+            <label class="field"><span>Energie</span><select data-wellbeing-day="${todayIdx}" data-wellbeing="${todayIdx}:energy">${scoreOptions(todayWellbeing.energy)}</select></label>
+            <label class="field"><span>Stress</span><select data-wellbeing-day="${todayIdx}" data-wellbeing="${todayIdx}:stress">${scoreOptions(todayWellbeing.stress)}</select></label>
+            <label class="field"><span>Motivatie</span><select data-wellbeing-day="${todayIdx}" data-wellbeing="${todayIdx}:motivation">${scoreOptions(todayWellbeing.motivation)}</select></label>
+            <label class="field"><span>Stemming</span><select data-wellbeing-day="${todayIdx}" data-wellbeing="${todayIdx}:mood">${["", "Goed", "Neutraal", "Laag"].map((value) => `<option value="${value}" ${value === (todayWellbeing.mood || "") ? "selected" : ""}>${value || "-"}</option>`).join("")}</select></label>
+          </div>
+          <button class="primary-btn wide-action" data-save-wellbeing-day="${todayIdx}" type="button">Welzijn opslaan</button>
+          <span class="save-feedback" data-save-feedback="wellbeing-${todayIdx}"></span>
+        </section>
       </div>
-    </div>
-    <div class="panel">
-      <h2>Mijn profielgegevens</h2>
-      <div class="profile-summary-grid">
-        <div><span>Telefoon</span><strong>${escapeHTML(profile.phone || "-")}</strong></div>
-        <div><span>Geboortedatum</span><strong>${escapeHTML(profile.birthDate || "-")}</strong></div>
-        <div><span>Lengte</span><strong>${fmt(profile.height, 1)} cm</strong></div>
-        <div><span>Huidig gewicht</span><strong>${fmt(profile.currentWeight, 1)} kg</strong></div>
-        <div><span>Adres</span><strong>${escapeHTML([profile.address, profile.postalCode, profile.city].filter(Boolean).join(", ") || "-")}</strong></div>
-        <div><span>Noodcontact</span><strong>${escapeHTML([profile.emergencyName, profile.emergencyPhone].filter(Boolean).join(" - ") || "-")}</strong></div>
-        <div><span>Pakket</span><strong>${escapeHTML(profile.package || "-")}</strong></div>
-        <div><span>Blessures/opmerkingen</span><strong>${escapeHTML(profile.injuries || "-")}</strong></div>
+
+      <div class="client-preview-grid three">
+        <section class="client-preview-card metric">
+          <span class="muted">Slaap</span>
+          <strong>${fmt(todaySleep.hours, 1)}u</strong>
+          <small class="muted">Slaapcijfer ${todaySleep.quality || "-"}/10</small>
+        </section>
+        <section class="client-preview-card metric">
+          <span class="muted">Daggewicht</span>
+          <strong>${fmt(todayWeight, 1)}kg</strong>
+          <small class="muted">Weekgemiddelde ${fmt(weightAvg, 1)}kg</small>
+        </section>
+        <section class="client-preview-card metric">
+          <span class="muted">Volgende afspraak</span>
+          <strong>${appt ? `${appt.time || "--:--"}` : "-"}</strong>
+          <small class="muted">${appt ? `${escapeHTML(formatShortDate(appt.date))} | ${escapeHTML(appt.type || "Afspraak")}` : "Nog niet ingepland"}</small>
+        </section>
+      </div>
+
+      <div class="client-preview-card">
+        <h2>Mijn profielgegevens</h2>
+        <div class="profile-summary-grid">
+          <div><span>Telefoon</span><strong>${escapeHTML(profile.phone || "-")}</strong></div>
+          <div><span>Geboortedatum</span><strong>${escapeHTML(profile.birthDate || "-")}</strong></div>
+          <div><span>Lengte</span><strong>${fmt(profile.height, 1)} cm</strong></div>
+          <div><span>Huidig gewicht</span><strong>${fmt(profile.currentWeight, 1)} kg</strong></div>
+          <div><span>Adres</span><strong>${escapeHTML([profile.address, profile.postalCode, profile.city].filter(Boolean).join(", ") || "-")}</strong></div>
+          <div><span>Noodcontact</span><strong>${escapeHTML([profile.emergencyName, profile.emergencyPhone].filter(Boolean).join(" - ") || "-")}</strong></div>
+          <div><span>Pakket</span><strong>${escapeHTML(profile.package || "-")}</strong></div>
+          <div><span>Blessures/opmerkingen</span><strong>${escapeHTML(profile.injuries || "-")}</strong></div>
+        </div>
       </div>
     </div>
   `;
@@ -2182,7 +2378,7 @@ function renderGoalForm() {
 }
 
 function trainingDayStats(selected, day) {
-  const exercises = selected.trainingPlan.filter((item) => item.day === day);
+  const exercises = selected.trainingPlan.filter((item) => item.day === day && (isTrainer() || item.published !== false));
   const sets = exercises.reduce((sum, item) => sum + number(item.sets), 0);
   return { exercises: exercises.length, sets };
 }
@@ -2284,7 +2480,7 @@ function renderTraining() {
   const dayAttendance = attendance[activeIndex] || { status: "" };
   const exercises = selected.trainingPlan
     .map((exercise, index) => ({ ...exercise, index, source: exercise }))
-    .filter((exercise) => exercise.day === activeDay);
+    .filter((exercise) => exercise.day === activeDay && (isTrainer() || exercise.published !== false));
 
   $("#trainingDays").innerHTML = `
     <div class="training-day active-training-day">
@@ -2296,10 +2492,20 @@ function renderTraining() {
         <select data-training-attendance="${activeIndex}" aria-label="Aanwezigheid ${activeDay}">
           ${trainingAttendanceOptions(dayAttendance.status || "")}
         </select>
-        <button class="primary-btn" data-save-training-day="${activeIndex}" type="button">Dag opslaan</button>
         <span class="save-feedback" data-save-feedback="training-${activeIndex}"></span>
       </div>
       <div class="exercise-row training-session-list">
+        ${!isTrainer() ? `
+          <div class="client-preview-card highlight client-training-advice">
+            <div class="client-row">
+              <div>
+                <h2>Advies van trainer</h2>
+                <p class="muted">${escapeHTML(selected.planSummary || "Focus op techniek, controle en eerlijk invullen wat je echt hebt gedaan.")}</p>
+              </div>
+              <span class="status ok">Nieuw</span>
+            </div>
+          </div>
+        ` : ""}
         ${
           exercises.length
             ? exercises.map((exercise) => {
@@ -2313,7 +2519,13 @@ function renderTraining() {
                         <strong>${escapeHTML(exercise.exercise)}</strong>
                         <span>${escapeHTML(exercise.group || "Oefening")} ${exercise.equipment ? `| ${escapeHTML(exercise.equipment)}` : ""}</span>
                       </div>
-                      ${isTrainer() ? `<button class="danger-btn" data-remove-training="${exercise.index}" type="button">Verwijder</button>` : ""}
+                      ${isTrainer() ? `
+                        <div class="schema-card-actions">
+                          <span class="status ${exercise.published === false ? "" : "ok"}">${exercise.published === false ? "Concept" : "Zichtbaar voor lid"}</span>
+                          ${exercise.published === false ? `<button class="primary-btn" data-publish-training="${exercise.index}" type="button">Beschikbaar stellen</button>` : ""}
+                          <button class="danger-btn" data-remove-training="${exercise.index}" type="button">Verwijder</button>
+                        </div>
+                      ` : ""}
                     </div>
                     <div class="exercise-target-grid">
                       ${renderTrainingTarget(exercise, exercise.index, "sets", "Sets", "number")}
@@ -2339,6 +2551,119 @@ function renderTraining() {
   `;
 
   renderExerciseLibrary();
+}
+
+function renderTrainingLog() {
+  const target = $("#trainingLogOverview");
+  if (!target || !isTrainer()) return;
+  const selected = client();
+  if (!hasSelectedClient(selected)) {
+    target.innerHTML = emptyTrackerState("Nog geen lid geselecteerd. Voeg eerst een lid toe om trainingslogs te bekijken.");
+    return;
+  }
+  const dates = weekDates(activeWeekStart());
+  const attendance = trainingAttendanceWeek(selected);
+  const coachNote = coachWeekNote(selected);
+  const logs = DAYS.map((day, dayIndex) => {
+    const exercises = selected.trainingPlan
+      .map((exercise, index) => ({ exercise, index, log: exerciseWeekLog(exercise) }))
+      .filter(({ exercise }) => exercise.day === day);
+    const filled = exercises.filter(({ log }) => log.actualSets || log.actualReps || log.actualWeight || log.notes).length;
+    const totalSets = exercises.reduce((sum, { exercise }) => sum + number(exercise.sets), 0);
+    const doneSets = exercises.reduce((sum, { log }) => sum + number(log.actualSets), 0);
+    return {
+      day,
+      date: dates[dayIndex]?.date || "",
+      attendance: attendance[dayIndex]?.status || "",
+      exercises,
+      filled,
+      totalSets,
+      doneSets
+    };
+  });
+  const allExercises = logs.flatMap((item) => item.exercises);
+  const loggedExercises = allExercises.filter(({ log }) => log.actualSets || log.actualReps || log.actualWeight || log.notes).length;
+  const attendedDays = logs.filter((item) => item.attendance === "Geweest").length;
+  const missedDays = logs.filter((item) => item.attendance === "Niet geweest").length;
+  const doneSets = logs.reduce((sum, item) => sum + item.doneSets, 0);
+
+  target.innerHTML = `
+    <div class="tracker-overview-head training-log-head">
+      <div>
+        <p class="eyebrow">Trainingslog</p>
+        <h1>${escapeHTML(selected.name)}</h1>
+        <p class="muted">Hier zie je alleen wat het lid heeft ingevuld. Schema bouwen blijft apart in Schema builder.</p>
+      </div>
+      <div class="week-toolbar">
+        <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+        <strong>${formatWeekRange(activeWeekStart())}</strong>
+        <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+        <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+      </div>
+    </div>
+    <div class="kpi-grid training-log-kpis">
+      <div class="kpi"><span>Oefeningen gelogd</span><strong>${loggedExercises}/${allExercises.length}</strong><small>deze week</small></div>
+      <div class="kpi"><span>Gedane sets</span><strong>${fmt(doneSets)}</strong><small>ingevuld door lid</small></div>
+      <div class="kpi"><span>Geweest</span><strong>${attendedDays}</strong><small>trainingsdagen</small></div>
+      <div class="kpi"><span>Niet geweest</span><strong>${missedDays}</strong><small>trainingsdagen</small></div>
+    </div>
+    <section class="panel training-next-note-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Volgende training</p>
+          <h2>Notitie voor volgende training</h2>
+        </div>
+        <span class="save-feedback" data-save-feedback="next-training-note"></span>
+      </div>
+      <label class="field">
+        <span>Coachnotitie</span>
+        <textarea id="nextTrainingNote" rows="4" placeholder="Bijv. techniekpunt, gewicht verhogen, blessure checken of focus voor de volgende sessie.">${escapeHTML(coachNote.nextTraining || "")}</textarea>
+      </label>
+      <button class="primary-btn" data-save-next-training-note type="button">Notitie opslaan</button>
+    </section>
+    <div class="training-log-week">
+      ${logs.map((dayLog) => `
+        <section class="panel training-log-day">
+          <div class="training-log-day-head">
+            <div>
+              <strong>${escapeHTML(dayLog.day)}</strong>
+              <span>${formatShortDate(dayLog.date)}</span>
+            </div>
+            <span class="status ${dayLog.attendance === "Geweest" ? "ok" : dayLog.attendance === "Niet geweest" ? "bad" : ""}">${attendanceLabel(dayLog.attendance)}</span>
+          </div>
+          <div class="training-log-summary">
+            <span>${dayLog.filled}/${dayLog.exercises.length} oefeningen ingevuld</span>
+            <span>${fmt(dayLog.doneSets)} / ${fmt(dayLog.totalSets)} sets</span>
+          </div>
+          <div class="training-log-exercises">
+            ${dayLog.exercises.length ? dayLog.exercises.map(({ exercise, log }) => `
+              <article class="training-log-exercise ${log.actualSets || log.actualReps || log.actualWeight || log.notes ? "filled" : ""}">
+                ${renderExerciseImage({ name: exercise.exercise, image: exercise.image || exerciseLibraryMatch(exercise.exercise)?.image }, "training-log-photo")}
+                <div class="training-log-exercise-main">
+                  <div class="training-log-title">
+                    <strong>${escapeHTML(exercise.exercise)}</strong>
+                    <span>${escapeHTML(exercise.group || "Oefening")} ${exercise.equipment ? `| ${escapeHTML(exercise.equipment)}` : ""}</span>
+                  </div>
+                  <div class="training-log-targets">
+                    <span>Advies: ${trackerValue(exercise.sets)} sets</span>
+                    <span>${trackerValue(exercise.reps)} reps</span>
+                    <span>${exercise.targetWeight ? `${trackerValue(exercise.targetWeight)} kg` : "Geen doel kg"}</span>
+                    <span>${escapeHTML(exercise.rest || "Rust -")}</span>
+                  </div>
+                  <div class="training-log-results">
+                    <div><span>Gedane sets</span><strong>${trackerValue(log.actualSets)}</strong></div>
+                    <div><span>Gedane reps</span><strong>${trackerValue(log.actualReps)}</strong></div>
+                    <div><span>Gedaan gewicht</span><strong>${log.actualWeight ? `${trackerValue(log.actualWeight)} kg` : "-"}</strong></div>
+                  </div>
+                  ${log.notes ? `<p class="training-log-note">${escapeHTML(log.notes)}</p>` : `<p class="training-log-note muted">Geen opmerking ingevuld.</p>`}
+                </div>
+              </article>
+            `).join("") : `<div class="empty-mini">Geen oefeningen gepland op deze dag.</div>`}
+          </div>
+        </section>
+      `).join("")}
+    </div>
+  `;
 }
 
 function renderNutrition() {
@@ -2384,10 +2709,268 @@ function renderNutrition() {
       )
       .join("") || `<tr><td colspan="7">Nog geen trainerberekening.</td></tr>`;
 
-  $("#nutritionPlanList").innerHTML = selected.nutritionPlan.length
+  const visibleNutritionCount = selected.nutritionPlan.filter((item) => isTrainer() || item.published !== false).length;
+  $("#nutritionPlanList").innerHTML = visibleNutritionCount
     ? renderMealAccordion(selected, { checklist: false })
     : `<div class="empty-state">Nog geen voedingsschema.</div>`;
 
+}
+
+function progressWeekEntries(selected) {
+  return weekArray(selected, "dailyWeightByWeek", "value", { waist: "", chest: "", armLeft: "", armRight: "", legLeft: "", legRight: "", note: "", photoFront: "", photoSide: "", photoBack: "", photoExtra: "" });
+}
+
+function sleepWeekEntries(selected) {
+  return weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" });
+}
+
+function wellbeingWeekEntries(selected) {
+  return weekArray(selected, "wellbeingByWeek", "energy", { stress: "", motivation: "", mood: "" });
+}
+
+function trackerValue(value, suffix = "") {
+  return value === "" || value === undefined || value === null ? "-" : `${escapeHTML(value)}${suffix}`;
+}
+
+function trackerDayCard(day, date, value, detail = "", className = "") {
+  return `
+    <div class="tracker-week-day ${className}">
+      <span>${escapeHTML(day)}</span>
+      <strong>${trackerValue(value)}</strong>
+      <small>${escapeHTML(detail || formatShortDate(date))}</small>
+    </div>
+  `;
+}
+
+function trackerDetailRow(label, entries, getter) {
+  return `
+    <div class="tracker-detail-row">
+      <div>${escapeHTML(label)}</div>
+      ${entries.map((item, index) => `<div>${escapeHTML(getter(item, index) || "-")}</div>`).join("")}
+    </div>
+  `;
+}
+
+function renderTrainerTrackerBlock(title, intro, pill, entries, valueGetter, detailGetter, extra = "") {
+  const dates = weekDates(activeWeekStart());
+  return `
+    <section class="tracker-week-block">
+      <div class="tracker-week-head">
+        <div>
+          <h2>${escapeHTML(title)}</h2>
+          <p class="muted">${escapeHTML(intro)}</p>
+        </div>
+        <span class="status ok">${escapeHTML(pill)}</span>
+      </div>
+      <div class="tracker-week-days">
+        ${entries.map((item, index) => trackerDayCard(item.day, dates[index].date, valueGetter(item, index), detailGetter(item, index), dates[index].date === todayISO() ? "today" : "")).join("")}
+      </div>
+      ${extra}
+    </section>
+  `;
+}
+
+function renderClientTrackerOverview(selected) {
+  const dates = weekDates(activeWeekStart());
+  const steps = weekArray(selected, "stepsByWeek", "value");
+  const water = weekWaterEntries(selected);
+  const sleep = sleepWeekEntries(selected);
+  const wellbeing = wellbeingWeekEntries(selected);
+  const progress = progressWeekEntries(selected);
+  const activeDate = todayISO();
+  const weekTodayIndex = dates.findIndex((item) => item.date === activeDate);
+  const activeIndex = Math.max(0, Math.min(6, number(state.ui.trackerDayIndex, weekTodayIndex >= 0 ? weekTodayIndex : todayIndex())));
+  const day = dates[activeIndex] || dates[0];
+  const progressEntry = progress[activeIndex] || {};
+  const sleepEntry = sleep[activeIndex] || {};
+  const wellbeingEntry = wellbeing[activeIndex] || {};
+  const waterEntry = water[activeIndex] || {};
+  const stepEntry = steps[activeIndex] || {};
+
+  return `
+    <div class="tracker-overview-head">
+      <div>
+        <p class="eyebrow">Trackers</p>
+        <h1>Alles per dag invullen</h1>
+        <p class="muted">Kies de week bovenaan. Je trainer ziet dezelfde opgeslagen data terug.</p>
+      </div>
+      <div class="week-toolbar">
+        <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+        <strong>${formatWeekRange(activeWeekStart())}</strong>
+        <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+        <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+      </div>
+    </div>
+    <div class="tracker-day-tabs" aria-label="Kies dag voor tracker invoer">
+      ${dates.map((item, index) => `
+        <button class="tracker-day-tab ${index === activeIndex ? "active" : ""} ${item.date === activeDate ? "today" : ""}" data-tracker-day-index="${index}" type="button">
+          <strong>${escapeHTML(item.day)}</strong>
+          <span>${formatShortDate(item.date)}</span>
+        </button>
+      `).join("")}
+    </div>
+    <div class="tracker-client-grid">
+      <section class="tracker-input-card">
+        <div class="tracker-card-head"><h2>Stappen</h2><span class="status">${formatShortDate(day.date)}</span></div>
+        <label class="field"><span>Stappen vandaag</span><input data-step-index="${activeIndex}" type="number" min="0" value="${escapeHTML(stepEntry.value || "")}" placeholder="Bijv. 8420" /></label>
+        <button class="primary-btn tracker-save-btn" data-save-steps-day="${activeIndex}" type="button">Stappen opslaan</button>
+        <span class="save-feedback" data-save-feedback="steps-${activeIndex}"></span>
+      </section>
+      <section class="tracker-input-card">
+        <div class="tracker-card-head"><h2>Water</h2><span class="status">${fmt(number(waterEntry.value), 2)}L</span></div>
+        <label class="field"><span>Water vandaag</span><input data-water-day-input="${activeIndex}" type="number" min="0" step="0.25" value="${escapeHTML(waterEntry.value || "")}" placeholder="Liter" /></label>
+        <div class="water-day-actions"><button class="secondary-btn" data-water-day="${activeIndex}:-0.25" type="button">-250 ml</button><button class="primary-btn" data-water-day="${activeIndex}:0.25" type="button">+250 ml</button><button class="primary-btn" data-water-day="${activeIndex}:0.5" type="button">+500 ml</button><button class="secondary-btn" data-water-day="${activeIndex}:reset" type="button">Reset</button></div>
+        <button class="primary-btn tracker-save-btn" data-save-water-day="${activeIndex}" type="button">Water opslaan</button>
+        <span class="save-feedback" data-save-feedback="water-${activeIndex}"></span>
+      </section>
+      <section class="tracker-input-card">
+        <div class="tracker-card-head"><h2>Slaap</h2><span class="status">Cijfer ${trackerValue(sleepEntry.quality)}</span></div>
+        <div class="form-grid compact">
+          <label class="field"><span>Uren</span><input data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:hours" type="number" min="0" step="0.1" value="${escapeHTML(sleepEntry.hours || "")}" /></label>
+          <label class="field"><span>Slaapcijfer 1-10</span><input data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:quality" type="number" min="1" max="10" value="${escapeHTML(sleepEntry.quality || "")}" /></label>
+          <label class="field"><span>Naar bed</span><input data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:bed" type="time" value="${escapeHTML(sleepEntry.bed || "")}" /></label>
+          <label class="field"><span>Wakker</span><input data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:wake" type="time" value="${escapeHTML(sleepEntry.wake || "")}" /></label>
+        </div>
+        <button class="primary-btn tracker-save-btn" data-save-sleep-day="${activeIndex}" type="button">Slaap opslaan</button>
+        <span class="save-feedback" data-save-feedback="sleep-${activeIndex}"></span>
+      </section>
+      <section class="tracker-input-card">
+        <div class="tracker-card-head"><h2>Welzijn</h2><span class="status">1 tot 10</span></div>
+        <div class="form-grid compact">
+          ${["energy:Energie", "stress:Stress", "motivation:Motivatie"].map((config) => {
+            const [key, label] = config.split(":");
+            return `<label class="field"><span>${label}</span><select data-wellbeing-day="${activeIndex}" data-wellbeing="${activeIndex}:${key}">${["", 1,2,3,4,5,6,7,8,9,10].map((value) => `<option value="${value}" ${String(value) === String(wellbeingEntry[key] || "") ? "selected" : ""}>${value || "-"}</option>`).join("")}</select></label>`;
+          }).join("")}
+          <label class="field"><span>Stemming</span><select data-wellbeing-day="${activeIndex}" data-wellbeing="${activeIndex}:mood">${["", "Goed", "Neutraal", "Laag"].map((value) => `<option value="${value}" ${value === (wellbeingEntry.mood || "") ? "selected" : ""}>${value || "-"}</option>`).join("")}</select></label>
+        </div>
+        <button class="primary-btn tracker-save-btn" data-save-wellbeing-day="${activeIndex}" type="button">Welzijn opslaan</button>
+        <span class="save-feedback" data-save-feedback="wellbeing-${activeIndex}"></span>
+      </section>
+      <section class="tracker-input-card wide">
+        <div class="tracker-card-head"><h2>Voortgang</h2><span class="status">${formatShortDate(day.date)}</span></div>
+        <div class="form-grid compact">
+          <label class="field"><span>Gewicht</span><input data-weight-index="${activeIndex}" type="number" step="0.1" min="0" value="${escapeHTML(progressEntry.value || "")}" placeholder="kg" /></label>
+          <label class="field"><span>Taille</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:waist" type="number" step="0.1" min="0" value="${escapeHTML(progressEntry.waist || "")}" placeholder="cm" /></label>
+          <label class="field"><span>Borst</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:chest" type="number" step="0.1" min="0" value="${escapeHTML(progressEntry.chest || "")}" placeholder="cm" /></label>
+          <label class="field"><span>Arm links</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:armLeft" type="number" step="0.1" min="0" value="${escapeHTML(progressEntry.armLeft || "")}" placeholder="cm" /></label>
+          <label class="field"><span>Arm rechts</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:armRight" type="number" step="0.1" min="0" value="${escapeHTML(progressEntry.armRight || "")}" placeholder="cm" /></label>
+          <label class="field"><span>Been links</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:legLeft" type="number" step="0.1" min="0" value="${escapeHTML(progressEntry.legLeft || "")}" placeholder="cm" /></label>
+          <label class="field"><span>Been rechts</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:legRight" type="number" step="0.1" min="0" value="${escapeHTML(progressEntry.legRight || "")}" placeholder="cm" /></label>
+          <label class="field"><span>Opmerking</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:note" value="${escapeHTML(progressEntry.note || "")}" placeholder="Bijv. energie goed" /></label>
+        </div>
+        <div class="progress-photo-grid">
+          ${[
+            ["photoFront", "Voorkant"],
+            ["photoSide", "Zijkant"],
+            ["photoBack", "Achterkant"],
+            ["photoExtra", "Extra foto"]
+          ].map(([key, label]) => `<label class="field photo-url-field"><span>${label}</span><input data-progress-day="${activeIndex}" data-progress="${activeIndex}:${key}" value="${escapeHTML(progressEntry[key] || "")}" placeholder="Foto URL of bestandsnaam" /></label>`).join("")}
+        </div>
+        <button class="primary-btn tracker-save-btn" data-save-progress-day="${activeIndex}" type="button">Voortgang opslaan</button>
+        <span class="save-feedback" data-save-feedback="progress-${activeIndex}"></span>
+      </section>
+    </div>
+  `;
+}
+
+function renderTrainerTrackerOverview(selected) {
+  const steps = weekArray(selected, "stepsByWeek", "value");
+  const water = weekWaterEntries(selected);
+  const sleep = sleepWeekEntries(selected);
+  const wellbeing = wellbeingWeekEntries(selected);
+  const progress = progressWeekEntries(selected);
+  const stepAvg = average(steps.map((item) => item.value));
+  const waterAvg = average(water.map((item) => item.value));
+  const sleepHoursAvg = average(sleep.map((item) => item.hours));
+  const sleepScoreAvg = average(sleep.map((item) => item.quality));
+  const weightAvg = average(progress.map((item) => item.value));
+  const missingDays = DAYS.filter((_, index) => !steps[index]?.value && !water[index]?.value && !sleep[index]?.hours && !wellbeing[index]?.energy && !progress[index]?.value).length;
+  const photoCount = progress.reduce((sum, item) => sum + ["photoFront", "photoSide", "photoBack", "photoExtra"].filter((key) => item[key]).length, 0);
+
+  return `
+    <div class="tracker-overview-head">
+      <div>
+        <p class="eyebrow">Trackers</p>
+        <h1>Volledige weekanalyse van ${escapeHTML(selected.name)}.</h1>
+        <p class="muted">Alle lid-invoer staat los per onderdeel, maar wel in een overzicht voor jou als trainer.</p>
+      </div>
+      <div class="week-toolbar">
+        <button class="secondary-btn" data-tracking-week="-1" type="button">Vorige week</button>
+        <strong>${formatWeekRange(activeWeekStart())}</strong>
+        <button class="secondary-btn" data-tracking-week="today" type="button">Deze week</button>
+        <button class="secondary-btn" data-tracking-week="1" type="button">Volgende week</button>
+      </div>
+    </div>
+    <div class="kpi-grid tracker-kpis">
+      <div class="kpi"><span>Gem. stappen</span><strong>${fmt(stepAvg)}</strong><small>doel ${fmt(selected.goals.steps)}</small></div>
+      <div class="kpi"><span>Gem. water</span><strong>${fmt(waterAvg, 1)}L</strong><small>doel ${fmt(selected.goals.water, 1)}L</small></div>
+      <div class="kpi"><span>Gem. slaap</span><strong>${fmt(sleepHoursAvg, 1)}u</strong><small>cijfer ${fmt(sleepScoreAvg, 1)}/10</small></div>
+      <div class="kpi"><span>Weekgewicht</span><strong>${fmt(weightAvg, 1)}kg</strong><small>${photoCount} foto's</small></div>
+      <div class="kpi"><span>Missende dagen</span><strong>${missingDays}</strong><small>geen invoer</small></div>
+    </div>
+    <div class="tracker-week-stack">
+      ${renderTrainerTrackerBlock("Stappen", "Zelf ingevuld door het lid per datum.", `${steps.filter((item) => item.value).length}/7 dagen`, steps, (item) => fmt(item.value), (item) => statusText(item.value, selected.goals.steps))}
+      ${renderTrainerTrackerBlock("Water", "Los van stappen, met eigen dagdata.", `gem. ${fmt(waterAvg, 1)}L`, water, (item) => item.value ? `${fmt(item.value, 2)}L` : "", (item) => item.value ? `${fmt(number(item.value) / number(selected.goals.water) * 100, 0)}% van doel` : "nog leeg")}
+      ${renderTrainerTrackerBlock("Slaap", "Uren, slaapcijfer, bedtijd en wakker worden.", `cijfer ${fmt(sleepScoreAvg, 1)}/10`, sleep, (item) => item.hours ? `${fmt(item.hours, 1)}u` : "", (item) => item.quality ? `slaapcijfer ${item.quality}/10` : "nog leeg", `
+        <div class="tracker-detail-table">
+          ${trackerDetailRow("Naar bed", sleep, (item) => item.bed)}
+          ${trackerDetailRow("Wakker", sleep, (item) => item.wake)}
+          ${trackerDetailRow("Slaapcijfer", sleep, (item) => item.quality ? `${item.quality}/10` : "")}
+        </div>
+      `)}
+      ${renderTrainerTrackerBlock("Welzijn", "Energie, stress, motivatie en stemming.", `${wellbeing.filter((item) => item.energy || item.stress || item.motivation).length}/7 ingevuld`, wellbeing, (item) => {
+        const avg = average([item.energy, item.motivation, number(item.stress) ? 10 - number(item.stress) : ""]);
+        return avg ? `${fmt(avg, 1)}/10` : "";
+      }, (item) => [item.mood, item.energy ? `energie ${item.energy}` : "", item.stress ? `stress ${item.stress}` : ""].filter(Boolean).join(" | "), `
+        <div class="tracker-detail-table">
+          ${trackerDetailRow("Energie", wellbeing, (item) => item.energy)}
+          ${trackerDetailRow("Stress", wellbeing, (item) => item.stress)}
+          ${trackerDetailRow("Motivatie", wellbeing, (item) => item.motivation)}
+          ${trackerDetailRow("Stemming", wellbeing, (item) => item.mood)}
+        </div>
+      `)}
+      ${renderTrainerTrackerBlock("Voortgang", "Gewicht, taille, borst, armen, benen en opmerkingen.", `weekgem. ${fmt(weightAvg, 1)}kg`, progress, (item) => item.value ? `${fmt(item.value, 1)}kg` : "", (item) => [item.waist ? `taille ${item.waist}` : "", item.note].filter(Boolean).join(" | "), `
+        <div class="tracker-detail-table">
+          ${trackerDetailRow("Taille", progress, (item) => item.waist)}
+          ${trackerDetailRow("Borst", progress, (item) => item.chest)}
+          ${trackerDetailRow("Arm L/R", progress, (item) => [item.armLeft, item.armRight].filter(Boolean).join("/"))}
+          ${trackerDetailRow("Been L/R", progress, (item) => [item.legLeft, item.legRight].filter(Boolean).join("/"))}
+          ${trackerDetailRow("Opmerking", progress, (item) => item.note)}
+        </div>
+      `)}
+      ${renderTrainerTrackerBlock("Progressiefoto's", "Foto's die het lid bij voortgang toevoegt.", `${photoCount} foto's`, progress, (item) => {
+        const count = ["photoFront", "photoSide", "photoBack", "photoExtra"].filter((key) => item[key]).length;
+        return count ? `${count} foto` : "";
+      }, (item) => [
+        item.photoFront ? "voorkant" : "",
+        item.photoSide ? "zijkant" : "",
+        item.photoBack ? "achterkant" : "",
+        item.photoExtra ? "extra" : ""
+      ].filter(Boolean).join(", ") || "geen foto")}
+      <section class="tracker-week-block">
+        <div class="tracker-week-head">
+          <div><h2>Coachnotities en acties</h2><p class="muted">Automatische aandachtspunten op basis van deze week.</p></div>
+          <button class="primary-btn" type="button">Notitie opslaan</button>
+        </div>
+        <div class="tracker-action-grid">
+          <div class="panel"><strong>Logs missen</strong><p class="muted">${missingDays ? `${missingDays} dag(en) missen vrijwel alle trackerdata.` : "Geen grote gaten in de week."}</p></div>
+          <div class="panel"><strong>Slaap bewaken</strong><p class="muted">${sleepScoreAvg && sleepScoreAvg < 7 ? "Slaapcijfer zakt onder 7, training eventueel bijsturen." : "Slaapcijfer is stabiel genoeg."}</p></div>
+          <label class="field"><span>Trainernotitie</span><textarea rows="4" placeholder="Bijv. donderdag navragen, waterdoel bijstellen, training lichter na lage slaap..."></textarea></label>
+        </div>
+      </section>
+    </div>
+  `;
+}
+
+function renderTrackersOverview() {
+  const target = $("#trackerOverview");
+  if (!target) return;
+  const selected = client();
+  if (!hasSelectedClient(selected)) {
+    target.innerHTML = emptyTrackerState(isTrainer() ? "Nog geen client geselecteerd. Voeg eerst een client toe om trackerdata te bekijken." : "Er is nog geen client gekoppeld aan dit account.");
+    return;
+  }
+  target.innerHTML = isTrainer() ? renderTrainerTrackerOverview(selected) : renderClientTrackerOverview(selected);
 }
 
 function renderSteps() {
@@ -2621,7 +3204,7 @@ function safeCssColor(value, fallback = "#c89312") {
 
 function agendaTimeSlots(items) {
   const slots = new Set();
-  for (let hour = 6; hour <= 22; hour += 1) {
+  for (let hour = 8; hour <= 20; hour += 2) {
     slots.add(`${String(hour).padStart(2, "0")}:00`);
   }
   items.forEach((item) => slots.add(normalizeAgendaTime(item.time)));
@@ -2675,7 +3258,7 @@ function renderAgendaAppointment(item) {
   const title = apptType?.name || item.type || "Afspraak";
   const note = item.type && apptType?.name && item.type !== apptType.name ? item.type : "";
   return `
-    <div class="agenda-event" draggable="true" data-drag-appointment="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}" style="--event-color:${color}">
+    <div class="agenda-event" style="--event-color:${color}">
       <div class="agenda-event-top">
         <span class="agenda-event-time">${escapeHTML(item.time || "--:--")}</span>
         <span class="agenda-event-chip">${escapeHTML(title)}</span>
@@ -2699,10 +3282,9 @@ function renderAppointmentTypes() {
   if (!isTrainer()) return;
   list.innerHTML = appointmentTypes()
     .map((type) => {
-      const inUse = allAppointments().some((item) => item.source?.appointmentTypeId === type.id);
       const color = safeCssColor(type.color);
       return `
-        <div class="appointment-type-row appointment-type-card" draggable="true" data-drag-appointment-type="${escapeHTML(type.id)}" style="--type-color:${color}">
+        <button class="appointment-type-row appointment-type-card" data-plan-appointment-type="${escapeHTML(type.id)}" style="--type-color:${color}" type="button">
           <div class="appointment-type-summary">
             <span class="type-swatch" style="background:${color}"></span>
             <div>
@@ -2710,23 +3292,48 @@ function renderAppointmentTypes() {
               <small>${[type.category, type.location, type.duration ? `${type.duration} min` : "", type.price !== "" && type.price !== undefined ? currency(type.price) : ""].filter(Boolean).map(escapeHTML).join(" | ")}</small>
             </div>
           </div>
-          <div class="appointment-type-fields">
-            <input data-appointment-type-name="${type.id}" value="${escapeHTML(type.name)}" />
-            <input data-appointment-type-duration="${type.id}" type="number" min="0" step="5" value="${escapeHTML(type.duration ?? "")}" placeholder="min" />
-            <input data-appointment-type-price="${type.id}" type="number" min="0" step="0.01" value="${escapeHTML(type.price ?? "")}" placeholder="prijs" />
-            <input data-appointment-type-category="${type.id}" value="${escapeHTML(type.category || "")}" placeholder="Categorie" />
-            <input data-appointment-type-location="${type.id}" value="${escapeHTML(type.location || "")}" placeholder="Locatie" />
-            <input data-appointment-type-capacity="${type.id}" type="number" min="1" step="1" value="${escapeHTML(type.capacity ?? "")}" placeholder="Max" />
-            <input data-appointment-type-color="${type.id}" type="color" value="${escapeHTML(color)}" />
-          </div>
-          <div class="appointment-type-actions">
-            <button class="secondary-btn" data-save-appointment-type="${escapeHTML(type.id)}" type="button">Opslaan</button>
-            <button class="danger-btn" data-remove-appointment-type="${escapeHTML(type.id)}" ${inUse ? "disabled title=\"In gebruik bij afspraken\"" : ""} type="button">Verwijderen</button>
-          </div>
-        </div>
+        </button>
       `;
     })
     .join("") || `<div class="empty-state">Nog geen afspraaksoorten.</div>`;
+}
+
+function renderAgendaQuickTypes() {
+  const target = $("#agendaQuickTypes");
+  if (!target) return;
+  if (!isTrainer()) {
+    target.innerHTML = "";
+    target.style.display = "none";
+    return;
+  }
+  const types = appointmentTypes();
+  target.style.display = "grid";
+  target.innerHTML = `
+    <div class="agenda-quick-head">
+      <div>
+        <p class="eyebrow">Afspraaksoorten</p>
+        <h2>Kies en plan direct in</h2>
+      </div>
+      <button class="secondary-btn" data-action="open-settings-appointment-types" type="button">Nieuwe afspraaksoort</button>
+    </div>
+    <div class="agenda-type-chip-row">
+      ${types.length ? types.map((type) => {
+        const color = safeCssColor(type.color);
+        const meta = [
+          type.duration ? `${type.duration} min` : "",
+          type.price !== "" && type.price !== undefined ? currency(type.price) : "",
+          type.location || ""
+        ].filter(Boolean).join(" | ");
+        return `
+          <button class="agenda-type-chip" data-plan-appointment-type="${escapeHTML(type.id)}" style="--type-color:${color}" type="button">
+            <span class="type-swatch" style="background:${color}"></span>
+            <strong>${escapeHTML(type.name || "Afspraaksoort")}</strong>
+            <small>${escapeHTML(meta || "Klik om in te plannen")}</small>
+          </button>
+        `;
+      }).join("") : `<div class="empty-mini">Nog geen afspraaksoorten. Maak de eerste aan via Instellingen.</div>`}
+    </div>
+  `;
 }
 
 function renderAgendaTable(days, appointments) {
@@ -2772,6 +3379,7 @@ function renderAgenda() {
   const calendar = $("#weekCalendar");
   $("#appointmentForm").style.display = isTrainer() && state.clients.length ? "block" : "none";
   renderAppointmentTypes();
+  renderAgendaQuickTypes();
   $("#calendarControls").style.display = isTrainer() ? "flex" : "none";
   $("#agendaPanelTitle").textContent = isTrainer() ? "Weekagenda" : "Mijn afspraken";
   renderPreviousAppointments(selected);
@@ -2992,16 +3600,23 @@ function renderAdministration() {
 
   $("#financeInvoiceList").innerHTML = invoiceItems.length
     ? invoiceItems.map((item) => `
-        <div class="finance-card invoice-card">
+        <div class="finance-card invoice-card premium-invoice-card">
           <div>
+            <span class="eyebrow">${paymentStatusLabel(item.status)}</span>
             <strong>${escapeHTML(invoiceNumber(item))}</strong>
-            <span>${escapeHTML(item.description)}${item.clientId ? ` | ${escapeHTML(clientNameById(item.clientId))}` : ""}</span>
-            <small>${item.date ? `Factuurdatum ${escapeHTML(item.date)}` : ""}${item.dueDate ? ` | vervalt ${escapeHTML(item.dueDate)}` : ""} | ${currency(item.amount || 0)}</small>
+            <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
+            <div class="invoice-edit-grid">
+              <label class="field"><span>Omschrijving</span><input data-invoice-description="${item.id}" value="${escapeHTML(item.description || "")}" /></label>
+              <label class="field"><span>Bedrag</span><input data-invoice-amount="${item.id}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
+              <label class="field"><span>Factuurdatum</span><input data-invoice-date="${item.id}" type="date" value="${escapeHTML(item.date || todayISO())}" /></label>
+              <label class="field"><span>Vervaldatum</span><input data-invoice-due="${item.id}" type="date" value="${escapeHTML(item.dueDate || "")}" /></label>
+            </div>
           </div>
           <div class="finance-card-actions invoice-actions">
             <select data-admin-status="${item.id}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
               ${paymentStatusOptions(item.status)}
             </select>
+            <button class="primary-btn" data-save-invoice="${item.id}" type="button">Factuur opslaan</button>
             <button class="secondary-btn" data-download-invoice="${item.id}" type="button">Download factuur</button>
             <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijderen</button>
           </div>
@@ -3010,11 +3625,187 @@ function renderAdministration() {
     : `<div class="empty-mini">Nog geen facturen voor deze selectie. Plan een afspraak of voeg administratie van type Factuur toe.</div>`;
 }
 
+function renderInvoicePage() {
+  const target = $("#invoicePageList");
+  const kpis = $("#invoicePageKpis");
+  if (!target || !kpis || !isTrainer()) return;
+  const invoices = financeAdminItems().filter((item) => item.type === "invoice");
+  const openInvoices = invoices.filter((item) => item.status !== "paid");
+  const paidInvoices = invoices.filter((item) => item.status === "paid");
+  const total = invoices.reduce((sum, item) => sum + number(item.amount, 0), 0);
+  const paid = paidInvoices.reduce((sum, item) => sum + number(item.amount, 0), 0);
+  kpis.innerHTML = [
+    ["Facturen", invoices.length, "totaal"],
+    ["Openstaand", openInvoices.length, "niet betaald"],
+    ["Betaald", currency(paid), "ontvangen"],
+    ["Totaal", currency(total), "gefactureerd"]
+  ].map(([label, value, sub]) => `<div class="kpi"><span>${label}</span><strong>${value}</strong><small>${sub}</small></div>`).join("");
+  target.innerHTML = invoices.length
+    ? invoices.map((item) => `
+      <div class="finance-card invoice-card premium-invoice-card">
+        <div>
+          <span class="eyebrow">${paymentStatusLabel(item.status)}</span>
+          <strong>${escapeHTML(invoiceNumber(item))}</strong>
+          <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
+          <div class="invoice-edit-grid">
+            <label class="field"><span>Omschrijving</span><input data-invoice-description="${item.id}" value="${escapeHTML(item.description || "")}" /></label>
+            <label class="field"><span>Bedrag</span><input data-invoice-amount="${item.id}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
+            <label class="field"><span>Factuurdatum</span><input data-invoice-date="${item.id}" type="date" value="${escapeHTML(item.date || todayISO())}" /></label>
+            <label class="field"><span>Vervaldatum</span><input data-invoice-due="${item.id}" type="date" value="${escapeHTML(item.dueDate || "")}" /></label>
+          </div>
+        </div>
+        <div class="finance-card-actions invoice-actions">
+          <select data-admin-status="${item.id}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
+            ${paymentStatusOptions(item.status)}
+          </select>
+          <button class="primary-btn" data-save-invoice="${item.id}" type="button">Factuur opslaan</button>
+          <button class="secondary-btn" data-download-invoice="${item.id}" type="button">Download factuur</button>
+          <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijderen</button>
+        </div>
+      </div>
+    `).join("")
+    : `<div class="empty-state">Nog geen facturen. Plan een afspraak of voeg een factuur toe bij Administratie.</div>`;
+}
+
+function renderSettingsPage() {
+  const target = $("#settingsOverview");
+  if (!target || !isTrainer()) return;
+  const settings = invoiceSettings();
+  const types = appointmentTypes();
+  const rates = financeRates();
+  target.innerHTML = `
+    <div class="settings-layout">
+      <div class="settings-hero">
+        <p class="eyebrow">Instellingen</p>
+        <h1>Zelf beheren zonder Codex nodig te hebben.</h1>
+        <div class="settings-feature-grid">
+          <button class="settings-feature-card" data-settings-jump="business" type="button">
+            <strong>Bedrijfsgegevens</strong>
+            <span>Logo, bedrijfsnaam, adres, KvK, BTW-id, IBAN, email, telefoon.</span>
+          </button>
+          <button class="settings-feature-card" data-settings-jump="invoice-settings-block" type="button">
+            <strong>Factuurinstellingen</strong>
+            <span>Betaaltermijn, BTW percentage, factuurvoet, nummering en PDF stijl.</span>
+          </button>
+          <button class="settings-feature-card" data-settings-jump="coaching-settings-block" type="button">
+            <strong>Coachingbeheer</strong>
+            <span>Afspraaktypes, prijzen, categorieën, kleuren en standaardduur.</span>
+          </button>
+        </div>
+      </div>
+      <section class="panel settings-card settings-invoice-card">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Facturen</p>
+            <h2 id="business">Bedrijfsgegevens en facturen</h2>
+          </div>
+          <span class="status ok">Wordt gebruikt in downloads</span>
+        </div>
+        <form id="invoiceSettingsForm" class="settings-form-grid">
+          <label class="field"><span>Bedrijfsnaam</span><input name="businessName" value="${escapeHTML(settings.businessName || "")}" /></label>
+          <label class="field"><span>Naam eigenaar</span><input name="ownerName" value="${escapeHTML(settings.ownerName || "")}" /></label>
+          <label class="field"><span>Logo URL</span><input name="logoUrl" value="${escapeHTML(settings.logoUrl || "")}" /></label>
+          <label class="field"><span>E-mail</span><input name="email" type="email" value="${escapeHTML(settings.email || "")}" /></label>
+          <label class="field"><span>Telefoon</span><input name="phone" value="${escapeHTML(settings.phone || "")}" /></label>
+          <label class="field"><span>Adres</span><input name="address" value="${escapeHTML(settings.address || "")}" /></label>
+          <label class="field"><span>Postcode / plaats</span><input name="postalCity" value="${escapeHTML(settings.postalCity || "")}" /></label>
+          <label class="field"><span>Land</span><input name="country" value="${escapeHTML(settings.country || "")}" /></label>
+          <label class="field"><span>BTW nummer</span><input name="vatNumber" value="${escapeHTML(settings.vatNumber || "")}" placeholder="NL..." /></label>
+          <label class="field"><span>KvK nummer</span><input name="chamberNumber" value="${escapeHTML(settings.chamberNumber || "")}" /></label>
+          <label class="field"><span>IBAN</span><input name="iban" value="${escapeHTML(settings.iban || "")}" /></label>
+          <label class="field"><span>BTW %</span><input name="vatPercent" type="number" min="0" step="0.1" value="${escapeHTML(settings.vatPercent ?? 21)}" /></label>
+          <label class="field"><span>Betaaltermijn dagen</span><input name="paymentTermDays" type="number" min="0" step="1" value="${escapeHTML(settings.paymentTermDays ?? 14)}" /></label>
+          <label class="field full"><span>Factuurtekst</span><textarea name="note" rows="3">${escapeHTML(settings.note || "")}</textarea></label>
+          <h3 id="invoice-settings-block" class="settings-subtitle">Factuurinstellingen</h3>
+          <div class="settings-save-row">
+            <button class="primary-btn" type="submit">Factuurinstellingen opslaan</button>
+            <span class="save-feedback" data-save-feedback="invoice-settings"></span>
+          </div>
+        </form>
+      </section>
+      <section id="coaching-settings-block" class="panel settings-card coaching-settings-card">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Coachingbeheer</p>
+            <h2>Afspraaktypes en tarieven aanpassen</h2>
+          </div>
+          <span class="muted">Wordt gebruikt in Agenda en Financien</span>
+        </div>
+        <form id="settingsAppointmentTypeForm" class="settings-form-grid compact-settings-form">
+          <label class="field"><span>Naam</span><input name="name" placeholder="Bijv. Personal training" required /></label>
+          <label class="field"><span>Duur min</span><input name="duration" type="number" min="0" step="5" placeholder="60" /></label>
+          <label class="field"><span>Prijs</span><input name="price" type="number" min="0" step="0.01" placeholder="60" /></label>
+          <label class="field"><span>Categorie</span><input name="category" placeholder="Training" /></label>
+          <label class="field"><span>Locatie</span><input name="location" placeholder="Hoogerheide" /></label>
+          <label class="field"><span>Kleur</span><input name="color" type="color" value="#c89312" /></label>
+          <div class="settings-save-row"><button class="primary-btn" type="submit">Afspraaktype toevoegen</button></div>
+        </form>
+        <div class="settings-type-list">
+          ${types.map((type) => {
+            const color = safeCssColor(type.color);
+            return `
+              <div class="settings-type-row" style="--type-color:${color}">
+                <span class="type-swatch" style="background:${color}"></span>
+                <input data-settings-type-name="${type.id}" value="${escapeHTML(type.name || "")}" />
+                <input data-settings-type-duration="${type.id}" type="number" min="0" step="5" value="${escapeHTML(type.duration ?? "")}" placeholder="min" />
+                <input data-settings-type-price="${type.id}" type="number" min="0" step="0.01" value="${escapeHTML(type.price ?? "")}" placeholder="prijs" />
+                <input data-settings-type-category="${type.id}" value="${escapeHTML(type.category || "")}" placeholder="categorie" />
+                <input data-settings-type-location="${type.id}" value="${escapeHTML(type.location || "")}" placeholder="locatie" />
+                <input data-settings-type-color="${type.id}" type="color" value="${escapeHTML(color)}" />
+                <button class="secondary-btn" data-save-settings-appointment-type="${type.id}" type="button">Opslaan</button>
+                <button class="danger-btn" data-remove-settings-appointment-type="${type.id}" type="button">Verwijderen</button>
+              </div>
+            `;
+          }).join("")}
+        </div>
+        <div class="settings-rate-list">
+          <h3 class="settings-subtitle">Tarieven</h3>
+          ${rates.map((rate) => `
+            <div class="settings-rate-row">
+              <input data-settings-rate-name="${rate.id}" value="${escapeHTML(rate.name || "")}" />
+              <input data-settings-rate-amount="${rate.id}" type="number" min="0" step="0.01" value="${escapeHTML(rate.amount ?? "")}" />
+              <button class="secondary-btn" data-save-settings-rate="${rate.id}" type="button">Tarief opslaan</button>
+            </div>
+          `).join("")}
+        </div>
+      </section>
+      <div class="settings-grid">
+      <section class="panel settings-card">
+        <p class="eyebrow">Weergave</p>
+        <h2>Donker thema actief</h2>
+        <p class="muted">De app gebruikt vast het donkere Fit Met Zorge thema voor betere leesbaarheid en rust.</p>
+        <span class="status ok">Vast ingesteld</span>
+      </section>
+      <section class="panel settings-card">
+        <p class="eyebrow">Account</p>
+        <h2>${escapeHTML(state.trainerAccount?.name || state.ui.authName || "Trainer")}</h2>
+        <p class="muted">${escapeHTML(state.trainerAccount?.email || state.ui.authEmail || "Geen e-mail zichtbaar")}</p>
+        <span class="status ok">${isOnlineMode() ? "Supabase actief" : "Lokale preview"}</span>
+      </section>
+      <section class="panel settings-card">
+        <p class="eyebrow">Portaal</p>
+        <h2>App redirect</h2>
+        <p class="muted">${APP_AUTH_REDIRECT_URL}</p>
+        <span class="status ok">Uitnodigingen en resetlinks blijven naar de webapp gaan.</span>
+      </section>
+      <section class="panel settings-card">
+        <p class="eyebrow">Data</p>
+        <h2>Veilig bewaren</h2>
+        <p class="muted">Leden, afspraken, schema's, logs, administratie en facturen blijven gekoppeld aan dezelfde bestaande data.</p>
+      </section>
+      </div>
+    </div>
+  `;
+}
+
 function renderRoleVisibility() {
-  document.body.classList.toggle("light", state.ui.theme === "light");
+  state.ui.theme = "dark";
+  document.body.classList.remove("light");
   document.body.classList.toggle("password-required", passwordSetupRequired);
   document.body.classList.toggle("logged-in", isLoggedIn() && !passwordSetupRequired);
   document.body.classList.toggle("logged-out", !isLoggedIn() || passwordSetupRequired);
+  document.body.classList.toggle("trainer-mode", state.ui.role === "trainer");
+  document.body.classList.toggle("client-mode", state.ui.role === "client");
   $("#currentUserLabel").textContent = isLoggedIn() ? `${state.ui.authName || state.ui.authEmail} (${state.ui.role === "trainer" ? "Trainer" : "Lid"})` : "";
   renderOnlineStatus();
 }
@@ -3035,8 +3826,10 @@ function renderAll() {
   renderClients();
   renderGoalForm();
   renderTraining();
+  renderTrainingLog();
   renderNutrition();
   renderNutritionLog();
+  renderTrackersOverview();
   renderSteps();
   renderProgress();
   renderWellbeing();
@@ -3045,6 +3838,8 @@ function renderAll() {
   renderAgenda();
   renderFinance();
   renderAdministration();
+  renderInvoicePage();
+  renderSettingsPage();
 }
 
 function createClientProfile({ name, email, password = "", goal = "", registered = false, profile = {}, startDate = "" }) {
@@ -3193,7 +3988,7 @@ function renderMealAccordion(selected, { checklist = false } = {}) {
     .map(([mealType, label]) => {
       const items = selected.nutritionPlan
         .map((item, index) => ({ item, index }))
-        .filter(({ item }) => normalizeMealType(item.mealType || item.meal) === mealType);
+        .filter(({ item }) => normalizeMealType(item.mealType || item.meal) === mealType && (isTrainer() || item.published !== false));
       const totalKcal = items.reduce((sum, { item }) => sum + number(item.kcal), 0);
       const isOpen = open === mealType;
       return `
@@ -3241,6 +4036,12 @@ function renderMealOption(item, index, checklist = false) {
           `
           : `${isTrainer() ? `<button class="danger-btn" data-remove-meal="${index}" type="button">Verwijder</button>` : ""}`
       }
+      ${isTrainer() ? `
+        <div class="schema-card-actions nutrition-publish-actions">
+          <span class="status ${item.published === false ? "" : "ok"}">${item.published === false ? "Concept" : "Zichtbaar voor lid"}</span>
+          ${item.published === false ? `<button class="primary-btn" data-publish-meal="${index}" type="button">Beschikbaar stellen</button>` : ""}
+        </div>
+      ` : ""}
     </div>
   `;
 }
@@ -3298,7 +4099,7 @@ function nutritionLogEntry(selected, date, mealType) {
 }
 
 function mealOptionsForType(selected, mealType) {
-  return selected.nutritionPlan.filter((item) => normalizeMealType(item.mealType || item.meal) === mealType);
+  return selected.nutritionPlan.filter((item) => normalizeMealType(item.mealType || item.meal) === mealType && (isTrainer() || item.published !== false));
 }
 
 function plannedMealOptionOptions(selected, mealType, selectedId = "") {
@@ -3367,7 +4168,7 @@ function renderNutritionLog() {
   if (isTrainer()) {
     $("#weeklyFoodLogGrid").innerHTML = emptyTrackerState("Trainerweergave: hieronder staan de opgeslagen voedingslogs van de client.");
   } else {
-    $("#weeklyFoodLogGrid").innerHTML = selected.nutritionPlan.length
+    $("#weeklyFoodLogGrid").innerHTML = selected.nutritionPlan.some((item) => item.published !== false)
       ? renderWeeklyFoodLogGrid(selected)
       : emptyTrackerState("Je trainer heeft nog geen voedingsschema klaargezet.");
   }
@@ -3507,6 +4308,7 @@ document.addEventListener("click", async (event) => {
   }
   if (target.dataset.view) {
     navMenuOpen = false;
+    closeAppointmentModal();
     showView(target.dataset.view);
     return;
   }
@@ -3516,9 +4318,39 @@ document.addEventListener("click", async (event) => {
     saveState();
     return;
   }
+  if (target.dataset.trackerDayIndex !== undefined) {
+    state.ui.trackerDayIndex = Math.max(0, Math.min(6, number(target.dataset.trackerDayIndex, todayIndex())));
+    renderTrackersOverview();
+    saveState();
+    return;
+  }
+  if (target.dataset.settingsJump) {
+    document.getElementById(target.dataset.settingsJump)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+  if (target.dataset.planAppointmentType) {
+    if (!isTrainer()) return;
+    applyAppointmentTypeToForm(target.dataset.planAppointmentType);
+    return;
+  }
   if (target.dataset.action === "open-view") {
     navMenuOpen = false;
     showView(target.dataset.target);
+  }
+  if (target.dataset.action === "open-settings-appointment-types") {
+    navMenuOpen = false;
+    closeAppointmentModal();
+    showView("settings");
+    setTimeout(() => document.getElementById("coaching-settings-block")?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
+    return;
+  }
+  if (target.dataset.action === "focus-appointment-form") {
+    openAppointmentModal();
+    return;
+  }
+  if (target.dataset.action === "close-appointment-modal") {
+    closeAppointmentModal();
+    return;
   }
   if (target.dataset.nutritionGroup) {
     state.ui.openNutritionMeal = state.ui.openNutritionMeal === target.dataset.nutritionGroup ? "" : target.dataset.nutritionGroup;
@@ -3527,8 +4359,14 @@ document.addEventListener("click", async (event) => {
     return;
   }
   if (target.id === "themeToggle") {
-    state.ui.theme = state.ui.theme === "dark" ? "light" : "dark";
-    renderAll();
+    state.ui.theme = "dark";
+    document.body.classList.remove("light");
+    return;
+  }
+  if (target.id === "settingsThemeToggle") {
+    state.ui.theme = "dark";
+    document.body.classList.remove("light");
+    return;
   }
   if (target.dataset.selectClient) {
     state.ui.selectedClientId = target.dataset.selectClient;
@@ -3556,6 +4394,13 @@ document.addEventListener("click", async (event) => {
     }
     return;
   }
+  if (target.dataset.saveNextTrainingNote !== undefined) {
+    const selected = client();
+    if (!isTrainer() || !hasSelectedClient(selected)) return;
+    coachWeekNote(selected).nextTraining = $("#nextTrainingNote")?.value || "";
+    await persistActionFeedback("next-training-note", "Notitie opgeslagen", renderTrainingLog);
+    return;
+  }
   if (target.dataset.deleteClient) {
     if (!isTrainer()) return;
     const selectedClient = state.clients.find((item) => item.id === target.dataset.deleteClient);
@@ -3567,7 +4412,27 @@ document.addEventListener("click", async (event) => {
   }
   if (target.dataset.removeTraining) {
     client().trainingPlan.splice(Number(target.dataset.removeTraining), 1);
+    saveState();
     renderAll();
+  }
+  if (target.dataset.publishTraining) {
+    const exercise = client().trainingPlan[Number(target.dataset.publishTraining)];
+    if (!exercise) return;
+    exercise.published = true;
+    await persistActionFeedback(null, "Trainingsschema beschikbaar gesteld");
+    return;
+  }
+  if (target.dataset.publishTrainingSchema !== undefined) {
+    const selected = client();
+    if (!hasSelectedClient(selected) || !selected.trainingPlan.length) {
+      setSaveFeedback("training-copy", "Geen trainingsschema om beschikbaar te stellen.", true);
+      return;
+    }
+    selected.trainingPlan.forEach((exercise) => {
+      exercise.published = true;
+    });
+    await persistActionFeedback("training-copy", "Trainingsschema beschikbaar voor lid");
+    return;
   }
   if (target.dataset.copyTrainingSchema !== undefined) {
     const targetClientId = $("#trainingCopyTarget")?.value || client().id;
@@ -3597,8 +4462,10 @@ document.addEventListener("click", async (event) => {
       actualSets: "",
       actualReps: "",
       actualWeight: "",
-      notes: ""
+      notes: "",
+      published: false
     });
+    saveState();
     renderAll();
     return;
   }
@@ -3640,6 +4507,43 @@ document.addEventListener("click", async (event) => {
     type.capacity = document.querySelector(`[data-appointment-type-capacity="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-capacity="${type.id}"]`)?.value, 0);
     type.color = document.querySelector(`[data-appointment-type-color="${type.id}"]`)?.value || "#c89312";
     await persistActionFeedback(null, "Afspraaksoort opgeslagen");
+    return;
+  }
+  if (target.dataset.saveSettingsAppointmentType) {
+    const type = appointmentTypes().find((item) => item.id === target.dataset.saveSettingsAppointmentType);
+    if (!type) return;
+    type.name = String(document.querySelector(`[data-settings-type-name="${type.id}"]`)?.value || type.name).trim() || "Afspraaksoort";
+    type.duration = document.querySelector(`[data-settings-type-duration="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-settings-type-duration="${type.id}"]`)?.value, 0);
+    type.price = document.querySelector(`[data-settings-type-price="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-settings-type-price="${type.id}"]`)?.value, 0);
+    type.category = String(document.querySelector(`[data-settings-type-category="${type.id}"]`)?.value || "").trim();
+    type.location = String(document.querySelector(`[data-settings-type-location="${type.id}"]`)?.value || "").trim();
+    type.color = document.querySelector(`[data-settings-type-color="${type.id}"]`)?.value || "#c89312";
+    await persistActionFeedback(null, "Afspraaktype opgeslagen");
+    renderSettingsPage();
+    renderAgenda();
+    return;
+  }
+  if (target.dataset.removeSettingsAppointmentType) {
+    const inUse = allAppointments().some((item) => item.source?.appointmentTypeId === target.dataset.removeSettingsAppointmentType);
+    if (inUse) {
+      alert("Deze afspraaksoort is nog in gebruik bij afspraken.");
+      return;
+    }
+    if (!confirm("Afspraaktype verwijderen? Bestaande afspraken blijven bewaard.")) return;
+    state.trainerFinance.appointmentTypes = appointmentTypes().filter((item) => item.id !== target.dataset.removeSettingsAppointmentType);
+    await persistActionFeedback(null, "Afspraaktype verwijderd");
+    renderSettingsPage();
+    renderAgenda();
+    return;
+  }
+  if (target.dataset.saveSettingsRate) {
+    const rate = rateById(target.dataset.saveSettingsRate);
+    if (!rate) return;
+    rate.name = String(document.querySelector(`[data-settings-rate-name="${rate.id}"]`)?.value || rate.name).trim() || "Tarief";
+    rate.amount = number(document.querySelector(`[data-settings-rate-amount="${rate.id}"]`)?.value, 0);
+    await persistActionFeedback(null, "Tarief opgeslagen");
+    renderSettingsPage();
+    renderFinance();
     return;
   }
   if (target.dataset.removeAppointmentType) {
@@ -3693,6 +4597,20 @@ document.addEventListener("click", async (event) => {
     renderAll();
     return;
   }
+  if (target.dataset.saveInvoice) {
+    const item = financeAdminItems().find((entry) => entry.id === target.dataset.saveInvoice);
+    if (!item) return;
+    item.description = String(document.querySelector(`[data-invoice-description="${item.id}"]`)?.value || item.description).trim() || "Factuur";
+    item.amount = number(document.querySelector(`[data-invoice-amount="${item.id}"]`)?.value, 0);
+    item.date = document.querySelector(`[data-invoice-date="${item.id}"]`)?.value || item.date || todayISO();
+    item.dueDate = document.querySelector(`[data-invoice-due="${item.id}"]`)?.value || item.dueDate || "";
+    const statusInput = target.closest(".finance-card")?.querySelector(`[data-admin-status="${item.id}"]`) || document.querySelector(`[data-admin-status="${item.id}"]`);
+    item.status = statusInput?.value === "paid" ? "paid" : "unpaid";
+    syncAppointmentFromAdminItem(item);
+    await persistActionFeedback(null, "Factuur opgeslagen");
+    renderAll();
+    return;
+  }
   if (target.dataset.downloadInvoice) {
     downloadInvoice(target.dataset.downloadInvoice);
     return;
@@ -3714,7 +4632,27 @@ document.addEventListener("click", async (event) => {
   }
   if (target.dataset.removeMeal) {
     client().nutritionPlan.splice(Number(target.dataset.removeMeal), 1);
+    saveState();
     renderAll();
+  }
+  if (target.dataset.publishMeal) {
+    const meal = client().nutritionPlan[Number(target.dataset.publishMeal)];
+    if (!meal) return;
+    meal.published = true;
+    await persistActionFeedback(null, "Voedingsschema beschikbaar gesteld");
+    return;
+  }
+  if (target.dataset.publishNutritionSchema !== undefined) {
+    const selected = client();
+    if (!hasSelectedClient(selected) || !selected.nutritionPlan.length) {
+      setSaveFeedback("nutrition-copy", "Geen voedingsschema om beschikbaar te stellen.", true);
+      return;
+    }
+    selected.nutritionPlan.forEach((meal) => {
+      meal.published = true;
+    });
+    await persistActionFeedback("nutrition-copy", "Voedingsschema beschikbaar voor lid");
+    return;
   }
   if (target.dataset.copyNutritionSchema !== undefined) {
     const targetClientId = $("#nutritionCopyTarget")?.value || client().id;
@@ -3738,7 +4676,8 @@ document.addEventListener("click", async (event) => {
       fat: Math.round(recipe.totals.fat),
       schemaName: "Voedingsschema",
       status: "",
-      alternative: ""
+      alternative: "",
+      published: false
     });
     state.ui.openNutritionMeal = normalizeMealType(recipe.mealType);
     saveState();
@@ -3752,6 +4691,7 @@ document.addEventListener("click", async (event) => {
     if (amount === "reset") setWaterDay(selected, index, "");
     else addWaterDay(selected, index, amount);
     renderWater();
+    renderTrackersOverview();
     renderClientHome();
     renderTrainerDashboard();
   }
@@ -3844,13 +4784,16 @@ document.addEventListener("click", async (event) => {
     renderAll();
   }
   if (target.dataset.setAppointmentDate) {
-    const form = $("#appointmentForm");
-    form.elements.date.value = target.dataset.setAppointmentDate;
-    if (target.dataset.setAppointmentTime && target.dataset.setAppointmentTime !== "no-time") {
-      form.elements.time.value = target.dataset.setAppointmentTime;
-    }
-    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    openAppointmentModal({
+      date: target.dataset.setAppointmentDate,
+      time: target.dataset.setAppointmentTime
+    });
+    return;
   }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeAppointmentModal();
 });
 
 $("#clientSelect").addEventListener("change", (event) => {
@@ -3866,6 +4809,53 @@ document.addEventListener("click", (event) => {
   if (!tab) return;
   if (passwordSetupRequired && tab.dataset.authMode !== "set-password") return;
   showAuthPanel(tab.dataset.authMode);
+});
+
+document.addEventListener("submit", async (event) => {
+  if (event.target?.id === "settingsAppointmentTypeForm") {
+    event.preventDefault();
+    if (!isTrainer()) return;
+    const data = new FormData(event.target);
+    appointmentTypes().push({
+      id: `appt-type-${Date.now()}${Math.random().toString(16).slice(2)}`,
+      name: String(data.get("name") || "").trim() || "Afspraaksoort",
+      duration: data.get("duration") === "" ? "" : number(data.get("duration"), 0),
+      price: data.get("price") === "" ? "" : number(data.get("price"), 0),
+      category: String(data.get("category") || "").trim(),
+      location: String(data.get("location") || "").trim(),
+      capacity: 1,
+      color: data.get("color") || "#c89312"
+    });
+    event.target.reset();
+    await persistActionFeedback(null, "Afspraaktype toegevoegd");
+    renderSettingsPage();
+    renderAgenda();
+    return;
+  }
+  if (event.target?.id !== "invoiceSettingsForm") return;
+  event.preventDefault();
+  if (!isTrainer()) return;
+  const data = new FormData(event.target);
+  const settings = invoiceSettings();
+  [
+    "businessName",
+    "ownerName",
+    "logoUrl",
+    "email",
+    "phone",
+    "address",
+    "postalCity",
+    "country",
+    "vatNumber",
+    "chamberNumber",
+    "iban",
+    "note"
+  ].forEach((key) => {
+    settings[key] = String(data.get(key) || "").trim();
+  });
+  settings.vatPercent = number(data.get("vatPercent"), 0);
+  settings.paymentTermDays = number(data.get("paymentTermDays"), 14);
+  await persistActionFeedback("invoice-settings", "Factuurinstellingen opgeslagen");
 });
 
 $("#forgotPasswordForm").addEventListener("submit", async (event) => {
@@ -4128,8 +5118,8 @@ $("#trainingForm").addEventListener("submit", (event) => {
     return;
   }
   const match = exerciseLibraryMatch(data.get("exercise"));
-  selected.trainingPlan.push({
-    id: `training-${Date.now()}${Math.random().toString(16).slice(2)}`,
+    selected.trainingPlan.push({
+      id: `training-${Date.now()}${Math.random().toString(16).slice(2)}`,
     day: data.get("day") || state.ui.trainingDay || "Maandag",
     exercise: data.get("exercise"),
     group: match?.group || "",
@@ -4144,10 +5134,12 @@ $("#trainingForm").addEventListener("submit", (event) => {
     actualSets: "",
     actualReps: "",
     actualWeight: "",
-    notes: ""
+    notes: "",
+    published: false
   });
   event.currentTarget.reset();
   $("#trainingFormDay").value = state.ui.trainingDay || "Maandag";
+  saveState();
   renderAll();
 });
 
@@ -4184,10 +5176,12 @@ $("#nutritionPlanForm").addEventListener("submit", (event) => {
     fat: number(data.get("fat")),
     schemaName: "Voedingsschema",
     status: "",
-    alternative: ""
+    alternative: "",
+    published: false
   });
   state.ui.openNutritionMeal = normalizeMealType(data.get("mealType"));
   event.currentTarget.reset();
+  saveState();
   renderAll();
 });
 
@@ -4335,10 +5329,11 @@ $("#appointmentForm").addEventListener("submit", (event) => {
   selected.appointments.push(appointment);
   syncAppointmentAdminItem(selected, appointment);
   event.currentTarget.reset();
+  closeAppointmentModal();
   renderAll();
 });
 
-$("#notificationPermission").addEventListener("click", async () => {
+$("#notificationPermission")?.addEventListener("click", async () => {
   if (!("Notification" in window)) {
     alert("Browsermeldingen zijn niet beschikbaar.");
     return;
@@ -4354,6 +5349,7 @@ document.addEventListener("input", (event) => {
     const [index, key] = target.dataset.trainingLog.split(":");
     if (selected.trainingPlan[Number(index)]) {
       exerciseWeekLog(selected.trainingPlan[Number(index)])[key] = target.value;
+      saveState();
     }
   }
   if (target.dataset.trainingPlan) {
@@ -4370,8 +5366,15 @@ document.addEventListener("input", (event) => {
     weekArray(selected, "stepsByWeek", "value")[Number(target.dataset.stepIndex)].value = target.value;
   }
   if (target.dataset.weightIndex) {
-    const weightEntries = weekArray(selected, "dailyWeightByWeek", "value");
+    const weightEntries = progressWeekEntries(selected);
     weightEntries[Number(target.dataset.weightIndex)].value = target.value;
+    selected.dailyWeight = weightEntries;
+    saveState();
+  }
+  if (target.dataset.progress) {
+    const [index, key] = target.dataset.progress.split(":");
+    const weightEntries = progressWeekEntries(selected);
+    weightEntries[Number(index)][key] = target.value;
     selected.dailyWeight = weightEntries;
     saveState();
   }
@@ -4383,9 +5386,11 @@ document.addEventListener("input", (event) => {
   if (target.dataset.sleep) {
     const [index, key] = target.dataset.sleep.split(":");
     weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[Number(index)][key] = target.value;
+    saveState();
   }
   if (target.dataset.waterDayInput) {
     setWaterDay(selected, target.dataset.waterDayInput, target.value);
+    saveState();
   }
   if (target.dataset.mealAlternative) {
     mealWeekLog(selected.nutritionPlan[Number(target.dataset.mealAlternative)]).alternative = target.value;
@@ -4393,59 +5398,19 @@ document.addEventListener("input", (event) => {
   }
 });
 
-document.addEventListener("dragstart", (event) => {
-  const typeCard = event.target.closest("[data-drag-appointment-type]");
-  if (typeCard) {
-    event.dataTransfer.setData("text/plain", `type:${typeCard.dataset.dragAppointmentType}`);
-    return;
-  }
-  const card = event.target.closest("[data-drag-appointment]");
-  if (!card) return;
-  event.dataTransfer.setData("text/plain", `appointment:${card.dataset.dragAppointment}`);
-});
-
-document.addEventListener("dragover", (event) => {
-  if (event.target.closest("[data-calendar-date]")) event.preventDefault();
-});
-
-document.addEventListener("drop", (event) => {
-  const column = event.target.closest("[data-calendar-date]");
-  if (!column) return;
-  event.preventDefault();
-  const payload = event.dataTransfer.getData("text/plain");
-  if (payload.startsWith("type:")) {
-    const typeId = payload.slice(5);
-    const form = $("#appointmentForm");
-    const type = appointmentTypeById(typeId);
-    if (form && type) {
-      form.elements.date.value = column.dataset.calendarDate;
-      if (column.dataset.calendarTime && column.dataset.calendarTime !== "no-time") form.elements.time.value = column.dataset.calendarTime;
-      form.elements.appointmentTypeId.value = type.id;
-      form.elements.location.value = type.location || "";
-      form.elements.amount.value = type.price !== "" && type.price !== undefined ? type.price : "";
-      form.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    return;
-  }
-  const cleanPayload = payload.startsWith("appointment:") ? payload.slice(12) : payload;
-  const [clientId, appointmentId] = cleanPayload.split(":");
-  const selected = state.clients.find((item) => item.id === clientId);
-  const appointment = selected?.appointments.find((item) => item.id === appointmentId);
-  if (!appointment) return;
-  appointment.date = column.dataset.calendarDate;
-  if (column.dataset.calendarTime && column.dataset.calendarTime !== "no-time") {
-    appointment.time = column.dataset.calendarTime;
-  }
-  appointment.day = dayNameFromDate(appointment.date);
-  renderAll();
-});
-
 document.addEventListener("change", (event) => {
   const target = event.target;
   const selected = client();
   if (target.dataset.weightIndex) {
-    const weightEntries = weekArray(selected, "dailyWeightByWeek", "value");
+    const weightEntries = progressWeekEntries(selected);
     weightEntries[Number(target.dataset.weightIndex)].value = target.value;
+    selected.dailyWeight = weightEntries;
+    renderAll();
+  }
+  if (target.dataset.progress) {
+    const [index, key] = target.dataset.progress.split(":");
+    const weightEntries = progressWeekEntries(selected);
+    weightEntries[Number(index)][key] = target.value;
     selected.dailyWeight = weightEntries;
     renderAll();
   }
@@ -4468,13 +5433,16 @@ document.addEventListener("change", (event) => {
     const [index, key] = target.dataset.sleep.split(":");
     weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[Number(index)][key] = target.value;
     renderSleep();
+    renderTrackersOverview();
   }
   if (target.dataset.waterDayInput) {
     setWaterDay(selected, target.dataset.waterDayInput, target.value);
     renderWater();
+    renderTrackersOverview();
   }
   if (target.dataset.trainingAttendance) {
     trainingAttendanceWeek(selected)[Number(target.dataset.trainingAttendance)].status = target.value;
+    saveState();
   }
   if (target.dataset.financeRate) {
     const amountInput = document.querySelector(`[data-finance-amount="${target.dataset.financeRate}"]`);
@@ -4534,7 +5502,8 @@ document.addEventListener("change", (event) => {
 });
 
 async function init() {
-  document.body.classList.toggle("light", state.ui.theme === "light");
+  state.ui.theme = "dark";
+  document.body.classList.remove("light");
   updateRememberControls();
   renderNav();
   renderAll();
