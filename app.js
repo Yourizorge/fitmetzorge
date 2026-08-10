@@ -4697,6 +4697,38 @@ document.addEventListener("click", async (event) => {
     renderAll();
     return;
   }
+  if (target.dataset.createPackageInvoice !== undefined) {
+    if (!isTrainer()) return;
+    const form = $("#financeAdminForm");
+    const selectedClient = state.clients.find((item) => item.id === form?.elements.clientId?.value) || client();
+    if (!hasSelectedClient(selectedClient)) {
+      alert("Kies eerst een lid voor de pakketfactuur.");
+      return;
+    }
+    const packageText = clientPackageLabel(selectedClient);
+    const packagePrice = clientPackageAmount(selectedClient);
+    if (!selectedClient.profile?.package || packageText === "Geen pakket gekozen") {
+      alert("Dit lid heeft nog geen pakket gekozen. Kies eerst een pakket bij Leden.");
+      return;
+    }
+    const date = form?.elements.date?.value || todayISO();
+    const invoice = {
+      id: `admin-${Date.now()}${Math.random().toString(16).slice(2)}`,
+      type: "invoice",
+      clientId: selectedClient.id,
+      appointmentId: "",
+      description: `Pakket: ${packageText} - ${monthLabel(date.slice(0, 7))}`,
+      date,
+      dueDate: form?.elements.dueDate?.value || addDaysISO(date, number(invoiceSettings().paymentTermDays, 14)),
+      amount: packagePrice !== "" ? packagePrice : "",
+      status: "unpaid",
+      invoiceNo: nextInvoiceNumber()
+    };
+    financeAdminItems().push(invoice);
+    await persistActionFeedback(null, "Pakketfactuur aangemaakt");
+    showView("administration");
+    return;
+  }
   if (target.dataset.downloadInvoice) {
     downloadInvoice(target.dataset.downloadInvoice);
     return;
@@ -5584,6 +5616,20 @@ document.addEventListener("change", async (event) => {
     renderFinance();
     renderAdministration();
     saveState();
+  }
+  if (target.id === "financeAdminClient") {
+    const selectedClient = state.clients.find((item) => item.id === target.value);
+    const form = $("#financeAdminForm");
+    if (selectedClient && form) {
+      const packageText = clientPackageLabel(selectedClient);
+      const packagePrice = clientPackageAmount(selectedClient);
+      if (form.elements.description && (!form.elements.description.value || /^Pakket:/.test(form.elements.description.value))) {
+        form.elements.description.value = packageText === "Geen pakket gekozen" ? "" : `Pakket: ${packageText}`;
+      }
+      if (form.elements.amount && packagePrice !== "" && !form.elements.amount.value) {
+        form.elements.amount.value = packagePrice;
+      }
+    }
   }
   if (target.dataset.financePayment) {
     const [clientId, appointmentId] = target.dataset.financePayment.split(":");

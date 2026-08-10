@@ -5008,7 +5008,8 @@ body:not(.light) .agenda-slot {
 }
 
 .agenda-command-panel {
-  display: contents;
+  display: block;
+  min-width: 0;
 }
 
 .agenda-command-panel #appointmentTypeManager {
@@ -5034,18 +5035,43 @@ body.appointment-modal-open .agenda-planner {
   top: 50%;
   z-index: 100;
   display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   width: min(620px, calc(100vw - 28px));
   max-height: calc(100vh - 34px);
   overflow: auto;
   transform: translate(-50%, -50%);
   border-radius: 28px;
   box-shadow: 0 34px 90px rgba(0, 0, 0, 0.34);
+  background: var(--surface);
+  pointer-events: auto;
 }
 
 .agenda-modal-actions {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.package-invoice-box {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 14px;
+  padding: 14px;
+  border: 1px solid rgba(215, 178, 77, 0.35);
+  border-radius: 18px;
+  background: rgba(215, 178, 77, 0.1);
+}
+
+.package-invoice-box strong {
+  color: var(--gold-2);
+  font-size: 16px;
+}
+
+.package-invoice-box span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .schema-card-actions {
