@@ -3498,9 +3498,15 @@ select,
 
 select option,
 #clientSelect option {
-  color: #101820;
-  background: #ffffff;
+  color: #f8fafc;
+  background: #101820;
   font-weight: 800;
+}
+
+select optgroup,
+#clientSelect optgroup {
+  color: #f8fafc;
+  background: #101820;
 }
 
 body.light select,
@@ -3512,6 +3518,12 @@ body.light #clientSelect {
 
 body.light select option,
 body.light #clientSelect option {
+  color: #101820;
+  background: #ffffff;
+}
+
+body.light select optgroup,
+body.light #clientSelect optgroup {
   color: #101820;
   background: #ffffff;
 }
@@ -5477,6 +5489,39 @@ body.client-mode .food-log-card {
   margin-bottom: 0;
 }
 
+body.client-mode .training-exercise-card,
+body.client-mode .training-log-exercise {
+  min-width: 0;
+  overflow: hidden;
+}
+
+body.client-mode .training-exercise-card .exercise-photo,
+body.client-mode .training-log-photo {
+  flex: none;
+  overflow: hidden;
+  background: #fff;
+}
+
+body.client-mode .training-log-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #fff;
+}
+
+body.client-mode .training-exercise-card .exercise-card-main,
+body.client-mode .training-log-exercise-main,
+body.client-mode .training-exercise-card .exercise-title-row,
+body.client-mode .training-exercise-card .exercise-target-grid,
+body.client-mode .training-exercise-card .exercise-log,
+body.client-mode .training-log-title,
+body.client-mode .training-log-targets,
+body.client-mode .training-log-results {
+  min-width: 0;
+  max-width: 100%;
+}
+
 @media (max-width: 850px) {
   .client-preview-grid.two,
   .client-preview-grid.three {
@@ -5554,6 +5599,44 @@ body.client-mode .food-log-card {
 
   body.client-mode .client-appointment-card {
     margin: 0;
+  }
+
+  body.client-mode .training-session-list.exercise-row .training-exercise-card.exercise-card,
+  body.client-mode .training-exercise-card,
+  body.client-mode .training-log-exercise {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    margin: 0;
+    padding: 14px;
+  }
+
+  body.client-mode .training-exercise-card .exercise-photo,
+  body.client-mode .training-log-photo {
+    width: 100% !important;
+    height: 150px !important;
+    min-height: 150px !important;
+    max-height: 150px;
+    border-radius: 18px;
+  }
+
+  body.client-mode .training-exercise-card .exercise-title-row,
+  body.client-mode .training-exercise-card .exercise-target-grid,
+  body.client-mode .training-exercise-card .exercise-log,
+  body.client-mode .training-log-title,
+  body.client-mode .training-log-targets,
+  body.client-mode .training-log-results {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+  }
+
+  body.client-mode .training-log-targets span,
+  body.client-mode .training-log-summary span {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   body.client-mode .photo-upload-field input[type="file"] {

@@ -2806,6 +2806,18 @@ function trackerValue(value, suffix = "") {
   return value === "" || value === undefined || value === null ? "-" : `${escapeHTML(value)}${suffix}`;
 }
 
+function trackerNumberOptions(selectedValue, max, step = 1, emptyLabel = "-") {
+  const selected = String(selectedValue ?? "");
+  const options = [`<option value="" ${selected === "" ? "selected" : ""}>${emptyLabel}</option>`];
+  for (let value = 0; value <= max + 0.0001; value += step) {
+    const normalized = Number(value.toFixed(2));
+    const label = step < 1 && normalized % 1 !== 0 ? fmt(normalized, 1) : fmt(normalized, 0);
+    const isSelected = selected !== "" && (String(normalized) === selected || Number(selected) === normalized);
+    options.push(`<option value="${normalized}" ${isSelected ? "selected" : ""}>${label}</option>`);
+  }
+  return options.join("");
+}
+
 function trackerDayCard(day, date, value, detail = "", className = "") {
   return `
     <div class="tracker-week-day ${className}">
@@ -2892,7 +2904,7 @@ function renderClientTrackerOverview(selected) {
       </section>
       <section class="tracker-input-card">
         <div class="tracker-card-head"><h2>Water</h2><span class="status">${fmt(number(waterEntry.value), 2)}L</span></div>
-        <label class="field"><span>Water vandaag</span><input data-water-day-input="${activeIndex}" type="number" min="0" step="0.25" value="${escapeHTML(waterEntry.value || "")}" placeholder="Liter" /></label>
+        <label class="field"><span>Water vandaag</span><select data-water-day-input="${activeIndex}">${trackerNumberOptions(waterEntry.value, 6, 0.25)}</select></label>
         <div class="water-day-actions"><button class="secondary-btn" data-water-day="${activeIndex}:-0.25" type="button">-250 ml</button><button class="primary-btn" data-water-day="${activeIndex}:0.25" type="button">+250 ml</button><button class="primary-btn" data-water-day="${activeIndex}:0.5" type="button">+500 ml</button><button class="secondary-btn" data-water-day="${activeIndex}:reset" type="button">Reset</button></div>
         <button class="primary-btn tracker-save-btn" data-save-water-day="${activeIndex}" type="button">Water opslaan</button>
         <span class="save-feedback" data-save-feedback="water-${activeIndex}"></span>
@@ -2900,8 +2912,8 @@ function renderClientTrackerOverview(selected) {
       <section class="tracker-input-card">
         <div class="tracker-card-head"><h2>Slaap</h2><span class="status">Cijfer ${trackerValue(sleepEntry.quality)}</span></div>
         <div class="form-grid compact">
-          <label class="field"><span>Uren</span><input data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:hours" type="number" min="0" step="0.1" value="${escapeHTML(sleepEntry.hours || "")}" /></label>
-          <label class="field"><span>Slaapcijfer 1-10</span><input data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:quality" type="number" min="1" max="10" value="${escapeHTML(sleepEntry.quality || "")}" /></label>
+          <label class="field"><span>Uren</span><select data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:hours">${trackerNumberOptions(sleepEntry.hours, 15, 0.5)}</select></label>
+          <label class="field"><span>Slaapcijfer 1-10</span><select data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:quality">${trackerNumberOptions(sleepEntry.quality, 10, 1)}</select></label>
           <label class="field"><span>Naar bed</span><input data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:bed" type="time" value="${escapeHTML(sleepEntry.bed || "")}" /></label>
           <label class="field"><span>Wakker</span><input data-sleep-day="${activeIndex}" data-sleep="${activeIndex}:wake" type="time" value="${escapeHTML(sleepEntry.wake || "")}" /></label>
         </div>
@@ -3197,8 +3209,8 @@ function renderSleep() {
         <div class="day-cell">
           <strong>${item.day}</strong>
           <small>${formatShortDate(dates[index].date)}</small>
-          <label>Uren<input data-sleep-day="${index}" data-sleep="${index}:hours" type="number" min="0" step="0.1" value="${item.hours}" /></label>
-          <label>Kwaliteit<input data-sleep-day="${index}" data-sleep="${index}:quality" type="number" min="1" max="10" value="${item.quality}" /></label>
+          <label>Uren<select data-sleep-day="${index}" data-sleep="${index}:hours">${trackerNumberOptions(item.hours, 15, 0.5)}</select></label>
+          <label>Kwaliteit<select data-sleep-day="${index}" data-sleep="${index}:quality">${trackerNumberOptions(item.quality, 10, 1)}</select></label>
           <label>Naar bed<input data-sleep-day="${index}" data-sleep="${index}:bed" type="time" value="${item.bed}" /></label>
           <label>Wakker<input data-sleep-day="${index}" data-sleep="${index}:wake" type="time" value="${item.wake}" /></label>
           <span class="status ${statusClass(recovery, 0.85)}">Herstel ${fmt(recovery * 100, 0)}%</span>
@@ -3235,7 +3247,7 @@ function renderWater() {
         <small>${formatShortDate(dates[index].date)}</small>
         <label>
           Liters
-          <input data-water-day-input="${index}" type="number" min="0" step="0.25" value="${item.value}" placeholder="0" />
+          <select data-water-day-input="${index}">${trackerNumberOptions(item.value, 6, 0.25)}</select>
         </label>
         <span>${fmt(number(item.value), 2)}L / ${fmt(selected.goals.water, 1)}L</span>
         <div class="water-day-actions">
