@@ -239,7 +239,20 @@
               <label class="field"><span>Blessures/opmerkingen</span><textarea name="injuries" rows="3"></textarea></label>
               <div class="form-grid">
                 <label class="field"><span>Startdatum</span><input name="startDate" type="date" /></label>
-                <label class="field"><span>Pakket/abonnement</span><input name="package" placeholder="Bijv. Basis, Progressie" /></label>
+                <label class="field">
+                  <span>Pakket/abonnement</span>
+                  <select name="package">
+                    <option value="">Geen pakket gekozen</option>
+                    <option value="pt-basis">1-op-1 PT Basis - 4x per maand - €200 p/m</option>
+                    <option value="pt-progressie">1-op-1 PT Progressie - 8x per maand - €400 p/m</option>
+                    <option value="pt-transformatie">1-op-1 PT Transformatie - 12x per maand - €600 p/m</option>
+                    <option value="duo-basis">Duo Basis - 4x per maand - €260 p/m</option>
+                    <option value="duo-progressie">Duo Progressie - 8x per maand - €520 p/m</option>
+                    <option value="duo-transformatie">Duo Transformatie - 12x per maand - €780 p/m</option>
+                    <option value="online-coaching">Online Coaching - €200 p/m</option>
+                    <option value="custom">Anders / handmatig</option>
+                  </select>
+                </label>
               </div>
               <label class="field">
                 <span>Tijdelijk wachtwoord</span>
@@ -316,7 +329,20 @@
               <label class="field"><span>Noodcontact naam</span><input name="emergencyName" /></label>
               <label class="field"><span>Noodcontact telefoon</span><input name="emergencyPhone" /></label>
               <label class="field"><span>Startdatum</span><input name="startDate" type="date" /></label>
-              <label class="field"><span>Pakket/abonnement</span><input name="package" /></label>
+              <label class="field">
+                <span>Pakket/abonnement</span>
+                <select name="package">
+                  <option value="">Geen pakket gekozen</option>
+                  <option value="pt-basis">1-op-1 PT Basis - 4x per maand - €200 p/m</option>
+                  <option value="pt-progressie">1-op-1 PT Progressie - 8x per maand - €400 p/m</option>
+                  <option value="pt-transformatie">1-op-1 PT Transformatie - 12x per maand - €600 p/m</option>
+                  <option value="duo-basis">Duo Basis - 4x per maand - €260 p/m</option>
+                  <option value="duo-progressie">Duo Progressie - 8x per maand - €520 p/m</option>
+                  <option value="duo-transformatie">Duo Transformatie - 12x per maand - €780 p/m</option>
+                  <option value="online-coaching">Online Coaching - €200 p/m</option>
+                  <option value="custom">Anders / handmatig</option>
+                </select>
+              </label>
               <label class="field wide"><span>Blessures/opmerkingen</span><textarea name="injuries" rows="3"></textarea></label>
             </div>
             <button class="primary-btn" type="submit">Doelen opslaan</button>

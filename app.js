@@ -337,6 +337,17 @@ const ADMIN_TYPES = {
   expense: "Kosten / bon",
   note: "Notitie"
 };
+const CLIENT_PACKAGES = [
+  { id: "", label: "Geen pakket gekozen", amount: "" },
+  { id: "pt-basis", label: "1-op-1 PT Basis - 4x per maand", amount: 200 },
+  { id: "pt-progressie", label: "1-op-1 PT Progressie - 8x per maand", amount: 400 },
+  { id: "pt-transformatie", label: "1-op-1 PT Transformatie - 12x per maand", amount: 600 },
+  { id: "duo-basis", label: "Duo Basis - 4x per maand", amount: 260 },
+  { id: "duo-progressie", label: "Duo Progressie - 8x per maand", amount: 520 },
+  { id: "duo-transformatie", label: "Duo Transformatie - 12x per maand", amount: 780 },
+  { id: "online-coaching", label: "Online Coaching", amount: 200 },
+  { id: "custom", label: "Anders / handmatig", amount: "" }
+];
 const DEFAULT_APPOINTMENT_TYPES = [
   { id: "appt-intake", name: "Intake", duration: 45, price: 0, color: "#2563eb", category: "Kennismaking", location: "Hoogerheide", capacity: 1 },
   { id: "appt-pt", name: "Personal training", duration: 60, price: 60, color: "#c89312", category: "Training", location: "Hoogerheide", capacity: 1 },
@@ -590,6 +601,8 @@ function normalizeState(raw) {
     if (!item.profile.lastName && item.name) item.profile.lastName = String(item.name).split(" ").slice(1).join(" ");
     item.startDate ||= todayISO();
     item.profile.package ||= item.package || "";
+    const normalizedPackage = packageByValue(item.profile.package);
+    if (normalizedPackage?.id) item.profile.package = normalizedPackage.id;
     item.goals = { ...DEFAULT_GOALS, ...(item.goals || {}) };
     item.planSummary ||= "Plan nog invullen.";
     item.coachNotesByWeek = item.coachNotesByWeek && typeof item.coachNotesByWeek === "object" ? item.coachNotesByWeek : {};
@@ -1283,8 +1296,41 @@ function financeAdminItems() {
 
 function appointmentAmount(appointment) {
   if (appointment.amount !== "" && appointment.amount !== undefined && appointment.amount !== null) return number(appointment.amount);
-  const rate = rateById(appointment.rateId);
-  return rate ? number(rate.amount) : 0;
+  return 0;
+}
+
+function packageByValue(value) {
+  const clean = String(value || "").trim();
+  return CLIENT_PACKAGES.find((item) => item.id === clean || item.label === clean);
+}
+
+function packageLabel(value) {
+  const clean = String(value || "").trim();
+  if (!clean) return "Geen pakket gekozen";
+  return packageByValue(clean)?.label || clean;
+}
+
+function packageAmount(value) {
+  const found = packageByValue(value);
+  return found && found.amount !== "" && found.amount !== undefined ? number(found.amount, 0) : "";
+}
+
+function clientPackageLabel(selected) {
+  return packageLabel(selected?.profile?.package || selected?.package || "");
+}
+
+function clientPackageAmount(selected) {
+  return packageAmount(selected?.profile?.package || selected?.package || "");
+}
+
+function packageOptions(selectedValue = "") {
+  const clean = String(selectedValue || "").trim();
+  const hasCustom = clean && !CLIENT_PACKAGES.some((item) => item.id === clean || item.label === clean);
+  return `${CLIENT_PACKAGES.map((item) => {
+    const selected = clean === item.id || clean === item.label;
+    const price = item.amount !== "" && item.amount !== undefined ? ` - ${currency(item.amount)} p/m` : "";
+    return `<option value="${escapeHTML(item.id || "")}" ${selected ? "selected" : ""}>${escapeHTML(item.label)}${price}</option>`;
+  }).join("")}${hasCustom ? `<option value="${escapeHTML(clean)}" selected>${escapeHTML(clean)}</option>` : ""}`;
 }
 
 function paymentStatus(appointment) {
@@ -1355,9 +1401,7 @@ function applyAppointmentTypeToForm(typeId, options = {}) {
   if (form.elements.appointmentTypeId) form.elements.appointmentTypeId.value = type.id;
   if (form.elements.type) form.elements.type.value = type.name || "";
   if (form.elements.location) form.elements.location.value = type.location || "";
-  if (form.elements.amount) {
-    form.elements.amount.value = type.price !== "" && type.price !== undefined ? type.price : "";
-  }
+  if (form.elements.amount) form.elements.amount.value = "";
   return true;
 }
 
@@ -1402,7 +1446,9 @@ function invoiceNumber(item) {
 function invoiceDescriptionFromAppointment(appointment) {
   const dateLabel = appointment.date ? formatLongDutchDate(appointment.date) : "datum onbekend";
   const timeLabel = appointment.time ? ` om ${appointment.time}` : "";
-  return `${appointment.type || "Afspraak"} - ${dateLabel}${timeLabel}`;
+  const selected = state.clients.find((item) => item.appointments?.some((appt) => appt.id === appointment.id));
+  const packageText = selected ? clientPackageLabel(selected) : "";
+  return `${packageText && packageText !== "Geen pakket gekozen" ? `Pakket: ${packageText}` : "Pakket nog niet gekozen"} | Afspraak: ${appointment.type || "Afspraak"} - ${dateLabel}${timeLabel}`;
 }
 
 function createAppointmentAdminItem(selected, appointment) {
@@ -1415,7 +1461,7 @@ function createAppointmentAdminItem(selected, appointment) {
     description: invoiceDescriptionFromAppointment(appointment),
     date: appointment.date || todayISO(),
     dueDate: addDaysISO(appointment.date || todayISO(), 14),
-    amount: appointmentAmount(appointment),
+    amount: "",
     status: paymentStatus(appointment),
     invoiceNo: nextInvoiceNumber()
   };
@@ -1438,7 +1484,7 @@ function syncAppointmentAdminItem(selected, appointment) {
   item.description = invoiceDescriptionFromAppointment(appointment);
   item.date = appointment.date || item.date || todayISO();
   item.dueDate ||= addDaysISO(item.date, 14);
-  item.amount = appointmentAmount(appointment);
+  if (item.amount === undefined || item.amount === null) item.amount = "";
   item.status = paymentStatus(appointment);
   return item;
 }
@@ -1548,7 +1594,9 @@ function invoiceSettings() {
 function invoiceHTML(item) {
   const trainer = state.trainerAccount || {};
   const settings = invoiceSettings();
+  const selectedClient = state.clients.find((clientItem) => clientItem.id === item.clientId);
   const clientName = clientNameById(item.clientId);
+  const packageText = selectedClient ? clientPackageLabel(selectedClient) : "Geen pakket gekozen";
   const amount = number(item.amount, 0);
   const vatPercent = number(settings.vatPercent, 0);
   const baseAmount = vatPercent ? amount / (1 + vatPercent / 100) : amount;
@@ -1604,6 +1652,7 @@ function invoiceHTML(item) {
     </div>
     <h2>Factuur aan</h2>
     <p><strong>${escapeHTML(clientName)}</strong></p>
+    <p><strong>Pakket:</strong> ${escapeHTML(packageText)}</p>
     <table>
       <thead>
         <tr>
@@ -2249,6 +2298,7 @@ function renderClientHome() {
         <p class="eyebrow">Vandaag</p>
         <h1>Goedemorgen ${escapeHTML(selected.name.split(" ")[0] || selected.name)}.</h1>
         <p class="muted">${escapeHTML(selected.planSummary || "Je training staat klaar. Vul vandaag je training, voeding en trackers in.")}</p>
+        <span class="status ok">Pakket: ${escapeHTML(clientPackageLabel(selected))}</span>
         <div class="client-preview-actions">
           <button class="primary-btn" data-action="open-view" data-target="training" type="button">Training starten</button>
           <button class="secondary-btn" data-action="open-view" data-target="nutrition" type="button">Voeding invullen</button>
@@ -2325,7 +2375,7 @@ function renderClientHome() {
           <div><span>Huidig gewicht</span><strong>${fmt(profile.currentWeight, 1)} kg</strong></div>
           <div><span>Adres</span><strong>${escapeHTML([profile.address, profile.postalCode, profile.city].filter(Boolean).join(", ") || "-")}</strong></div>
           <div><span>Noodcontact</span><strong>${escapeHTML([profile.emergencyName, profile.emergencyPhone].filter(Boolean).join(" - ") || "-")}</strong></div>
-          <div><span>Pakket</span><strong>${escapeHTML(profile.package || "-")}</strong></div>
+          <div><span>Pakket</span><strong>${escapeHTML(clientPackageLabel(selected))}</strong></div>
           <div><span>Blessures/opmerkingen</span><strong>${escapeHTML(profile.injuries || "-")}</strong></div>
         </div>
       </div>
@@ -2341,7 +2391,7 @@ function renderClients() {
           <strong>${item.name}</strong>
           <span>${item.email}</span>
           <span>${item.profile?.phone || "Geen telefoon"}${item.profile?.city ? ` | ${escapeHTML(item.profile.city)}` : ""}</span>
-          <span>${item.profile?.package ? `Pakket: ${escapeHTML(item.profile.package)}` : "Geen pakket ingevuld"}</span>
+          <span>${item.profile?.package ? `Pakket: ${escapeHTML(clientPackageLabel(item))}` : "Geen pakket ingevuld"}</span>
           <span>${item.registered ? "Geregistreerd" : "Uitgenodigd, nog niet geregistreerd"}</span>
           <span>${item.goal || "Geen doel ingevuld"}</span>
           <div class="card-actions">
@@ -2368,6 +2418,7 @@ function renderGoalForm() {
   form.elements.planSummary.value = selected.planSummary || "";
   form.elements.goal.value = selected.goal || "";
   const profile = selected.profile || defaultClientProfileData();
+  if (form.elements.package) form.elements.package.innerHTML = packageOptions(profile.package || selected.package || "");
   Object.entries(profile).forEach(([key, value]) => {
     if (form.elements[key]) form.elements[key].value = value ?? "";
   });
@@ -3605,6 +3656,7 @@ function renderAdministration() {
             <span class="eyebrow">${paymentStatusLabel(item.status)}</span>
             <strong>${escapeHTML(invoiceNumber(item))}</strong>
             <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
+            <span class="muted">Pakket: ${escapeHTML(item.clientId ? clientPackageLabel(state.clients.find((clientItem) => clientItem.id === item.clientId)) : "Geen pakket gekozen")}</span>
             <div class="invoice-edit-grid">
               <label class="field"><span>Omschrijving</span><input data-invoice-description="${item.id}" value="${escapeHTML(item.description || "")}" /></label>
               <label class="field"><span>Bedrag</span><input data-invoice-amount="${item.id}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
@@ -3647,6 +3699,7 @@ function renderInvoicePage() {
           <span class="eyebrow">${paymentStatusLabel(item.status)}</span>
           <strong>${escapeHTML(invoiceNumber(item))}</strong>
           <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
+          <span class="muted">Pakket: ${escapeHTML(item.clientId ? clientPackageLabel(state.clients.find((clientItem) => clientItem.id === item.clientId)) : "Geen pakket gekozen")}</span>
           <div class="invoice-edit-grid">
             <label class="field"><span>Omschrijving</span><input data-invoice-description="${item.id}" value="${escapeHTML(item.description || "")}" /></label>
             <label class="field"><span>Bedrag</span><input data-invoice-amount="${item.id}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
@@ -3934,6 +3987,7 @@ async function addClient(form) {
   state.ui.selectedClientId = profile.id;
   form.reset();
   form.elements.password.value = "client123";
+  saveState();
   renderAll();
   if (isOnlineMode()) {
     try {
@@ -4583,7 +4637,8 @@ document.addEventListener("click", async (event) => {
     const rate = rateById(rateId);
     appointment.rateId = rate?.id || "";
     appointment.rateName = rate?.name || "";
-    appointment.amount = number(document.querySelector(`[data-finance-amount="${clientId}:${appointmentId}"]`)?.value, rate ? rate.amount : 0);
+    const amountInput = document.querySelector(`[data-finance-amount="${clientId}:${appointmentId}"]`)?.value ?? "";
+    appointment.amount = amountInput === "" ? "" : number(amountInput, 0);
     appointment.paymentStatus = document.querySelector(`[data-finance-payment="${clientId}:${appointmentId}"]`)?.value === "paid" ? "paid" : "unpaid";
     syncAppointmentAdminItem(selected, appointment);
     renderAll();
@@ -5087,7 +5142,7 @@ $("#clientForm").addEventListener("submit", async (event) => {
   await addClient(event.currentTarget);
 });
 
-$("#goalForm").addEventListener("submit", (event) => {
+$("#goalForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   const selected = client();
   const data = new FormData(event.currentTarget);
@@ -5107,6 +5162,7 @@ $("#goalForm").addEventListener("submit", (event) => {
     const value = data.get(key);
     selected.goals[key] = value === "" ? "" : number(value);
   });
+  await persistActionFeedback(null, "Doelen opgeslagen");
   renderAll();
 });
 
@@ -5247,14 +5303,17 @@ $("#financeAdminForm").addEventListener("submit", (event) => {
   const data = new FormData(event.currentTarget);
   const date = data.get("date") || todayISO();
   const type = ADMIN_TYPES[data.get("type")] ? data.get("type") : "invoice";
+  const selectedClient = state.clients.find((item) => item.id === data.get("clientId"));
+  const fallbackPackageAmount = type === "invoice" && selectedClient ? clientPackageAmount(selectedClient) : "";
+  const description = String(data.get("description") || "").trim() || (selectedClient ? `Pakket: ${clientPackageLabel(selectedClient)}` : "Administratie item");
   financeAdminItems().push({
     id: `admin-${Date.now()}${Math.random().toString(16).slice(2)}`,
     type,
     clientId: data.get("clientId") || "",
-    description: String(data.get("description") || "").trim() || "Administratie item",
+    description,
     date,
     dueDate: data.get("dueDate") || (type === "invoice" ? addDaysISO(date, 14) : ""),
-    amount: data.get("amount") === "" ? "" : number(data.get("amount"), 0),
+    amount: data.get("amount") === "" ? fallbackPackageAmount : number(data.get("amount"), 0),
     status: data.get("status") === "paid" ? "paid" : "unpaid",
     invoiceNo: type === "invoice" ? nextInvoiceNumber() : ""
   });
@@ -5309,7 +5368,7 @@ $("#appointmentForm").addEventListener("submit", (event) => {
   const rate = rateById(data.get("rateId"));
   const appointmentType = appointmentTypeById(data.get("appointmentTypeId"));
   const manualAmount = data.get("amount");
-  const amount = manualAmount !== "" ? number(manualAmount) : (rate ? number(rate.amount) : (appointmentType?.price !== "" && appointmentType?.price !== undefined ? number(appointmentType.price) : ""));
+  const amount = manualAmount !== "" ? number(manualAmount) : "";
   const appointment = {
     id: `a${Date.now()}${Math.random().toString(16).slice(2)}`,
     date: data.get("date"),
@@ -5447,15 +5506,14 @@ document.addEventListener("change", (event) => {
   }
   if (target.dataset.financeRate) {
     const amountInput = document.querySelector(`[data-finance-amount="${target.dataset.financeRate}"]`);
-    const rate = rateById(target.value);
-    if (amountInput && rate) amountInput.value = number(rate.amount, 0);
+    if (amountInput && !amountInput.value) amountInput.placeholder = "Handmatig bedrag";
   }
   if (target.id === "appointmentTypeSelect") {
     const type = appointmentTypeById(target.value);
     const form = $("#appointmentForm");
     if (type && form) {
       form.elements.location.value = type.location || "";
-      form.elements.amount.value = type.price !== "" && type.price !== undefined ? type.price : "";
+      form.elements.amount.value = "";
     }
   }
   if (target.id === "financeMonthFilter" || target.id === "adminMonthFilter") {
