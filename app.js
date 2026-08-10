@@ -3,6 +3,8 @@ const REMEMBER_KEY = "fmz-remember-login";
 const REMEMBER_DETAILS_KEY = "fmz-remembered-account";
 const APP_AUTH_REDIRECT_URL = "https://appfmz.nl";
 const PASSWORD_RESET_REDIRECT_URL = APP_AUTH_REDIRECT_URL;
+const FMZ_LOGO_FILE = "fit-met-zorge-logo.png";
+const FMZ_INVOICE_LOGO_URL = `${APP_AUTH_REDIRECT_URL}/${FMZ_LOGO_FILE}`;
 const INITIAL_AUTH_LINK_TYPE = (() => {
   const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
   const search = new URLSearchParams(window.location.search);
@@ -531,7 +533,7 @@ function normalizeState(raw) {
   next.trainerFinance.invoiceSettings = {
     businessName: "Fit Met Zorge",
     ownerName: next.trainerAccount?.name || "Youri Zorge",
-    logoUrl: "assets/fit-met-zorge-logo-cropped.png",
+    logoUrl: FMZ_INVOICE_LOGO_URL,
     email: next.trainerAccount?.email || "",
     phone: "0630422117",
     address: "",
@@ -547,6 +549,9 @@ function normalizeState(raw) {
   };
   next.trainerFinance.invoiceSettings.paymentTermDays = number(next.trainerFinance.invoiceSettings.paymentTermDays, 14);
   next.trainerFinance.invoiceSettings.vatPercent = number(next.trainerFinance.invoiceSettings.vatPercent, 21);
+  if (!next.trainerFinance.invoiceSettings.logoUrl || String(next.trainerFinance.invoiceSettings.logoUrl).includes("assets/fit-met-zorge-logo-cropped.png")) {
+    next.trainerFinance.invoiceSettings.logoUrl = FMZ_INVOICE_LOGO_URL;
+  }
   next.trainerFinance.rates = Array.isArray(next.trainerFinance.rates) ? next.trainerFinance.rates : [];
   next.trainerFinance.adminItems = Array.isArray(next.trainerFinance.adminItems) ? next.trainerFinance.adminItems : [];
   next.trainerFinance.appointmentTypes = Array.isArray(next.trainerFinance.appointmentTypes) ? next.trainerFinance.appointmentTypes : DEFAULT_APPOINTMENT_TYPES.map((entry) => ({ ...entry }));
@@ -1646,10 +1651,19 @@ function invoiceSettings() {
   return state.trainerFinance.invoiceSettings;
 }
 
+function invoiceLogoSource(settings) {
+  const raw = String(settings.logoUrl || "").trim();
+  if (!raw || raw.includes("assets/fit-met-zorge-logo-cropped.png")) return FMZ_INVOICE_LOGO_URL;
+  try {
+    return new URL(raw, window.location.href).href;
+  } catch {
+    return FMZ_INVOICE_LOGO_URL;
+  }
+}
+
 function invoiceLogoMarkup(settings) {
   const fallback = `<div class="invoice-logo-fallback"><div class="bar"></div><div class="logo-line"><span class="weight-mark">|||</span><strong>FIT MET ZORGE</strong><span class="weight-mark">|||</span></div><small>Fit met Zorge zonder zorgen</small><div class="bar"></div></div>`;
-  if (!settings.logoUrl) return fallback;
-  return `<div class="invoice-logo-wrap"><img src="${escapeHTML(settings.logoUrl)}" alt="${escapeHTML(settings.businessName || "Fit Met Zorge")}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" /><div style="display:none">${fallback}</div></div>`;
+  return `<div class="invoice-logo-wrap"><img src="${escapeHTML(invoiceLogoSource(settings))}" alt="${escapeHTML(settings.businessName || "Fit Met Zorge")}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" /><div style="display:none">${fallback}</div></div>`;
 }
 
 function invoiceHTML(item) {
