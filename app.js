@@ -494,7 +494,7 @@ function normalizeState(raw) {
   next.ui = { loggedIn: false, authEmail: "", authName: "", role: "trainer", theme: "dark", selectedClientId: "c1", calendarWeekStart: startOfWeekISO(), trackingWeekStart: startOfWeekISO(), trackerDayIndex: todayIndex(), trainingDay: "Maandag", openNutritionMeal: "breakfast", exerciseSearch: "", exerciseFilter: "Alles", financeTab: "overview", financeMonth: todayISO().slice(0, 7), financeClientId: "", ...(next.ui || {}) };
   next.ui.calendarWeekStart = startOfWeekISO(next.ui.calendarWeekStart || todayISO());
   next.ui.trackingWeekStart = startOfWeekISO(next.ui.trackingWeekStart || todayISO());
-  next.ui.theme = "dark";
+  next.ui.theme = next.ui.theme === "light" ? "light" : "dark";
   next.ui.trackerDayIndex = Math.max(0, Math.min(6, number(next.ui.trackerDayIndex, todayIndex())));
   if (!DAYS.includes(next.ui.trainingDay)) next.ui.trainingDay = "Maandag";
   if (!FINANCE_TABS.some(([id]) => id === next.ui.financeTab)) next.ui.financeTab = "overview";
@@ -1885,7 +1885,7 @@ function applyOnlineState(remoteState, profile) {
   state.ui.role = profile.role;
   state.ui.authEmail = profile.email;
   state.ui.authName = profile.name;
-  state.ui.theme = "dark";
+  state.ui.theme = state.ui.theme === "light" ? "light" : "dark";
   if (profile.role === "trainer") {
     state.trainerAccount = { name: profile.name, email: profile.email, password: "" };
     currentView = "trainer-dashboard";
@@ -3772,9 +3772,9 @@ function renderSettingsPage() {
       <div class="settings-grid">
       <section class="panel settings-card">
         <p class="eyebrow">Weergave</p>
-        <h2>Donker thema actief</h2>
-        <p class="muted">De app gebruikt vast het donkere Fit Met Zorge thema voor betere leesbaarheid en rust.</p>
-        <span class="status ok">Vast ingesteld</span>
+        <h2>Thema</h2>
+        <p class="muted">Wissel direct tussen donker en licht zonder je data te wijzigen.</p>
+        <button id="settingsThemeToggle" class="primary-btn" type="button">${state.ui.theme === "dark" ? "Licht thema" : "Donker thema"}</button>
       </section>
       <section class="panel settings-card">
         <p class="eyebrow">Account</p>
@@ -3799,8 +3799,7 @@ function renderSettingsPage() {
 }
 
 function renderRoleVisibility() {
-  state.ui.theme = "dark";
-  document.body.classList.remove("light");
+  document.body.classList.toggle("light", state.ui.theme === "light");
   document.body.classList.toggle("password-required", passwordSetupRequired);
   document.body.classList.toggle("logged-in", isLoggedIn() && !passwordSetupRequired);
   document.body.classList.toggle("logged-out", !isLoggedIn() || passwordSetupRequired);
@@ -4359,13 +4358,15 @@ document.addEventListener("click", async (event) => {
     return;
   }
   if (target.id === "themeToggle") {
-    state.ui.theme = "dark";
-    document.body.classList.remove("light");
+    state.ui.theme = state.ui.theme === "dark" ? "light" : "dark";
+    saveState();
+    renderAll();
     return;
   }
   if (target.id === "settingsThemeToggle") {
-    state.ui.theme = "dark";
-    document.body.classList.remove("light");
+    state.ui.theme = state.ui.theme === "dark" ? "light" : "dark";
+    saveState();
+    renderAll();
     return;
   }
   if (target.dataset.selectClient) {
@@ -5502,8 +5503,7 @@ document.addEventListener("change", (event) => {
 });
 
 async function init() {
-  state.ui.theme = "dark";
-  document.body.classList.remove("light");
+  document.body.classList.toggle("light", state.ui.theme === "light");
   updateRememberControls();
   renderNav();
   renderAll();

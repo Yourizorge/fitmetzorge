@@ -2792,11 +2792,6 @@ body.light .tracker-week-day.today {
   color: var(--danger);
 }
 
-#themeToggle,
-#settingsThemeToggle {
-  display: none !important;
-}
-
 .empty-state {
   color: var(--muted);
   padding: 12px;
@@ -3491,6 +3486,30 @@ textarea,
   min-height: 46px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.07);
+}
+
+#clientSelect {
+  color: #f8fafc;
+  background: #101820;
+  border-color: rgba(215, 178, 77, 0.45);
+  font-weight: 900;
+}
+
+#clientSelect option {
+  color: #101820;
+  background: #ffffff;
+  font-weight: 800;
+}
+
+body.light #clientSelect {
+  color: #101820;
+  background: #ffffff;
+  border-color: rgba(184, 138, 21, 0.45);
+}
+
+body.light #clientSelect option {
+  color: #101820;
+  background: #ffffff;
 }
 
 .primary-btn,
