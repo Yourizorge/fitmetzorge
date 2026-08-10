@@ -1405,12 +1405,24 @@ function openAppointmentModal(options = {}) {
   }
   if (options.date && form.elements.date) form.elements.date.value = options.date;
   if (options.time && options.time !== "no-time" && form.elements.time) form.elements.time.value = options.time;
+  if (!document.getElementById("appointmentFormHome")) {
+    const marker = document.createElement("span");
+    marker.id = "appointmentFormHome";
+    marker.hidden = true;
+    form.parentNode?.insertBefore(marker, form);
+  }
+  document.body.appendChild(form);
   document.body.classList.add("appointment-modal-open");
   setTimeout(() => form.elements.clientId?.focus(), 0);
   return true;
 }
 
 function closeAppointmentModal() {
+  const form = $("#appointmentForm");
+  const marker = $("#appointmentFormHome");
+  if (form && marker?.parentNode && form.parentNode !== marker.parentNode) {
+    marker.parentNode.insertBefore(form, marker.nextSibling);
+  }
   document.body.classList.remove("appointment-modal-open");
 }
 
@@ -5371,7 +5383,7 @@ $("#financeRateForm").addEventListener("submit", (event) => {
   renderAll();
 });
 
-$("#financeAdminForm").addEventListener("submit", (event) => {
+$("#financeAdminForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!isTrainer()) return;
   const data = new FormData(event.currentTarget);
@@ -5392,7 +5404,8 @@ $("#financeAdminForm").addEventListener("submit", (event) => {
     invoiceNo: type === "invoice" ? nextInvoiceNumber() : ""
   });
   event.currentTarget.reset();
-  renderAll();
+  const ok = await persistActionFeedback(null, type === "invoice" ? "Factuur opgeslagen" : "Administratie opgeslagen");
+  if (!ok) alert(type === "invoice" ? "Factuur opslaan mislukt." : "Administratie opslaan mislukt.");
 });
 
 $("#appointmentTypeForm").addEventListener("submit", async (event) => {
@@ -5434,7 +5447,7 @@ $("#measurementForm").addEventListener("submit", (event) => {
   renderAll();
 });
 
-$("#appointmentForm").addEventListener("submit", (event) => {
+$("#appointmentForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
   const selected = state.clients.find((item) => item.id === data.get("clientId"));
@@ -5464,7 +5477,8 @@ $("#appointmentForm").addEventListener("submit", (event) => {
   syncAppointmentAdminItem(selected, appointment);
   event.currentTarget.reset();
   closeAppointmentModal();
-  renderAll();
+  const ok = await persistActionFeedback(null, "Afspraak ingepland");
+  if (!ok) alert("Afspraak opslaan mislukt.");
 });
 
 $("#notificationPermission")?.addEventListener("click", async () => {

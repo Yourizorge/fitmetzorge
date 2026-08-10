@@ -5036,7 +5036,7 @@ body.appointment-modal-open::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 90;
+  z-index: 9990;
   background: rgba(7, 11, 18, 0.64);
   backdrop-filter: blur(8px);
 }
@@ -5045,7 +5045,7 @@ body.appointment-modal-open .agenda-planner {
   position: fixed;
   left: 50%;
   top: 50%;
-  z-index: 100;
+  z-index: 9999;
   display: grid !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -5057,6 +5057,10 @@ body.appointment-modal-open .agenda-planner {
   box-shadow: 0 34px 90px rgba(0, 0, 0, 0.34);
   background: var(--surface);
   pointer-events: auto;
+}
+
+body > .agenda-planner {
+  margin: 0;
 }
 
 .agenda-modal-actions {
@@ -5489,6 +5493,13 @@ body.client-mode .food-log-card {
   margin-bottom: 0;
 }
 
+.agenda-dashboard,
+.agenda-pro,
+.agenda-calendar-panel,
+.agenda-board-wrap {
+  min-width: 0;
+}
+
 body.client-mode .training-exercise-card,
 body.client-mode .training-log-exercise {
   min-width: 0;
@@ -5645,5 +5656,66 @@ body.client-mode .training-log-results {
 
   body.client-mode .nav-btn {
     font-size: 11px;
+  }
+}
+
+@media (max-width: 720px) {
+  .agenda-pro,
+  .agenda-dashboard {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .agenda-type-side,
+  .agenda-command-panel {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .agenda-calendar-panel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .agenda-board-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .agenda-board {
+    min-width: 760px;
+  }
+
+  .agenda-board-head,
+  .agenda-board-body {
+    grid-template-columns: 58px repeat(7, minmax(96px, 1fr)) !important;
+  }
+
+  .agenda-time-corner,
+  .agenda-day-head {
+    min-height: 66px;
+    padding: 10px 8px;
+  }
+
+  .agenda-day-head span,
+  .agenda-time-corner {
+    font-size: 15px;
+  }
+
+  .agenda-slot,
+  .agenda-time-cell {
+    min-height: 92px;
+    padding: 8px;
+  }
+
+  body.appointment-modal-open .agenda-planner {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+    border-radius: 22px;
   }
 }
