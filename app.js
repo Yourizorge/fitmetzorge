@@ -4270,36 +4270,48 @@ function savedNutritionLogTotals(selected) {
   return sumFoodEntries(nutritionLogEntries(selected).filter((item) => item.status === "Gegeten zoals plan"));
 }
 
-function renderWeeklyFoodLogGrid(selected) {
+function renderDailyFoodLogGrid(selected) {
   const days = weekDates(activeWeekStart());
+  const activeDate = todayISO();
+  const weekTodayIndex = days.findIndex((item) => item.date === activeDate);
+  const activeIndex = Math.max(0, Math.min(6, number(state.ui.trackerDayIndex, weekTodayIndex >= 0 ? weekTodayIndex : todayIndex())));
+  const activeDay = days[activeIndex] || days[0];
+  const dayEntries = nutritionLogEntries(selected).filter((item) => item.date === activeDay.date);
+  const dayTotals = sumFoodEntries(dayEntries.filter((item) => item.status === "Gegeten zoals plan"));
   return `
-    <div class="food-log-week">
-      ${days.map(({ day, date }) => `
-        <div class="food-log-day-column">
-          <div class="food-log-column-head">
-            <strong>${day}</strong>
-            <span>${formatShortDate(date)}</span>
-          </div>
-          ${MEAL_SECTIONS.map(([mealType, label]) => {
-            const entry = nutritionLogEntry(selected, date, mealType) || {};
-            const options = mealOptionsForType(selected, mealType);
-            return `
-              <div class="food-log-meal-cell">
-                <strong>${label}</strong>
-                <select data-food-plan="${date}:${mealType}" ${options.length ? "" : "disabled"}>
-                  ${plannedMealOptionOptions(selected, mealType, entry.planMealId || "")}
-                </select>
-                <select data-food-status="${date}:${mealType}">
-                  ${["", "Gegeten zoals plan", "Anders gegeten", "Niet gegeten"].map((value) => `<option value="${value}" ${value === (entry.status || "") ? "selected" : ""}>${value || "Nog niet ingevuld"}</option>`).join("")}
-                </select>
-                <textarea data-food-note="${date}:${mealType}" rows="2" placeholder="Opmerking">${entry.note || ""}</textarea>
-                <button class="primary-btn tracker-save-btn" data-save-food-log="${date}:${mealType}" type="button">Opslaan</button>
-                <span class="save-feedback" data-save-feedback="food-${date}-${mealType}">${entry.savedAt ? "Opgeslagen" : ""}</span>
-              </div>
-            `;
-          }).join("")}
-        </div>
+    <div class="tracker-day-tabs food-log-day-tabs" aria-label="Kies dag voor voedingslog">
+      ${days.map((item, index) => `
+        <button class="tracker-day-tab ${index === activeIndex ? "active" : ""} ${item.date === activeDate ? "today" : ""}" data-tracker-day-index="${index}" type="button">
+          <strong>${escapeHTML(item.day)}</strong>
+          <span>${formatShortDate(item.date)}</span>
+        </button>
       `).join("")}
+    </div>
+    <div class="food-log-week single-day">
+      <div class="food-log-day-column active">
+        <div class="food-log-column-head">
+          <strong>${escapeHTML(activeDay.day)}</strong>
+          <span>${formatShortDate(activeDay.date)} | ${fmt(dayTotals.kcal)} kcal | ${fmt(dayTotals.protein)}g eiwit | ${fmt(dayTotals.carbs)}g kh | ${fmt(dayTotals.fat)}g vet</span>
+        </div>
+        ${MEAL_SECTIONS.map(([mealType, label]) => {
+          const entry = nutritionLogEntry(selected, activeDay.date, mealType) || {};
+          const options = mealOptionsForType(selected, mealType);
+          return `
+            <div class="food-log-meal-cell">
+              <strong>${label}</strong>
+              <select data-food-plan="${activeDay.date}:${mealType}" ${options.length ? "" : "disabled"}>
+                ${plannedMealOptionOptions(selected, mealType, entry.planMealId || "")}
+              </select>
+              <select data-food-status="${activeDay.date}:${mealType}">
+                ${["", "Gegeten zoals plan", "Anders gegeten", "Niet gegeten"].map((value) => `<option value="${value}" ${value === (entry.status || "") ? "selected" : ""}>${value || "Nog niet ingevuld"}</option>`).join("")}
+              </select>
+              <textarea data-food-note="${activeDay.date}:${mealType}" rows="2" placeholder="Opmerking">${entry.note || ""}</textarea>
+              <button class="primary-btn tracker-save-btn" data-save-food-log="${activeDay.date}:${mealType}" type="button">Opslaan</button>
+              <span class="save-feedback" data-save-feedback="food-${activeDay.date}-${mealType}">${entry.savedAt ? "Opgeslagen" : ""}</span>
+            </div>
+          `;
+        }).join("")}
+      </div>
     </div>
   `;
 }
@@ -4326,10 +4338,14 @@ function renderNutritionLog() {
     $("#weeklyFoodLogGrid").innerHTML = emptyTrackerState("Trainerweergave: hieronder staan de opgeslagen voedingslogs van de client.");
   } else {
     $("#weeklyFoodLogGrid").innerHTML = selected.nutritionPlan.some((item) => item.published !== false)
-      ? renderWeeklyFoodLogGrid(selected)
+      ? renderDailyFoodLogGrid(selected)
       : emptyTrackerState("Je trainer heeft nog geen voedingsschema klaargezet.");
   }
-  $("#actualFoodLogCards").innerHTML = renderFoodLogCards(selected, nutritionLogEntries(selected));
+  const activeDate = weekDates(activeWeekStart())[Math.max(0, Math.min(6, number(state.ui.trackerDayIndex, todayIndex())))]?.date || todayISO();
+  const visibleEntries = isTrainer()
+    ? nutritionLogEntries(selected)
+    : nutritionLogEntries(selected).filter((item) => item.date === activeDate);
+  $("#actualFoodLogCards").innerHTML = renderFoodLogCards(selected, visibleEntries);
 }
 
 async function saveFoodLogEntry(date, mealType) {
@@ -4478,6 +4494,7 @@ document.addEventListener("click", async (event) => {
   if (target.dataset.trackerDayIndex !== undefined) {
     state.ui.trackerDayIndex = Math.max(0, Math.min(6, number(target.dataset.trackerDayIndex, todayIndex())));
     renderTrackersOverview();
+    renderNutritionLog();
     saveState();
     return;
   }

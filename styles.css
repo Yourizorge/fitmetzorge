@@ -1035,6 +1035,34 @@ h2 {
   color: var(--text);
 }
 
+.food-log-day-tabs {
+  margin-top: 0;
+}
+
+.food-log-week.single-day {
+  grid-template-columns: 1fr;
+  overflow: visible;
+}
+
+.food-log-week.single-day .food-log-day-column {
+  min-width: 0;
+}
+
+.food-log-week.single-day .food-log-column-head {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.food-log-week.single-day .food-log-meal-cell {
+  grid-template-columns: minmax(140px, 190px) minmax(180px, 1fr) minmax(160px, 220px);
+  align-items: start;
+}
+
+.food-log-week.single-day .food-log-meal-cell textarea,
+.food-log-week.single-day .food-log-meal-cell .tracker-save-btn,
+.food-log-week.single-day .food-log-meal-cell .save-feedback {
+  grid-column: 2 / -1;
+}
+
 .summary-layout {
   display: grid;
   grid-template-columns: minmax(270px, 420px) minmax(0, 1fr);
@@ -3360,6 +3388,16 @@ body.light .tracker-week-day.today {
 
   .food-log-day-column {
     min-width: 0;
+  }
+
+  .food-log-week.single-day .food-log-meal-cell {
+    grid-template-columns: 1fr;
+  }
+
+  .food-log-week.single-day .food-log-meal-cell textarea,
+  .food-log-week.single-day .food-log-meal-cell .tracker-save-btn,
+  .food-log-week.single-day .food-log-meal-cell .save-feedback {
+    grid-column: auto;
   }
 
   .appointment-actions {
