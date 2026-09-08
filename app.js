@@ -14,6 +14,7 @@ const FMZ_CONFIG = window.FMZ_CONFIG || {};
 const SUPABASE_URL = String(FMZ_CONFIG.SUPABASE_URL || "").trim();
 const SUPABASE_ANON_KEY = String(FMZ_CONFIG.SUPABASE_ANON_KEY || "").trim();
 const INVITE_FUNCTION_NAME = FMZ_CONFIG.INVITE_FUNCTION_NAME || "invite-client";
+const DEMO_MODE = FMZ_CONFIG.DEMO_MODE === true && ["localhost", "127.0.0.1"].includes(window.location.hostname);
 const HAS_ONLINE_CONFIG = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase?.createClient);
 
 const authStorage = {
@@ -64,6 +65,13 @@ let cloudSaveTimer = null;
 let passwordSetupRequired = false;
 let passwordSetupContext = "";
 let navMenuOpen = false;
+let rawCloudState = null;
+let cloudBaseline = null;
+let saveQueue = Promise.resolve();
+let authGeneration = 0;
+let hydrationTask = null;
+let legacyLocalDraft = null;
+const pendingDrafts = new Map();
 
 window.addEventListener("error", (event) => {
   showRuntimeError(event.message || "Onbekende fout");
@@ -792,7 +800,7 @@ function formatShortDate(dateValue) {
 function formatLongDutchDate(dateValue) {
   if (!dateValue) return "-";
   const date = new Date(`${dateValue}T12:00:00`);
-  if (Number.isNaN(date.getTime())) return dateValue;
+  if (Number.isNaN(date.getTime())) return "-";
   const label = date.toLocaleDateString("nl-NL", {
     weekday: "long",
     day: "numeric",
@@ -834,7 +842,7 @@ function hasSelectedClient(selected = client()) {
 }
 
 function emptyTrackerState(message = "Voeg eerst een client toe om deze tracker te gebruiken.") {
-  return `<div class="empty-state">${message}</div>`;
+  return `<div class="empty-state">${escapeHTML(message)}</div>`;
 }
 
 function trainingAttendanceWeek(selected) {
@@ -918,40 +926,42 @@ function collectTrackerDay(type, index) {
   const selected = client();
   if (!hasSelectedClient(selected)) return false;
   const dayIndex = Number(index);
+  const scope = document.querySelector(".view.active");
+  if (!scope) return false;
   if (type === "steps") {
-    const input = document.querySelector(`[data-step-index="${dayIndex}"]`);
+    const input = scope.querySelector(`[data-step-index="${dayIndex}"]`);
     if (input) weekArray(selected, "stepsByWeek", "value")[dayIndex].value = input.value;
   }
   if (type === "sleep") {
-    document.querySelectorAll(`[data-sleep-day="${dayIndex}"]`).forEach((input) => {
+    scope.querySelectorAll(`[data-sleep-day="${dayIndex}"]`).forEach((input) => {
       const [, key] = input.dataset.sleep.split(":");
       weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[dayIndex][key] = input.value;
     });
   }
   if (type === "wellbeing") {
-    document.querySelectorAll(`[data-wellbeing-day="${dayIndex}"]`).forEach((input) => {
+    scope.querySelectorAll(`[data-wellbeing-day="${dayIndex}"]`).forEach((input) => {
       const [, key] = input.dataset.wellbeing.split(":");
       weekArray(selected, "wellbeingByWeek", "energy", { stress: "", motivation: "", mood: "" })[dayIndex][key] = input.value;
     });
   }
   if (type === "water") {
-    const input = document.querySelector(`[data-water-day-input="${dayIndex}"]`);
+    const input = scope.querySelector(`[data-water-day-input="${dayIndex}"]`);
     if (input) setWaterDay(selected, dayIndex, input.value);
   }
   if (type === "progress") {
     const weightEntries = weekArray(selected, "dailyWeightByWeek", "value", { waist: "", chest: "", armLeft: "", armRight: "", legLeft: "", legRight: "", note: "", photoFront: "", photoSide: "", photoBack: "", photoExtra: "" });
-    const input = document.querySelector(`[data-weight-index="${dayIndex}"]`);
+    const input = scope.querySelector(`[data-weight-index="${dayIndex}"]`);
     if (input) weightEntries[dayIndex].value = input.value;
-    document.querySelectorAll(`[data-progress-day="${dayIndex}"]`).forEach((field) => {
+    scope.querySelectorAll(`[data-progress-day="${dayIndex}"]`).forEach((field) => {
       const [, key] = field.dataset.progress.split(":");
       weightEntries[dayIndex][key] = field.value;
     });
     selected.dailyWeight = weightEntries;
   }
   if (type === "training") {
-    const status = document.querySelector(`[data-training-attendance="${dayIndex}"]`);
+    const status = scope.querySelector(`[data-training-attendance="${dayIndex}"]`);
     if (status) trainingAttendanceWeek(selected)[dayIndex].status = status.value;
-    document.querySelectorAll(`[data-training-log-day="${dayIndex}"]`).forEach((input) => {
+    scope.querySelectorAll(`[data-training-log-day="${dayIndex}"]`).forEach((input) => {
       const [exerciseIndex, key] = input.dataset.trainingLog.split(":");
       const exercise = selected.trainingPlan[Number(exerciseIndex)];
       if (exercise) exerciseWeekLog(exercise)[key] = input.value;
@@ -981,7 +991,7 @@ async function saveTrackerDay(type, index) {
 
   saveState();
   try {
-    if (isOnlineMode() && onlineProfile && !onlineReady) {
+    if (isOnlineMode() && (!onlineProfile || !onlineReady)) {
       throw new Error("Online verbinding is nog niet klaar.");
     }
     if (isOnlineMode() && onlineReady && onlineProfile) {
@@ -1000,7 +1010,7 @@ async function saveTrackerDay(type, index) {
 async function persistActionFeedback(key, successMessage, render = renderAll) {
   saveState();
   try {
-    if (isOnlineMode() && onlineProfile && !onlineReady) {
+    if (isOnlineMode() && (!onlineProfile || !onlineReady)) {
       throw new Error("Online verbinding is nog niet klaar.");
     }
     if (isOnlineMode() && onlineReady && onlineProfile) {
@@ -1091,23 +1101,19 @@ function setRememberPreference(remember, email = "", role = "trainer") {
 }
 
 function localStateSnapshot() {
-  const snapshot = JSON.parse(JSON.stringify(state));
-  if (!rememberLoginEnabled()) {
-    snapshot.ui.loggedIn = false;
-    snapshot.ui.authEmail = "";
-    snapshot.ui.authName = "";
-    snapshot.ui.role = "trainer";
-  }
+  if (!DEMO_MODE) return {ui:{theme:state.ui.theme,loggedIn:false},clients:[]};
+  const snapshot = FMZSync.clone(state);
+  snapshot.ui.loggedIn = false;
   return snapshot;
 }
 
 function loadState() {
-  try {
-    const stored = localStorage.getItem(STORE_KEY);
-    return stored ? JSON.parse(stored) : seedState();
-  } catch {
-    return seedState();
+  if (!DEMO_MODE) {
+    try { const old=JSON.parse(localStorage.getItem(STORE_KEY)); if(old?.clients?.length) legacyLocalDraft=old; } catch {}
+    const fresh = seedState(); fresh.clients=[]; return fresh;
   }
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || seedState(); }
+  catch { return seedState(); }
 }
 
 function saveState() {
@@ -1151,7 +1157,7 @@ function exerciseImageSrc(image) {
 }
 
 function renderExerciseImage(item, className = "exercise-photo") {
-  return `<div class="${className}"><img src="${escapeHTML(exerciseImageSrc(item?.image))}" alt="Foto van ${escapeHTML(item?.name || item?.exercise || "oefening")}" loading="lazy" onerror="this.src='${EXERCISE_IMAGE_FALLBACK}'" /></div>`;
+  return `<div class="${className}"><img src="${escapeHTML(exerciseImageSrc(item?.image))}" alt="Foto van ${escapeHTML(item?.name || item?.exercise || "oefening")}" loading="lazy" data-fallback="${escapeHTML(EXERCISE_IMAGE_FALLBACK)}" onerror="this.onerror=null;this.src=this.dataset.fallback" /></div>`;
 }
 
 function fullExerciseLibrary() {
@@ -1222,10 +1228,10 @@ function average(values) {
   return nums.reduce((sum, item) => sum + item, 0) / nums.length;
 }
 
-function todayKcalGoal(selected) {
-  const day = new Date().getDay();
-  const isRest = day === 0 || day === 6;
-  return isRest ? selected.goals.kcalRest : selected.goals.kcalTraining;
+function todayKcalGoal(selected, now = new Date()) {
+  const day = DAYS[(now.getDay()+6)%7];
+  const training = selected.trainingPlan.some(item => item.day === day && item.published !== false);
+  return training ? selected.goals.kcalTraining : selected.goals.kcalRest;
 }
 
 function sumFoodEntries(entries) {
@@ -1289,7 +1295,7 @@ function rateById(rateId) {
 
 function rateOptions(selectedRateId = "") {
   return financeRates()
-    .map((rate) => `<option value="${rate.id}" ${rate.id === selectedRateId ? "selected" : ""}>${rate.name} - ${currency(rate.amount)}</option>`)
+    .map((rate) => `<option value="${escapeHTML(rate.id)}" ${rate.id === selectedRateId ? "selected" : ""}>${escapeHTML(rate.name)} - ${currency(rate.amount)}</option>`)
     .join("");
 }
 
@@ -1397,7 +1403,7 @@ function appointmentTypeById(typeId) {
 
 function appointmentTypeOptions(selectedTypeId = "") {
   return appointmentTypes()
-    .map((type) => `<option value="${type.id}" ${type.id === selectedTypeId ? "selected" : ""}>${escapeHTML(type.name)}${type.duration ? ` - ${type.duration} min` : ""}${type.price !== "" && type.price !== undefined ? ` - ${currency(type.price)}` : ""}</option>`)
+    .map((type) => `<option value="${escapeHTML(type.id)}" ${type.id === selectedTypeId ? "selected" : ""}>${escapeHTML(type.name)}${type.duration ? ` - ${escapeHTML(type.duration)} min` : ""}${type.price !== "" && type.price !== undefined ? ` - ${currency(type.price)}` : ""}</option>`)
     .join("");
 }
 
@@ -1475,11 +1481,6 @@ function nextInvoiceNumber(finance = state.trainerFinance) {
 
 function invoiceNumber(item) {
   if (item?.invoiceNo) return item.invoiceNo;
-  if (item?.type === "invoice") {
-    item.invoiceNo = nextInvoiceNumber();
-    saveState();
-    return item.invoiceNo;
-  }
   return legacyInvoiceNumber(item);
 }
 
@@ -1495,12 +1496,12 @@ function appointmentMonthSequence(selected, appointment) {
 
 function invoiceDescriptionFromAppointment(appointment) {
   const dateLabel = appointment.date ? formatLongDutchDate(appointment.date) : "datum onbekend";
-  const timeLabel = appointment.time ? ` om ${appointment.time}` : "";
+  const timeLabel = appointment.time ? ` om ${escapeHTML(appointment.time)}` : "";
   const selected = state.clients.find((item) => item.appointments?.some((appt) => appt.id === appointment.id));
   const packageText = selected ? clientPackageLabel(selected) : "";
   const sequence = selected ? appointmentMonthSequence(selected, appointment) : 1;
   const monthText = appointment.date ? monthLabel(monthKey(appointment.date)) : "maand onbekend";
-  return `Afspraak ${sequence} (${monthText}) | ${packageText && packageText !== "Geen pakket gekozen" ? `Pakket: ${packageText}` : "Pakket nog niet gekozen"} | ${appointment.type || "Afspraak"} - ${dateLabel}${timeLabel}`;
+  return `Afspraak ${sequence} (${monthText}) | ${packageText && packageText !== "Geen pakket gekozen" ? `Pakket: ${packageText}` : "Pakket nog niet gekozen"} | ${escapeHTML(appointment.type || "Afspraak")} - ${dateLabel}${timeLabel}`;
 }
 
 function createAppointmentAdminItem(selected, appointment) {
@@ -1550,25 +1551,6 @@ function syncAppointmentFromAdminItem(item) {
   if (!appointment) return;
   appointment.paymentStatus = item.status === "paid" ? "paid" : "unpaid";
   if (item.amount !== "" && item.amount !== undefined) appointment.amount = number(item.amount, 0);
-}
-
-function ensureAppointmentAdminItems() {
-  let changed = false;
-  state.clients.forEach((selected) => {
-    selected.appointments.forEach((appointment) => {
-      const linkedItemExists = appointment.adminItemId && financeAdminItems().some((item) => item.id === appointment.adminItemId);
-      if (!linkedItemExists && !appointment.adminItemSuppressed) {
-        syncAppointmentAdminItem(selected, appointment);
-        changed = true;
-      } else if (linkedItemExists && !appointment.adminItemSuppressed) {
-        const before = JSON.stringify(financeAdminItems().find((item) => item.id === appointment.adminItemId) || {});
-        syncAppointmentAdminItem(selected, appointment);
-        const after = JSON.stringify(financeAdminItems().find((item) => item.id === appointment.adminItemId) || {});
-        if (before !== after) changed = true;
-      }
-    });
-  });
-  return changed;
 }
 
 function resetFinanceOnly() {
@@ -1791,7 +1773,7 @@ function monthKey(dateValue) {
 }
 
 function monthLabel(key) {
-  if (!/^\d{4}-\d{2}$/.test(key)) return key;
+  if (!/^\d{4}-\d{2}$/.test(key)) return "-";
   const date = new Date(`${key}-01T12:00:00`);
   return date.toLocaleDateString("nl-NL", { month: "long", year: "numeric" });
 }
@@ -1801,11 +1783,9 @@ function findAppointment(clientId, appointmentId) {
   return selected?.appointments.find((item) => item.id === appointmentId);
 }
 
-function nextAppointment(selected) {
-  const nowKey = todayISO();
-  return selected.appointments
-    .filter((item) => item.date >= nowKey)
-    .sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`))[0];
+function nextAppointment(selected, now = new Date()) {
+  return selected.appointments.filter(item => new Date(item.date+'T'+(item.time || '00:00')) >= now)
+    .sort((a,b) => (a.date+' '+a.time).localeCompare(b.date+' '+b.time))[0];
 }
 
 function statusClass(value, target) {
@@ -1846,9 +1826,7 @@ function canAccessView(id) {
   return allowedViews().some(([viewId]) => viewId === id);
 }
 
-function isOnlineMode() {
-  return Boolean(supabaseClient);
-}
+function isOnlineMode() { return !DEMO_MODE; }
 
 function syncStatus(text, stateName = "") {
   const target = $("#syncStatus");
@@ -1869,31 +1847,8 @@ function renderOnlineStatus() {
   } else if (onlineErrorMessage) {
     syncStatus(onlineErrorMessage, "error");
   } else {
-    syncStatus(onlineReady ? "Online opgeslagen" : (isLoggedIn() && onlineProfile ? "Online verbinden..." : "Online klaar"), onlineReady ? "ok" : "");
+    syncStatus(hasPendingChanges() ? "Niet-opgeslagen invoer" : (onlineReady ? "Online opgeslagen" : (isLoggedIn() && onlineProfile ? "Online verbinden..." : "Online klaar")), onlineReady && !hasPendingChanges() ? "ok" : "");
   }
-}
-
-function remoteStateSnapshot() {
-  const snapshot = JSON.parse(JSON.stringify(state));
-  snapshot.ui = {
-    ...snapshot.ui,
-    loggedIn: false,
-    authEmail: "",
-    authName: "",
-    role: "trainer"
-  };
-  if (snapshot.trainerAccount) {
-    snapshot.trainerAccount.password = "";
-  }
-  snapshot.clients.forEach((item) => {
-    item.password = "";
-  });
-  return snapshot;
-}
-
-function trainerWorkspaceId() {
-  if (!onlineProfile) return "";
-  return onlineProfile.role === "trainer" ? onlineProfile.id : onlineProfile.trainer_id;
 }
 
 function scheduleCloudSave() {
@@ -1904,34 +1859,87 @@ function scheduleCloudSave() {
   }, 650);
 }
 
-async function saveStateToCloud() {
-  if (!isOnlineMode() || !onlineProfile) return { ok: true };
-  const trainerId = trainerWorkspaceId();
-  if (!trainerId) return { ok: false, error: new Error("Geen trainerworkspace gevonden.") };
-  syncStatus("Online opslaan...");
-  try {
-    const payload = {
-      state: remoteStateSnapshot(),
-      updated_at: new Date().toISOString()
-    };
-    const { error } = onlineProfile.role === "trainer"
-      ? await supabaseClient
-          .from("coach_workspaces")
-          .upsert({ trainer_id: trainerId, ...payload }, { onConflict: "trainer_id" })
-      : await supabaseClient
-          .from("coach_workspaces")
-          .update(payload)
-          .eq("trainer_id", trainerId);
-    if (error) throw error;
-  } catch (error) {
-    onlineErrorMessage = "Opslaan mislukt";
-    syncStatus("Opslaan mislukt", "error");
-    console.error(error);
-    return { ok: false, error };
+function saveStateToCloud() {
+  const generation = authGeneration;
+  const run = async () => {
+    if (DEMO_MODE) return {ok:true};
+    try {
+      if (generation !== authGeneration || !supabaseClient || !onlineReady || !onlineProfile || !cloudBaseline) throw new Error("Log opnieuw in; invoer is nog niet online opgeslagen.");
+      const owner = onlineProfile.id;
+      const {data:auth,error:authError} = await supabaseClient.auth.getUser();
+      if (authError || auth?.user?.id !== owner || generation !== authGeneration) {
+        if(generation === authGeneration) lockOnlineSession();
+        throw new Error("Je sessie is verlopen. Log opnieuw in.");
+      }
+      const sent = FMZSync.clone(state);
+      const changes = FMZSync.diff(cloudBaseline,sent,rawCloudState,onlineProfile.role);
+      if (!changes.length) return {ok:true};
+      syncStatus("Online opslaan...");
+      const {data,error} = await supabaseClient.rpc('fmz_save_changes',{changes});
+      if(error?.code==='28000' && generation===authGeneration) lockOnlineSession();
+      if (error) throw new Error(error.code === '40001' ? "Conflict: dit onderdeel is elders gewijzigd. Bewaar je invoer en ververs voordat je opnieuw wijzigt." : "Opslaan geweigerd of verbinding onderbroken. Je invoer blijft bewaard.");
+      if (!data || data.ok !== true || data.changed !== changes.length) throw new Error("Geen geldige opslagbevestiging ontvangen.");
+      if (generation !== authGeneration || onlineProfile?.id !== owner) return {ok:false,error:new Error("Account gewijzigd tijdens opslaan.")};
+      rawCloudState = FMZSync.apply(rawCloudState,changes);
+      cloudBaseline = sent;
+      onlineErrorMessage = "";
+      syncStatus(hasPendingChanges() ? "Nog niet alles opgeslagen" : "Online opgeslagen",hasPendingChanges()?'':'ok');
+      return {ok:true};
+    } catch (error) {
+      if (generation === authGeneration) { onlineErrorMessage = error.message; syncStatus(error.message,"error"); }
+      return {ok:false,error};
+    }
+  };
+  const result = saveQueue.then(run,run);
+  saveQueue = result.then(()=>undefined,()=>undefined);
+  return result;
+}
+
+function hasPendingChanges() {
+  return Boolean(cloudBaseline && onlineProfile && FMZSync.diff(cloudBaseline,state,rawCloudState,onlineProfile.role).length);
+}
+
+function lockOnlineSession() {
+  if (onlineProfile && hasPendingChanges()) pendingDrafts.set(onlineProfile.id,{state:FMZSync.clone(state),baseline:cloudBaseline,raw:rawCloudState});
+  authGeneration++;
+  window.clearTimeout(cloudSaveTimer);
+  onlineReady=false; onlineProfile=null; cloudBaseline=null; rawCloudState=null;
+  state=normalizeState({...seedState(),clients:[]});
+  state.ui.loggedIn=false;
+  recipeOptions=[];
+  safeLocalRemove(STORE_KEY);
+  for (const id of ['trainerPreviewGrid','trainerKpis','memberTable','clientSummary','clientCards','trainingDays','trainingLogOverview','trainingLogContent','macroTotals','foodLogTable','nutritionPlanList','dailyFoodTotals','weeklyFoodLogGrid','actualFoodLogCards','trackerOverview','trackersOverview','stepsGrid','dailyWeightGrid','measurementTable','wellbeingGrid','sleepGrid','waterDisplay','waterDayGrid','calendar','financeKpis','financeAppointmentTable','financeClientTable','financeMonthTable','adminKpis','financeAdminList','financeInvoiceList','invoicePageList','invoicePageKpis','settingsOverview']) {
+    const output=document.getElementById(id); if(output) output.replaceChildren();
   }
-  onlineErrorMessage = "";
-  syncStatus("Online opgeslagen", "ok");
-  return { ok: true };
+  document.querySelectorAll('form').forEach(form=>{form.reset();delete form.dataset.pendingAppointment;delete form.dataset.saving;});
+  for(const id of ['previousAppointmentsList','agendaStats','appointmentTypeList','agendaQuickTypes','weekCalendar','exerciseLibraryList','financeRatesList','recipeOutput']) document.getElementById(id)?.replaceChildren();
+  renderAll();
+}
+
+async function refreshOnlineWorkspace() {
+  if (!onlineProfile) return;
+  if (hasPendingChanges()) {
+    syncStatus("Er is niet-opgeslagen invoer. Sla opnieuw op of exporteer je invoer en kies Wijzigingen verwerpen.","error");
+    return;
+  }
+  const ui=FMZSync.clone(state.ui), view=currentView;
+  try { await loadOnlineWorkspace(onlineProfile); state.ui={...state.ui,...ui}; currentView=view; renderAll(); showView(view); }
+  catch { syncStatus("Verversen mislukt; bestaande gegevens blijven zichtbaar.","error"); }
+}
+
+function exportPendingInput() {
+  const draft = onlineProfile ? {state,baseline:cloudBaseline,raw:rawCloudState} : null;
+  if (!draft) return;
+  const exported={currentInput:draft.state};
+  if(legacyLocalDraft && cleanEmail(legacyLocalDraft.ui?.authEmail) === cleanEmail(onlineProfile.email)) {
+    if(onlineProfile.role==='trainer') exported.oldLocalInput=FMZSync.snapshot(legacyLocalDraft,'trainer');
+    else {
+      const own=legacyLocalDraft.clients.find(c=>c.id===onlineProfile.client_id);
+      if(own) exported.oldLocalInput=FMZSync.snapshot({clients:[own]},'client');
+    }
+  }
+  const url=URL.createObjectURL(new Blob([JSON.stringify(exported,null,2)],{type:'application/json'}));
+  const link=document.createElement('a'); link.href=url; link.download='fmz-niet-opgeslagen-invoer.json'; link.click(); URL.revokeObjectURL(url);
 }
 
 function profileDisplayName(user, fallback = "") {
@@ -1942,76 +1950,25 @@ function cleanEmail(email) {
   return String(email || "").trim().toLowerCase();
 }
 
-function createOnlineTrainerState(profile) {
-  const fresh = seedState();
-  fresh.clients = [];
-  fresh.trainerAccount = {
-    name: profile.name,
-    email: profile.email,
-    password: ""
-  };
-  fresh.ui = {
-    ...fresh.ui,
-    loggedIn: true,
-    role: "trainer",
-    authEmail: profile.email,
-    authName: profile.name,
-    selectedClientId: "",
-    theme: "dark"
-  };
-  return normalizeState(fresh);
-}
-
 async function ensureOnlineProfile(roleHint = "", nameHint = "") {
-  const { data: userData, error: userError } = await supabaseClient.auth.getUser();
-  if (userError || !userData?.user) throw userError || new Error("Geen actieve gebruiker gevonden.");
-  const user = userData.user;
-  const email = cleanEmail(user.email);
-  const { data: existing, error: existingError } = await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id", user.id)
-    .maybeSingle();
-  if (existingError) throw existingError;
-  if (existing) {
-    onlineProfile = existing;
-    return existing;
-  }
-
-  const role = roleHint || user.user_metadata?.role || "client";
-  const name = profileDisplayName(user, nameHint);
-  if (role === "trainer") {
-    const profile = {
-      id: user.id,
-      role: "trainer",
-      name,
-      email
-    };
-    const { data, error } = await supabaseClient
-      .from("profiles")
-      .insert(profile)
-      .select("*")
-      .single();
-    if (error) throw error;
-    onlineProfile = data;
-    const trainerState = createOnlineTrainerState(data);
-    await supabaseClient
-      .from("coach_workspaces")
-      .upsert({ trainer_id: data.id, state: trainerState, updated_at: new Date().toISOString() }, { onConflict: "trainer_id" });
-    return data;
-  }
-
-  const { data, error } = await supabaseClient
-    .rpc("accept_client_invite", { display_name: name })
-    .single();
-  if (error) throw error;
-  onlineProfile = data;
+  const generation=authGeneration;
+  const {data:userData,error:userError}=await supabaseClient.auth.getUser();
+  if(userError || !userData?.user) throw new Error('Geen actieve gebruiker gevonden.');
+  const user=userData.user;
+  const {data:existing,error:existingError}=await supabaseClient.from('profiles').select('*').eq('id',user.id).maybeSingle();
+  if(existingError) throw existingError;
+  if(generation!==authGeneration) throw new Error('Sessie gewijzigd.');
+  if(existing) { onlineProfile=existing; return existing; }
+  const {data,error}=await supabaseClient.rpc('accept_client_invite',{display_name:profileDisplayName(user,nameHint)}).single();
+  if(error) throw error;
+  if(generation!==authGeneration) throw new Error('Sessie gewijzigd.');
+  onlineProfile=data;
   return data;
 }
 
 function applyOnlineState(remoteState, profile) {
   hydratingFromCloud = true;
-  state = normalizeState(remoteState || seedState());
+  state = normalizeState(remoteState || {...seedState(),clients:[]});
   state.ui.loggedIn = true;
   state.ui.role = profile.role;
   state.ui.authEmail = profile.email;
@@ -2021,7 +1978,7 @@ function applyOnlineState(remoteState, profile) {
     state.trainerAccount = { name: profile.name, email: profile.email, password: "" };
     currentView = "trainer-dashboard";
   } else {
-    const linkedClient = state.clients.find((item) => item.id === profile.client_id) || state.clients.find((item) => item.email === profile.email);
+    const linkedClient = state.clients.find((item) => item.id === profile.client_id);
     if (linkedClient) {
       linkedClient.registered = true;
       state.ui.selectedClientId = linkedClient.id;
@@ -2035,32 +1992,31 @@ function applyOnlineState(remoteState, profile) {
   renderAll();
   showView(currentView);
   hydratingFromCloud = false;
+  cloudBaseline = FMZSync.clone(state);
 }
 
 async function loadOnlineWorkspace(profile) {
-  const trainerId = profile.role === "trainer" ? profile.id : profile.trainer_id;
-  if (!trainerId) throw new Error("Dit lid is nog niet gekoppeld aan een trainer.");
-  syncStatus("Online laden...");
-  const { data, error } = await supabaseClient
-    .from("coach_workspaces")
-    .select("state")
-    .eq("trainer_id", trainerId)
-    .maybeSingle();
-  if (error) throw error;
-  if (!data?.state && profile.role !== "trainer") {
-    throw new Error("Je account is nog niet gekoppeld aan een trainerworkspace.");
+  const generation=authGeneration;
+  const {data,error}=await supabaseClient.rpc('fmz_read_workspace');
+  if(error?.code==='28000' && generation===authGeneration) lockOnlineSession();
+  if(error || !data?.state || data.profile_id !== profile.id) throw new Error("Veilige opslag is niet beschikbaar. Neem contact op met je trainer.");
+  if(generation !== authGeneration) throw new Error("Sessie gewijzigd.");
+  rawCloudState=FMZSync.clone(data.state);
+  applyOnlineState(data.state,profile);
+  if(legacyLocalDraft) syncStatus('Oude lokale invoer aangetroffen. Exporteer deze via Opslag met het oorspronkelijke account voordat je dit tabblad sluit.','error');
+  const draft=pendingDrafts.get(profile.id);
+  if(draft) {
+    pendingDrafts.delete(profile.id);
+    state=draft.state; cloudBaseline=draft.baseline; rawCloudState=draft.raw;
+    renderAll(); syncStatus("Niet-opgeslagen invoer hersteld. Probeer opnieuw op te slaan; conflicten worden gecontroleerd.","error");
   }
-  const remoteState = data?.state || createOnlineTrainerState(profile);
-  if (!data?.state && profile.role === "trainer") {
-    await supabaseClient
-      .from("coach_workspaces")
-      .upsert({ trainer_id: profile.id, state: remoteState, updated_at: new Date().toISOString() }, { onConflict: "trainer_id" });
-  }
-  applyOnlineState(remoteState, profile);
 }
 
 async function hydrateOnlineUser(roleHint = "", nameHint = "") {
   if (!isOnlineMode()) return false;
+  const generation = authGeneration;
+  if (hydrationTask?.generation === generation) return hydrationTask.promise;
+  const promise = (async () => {
   try {
     const profile = await ensureOnlineProfile(roleHint, nameHint);
     await loadOnlineWorkspace(profile);
@@ -2071,6 +2027,9 @@ async function hydrateOnlineUser(roleHint = "", nameHint = "") {
     syncStatus("Online fout", "error");
     throw error;
   }
+  })();
+  hydrationTask = {generation,promise};
+  try { return await promise; } finally { if (hydrationTask?.promise === promise) hydrationTask = null; }
 }
 
 async function inviteClientOnline(profile) {
@@ -2170,12 +2129,8 @@ function loginAs(role, email, name) {
 }
 
 function logout() {
-  state.ui.loggedIn = false;
-  state.ui.authEmail = "";
-  state.ui.authName = "";
-  state.ui.role = "trainer";
-  currentView = "trainer-dashboard";
-  renderAll();
+  if (!DEMO_MODE) { lockOnlineSession(); return; }
+  state.ui.loggedIn=false; renderAll();
 }
 
 function renderNav() {
@@ -2210,7 +2165,7 @@ function showView(id) {
 function renderSelectors() {
   const selected = client();
   const options = state.clients.length
-    ? state.clients.map((item) => `<option value="${item.id}" ${item.id === selected.id ? "selected" : ""}>${item.name}</option>`).join("")
+    ? state.clients.map((item) => `<option value="${escapeHTML(item.id)}" ${item.id === selected.id ? "selected" : ""}>${escapeHTML(item.name)}</option>`).join("")
     : `<option value="">Geen leden</option>`;
   $("#clientSelect").innerHTML = options;
   $("#clientSelect").disabled = !state.clients.length;
@@ -2226,7 +2181,7 @@ function renderSelectors() {
     appointmentTypeSelect.innerHTML = `<option value="">Kies afspraaksoort</option>${appointmentTypeOptions()}`;
   }
   const copyOptions = state.clients.length
-    ? state.clients.map((item) => `<option value="${item.id}" ${item.id === selected.id ? "selected" : ""}>${item.name}${item.id === selected.id ? " (zelfde client)" : ""}</option>`).join("")
+    ? state.clients.map((item) => `<option value="${escapeHTML(item.id)}" ${item.id === selected.id ? "selected" : ""}>${escapeHTML(item.name)}${item.id === selected.id ? " (zelfde client)" : ""}</option>`).join("")
     : `<option value="">Geen leden</option>`;
   const trainingCopyTarget = $("#trainingCopyTarget");
   if (trainingCopyTarget) trainingCopyTarget.innerHTML = copyOptions;
@@ -2234,17 +2189,17 @@ function renderSelectors() {
   if (nutritionCopyTarget) nutritionCopyTarget.innerHTML = copyOptions;
   const financeClientFilter = $("#financeClientFilter");
   if (financeClientFilter) {
-    financeClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${item.id}" ${item.id === state.ui.financeClientId ? "selected" : ""}>${item.name}</option>`).join("")}`;
+    financeClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${escapeHTML(item.id)}" ${item.id === state.ui.financeClientId ? "selected" : ""}>${escapeHTML(item.name)}</option>`).join("")}`;
   }
   const adminClientFilter = $("#adminClientFilter");
   if (adminClientFilter) {
-    adminClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${item.id}" ${item.id === state.ui.financeClientId ? "selected" : ""}>${item.name}</option>`).join("")}`;
+    adminClientFilter.innerHTML = `<option value="">Alle clienten</option>${state.clients.map((item) => `<option value="${escapeHTML(item.id)}" ${item.id === state.ui.financeClientId ? "selected" : ""}>${escapeHTML(item.name)}</option>`).join("")}`;
   }
   const financeAdminClient = $("#financeAdminClient");
   if (financeAdminClient) {
-    financeAdminClient.innerHTML = `<option value="">Geen client</option>${state.clients.map((item) => `<option value="${item.id}">${item.name}</option>`).join("")}`;
+    financeAdminClient.innerHTML = `<option value="">Geen client</option>${state.clients.map((item) => `<option value="${escapeHTML(item.id)}">${escapeHTML(item.name)}</option>`).join("")}`;
   }
-  const productOptions = PRODUCTS.map((item) => `<option value="${item.id}">${item.name}</option>`).join("");
+  const productOptions = PRODUCTS.map((item) => `<option value="${escapeHTML(item.id)}">${escapeHTML(item.name)}</option>`).join("");
   $("#productSelect").innerHTML = productOptions;
 }
 
@@ -2331,14 +2286,14 @@ function renderTrainerDashboard() {
       const appt = nextAppointment(item);
       return `
         <tr>
-          <td><strong>${item.name}</strong><br><span class="muted">${item.email}</span></td>
-          <td>${item.goal || "-"}</td>
-          <td>${item.goals.kcalTraining}/${item.goals.kcalRest}</td>
+          <td><strong>${escapeHTML(item.name)}</strong><br><span class="muted">${escapeHTML(item.email)}</span></td>
+          <td>${escapeHTML(item.goal || "-")}</td>
+          <td>${escapeHTML(item.goals.kcalTraining)}/${escapeHTML(item.goals.kcalRest)}</td>
           <td><span class="status ${statusClass(stepsAvg, item.goals.steps)}">${statusText(stepsAvg, item.goals.steps)} ${fmt(stepsAvg)}</span></td>
           <td><span class="status ${statusClass(sleepAvg, item.goals.sleep)}">${statusText(sleepAvg, item.goals.sleep)} ${fmt(sleepAvg, 1)}u</span></td>
           <td>${fmt(wellbeingAvg, 1)}</td>
           <td>${fmt(weekWater(item), 1)}L</td>
-          <td>${appt ? `${appt.date} ${appt.time}` : "-"}</td>
+          <td>${appt ? `${escapeHTML(appt.date)} ${escapeHTML(appt.time)}` : "-"}</td>
         </tr>
       `;
     })
@@ -2470,19 +2425,19 @@ function renderClients() {
     .map(
       (item) => `
         <div class="client-card ${item.id === state.ui.selectedClientId ? "active" : ""}">
-          <strong>${item.name}</strong>
-          <span>${item.email}</span>
-          <span>${item.profile?.phone || "Geen telefoon"}${item.profile?.city ? ` | ${escapeHTML(item.profile.city)}` : ""}</span>
+          <strong>${escapeHTML(item.name)}</strong>
+          <span>${escapeHTML(item.email)}</span>
+          <span>${escapeHTML(item.profile?.phone || "Geen telefoon")}${item.profile?.city ? ` | ${escapeHTML(item.profile.city)}` : ""}</span>
           <span>${item.profile?.package ? `Pakket: ${escapeHTML(clientPackageLabel(item))}` : "Geen pakket ingevuld"}</span>
           <span>${item.registered ? "Geregistreerd" : "Uitgenodigd, nog niet geregistreerd"}</span>
-          <span>${item.goal || "Geen doel ingevuld"}</span>
+          <span>${escapeHTML(item.goal || "Geen doel ingevuld")}</span>
           <div class="card-actions">
-            <button class="secondary-btn" data-select-client="${item.id}" type="button">Selecteer</button>
-            <button class="primary-btn" data-edit-goals="${item.id}" type="button">Doelen bewerken</button>
-            <button class="secondary-btn" data-resend-invite="${item.id}" type="button">Uitnodiging opnieuw versturen</button>
-            <button class="danger-btn" data-delete-client="${item.id}" type="button">Client verwijderen</button>
+            <button class="secondary-btn" data-select-client="${escapeHTML(item.id)}" type="button">Selecteer</button>
+            <button class="primary-btn" data-edit-goals="${escapeHTML(item.id)}" type="button">Doelen bewerken</button>
+            <button class="secondary-btn" data-resend-invite="${escapeHTML(item.id)}" type="button">Uitnodiging opnieuw versturen</button>
+            <button class="danger-btn" data-delete-client="${escapeHTML(item.id)}" type="button">Client verwijderen</button>
           </div>
-          <span class="save-feedback" data-save-feedback="invite-${item.id}"></span>
+          <span class="save-feedback" data-save-feedback="invite-${escapeHTML(item.id)}"></span>
         </div>
       `
     )
@@ -2495,7 +2450,7 @@ function renderGoalForm() {
   if (!form) return;
   form.style.display = isTrainer() && hasSelectedClient(selected) ? "block" : "none";
   if (!hasSelectedClient(selected)) return;
-  $("#goalFormTitle").textContent = `Doelen bewerken: ${selected.name}`;
+  $("#goalFormTitle").textContent = `Doelen bewerken: ${escapeHTML(selected.name)}`;
   $("#goalFormHint").textContent = "Kies hierboven een coachee en sla hier het plan, calorieen en trackerdoelen op.";
   form.elements.planSummary.value = selected.planSummary || "";
   form.elements.goal.value = selected.goal || "";
@@ -2538,7 +2493,7 @@ function renderExerciseLibrary() {
   const filter = state.ui.exerciseFilter || "Alles";
   const library = fullExerciseLibrary();
   const filtered = library.filter((item) => {
-    const haystack = `${item.name} ${item.group} ${item.equipment}`.toLowerCase();
+    const haystack = `${escapeHTML(item.name)} ${escapeHTML(item.group)} ${escapeHTML(item.equipment)}`.toLowerCase();
     const matchesSearch = !search || haystack.includes(search);
     const matchesFilter = filter === "Alles" || item.group === filter || item.equipment === filter || (filter === "Ballen" && /ball/i.test(item.equipment));
     return matchesSearch && matchesFilter;
@@ -2626,6 +2581,7 @@ function renderTraining() {
           ${trainingAttendanceOptions(dayAttendance.status || "")}
         </select>
         <span class="save-feedback" data-save-feedback="training-${activeIndex}"></span>
+        <button class="primary-btn" data-save-training-day="${activeIndex}" type="button">Training opslaan</button>
       </div>
       <div class="exercise-row training-session-list">
         ${!isTrainer() ? `
@@ -2655,8 +2611,8 @@ function renderTraining() {
                       ${isTrainer() ? `
                         <div class="schema-card-actions">
                           <span class="status ${exercise.published === false ? "" : "ok"}">${exercise.published === false ? "Concept" : "Zichtbaar voor lid"}</span>
-                          ${exercise.published === false ? `<button class="primary-btn" data-publish-training="${exercise.index}" type="button">Beschikbaar stellen</button>` : ""}
-                          <button class="danger-btn" data-remove-training="${exercise.index}" type="button">Verwijder</button>
+                          ${exercise.published === false ? `<button class="primary-btn" data-publish-training="${escapeHTML(exercise.index)}" type="button">Beschikbaar stellen</button>` : ""}
+                          <button class="danger-btn" data-remove-training="${escapeHTML(exercise.index)}" type="button">Verwijder</button>
                         </div>
                       ` : ""}
                     </div>
@@ -2668,10 +2624,10 @@ function renderTraining() {
                     </div>
                     <div class="exercise-meta">${escapeHTML(exercise.schemaName || "Trainingsschema")}${exercise.tempo ? ` | Tempo: ${escapeHTML(exercise.tempo)}` : ""}</div>
                     <div class="exercise-log">
-                      <label>Gedane sets<input data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:actualSets" type="number" min="0" value="${escapeHTML(log.actualSets ?? "")}" /></label>
-                      <label>Gedane reps<input data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:actualReps" value="${escapeHTML(log.actualReps ?? "")}" placeholder="bijv. 8/8/7/6" /></label>
-                      <label>Gedaan gewicht<input data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:actualWeight" type="number" min="0" step="0.5" value="${escapeHTML(log.actualWeight ?? "")}" placeholder="kg" /></label>
-                      <label class="exercise-notes-field">Opmerkingen<textarea data-training-log-day="${activeIndex}" data-training-log="${exercise.index}:notes" placeholder="Bijv. zwaar, pijnvrij, techniek voelde goed">${escapeHTML(log.notes ?? "")}</textarea></label>
+                      <label>Gedane sets<input data-training-log-day="${activeIndex}" data-training-log="${escapeHTML(exercise.index)}:actualSets" type="number" min="0" value="${escapeHTML(log.actualSets ?? "")}" /></label>
+                      <label>Gedane reps<input data-training-log-day="${activeIndex}" data-training-log="${escapeHTML(exercise.index)}:actualReps" value="${escapeHTML(log.actualReps ?? "")}" placeholder="bijv. 8/8/7/6" /></label>
+                      <label>Gedaan gewicht<input data-training-log-day="${activeIndex}" data-training-log="${escapeHTML(exercise.index)}:actualWeight" type="number" min="0" step="0.5" value="${escapeHTML(log.actualWeight ?? "")}" placeholder="kg" /></label>
+                      <label class="exercise-notes-field">Opmerkingen<textarea data-training-log-day="${activeIndex}" data-training-log="${escapeHTML(exercise.index)}:notes" placeholder="Bijv. zwaar, pijnvrij, techniek voelde goed">${escapeHTML(log.notes ?? "")}</textarea></label>
                     </div>
                   </div>
                 </div>
@@ -2830,8 +2786,8 @@ function renderNutrition() {
       .map(
         (item, index) => `
           <tr>
-            <td data-label="Product">${item.name}</td>
-            <td data-label="Hoeveelheid">${fmt(item.amount ?? item.grams)}${item.unit || "g"}</td>
+            <td data-label="Product">${escapeHTML(item.name)}</td>
+            <td data-label="Hoeveelheid">${fmt(item.amount ?? item.grams)}${escapeHTML(item.unit || "g")}</td>
             <td data-label="Kcal">${fmt(item.kcal)}</td>
             <td data-label="Eiwit">${fmt(item.protein)}</td>
             <td data-label="KH">${fmt(item.carbs)}</td>
@@ -3063,17 +3019,17 @@ function renderTrainerTrackerOverview(selected) {
     <div class="tracker-week-stack">
       ${renderTrainerTrackerBlock("Stappen", "Zelf ingevuld door het lid per datum.", `${steps.filter((item) => item.value).length}/7 dagen`, steps, (item) => fmt(item.value), (item) => statusText(item.value, selected.goals.steps))}
       ${renderTrainerTrackerBlock("Water", "Los van stappen, met eigen dagdata.", `gem. ${fmt(waterAvg, 1)}L`, water, (item) => item.value ? `${fmt(item.value, 2)}L` : "", (item) => item.value ? `${fmt(number(item.value) / number(selected.goals.water) * 100, 0)}% van doel` : "nog leeg")}
-      ${renderTrainerTrackerBlock("Slaap", "Uren, slaapcijfer, bedtijd en wakker worden.", `cijfer ${fmt(sleepScoreAvg, 1)}/10`, sleep, (item) => item.hours ? `${fmt(item.hours, 1)}u` : "", (item) => item.quality ? `slaapcijfer ${item.quality}/10` : "nog leeg", `
+      ${renderTrainerTrackerBlock("Slaap", "Uren, slaapcijfer, bedtijd en wakker worden.", `cijfer ${fmt(sleepScoreAvg, 1)}/10`, sleep, (item) => item.hours ? `${fmt(item.hours, 1)}u` : "", (item) => item.quality ? `slaapcijfer ${escapeHTML(item.quality)}/10` : "nog leeg", `
         <div class="tracker-detail-table">
           ${trackerDetailRow("Naar bed", sleep, (item) => item.bed)}
           ${trackerDetailRow("Wakker", sleep, (item) => item.wake)}
-          ${trackerDetailRow("Slaapcijfer", sleep, (item) => item.quality ? `${item.quality}/10` : "")}
+          ${trackerDetailRow("Slaapcijfer", sleep, (item) => item.quality ? `${escapeHTML(item.quality)}/10` : "")}
         </div>
       `)}
       ${renderTrainerTrackerBlock("Welzijn", "Energie, stress, motivatie en stemming.", `${wellbeing.filter((item) => item.energy || item.stress || item.motivation).length}/7 ingevuld`, wellbeing, (item) => {
         const avg = average([item.energy, item.motivation, number(item.stress) ? 10 - number(item.stress) : ""]);
         return avg ? `${fmt(avg, 1)}/10` : "";
-      }, (item) => [item.mood, item.energy ? `energie ${item.energy}` : "", item.stress ? `stress ${item.stress}` : ""].filter(Boolean).join(" | "), `
+      }, (item) => [item.mood, item.energy ? `energie ${escapeHTML(item.energy)}` : "", item.stress ? `stress ${escapeHTML(item.stress)}` : ""].filter(Boolean).join(" | "), `
         <div class="tracker-detail-table">
           ${trackerDetailRow("Energie", wellbeing, (item) => item.energy)}
           ${trackerDetailRow("Stress", wellbeing, (item) => item.stress)}
@@ -3081,7 +3037,7 @@ function renderTrainerTrackerOverview(selected) {
           ${trackerDetailRow("Stemming", wellbeing, (item) => item.mood)}
         </div>
       `)}
-      ${renderTrainerTrackerBlock("Voortgang", "Gewicht, taille, borst, armen, benen en opmerkingen.", `weekgem. ${fmt(weightAvg, 1)}kg`, progress, (item) => item.value ? `${fmt(item.value, 1)}kg` : "", (item) => [item.waist ? `taille ${item.waist}` : "", item.note].filter(Boolean).join(" | "), `
+      ${renderTrainerTrackerBlock("Voortgang", "Gewicht, taille, borst, armen, benen en opmerkingen.", `weekgem. ${fmt(weightAvg, 1)}kg`, progress, (item) => item.value ? `${fmt(item.value, 1)}kg` : "", (item) => [item.waist ? `taille ${escapeHTML(item.waist)}` : "", item.note].filter(Boolean).join(" | "), `
         <div class="tracker-detail-table">
           ${trackerDetailRow("Taille", progress, (item) => item.waist)}
           ${trackerDetailRow("Borst", progress, (item) => item.chest)}
@@ -3143,9 +3099,9 @@ function renderSteps() {
       (item, index) => `
         <div class="day-cell">
           <label>
-            ${item.day}
+            ${escapeHTML(item.day)}
             <small>${formatShortDate(dates[index].date)}</small>
-            <input data-step-index="${index}" type="number" min="0" value="${item.value}" placeholder="Stappen" />
+            <input data-step-index="${index}" type="number" min="0" value="${escapeHTML(item.value)}" placeholder="Stappen" />
           </label>
           <span class="status ${statusClass(item.value, selected.goals.steps)}">${statusText(item.value, selected.goals.steps)}</span>
           <button class="primary-btn tracker-save-btn" data-save-steps-day="${index}" type="button">Opslaan</button>
@@ -3177,11 +3133,11 @@ function renderProgress() {
       .map(
         (item, index) => `
           <div class="day-cell">
-            <strong>${item.day}</strong>
+            <strong>${escapeHTML(item.day)}</strong>
             <small>${formatShortDate(dates[index].date)}</small>
             <label>
               Gewicht
-              <input data-weight-index="${index}" type="number" step="0.1" min="0" value="${item.value}" placeholder="kg" />
+              <input data-weight-index="${index}" type="number" step="0.1" min="0" value="${escapeHTML(item.value)}" placeholder="kg" />
             </label>
             <button class="primary-btn tracker-save-btn" data-save-progress-day="${index}" type="button">Opslaan</button>
             <span class="save-feedback" data-save-feedback="progress-${index}"></span>
@@ -3197,7 +3153,7 @@ function renderProgress() {
         const diff = prev ? number(item.weight) - number(prev.weight) : 0;
         return `
           <tr>
-            <td data-label="Week">${item.week}</td>
+            <td data-label="Week">${escapeHTML(item.week)}</td>
             <td data-label="Gewicht">${fmt(item.weight, 1)}</td>
             <td data-label="Taille">${fmt(item.waist, 1)}</td>
             <td data-label="Borst">${fmt(item.chest, 1)}</td>
@@ -3229,11 +3185,11 @@ function renderWellbeing() {
       const avg = average(score);
       return `
         <div class="day-cell">
-          <strong>${item.day}</strong>
+          <strong>${escapeHTML(item.day)}</strong>
           <small>${formatShortDate(dates[index].date)}</small>
-          <label>Energie<input data-wellbeing-day="${index}" data-wellbeing="${index}:energy" type="number" min="1" max="10" value="${item.energy}" /></label>
-          <label>Stress<input data-wellbeing-day="${index}" data-wellbeing="${index}:stress" type="number" min="1" max="10" value="${item.stress}" /></label>
-          <label>Motivatie<input data-wellbeing-day="${index}" data-wellbeing="${index}:motivation" type="number" min="1" max="10" value="${item.motivation}" /></label>
+          <label>Energie<input data-wellbeing-day="${index}" data-wellbeing="${index}:energy" type="number" min="1" max="10" value="${escapeHTML(item.energy)}" /></label>
+          <label>Stress<input data-wellbeing-day="${index}" data-wellbeing="${index}:stress" type="number" min="1" max="10" value="${escapeHTML(item.stress)}" /></label>
+          <label>Motivatie<input data-wellbeing-day="${index}" data-wellbeing="${index}:motivation" type="number" min="1" max="10" value="${escapeHTML(item.motivation)}" /></label>
           <label>Stemming
             <select data-wellbeing-day="${index}" data-wellbeing="${index}:mood">
               ${["", "Goed", "Neutraal", "Laag"].map((value) => `<option value="${value}" ${value === item.mood ? "selected" : ""}>${value || "-"}</option>`).join("")}
@@ -3266,12 +3222,12 @@ function renderSleep() {
       const recovery = item.hours && item.quality ? number(item.hours) / selected.goals.sleep * 0.6 + number(item.quality) / 10 * 0.4 : "";
       return `
         <div class="day-cell">
-          <strong>${item.day}</strong>
+          <strong>${escapeHTML(item.day)}</strong>
           <small>${formatShortDate(dates[index].date)}</small>
           <label>Uren<select data-sleep-day="${index}" data-sleep="${index}:hours">${trackerNumberOptions(item.hours, 15, 0.5)}</select></label>
           <label>Kwaliteit<select data-sleep-day="${index}" data-sleep="${index}:quality">${trackerNumberOptions(item.quality, 10, 1)}</select></label>
-          <label>Naar bed<input data-sleep-day="${index}" data-sleep="${index}:bed" type="time" value="${item.bed}" /></label>
-          <label>Wakker<input data-sleep-day="${index}" data-sleep="${index}:wake" type="time" value="${item.wake}" /></label>
+          <label>Naar bed<input data-sleep-day="${index}" data-sleep="${index}:bed" type="time" value="${escapeHTML(item.bed)}" /></label>
+          <label>Wakker<input data-sleep-day="${index}" data-sleep="${index}:wake" type="time" value="${escapeHTML(item.wake)}" /></label>
           <span class="status ${statusClass(recovery, 0.85)}">Herstel ${fmt(recovery * 100, 0)}%</span>
           <button class="primary-btn tracker-save-btn" data-save-sleep-day="${index}" type="button">Opslaan</button>
           <span class="save-feedback" data-save-feedback="sleep-${index}"></span>
@@ -3302,7 +3258,7 @@ function renderWater() {
   $("#waterDayGrid").innerHTML = waterEntries
     .map((item, index) => `
       <div class="water-day-card">
-        <strong>${item.day}</strong>
+        <strong>${escapeHTML(item.day)}</strong>
         <small>${formatShortDate(dates[index].date)}</small>
         <label>
           Liters
@@ -3336,8 +3292,8 @@ function renderPreviousAppointments(selected) {
   list.innerHTML = previous.length
     ? previous.map((item) => `
         <div class="history-item">
-          <strong>${item.date} ${item.time || ""} - ${item.type || "Afspraak"}</strong>
-          <span>${item.clientName || ""}${appointmentAmount(item.source) ? ` | ${currency(appointmentAmount(item.source))}` : ""}</span>
+          <strong>${escapeHTML(item.date)} ${escapeHTML(item.time || "")} - ${escapeHTML(item.type || "Afspraak")}</strong>
+          <span>${escapeHTML(item.clientName || "")}${appointmentAmount(item.source) ? ` | ${currency(appointmentAmount(item.source))}` : ""}</span>
         </div>
       `).join("")
     : `<div class="empty-state">Geen vorige afspraken.</div>`;
@@ -3420,6 +3376,7 @@ function renderAgendaAppointment(item) {
       <div class="agenda-event-actions">
         <button class="secondary-btn" data-notify="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}" type="button">Melding</button>
         <button class="secondary-btn" data-edit-appointment="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}" type="button">Bewerken</button>
+        ${item.source?.repeat ? `<button class="secondary-btn" data-expand-repeat="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}" type="button">Herhaling toepassen (12 afspraken)</button>` : ''}
         <button class="danger-btn" data-delete-appointment="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}" type="button">Verwijderen</button>
       </div>
     </div>
@@ -3441,7 +3398,7 @@ function renderAppointmentTypes() {
             <span class="type-swatch" style="background:${color}"></span>
             <div>
               <strong>${escapeHTML(type.name || "Afspraaksoort")}</strong>
-              <small>${[type.category, type.location, type.duration ? `${type.duration} min` : "", type.price !== "" && type.price !== undefined ? currency(type.price) : ""].filter(Boolean).map(escapeHTML).join(" | ")}</small>
+              <small>${[type.category, type.location, type.duration ? `${escapeHTML(type.duration)} min` : "", type.price !== "" && type.price !== undefined ? currency(type.price) : ""].filter(Boolean).map(escapeHTML).join(" | ")}</small>
             </div>
           </div>
         </button>
@@ -3472,7 +3429,7 @@ function renderAgendaQuickTypes() {
       ${types.length ? types.map((type) => {
         const color = safeCssColor(type.color);
         const meta = [
-          type.duration ? `${type.duration} min` : "",
+          type.duration ? `${escapeHTML(type.duration)} min` : "",
           type.price !== "" && type.price !== undefined ? currency(type.price) : "",
           type.location || ""
         ].filter(Boolean).join(" | ");
@@ -3547,9 +3504,9 @@ function renderAgenda() {
         const apptType = appointmentTypeById(item.appointmentTypeId);
         return `
         <div class="client-appointment-card">
-          <span class="client-appointment-date">${formatLongDutchDate(item.date)} om ${item.time || "--:--"}</span>
+          <span class="client-appointment-date">${formatLongDutchDate(item.date)} om ${escapeHTML(item.time || "--:--")}</span>
           <strong>${escapeHTML(apptType?.name || item.type || "Afspraak")}</strong>
-          <span>${[item.location || apptType?.location || "", item.duration ? `${item.duration} min` : ""].filter(Boolean).map(escapeHTML).join(" | ")}</span>
+          <span>${[item.location || apptType?.location || "", item.duration ? `${escapeHTML(item.duration)} min` : ""].filter(Boolean).map(escapeHTML).join(" | ")}</span>
         </div>
       `;
       }).join("")
@@ -3583,8 +3540,6 @@ function renderAgenda() {
 
 function renderFinance() {
   if (!isTrainer()) return;
-  const adminChanged = ensureAppointmentAdminItems();
-  if (adminChanged) saveState();
   const rates = financeRates();
   const activeTab = state.ui.financeTab || "overview";
   const monthFilter = state.ui.financeMonth || "";
@@ -3624,9 +3579,9 @@ function renderFinance() {
   $("#financeRatesList").innerHTML = rates
     .map((rate) => `
       <div class="rate-row">
-        <input data-rate-name="${rate.id}" value="${rate.name}" />
-        <input data-rate-amount="${rate.id}" type="number" min="0" step="0.01" value="${rate.amount}" />
-        <button class="secondary-btn" data-save-rate="${rate.id}" type="button">Opslaan</button>
+        <input data-rate-name="${escapeHTML(rate.id)}" value="${escapeHTML(rate.name)}" />
+        <input data-rate-amount="${escapeHTML(rate.id)}" type="number" min="0" step="0.01" value="${escapeHTML(rate.amount)}" />
+        <button class="secondary-btn" data-save-rate="${escapeHTML(rate.id)}" type="button">Opslaan</button>
       </div>
     `)
     .join("");
@@ -3643,23 +3598,23 @@ function renderFinance() {
   $("#financeAppointmentTable").innerHTML = appointments.length
     ? appointments.map((item) => `
         <tr>
-          <td data-label="Datum">${item.date || "-"} ${item.time || ""}</td>
-          <td data-label="Client">${item.clientName}</td>
-          <td data-label="Afspraak">${item.type || "Afspraak"}</td>
+          <td data-label="Datum">${escapeHTML(item.date || "-")} ${escapeHTML(item.time || "")}</td>
+          <td data-label="Client">${escapeHTML(item.clientName)}</td>
+          <td data-label="Afspraak">${escapeHTML(item.type || "Afspraak")}</td>
           <td data-label="Tarief">
-            <select data-finance-rate="${item.clientId}:${item.id}">
+            <select data-finance-rate="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}">
               <option value="">Geen tarief</option>
               ${rateOptions(item.source.rateId || "")}
             </select>
           </td>
-          <td data-label="Bedrag"><input data-finance-amount="${item.clientId}:${item.id}" type="number" min="0" step="0.01" value="${appointmentAmount(item.source) || ""}" /></td>
+          <td data-label="Bedrag"><input data-finance-amount="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}" type="number" min="0" step="0.01" value="${appointmentAmount(item.source) || ""}" /></td>
           <td data-label="Status">
-            <select data-finance-payment="${item.clientId}:${item.id}">
+            <select data-finance-payment="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}">
               ${paymentStatusOptions(paymentStatus(item.source))}
             </select>
           </td>
           <td data-label="Omzet"><strong>${currency(appointmentAmount(item.source))}</strong><small class="finance-status-line">${paymentStatusLabel(paymentStatus(item.source))}</small></td>
-          <td data-label=""><button class="primary-btn" data-save-finance="${item.clientId}:${item.id}" type="button">Opslaan</button></td>
+          <td data-label=""><button class="primary-btn" data-save-finance="${escapeHTML(item.clientId)}:${escapeHTML(item.id)}" type="button">Opslaan</button></td>
         </tr>
       `).join("")
     : `<tr><td colspan="8">Nog geen afspraken voor deze selectie.</td></tr>`;
@@ -3675,7 +3630,7 @@ function renderFinance() {
   });
   $("#financeClientTable").innerHTML = [...byClient.entries()]
     .sort((a, b) => b[1].total - a[1].total)
-    .map(([name, totals]) => `<tr><td data-label="Client">${name}</td><td data-label="Omzet">${currency(totals.total)}</td><td data-label="Betaald">${currency(totals.paid)}</td><td data-label="Niet betaald">${currency(totals.unpaid)}</td></tr>`)
+    .map(([name, totals]) => `<tr><td data-label="Client">${escapeHTML(name)}</td><td data-label="Omzet">${currency(totals.total)}</td><td data-label="Betaald">${currency(totals.paid)}</td><td data-label="Niet betaald">${currency(totals.unpaid)}</td></tr>`)
     .join("") || `<tr><td colspan="4">Nog geen omzet voor deze selectie.</td></tr>`;
 
   const byMonth = new Map();
@@ -3698,8 +3653,6 @@ function renderFinance() {
 
 function renderAdministration() {
   if (!isTrainer()) return;
-  const adminChanged = ensureAppointmentAdminItems();
-  if (adminChanged) saveState();
   const adminItems = financeAdminItems();
   const monthFilter = state.ui.financeMonth || "";
   const clientFilter = state.ui.financeClientId || "";
@@ -3741,11 +3694,11 @@ function renderAdministration() {
             <small>${currency(item.amount || 0)}</small>
           </div>
           <div class="finance-card-actions">
-            <select data-admin-status="${item.id}">
+            <select data-admin-status="${escapeHTML(item.id)}">
               ${paymentStatusOptions(item.status)}
             </select>
-            <button class="secondary-btn" data-save-admin="${item.id}" type="button">Opslaan</button>
-            <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijderen</button>
+            <button class="secondary-btn" data-save-admin="${escapeHTML(item.id)}" type="button">Opslaan</button>
+            <button class="danger-btn" data-remove-admin="${escapeHTML(item.id)}" type="button">Verwijderen</button>
           </div>
         </div>
       `).join("")
@@ -3761,19 +3714,19 @@ function renderAdministration() {
             <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
             <span class="muted">Pakket: ${escapeHTML(item.clientId ? clientPackageLabel(state.clients.find((clientItem) => clientItem.id === item.clientId)) : "Geen pakket gekozen")}</span>
             <div class="invoice-edit-grid">
-              <label class="field"><span>Omschrijving</span><input data-invoice-description="${item.id}" value="${escapeHTML(item.description || "")}" /></label>
-              <label class="field"><span>Bedrag</span><input data-invoice-amount="${item.id}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
-              <label class="field"><span>Factuurdatum</span><input data-invoice-date="${item.id}" type="date" value="${escapeHTML(item.date || todayISO())}" /></label>
-              <label class="field"><span>Vervaldatum</span><input data-invoice-due="${item.id}" type="date" value="${escapeHTML(item.dueDate || "")}" /></label>
+              <label class="field"><span>Omschrijving</span><input data-invoice-description="${escapeHTML(item.id)}" value="${escapeHTML(item.description || "")}" /></label>
+              <label class="field"><span>Bedrag</span><input data-invoice-amount="${escapeHTML(item.id)}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
+              <label class="field"><span>Factuurdatum</span><input data-invoice-date="${escapeHTML(item.id)}" type="date" value="${escapeHTML(item.date || todayISO())}" /></label>
+              <label class="field"><span>Vervaldatum</span><input data-invoice-due="${escapeHTML(item.id)}" type="date" value="${escapeHTML(item.dueDate || "")}" /></label>
             </div>
           </div>
           <div class="finance-card-actions invoice-actions">
-            <select data-admin-status="${item.id}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
+            <select data-admin-status="${escapeHTML(item.id)}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
               ${paymentStatusOptions(item.status)}
             </select>
-            <button class="primary-btn" data-save-invoice="${item.id}" type="button">Factuur opslaan</button>
-            <button class="secondary-btn" data-download-invoice="${item.id}" type="button">Download factuur</button>
-            <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijderen</button>
+            <button class="primary-btn" data-save-invoice="${escapeHTML(item.id)}" type="button">Factuur opslaan</button>
+            <button class="secondary-btn" data-download-invoice="${escapeHTML(item.id)}" type="button">Download factuur</button>
+            <button class="danger-btn" data-remove-admin="${escapeHTML(item.id)}" type="button">Verwijderen</button>
           </div>
         </div>
       `).join("")
@@ -3805,19 +3758,19 @@ function renderInvoicePage() {
           <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
           <span class="muted">Pakket: ${escapeHTML(item.clientId ? clientPackageLabel(state.clients.find((clientItem) => clientItem.id === item.clientId)) : "Geen pakket gekozen")}</span>
           <div class="invoice-edit-grid">
-            <label class="field"><span>Omschrijving</span><input data-invoice-description="${item.id}" value="${escapeHTML(item.description || "")}" /></label>
-            <label class="field"><span>Bedrag</span><input data-invoice-amount="${item.id}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
-            <label class="field"><span>Factuurdatum</span><input data-invoice-date="${item.id}" type="date" value="${escapeHTML(item.date || todayISO())}" /></label>
-            <label class="field"><span>Vervaldatum</span><input data-invoice-due="${item.id}" type="date" value="${escapeHTML(item.dueDate || "")}" /></label>
+            <label class="field"><span>Omschrijving</span><input data-invoice-description="${escapeHTML(item.id)}" value="${escapeHTML(item.description || "")}" /></label>
+            <label class="field"><span>Bedrag</span><input data-invoice-amount="${escapeHTML(item.id)}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
+            <label class="field"><span>Factuurdatum</span><input data-invoice-date="${escapeHTML(item.id)}" type="date" value="${escapeHTML(item.date || todayISO())}" /></label>
+            <label class="field"><span>Vervaldatum</span><input data-invoice-due="${escapeHTML(item.id)}" type="date" value="${escapeHTML(item.dueDate || "")}" /></label>
           </div>
         </div>
         <div class="finance-card-actions invoice-actions">
-          <select data-admin-status="${item.id}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
+          <select data-admin-status="${escapeHTML(item.id)}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
             ${paymentStatusOptions(item.status)}
           </select>
-          <button class="primary-btn" data-save-invoice="${item.id}" type="button">Factuur opslaan</button>
-          <button class="secondary-btn" data-download-invoice="${item.id}" type="button">Download factuur</button>
-          <button class="danger-btn" data-remove-admin="${item.id}" type="button">Verwijderen</button>
+          <button class="primary-btn" data-save-invoice="${escapeHTML(item.id)}" type="button">Factuur opslaan</button>
+          <button class="secondary-btn" data-download-invoice="${escapeHTML(item.id)}" type="button">Download factuur</button>
+          <button class="danger-btn" data-remove-admin="${escapeHTML(item.id)}" type="button">Verwijderen</button>
         </div>
       </div>
     `).join("")
@@ -3903,14 +3856,14 @@ function renderSettingsPage() {
             return `
               <div class="settings-type-row" style="--type-color:${color}">
                 <span class="type-swatch" style="background:${color}"></span>
-                <input data-settings-type-name="${type.id}" value="${escapeHTML(type.name || "")}" />
-                <input data-settings-type-duration="${type.id}" type="number" min="0" step="5" value="${escapeHTML(type.duration ?? "")}" placeholder="min" />
-                <input data-settings-type-price="${type.id}" type="number" min="0" step="0.01" value="${escapeHTML(type.price ?? "")}" placeholder="prijs" />
-                <input data-settings-type-category="${type.id}" value="${escapeHTML(type.category || "")}" placeholder="categorie" />
-                <input data-settings-type-location="${type.id}" value="${escapeHTML(type.location || "")}" placeholder="locatie" />
-                <input data-settings-type-color="${type.id}" type="color" value="${escapeHTML(color)}" />
-                <button class="secondary-btn" data-save-settings-appointment-type="${type.id}" type="button">Opslaan</button>
-                <button class="danger-btn" data-remove-settings-appointment-type="${type.id}" type="button">Verwijderen</button>
+                <input data-settings-type-name="${escapeHTML(type.id)}" value="${escapeHTML(type.name || "")}" />
+                <input data-settings-type-duration="${escapeHTML(type.id)}" type="number" min="0" step="5" value="${escapeHTML(type.duration ?? "")}" placeholder="min" />
+                <input data-settings-type-price="${escapeHTML(type.id)}" type="number" min="0" step="0.01" value="${escapeHTML(type.price ?? "")}" placeholder="prijs" />
+                <input data-settings-type-category="${escapeHTML(type.id)}" value="${escapeHTML(type.category || "")}" placeholder="categorie" />
+                <input data-settings-type-location="${escapeHTML(type.id)}" value="${escapeHTML(type.location || "")}" placeholder="locatie" />
+                <input data-settings-type-color="${escapeHTML(type.id)}" type="color" value="${escapeHTML(color)}" />
+                <button class="secondary-btn" data-save-settings-appointment-type="${escapeHTML(type.id)}" type="button">Opslaan</button>
+                <button class="danger-btn" data-remove-settings-appointment-type="${escapeHTML(type.id)}" type="button">Verwijderen</button>
               </div>
             `;
           }).join("")}
@@ -3919,9 +3872,9 @@ function renderSettingsPage() {
           <h3 class="settings-subtitle">Tarieven</h3>
           ${rates.map((rate) => `
             <div class="settings-rate-row">
-              <input data-settings-rate-name="${rate.id}" value="${escapeHTML(rate.name || "")}" />
-              <input data-settings-rate-amount="${rate.id}" type="number" min="0" step="0.01" value="${escapeHTML(rate.amount ?? "")}" />
-              <button class="secondary-btn" data-save-settings-rate="${rate.id}" type="button">Tarief opslaan</button>
+              <input data-settings-rate-name="${escapeHTML(rate.id)}" value="${escapeHTML(rate.name || "")}" />
+              <input data-settings-rate-amount="${escapeHTML(rate.id)}" type="number" min="0" step="0.01" value="${escapeHTML(rate.amount ?? "")}" />
+              <button class="secondary-btn" data-save-settings-rate="${escapeHTML(rate.id)}" type="button">Tarief opslaan</button>
             </div>
           `).join("")}
         </div>
@@ -3973,7 +3926,6 @@ function renderWeekLabels() {
 }
 
 function renderAll() {
-  saveState();
   renderRoleVisibility();
   renderWeekLabels();
   renderSelectors();
@@ -4089,23 +4041,25 @@ async function addClient(form) {
   profile.goals.targetWeight = data.get("targetWeight") === "" ? "" : number(data.get("targetWeight"));
   state.clients.push(profile);
   state.ui.selectedClientId = profile.id;
-  form.reset();
-  form.elements.password.value = "client123";
+
   saveState();
   renderAll();
   if (isOnlineMode()) {
     try {
-      if (message) message.textContent = "Client gekoppeld. Uitnodigingsmail wordt verzonden...";
-      await saveStateToCloud();
-      await inviteClientOnline(profile);
+      if (message) message.textContent = "Client opslaan...";
+      window.clearTimeout(cloudSaveTimer);
+      const saved = await saveStateToCloud();
+      if (!saved.ok) throw saved.error;
+      const invitation = await inviteClientOnline(profile);
+      form.reset();
       if (message) {
         message.className = "form-note ok";
-        message.textContent = "Client gekoppeld en uitnodigingsmail verzonden.";
+        message.textContent = invitation?.alreadyRegistered ? "Client opgeslagen. Dit e-mailadres heeft al een account; er is geen nieuwe uitnodigingsmail verstuurd." : "Client gekoppeld en uitnodigingsmail verzonden.";
       }
     } catch (error) {
       if (message) {
         message.className = "form-note error";
-        message.textContent = `Client is toegevoegd, maar de uitnodigingsmail lukte niet: ${error.message}`;
+        message.textContent = `Niet voltooid. Controleer de opslagstatus; invoer is behouden. ${error.message}`;
       }
     }
   } else if (message) {
@@ -4172,9 +4126,9 @@ function renderMealOption(item, index, checklist = false) {
   return `
     <div class="meal-option-card">
       <div class="meal-option-main">
-        <strong>${item.meal}</strong>
+        <strong>${escapeHTML(item.meal)}</strong>
         <small>${escapeHTML(item.schemaName || "Voedingsschema")}</small>
-        <span>${item.items || "-"}</span>
+        <span>${escapeHTML(item.items || "-")}</span>
         <p>${fmt(item.kcal)} kcal | ${fmt(item.protein)}g eiwit | ${fmt(item.carbs)}g kh | ${fmt(item.fat)}g vet</p>
       </div>
       ${
@@ -4188,7 +4142,7 @@ function renderMealOption(item, index, checklist = false) {
             </label>
             <label class="field">
               <span>Opmerking / vervanging</span>
-              <textarea data-meal-alternative="${index}" rows="2" placeholder="Bij anders gegeten: wat was anders?">${mealLog.alternative || ""}</textarea>
+              <textarea data-meal-alternative="${index}" rows="2" placeholder="Bij anders gegeten: wat was anders?">${escapeHTML(mealLog.alternative || "")}</textarea>
             </label>
           `
           : `${isTrainer() ? `<button class="danger-btn" data-remove-meal="${index}" type="button">Verwijder</button>` : ""}`
@@ -4227,8 +4181,8 @@ function renderFoodLogCards(selected, entries) {
               return `
                 <div class="food-log-card">
                   <div>
-                    <strong>${item.name}</strong>
-                    <span>${item.logType === "nutrition-log" ? `${mealTypeLabel(item.mealType)} | ${item.status || "Nog niet ingevuld"}` : `${fmt(item.amount ?? item.grams, item.unit === "l" ? 2 : 0)}${item.unit || "g"}`}${item.note ? ` | ${item.note}` : ""}</span>
+                    <strong>${escapeHTML(item.name)}</strong>
+                    <span>${item.logType === "nutrition-log" ? `${mealTypeLabel(item.mealType)} | ${escapeHTML(item.status || "Nog niet ingevuld")}` : `${fmt(item.amount ?? item.grams, item.unit === "l" ? 2 : 0)}${escapeHTML(item.unit || "g")}`}${item.note ? ` | ${escapeHTML(item.note)}` : ""}</span>
                   </div>
                   <div class="food-log-macros">
                     <span>${fmt(item.kcal)} kcal</span>
@@ -4262,7 +4216,7 @@ function mealOptionsForType(selected, mealType) {
 function plannedMealOptionOptions(selected, mealType, selectedId = "") {
   const options = mealOptionsForType(selected, mealType);
   return `<option value="">Kies optie uit schema</option>${options
-    .map((item) => `<option value="${item.id}" ${item.id === selectedId ? "selected" : ""}>${item.meal}</option>`)
+    .map((item) => `<option value="${escapeHTML(item.id)}" ${item.id === selectedId ? "selected" : ""}>${escapeHTML(item.meal)}</option>`)
     .join("")}`;
 }
 
@@ -4305,9 +4259,9 @@ function renderDailyFoodLogGrid(selected) {
               <select data-food-status="${activeDay.date}:${mealType}">
                 ${["", "Gegeten zoals plan", "Anders gegeten", "Niet gegeten"].map((value) => `<option value="${value}" ${value === (entry.status || "") ? "selected" : ""}>${value || "Nog niet ingevuld"}</option>`).join("")}
               </select>
-              <textarea data-food-note="${activeDay.date}:${mealType}" rows="2" placeholder="Opmerking">${entry.note || ""}</textarea>
+              <textarea data-food-note="${activeDay.date}:${mealType}" rows="2" placeholder="Opmerking">${escapeHTML(entry.note || "")}</textarea>
               <button class="primary-btn tracker-save-btn" data-save-food-log="${activeDay.date}:${mealType}" type="button">Opslaan</button>
-              <span class="save-feedback" data-save-feedback="food-${activeDay.date}-${mealType}">${entry.savedAt ? "Opgeslagen" : ""}</span>
+              <span class="save-feedback" data-save-feedback="food-${activeDay.date}-${mealType}">${entry.savedAt && (!isOnlineMode() || FMZSync.equal(cloudBaseline?.clients?.find(c => c.id === selected.id)?.foodLog?.find(e => e.id === entry.id), entry)) ? "Opgeslagen" : ""}</span>
             </div>
           `;
         }).join("")}
@@ -4348,10 +4302,9 @@ function renderNutritionLog() {
   $("#actualFoodLogCards").innerHTML = renderFoodLogCards(selected, visibleEntries);
 }
 
-async function saveFoodLogEntry(date, mealType) {
+function collectFoodLogEntry(date, mealType) {
   const selected = client();
   if (!hasSelectedClient(selected)) return;
-  const key = `food-${date}-${mealType}`;
   const planMealId = document.querySelector(`[data-food-plan="${date}:${mealType}"]`)?.value || "";
   const status = document.querySelector(`[data-food-status="${date}:${mealType}"]`)?.value || "";
   const note = document.querySelector(`[data-food-note="${date}:${mealType}"]`)?.value || "";
@@ -4378,10 +4331,16 @@ async function saveFoodLogEntry(date, mealType) {
   entry.carbs = status === "Gegeten zoals plan" ? number(planned?.carbs) : 0;
   entry.fat = status === "Gegeten zoals plan" ? number(planned?.fat) : 0;
   entry.savedAt = new Date().toISOString();
+  return entry;
+}
+
+async function saveFoodLogEntry(date, mealType) {
+  if (!collectFoodLogEntry(date, mealType)) return;
+  const key = `food-${date}-${mealType}`;
 
   saveState();
   try {
-    if (isOnlineMode() && onlineProfile && !onlineReady) {
+    if (isOnlineMode() && (!onlineProfile || !onlineReady)) {
       throw new Error("Online verbinding is nog niet klaar.");
     }
     if (isOnlineMode() && onlineReady && onlineProfile) {
@@ -4446,18 +4405,18 @@ function generateRecipes(target, mealType, style) {
 }
 
 function recipeIngredients(recipe) {
-  return recipe.rows.map((item) => `${item.name} ${formatRecipeAmount(item.grams)}`).join(", ");
+  return recipe.rows.map((item) => `${escapeHTML(item.name)} ${formatRecipeAmount(item.grams)}`).join(", ");
 }
 
 function notifyAppointment(clientId, appointmentId) {
   const selected = state.clients.find((item) => item.id === clientId);
   const appointment = selected?.appointments.find((item) => item.id === appointmentId);
   if (!selected || !appointment) return;
-  const body = `${appointment.type || "Afspraak"} op ${appointment.date} om ${appointment.time}`;
+  const body = `${escapeHTML(appointment.type || "Afspraak")} op ${escapeHTML(appointment.date)} om ${escapeHTML(appointment.time)}`;
   if ("Notification" in window && Notification.permission === "granted") {
-    new Notification(`Afspraak voor ${selected.name}`, { body });
+    new Notification(`Afspraak voor ${escapeHTML(selected.name)}`, { body });
   } else {
-    alert(`Melding: ${selected.name} - ${body}`);
+    alert(`Melding: ${escapeHTML(selected.name)} - ${body}`);
   }
 }
 
@@ -4546,7 +4505,7 @@ document.addEventListener("click", async (event) => {
   }
   if (target.dataset.selectClient) {
     state.ui.selectedClientId = target.dataset.selectClient;
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.editGoals) {
     state.ui.selectedClientId = target.dataset.editGoals;
@@ -4563,8 +4522,10 @@ document.addEventListener("click", async (event) => {
       if (!isOnlineMode() || !onlineProfile || onlineProfile.role !== "trainer") {
         throw new Error("Log online in als trainer om uitnodigingen te versturen.");
       }
+      const saved=await saveStateToCloud();
+      if(!saved.ok) throw saved.error;
       await inviteClientOnline(selectedClient);
-      setSaveFeedback(key, "Uitnodiging verzonden");
+      setSaveFeedback(key, "Uitnodiging verwerkt; bestaande accounts ontvangen geen nieuwe uitnodigingsmail.");
     } catch (error) {
       setSaveFeedback(key, `Versturen mislukt: ${error.message}`, true);
     }
@@ -4584,7 +4545,7 @@ document.addEventListener("click", async (event) => {
     if (!confirm(`Client ${selectedClient.name} verwijderen?`)) return;
     state.clients = state.clients.filter((item) => item.id !== selectedClient.id);
     if (state.ui.selectedClientId === selectedClient.id) state.ui.selectedClientId = state.clients[0]?.id || "";
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.removeTraining) {
     client().trainingPlan.splice(Number(target.dataset.removeTraining), 1);
@@ -4647,15 +4608,15 @@ document.addEventListener("click", async (event) => {
   }
   if (target.dataset.removeFood) {
     client().foodLog.splice(Number(target.dataset.removeFood), 1);
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.removeCalc) {
     state.trainerCalc.splice(Number(target.dataset.removeCalc), 1);
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.resetCalc !== undefined) {
     state.trainerCalc = [];
-    renderAll();
+    saveState(); renderAll();
     return;
   }
   if (target.dataset.resetFinance !== undefined) {
@@ -4675,25 +4636,25 @@ document.addEventListener("click", async (event) => {
   if (target.dataset.saveAppointmentType) {
     const type = appointmentTypes().find((item) => item.id === target.dataset.saveAppointmentType);
     if (!type) return;
-    type.name = String(document.querySelector(`[data-appointment-type-name="${type.id}"]`)?.value || type.name).trim() || "Afspraaksoort";
-    type.duration = document.querySelector(`[data-appointment-type-duration="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-duration="${type.id}"]`)?.value, 0);
-    type.price = document.querySelector(`[data-appointment-type-price="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-price="${type.id}"]`)?.value, 0);
-    type.category = String(document.querySelector(`[data-appointment-type-category="${type.id}"]`)?.value || "").trim();
-    type.location = String(document.querySelector(`[data-appointment-type-location="${type.id}"]`)?.value || "").trim();
-    type.capacity = document.querySelector(`[data-appointment-type-capacity="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-capacity="${type.id}"]`)?.value, 0);
-    type.color = document.querySelector(`[data-appointment-type-color="${type.id}"]`)?.value || "#c89312";
+    type.name = String(document.querySelector(`[data-appointment-type-name="${escapeHTML(type.id)}"]`)?.value || type.name).trim() || "Afspraaksoort";
+    type.duration = document.querySelector(`[data-appointment-type-duration="${escapeHTML(type.id)}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-duration="${escapeHTML(type.id)}"]`)?.value, 0);
+    type.price = document.querySelector(`[data-appointment-type-price="${escapeHTML(type.id)}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-price="${escapeHTML(type.id)}"]`)?.value, 0);
+    type.category = String(document.querySelector(`[data-appointment-type-category="${escapeHTML(type.id)}"]`)?.value || "").trim();
+    type.location = String(document.querySelector(`[data-appointment-type-location="${escapeHTML(type.id)}"]`)?.value || "").trim();
+    type.capacity = document.querySelector(`[data-appointment-type-capacity="${escapeHTML(type.id)}"]`)?.value === "" ? "" : number(document.querySelector(`[data-appointment-type-capacity="${escapeHTML(type.id)}"]`)?.value, 0);
+    type.color = document.querySelector(`[data-appointment-type-color="${escapeHTML(type.id)}"]`)?.value || "#c89312";
     await persistActionFeedback(null, "Afspraaksoort opgeslagen");
     return;
   }
   if (target.dataset.saveSettingsAppointmentType) {
     const type = appointmentTypes().find((item) => item.id === target.dataset.saveSettingsAppointmentType);
     if (!type) return;
-    type.name = String(document.querySelector(`[data-settings-type-name="${type.id}"]`)?.value || type.name).trim() || "Afspraaksoort";
-    type.duration = document.querySelector(`[data-settings-type-duration="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-settings-type-duration="${type.id}"]`)?.value, 0);
-    type.price = document.querySelector(`[data-settings-type-price="${type.id}"]`)?.value === "" ? "" : number(document.querySelector(`[data-settings-type-price="${type.id}"]`)?.value, 0);
-    type.category = String(document.querySelector(`[data-settings-type-category="${type.id}"]`)?.value || "").trim();
-    type.location = String(document.querySelector(`[data-settings-type-location="${type.id}"]`)?.value || "").trim();
-    type.color = document.querySelector(`[data-settings-type-color="${type.id}"]`)?.value || "#c89312";
+    type.name = String(document.querySelector(`[data-settings-type-name="${escapeHTML(type.id)}"]`)?.value || type.name).trim() || "Afspraaksoort";
+    type.duration = document.querySelector(`[data-settings-type-duration="${escapeHTML(type.id)}"]`)?.value === "" ? "" : number(document.querySelector(`[data-settings-type-duration="${escapeHTML(type.id)}"]`)?.value, 0);
+    type.price = document.querySelector(`[data-settings-type-price="${escapeHTML(type.id)}"]`)?.value === "" ? "" : number(document.querySelector(`[data-settings-type-price="${escapeHTML(type.id)}"]`)?.value, 0);
+    type.category = String(document.querySelector(`[data-settings-type-category="${escapeHTML(type.id)}"]`)?.value || "").trim();
+    type.location = String(document.querySelector(`[data-settings-type-location="${escapeHTML(type.id)}"]`)?.value || "").trim();
+    type.color = document.querySelector(`[data-settings-type-color="${escapeHTML(type.id)}"]`)?.value || "#c89312";
     await persistActionFeedback(null, "Afspraaktype opgeslagen");
     renderSettingsPage();
     renderAgenda();
@@ -4715,8 +4676,8 @@ document.addEventListener("click", async (event) => {
   if (target.dataset.saveSettingsRate) {
     const rate = rateById(target.dataset.saveSettingsRate);
     if (!rate) return;
-    rate.name = String(document.querySelector(`[data-settings-rate-name="${rate.id}"]`)?.value || rate.name).trim() || "Tarief";
-    rate.amount = number(document.querySelector(`[data-settings-rate-amount="${rate.id}"]`)?.value, 0);
+    rate.name = String(document.querySelector(`[data-settings-rate-name="${escapeHTML(rate.id)}"]`)?.value || rate.name).trim() || "Tarief";
+    rate.amount = number(document.querySelector(`[data-settings-rate-amount="${escapeHTML(rate.id)}"]`)?.value, 0);
     await persistActionFeedback(null, "Tarief opgeslagen");
     renderSettingsPage();
     renderFinance();
@@ -4742,11 +4703,11 @@ document.addEventListener("click", async (event) => {
   if (target.dataset.saveRate) {
     const rate = rateById(target.dataset.saveRate);
     if (!rate) return;
-    const nameInput = document.querySelector(`[data-rate-name="${rate.id}"]`);
-    const amountInput = document.querySelector(`[data-rate-amount="${rate.id}"]`);
+    const nameInput = document.querySelector(`[data-rate-name="${escapeHTML(rate.id)}"]`);
+    const amountInput = document.querySelector(`[data-rate-amount="${escapeHTML(rate.id)}"]`);
     rate.name = String(nameInput?.value || rate.name).trim() || "Tarief";
     rate.amount = number(amountInput?.value, 0);
-    renderAll();
+    saveState(); renderAll();
     return;
   }
   if (target.dataset.saveFinance) {
@@ -4762,13 +4723,13 @@ document.addEventListener("click", async (event) => {
     appointment.amount = amountInput === "" ? "" : number(amountInput, 0);
     appointment.paymentStatus = document.querySelector(`[data-finance-payment="${clientId}:${appointmentId}"]`)?.value === "paid" ? "paid" : "unpaid";
     syncAppointmentAdminItem(selected, appointment);
-    renderAll();
+    saveState(); renderAll();
     return;
   }
   if (target.dataset.saveAdmin) {
     const item = financeAdminItems().find((entry) => entry.id === target.dataset.saveAdmin);
     if (!item) return;
-    const statusInput = target.closest(".finance-card")?.querySelector(`[data-admin-status="${item.id}"]`) || document.querySelector(`[data-admin-status="${item.id}"]`);
+    const statusInput = target.closest(".finance-card")?.querySelector(`[data-admin-status="${escapeHTML(item.id)}"]`) || document.querySelector(`[data-admin-status="${escapeHTML(item.id)}"]`);
     item.status = statusInput?.value === "paid" ? "paid" : "unpaid";
     syncAppointmentFromAdminItem(item);
     const ok = await persistActionFeedback(null, "Administratie opgeslagen");
@@ -4778,15 +4739,15 @@ document.addEventListener("click", async (event) => {
   if (target.dataset.saveInvoice) {
     const item = financeAdminItems().find((entry) => entry.id === target.dataset.saveInvoice);
     if (!item) return;
-    item.description = String(document.querySelector(`[data-invoice-description="${item.id}"]`)?.value || item.description).trim() || "Factuur";
-    item.amount = number(document.querySelector(`[data-invoice-amount="${item.id}"]`)?.value, 0);
-    item.date = document.querySelector(`[data-invoice-date="${item.id}"]`)?.value || item.date || todayISO();
-    item.dueDate = document.querySelector(`[data-invoice-due="${item.id}"]`)?.value || item.dueDate || "";
-    const statusInput = target.closest(".finance-card")?.querySelector(`[data-admin-status="${item.id}"]`) || document.querySelector(`[data-admin-status="${item.id}"]`);
+    item.description = String(document.querySelector(`[data-invoice-description="${escapeHTML(item.id)}"]`)?.value || item.description).trim() || "Factuur";
+    item.amount = number(document.querySelector(`[data-invoice-amount="${escapeHTML(item.id)}"]`)?.value, 0);
+    item.date = document.querySelector(`[data-invoice-date="${escapeHTML(item.id)}"]`)?.value || item.date || todayISO();
+    item.dueDate = document.querySelector(`[data-invoice-due="${escapeHTML(item.id)}"]`)?.value || item.dueDate || "";
+    const statusInput = target.closest(".finance-card")?.querySelector(`[data-admin-status="${escapeHTML(item.id)}"]`) || document.querySelector(`[data-admin-status="${escapeHTML(item.id)}"]`);
     item.status = statusInput?.value === "paid" ? "paid" : "unpaid";
     syncAppointmentFromAdminItem(item);
     await persistActionFeedback(null, "Factuur opgeslagen");
-    renderAll();
+    saveState(); renderAll();
     return;
   }
   if (target.dataset.createPackageInvoice !== undefined) {
@@ -4944,7 +4905,7 @@ document.addEventListener("click", async (event) => {
     } else {
       state.ui.trackingWeekStart = addDaysISO(activeWeekStart(), Number(target.dataset.trackingWeek) * 7);
     }
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.notify) {
     const [clientId, appointmentId] = target.dataset.notify.split(":");
@@ -4970,7 +4931,7 @@ document.addEventListener("click", async (event) => {
     appointment.type = nextType || appointment.type || "Afspraak";
     appointment.location = nextLocation || appointment.location || "";
     syncAppointmentAdminItem(selected, appointment);
-    renderAll();
+    saveState(); renderAll();
     return;
   }
   if (target.dataset.deleteAppointment) {
@@ -4979,23 +4940,34 @@ document.addEventListener("click", async (event) => {
     const selected = state.clients.find((item) => item.id === clientId);
     const appointment = selected?.appointments.find((item) => item.id === appointmentId);
     if (!selected || !appointment) return;
-    if (!confirm(`Afspraak ${appointment.date || ""} ${appointment.time || ""} verwijderen?`)) return;
+    if (!confirm(`Afspraak ${escapeHTML(appointment.date || "")} ${escapeHTML(appointment.time || "")} verwijderen?`)) return;
     selected.appointments = selected.appointments.filter((item) => item.id !== appointmentId);
     state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.appointmentId !== appointmentId);
-    renderAll();
+    saveState(); renderAll();
     return;
+  }
+  if (target.dataset.expandRepeat) {
+    if(!isTrainer()) return;
+    const [clientId,id]=target.dataset.expandRepeat.split(':');
+    const selected=state.clients.find(c=>c.id===clientId), appointment=selected?.appointments.find(a=>a.id===id);
+    if(!appointment?.repeat) return;
+    if(!confirm('Maak maximaal 12 afspraken van deze herhaling? Vervolgafspraken krijgen geen automatische facturen of kosten.'))return;
+    const series=FMZSync.occurrences(appointment);
+    Object.assign(appointment,series[0]);
+    for(const occurrence of series.slice(1)) if(!selected.appointments.some(a=>a.id===occurrence.id)) selected.appointments.push(occurrence);
+    await persistActionFeedback(null,'Herhaling toegepast');
   }
   if (target.id === "prevWeek") {
     state.ui.calendarWeekStart = addDaysISO(state.ui.calendarWeekStart, -7);
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.id === "todayWeek") {
     state.ui.calendarWeekStart = startOfWeekISO();
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.id === "nextWeek") {
     state.ui.calendarWeekStart = addDaysISO(state.ui.calendarWeekStart, 7);
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.setAppointmentDate) {
     openAppointmentModal({
@@ -5013,7 +4985,7 @@ document.addEventListener("keydown", (event) => {
 $("#clientSelect").addEventListener("change", (event) => {
   if (!isTrainer()) return;
   state.ui.selectedClientId = event.target.value;
-  renderAll();
+  saveState(); renderAll();
 });
 
 $("#memberFilter").addEventListener("change", renderTrainerDashboard);
@@ -5163,12 +5135,14 @@ $("#registerForm").addEventListener("submit", async (event) => {
   setRememberPreference(remember, email, role);
   if (isOnlineMode()) {
     try {
+      if (!supabaseClient) throw new Error("Online inloggen niet beschikbaar. Vernieuw de pagina.");
+      if (role === "trainer") throw new Error("Traineraccounts worden door de beheerder toegekend. Neem contact op voor toegang.");
       message.textContent = "Account wordt aangemaakt...";
       const { data: authData, error } = await supabaseClient.auth.signUp({
         email,
         password,
         options: {
-          data: { role, name },
+          data: { name },
           emailRedirectTo: APP_AUTH_REDIRECT_URL
         }
       });
@@ -5286,11 +5260,11 @@ $("#loginForm").addEventListener("submit", async (event) => {
 });
 
 $("#logoutButton").addEventListener("click", async () => {
+  if (hasPendingChanges() && !confirm("Je hebt niet-opgeslagen invoer. Deze blijft alleen in dit tabblad beschikbaar voor hetzelfde account. Exporteer eerst als je het tabblad wilt sluiten. Toch uitloggen?")) return;
   if (isOnlineMode()) {
-    await supabaseClient.auth.signOut();
-    onlineProfile = null;
-    onlineReady = false;
-    onlineErrorMessage = "";
+    lockOnlineSession();
+    const {error} = await supabaseClient.auth.signOut();
+    if (error) syncStatus("Uitloggen bij de server mislukt. De lokale interface is afgesloten.","error");
   }
   logout();
 });
@@ -5321,7 +5295,7 @@ $("#goalForm").addEventListener("submit", async (event) => {
     selected.goals[key] = value === "" ? "" : number(value);
   });
   await persistActionFeedback(null, "Doelen opgeslagen");
-  renderAll();
+  saveState(); renderAll();
 });
 
 $("#trainingForm").addEventListener("submit", (event) => {
@@ -5370,7 +5344,7 @@ $("#exerciseLibraryForm").addEventListener("submit", (event) => {
     image: String(data.get("image") || "").trim() || EXERCISE_IMAGE_FALLBACK
   });
   event.currentTarget.reset();
-  renderAll();
+  saveState(); renderAll();
 });
 
 $("#nutritionPlanForm").addEventListener("submit", (event) => {
@@ -5422,7 +5396,7 @@ $("#recipeForm").addEventListener("submit", (event) => {
             <strong>${recipe.name}</strong>
           </div>
           <ul class="ingredient-list">
-            ${recipe.rows.map((item) => `<li><span>${item.name}</span><strong>${formatRecipeAmount(item.grams)}</strong></li>`).join("")}
+            ${recipe.rows.map((item) => `<li><span>${escapeHTML(item.name)}</span><strong>${formatRecipeAmount(item.grams)}</strong></li>`).join("")}
           </ul>
           <p>${fmt(recipe.totals.kcal)} kcal | ${fmt(recipe.totals.protein)}g eiwit | ${fmt(recipe.totals.carbs)}g kh | ${fmt(recipe.totals.fat)}g vet</p>
           <button class="primary-btn" data-add-recipe-option="${index}" type="button">Kies voor voedingsplan</button>
@@ -5439,7 +5413,7 @@ $("#macroForm").addEventListener("submit", (event) => {
   const grams = number(data.get("grams"));
   if (!product || !grams) return;
   state.trainerCalc.push(foodEntryFromProduct(product, grams, "g", "Trainerberekening"));
-  renderAll();
+  saveState(); renderAll();
 });
 
 $("#financeRateForm").addEventListener("submit", (event) => {
@@ -5452,7 +5426,7 @@ $("#financeRateForm").addEventListener("submit", (event) => {
     amount: number(data.get("amount"), 0)
   });
   event.currentTarget.reset();
-  renderAll();
+  saveState(); renderAll();
 });
 
 $("#financeAdminForm").addEventListener("submit", async (event) => {
@@ -5516,12 +5490,21 @@ $("#measurementForm").addEventListener("submit", (event) => {
     leg: number(data.get("leg"))
   });
   event.currentTarget.reset();
-  renderAll();
+  saveState(); renderAll();
 });
 
 $("#appointmentForm").addEventListener("submit", async (event) => {
   event.preventDefault();
-  const data = new FormData(event.currentTarget);
+  if(!isTrainer()) return;
+  const form=event.currentTarget;
+  if(form.dataset.saving) return;
+  if(form.dataset.pendingAppointment) {
+    form.dataset.saving='true';
+    try { if(await persistActionFeedback(null,'Afspraak ingepland')) {delete form.dataset.pendingAppointment;form.reset();closeAppointmentModal();} }
+    finally {delete form.dataset.saving;}
+    return;
+  }
+  const data = new FormData(form);
   const selected = state.clients.find((item) => item.id === data.get("clientId"));
   if (!selected) return;
   const rate = rateById(data.get("rateId"));
@@ -5545,11 +5528,14 @@ $("#appointmentForm").addEventListener("submit", async (event) => {
     paymentStatus: "unpaid",
     adminItemSuppressed: false
   };
-  selected.appointments.push(appointment);
-  syncAppointmentAdminItem(selected, appointment);
-  event.currentTarget.reset();
-  closeAppointmentModal();
+  const series = FMZSync.occurrences(appointment);
+  selected.appointments.push(...series);
+  syncAppointmentAdminItem(selected, series[0]);
+  form.dataset.pendingAppointment=appointment.id;
+  form.dataset.saving='true';
   const ok = await persistActionFeedback(null, "Afspraak ingepland");
+  delete form.dataset.saving;
+  if(ok) {delete form.dataset.pendingAppointment;form.reset();closeAppointmentModal();}
   if (!ok) alert("Afspraak opslaan mislukt.");
 });
 
@@ -5559,12 +5545,18 @@ $("#notificationPermission")?.addEventListener("click", async () => {
     return;
   }
   await Notification.requestPermission();
-  renderAll();
+  saveState(); renderAll();
 });
 
 document.addEventListener("input", (event) => {
   const target = event.target;
   const selected = client();
+  const foodKey = target.dataset.foodNote || target.dataset.foodStatus || target.dataset.foodPlan;
+  if (foodKey) {
+    const [date, mealType] = foodKey.split(':');
+    collectFoodLogEntry(date, mealType);
+    syncStatus('Niet-opgeslagen invoer');
+  }
   if (target.dataset.trainingLog) {
     const [index, key] = target.dataset.trainingLog.split(":");
     if (selected.trainingPlan[Number(index)]) {
@@ -5625,14 +5617,14 @@ document.addEventListener("change", async (event) => {
     const weightEntries = progressWeekEntries(selected);
     weightEntries[Number(target.dataset.weightIndex)].value = target.value;
     selected.dailyWeight = weightEntries;
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.progress) {
     const [index, key] = target.dataset.progress.split(":");
     const weightEntries = progressWeekEntries(selected);
     weightEntries[Number(index)][key] = target.value;
     selected.dailyWeight = weightEntries;
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.progressFile) {
     const [index, key] = target.dataset.progressFile.split(":");
@@ -5673,7 +5665,7 @@ document.addEventListener("change", async (event) => {
   if (target.dataset.wellbeing) {
     const [index, key] = target.dataset.wellbeing.split(":");
     weekArray(selected, "wellbeingByWeek", "energy", { stress: "", motivation: "", mood: "" })[Number(index)][key] = target.value;
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.sleep) {
     const [index, key] = target.dataset.sleep.split(":");
@@ -5752,67 +5744,43 @@ document.addEventListener("change", async (event) => {
   }
   if (target.dataset.mealStatus) {
     mealWeekLog(selected.nutritionPlan[Number(target.dataset.mealStatus)]).status = target.value;
-    renderAll();
+    saveState(); renderAll();
   }
   if (target.dataset.mealAlternative) {
     mealWeekLog(selected.nutritionPlan[Number(target.dataset.mealAlternative)]).alternative = target.value;
-    renderAll();
+    saveState(); renderAll();
   }
 });
 
 async function init() {
-  document.body.classList.toggle("light", state.ui.theme === "light");
-  updateRememberControls();
-  renderNav();
-  renderAll();
-  showView(currentView);
-  if (isOnlineMode()) {
-    try {
-      const { data } = await supabaseClient.auth.getSession();
-      if (data?.session) {
-        if (INITIAL_AUTH_LINK_TYPE === "recovery") {
-          requirePasswordSetup("recovery");
-        } else if (INITIAL_AUTH_LINK_TYPE === "invite") {
-          await hydrateOnlineUser("client");
-          requirePasswordSetup("invite");
-        } else {
-          await hydrateOnlineUser();
-        }
-      }
-      supabaseClient.auth.onAuthStateChange(async (event, session) => {
-        if (event === "PASSWORD_RECOVERY") {
-          requirePasswordSetup("recovery");
-          return;
-        }
-        if (event === "SIGNED_IN" && session && INITIAL_AUTH_LINK_TYPE === "invite" && !passwordSetupRequired) {
-          try {
-            await hydrateOnlineUser("client");
-            requirePasswordSetup("invite");
-          } catch (error) {
-            const message = $("#setPasswordMessage");
-            if (message) {
-              message.className = "login-message error";
-              message.textContent = error.message;
-            }
-          }
-          return;
-        }
-        if (event === "SIGNED_OUT" || !session) {
-          onlineProfile = null;
-          onlineReady = false;
-          onlineErrorMessage = "";
-        }
-      });
-    } catch (error) {
-      onlineErrorMessage = "Online fout";
-      syncStatus("Online fout", "error");
-      const message = $("#loginMessage");
-      if (message && !isLoggedIn()) {
-        message.className = "login-message error";
-        message.textContent = error.message;
-      }
-    }
-  }
+  if (!DEMO_MODE) { state.ui.loggedIn=false; safeLocalRemove(STORE_KEY); }
+  document.body.classList.toggle('light',state.ui.theme==='light');
+  updateRememberControls(); renderNav(); renderAll(); showView(currentView);
+  if (DEMO_MODE) return;
+  if (!supabaseClient) { syncStatus('Online inloggen niet beschikbaar. Vernieuw de pagina.','error'); $('#onlineStatus').textContent='De online configuratie of SDK ontbreekt. Inloggen is geblokkeerd.'; return; }
+  supabaseClient.auth.onAuthStateChange((event,session)=> {
+    if (event === 'SIGNED_OUT' || !session) { lockOnlineSession(); return; }
+    if (onlineProfile && session.user.id !== onlineProfile.id) lockOnlineSession();
+    if (event === 'PASSWORD_RECOVERY') { requirePasswordSetup('recovery'); return; }
+    // Never await Supabase calls while inside its auth callback lock.
+    if (event === 'SIGNED_IN' && !onlineReady) window.setTimeout(()=>hydrateOnlineUser().catch(()=>{lockOnlineSession();}),0);
+  });
+  try {
+    const {data,error}=await supabaseClient.auth.getSession();
+    if(error) throw error;
+    if(!data?.session) { lockOnlineSession(); return; }
+    if(INITIAL_AUTH_LINK_TYPE==='recovery') requirePasswordSetup('recovery');
+    else { await hydrateOnlineUser(); if(INITIAL_AUTH_LINK_TYPE==='invite') requirePasswordSetup('invite'); }
+  } catch { lockOnlineSession(); syncStatus('Online laden mislukt. Log opnieuw in.','error'); }
 }
 
+$('#refreshWorkspace')?.addEventListener('click',refreshOnlineWorkspace);
+$('#retrySave')?.addEventListener('click',()=>saveStateToCloud());
+$('#exportDraft')?.addEventListener('click',exportPendingInput);
+$('#discardDraft')?.addEventListener('click',async()=>{
+  if(!onlineProfile || !confirm('Niet-opgeslagen wijzigingen verwerpen en online gegevens laden? Exporteer zo nodig eerst je invoer.'))return;
+  const saved=cloudBaseline; state=FMZSync.clone(saved); await refreshOnlineWorkspace();
+  delete $('#appointmentForm').dataset.pendingAppointment;
+});
+window.addEventListener('beforeunload',event=>{if(hasPendingChanges() || pendingDrafts.size || legacyLocalDraft){event.preventDefault();event.returnValue='';}});
 init();

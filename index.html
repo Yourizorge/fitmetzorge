@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fit Met Zorge Coach App</title>
-    <link rel="stylesheet" href="styles.css?v=20260810-agenda-wide-final" />
+    <link rel="stylesheet" href="styles.css?v=20260908-storage-security" />
   </head>
   <body class="logged-out">
     <section id="loginScreen" class="login-screen">
@@ -132,6 +132,12 @@
           </label>
           <span id="syncStatus" class="sync-status"></span>
           <span id="currentUserLabel" class="current-user"></span>
+          <button id="refreshWorkspace" class="secondary-btn" type="button">Verversen</button>
+          <details class="sync-actions"><summary>Opslag</summary><div>
+            <button id="retrySave" class="secondary-btn" type="button">Opnieuw opslaan</button>
+            <button id="exportDraft" class="secondary-btn" type="button">Invoer exporteren</button>
+            <button id="discardDraft" class="secondary-btn" type="button">Wijzigingen verwerpen</button>
+          </div></details>
           <button id="logoutButton" class="secondary-btn" type="button">Uitloggen</button>
           <button id="themeToggle" class="icon-btn" type="button" aria-label="Thema wisselen" title="Thema wisselen">◐</button>
         </div>
@@ -812,9 +818,9 @@
                 <span>Herhalen</span>
                 <select name="repeat">
                   <option value="">Niet herhalen</option>
-                  <option value="weekly">Wekelijks</option>
-                  <option value="biweekly">Elke 2 weken</option>
-                  <option value="monthly">Maandelijks</option>
+                  <option value="weekly">Wekelijks (12 afspraken)</option>
+                  <option value="biweekly">Elke 2 weken (12 afspraken)</option>
+                  <option value="monthly">Maandelijks (12 afspraken)</option>
                 </select>
               </label>
               <div class="form-step-label">4. Bevestiging</div>
@@ -1096,8 +1102,9 @@
       </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
     <script src="config.js"></script>
-    <script src="app.js?v=20260810-agenda-wide-final"></script>
+    <script src="sync.js"></script>
+    <script src="app.js?v=20260908-storage-security"></script>
   </body>
 </html>

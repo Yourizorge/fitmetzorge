@@ -1,90 +1,31 @@
-# Fit Met Zorge online zetten
+# Fit Met Zorge: bestaande productie-app
 
-Deze app kan lokaal als demo blijven draaien. Voor echte accounts, synchronisatie tussen telefoon/laptop/iPad en uitnodigingsmails gebruik je Supabase.
+Deze repository is de app op **https://appfmz.nl**: `Yourizorge/fitmetzorge`, Supabase-productieproject `hgoygcviutmynaihcvpd`.
 
-## 1. Supabase project maken
+De root `index.html` laadt `styles.css`, `config.js`, `sync.js` en `app.js`. `CNAME` bevat `appfmz.nl`. Er is geen vereiste `trainer-client-app/` subdirectory. De oude standalone-HTML verwijst naar dezelfde rootapp.
 
-1. Maak een project aan op Supabase.
-2. Ga naar `SQL Editor`.
-3. Kopieer de inhoud van `supabase/schema.sql`.
-4. Run de SQL. Dit maakt de tabellen, beveiliging en invite-koppeling aan.
+## Reparatie beoordelen
 
-## 2. App configureren
+Installeer Node 24 en pnpm, en voer in de repository uit:
 
-1. Open `trainer-client-app/config.js`.
-2. Vul je projectgegevens in:
-
-```js
-window.FMZ_CONFIG = {
-  SUPABASE_URL: "https://jouw-project.supabase.co",
-  SUPABASE_ANON_KEY: "jouw-public-anon-key",
-  INVITE_FUNCTION_NAME: "invite-client"
-};
+```sh
+pnpm install --frozen-lockfile
+# Buiten Windows gebruikt de test Playwright Chromium:
+pnpm exec playwright install chromium
+pnpm test
+pnpm preview
 ```
 
-Je vindt deze waarden in Supabase bij `Project Settings` > `API`.
+De preview draait op `http://127.0.0.1:8876`, met uitsluitend synthetische data in een tijdelijke lokale PostgreSQL-engine. Accounts: `trainer@example.test` (Trainer), `a@example.test` en `b@example.test` (Lid). Elk wachtwoord werkt in deze testpreview. Er worden geen echte accounts of mails aangemaakt. De data verdwijnt bij herstart. Op Windows gebruikt de browsertest geïnstalleerde Edge.
 
-## 3. Uitnodigingsmail functie deployen
+## Backend en publicatie
 
-Installeer de Supabase CLI en log in:
+De vroegere verwijzing naar een ontbrekend `supabase/schema.sql` was onjuist. Deze reparatie bevat een concrete migration voor het bestaande productieschema en de opgehaalde/aangepaste Edge Function. Voer de migration niet uit tegen een leeg of ander project.
 
-```bash
-supabase login
-supabase link --project-ref jouw-project-ref
-supabase functions deploy invite-client
-```
+Lees eerst het [bugfixrapport](docs/APPFMZ_BUGFIX_REPORT.md) en de [publicatievolgorde met terugvalplan](docs/APPFMZ_DEPLOYMENT_PLAN.md). Database, Edge en frontend vormen één release. Na de reparatie verzorgen gecontroleerde RPC's de opslag en beperkte lidprojectie. Nieuwe trainerbevoegdheden worden door een beheerder toegekend; registratiekeuzes geven geen trainerrechten.
 
-Zet daarna de secrets:
+`config.js` bevat alleen publieke configuratie, nooit een service-role-key. De Edge Function gebruikt server-side secrets. De auth-redirect in deze app is `https://appfmz.nl`; verifieer de productie-allowlist bij deployment. `https://www.fitmetzorge.com` is hiervoor geen vervanging.
 
-```bash
-supabase secrets set SITE_URL=https://jouw-github-naam.github.io/jouw-repository/
-```
+Een ontbrekende SDK/configuratie blokkeert online inloggen. Alleen expliciete localhost-demo kan lokaal werken. Privéworkspaces worden niet meer in localStorage bewaard. Exporteer niet-opgeslagen invoer voordat je het tabblad sluit.
 
-Supabase vult `SUPABASE_URL`, `SUPABASE_ANON_KEY` en `SUPABASE_SERVICE_ROLE_KEY` normaal zelf voor Edge Functions.
-
-## 4. GitHub Pages
-
-1. Upload deze hele projectmap naar GitHub.
-2. Zet GitHub Pages aan.
-3. Kies als site-root de repository root. De root `index.html` stuurt automatisch door naar `trainer-client-app/`.
-4. Open de GitHub Pages URL.
-
-## 5. Werking
-
-- Trainer registreert zichzelf in de app.
-- Trainer voegt een lid toe via e-mail.
-- De app slaat het lid op in de online workspace.
-- De Edge Function stuurt de Supabase-uitnodigingsmail.
-- Het lid registreert/logt in met hetzelfde e-mailadres.
-- Trainer en lid zien op telefoon, laptop en iPad dezelfde gekoppelde data.
-
-De optie `Inloggegevens onthouden` bewaart de sessie op dat apparaat. Staat deze uit, dan blijft de sessie alleen voor het huidige browservenster bewaard.
-
-## 6. Wachtwoord reset en uitnodigingen testen
-
-Zet in Supabase bij `Authentication` > `URL Configuration` deze URL bij de toegestane redirect URL's:
-
-```text
-https://www.fitmetzorge.com
-```
-
-Test wachtwoord vergeten:
-
-1. Open de app.
-2. Klik op `Wachtwoord vergeten?`.
-3. Vul het e-mailadres van een bestaand account in.
-4. Open de e-mail en klik op de resetlink.
-5. De app opent `Maak/Nieuw wachtwoord instellen`.
-6. Vul een nieuw wachtwoord in.
-7. Log uit en log opnieuw in met e-mail en het nieuwe wachtwoord.
-
-Test client-uitnodiging:
-
-1. Log in als trainer.
-2. Voeg een client toe via e-mail.
-3. Open de uitnodigingsmail van die client.
-4. De client krijgt automatisch `Maak je wachtwoord aan`.
-5. Stel een wachtwoord in.
-6. Log uit.
-7. Log opnieuw in als `Lid` met hetzelfde e-mailadres en wachtwoord.
-8. Controleer of de client nog steeds gekoppeld is aan de trainer en dezelfde plannen ziet.
+Publicatie en productiedatabasewijzigingen zijn niet uitgevoerd en vereisen definitieve toestemming van de eigenaar.

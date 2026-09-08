@@ -1,0 +1,5 @@
+node_modules/
+tests/artifacts/
+.preview.log
+.preview-error.log
+supabase/.temp/

@@ -1,0 +1,1 @@
+{"name":"appfmz-repair","private":true,"scripts":{"test":"node --test tests/*.test.cjs","preview":"node tests/preview.cjs"},"devDependencies":{"@electric-sql/pglite":"0.5.8","playwright":"1.62.1","supabase":"2.117.0"}}
