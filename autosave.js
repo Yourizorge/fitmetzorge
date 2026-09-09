@@ -27,8 +27,8 @@
  document.addEventListener('input',update,true);document.addEventListener('change',update,true);
  // Incomplete numerical text remains in the account's memory draft, never coerced to zero.
  const numericKeys=new Set(['actualWeight','actualSets','sets','targetWeight','kcal','protein','carbs','fat','amount','value','hours','quality','energy','stress','motivation','waist','chest','armLeft','armRight','legLeft','legRight']);
- function invalid(x,key=''){if(x&&typeof x==='object')return Object.entries(x).some(([k,v])=>invalid(v,k));return numericKeys.has(key)&&typeof x==='string'&&x!==''&&!/^\d+(?:[.,]\d+)?$/.test(x);}
- window.FMZAutosave={incomplete:()=>!!onlineProfile&&invalid(FMZSync.snapshot(state,onlineProfile.role))};
+ function invalid(x,key='',previous){if(JSON.stringify(x)===JSON.stringify(previous))return false;if(x&&typeof x==='object')return Object.entries(x).some(([k,v])=>invalid(v,k,previous?.[k]));return numericKeys.has(key)&&typeof x==='string'&&x!==''&&!/^\d+(?:[.,]\d+)?$/.test(x);}
+ window.FMZAutosave={incomplete:()=>!!onlineProfile&&invalid(FMZSync.snapshot(state,onlineProfile.role),'',cloudBaseline)};
  const formDrafts=new Map(),formBindings=new WeakMap();const forms='#trainingForm,#nutritionPlanForm';const formKey=f=>[onlineProfile?.id,client().id,f.id].join('|');
  document.addEventListener('input',e=>{const f=e.target.form;if(!f?.matches(forms)||!onlineProfile)return;formDrafts.set(formKey(f),Object.fromEntries(new FormData(f)));},true);
  document.addEventListener('reset',e=>{if(e.target.matches?.(forms)&&onlineProfile)formDrafts.delete(formKey(e.target));},true);
