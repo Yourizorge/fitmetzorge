@@ -5870,3 +5870,27 @@ body.trainer-mode #agenda .agenda-board-body {
     grid-template-columns: 64px repeat(7, minmax(108px, 1fr)) !important;
   }
 }
+
+/* Compact trainer examples, preserving existing member layout. */
+.sync-actions { position:relative; }
+.sync-actions summary { cursor:pointer; padding:10px; }
+.sync-actions > div { position:absolute; right:0; z-index:40; display:grid; gap:8px; padding:12px; min-width:220px; border:1px solid var(--line); border-radius:12px; background:var(--bg); }
+body.trainer-mode .training-exercise-card .exercise-photo img { width:100%; height:auto; object-fit:contain; }
+body.trainer-mode .training-session-list.exercise-row .training-exercise-card.exercise-card,
+body.trainer-mode .training-exercise-card { grid-template-columns: 112px minmax(0, 1fr); align-items: start; }
+body.trainer-mode .training-exercise-card .exercise-photo { width:112px; height:auto; max-height:120px; aspect-ratio:auto; object-fit:contain; }
+body.trainer-mode .exercise-card-main { min-width:0; }
+@media(max-width:600px) {
+  body.trainer-mode .training-session-list.exercise-row .training-exercise-card.exercise-card,
+  body.trainer-mode .training-exercise-card { grid-template-columns:96px minmax(0,1fr); }
+  body.trainer-mode .training-exercise-card .exercise-photo { width:96px; }
+  body.trainer-mode .training-exercise-card .exercise-target-grid,
+  body.trainer-mode .training-exercise-card .exercise-log { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  body.trainer-mode .training-exercise-card .exercise-title-row { flex-wrap:wrap; }
+  body.trainer-mode .training-exercise-card .exercise-card-main { display:contents; }
+  body.trainer-mode .training-exercise-card .exercise-title-row { grid-column:2; min-width:0; }
+  body.trainer-mode .training-exercise-card .exercise-meta,
+  body.trainer-mode .training-exercise-card .exercise-target-grid,
+  body.trainer-mode .training-exercise-card .exercise-log { grid-column:1 / -1; width:100%; }
+  body.trainer-mode .training-exercise-card .schema-card-actions { flex-wrap:wrap; }
+}
