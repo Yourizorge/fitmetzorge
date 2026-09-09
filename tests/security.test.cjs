@@ -18,7 +18,10 @@ test('isolated PostgreSQL: member/trainer chain, isolation, conflicts, profile a
   await assert.rejects(as('new',"insert into public.profiles(id,role,name,email) values(auth.uid(),'trainer','Bad','bad@test')"),/permission denied/);
   await as('a',"update public.profiles set name='Allowed' where id=auth.uid()");
   const stale=sync.clone(a); stale.clients[0].stepsByWeek['2026-09-07']=[{value:1}];
-  await assert.rejects(save('a',sync.diff(a,stale,a,'client')),/Concurrent change/);
+  await assert.rejects(save('a',sync.diff(a,stale,a,'client')),error=>error.code==='PT409' && /Concurrent change/.test(error.message));
+  // A preceding valid operation must also roll back when the batch conflicts.
+  await assert.rejects(save('a',[{client_id:'a',path:['waterByWeek','2026-09-07'],before_exists:false,before:null,after_exists:true,after:[{value:2}]},...sync.diff(a,stale,a,'client')]),error=>error.code==='PT409');
+  assert.equal((await read('a')).clients[0].waterByWeek['2026-09-07'],undefined);
   stale.clients[0].stepsByWeek={}; stale.clients[0].sleepByWeek['2026-09-07']=[{hours:8}];
   await save('a',sync.diff(a,stale,a,'client'));
   assert.equal((await read('a')).clients[0].stepsByWeek['2026-09-07'][0].value,12345);
