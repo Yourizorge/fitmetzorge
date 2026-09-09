@@ -1,4 +1,28 @@
-# Productierelease 9 september 2026 — onderhoud actief
+# Productierelease 9 september 2026 — afronding na aanvullende toestemming
+
+## Eindcontrole na toestemming voor 5c45631238604a1c24a6da1d12f4432ef75ac973
+
+De aanvullende migration `20260909112000_appfmz_conflict_response.sql` is uitsluitend en transactioneel toegepast, geregistreerd als **20260909151429 / appfmz_conflict_response**. De oorspronkelijke migration is niet herhaald. De bestaande databack-up is opnieuw met succes hersteld in de lokale herstelproef; de actuele functie is aanvullend privé vastgelegd. Profiel- en workspacechecksums vóór de correctie waren gelijk aan het vorige herstelpunt.
+
+Alle essentiële controles zijn daarna geslaagd via de echte productie-Auth en PostgREST-route, met afzonderlijke eigen synthetische accounts:
+
+- Eén directe **HTTP 409 / PT409 in 85 ms**. Een geldige eerdere operatie in dezelfde conflicterende batch is volledig teruggedraaid; de workspace vóór en na de geweigerde batch was gelijk.
+- De browser deed bij een conflict één opslagaanvraag, ontving snel de fout en herhaalde niet. De ingetypte waarde bleef behouden. Na expliciet verwerpen/verversen was een nieuwe opslag succesvol en bleef die na herladen bestaan.
+- Training, voeding, stappen en slaap bleven behouden na refresh en uit-/inloggen. Een afzonderlijke trainersessie zag dezelfde waarden en ontving volgende wijzigingen na verversen.
+- Andere klanten kregen geen toegang tot ruwe workspaces, andere klantvelden of rolverhoging. Netwerkfout gaf geen vals succes en behield de invoer. Accountwissel verwijderde privégegevens van de vorige klant. Een echt ingetrokken sessie werd geweigerd en sloot de interface af.
+- Edge versie 6 blijft ACTIVE met JWT-verificatie aan; trainer-/lid-/anon-controles en een bestaand synthetisch account zonder mailpad slaagden. Tokenvernieuwing slaagde. Het private schema blijft buiten de API.
+- De echte Bench Press-GIF laadde en toonde verschillende frames: **112×112 px bij 1400 px schermbreedte, 96×96 px bij 390 px**. Screenshots zijn visueel gecontroleerd. Browseremulatie, geen fysieke iPhone-/Androidtest.
+- Alle eigen synthetische accounts zijn na de controles verwijderd. Geen klantinhoud, bestaande koppelingen of beveiligingsgrenzen gewijzigd. Geen staging-, marketing-, abonnements- of compute-aanpassing.
+
+De gecorrigeerde frontend wordt na deze geslaagde controles op de normale HTML-ingangen vrijgegeven; de tijdelijke testingang wordt verwijderd. De app.js-versieparameter is vernieuwd zodat browsers de correctie ophalen. De live bestanden worden tegen de release gecontroleerd. Het oorspronkelijke onderhoudsrapport hieronder blijft als uitvoeringshistorie bewaard.
+
+### CPU en verzoekactiviteit
+
+De read-only Metrics API gaf HTTP 200. Snapshots: **15:13:15 UTC** vóór de correctie en **15:21:41 UTC** erna. CPU-tellers over het interval geven circa **0,8% actieve CPU-tijd**, exclusief idle en I/O-wachttijd; inclusief I/O-wachttijd circa 1,7%. Load1 was 0,17 vóór en 0 na; dit is load average, geen CPU-percentage. De databaseactiviteitsmomentopnamen lieten alleen idle PostgREST-verbindingen zien, geen actieve of wachtende schrijftransactie.
+
+Bewezen verbetering: de eerder hangende conflict-RPC keert nu snel terug en de browsertest ziet één aanvraag zonder herhaling. **Geen bewezen CPU-daling door de correctie:** er is geen vergelijkbare CPU-reeks van tijdens de eerdere herhaallus. De snapshots zijn geen continue monitoring en bewijzen niet dat buiten de test nooit een piek optreedt. Ruwe metrics en testcredentials blijven privé. [Metrics API-documentatie](https://supabase.com/docs/guides/observability/metrics).
+
+## Historie: eerste publicatiepoging en onderhoud
 
 Scope: Yourizorge/fitmetzorge, appfmz.nl, Supabase hgoygcviutmynaihcvpd. Beoordeelde basis: d989c5b1155742290f7612daaa2a7bcdc07f1ccc. Staging en marketing zijn niet gewijzigd.
 

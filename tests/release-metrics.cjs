@@ -1,0 +1,5 @@
+// Read-only metrics snapshot; service-role credentials and raw metrics stay private.
+const fs=require('node:fs'),path=require('node:path');
+const dir=process.env.FMZ_BACKUP_DIR||'C:/Users/Fitme/.codex/backups/appfmz-20260908';
+const keys=JSON.parse(fs.readFileSync(path.join(dir,'api-keys.json'),'utf8').replace(/^\uFEFF/,''));
+(async()=>{const r=await fetch('https://hgoygcviutmynaihcvpd.supabase.co/customer/v1/privileged/metrics',{signal:AbortSignal.timeout(20000),headers:{Authorization:'Basic '+Buffer.from('service_role:'+keys.find(k=>k.name==='service_role').api_key).toString('base64')}});const body=await r.text();const label=process.argv[2]||'snapshot';if(!/^[a-z0-9-]+$/.test(label))throw Error('Invalid label');fs.writeFileSync(path.join(dir,'metrics-'+label+'.txt'),body);const cpu=body.split('\n').filter(l=>!l.startsWith('#')&&/^node_cpu_seconds_total|^node_load[15]|^process_cpu_seconds_total/.test(l));const summary={at:new Date().toISOString(),status:r.status,cpu};fs.writeFileSync(path.join(dir,'metrics-'+label+'.json'),JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));})().catch(e=>{console.error(e.message);process.exitCode=1});
