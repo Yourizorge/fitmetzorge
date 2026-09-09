@@ -1877,7 +1877,7 @@ function saveStateToCloud() {
       syncStatus("Online opslaan...");
       const {data,error} = await supabaseClient.rpc('fmz_save_changes',{changes});
       if(error?.code==='28000' && generation===authGeneration) lockOnlineSession();
-      if (error) throw new Error(error.code === '40001' ? "Conflict: dit onderdeel is elders gewijzigd. Bewaar je invoer en ververs voordat je opnieuw wijzigt." : "Opslaan geweigerd of verbinding onderbroken. Je invoer blijft bewaard.");
+      if (error) throw new Error(['PT409','40001'].includes(error.code) ? "Conflict: dit onderdeel is elders gewijzigd. Bewaar je invoer en ververs voordat je opnieuw wijzigt." : "Opslaan geweigerd of verbinding onderbroken. Je invoer blijft bewaard.");
       if (!data || data.ok !== true || data.changed !== changes.length) throw new Error("Geen geldige opslagbevestiging ontvangen.");
       if (generation !== authGeneration || onlineProfile?.id !== owner) return {ok:false,error:new Error("Account gewijzigd tijdens opslaan.")};
       rawCloudState = FMZSync.apply(rawCloudState,changes);
