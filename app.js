@@ -2592,6 +2592,7 @@ function renderTraining() {
         </select>
         <span class="save-feedback" data-save-feedback="training-${activeIndex}"></span>
         <button class="primary-btn" data-save-training-day="${activeIndex}" type="button">Training opslaan</button>
+        <button class="primary-btn" data-complete-training="${activeIndex}" type="button">Training afronden</button>
       </div>
       <div class="exercise-row training-session-list">
         ${!isTrainer() ? `
@@ -4557,6 +4558,14 @@ document.addEventListener("click", async (event) => {
     state.clients = state.clients.filter((item) => item.id !== selectedClient.id);
     if (state.ui.selectedClientId === selectedClient.id) state.ui.selectedClientId = state.clients[0]?.id || "";
     saveState(); renderAll();
+  }
+  if (target.dataset.completeTraining !== undefined) {
+    if (target.disabled) return;
+    target.disabled = true;
+    trainingAttendanceWeek(client())[Number(target.dataset.completeTraining)].status = "Geweest";
+    try { await persistActionFeedback(null, "Training afgerond", renderTraining); }
+    finally { target.disabled = false; }
+    return;
   }
   if (target.dataset.removeTraining) {
     client().trainingPlan.splice(Number(target.dataset.removeTraining), 1);
