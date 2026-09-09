@@ -16,7 +16,7 @@ if(process.argv[2]==='prepare') {
  'policies',(select jsonb_agg(to_jsonb(p)) from pg_policies p where schemaname='public'),
  'grants',(select jsonb_agg(to_jsonb(g)) from information_schema.role_table_grants g where table_schema='public'),
  'column_grants',(select jsonb_agg(to_jsonb(g)) from information_schema.role_column_grants g where table_schema='public'),
- 'functions',(select jsonb_agg(jsonb_build_object('definition',pg_get_functiondef(p.oid),'acl',p.proacl)) from pg_proc p where pronamespace='public'::regnamespace and prokind='f')
+ 'functions',(select jsonb_agg(jsonb_build_object('definition',pg_get_functiondef(p.oid),'acl',p.proacl)) from pg_proc p where pronamespace in ('public'::regnamespace,'fmz_private'::regnamespace) and prokind='f')
  )::text as body), encrypted as (select extensions.encrypt_iv(convert_to(body,'utf8'),decode('${keys.enc}','hex'),decode('${keys.iv}','hex'),'aes-cbc/pad:pkcs') as cipher, encode(extensions.digest(body,'sha256'),'hex') as plaintext_sha256 from snapshot)
  select 'hgoygcviutmynaihcvpd' as project,'${keys.iv}' as iv,encode(cipher,'hex') as ciphertext,encode(extensions.hmac(decode('${keys.iv}','hex')||cipher,decode('${keys.mac}','hex'),'sha256'),'hex') as hmac,plaintext_sha256 from encrypted;`;
  fs.writeFileSync(path.join(dir,'backup-query.sql'),sql);
@@ -34,7 +34,7 @@ if(process.argv[2]==='prepare') {
   if(crypto.createHash('sha256').update(plain).digest('hex')!==packet.plaintext_sha256)throw Error('Content checksum mismatch');
   const backup=JSON.parse(plain);
   const {PGlite}=require('@electric-sql/pglite');const db=new PGlite();
-  await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);create function auth.uid() returns uuid language sql as $$select null::uuid$$;create function auth.jwt() returns jsonb language sql as $$select null::jsonb$$;');
+  await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create schema fmz_private;set check_function_bodies=false;create table auth.users(id uuid primary key);create function auth.uid() returns uuid language sql as $$select null::uuid$$;create function auth.jwt() returns jsonb language sql as $$select null::jsonb$$;');
   for(const u of backup.auth_users)await db.query('insert into auth.users values($1)',[u.id]);
   const quote=s=>'"'+s.replaceAll('"','""')+'"';
   for(const table of ['profiles','coach_workspaces','client_invites']){

@@ -30,6 +30,7 @@ async function setup(){
  const migration=fs.readdirSync(path.join(__dirname,'../supabase/migrations')).find(f=>f.endsWith('_appfmz_storage_security.sql'));
  await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations',migration),'utf8'));
  await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20260909112000_appfmz_conflict_response.sql'),'utf8'));
+ await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20260909164637_appfmz_autosave_annotations.sql'),'utf8'));
  async function as(name,sql,params=[]){
   await db.exec('reset role');
   await db.query("select set_config('request.jwt.claims',$1,false)",[JSON.stringify({sub:ids[name],session_id:ids[name],email:`${name}@example.test`})]);

@@ -68,6 +68,7 @@ let navMenuOpen = false;
 let rawCloudState = null;
 let cloudBaseline = null;
 let saveQueue = Promise.resolve();
+let pendingWrite = null;
 let authGeneration = 0;
 let hydrationTask = null;
 let legacyLocalDraft = null;
@@ -1845,9 +1846,10 @@ function renderOnlineStatus() {
   if (!isOnlineMode()) {
     syncStatus("Lokale demo");
   } else if (onlineErrorMessage) {
-    syncStatus(onlineErrorMessage, "error");
+    syncStatus('Niet opgeslagen — opnieuw proberen', "error");
+    $('#syncStatus').title=onlineErrorMessage;
   } else {
-    syncStatus(hasPendingChanges() ? "Niet-opgeslagen invoer" : (onlineReady ? "Online opgeslagen" : (isLoggedIn() && onlineProfile ? "Online verbinden..." : "Online klaar")), onlineReady && !hasPendingChanges() ? "ok" : "");
+    syncStatus(hasPendingChanges() ? "Opslaan…" : (onlineReady ? "Opgeslagen" : "Online verbinden…"), onlineReady && !hasPendingChanges() ? "ok" : "");
   }
 }
 
@@ -1871,22 +1873,28 @@ function saveStateToCloud() {
         if(generation === authGeneration) lockOnlineSession();
         throw new Error("Je sessie is verlopen. Log opnieuw in.");
       }
-      const sent = FMZSync.clone(state);
-      const changes = FMZSync.diff(cloudBaseline,sent,rawCloudState,onlineProfile.role);
+      if (window.FMZAutosave?.incomplete()) throw new Error('Niet opgeslagen — maak de invoer af');
+      const sent = pendingWrite?.sent || FMZSync.clone(state);
+      const changes = pendingWrite?.changes || FMZSync.diff(cloudBaseline,sent,rawCloudState,onlineProfile.role);
       if (!changes.length) return {ok:true};
-      syncStatus("Online opslaan...");
-      const {data,error} = await supabaseClient.rpc('fmz_save_changes',{changes});
+      pendingWrite ||= {sent,changes,id:crypto.randomUUID(),owner};
+      const request=pendingWrite;
+      syncStatus("Opslaan…");
+      const {data,error} = await supabaseClient.rpc('fmz_save_changes_once',{changes,request_id:request.id});
       if(error?.code==='28000' && generation===authGeneration) lockOnlineSession();
+      if(error?.code && ['PT409','40001','42501','22023','P0001'].includes(error.code) && generation===authGeneration) pendingWrite=null;
       if (error) throw new Error(['PT409','40001'].includes(error.code) ? "Conflict: dit onderdeel is elders gewijzigd. Bewaar je invoer en ververs voordat je opnieuw wijzigt." : "Opslaan geweigerd of verbinding onderbroken. Je invoer blijft bewaard.");
       if (!data || data.ok !== true || data.changed !== changes.length) throw new Error("Geen geldige opslagbevestiging ontvangen.");
       if (generation !== authGeneration || onlineProfile?.id !== owner) return {ok:false,error:new Error("Account gewijzigd tijdens opslaan.")};
       rawCloudState = FMZSync.apply(rawCloudState,changes);
       cloudBaseline = sent;
+      pendingWrite=null;
       onlineErrorMessage = "";
-      syncStatus(hasPendingChanges() ? "Nog niet alles opgeslagen" : "Online opgeslagen",hasPendingChanges()?'':'ok');
+      syncStatus(hasPendingChanges() ? "Opslaan…" : "Opgeslagen",hasPendingChanges()?'':'ok');
+      if(hasPendingChanges()) scheduleCloudSave();
       return {ok:true};
     } catch (error) {
-      if (generation === authGeneration) { onlineErrorMessage = error.message; syncStatus(error.message,"error"); }
+      if (generation === authGeneration) { onlineErrorMessage = error.message; syncStatus('Niet opgeslagen — opnieuw proberen',"error"); $('#syncStatus').title=error.message; }
       return {ok:false,error};
     }
   };
@@ -1896,11 +1904,13 @@ function saveStateToCloud() {
 }
 
 function hasPendingChanges() {
-  return Boolean(cloudBaseline && onlineProfile && FMZSync.diff(cloudBaseline,state,rawCloudState,onlineProfile.role).length);
+  return Boolean(pendingWrite || window.FMZAutosave?.incomplete() || (cloudBaseline && onlineProfile && FMZSync.diff(cloudBaseline,state,rawCloudState,onlineProfile.role).length));
 }
 
 function lockOnlineSession() {
-  if (onlineProfile && hasPendingChanges()) pendingDrafts.set(onlineProfile.id,{state:FMZSync.clone(state),baseline:cloudBaseline,raw:rawCloudState});
+  if (onlineProfile && hasPendingChanges()) pendingDrafts.set(onlineProfile.id,{state:FMZSync.clone(state),baseline:cloudBaseline,raw:rawCloudState,pendingWrite});
+  pendingWrite=null;
+  window.FMZPhotos?.lock();
   authGeneration++;
   window.clearTimeout(cloudSaveTimer);
   onlineReady=false; onlineProfile=null; cloudBaseline=null; rawCloudState=null;
@@ -2007,7 +2017,7 @@ async function loadOnlineWorkspace(profile) {
   const draft=pendingDrafts.get(profile.id);
   if(draft) {
     pendingDrafts.delete(profile.id);
-    state=draft.state; cloudBaseline=draft.baseline; rawCloudState=draft.raw;
+    state=draft.state; cloudBaseline=draft.baseline; rawCloudState=draft.raw; pendingWrite=draft.pendingWrite || null;
     renderAll(); syncStatus("Niet-opgeslagen invoer hersteld. Probeer opnieuw op te slaan; conflicten worden gecontroleerd.","error");
   }
 }
@@ -2966,12 +2976,11 @@ function renderClientTrackerOverview(selected) {
             ["photoBack", "Achterkant"],
             ["photoExtra", "Extra foto"]
           ].map(([key, label]) => `
-            <label class="field photo-upload-field">
+            <div class="field photo-upload-field">
               <span>${label}</span>
-              ${progressEntry[key] ? `<img class="progress-photo-preview" src="${escapeHTML(progressEntry[key])}" alt="${label}" />` : `<span class="photo-upload-empty">Nog geen foto</span>`}
-              <input data-progress-file="${activeIndex}:${key}" type="file" accept="image/*" />
-              <small>Tik om foto uit je galerij of bestanden te kiezen.</small>
-            </label>
+              ${progressEntry[key] ? `<button type="button" data-view-photo="${activeIndex}:${key}" aria-label="${label} bekijken"><img class="progress-photo-preview" src="${escapeHTML(progressEntry[key])}" alt="${label}" /><span>Bekijken</span></button>` : `<span class="photo-upload-empty">Nog geen foto</span>`}
+              <label>Foto ${progressEntry[key]?'vervangen':'toevoegen'}<input data-progress-file="${activeIndex}:${key}" type="file" accept="image/jpeg,image/png,image/webp,image/gif" /></label>
+            </div>
           `).join("")}
         </div>
         <button class="primary-btn tracker-save-btn" data-save-progress-day="${activeIndex}" type="button">Voortgang opslaan</button>
@@ -3054,7 +3063,7 @@ function renderTrainerTrackerOverview(selected) {
         item.photoSide ? "zijkant" : "",
         item.photoBack ? "achterkant" : "",
         item.photoExtra ? "extra" : ""
-      ].filter(Boolean).join(", ") || "geen foto")}
+      ].filter(Boolean).join(", ") || "geen foto", `<div class="trainer-photo-gallery">${progress.map((entry,day)=>['photoFront','photoSide','photoBack','photoExtra'].filter(slot=>entry[slot]).map(slot=>`<button type="button" data-view-photo="${day}:${slot}"><img src="${escapeHTML(entry[slot])}" alt="Voortgangsfoto ${day+1}" /><span>${escapeHTML(weekDates(activeWeekStart())[day].date)} — Bekijken</span></button>`).join('')).join('')}</div>`)}
       <section class="tracker-week-block">
         <div class="tracker-week-head">
           <div><h2>Coachnotities en acties</h2><p class="muted">Automatische aandachtspunten op basis van deze week.</p></div>
@@ -4129,6 +4138,7 @@ function renderMealOption(item, index, checklist = false) {
         <strong>${escapeHTML(item.meal)}</strong>
         <small>${escapeHTML(item.schemaName || "Voedingsschema")}</small>
         <span>${escapeHTML(item.items || "-")}</span>
+        ${isTrainer()?`<div class="meal-edit-fields">${[['meal','Maaltijd'],['items','Inhoud'],['kcal','Kcal'],['protein','Eiwit'],['carbs','Koolhydraten'],['fat','Vet']].map(([k,label])=>`<label>${label}<input data-meal-plan="${index}:${k}" ${['meal','items'].includes(k)?'':'data-numeric="true" inputmode="decimal"'} value="${escapeHTML(item[k]??'')}" /></label>`).join('')}</div>`:''}
         <p>${fmt(item.kcal)} kcal | ${fmt(item.protein)}g eiwit | ${fmt(item.carbs)}g kh | ${fmt(item.fat)}g vet</p>
       </div>
       ${
@@ -4259,6 +4269,7 @@ function renderDailyFoodLogGrid(selected) {
               <select data-food-status="${activeDay.date}:${mealType}">
                 ${["", "Gegeten zoals plan", "Anders gegeten", "Niet gegeten"].map((value) => `<option value="${value}" ${value === (entry.status || "") ? "selected" : ""}>${value || "Nog niet ingevuld"}</option>`).join("")}
               </select>
+              <label>Hoeveelheid (porties)<input data-food-amount="${activeDay.date}:${mealType}" inputmode="decimal" value="${escapeHTML(entry.amount??'1')}" /></label>
               <textarea data-food-note="${activeDay.date}:${mealType}" rows="2" placeholder="Opmerking">${escapeHTML(entry.note || "")}</textarea>
               <button class="primary-btn tracker-save-btn" data-save-food-log="${activeDay.date}:${mealType}" type="button">Opslaan</button>
               <span class="save-feedback" data-save-feedback="food-${activeDay.date}-${mealType}">${entry.savedAt && (!isOnlineMode() || FMZSync.equal(cloudBaseline?.clients?.find(c => c.id === selected.id)?.foodLog?.find(e => e.id === entry.id), entry)) ? "Opgeslagen" : ""}</span>
@@ -4842,6 +4853,7 @@ document.addEventListener("click", async (event) => {
     const recipe = recipeOptions[Number(target.dataset.addRecipeOption)];
     if (!recipe) return;
     client().nutritionPlan.push({
+      id:crypto.randomUUID(),
       meal: `${mealTypeLabel(recipe.mealType)} - ${recipe.name}`,
       mealType: normalizeMealType(recipe.mealType),
       items: recipeIngredients(recipe),
@@ -5356,6 +5368,7 @@ $("#nutritionPlanForm").addEventListener("submit", (event) => {
     return;
   }
   selected.nutritionPlan.push({
+    id: crypto.randomUUID(),
     meal: data.get("meal"),
     mealType: normalizeMealType(data.get("mealType")),
     items: data.get("items"),
@@ -5779,6 +5792,7 @@ $('#retrySave')?.addEventListener('click',()=>saveStateToCloud());
 $('#exportDraft')?.addEventListener('click',exportPendingInput);
 $('#discardDraft')?.addEventListener('click',async()=>{
   if(!onlineProfile || !confirm('Niet-opgeslagen wijzigingen verwerpen en online gegevens laden? Exporteer zo nodig eerst je invoer.'))return;
+  await saveQueue; pendingWrite=null; onlineErrorMessage='';
   const saved=cloudBaseline; state=FMZSync.clone(saved); await refreshOnlineWorkspace();
   delete $('#appointmentForm').dataset.pendingAppointment;
 });
