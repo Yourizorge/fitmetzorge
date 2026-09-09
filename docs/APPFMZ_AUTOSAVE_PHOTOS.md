@@ -48,4 +48,12 @@ De viewer is met zoomen, verschuiven, tekenen, gum en undo/redo gecontroleerd op
 
 Na afloop zijn alleen de vier eigen synthetische accounts per testset verwijderd. Eindcontrole: nul synthetische Auth-accounts, nul testannotaties/receipts; de oorspronkelijke zeven profielen, twee workspaces en negen uitnodigingen zijn inhoudelijk gelijk aan de versleutelde back-up (tijdstempels op dezelfde tijdzone genormaliseerd). `tests/production-preservation.cjs` controleert dit zonder klantinhoud te loggen. Directe gebruikersgrants op de nieuwe private tabellen ontbreken. De security-advisor meldde alleen de bewuste RPC-only tabellen zonder RLS-policies en de reeds bestaande instelling voor gelekte-wachtwoordbescherming.
 
-Na deze geslaagde controles wordt de normale rootapp teruggezet, de tijdelijke verificatie-ingang verwijderd en de release via de bestaande GitHub Pages-publicatie vrijgegeven. Het definitieve commit-ID en de live bestandsvergelijking staan in het opleverbericht. Er is geen betaald abonnement, compute-upgrade, staging- of marketingwijziging uitgevoerd.
+Na deze geslaagde controles is de normale rootapp teruggezet, de tijdelijke verificatie-ingang verwijderd en de release via de bestaande GitHub Pages-publicatie vrijgegeven. De definitieve releasecommit is `95d966d08cecde38127a26a52a0c6e75f46759bd`. Alle acht gecontroleerde live bestanden kwamen overeen met deze commit; onderhoud is opgeheven. Er is geen betaald abonnement, compute-upgrade, staging- of marketingwijziging uitgevoerd.
+
+## Owneracceptatie — 9 september 2026
+
+De owner heeft na de livepublicatie bevestigd dat de eigen telefoontest is geslaagd en deze appfmz-update expliciet geaccepteerd. Volgens deze praktijktest werken automatisch opslaan, workouts, voeding, trainerinzage en foto's bekijken, tekenen, gummen en delen naar wens. Dit is de terugkoppeling van de owner op de hierboven beschreven release; de geautomatiseerde controles en hun beperkingen blijven afzonderlijk vastgelegd.
+
+Status: **geaccepteerd door de owner**. Deze acceptatie geldt uitsluitend voor appfmz (`appfmz.nl`, repository `Yourizorge/fitmetzorge`). Staging en de AI-ontwikkeling blijven afzonderlijk en vallen buiten deze acceptatie.
+
+De owner heeft uitsluitend het vastleggen, committen en pushen van deze documentatie opgedragen. Eventuele automatische herpublicatie is toegestaan zolang de runtimebestanden ongewijzigd blijven. Deze acceptatie start geen nieuwe functionaliteit of databasewijzigingen.
