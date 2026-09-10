@@ -1,6 +1,6 @@
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path'); const {setup}=require('./database.cjs');
 async function start(port=8876){
- const database=await setup();let queue=Promise.resolve();const calls=[];
+ const database=await setup();await require('./accounting-database.cjs').extend(database);const blobs=new Map();let queue=Promise.resolve();const calls=[];
  const server=http.createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
   const send=(status,data,type='application/json')=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store'});res.end(type==='application/json'?JSON.stringify(data):data)};
@@ -9,6 +9,10 @@ async function start(port=8876){
    const {account,name,params}=JSON.parse(body); calls.push({account,name});
    const run=async()=>{try{
     if(!['trainer','a','b'].includes(account))return send(401,{data:null,error:{message:'No test session',code:'42501'}});
+    if(name==='fmz_accounting_read')return send(200,{data:(await database.as(account,'select public.fmz_accounting_read() result')).rows[0].result,error:null});
+    if(name==='fmz_accounting_command')return send(200,{data:(await database.as(account,'select public.fmz_accounting_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
+    if(name==='storage_upload'){const bytes=Buffer.from(params.base64,'base64');await database.as(account,'insert into storage.objects(bucket_id,name,metadata) values($1,$2,$3)',['fmz-finance',params.path,JSON.stringify({size:bytes.length})]);if(blobs.has(params.path))return send(409,{error:{message:'Already exists'}});blobs.set(params.path,{base64:params.base64,mime:params.mime});return send(200,{data:{path:params.path},error:null});}
+    if(name==='storage_download'){const rows=(await database.as(account,'select name from storage.objects where bucket_id=$1 and name=$2',['fmz-finance',params.path])).rows;if(!rows.length||!blobs.has(params.path))return send(403,{error:{message:'Denied'}});return send(200,{data:blobs.get(params.path),error:null});}
     if(name==='profile'){const result=await database.as(account,'select * from public.profiles where id=auth.uid()');return send(200,{data:result.rows[0],error:null});}
     if(name==='fmz_read_workspace')return send(200,{data:{state:await database.read(account),profile_id:database.ids[account]},error:null});
     if(name==='fmz_save_changes')return send(200,{data:await database.save(account,params.changes),error:null});
@@ -29,7 +33,7 @@ async function start(port=8876){
   }catch{send(404,{})}
  });
  await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,'127.0.0.1',resolve)});
- return {url:`http://127.0.0.1:${server.address().port}`,calls,close:async()=>{await new Promise(r=>server.close(r));await database.db.close();}};
+ return {url:`http://127.0.0.1:${server.address().port}`,calls,database,blobs,close:async()=>{await new Promise(r=>server.close(r));await database.db.close();}};
 }
 module.exports={start};
 if(require.main===module)start().then(x=>console.log('Synthetic preview: '+x.url));

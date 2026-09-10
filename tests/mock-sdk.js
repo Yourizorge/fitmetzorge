@@ -12,6 +12,10 @@ window.supabase={createClient(){
   window.expireTestSession=()=>{sessionStorage.removeItem('fmz-test-account');callbacks.forEach(cb=>cb('SIGNED_OUT',null));};
   return {
     rpc:call,
+    storage:{from(){return {
+      async upload(path,bytes,options){let binary='';for(const n of new Uint8Array(bytes))binary+=String.fromCharCode(n);return call('storage_upload',{path,base64:btoa(binary),mime:options.contentType});},
+      async download(path){const result=await call('storage_download',{path});if(result.error)return result;const bytes=Uint8Array.from(atob(result.data.base64),c=>c.charCodeAt(0));return {data:new Blob([bytes],{type:result.data.mime}),error:null};}
+    }}},
     from(table){return {select(){return this},eq(){return this},async maybeSingle(){return call('profile',{})}}},
     auth:{
       async getSession(){return {data:{session:session()},error:null}},

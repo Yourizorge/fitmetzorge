@@ -5913,3 +5913,40 @@ body.trainer-mode .exercise-card-main { min-width:0; }
 #invoiceEditor .invoice-total { font-size:20px; border-top:1px solid #ccc; padding-top:12px; }
 #invoiceEditor button { min-height:44px; }
 @media(max-width:600px) { #invoiceEditor { padding:14px; } #invoiceEditor .invoice-draft-fields { grid-template-columns:1fr; } #invoiceEditor footer button { width:100%; } }
+
+/* Owner administration: stacked navigation and stable forms on phone and desktop. */
+[data-accounting-root] { min-width:0; }
+[data-accounting-root] [hidden], #administration > [hidden], #invoice > [hidden] { display:none !important; }
+.acc-heading,.acc-actions { display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap; }
+.acc-layout { display:grid;grid-template-columns:230px minmax(0,1fr);gap:20px;align-items:start; }
+.acc-menu { display:grid;gap:7px;position:sticky;top:18px; }
+.acc-menu button { text-align:left;min-height:44px;padding:11px 13px;border:1px solid var(--line,#45413a);border-radius:10px;background:var(--panel,#181818);color:inherit; }
+.acc-menu button.active { border-color:#c89312;background:rgba(200,147,18,.15); }
+.acc-content { display:grid;gap:18px;min-width:0; }.acc-panel { margin:0;min-width:0; }.acc-panel h2{margin-bottom:15px;}
+.acc-form { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;min-width:0; }.acc-form .full,.acc-form > p { grid-column:1/-1; }
+.acc-form input,.acc-form textarea,.acc-form select,.acc-period input,.acc-period select{max-width:100%;min-width:0;width:100%;font-size:16px;box-sizing:border-box;}
+.acc-form .field {display:grid;gap:7px;min-width:0;}.acc-check{display:flex;align-items:center;gap:10px;}.acc-check input{width:20px;height:20px;flex:none;}
+.acc-card {margin:10px 0;overflow-wrap:anywhere;}.acc-card small{display:block;}.acc-card .finance-card-actions {max-width:100%;}.acc-card button{min-height:44px;white-space:normal;}
+.acc-period{display:flex;gap:10px;align-items:end;flex-wrap:wrap;}.acc-period .field{min-width:130px;}
+.acc-notice{padding:15px;border:1px solid #b7841a;background:rgba(180,130,20,.10);border-radius:12px;}.acc-notice ul{padding-left:22px;}.acc-notice li{margin:7px 0;}
+.acc-dialog{width:min(880px,calc(100vw - 24px));max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow:auto;border:1px solid #807045;border-radius:15px;background:var(--panel,#181818);color:var(--text,#eee);padding:22px;box-sizing:border-box;}
+.acc-dialog::backdrop{background:rgba(0,0,0,.72);}.acc-dialog header{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:20px;}.acc-dialog button{min-height:44px;}.acc-dialog pre,[data-accounting-root] pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;max-width:100%;}
+.acc-dialog input,.acc-dialog textarea,.acc-dialog select {background:var(--bg,#242424);color:inherit;border:1px solid #655c48;border-radius:8px;padding:10px;}.acc-dialog .panel {padding:14px;}
+.acc-split{display:grid;grid-template-columns:2fr 1fr;gap:10px;padding:12px 0;border-bottom:1px solid #655c48;}.acc-split button{grid-column:1/-1;}
+.acc-import-rows{max-height:360px;overflow:auto;margin:15px 0;}.acc-import-row{display:flex;gap:10px;padding:12px;border-bottom:1px solid #655c48;}.acc-import-row input{width:22px;flex:none;}.acc-import-row small{display:block;color:#d7b158;}.acc-proof{display:block;max-width:100%;max-height:70dvh;object-fit:contain;margin:auto;image-orientation:from-image;}
+.acc-legacy{margin:18px 0;}[data-acc-status].error,[data-form-status],[data-invoice-message]{overflow-wrap:anywhere;}
+@media(max-width:760px){.acc-layout{grid-template-columns:minmax(0,1fr);gap:16px;}.acc-menu{position:static;}.acc-menu button{padding:10px 13px;}.acc-form{grid-template-columns:minmax(0,1fr);}.acc-dialog{padding:14px;}.acc-card{display:grid;}.acc-card .finance-card-actions{display:flex;flex-wrap:wrap;}.acc-split{grid-template-columns:minmax(0,1fr);}.acc-period .field{flex:1;}}
+body.accounting-mode .content{grid-row:2;}
+@media(max-width:760px){
+ body.accounting-mode .app-shell{display:block;padding-bottom:0;}
+ body.accounting-mode .sidebar{position:relative;top:auto;left:auto;right:auto;bottom:auto;width:auto;height:auto;margin:8px;padding:8px;border-radius:14px;}
+ body.accounting-mode .sidebar-brand{display:none;}
+ body.accounting-mode .topbar{position:relative;padding:10px;}
+ body.accounting-mode .content{padding:12px;}
+ body.accounting-mode .nav-current{width:100%;}
+ body.accounting-mode .nav-btn span{display:inline;}
+ body.accounting-mode .nav-track{z-index:50;}
+}
+body.light .acc-dialog{background:#f7f8fa;color:#111315;}
+body.light .acc-menu button{background:#fff;}
+body.light .acc-menu button.active{background:#f7edce;}

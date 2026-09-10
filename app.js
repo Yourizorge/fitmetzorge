@@ -1717,7 +1717,7 @@ function isLoggedIn() {
 }
 
 function allowedViews() {
-  return NAV[state.ui.role] || [];
+  return (NAV[state.ui.role] || []).filter(([id]) => !['administration','invoice'].includes(id) || window.FMZAccounting?.access !== false);
 }
 
 function canAccessView(id) {
@@ -1894,6 +1894,7 @@ function applyOnlineState(remoteState, profile) {
   }
   onlineProfile = profile;
   onlineReady = true;
+  window.FMZAccounting?.init();
   onlineErrorMessage = "";
   renderNav();
   renderAll();
@@ -2064,6 +2065,7 @@ function showView(id) {
   if (!isLoggedIn()) return;
   if (!canAccessView(id)) id = allowedViews()[0]?.[0] || "trainer-dashboard";
   currentView = id;
+  document.body.classList.toggle('accounting-mode',['administration','invoice'].includes(id));
   document.querySelectorAll(".view").forEach((view) => view.classList.toggle("active", view.id === id));
   renderNav();
   renderAll();
@@ -3559,6 +3561,7 @@ function renderFinance() {
 }
 
 function renderAdministration() {
+  if(window.FMZAccounting){FMZAccounting.render();return;}
   if (!isTrainer()) return;
   const adminItems = financeAdminItems();
   const monthFilter = state.ui.financeMonth || "";
@@ -3617,6 +3620,7 @@ function renderAdministration() {
 }
 
 function renderInvoicePage() {
+  if(window.FMZAccounting){FMZAccounting.render();return;}
   const target = $("#invoicePageList");
   const kpis = $("#invoicePageKpis");
   if (!target || !kpis || !isTrainer()) return;
@@ -3807,6 +3811,11 @@ function renderAll() {
   renderAdministration();
   renderInvoicePage();
   renderSettingsPage();
+  if(window.FMZAccounting){
+    const legacySettings=document.querySelector('.settings-invoice-card');
+    if(legacySettings)legacySettings.innerHTML='<h2>Bedrijfsadministratie</h2><p>Bedrijfsgegevens en factuurinstellingen worden met ingangsdatum beheerd bij Administratie → Administratie-instellingen.</p>';
+    document.querySelectorAll('[data-settings-jump="business"],[data-settings-jump="invoice-settings-block"]').forEach(e=>e.hidden=true);
+  }
 }
 
 function createClientProfile({ name, email, password = "", goal = "", registered = false, profile = {}, startDate = "" }) {
