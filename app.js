@@ -323,6 +323,7 @@ const NAV = {
     ["nutrition", "Voeding"],
     ["trackers", "Trackers"],
     ["administration", "Administratie"],
+    ["invoice", "Facturen"],
     ["finance", "Financien"],
     ["settings", "Instellingen"]
   ],
@@ -350,9 +351,9 @@ const ADMIN_TYPES = {
 };
 const CLIENT_PACKAGES = [
   { id: "", label: "Geen pakket gekozen", amount: "" },
-  { id: "pt-basis", label: "1-op-1 PT Basis - 4x per maand", amount: 200 },
-  { id: "pt-progressie", label: "1-op-1 PT Progressie - 8x per maand", amount: 400 },
-  { id: "pt-transformatie", label: "1-op-1 PT Transformatie - 12x per maand", amount: 600 },
+  { id: "pt-basis", label: "1-op-1 PT Basis - 4x per maand", amount: 200, sessions: 4 },
+  { id: "pt-progressie", label: "1-op-1 PT Progressie - 8x per maand", amount: 380, sessions: 8 },
+  { id: "pt-transformatie", label: "1-op-1 PT Transformatie - 12x per maand", amount: 480, sessions: 12 },
   { id: "duo-basis", label: "Duo Basis - 4x per maand", amount: 260 },
   { id: "duo-progressie", label: "Duo Progressie - 8x per maand", amount: 520 },
   { id: "duo-transformatie", label: "Duo Transformatie - 12x per maand", amount: 780 },
@@ -601,7 +602,7 @@ function normalizeState(raw) {
   const highestExistingInvoice = highestInvoiceNumberSequence(next.trainerFinance.adminItems.map((item) => item.invoiceNo).filter(Boolean));
   next.trainerFinance.invoiceSequenceNext = Math.max(next.trainerFinance.invoiceSequenceNext, highestExistingInvoice + 1);
   next.trainerFinance.adminItems.forEach((item) => {
-    if (item.type === "invoice" && !item.invoiceNo) {
+    if (item.type === "invoice" && !item.invoiceNo && !item.draft) {
       item.invoiceNo = nextInvoiceNumber(next.trainerFinance);
     }
   });
@@ -1319,7 +1320,8 @@ function packageByValue(value) {
 function packageLabel(value) {
   const clean = String(value || "").trim();
   if (!clean) return "Geen pakket gekozen";
-  return packageByValue(clean)?.label || clean;
+  const found = packageByValue(clean);
+  return found ? found.label + (found.amount !== "" ? ` - ${currency(found.amount)} per maand` : "") : clean;
 }
 
 function packageAmount(value) {
@@ -1517,7 +1519,8 @@ function createAppointmentAdminItem(selected, appointment) {
     dueDate: addDaysISO(appointment.date || todayISO(), number(invoiceSettings().paymentTermDays, 14)),
     amount: "",
     status: paymentStatus(appointment),
-    invoiceNo: nextInvoiceNumber()
+    invoiceNo: "",
+    draft: true
   };
 }
 
@@ -1533,6 +1536,7 @@ function syncAppointmentAdminItem(selected, appointment) {
     items.push(item);
   }
   if (!item) return null;
+  if (item.document) return item;
   item.type = "invoice";
   item.clientId = selected.id;
   item.appointmentId = appointment.id;
@@ -1649,114 +1653,7 @@ function invoiceLogoMarkup(settings) {
   return `<div class="invoice-logo-wrap"><img src="${escapeHTML(invoiceLogoSource(settings))}" alt="${escapeHTML(settings.businessName || "Fit Met Zorge")}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" /><div style="display:none">${fallback}</div></div>`;
 }
 
-function invoiceHTML(item) {
-  const trainer = state.trainerAccount || {};
-  const settings = invoiceSettings();
-  const selectedClient = state.clients.find((clientItem) => clientItem.id === item.clientId);
-  const clientName = clientNameById(item.clientId);
-  const packageText = selectedClient ? clientPackageLabel(selectedClient) : "Geen pakket gekozen";
-  const amount = number(item.amount, 0);
-  const vatPercent = number(settings.vatPercent, 0);
-  const baseAmount = vatPercent ? amount / (1 + vatPercent / 100) : amount;
-  const vatAmount = amount - baseAmount;
-  const invoiceNo = invoiceNumber(item);
-  return `<!doctype html>
-<html lang="nl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Factuur ${escapeHTML(invoiceNo)}</title>
-  <style>
-    body { margin: 0; background: #f4f7fa; color: #101827; font-family: Arial, sans-serif; }
-    .invoice { width: min(840px, calc(100% - 32px)); margin: 24px auto; background: #fff; border: 1px solid #dbe3eb; border-radius: 10px; padding: 34px; }
-    .top { display: flex; justify-content: space-between; gap: 24px; border-bottom: 2px solid #d7b24d; padding-bottom: 18px; }
-    h1 { margin: 0; font-size: 34px; }
-    h2 { margin: 26px 0 8px; font-size: 16px; }
-    p { margin: 4px 0; color: #516174; }
-    .brand { color: #c89312; font-weight: 800; font-size: 20px; }
-    .invoice-logo-wrap img { max-width: 190px; max-height: 90px; object-fit: contain; margin-bottom: 10px; }
-    .invoice-logo-fallback { width: 210px; max-width: 100%; display: grid; gap: 8px; margin-bottom: 12px; color: #8a6500; text-align: center; font-weight: 900; }
-    .invoice-logo-fallback .bar { height: 3px; background: #8a6500; }
-    .invoice-logo-fallback .logo-line { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 18px; letter-spacing: 0; }
-    .invoice-logo-fallback .weight-mark { font-weight: 950; letter-spacing: 2px; }
-    .invoice-logo-fallback small { color: #8a6500; font-size: 11px; }
-    .meta { text-align: right; }
-    table { width: 100%; border-collapse: collapse; margin-top: 22px; }
-    th, td { border-bottom: 1px solid #dbe3eb; padding: 12px; text-align: left; }
-    th { background: #eef3f7; color: #516174; font-size: 12px; text-transform: uppercase; }
-    .total { display: grid; justify-content: end; margin-top: 20px; }
-    .total div { min-width: 260px; display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid #dbe3eb; padding: 10px 0; font-weight: 800; }
-    .status { display: inline-block; border-radius: 999px; padding: 7px 12px; background: ${item.status === "paid" ? "#e8f6ef" : "#fff7dc"}; color: ${item.status === "paid" ? "#157a4f" : "#8a6200"}; font-weight: 800; }
-    .actions { width: min(840px, calc(100% - 32px)); margin: 0 auto 24px; display: flex; justify-content: flex-end; }
-    button { min-height: 40px; border: 0; border-radius: 8px; background: #c89312; color: #111; padding: 9px 14px; font-weight: 800; cursor: pointer; }
-    @media print { body { background: #fff; } .invoice { border: 0; margin: 0; width: 100%; border-radius: 0; } .actions { display: none; } }
-  </style>
-</head>
-<body>
-  <div class="invoice">
-    <div class="top">
-      <div>
-        ${invoiceLogoMarkup(settings)}
-        <div class="brand">${escapeHTML(settings.businessName || "Fit Met Zorge")}</div>
-        <h1>Factuur</h1>
-        <p>${escapeHTML(settings.ownerName || trainer.name || "Trainer")}</p>
-        <p>${escapeHTML(settings.email || trainer.email || "")}</p>
-        <p>${escapeHTML(settings.phone || "")}</p>
-        <p>${escapeHTML([settings.address, settings.postalCity, settings.country].filter(Boolean).join(", "))}</p>
-        ${settings.vatNumber ? `<p><strong>BTW</strong> ${escapeHTML(settings.vatNumber)}</p>` : ""}
-        ${settings.chamberNumber ? `<p><strong>KvK</strong> ${escapeHTML(settings.chamberNumber)}</p>` : ""}
-        ${settings.iban ? `<p><strong>IBAN</strong> ${escapeHTML(settings.iban)}</p>` : ""}
-      </div>
-      <div class="meta">
-        <p><strong>Factuurnummer</strong><br>${escapeHTML(invoiceNo)}</p>
-        <p><strong>Factuurdatum</strong><br>${escapeHTML(formatLongDutchDate(item.date || todayISO()))}</p>
-        <p><strong>Vervaldatum</strong><br>${escapeHTML(item.dueDate ? formatLongDutchDate(item.dueDate) : "-")}</p>
-        <p><span class="status">${paymentStatusLabel(item.status)}</span></p>
-      </div>
-    </div>
-    <h2>Factuur aan</h2>
-    <p><strong>${escapeHTML(clientName)}</strong></p>
-    <p><strong>Pakket:</strong> ${escapeHTML(packageText)}</p>
-    ${item.appointmentSequence ? `<p><strong>Afspraaknummer deze maand:</strong> ${escapeHTML(item.appointmentSequence)} (${escapeHTML(monthLabel(item.appointmentMonth || monthKey(item.date || "")))})</p>` : ""}
-    <table>
-      <thead>
-        <tr>
-          <th>Omschrijving</th>
-          <th>Datum</th>
-          <th>Bedrag</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>${escapeHTML(item.description)}</td>
-          <td>${escapeHTML(formatLongDutchDate(item.date || todayISO()))}</td>
-          <td>${currency(amount)}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="total">
-      ${vatPercent ? `<div><span>Bedrag excl. btw</span><span>${currency(baseAmount)}</span></div><div><span>BTW ${fmt(vatPercent)}%</span><span>${currency(vatAmount)}</span></div>` : ""}
-      <div><span>Totaal</span><span>${currency(amount)}</span></div>
-    </div>
-    ${settings.note ? `<p>${escapeHTML(settings.note)}</p>` : ""}
-  </div>
-  <div class="actions"><button onclick="window.print()">Print of opslaan als PDF</button></div>
-</body>
-</html>`;
-}
-
-function downloadInvoice(adminItemId) {
-  const item = financeAdminItems().find((entry) => entry.id === adminItemId && entry.type === "invoice");
-  if (!item) return;
-  const blob = new Blob([invoiceHTML(item)], { type: "text/html;charset=utf-8" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = `${invoiceNumber(item)}-${clientNameById(item.clientId).replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "") || "client"}.html`;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-}
+async function downloadInvoice(adminItemId) { return FMZInvoices.download(adminItemId); }
 
 function allAppointments() {
   return state.clients.flatMap((item) =>
@@ -1910,7 +1807,7 @@ function hasPendingChanges() {
 function lockOnlineSession() {
   if (onlineProfile && hasPendingChanges()) pendingDrafts.set(onlineProfile.id,{state:FMZSync.clone(state),baseline:cloudBaseline,raw:rawCloudState,pendingWrite});
   pendingWrite=null;
-  window.FMZPhotos?.lock();
+  window.FMZPhotos?.lock(); window.FMZInvoices?.lock();
   authGeneration++;
   window.clearTimeout(cloudSaveTimer);
   onlineReady=false; onlineProfile=null; cloudBaseline=null; rawCloudState=null;
@@ -3715,31 +3612,7 @@ function renderAdministration() {
     : `<div class="empty-mini">Nog geen administratie voor deze selectie.</div>`;
 
   $("#financeInvoiceList").innerHTML = invoiceItems.length
-    ? invoiceItems.map((item) => `
-        <div class="finance-card invoice-card premium-invoice-card">
-          <div>
-            <span class="eyebrow">${paymentStatusLabel(item.status)}</span>
-            ${item.appointmentSequence ? `<span class="appointment-sequence-badge">Afspraak ${escapeHTML(item.appointmentSequence)} van ${escapeHTML(monthLabel(item.appointmentMonth || monthKey(item.date || "")))}</span>` : ""}
-            <strong>${escapeHTML(invoiceNumber(item))}</strong>
-            <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
-            <span class="muted">Pakket: ${escapeHTML(item.clientId ? clientPackageLabel(state.clients.find((clientItem) => clientItem.id === item.clientId)) : "Geen pakket gekozen")}</span>
-            <div class="invoice-edit-grid">
-              <label class="field"><span>Omschrijving</span><input data-invoice-description="${escapeHTML(item.id)}" value="${escapeHTML(item.description || "")}" /></label>
-              <label class="field"><span>Bedrag</span><input data-invoice-amount="${escapeHTML(item.id)}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
-              <label class="field"><span>Factuurdatum</span><input data-invoice-date="${escapeHTML(item.id)}" type="date" value="${escapeHTML(item.date || todayISO())}" /></label>
-              <label class="field"><span>Vervaldatum</span><input data-invoice-due="${escapeHTML(item.id)}" type="date" value="${escapeHTML(item.dueDate || "")}" /></label>
-            </div>
-          </div>
-          <div class="finance-card-actions invoice-actions">
-            <select data-admin-status="${escapeHTML(item.id)}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
-              ${paymentStatusOptions(item.status)}
-            </select>
-            <button class="primary-btn" data-save-invoice="${escapeHTML(item.id)}" type="button">Factuur opslaan</button>
-            <button class="secondary-btn" data-download-invoice="${escapeHTML(item.id)}" type="button">Download factuur</button>
-            <button class="danger-btn" data-remove-admin="${escapeHTML(item.id)}" type="button">Verwijderen</button>
-          </div>
-        </div>
-      `).join("")
+    ? invoiceItems.map(item => FMZInvoices.card(item)).join("")
     : `<div class="empty-mini">Nog geen facturen voor deze selectie. Plan een afspraak of voeg administratie van type Factuur toe.</div>`;
 }
 
@@ -3759,31 +3632,7 @@ function renderInvoicePage() {
     ["Totaal", currency(total), "gefactureerd"]
   ].map(([label, value, sub]) => `<div class="kpi"><span>${label}</span><strong>${value}</strong><small>${sub}</small></div>`).join("");
   target.innerHTML = invoices.length
-    ? invoices.map((item) => `
-      <div class="finance-card invoice-card premium-invoice-card">
-        <div>
-          <span class="eyebrow">${paymentStatusLabel(item.status)}</span>
-          ${item.appointmentSequence ? `<span class="appointment-sequence-badge">Afspraak ${escapeHTML(item.appointmentSequence)} van ${escapeHTML(monthLabel(item.appointmentMonth || monthKey(item.date || "")))}</span>` : ""}
-          <strong>${escapeHTML(invoiceNumber(item))}</strong>
-          <span>${item.clientId ? escapeHTML(clientNameById(item.clientId)) : "Geen lid gekoppeld"}</span>
-          <span class="muted">Pakket: ${escapeHTML(item.clientId ? clientPackageLabel(state.clients.find((clientItem) => clientItem.id === item.clientId)) : "Geen pakket gekozen")}</span>
-          <div class="invoice-edit-grid">
-            <label class="field"><span>Omschrijving</span><input data-invoice-description="${escapeHTML(item.id)}" value="${escapeHTML(item.description || "")}" /></label>
-            <label class="field"><span>Bedrag</span><input data-invoice-amount="${escapeHTML(item.id)}" type="number" min="0" step="0.01" value="${escapeHTML(item.amount ?? "")}" /></label>
-            <label class="field"><span>Factuurdatum</span><input data-invoice-date="${escapeHTML(item.id)}" type="date" value="${escapeHTML(item.date || todayISO())}" /></label>
-            <label class="field"><span>Vervaldatum</span><input data-invoice-due="${escapeHTML(item.id)}" type="date" value="${escapeHTML(item.dueDate || "")}" /></label>
-          </div>
-        </div>
-        <div class="finance-card-actions invoice-actions">
-          <select data-admin-status="${escapeHTML(item.id)}" aria-label="Betaalstatus factuur ${escapeHTML(invoiceNumber(item))}">
-            ${paymentStatusOptions(item.status)}
-          </select>
-          <button class="primary-btn" data-save-invoice="${escapeHTML(item.id)}" type="button">Factuur opslaan</button>
-          <button class="secondary-btn" data-download-invoice="${escapeHTML(item.id)}" type="button">Download factuur</button>
-          <button class="danger-btn" data-remove-admin="${escapeHTML(item.id)}" type="button">Verwijderen</button>
-        </div>
-      </div>
-    `).join("")
+    ? invoices.map(item => FMZInvoices.card(item)).join("")
     : `<div class="empty-state">Nog geen facturen. Plan een afspraak of voeg een factuur toe bij Administratie.</div>`;
 }
 
@@ -4756,60 +4605,10 @@ document.addEventListener("click", async (event) => {
     if (!ok) alert("Administratie opslaan mislukt.");
     return;
   }
-  if (target.dataset.saveInvoice) {
-    const item = financeAdminItems().find((entry) => entry.id === target.dataset.saveInvoice);
-    if (!item) return;
-    item.description = String(document.querySelector(`[data-invoice-description="${escapeHTML(item.id)}"]`)?.value || item.description).trim() || "Factuur";
-    item.amount = number(document.querySelector(`[data-invoice-amount="${escapeHTML(item.id)}"]`)?.value, 0);
-    item.date = document.querySelector(`[data-invoice-date="${escapeHTML(item.id)}"]`)?.value || item.date || todayISO();
-    item.dueDate = document.querySelector(`[data-invoice-due="${escapeHTML(item.id)}"]`)?.value || item.dueDate || "";
-    const statusInput = target.closest(".finance-card")?.querySelector(`[data-admin-status="${escapeHTML(item.id)}"]`) || document.querySelector(`[data-admin-status="${escapeHTML(item.id)}"]`);
-    item.status = statusInput?.value === "paid" ? "paid" : "unpaid";
-    syncAppointmentFromAdminItem(item);
-    await persistActionFeedback(null, "Factuur opgeslagen");
-    saveState(); renderAll();
-    return;
-  }
-  if (target.dataset.createPackageInvoice !== undefined) {
-    if (!isTrainer()) return;
-    const form = $("#financeAdminForm");
-    const selectedClient = state.clients.find((item) => item.id === form?.elements.clientId?.value) || client();
-    if (!hasSelectedClient(selectedClient)) {
-      alert("Kies eerst een lid voor de pakketfactuur.");
-      return;
-    }
-    const packageText = clientPackageLabel(selectedClient);
-    const packagePrice = clientPackageAmount(selectedClient);
-    if (!selectedClient.profile?.package || packageText === "Geen pakket gekozen") {
-      alert("Dit lid heeft nog geen pakket gekozen. Kies eerst een pakket bij Leden.");
-      return;
-    }
-    const date = form?.elements.date?.value || todayISO();
-    const invoice = {
-      id: `admin-${Date.now()}${Math.random().toString(16).slice(2)}`,
-      type: "invoice",
-      clientId: selectedClient.id,
-      appointmentId: "",
-      description: `Pakket: ${packageText} - ${monthLabel(date.slice(0, 7))}`,
-      date,
-      dueDate: form?.elements.dueDate?.value || addDaysISO(date, number(invoiceSettings().paymentTermDays, 14)),
-      amount: packagePrice !== "" ? packagePrice : "",
-      status: "unpaid",
-      invoiceNo: nextInvoiceNumber()
-    };
-    financeAdminItems().push(invoice);
-    const ok = await persistActionFeedback(null, "Pakketfactuur aangemaakt");
-    if (!ok) {
-      alert("Pakketfactuur opslaan mislukt.");
-      return;
-    }
-    showView("administration");
-    return;
-  }
-  if (target.dataset.downloadInvoice) {
-    downloadInvoice(target.dataset.downloadInvoice);
-    return;
-  }
+  if (target.dataset.saveInvoice) { await FMZInvoices.save(target); return; }
+  if (target.dataset.editInvoice) { FMZInvoices.open(target.dataset.editInvoice); return; }
+  if (target.dataset.createPackageInvoice !== undefined) { FMZInvoices.create(true); return; }
+  if (target.dataset.downloadInvoice) { await FMZInvoices.download(target.dataset.downloadInvoice, target); return; }
   if (target.dataset.removeAdmin) {
     if (!confirm("Dit verwijdert alleen dit administratie-item. Clienten, afspraken, schema's en logs blijven bewaard. Doorgaan?")) return;
     const removed = financeAdminItems().find((item) => item.id === target.dataset.removeAdmin);
@@ -5451,31 +5250,10 @@ $("#financeRateForm").addEventListener("submit", (event) => {
   saveState(); renderAll();
 });
 
-$("#financeAdminForm").addEventListener("submit", async (event) => {
+$("#financeAdminForm").addEventListener("submit", (event) => {
   event.preventDefault();
-  if (!isTrainer()) return;
-  const data = new FormData(event.currentTarget);
-  const date = data.get("date") || todayISO();
-  const type = "invoice";
-  const selectedClient = state.clients.find((item) => item.id === data.get("clientId"));
-  const fallbackPackageAmount = type === "invoice" && selectedClient ? clientPackageAmount(selectedClient) : "";
-  const description = String(data.get("description") || "").trim() || (selectedClient ? `Pakket: ${clientPackageLabel(selectedClient)}` : "Administratie item");
-  financeAdminItems().push({
-    id: `admin-${Date.now()}${Math.random().toString(16).slice(2)}`,
-    type,
-    clientId: data.get("clientId") || "",
-    description,
-    date,
-    dueDate: data.get("dueDate") || addDaysISO(date, number(invoiceSettings().paymentTermDays, 14)),
-    amount: data.get("amount") === "" ? fallbackPackageAmount : number(data.get("amount"), 0),
-    status: data.get("status") === "paid" ? "paid" : "unpaid",
-    invoiceNo: type === "invoice" ? nextInvoiceNumber() : ""
-  });
-  event.currentTarget.reset();
-  const ok = await persistActionFeedback(null, "Factuur opgeslagen");
-  if (!ok) alert("Factuur opslaan mislukt.");
+  FMZInvoices.create(false);
 });
-
 $("#appointmentTypeForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!isTrainer()) return;
@@ -5738,8 +5516,9 @@ document.addEventListener("change", async (event) => {
       if (form.elements.description && (!form.elements.description.value || /^Pakket:/.test(form.elements.description.value))) {
         form.elements.description.value = packageText === "Geen pakket gekozen" ? "" : `Pakket: ${packageText}`;
       }
-      if (form.elements.amount && packagePrice !== "" && !form.elements.amount.value) {
+      if (form.elements.amount && (!form.elements.amount.value || form.elements.amount.value === form.elements.amount.dataset.packageAmount)) {
         form.elements.amount.value = packagePrice;
+        form.elements.amount.dataset.packageAmount = String(packagePrice);
       }
     }
   }
