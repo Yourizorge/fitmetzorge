@@ -6,6 +6,7 @@ test('owner ledger: invoice, VAT, payments, bank, private, audit, conflicts and 
  await db.exec(`alter table auth.users add column raw_user_meta_data jsonb default '{}';create schema storage;create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint);create table storage.objects(id uuid default gen_random_uuid(),bucket_id text,name text,metadata jsonb);alter table storage.objects enable row level security;grant usage on schema storage to authenticated;grant select,insert,update,delete on storage.objects to authenticated;`);
  await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20260910145050_appfmz_owner_accounting.sql'),'utf8'));
  await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20260910171432_appfmz_accounting_closed_bank_period.sql'),'utf8'));
+ await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20260911084106_appfmz_owner_hotfix.sql'),'utf8'));
  const oid=(await db.query('select fmz_accounting.provision($1,$2) id',[ids.trainer,'Synthetic owner'])).rows[0].id;
  const cmd=async(action,payload={},req=randomUUID())=>(await as('trainer','select public.fmz_accounting_command($1,$2,$3) result',[action,JSON.stringify(payload),req])).rows[0].result;
  const snapshot=async()=>(await as('trainer','select public.fmz_accounting_read() result')).rows[0].result;
@@ -58,8 +59,8 @@ test('owner ledger: invoice, VAT, payments, bank, private, audit, conflicts and 
  await cmd('allocate',{data:{bank_id:splitBank.id,date:'2026-09-10',parts:[{type:'deposit',cents:50},{type:'invoice',target_id:basis.id,cents:50}]}});
  // Server de-duplication across different import request IDs.
  const source='synthetic-canonical-bank-reference',row={id:randomUUID(),source_key:source,account_id:bank.id,date:'2026-09-10',cents:20,description:'Import'};
- const imported=await cmd('import',{data:{date:'2026-09-10',file_id:file.id,rows:[row]}});assert.equal(imported.data.imported_ids.length,1);
- const repeated=await cmd('import',{data:{date:'2026-09-10',file_id:file.id,rows:[{...row,id:randomUUID()}]}});assert.equal(repeated.data.skipped,1);assert.equal(repeated.data.imported_ids.length,0);
+ const imported=await cmd('import',{data:{date:'2026-09-10',account_id:bank.id,file_id:file.id,rows:[row]}});assert.equal(imported.data.imported_ids.length,1);
+ const repeated=await cmd('import',{data:{date:'2026-09-10',account_id:bank.id,file_id:file.id,rows:[{...row,id:randomUUID()}]}});assert.equal(repeated.data.skipped,1);assert.equal(repeated.data.imported_ids.length,0);
  // Paid expense reversal creates a supplier refund; repayment never doubles costs.
  await cmd('expense_correction',{data:{date:'2026-09-10',expense_id:expense.id,description:'Goederen retour aan leverancier'}});assert.equal(await bal('5040'),0);assert.equal(await bal('1900',expense.id),12100);await payment(12100,expense.id,'expense');assert.equal(await bal('1900',expense.id),0);
  const partial=await cmd('expense',{data:{date:'2026-09-10',supplier:'Partial',description:'Half zakelijk',category:'5000',gross_cents:12100,business_bp:5000,deductible_bp:5000,vat_treatment:'21',vat_cents:2100,file_id:file.id}});assert.equal(partial.data.input_vat_cents,525);assert.equal(partial.data.cost_cents,5525);assert.equal(partial.data.payable_cents,12100);

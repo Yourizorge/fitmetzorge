@@ -2,8 +2,8 @@
 (()=>{
  const supported='[data-training-log],[data-training-plan],[data-meal-plan],[data-food-note],[data-food-status],[data-food-plan],[data-food-amount],[data-step-index],[data-weight-index],[data-progress],[data-wellbeing],[data-sleep],[data-water-day-input],[data-training-attendance],[data-meal-status],[data-meal-alternative],#nextTrainingNote,#goalForm input,#goalForm textarea,#goalForm select';
  const bindings=new WeakMap();
- function stamp(){document.querySelectorAll(supported).forEach(t=>{if(!bindings.has(t))bindings.set(t,{client:client(),week:activeWeekStart()});if(t.type==='number'){t.type='text';t.inputMode='decimal';t.dataset.numeric='true';}});}
- const originalRender=renderAll;renderAll=function(...args){const r=originalRender(...args);stamp();return r};
+ function stamp(rebind=false){document.querySelectorAll(supported).forEach(t=>{if(rebind===true||!bindings.has(t))bindings.set(t,{client:client(),week:activeWeekStart()});if(t.type==='number'){t.type='text';t.inputMode='decimal';t.dataset.numeric='true';}});}
+ const originalRender=renderAll;renderAll=function(...args){const r=originalRender(...args);stamp(true);goalStatus();return r};
  new MutationObserver(stamp).observe(document.body,{childList:true,subtree:true});stamp();
  function update(event){const t=event.target;if(!t.matches?.(supported)||!onlineReady)return;event.stopImmediatePropagation();
   const b=bindings.get(t)||{client:client(),week:activeWeekStart()},c=b.client,d=t.dataset,raw=t.value,v=(d.numeric||t.inputMode==='decimal')&&/^\d+(?:[.,]\d+)?$/.test(raw)?raw.replace(',','.'):raw;
@@ -26,9 +26,15 @@
  }
  document.addEventListener('input',update,true);document.addEventListener('change',update,true);
  // Incomplete numerical text remains in the account's memory draft, never coerced to zero.
- const numericKeys=new Set(['actualWeight','actualSets','sets','targetWeight','kcal','protein','carbs','fat','amount','value','hours','quality','energy','stress','motivation','waist','chest','armLeft','armRight','legLeft','legRight']);
+ const numericKeys=new Set(['actualWeight','actualSets','sets','targetWeight','kcal','protein','carbs','fat','amount','value','hours','quality','energy','stress','motivation','waist','chest','armLeft','armRight','legLeft','legRight','kcalTraining','kcalRest','carbsTraining','carbsRest','steps','sleep','water','wellbeing','age','height','currentWeight']);
  function invalid(x,key='',previous){if(JSON.stringify(x)===JSON.stringify(previous))return false;if(x&&typeof x==='object')return Object.entries(x).some(([k,v])=>invalid(v,k,previous?.[k]));return numericKeys.has(key)&&typeof x==='string'&&x!==''&&!/^\d+(?:[.,]\d+)?$/.test(x);}
- window.FMZAutosave={incomplete:()=>!!onlineProfile&&invalid(FMZSync.snapshot(state,onlineProfile.role),'',cloudBaseline)};
+ function goalDirty(){if(!onlineReady||!cloudBaseline)return false;const c=client(),b=cloudBaseline.clients?.find(x=>x.id===c.id);return ['goals','profile','goal','planSummary','startDate','name'].some(k=>!FMZSync.equal(c[k],b?.[k]));}
+ function goalStatus(){const f=document.querySelector('#goalForm'),visible=isTrainer()&&onlineReady&&currentView==='clients'&&hasSelectedClient(client());document.body.classList.toggle('goals-editor-active',visible);const s=f?.querySelector('[data-goal-status]');if(!s)return;const dirty=goalDirty();s.textContent=dirty?(onlineErrorMessage?'Opslaan mislukt — opnieuw proberen':document.querySelector('#syncStatus')?.textContent==='Opslaan…'?'Opslaan…':'Niet opgeslagen'):'Opgeslagen';}
+ function leaveGoals(){return !(currentView==='clients'&&goalDirty())||confirm('Pakket of doelen zijn nog niet opgeslagen. Op dit tabblad blijft de invoer bewaard. Toch naar het andere scherm?');}
+ window.FMZAutosave={incomplete:()=>!!onlineProfile&&invalid(FMZSync.snapshot(state,onlineProfile.role),'',cloudBaseline),goalStatus,leaveGoals};
+ document.addEventListener('change',e=>{if(e.target.id==='clientSelect'&&!leaveGoals()){e.target.value=client().id;e.stopImmediatePropagation();}},true);
+ const keyboardInset=()=>document.documentElement.style.setProperty('--fmz-keyboard-inset',Math.max(0,innerHeight-(visualViewport?.height||innerHeight)-(visualViewport?.offsetTop||0))+'px');
+ window.visualViewport?.addEventListener('resize',keyboardInset);window.visualViewport?.addEventListener('scroll',keyboardInset);
  const formDrafts=new Map(),formBindings=new WeakMap();const forms='#trainingForm,#nutritionPlanForm';const formKey=f=>[onlineProfile?.id,client().id,f.id].join('|');
  document.addEventListener('input',e=>{const f=e.target.form;if(!f?.matches(forms)||!onlineProfile)return;formDrafts.set(formKey(f),Object.fromEntries(new FormData(f)));},true);
  document.addEventListener('reset',e=>{if(e.target.matches?.(forms)&&onlineProfile)formDrafts.delete(formKey(e.target));},true);

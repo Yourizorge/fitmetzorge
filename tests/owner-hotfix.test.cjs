@@ -1,0 +1,33 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),{randomUUID:uid}=require('node:crypto'),{setup}=require('./database.cjs'),{extend}=require('./accounting-database.cjs'),M=require('../accounting-model.js');
+test('owner corrections: independent cents, tombstones, cancellation, partial credits and reversible imports',{timeout:120000},async()=>{
+ const live=process.env.FMZ_LIVE_TESTS==='1',h=live?await require('./production-accounting-harness.cjs').connect():null,x=live?null:await setup();try{const oid=live?null:await extend(x),{db,as}=x||{};
+ const cmd=h?.cmd|| (async(action,payload={},request_id=uid())=>(await as('trainer','select public.fmz_accounting_command($1,$2,$3) r',[action,JSON.stringify(payload),request_id])).rows[0].r);
+ const snap=h?.snap|| (async()=>(await as('trainer','select public.fmz_accounting_read() r')).rows[0].r);
+ await cmd('settings',{data:{date:'2026-09-01',confirmed:true,businessName:'Synthetic owner',address:'Teststraat 1',postalCity:'1000 AA Test',kvk_registered:false,vatNumber:'NL000000000B00',vat_status:'standard',vat_method:'invoice',vat_period:'quarter',vat_basis_points:2100}});
+ const make=async(extra={})=>{const r=await cmd('draft',{id:uid(),version:0,data:{date:'2026-09-11',description:'Synthetic dienst',customer:{name:'Synthetic klant',address:'Teststraat 2, 1000 AA Test'},service_date:'2026-09-11',service_extent:'8 trainingen',quantity:8,term_days:14,gross_cents:38000,discount_cents:0,...extra}});return cmd('final_invoice',{id:r.id,version:r.version});};
+ for(const price_mode of ['inclusive','exclusive'])for(const discount_mode of ['fixed','percent']){
+  const data={lines:[{description:'Training',quantity_milli:8000,unit_cents:4750},{description:'Afronding',quantity_milli:1500,unit_cents:3}],price_mode,discount_mode,discount_input_cents:3000,discount_bp:789};
+  const expected=M.invoiceTotals(data,2100),actual=live?expected:(await db.query('select fmz_accounting.invoice_totals($1,2100) r',[JSON.stringify(data)])).rows[0].r;assert.deepEqual(actual,expected);
+  const invoice=await make(data);for(const k of ['totalCents','netCents','vatCents','grossCents','discountCents'])assert.equal(invoice.data.document[k],expected[k]);
+ }
+ const draft=await cmd('draft',{id:uid(),version:0,data:{date:'2026-09-11',description:'Private draft'}}),del={id:draft.id,version:draft.version,data:{confirmed:true}},request=uid();
+ await assert.rejects(cmd('draft_delete',{...del,version:99}),e=>e.code==='PT409');const deleted=await cmd('draft_delete',del,request);assert.deepEqual(await cmd('draft_delete',del,request),deleted);assert(!(await snap()).records.some(r=>r.id===draft.id));
+ await assert.rejects(cmd('draft',{id:draft.id,version:0,data:{date:'2026-09-11'}}),e=>e.code==='PT409');assert.deepEqual((await snap()).audit.at(-1).detail,{record_id:draft.id,version:draft.version,deleted:true});
+ const original=await make(),before=M.project(await snap()),cancel={id:original.id,version:original.version,data:{unpaid_unsent_confirmed:true,reason:'Synthetic foutieve testfactuur'}};
+ const cancelled=await cmd('invoice_cancel',cancel),after=M.project(await snap());assert.deepEqual(cancelled.data.document,original.data.document);assert.equal(after.revenue,before.revenue-original.data.document.netCents);assert.equal(after.balance('1100',original.id),0);assert.equal(after.outputVAT,before.outputVAT-original.data.document.vatCents);
+ await assert.rejects(cmd('invoice_cancel',cancel),e=>e.code==='PT409');await assert.rejects(make({credit_of:original.id,gross_cents:100}),e=>e.code==='PT409');
+ const sent=await make();await cmd('invoice_sent',{id:sent.id});await assert.rejects(cmd('invoice_cancel',{...cancel,id:sent.id,version:sent.version+1}),e=>e.code==='PT409');
+ const credit=await make({credit_of:sent.id,gross_cents:10000});assert.equal(credit.data.document.totalCents,-10000);const remainder=await make({credit_of:sent.id,gross_cents:28000});assert.equal(remainder.data.document.totalCents,-28000);assert.equal(credit.data.document.vatCents+remainder.data.document.vatCents,-sent.data.document.vatCents);
+ const bank=await cmd('account',{data:{name:'Synthetic Bank',type:'bank'}}),cash=await cmd('account',{data:{name:'Synthetic Kas',type:'cash'}});await cmd('opening',{data:{account_id:cash.id,date:'2026-09-01',cents:0}});
+ await assert.rejects(cmd('bank',{data:{account_id:cash.id,date:'2026-09-11',cents:-10}}),/negatief kassaldo/);
+ await cmd('account_visibility',{id:cash.id,version:2,data:{hidden:true}});await assert.rejects(cmd('bank',{data:{account_id:cash.id,date:'2026-09-11',cents:10}}),/verborgen/);
+ const file=live?await h.storeFile():await cmd('file_reserve',{id:uid(),data:{kind:'bank_csv',original_name:'synthetic.csv',mime:'text/csv',bytes:10,sha256:'b'.repeat(64)}});if(!live){await as('trainer','insert into storage.objects(bucket_id,name,metadata) values($1,$2,$3)',['fmz-finance',file.path,JSON.stringify({size:10})]);await cmd('file_finish',{id:file.id});}
+ const row={id:uid(),account_id:bank.id,date:'2026-09-11',cents:123,source_key:'synthetic-unique'},imp=await cmd('import',{id:uid(),data:{account_id:bank.id,file_id:file.id,rows:[row]}});
+ const twice=await cmd('import',{id:uid(),data:{account_id:bank.id,file_id:file.id,rows:[{...row,id:uid()}]}});assert.equal(twice.data.skipped,1);
+ const undo={id:imp.id,version:imp.version,data:{reason:'Synthetic ongekoppelde import terugdraaien'}},undoReq=uid(),reversed=await cmd('import_undo',undo,undoReq);assert.deepEqual(await cmd('import_undo',undo,undoReq),reversed);assert.equal(M.project(await snap()).balance(bank.data.code),0);
+ const again=await cmd('import',{id:uid(),data:{account_id:bank.id,file_id:file.id,rows:[{...row,id:uid()}]}});assert.equal(again.data.imported_ids.length,1);
+ const period=await cmd('close_period',{data:{from:'2026-09-01',to:'2026-09-30',reason:'Synthetic periode afsluiten'}}),unchanged=await snap();await assert.rejects(cmd('import_undo',{id:again.id,version:again.version,data:{reason:'Closed period rollback'}}),e=>e.code==='PT409');assert.deepEqual(await snap(),unchanged);
+ await cmd('reopen_period',{id:period.id,data:{reason:'Synthetic heropenen voor controle'}});await cmd('allocate',{data:{bank_id:again.data.imported_ids[0],date:'2026-09-11',parts:[{type:'deposit',cents:123}]}});await assert.rejects(cmd('import_undo',{id:again.id,version:again.version,data:{reason:'Linked import forbidden'}}),e=>e.code==='PT409');
+ await assert.rejects(live?h.deny(cancel):as('a','select public.fmz_accounting_command($1,$2,$3)',['invoice_cancel',JSON.stringify(cancel),uid()]),/owner/i);
+ }finally{await x?.db.close();await h?.close();}
+});

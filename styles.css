@@ -5895,7 +5895,9 @@ body.trainer-mode .exercise-card-main { min-width:0; }
   body.trainer-mode .training-exercise-card .schema-card-actions { flex-wrap:wrap; }
 }
 /* Autosaved fields use the compact global acknowledgement, never a per-key success guess. */
-[data-save-training-day],[data-save-food-log],[data-save-steps-day],[data-save-progress-day],[data-save-sleep-day],[data-save-water-day],[data-save-wellbeing-day],[data-save-next-training-note],#goalForm button[type=submit]{display:none!important}
+[data-save-training-day],[data-save-food-log],[data-save-steps-day],[data-save-progress-day],[data-save-sleep-day],[data-save-water-day],[data-save-wellbeing-day],[data-save-next-training-note]{display:none!important}
+.goal-save-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;background:var(--surface);border-top:1px solid var(--line);z-index:45;position:sticky;bottom:0}.goal-save-actions button{min-height:44px;flex:none}#goalForm input,#goalForm select,#goalForm textarea{font-size:16px;min-width:0;max-width:100%}
+@media(max-width:760px){body.goals-editor-active .goal-save-actions{position:fixed;bottom:var(--fmz-keyboard-inset,0px);left:8px;right:8px;border:1px solid var(--line);border-radius:12px;padding:10px 10px max(10px,env(safe-area-inset-bottom));box-shadow:0 -4px 24px #0004;font-size:13px}body.goals-editor-active #clients{padding-bottom:90px}}
 .meal-edit-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.meal-edit-fields input{width:100%;min-width:0}
 .trainer-photo-gallery{display:flex;flex-wrap:wrap;gap:12px}.trainer-photo-gallery button{width:130px}.trainer-photo-gallery img{width:100%;height:100px;object-fit:contain}.photo-upload-field button{display:grid;gap:4px}.photo-upload-field input[type=file]{max-width:100%}
 #photoViewer{width:96vw;max-width:1500px;height:94dvh;max-height:100dvh;padding:12px;border:1px solid #686868;border-radius:16px;background:#14191f;color:#fff;overflow:hidden}#photoViewer::backdrop{background:#000c}#photoViewer header{display:flex;justify-content:space-between;align-items:center;gap:12px}#photoViewer button{min-height:40px;padding:8px 12px}#photoViewer .photo-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 0}.trainer-tools{display:contents}.trainer-tools[hidden]{display:none}#photoViewer input[type=color]{width:40px;height:36px;padding:0}#photoViewer input[type=range]{width:80px}.photo-viewport{height:calc(100% - 140px);min-height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#07090b;touch-action:none}.photo-stage{position:relative;flex:none;transform-origin:center;touch-action:none}.photo-stage img{width:100%;height:100%;object-fit:contain;image-orientation:from-image;pointer-events:none}.photo-stage canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}#photoStatus{font-size:12px}@media(max-width:600px){#photoViewer{width:100vw;height:100dvh;border-radius:0;margin:0}.photo-viewport{height:calc(100% - 220px)}}
@@ -5950,3 +5952,26 @@ body.accounting-mode .content{grid-row:2;}
 body.light .acc-dialog{background:#f7f8fa;color:#111315;}
 body.light .acc-menu button{background:#fff;}
 body.light .acc-menu button.active{background:#f7edce;}
+.acc-navigation summary{cursor:pointer;padding:14px;border:1px solid var(--line);border-radius:10px;min-height:44px;box-sizing:border-box}
+.acc-navigation .acc-menu{margin-top:10px}.acc-content h2{scroll-margin-top:18px}
+.acc-dialog header{position:sticky;top:-22px;background:var(--surface,#181818);z-index:3;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.acc-dialog header h2{font-size:20px;min-width:0;flex:1}.acc-dialog header button{flex:none}
+.acc-dialog [hidden]{display:none!important}.acc-dialog summary,[data-accounting-root] summary{cursor:pointer;min-height:44px;padding:10px 0;box-sizing:border-box}
+.invoice-extra-line{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px 0;border-top:1px solid var(--line)}
+.invoice-draft-preview{background:#fff;color:#142135;border-radius:8px;padding:14px}.invoice-draft-preview p{margin:6px 0}.invoice-total{font-size:20px}
+.invoice-a4{min-width:0;max-width:100%}.invoice-a4 [data-pdf-preview]{display:grid;gap:14px;min-width:0;max-width:100%}.invoice-a4 canvas{display:block;width:100%;height:auto;max-width:100%;box-shadow:0 2px 10px #0003;background:#fff}
+.acc-dialog:has(.invoice-a4){width:min(1050px,calc(100vw - 24px))}.acc-dialog .acc-actions{position:sticky;bottom:-22px;padding:12px 0;background:var(--surface,#181818);z-index:2}
+.acc-content,.acc-content .panel,.acc-dialog,.acc-dialog .field,.acc-navigation{overflow-wrap:anywhere}.acc-period .field{flex:1 1 140px;min-width:0}.acc-card .finance-card-actions{flex-wrap:wrap}.acc-form > .acc-check{grid-column:1/-1}.acc-form input[type=file]{width:100%;min-width:0}
+@media(max-width:760px){.acc-navigation{position:static}.acc-dialog header{top:-14px}.acc-dialog .acc-actions{bottom:-14px;display:grid;grid-template-columns:minmax(0,1fr)}.acc-dialog .acc-actions button{width:100%}.invoice-extra-line{grid-template-columns:minmax(0,1fr)}.acc-layout{display:block}.acc-content{margin-top:16px}.acc-dialog{max-height:calc(100dvh - 24px - var(--fmz-keyboard-inset,0px));margin-top:12px;margin-bottom:12px}}
+body.light .acc-dialog header,body.light .acc-dialog .acc-actions{background:#f7f8fa}
+/* The coaching sticky topbar previously intercepted accounting controls on tablet. */
+body.accounting-mode .topbar{position:relative;top:auto;display:flex;flex-wrap:wrap;min-width:0}
+body.accounting-mode .topbar-controls{flex-wrap:wrap;min-width:0;max-width:100%}
+body.accounting-mode .topbar-search{min-width:0;max-width:100%}
+@media(min-width:761px) and (max-width:1100px){
+ body.accounting-mode .app-shell{display:block;padding-bottom:0}
+ body.accounting-mode .sidebar{position:relative;top:auto;left:auto;right:auto;bottom:auto;width:auto;height:auto;margin:8px;padding:8px;border-radius:14px}
+ body.accounting-mode .sidebar-brand{display:none}
+ body.accounting-mode .topbar{padding:10px}
+ body.accounting-mode .content{padding:16px}
+ .acc-layout{grid-template-columns:minmax(0,1fr)}.acc-menu{position:static}
+}

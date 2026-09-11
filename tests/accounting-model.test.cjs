@@ -1,4 +1,12 @@
 const test=require('node:test'),assert=require('node:assert/strict'),M=require('../accounting-model.js');
+test('VAT reports distinguish net business base from non-deductible VAT and unknown opening periods',()=>{
+ const s={organization:{legacy_reviewed:true},accounts:[],lines:[],journals:[],files:[],records:[{id:'e',kind:'expense',date:'2026-09-11',data:{supplier:'Synthetic',vat_treatment:'21',business_cents:6050,business_bp:5000,vat_cents:2100,input_vat_cents:525,charge_vat_cents:0,cost_cents:5525}},{id:'a',kind:'account',data:{name:'Synthetic bank',code:'1001',opening_date:'2026-09-10',opening_cents:12345}}]};
+ assert.equal(M.project(s).vatGroups[0].cost,5000);assert.equal(M.project(s).vatGroups[0].input,525);
+ const window={};new Function('window','FMZAccountingModel',require('node:fs').readFileSync('accounting-reports.js','utf8'))(window,M);
+ const reports=window.FMZAccountingReports;assert(reports.build(s,{from:'2026-09-01',to:'2026-09-30'}).sections.find(x=>x.title.startsWith('Bank')).rows[0].includes('Onbekend'));
+ assert(reports.build(s,{from:'2026-09-10',to:'2026-09-30'}).sections.find(x=>x.title.startsWith('Bank')).rows[0].includes(M.money(12345)));
+ s.records[0].data.vat_treatment='unknown';assert.equal(M.project(s).vatGroups[0].costUnknown,true);
+});
 test('CSV mapping, signed integer cents, overlaps, ambiguous duplicates, periods and safe exports',async()=>{
  assert.equal(M.cents('0,20'),20);assert.equal(M.cents('1.234,56'),123456);assert.equal(M.cents('-20,01',true),-2001);
  for(const value of ['',null,'abc','1,234','-1','NaN'])assert.throws(()=>M.cents(value));

@@ -26,8 +26,8 @@ async function start(port=8876){
   if(url.pathname==='/config.js')return send(200,'window.FMZ_CONFIG={SUPABASE_URL:location.origin,SUPABASE_ANON_KEY:"synthetic-preview"};','text/javascript');
   const relative=url.pathname==='/'?'index.html':decodeURIComponent(url.pathname.slice(1));
   const root=path.resolve(__dirname,'..'),file=path.resolve(root,relative);
-  if(!file.startsWith(root+path.sep) || !['.js','.css','.html','.png','.svg'].includes(path.extname(file)) || relative.startsWith('node_modules'))return send(404,{});
-  try{let content=fs.readFileSync(file);const type={'.js':'text/javascript','.html':'text/html','.css':'text/css','.png':'image/png','.svg':'image/svg+xml'}[path.extname(file)];
+  if(!file.startsWith(root+path.sep) || !['.js','.mjs','.css','.html','.png','.svg'].includes(path.extname(file)) || relative.startsWith('node_modules'))return send(404,{});
+  try{let content=fs.readFileSync(file);const type={'.js':'text/javascript','.mjs':'text/javascript','.html':'text/html','.css':'text/css','.png':'image/png','.svg':'image/svg+xml'}[path.extname(file)];
    if(relative==='index.html'){content=content.toString().replace(/https:\/\/cdn.jsdelivr.net\/npm\/@supabase\/supabase-js@2(?:\.\d+\.\d+)?/,'tests/mock-sdk.js').replace('<body class="logged-out">','<body class="logged-out"><aside style="padding:8px;background:#674900;color:white">LOKALE TESTPREVIEW — synthetische gegevens. Accounts: trainer@example.test, a@example.test, b@example.test. Elk wachtwoord werkt; kies Trainer of Lid.</aside>');}
    send(200,content,type);
   }catch{send(404,{})}

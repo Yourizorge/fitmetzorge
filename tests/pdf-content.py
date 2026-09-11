@@ -5,8 +5,8 @@ for package, amount in [('pt-basis', '200,00'), ('pt-progressie', '350,00'), ('p
     reader = PdfReader(Path('tests/artifacts') / (package + '.pdf'))
     text = '\n'.join(page.extract_text() for page in reader.pages)
     assert len(reader.pages) == 1
-    assert 'FACTUUR' in text and 'Factuurnummer: FMZ-' in text
-    assert 'Oorspronkelijk bedrag incl. btw' in text and 'Korting' in text and 'Te betalen' in text
+    assert 'FACTUUR' in text and 'Factuurnummer' in text and 'FMZ-' in text
+    assert 'Regelprijzen inclusief btw' in text and 'Korting' in text and 'Openstaand bedrag' in text
     assert amount in text and '\u20ac' in text
     assert 'synthetic@example.test' in text and 'TEST-IBAN' in text
     if package == 'pt-progressie':

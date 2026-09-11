@@ -1,1 +1,1 @@
-{"name":"appfmz-repair","private":true,"scripts":{"test":"node --test --test-concurrency=1 tests/*.test.cjs","preview":"node tests/preview.cjs"},"devDependencies":{"@electric-sql/pglite":"0.5.8","fflate":"0.8.2","pdf-lib":"1.17.1","playwright":"1.62.1","supabase":"2.117.0"}}
+{"name":"appfmz-repair","private":true,"scripts":{"test":"node --test --test-concurrency=1 tests/*.test.cjs","preview":"node tests/preview.cjs"},"devDependencies":{"@electric-sql/pglite":"0.5.8","fflate":"0.8.2","pdf-lib":"1.17.1","pdfjs-dist":"6.3.289","playwright":"1.62.1","supabase":"2.117.0"}}

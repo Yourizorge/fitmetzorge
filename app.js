@@ -1731,6 +1731,7 @@ function syncStatus(text, stateName = "") {
   if (!target) return;
   target.textContent = text;
   target.dataset.state = stateName;
+  window.FMZAutosave?.goalStatus();
 }
 
 function renderOnlineStatus() {
@@ -2063,6 +2064,7 @@ function renderNav() {
 
 function showView(id) {
   if (!isLoggedIn()) return;
+  if (id !== currentView && window.FMZAutosave?.leaveGoals() === false) return;
   if (!canAccessView(id)) id = allowedViews()[0]?.[0] || "trainer-dashboard";
   currentView = id;
   document.body.classList.toggle('accounting-mode',['administration','invoice'].includes(id));
@@ -5105,26 +5107,11 @@ $("#clientForm").addEventListener("submit", async (event) => {
 
 $("#goalForm").addEventListener("submit", async (event) => {
   event.preventDefault();
-  const selected = client();
-  const data = new FormData(event.currentTarget);
-  selected.planSummary = data.get("planSummary") || "";
-  selected.goal = data.get("goal") || "";
-  selected.profile = selected.profile || defaultClientProfileData();
-  Object.keys(defaultClientProfileData()).forEach((key) => {
-    if (!event.currentTarget.elements[key]) return;
-    const value = data.get(key);
-    selected.profile[key] = ["age", "height", "currentWeight"].includes(key) && value !== "" ? number(value) : String(value || "").trim();
-  });
-  selected.startDate = data.get("startDate") || selected.startDate || todayISO();
-  const profileName = `${selected.profile.firstName || ""} ${selected.profile.lastName || ""}`.trim();
-  if (profileName) selected.name = profileName;
-  Object.keys(DEFAULT_GOALS).forEach((key) => {
-    if (!event.currentTarget.elements[key]) return;
-    const value = data.get(key);
-    selected.goals[key] = value === "" ? "" : number(value);
-  });
-  await persistActionFeedback(null, "Doelen opgeslagen");
-  saveState(); renderAll();
+  if (!isTrainer() || !onlineReady) return;
+  const button=event.currentTarget.querySelector('[type=submit]');
+  if(button.disabled)return;
+  button.disabled=true;clearTimeout(cloudSaveTimer);
+  try { await saveStateToCloud(); } finally { button.disabled=false;window.FMZAutosave?.goalStatus(); }
 });
 
 $("#trainingForm").addEventListener("submit", (event) => {
