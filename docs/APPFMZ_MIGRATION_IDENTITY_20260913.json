@@ -70,7 +70,16 @@
           "name": "invites client read own email",
           "table": "public.client_invites"
         }
-      ]
+      ],
+      "outerWhitespaceComparison": {
+        "workingTrimSha256": "5b8a1da47b46e879535d43aafd59b5a9b3f5341276b5bf2c30fa8ff2e1058119",
+        "gitTrimSha256": "312df7759ab0bad4909e275baf4a5d94fd3afc4990c405d8ae555e825832a4a0",
+        "productionTrimSha256": "312df7759ab0bad4909e275baf4a5d94fd3afc4990c405d8ae555e825832a4a0",
+        "workingTrimMatches": false,
+        "gitTrimMatches": true,
+        "productionLfTrimSha256": "312df7759ab0bad4909e275baf4a5d94fd3afc4990c405d8ae555e825832a4a0",
+        "lfTrimMatches": true
+      }
     },
     {
       "oldFile": "20260909112000_appfmz_conflict_response.sql",
@@ -99,7 +108,16 @@
       "indexes": [],
       "triggers": [],
       "policies": [],
-      "droppedPolicies": []
+      "droppedPolicies": [],
+      "outerWhitespaceComparison": {
+        "workingTrimSha256": "d170cb64f3ae59f3f13165dd9cc59190c39468605a2c70d215a153d13da568f5",
+        "gitTrimSha256": "85f16325fd534d933c5ab51ae5ff99182231d980a47e43892b47ca0191354eb1",
+        "productionTrimSha256": "85f16325fd534d933c5ab51ae5ff99182231d980a47e43892b47ca0191354eb1",
+        "workingTrimMatches": false,
+        "gitTrimMatches": true,
+        "productionLfTrimSha256": "85f16325fd534d933c5ab51ae5ff99182231d980a47e43892b47ca0191354eb1",
+        "lfTrimMatches": true
+      }
     },
     {
       "oldFile": "20260909164637_appfmz_autosave_annotations.sql",
@@ -135,7 +153,16 @@
       "indexes": [],
       "triggers": [],
       "policies": [],
-      "droppedPolicies": []
+      "droppedPolicies": [],
+      "outerWhitespaceComparison": {
+        "workingTrimSha256": "95124d0c42ed553d8034c8e3e13165b9a1d36c8372c2a579a02786dbe16d356b",
+        "gitTrimSha256": "aefd5ce2bf50f13e58e746fd65151a49d694d83c6ca14940c74384b5018214a7",
+        "productionTrimSha256": "aefd5ce2bf50f13e58e746fd65151a49d694d83c6ca14940c74384b5018214a7",
+        "workingTrimMatches": false,
+        "gitTrimMatches": true,
+        "productionLfTrimSha256": "aefd5ce2bf50f13e58e746fd65151a49d694d83c6ca14940c74384b5018214a7",
+        "lfTrimMatches": true
+      }
     },
     {
       "oldFile": "20260910145050_appfmz_owner_accounting.sql",
@@ -201,7 +228,16 @@
         "fmz_finance_owner_read",
         "fmz_finance_owner_insert"
       ],
-      "droppedPolicies": []
+      "droppedPolicies": [],
+      "outerWhitespaceComparison": {
+        "workingTrimSha256": "41cce984db8ae99fc1e85df5c1412906b1abcf6be5205432d12ae58e4db513cc",
+        "gitTrimSha256": "15ec7bd1683518b87a2951a43110093a3d2c4401f5f910568b9ded4591aecd5c",
+        "productionTrimSha256": "dcc3b38006475fd9281513bb4e536f4f38286718b7b04c7bff0ea086ea9bc321",
+        "workingTrimMatches": false,
+        "gitTrimMatches": false,
+        "productionLfTrimSha256": "15ec7bd1683518b87a2951a43110093a3d2c4401f5f910568b9ded4591aecd5c",
+        "lfTrimMatches": true
+      }
     },
     {
       "oldFile": "20260910171432_appfmz_accounting_closed_bank_period.sql",
@@ -232,7 +268,16 @@
         "fmz_accounting_closed_bank_period"
       ],
       "policies": [],
-      "droppedPolicies": []
+      "droppedPolicies": [],
+      "outerWhitespaceComparison": {
+        "workingTrimSha256": "62e977da52cdd200b10950a96f1e4348d58006f1481727c1e2ea602eb8b870ff",
+        "gitTrimSha256": "11adef90d31a84e87fec41af86d16b338b5a5c23c8d747d252833e86e8034e9e",
+        "productionTrimSha256": "11adef90d31a84e87fec41af86d16b338b5a5c23c8d747d252833e86e8034e9e",
+        "workingTrimMatches": false,
+        "gitTrimMatches": true,
+        "productionLfTrimSha256": "11adef90d31a84e87fec41af86d16b338b5a5c23c8d747d252833e86e8034e9e",
+        "lfTrimMatches": true
+      }
     },
     {
       "oldFile": "20260911084106_appfmz_owner_hotfix.sql",
@@ -264,7 +309,16 @@
       "indexes": [],
       "triggers": [],
       "policies": [],
-      "droppedPolicies": []
+      "droppedPolicies": [],
+      "outerWhitespaceComparison": {
+        "workingTrimSha256": "3aafe0a625ddaabdcb3f1069b6aba7281df3bc3c871dee58380549290e240fa0",
+        "gitTrimSha256": "60e8569aea1f75e3258ad82c166c1a2e8d4072bc49a949a4b6469feaf5560b9d",
+        "productionTrimSha256": "3aafe0a625ddaabdcb3f1069b6aba7281df3bc3c871dee58380549290e240fa0",
+        "workingTrimMatches": true,
+        "gitTrimMatches": false,
+        "productionLfTrimSha256": "60e8569aea1f75e3258ad82c166c1a2e8d4072bc49a949a4b6469feaf5560b9d",
+        "lfTrimMatches": true
+      }
     }
   ],
   "functions": [

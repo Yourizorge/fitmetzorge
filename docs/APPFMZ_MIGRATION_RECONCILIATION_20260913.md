@@ -88,6 +88,28 @@ Er zijn zes unieke migrations, zonder dubbele, local-only of remote-only versie.
 - De volledige read-only productiecatalogus is vóór en na de gezamenlijke correctie **identiek**, inclusief alle beschreven functies, tabellen, kolommen, policies, triggers, indexes en ACLs. Ook alle zes volledige historyrecords zijn exact gelijk gebleven.
 - SHA-256 en rijtellingen van **17 tabellen** zijn vóór/na identiek: profielen, workspaces, invites, receipts en annotaties; alle acht financiële tabellen; Auth users/identities en Storage buckets/objects. Geen klantinhoud of private PDF is gewijzigd of opnieuw gepubliceerd. De opgeslagen PDF-hash en Storage-metadata zijn onveranderd; private PDF-bytes zijn voor deze identiteitscontrole niet opnieuw gedownload.
 - Alle **19 live runtimebestanden** geven HTTP 200 en zijn byte-identiek aan `c99484071e8527db8819755e185b827532280afd`. Onderhoud blijft uit. Er zijn geen productieaccounts, uitnodigingen, mails, facturen, boekingen of tijdelijke productiefixtures aangemaakt.
-- Een verse export uit de Git-index is geslaagd: dezelfde zes namen/hashes, zes gelijke lokale/remote versies, lege dry-run en geslaagde migration-identiteitstest. De volledig verse checkout vanaf de gepushte GitHub-commit wordt na publicatie hieronder vastgelegd.
+- Een verse export uit de Git-index is geslaagd: dezelfde zes namen/hashes, zes gelijke lokale/remote versies, lege dry-run en geslaagde migration-identiteitstest. De volledig verse checkout vanaf de gepushte GitHub-commit is eveneens geslaagd; zie hieronder.
 
 Klantgegevens, Auth-, Storage- en financiële rijhashes blijven uitsluitend privé buiten Git. Het dossier buiten de repository bevat de volledige catalogi, history-statements, voor-/nahashes, lokale vergelijkingsscripts en CLI-/testlogs. Het publieke bewijsmanifest bevat uitsluitend migration- en objectmetadata.
+
+## Gepushte commit en verse GitHub-checkout — volledige PASS
+
+De gezamenlijke correctie is gecommit en naar `main` gepusht als [`c1ba8b862f5dfec0c6f37c94f358e69d03e6ff2c`](https://github.com/Yourizorge/fitmetzorge/commit/c1ba8b862f5dfec0c6f37c94f358e69d03e6ff2c). De [volledige Git-diff vanaf de start-HEAD](https://github.com/Yourizorge/fitmetzorge/compare/c0699b9a1afb01e10c2b6e6c208b19852b95edec...c1ba8b862f5dfec0c6f37c94f358e69d03e6ff2c) toont zes hernoemingen met nul gewijzigde SQL-regels, acht gewijzigde testpaden, de nieuwe identiteitstest en uitsluitend documentatie daarnaast. GitHub bevestigt dezelfde diff.
+
+Daarna is rechtstreeks uit `https://github.com/Yourizorge/fitmetzorge.git` naar een volledig nieuwe map gecloned. HEAD was exact `c1ba8b862f5dfec0c6f37c94f358e69d03e6ff2c`. Er zijn geen lokale migrations of runtimebestanden in die checkout gekopieerd of aangepast.
+
+| Controle in de verse GitHub-checkout | Werkelijk resultaat |
+| --- | --- |
+| SQL-identiteitstest | PASS: alle zes canonical paden en volledige SQL-hashes |
+| `migration list --linked --project-ref hgoygcviutmynaihcvpd` | Zes volledig gelijke lokale/remote versies, zoals hierboven |
+| `db push --linked --project-ref hgoygcviutmynaihcvpd --dry-run --skip-vault` | Exit 0, `upToDate: true`, nul migrations/seeds/roles |
+| Volledige bestaande suite plus nieuwe identiteitstest | **17 tests, 17 PASS, 0 FAIL, 0 skipped/cancelled**, 208,1 seconden |
+| `git status --porcelain=v1` na tests | Leeg |
+
+Voor de verse-checkouttests zijn uitsluitend de reeds geïnstalleerde, vastgepinde dependencies via `NODE_PATH` hergebruikt. De fixtures, SQL, applicatie en tests kwamen uit de verse GitHub-checkout. `FMZ_LIVE_TESTS=0` en `FMZ_SKIP_CONTROL_MATRIX=0`; geen productie-login of datamutatie.
+
+[Pages-run 34748308478](https://github.com/Yourizorge/fitmetzorge/actions/runs/34748308478) is succesvol afgerond voor deze commit. Daarna zijn alle 19 live bestanden met een nieuwe cacheparameter opgehaald: HTTP 200, byte-identiek aan de bestaande runtimecommit. [Het afrondingsmanifest](APPFMZ_MIGRATION_VERIFICATION_20260913.json) bevat de daadwerkelijke migrationlijst, lege dry-run, testuitkomst, verse-checkoutcommit, preservatie-uitkomst, Pages-run en alle 19 live hashes.
+
+Deze laatste rapportaanvulling en uitgebreidere hashdocumentatie veranderen uitsluitend documentatie. De definitieve documentatie-HEAD wordt bij oplevering afzonderlijk vermeld en opnieuw met GitHub vergeleken; de geteste canonical SQL en runtime blijven dezelfde.
+
+**APPFMZ blijft live; onderhoud is uit. Er is geen resterende migration-blocker.** De volgende stap is uitsluitend de fysieke telefoontest en owneracceptatie: opnieuw inloggen, één doel wijzigen en terugzien na verversen, een bestaand factuurconcept/PDF openen zonder een echte factuur te versturen, en de belangrijkste mobiele knoppen met geopend toetsenbord controleren. Voor deze identiteitswijziging zijn geen nieuwe functionele of databasewerkzaamheden nodig.

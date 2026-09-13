@@ -1,0 +1,198 @@
+{
+  "at": "2026-09-13T08:46:34.362Z",
+  "status": "PASS",
+  "repository": "Yourizorge/fitmetzorge",
+  "project": "hgoygcviutmynaihcvpd",
+  "baselineCommit": "c0699b9a1afb01e10c2b6e6c208b19852b95edec",
+  "correctionCommit": "c1ba8b862f5dfec0c6f37c94f358e69d03e6ff2c",
+  "freshCheckout": {
+    "source": "https://github.com/Yourizorge/fitmetzorge.git",
+    "commit": "c1ba8b862f5dfec0c6f37c94f358e69d03e6ff2c",
+    "clean": true,
+    "migrationList": [
+      {
+        "local": "20260909103959",
+        "remote": "20260909103959",
+        "time": "2026-09-09 10:39:59"
+      },
+      {
+        "local": "20260909151429",
+        "remote": "20260909151429",
+        "time": "2026-09-09 15:14:29"
+      },
+      {
+        "local": "20260909172334",
+        "remote": "20260909172334",
+        "time": "2026-09-09 17:23:34"
+      },
+      {
+        "local": "20260910170351",
+        "remote": "20260910170351",
+        "time": "2026-09-10 17:03:51"
+      },
+      {
+        "local": "20260910171555",
+        "remote": "20260910171555",
+        "time": "2026-09-10 17:15:55"
+      },
+      {
+        "local": "20260911094831",
+        "remote": "20260911094831",
+        "time": "2026-09-11 09:48:31"
+      }
+    ],
+    "dryRun": {
+      "upToDate": true,
+      "dryRun": true,
+      "migrations": [],
+      "seeds": [],
+      "roles": [],
+      "message": "Remote database is up to date."
+    },
+    "tests": {
+      "tests": 17,
+      "pass": 17,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "durationMs": 208116.743
+    }
+  },
+  "preservation": {
+    "sqlBlobsByteIdentical": 6,
+    "productionCatalogIdentical": true,
+    "productionHistoryIdentical": true,
+    "dataTableHashesIdentical": 17,
+    "privatePdfMetadataAndRecordedHashUnchanged": true,
+    "privatePdfBytesFetched": false,
+    "productionWrites": false
+  },
+  "runtime": {
+    "at": "2026-09-13T08:44:03.111Z",
+    "runtimeCommit": "c99484071e8527db8819755e185b827532280afd",
+    "nonce": 1789289043112,
+    "files": [
+      {
+        "file": "index.html",
+        "status": 200,
+        "bytes": 53400,
+        "sha256": "11b0392e85d51e0a32653ced0ca90ff2892aadacf4249fe636fe5aae533bb517"
+      },
+      {
+        "file": "app.js",
+        "status": 200,
+        "bytes": 272064,
+        "sha256": "0d296a112f9d8209a8962e076356a01d9b08f962a720d854218b7f4d66f4251c"
+      },
+      {
+        "file": "sync.js",
+        "status": 200,
+        "bytes": 5532,
+        "sha256": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266"
+      },
+      {
+        "file": "autosave.js",
+        "status": 200,
+        "bytes": 9506,
+        "sha256": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba"
+      },
+      {
+        "file": "photos.js",
+        "status": 200,
+        "bytes": 8768,
+        "sha256": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3"
+      },
+      {
+        "file": "invoices.js",
+        "status": 200,
+        "bytes": 569,
+        "sha256": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c"
+      },
+      {
+        "file": "accounting.js",
+        "status": 200,
+        "bytes": 73895,
+        "sha256": "866b659a7c2314dbccaa6756aa55144f5e49a2b70103b946fe2b78ce888c4f00"
+      },
+      {
+        "file": "accounting-model.js",
+        "status": 200,
+        "bytes": 13389,
+        "sha256": "9d5aa7bf999554317314505516c82fa681ec15de9ce2de7d0d34f6244de5a302"
+      },
+      {
+        "file": "accounting-reports.js",
+        "status": 200,
+        "bytes": 4185,
+        "sha256": "d36bf221eb4b92bf0c0f2003dd9f137fa8558ab4009e67cc1fad6a3cb890c872"
+      },
+      {
+        "file": "invoice-editor.js",
+        "status": 200,
+        "bytes": 2522,
+        "sha256": "29a8eb83aab7c04e361f4c159db70e4559feb47615bf5b861e73911d89b6674a"
+      },
+      {
+        "file": "invoice-documents.js",
+        "status": 200,
+        "bytes": 9422,
+        "sha256": "ea25c331bf9f3ab95befce4bc40c0bac8f9f2a33edd2456e4e4dfc4292ca6f11"
+      },
+      {
+        "file": "styles.css",
+        "status": 200,
+        "bytes": 118046,
+        "sha256": "9e78720ca09dab4d6101e0bb1faa581bd3d2b816212c66c51b811fa35b5f6b91"
+      },
+      {
+        "file": "config.js",
+        "status": 200,
+        "bytes": 361,
+        "sha256": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e"
+      },
+      {
+        "file": "fit-met-zorge-logo.png",
+        "status": 200,
+        "bytes": 257147,
+        "sha256": "940c6c9e66d73a642d67f453fc12e46e78f233e60432ea0ad426324af1493ecf"
+      },
+      {
+        "file": "vendor/pdf-lib-1.17.1.min.js",
+        "status": 200,
+        "bytes": 525099,
+        "sha256": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f"
+      },
+      {
+        "file": "vendor/fflate-0.8.2.js",
+        "status": 200,
+        "bytes": 32665,
+        "sha256": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf"
+      },
+      {
+        "file": "vendor/pdfjs-6.3.289/pdf.mjs",
+        "status": 200,
+        "bytes": 458705,
+        "sha256": "f80490490320511e5df18c580b9edd6b5db8058dceebaf6f161992e0a964b9e2"
+      },
+      {
+        "file": "vendor/pdfjs-6.3.289/pdf.worker.mjs",
+        "status": 200,
+        "bytes": 1265413,
+        "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386"
+      },
+      {
+        "file": "Fit_Met_Zorge_Coach_App_standalone.html",
+        "status": 200,
+        "bytes": 220,
+        "sha256": "3579e9eaacab8aaa5a1ad050fbfbe0ad4f5aa7ae70c909b443661fd0f3032bc1"
+      }
+    ],
+    "status": "PASS"
+  },
+  "pages": {
+    "id": 34748308478,
+    "conclusion": "success",
+    "commit": "c1ba8b862f5dfec0c6f37c94f358e69d03e6ff2c",
+    "url": "https://github.com/Yourizorge/fitmetzorge/actions/runs/34748308478"
+  }
+}
