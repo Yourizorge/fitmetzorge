@@ -1,0 +1,120 @@
+{
+  "at": "2026-09-13T07:08:33.545Z",
+  "commit": "c99484071e8527db8819755e185b827532280afd",
+  "files": [
+    {
+      "file": "index.html",
+      "sha256": "11b0392e85d51e0a32653ced0ca90ff2892aadacf4249fe636fe5aae533bb517",
+      "bytes": 53400,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "file": "app.js",
+      "sha256": "0d296a112f9d8209a8962e076356a01d9b08f962a720d854218b7f4d66f4251c",
+      "bytes": 272064,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "sync.js",
+      "sha256": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+      "bytes": 5532,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "autosave.js",
+      "sha256": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+      "bytes": 9506,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "photos.js",
+      "sha256": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+      "bytes": 8768,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "invoices.js",
+      "sha256": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+      "bytes": 569,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "accounting.js",
+      "sha256": "866b659a7c2314dbccaa6756aa55144f5e49a2b70103b946fe2b78ce888c4f00",
+      "bytes": 73895,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "accounting-model.js",
+      "sha256": "9d5aa7bf999554317314505516c82fa681ec15de9ce2de7d0d34f6244de5a302",
+      "bytes": 13389,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "accounting-reports.js",
+      "sha256": "d36bf221eb4b92bf0c0f2003dd9f137fa8558ab4009e67cc1fad6a3cb890c872",
+      "bytes": 4185,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "invoice-editor.js",
+      "sha256": "29a8eb83aab7c04e361f4c159db70e4559feb47615bf5b861e73911d89b6674a",
+      "bytes": 2522,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "invoice-documents.js",
+      "sha256": "ea25c331bf9f3ab95befce4bc40c0bac8f9f2a33edd2456e4e4dfc4292ca6f11",
+      "bytes": 9422,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "styles.css",
+      "sha256": "9e78720ca09dab4d6101e0bb1faa581bd3d2b816212c66c51b811fa35b5f6b91",
+      "bytes": 118046,
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "config.js",
+      "sha256": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e",
+      "bytes": 361,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "fit-met-zorge-logo.png",
+      "sha256": "940c6c9e66d73a642d67f453fc12e46e78f233e60432ea0ad426324af1493ecf",
+      "bytes": 257147,
+      "mime": "image/png"
+    },
+    {
+      "file": "vendor/pdf-lib-1.17.1.min.js",
+      "sha256": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f",
+      "bytes": 525099,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "vendor/fflate-0.8.2.js",
+      "sha256": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf",
+      "bytes": 32665,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "vendor/pdfjs-6.3.289/pdf.mjs",
+      "sha256": "f80490490320511e5df18c580b9edd6b5db8058dceebaf6f161992e0a964b9e2",
+      "bytes": 458705,
+      "mime": "text/javascript; charset=utf-8"
+    },
+    {
+      "file": "vendor/pdfjs-6.3.289/pdf.worker.mjs",
+      "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+      "bytes": 1265413,
+      "mime": "text/javascript; charset=utf-8"
+    },
+    {
+      "file": "Fit_Met_Zorge_Coach_App_standalone.html",
+      "sha256": "3579e9eaacab8aaa5a1ad050fbfbe0ad4f5aa7ae70c909b443661fd0f3032bc1",
+      "bytes": 220,
+      "mime": "text/html; charset=utf-8"
+    }
+  ]
+}

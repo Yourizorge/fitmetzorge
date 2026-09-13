@@ -61,7 +61,7 @@ Tijdens de uitgebreide herhaalde controles zijn testfixtures gecorrigeerd: het n
 
 Runtime: `app.js`, `autosave.js`, `accounting.js`, `accounting-model.js`, `accounting-reports.js`, `invoice-editor.js`, `invoice-documents.js`, `invoices.js`, `styles.css`, `index.html`; onderhoud: `maintenance.html`. PDF-preview: `vendor/pdfjs-6.3.289/pdf.mjs`, `pdf.worker.mjs`, `LICENSE`; ontwikkeldependency: `package.json`, `pnpm-lock.yaml`. De bestaande `sync.js`, `photos.js`, logo, configuratie en Edgefunctie blijven ongewijzigd.
 
-Tests: `accounting-database.cjs`, `accounting-model.test.cjs`, `accounting-ui.test.cjs`, `accounting.test.cjs`, `edge.test.cjs`, `invoices.test.cjs`, `pdf-content.py`, `preview.cjs`, `production-accounting.cjs`, `production-invoice-preview.cjs`, `release-backup-complete.cjs`; nieuw: `documents.test.cjs`, `hotfix-pdf-content.py`, `owner-admin-interactions.test.cjs`, `owner-hotfix-ui.test.cjs`, `owner-hotfix.test.cjs`, `production-accounting-harness.cjs`, `production-hotfix-preservation.cjs`. Daarnaast deze migration, dit rapport en uitsluitend synthetische voorbeelden onder `docs/examples/owner-hotfix/`.
+Tests: `accounting-database.cjs`, `accounting-model.test.cjs`, `accounting-ui.test.cjs`, `accounting.test.cjs`, `edge.test.cjs`, `invoices.test.cjs`, `pdf-content.py`, `preview.cjs`, `production-accounting.cjs`, `production-invoice-preview.cjs`, `release-backup-complete.cjs`; nieuw: `documents.test.cjs`, `hotfix-pdf-content.py`, `owner-admin-interactions.test.cjs`, `owner-hotfix-ui.test.cjs`, `owner-hotfix.test.cjs`, `production-accounting-harness.cjs`, `production-hotfix-preservation.cjs`, `report-examples.cjs`. Daarnaast deze migration, dit rapport, `APPFMZ_OWNER_HOTFIX_ASSETS.json` en uitsluitend synthetische voorbeelden onder `docs/examples/owner-hotfix/`.
 
 ## Eenvoudige ownerhandleiding
 
@@ -82,4 +82,15 @@ De verplichte factuurgegevens zijn getoetst aan de [officiële Belastingdienst-f
 
 ## Publicatiestatus
 
-Onderhoudscommit: `fff49da` op `main`, gepubliceerd en live gecontroleerd. De gerichte migration en de essentiële ketentests zijn geslaagd. De runtimepush, definitieve live assetcontrole en opruiming worden hieronder aangevuld zodra afgerond. Staging, marketingwebsite en afzonderlijke AI-ontwikkeling zijn niet gewijzigd.
+**Gepubliceerd en vrijgegeven op https://appfmz.nl. Onderhoud is uit.**
+
+- Onderhoudscommit: [`fff49dac8e49f8205f88e8480fa91fa29d31f024`](https://github.com/Yourizorge/fitmetzorge/commit/fff49dac8e49f8205f88e8480fa91fa29d31f024).
+- Runtimecommit op `main`: [`c99484071e8527db8819755e185b827532280afd`](https://github.com/Yourizorge/fitmetzorge/commit/c99484071e8527db8819755e185b827532280afd).
+- [Pages-run 34593134526](https://github.com/Yourizorge/fitmetzorge/actions/runs/34593134526) is succesvol. De normale root en de standalone-doorverwijzing werken.
+- Definitieve live controle op **13 september 2026**: alle **19 bestanden** zijn byte voor byte gelijk aan de runtimecommit, inclusief `sync.js`, configuratie, logo, nieuwe modules en beide PDF.js-bestanden. Namen, SHA-256, grootte, MIME en tijdstip staan in [het assetmanifest](APPFMZ_OWNER_HOTFIX_ASSETS.json).
+- Rechtstreeks op **appfmz.nl**: echte ownerlogin en opnieuw inloggen behouden pakket-/doelwaarden; alle negen mobiele administratieschermen openen; de private A4 wordt daadwerkelijk via de live PDF.js-worker gerenderd. Een geforceerde private downloadfout geeft één mislukt verzoek; retry levert `application/pdf` met `.pdf` en dezelfde factuur-ID's/nummers. Geen browserfouten.
+- Alle **vier eigen synthetische Auth-accounts**, hun organisatie, financiële records/bijlagen, workspace en gekoppelde testgegevens zijn verwijderd met marker-/ownercontrole. Eindcontrole: nul synthetische accounts en nul synthetische organisaties. Productie houdt de oorspronkelijke 7 profielen, 2 workspaces, 1 financiële organisatie, 11 financiële records en 1 privébestand; er zijn geen ongebalanceerde journals.
+- Na schoonmaak zijn alle oorspronkelijke rijen van alle 13 tabellen opnieuw **identiek** aan het herstelpunt. Ook de live bytes van de oorspronkelijke owner-PDF zijn opnieuw tegen de back-uphash geverifieerd. De huidige testfactuur van de owner is niet verwijderd, geannuleerd of gecrediteerd. Alleen de synthetische voorbeelden in deze repository zijn bewust bewaard voor de handleiding.
+- De tijdelijke lokale productiepreview is afgesloten. Staging, marketingwebsite en afzonderlijke AI-ontwikkeling zijn niet gewijzigd.
+
+Deze eindaanvulling wijzigt uitsluitend documentatie en het verificatiemanifest. Een automatische Pages-herpublicatie daarvan verandert geen runtimebestand. De definitieve documentatiecommit wordt bij oplevering als remote HEAD vermeld; de runtime blijft `c99484071e8527db8819755e185b827532280afd`.
