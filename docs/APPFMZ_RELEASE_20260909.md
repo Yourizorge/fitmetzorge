@@ -1,5 +1,7 @@
 # Productierelease 9 september 2026 — afronding na aanvullende toestemming
 
+> Identiteitscorrectie 13 september 2026: oorspronkelijke migrationnamen hieronder zijn historische namen. Zie [de gezamenlijke reconciliatie en canonical paden](APPFMZ_MIGRATION_RECONCILIATION_20260913.md). De SQL is niet opnieuw uitgevoerd.
+
 ## Eindcontrole na toestemming voor 5c45631238604a1c24a6da1d12f4432ef75ac973
 
 De aanvullende migration `20260909112000_appfmz_conflict_response.sql` is uitsluitend en transactioneel toegepast, geregistreerd als **20260909151429 / appfmz_conflict_response**. De oorspronkelijke migration is niet herhaald. De bestaande databack-up is opnieuw met succes hersteld in de lokale herstelproef; de actuele functie is aanvullend privé vastgelegd. Profiel- en workspacechecksums vóór de correctie waren gelijk aan het vorige herstelpunt.

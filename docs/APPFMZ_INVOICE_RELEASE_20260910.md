@@ -1,5 +1,7 @@
 # APPFMZ — release Administratie, maandprijzen en privé-PDF
 
+> Identiteitscorrectie 13 september 2026: oorspronkelijke migrationnamen hieronder zijn historische namen. Zie [de gezamenlijke reconciliatie en canonical paden](APPFMZ_MIGRATION_RECONCILIATION_20260913.md). De SQL is niet opnieuw uitgevoerd.
+
 Scope: `Yourizorge/fitmetzorge`, `appfmz.nl`, productieproject `hgoygcviutmynaihcvpd`. Uitgangspunt: main `d5673a2e9383990b456b472b3d60b5d96a39ecc1`. De aanvullende opdracht van 10 september vervangt de eerdere factuurimplementatie door één geïntegreerde owneradministratie. De bestaande projectinstructies, publicatieplan, releaserapporten en owneracceptatie zijn gelezen. Geen AGENTS.md aangetroffen. De eerdere owneracceptatie blijft uitsluitend gelden voor de vorige autosave/fotorelease; deze administratierelease krijgt een eigen telefoontest.
 
 ## Uitgevoerde wijzigingen

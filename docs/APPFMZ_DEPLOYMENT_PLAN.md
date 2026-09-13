@@ -1,5 +1,7 @@
 # APPFMZ publicatie- en terugvalplan
 
+> Status 13 september 2026: alle zes migrations in dit project zijn reeds toegepast. Dit oorspronkelijke uitrolplan is historisch; voer onderstaande SQL-stappen niet opnieuw uit. Controleer voortaan eerst [de canonical migrationhistorie](APPFMZ_MIGRATION_RECONCILIATION_20260913.md) met migration list en uitsluitend db push --dry-run --skip-vault.
+
 **Voorbereid, niet gepubliceerd.** Repository `Yourizorge/fitmetzorge`; productieproject `hgoygcviutmynaihcvpd`; domein `appfmz.nl`. Geen stagingproject gebruiken.
 
 ## Beoordeling en toestemming
@@ -19,7 +21,7 @@ De gebruiker heeft commits en push naar de fixbranch toegestaan. Samenvoegen naa
 ## Volgorde na definitieve toestemming
 
 1. Zet de app tijdelijk in onderhoud of voer het afgesproken onderhoudsvenster uit.
-2. Voer `supabase/migrations/20260908171653_appfmz_storage_security.sql` transactioneel uit op **hgoygcviutmynaihcvpd**, via een beheerverbinding of correcte migration-tool. Niet ongericht `db push` gebruiken: de repository bevat niet de historische productiemigrations.
+2. Voer `supabase/migrations/20260909103959_appfmz_storage_security.sql` transactioneel uit op **hgoygcviutmynaihcvpd**, via een beheerverbinding of correcte migration-tool. Niet ongericht `db push` gebruiken: de repository bevat niet de historische productiemigrations.
 3. Controleer grants/RLS en RPC's. Anon mag geen RPC uitvoeren; authenticated mag geen ruwe workspace lezen/schrijven. Draai Supabase security advisors; publiceer geen klantinhoud.
 4. Deploy `supabase/functions/invite-client/index.ts` met JWT-verificatie aan. De functie vereist de nieuwe `fmz_prepare_invite` RPC. Secrets blijven uitsluitend server-side.
 5. Merge de beoordeelde branch naar main en publiceer via de bestaande apphosting. Neem `sync.js` mee; controleer de versieparameters in index.html. Behoud CNAME en het productieproject in config.js. Standalone verwijst naar dezelfde rootapp.

@@ -1,5 +1,7 @@
 # APPFMZ reparatierapport
 
+> Identiteitscorrectie 13 september 2026: oorspronkelijke migrationnamen hieronder zijn historische namen. Zie [de gezamenlijke reconciliatie en canonical paden](APPFMZ_MIGRATION_RECONCILIATION_20260913.md). De SQL is niet opnieuw uitgevoerd.
+
 8 september 2026 · `Yourizorge/fitmetzorge` · branch `codex/fix-appfmz-storage-security`.
 Basis: `846eb6ba63d28a182a30c058c7a4094cab6fb20d`. Productieproject: `hgoygcviutmynaihcvpd`.
 

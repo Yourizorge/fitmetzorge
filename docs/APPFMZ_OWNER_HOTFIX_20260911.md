@@ -1,5 +1,7 @@
 # APPFMZ ownerhotfix — uitvoering en bewijs
 
+> Identiteitscorrectie 13 september 2026: oorspronkelijke migrationnamen hieronder zijn historische namen. Zie [de gezamenlijke reconciliatie en canonical paden](APPFMZ_MIGRATION_RECONCILIATION_20260913.md). De SQL is niet opnieuw uitgevoerd.
+
 Scope: uitsluitend `Yourizorge/fitmetzorge`, `main`, `appfmz.nl`, Supabase `hgoygcviutmynaihcvpd`. Start-HEAD lokaal en remote: `02a961e72958540329333139d66f896261541dee`. De actuele release-, administratie-, autosave- en opslagrapporten zijn gelezen. In de repository en bovenliggende projectmap zijn geen `AGENTS.md` of `.codex/config.toml` aanwezig. Bestaande migrations zijn geïnventariseerd en worden niet herhaald.
 
 ## Vastgesteld vóór wijziging

@@ -1,0 +1,688 @@
+{
+  "at": "2026-09-13T08:27:25.082Z",
+  "status": "PASS",
+  "mappings": [
+    {
+      "oldFile": "20260908171653_appfmz_storage_security.sql",
+      "canonicalFile": "20260909103959_appfmz_storage_security.sql",
+      "productionVersion": "20260909103959",
+      "name": "appfmz_storage_security",
+      "sqlIdentity": "PASS",
+      "normalization": "outer whitespace; CRLF to LF only for comparison; Git SQL blob remains unchanged",
+      "hash": "21d0f6ea93d656b0c4c3238c2630113179c24eaff31ec8e4c5c98f7438c8014c",
+      "normalizedHash": "312df7759ab0bad4909e275baf4a5d94fd3afc4990c405d8ae555e825832a4a0",
+      "bytes": 16689,
+      "workingBytes": 16890,
+      "workingHash": "e37c72705cecbf074ec15b5145a3585d132445d9ef9b3b764db6c0cd4fcb230c",
+      "productionBytes": 16688,
+      "productionHash": "312df7759ab0bad4909e275baf4a5d94fd3afc4990c405d8ae555e825832a4a0",
+      "history": [
+        {
+          "commit": "d989c5b1155742290f7612daaa2a7bcdc07f1ccc",
+          "sha256": "21d0f6ea93d656b0c4c3238c2630113179c24eaff31ec8e4c5c98f7438c8014c"
+        }
+      ],
+      "functions": [
+        "fmz_private.actor",
+        "fmz_private.read_workspace",
+        "fmz_private.put",
+        "fmz_private.save_changes",
+        "fmz_private.accept_invite",
+        "public.fmz_read_workspace",
+        "public.fmz_save_changes",
+        "public.accept_client_invite",
+        "fmz_private.prepare_invite",
+        "public.fmz_prepare_invite"
+      ],
+      "tables": [],
+      "indexes": [
+        "fmz_invites_pending_email",
+        "fmz_profiles_client_link"
+      ],
+      "triggers": [],
+      "policies": [],
+      "droppedPolicies": [
+        {
+          "name": "profiles insert own",
+          "table": "public.profiles"
+        },
+        {
+          "name": "workspace read trainer or linked client",
+          "table": "public.coach_workspaces"
+        },
+        {
+          "name": "workspace update trainer or linked client",
+          "table": "public.coach_workspaces"
+        },
+        {
+          "name": "workspace insert trainer",
+          "table": "public.coach_workspaces"
+        },
+        {
+          "name": "workspace delete trainer",
+          "table": "public.coach_workspaces"
+        },
+        {
+          "name": "invites trainer manage",
+          "table": "public.client_invites"
+        },
+        {
+          "name": "invites client read own email",
+          "table": "public.client_invites"
+        }
+      ]
+    },
+    {
+      "oldFile": "20260909112000_appfmz_conflict_response.sql",
+      "canonicalFile": "20260909151429_appfmz_conflict_response.sql",
+      "productionVersion": "20260909151429",
+      "name": "appfmz_conflict_response",
+      "sqlIdentity": "PASS",
+      "normalization": "outer whitespace; CRLF to LF only for comparison; Git SQL blob remains unchanged",
+      "hash": "44b57260741898817eda23f37ce28685a73bce8f23e334873b95328645f773fe",
+      "normalizedHash": "85f16325fd534d933c5ab51ae5ff99182231d980a47e43892b47ca0191354eb1",
+      "bytes": 5066,
+      "workingBytes": 5128,
+      "workingHash": "58aa4da9ca88562b139b1f7b4eb968fb93e79793831e7e594839df24459025e4",
+      "productionBytes": 5065,
+      "productionHash": "85f16325fd534d933c5ab51ae5ff99182231d980a47e43892b47ca0191354eb1",
+      "history": [
+        {
+          "commit": "5c45631238604a1c24a6da1d12f4432ef75ac973",
+          "sha256": "44b57260741898817eda23f37ce28685a73bce8f23e334873b95328645f773fe"
+        }
+      ],
+      "functions": [
+        "fmz_private.save_changes"
+      ],
+      "tables": [],
+      "indexes": [],
+      "triggers": [],
+      "policies": [],
+      "droppedPolicies": []
+    },
+    {
+      "oldFile": "20260909164637_appfmz_autosave_annotations.sql",
+      "canonicalFile": "20260909172334_appfmz_autosave_annotations.sql",
+      "productionVersion": "20260909172334",
+      "name": "appfmz_autosave_annotations",
+      "sqlIdentity": "PASS",
+      "normalization": "outer whitespace; CRLF to LF only for comparison; Git SQL blob remains unchanged",
+      "hash": "67d2f5967b25a3c0ecd2e7756ba0feda3eb3a5591348ddb0c7693fb5dccd4f80",
+      "normalizedHash": "aefd5ce2bf50f13e58e746fd65151a49d694d83c6ca14940c74384b5018214a7",
+      "bytes": 8650,
+      "workingBytes": 8746,
+      "workingHash": "d1058c72bd1de82f9f935a7fb8ece16d1d99873146a9235b211b70169d534f1c",
+      "productionBytes": 8649,
+      "productionHash": "aefd5ce2bf50f13e58e746fd65151a49d694d83c6ca14940c74384b5018214a7",
+      "history": [
+        {
+          "commit": "22f219fa9db78e88a37b3943bbe548935dbd6f4e",
+          "sha256": "67d2f5967b25a3c0ecd2e7756ba0feda3eb3a5591348ddb0c7693fb5dccd4f80"
+        }
+      ],
+      "functions": [
+        "fmz_private.ensure_plan_ids",
+        "fmz_private.save_once",
+        "public.fmz_save_changes_once",
+        "fmz_private.annotation",
+        "public.fmz_photo_annotation"
+      ],
+      "tables": [
+        "fmz_private.write_receipts",
+        "fmz_private.photo_annotations"
+      ],
+      "indexes": [],
+      "triggers": [],
+      "policies": [],
+      "droppedPolicies": []
+    },
+    {
+      "oldFile": "20260910145050_appfmz_owner_accounting.sql",
+      "canonicalFile": "20260910170351_appfmz_owner_accounting.sql",
+      "productionVersion": "20260910170351",
+      "name": "appfmz_owner_accounting",
+      "sqlIdentity": "PASS",
+      "normalization": "outer whitespace; CRLF to LF only for comparison; Git SQL blob remains unchanged",
+      "hash": "3599c53aab5eeec0ee6ca9e5ed85ac23f11ecaeb9136a134d9f9608d84ac50f7",
+      "normalizedHash": "15ec7bd1683518b87a2951a43110093a3d2c4401f5f910568b9ded4591aecd5c",
+      "bytes": 48367,
+      "workingBytes": 48891,
+      "workingHash": "fb187e4851de1bf236bd3758243cf751e87199c87fbf4047a695355892c019dd",
+      "productionBytes": 48879,
+      "productionHash": "b8fcae3324f86e9978828553f22342e71f332733d786039f491d1d3be0527ad9",
+      "history": [
+        {
+          "commit": "fae170057376ccd83180e2cde1973fc23938f054",
+          "sha256": "3599c53aab5eeec0ee6ca9e5ed85ac23f11ecaeb9136a134d9f9608d84ac50f7"
+        }
+      ],
+      "functions": [
+        "fmz_accounting.check_numbers",
+        "fmz_accounting.owner_org",
+        "fmz_accounting.provision",
+        "fmz_accounting.open_date",
+        "fmz_accounting.post",
+        "fmz_accounting.balance",
+        "fmz_accounting.snapshot",
+        "fmz_accounting.storage_allowed",
+        "fmz_accounting.add_record",
+        "fmz_accounting.final_invoice",
+        "fmz_accounting.expense",
+        "fmz_accounting.bank",
+        "fmz_accounting.allocate",
+        "fmz_accounting.command",
+        "fmz_accounting.guard_legacy_invoice",
+        "public.fmz_accounting_read",
+        "public.fmz_accounting_command"
+      ],
+      "tables": [
+        "fmz_accounting.organizations",
+        "fmz_accounting.accounts",
+        "fmz_accounting.records",
+        "fmz_accounting.journals",
+        "fmz_accounting.lines",
+        "fmz_accounting.files",
+        "fmz_accounting.audit",
+        "fmz_accounting.receipts"
+      ],
+      "indexes": [
+        "acc_records_date_kind",
+        "acc_journals_period",
+        "acc_lines_account",
+        "acc_lines_reference",
+        "acc_files_record",
+        "acc_audit_org"
+      ],
+      "triggers": [
+        "fmz_accounting_guard_legacy"
+      ],
+      "policies": [
+        "fmz_finance_owner_read",
+        "fmz_finance_owner_insert"
+      ],
+      "droppedPolicies": []
+    },
+    {
+      "oldFile": "20260910171432_appfmz_accounting_closed_bank_period.sql",
+      "canonicalFile": "20260910171555_appfmz_accounting_closed_bank_period.sql",
+      "productionVersion": "20260910171555",
+      "name": "appfmz_accounting_closed_bank_period",
+      "sqlIdentity": "PASS",
+      "normalization": "outer whitespace; CRLF to LF only for comparison; Git SQL blob remains unchanged",
+      "hash": "2b870f6de34c9ebf1b95de139a19b165016ffb0649c1384da74b7670a69367e9",
+      "normalizedHash": "11adef90d31a84e87fec41af86d16b338b5a5c23c8d747d252833e86e8034e9e",
+      "bytes": 1161,
+      "workingBytes": 1181,
+      "workingHash": "642b9464f0eac86ab59dc2aed054257119d294164b059cc3860345b88dc48263",
+      "productionBytes": 1163,
+      "productionHash": "279eb7fa8b89d1a43f127c63d558fcb86334f1cbdf61160975ca32c3129787c7",
+      "history": [
+        {
+          "commit": "fae170057376ccd83180e2cde1973fc23938f054",
+          "sha256": "2b870f6de34c9ebf1b95de139a19b165016ffb0649c1384da74b7670a69367e9"
+        }
+      ],
+      "functions": [
+        "fmz_accounting.guard_closed_bank_period"
+      ],
+      "tables": [],
+      "indexes": [],
+      "triggers": [
+        "fmz_accounting_closed_bank_period"
+      ],
+      "policies": [],
+      "droppedPolicies": []
+    },
+    {
+      "oldFile": "20260911084106_appfmz_owner_hotfix.sql",
+      "canonicalFile": "20260911094831_appfmz_owner_hotfix.sql",
+      "productionVersion": "20260911094831",
+      "name": "appfmz_owner_hotfix",
+      "sqlIdentity": "PASS",
+      "normalization": "outer whitespace; CRLF to LF only for comparison; Git SQL blob remains unchanged",
+      "hash": "c04dc3f8e67d2eb119b52fdd838cae879237e12dceeae136d1f5f80cfbbe193c",
+      "normalizedHash": "60e8569aea1f75e3258ad82c166c1a2e8d4072bc49a949a4b6469feaf5560b9d",
+      "bytes": 36334,
+      "workingBytes": 36564,
+      "workingHash": "6b02dbb4adbb3c5c2a2d38d3e3b2c0a95e2d44e5ce5fd5fc5d16425f2c1857f2",
+      "productionBytes": 36563,
+      "productionHash": "3aafe0a625ddaabdcb3f1069b6aba7281df3bc3c871dee58380549290e240fa0",
+      "history": [
+        {
+          "commit": "c99484071e8527db8819755e185b827532280afd",
+          "sha256": "c04dc3f8e67d2eb119b52fdd838cae879237e12dceeae136d1f5f80cfbbe193c"
+        }
+      ],
+      "functions": [
+        "fmz_accounting.invoice_totals",
+        "fmz_accounting.final_invoice",
+        "fmz_accounting.bank",
+        "fmz_accounting.command"
+      ],
+      "tables": [],
+      "indexes": [],
+      "triggers": [],
+      "policies": [],
+      "droppedPolicies": []
+    }
+  ],
+  "functions": [
+    {
+      "name": "fmz_accounting.add_record",
+      "arguments": "oid uuid, rid uuid, k text, d date, body jsonb, st text, parent uuid, source text",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "e12990bc2e656f6ce7946d6c46e7c73a82d63ae5766dbace01c8644398a33190",
+      "definitionLfSha256": "eca7a7c7145edaecd8853e20b56893eb9f2beece19b785c021ccd1ccb66e5c1d",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.allocate",
+      "arguments": "oid uuid, rid uuid, body jsonb",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "476cf6faa8b002a95acefb74cf66e7bfb62a51c87411ec27b6019a83d4f39fca",
+      "definitionLfSha256": "29ba138183fd8aced6b550a248c37bdd053ae3e17fc53616996024db68fa5727",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.balance",
+      "arguments": "oid uuid, code text, rid uuid",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "230872a105a59a957e76ae2d24966e897a5baeb6f1750fdc20aa7de1bd2e748d",
+      "definitionLfSha256": "14be7968e82ccf1be3fc646e136a35e0f8adddb6389c9933fc0af3ef817518ca",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.bank",
+      "arguments": "oid uuid, rid uuid, body jsonb, source text",
+      "lastMigration": "20260911094831",
+      "bodyLfSha256": "6ec6df71a8f9fd701860822b3a77d09eb353c25489b812abdab77db0a4a0139f",
+      "definitionLfSha256": "4aa4207bd4f88e53bc489273e1d6ce664433a33763d891866de2cf3bf501178f",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.check_numbers",
+      "arguments": "body jsonb",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "53b4d19dfba57ee1971a2a54675723425d736794f223b4bafb95be13a20d8f6a",
+      "definitionLfSha256": "d47c0456af5537ed691b37cb0bb78d00bdeac235ef0edac1f265be8c3066c0d6",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.command",
+      "arguments": "action text, payload jsonb, request_id uuid",
+      "lastMigration": "20260911094831",
+      "bodyLfSha256": "a3074ec4e96675e6ab20c37f5db1d4cef9a86bedded1c0dcecd8db601e8ea421",
+      "definitionLfSha256": "a32b3bd431eae8827a90c987bf52e70c8f2980c9672b99c2d31bd79495eb018a",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.expense",
+      "arguments": "oid uuid, rid uuid, body jsonb",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "d42f482f6e27b9bae2d44d14ebd0c481f156581869b3b499fd7af16c5be9c210",
+      "definitionLfSha256": "c19943e9cbb11b17738130dd27fc1adc939f2ae61fda1eab2ae2102dcb20aa37",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.final_invoice",
+      "arguments": "oid uuid, rid uuid, expected bigint",
+      "lastMigration": "20260911094831",
+      "bodyLfSha256": "bbd0d179f6a12e3f570898e9047c2261da7613996983c80aa4808ff992159c08",
+      "definitionLfSha256": "ab6a33ca8c50c850e39020b311ca706e9de25a7c0d644cffbc4cf7fea399cc9f",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.guard_closed_bank_period",
+      "arguments": "",
+      "lastMigration": "20260910171555",
+      "bodyLfSha256": "f54278f92a44ea83a3be4b0d6bc929193a951bcd4589bd17335ef4fe41a36ff2",
+      "definitionLfSha256": "5554b09ee5626ba6c21d401927b286ddac6cdf53fd77e37f05f99f6274f98924",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.guard_legacy_invoice",
+      "arguments": "",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "966017b9eee35db89d8829b1ac0e09389614e24b253734086af8d4b843fab2c3",
+      "definitionLfSha256": "85f4c8decaec5c477f6d28c48643e9426b41d6c8be372ef6bb7cb0600ca4531a",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.invoice_totals",
+      "arguments": "body jsonb, rate bigint",
+      "lastMigration": "20260911094831",
+      "bodyLfSha256": "19b3b708cfceaad3ad2d715e5c2dc79b7ff5297ef53d98c0cbb5b7c09e7115bb",
+      "definitionLfSha256": "33aa36d62250dc3c000392205aa084d9d99bac2e40286a01414fb7d6e56f6a8e",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.open_date",
+      "arguments": "oid uuid, d date",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "886d9f00faea56424bf358919d34f40bb13a0a8fa2e86c6c237eb1c5e75fdb1e",
+      "definitionLfSha256": "9a895c54c8f7bcb50f79185b78be59e5f5576eef977c3d6a85563d56bda1c1c4",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.owner_org",
+      "arguments": "",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "ec565b138d195fd68e44dd0a7abea5dccb42733aba2eb7833f50724b13ff72ce",
+      "definitionLfSha256": "5d86743099b0c5234e6dbe268325b10852072e9b380ef55dbf58c71ac9e13b7c",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.post",
+      "arguments": "oid uuid, rid uuid, d date, memo text, items jsonb",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "15d74714a3661d0c76b35e848231ebafe8dbc0c358280016665bf127386622c2",
+      "definitionLfSha256": "a8572d33e948f73b2cc43a0f67462d13b9b81c4ecd4eaced800ba6b5b8dc90cc",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.provision",
+      "arguments": "owner_user uuid, business_name text, marker text",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "72a4af5298d0ff4fc207df7c44c02be47450569cdf3df964438b17df61d0f9ab",
+      "definitionLfSha256": "a40bfcc0f3395264254029e52a99c57b20ef8644121daceccbe997373b20fef0",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.snapshot",
+      "arguments": "",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "d95be6f4f38dd3497cc19590459fc397fe0a78d2cd74e237af16a104a6a88d75",
+      "definitionLfSha256": "89b7f06634b07d808685834f00b3c69d8ae803ec6537a400cc214f2ae14f5437",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_accounting.storage_allowed",
+      "arguments": "object_name text, writing boolean",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "48947fa3bdb2dea710439d324fc6675866d3af9fbc09a4d967e9bbabbc119c5e",
+      "definitionLfSha256": "f28fc9bb299805522a7f714540ee8c60bd24530bda453d607787c53fda264c47",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.accept_invite",
+      "arguments": "display_name text",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "8d04dfcc2101eba78c8dd859d1fafe9db8bcbafadd31b55dc9ee0ad52c40a005",
+      "definitionLfSha256": "3a3fb442c69bf42635b4f682d00e7c00fcf722ca8489ad9938d0bdaa74d5e69f",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.actor",
+      "arguments": "",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "487da0d75621d4e76ece16cd5b3d82ace9a2b63ebfab6437d08133cbddb4c862",
+      "definitionLfSha256": "04beb260b052459b5fa2d8dea50a2ad70b0deedf8c860ca98feb036d2fe41f0a",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.annotation",
+      "arguments": "client_id text, week text, day integer, slot text, source_hash text, action text, strokes jsonb, expected_version bigint, request_id uuid",
+      "lastMigration": "20260909172334",
+      "bodyLfSha256": "3542a6f2f47bccb3266263cb0fa50ddf1c9c76af51e64c338f21b540bf344470",
+      "definitionLfSha256": "97cb8c748f909a74dfe08373bdd144bcfc816e3888a4b95903d0ea2d71ddf889",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.ensure_plan_ids",
+      "arguments": "w jsonb",
+      "lastMigration": "20260909172334",
+      "bodyLfSha256": "78bd7b297315c3dcbba72fd7445940a00ba81e347b3d591e1e39225bae19b1d9",
+      "definitionLfSha256": "af61f4f5e56fa3c07d52e3ec27dbad160016d107853a4b9ed5fa920839104b15",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.prepare_invite",
+      "arguments": "client_id text, email text, display_name text",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "0fee11b129899942ffd18e772c7a6d27e02de7f7d339bb3259645b195e57a241",
+      "definitionLfSha256": "528230a5cb6af775f041d02a151d4280705d432178ac9d4c407de8f4ff998b0c",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.put",
+      "arguments": "document jsonb, path text[], value jsonb",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "38e52deed34f45385731b54b7babafcc39e6e2719aef28dda6597d795340e7a0",
+      "definitionLfSha256": "0b9741344b8ce2c2efbf342e68e100cc5ad157c85c0291294101ef61e2c5c7a9",
+      "productionAcl": [
+        "postgres=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.read_workspace",
+      "arguments": "",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "77915084faf94f685aa1d2f725093ea9069d7fac92cb5f3ca2c01af42c874758",
+      "definitionLfSha256": "2098b0cbfc0248d5c2c7b6c814f7b11a986cad5521d72fa2d4f07fb96276c445",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.save_changes",
+      "arguments": "changes jsonb",
+      "lastMigration": "20260909151429",
+      "bodyLfSha256": "2430bbb1610b1c6fc8c70b527e30c6c2f9836e93b1ee54d46048d61d44f9f0e8",
+      "definitionLfSha256": "d960993aca7a9ae397e462080b95b29b4c7ef174c29171c858046c6fd37cf114",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "fmz_private.save_once",
+      "arguments": "changes jsonb, request_id uuid",
+      "lastMigration": "20260909172334",
+      "bodyLfSha256": "e73719ecc5da44191c50e6d876a374a663650f2b759d9f9eeb8857aa0cf95cb6",
+      "definitionLfSha256": "2180e015990a1477ce7edb6d4b47df03455073d899c39e04112647dd44d638cf",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "public.accept_client_invite",
+      "arguments": "display_name text",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "504b18cd98a9c944685df7736ec9fa50a4500eba96030dcb5d8827bf37f5daa7",
+      "definitionLfSha256": "3f2fb3cf1ce40b5c154ee8930ffc3a6ad6f9b440f6bf39cc9e8c1105ec1f1b59",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "public.fmz_accounting_command",
+      "arguments": "action text, payload jsonb, request_id uuid",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "00ff6f4fd8c48bd8ae09636594d50e4a850fee8de8b854e882c02aaf305eb9d3",
+      "definitionLfSha256": "8305d48f950db702fdc2dc574f1e323f743cad275e5934bed4cdd25260a804ed",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "public.fmz_accounting_read",
+      "arguments": "",
+      "lastMigration": "20260910170351",
+      "bodyLfSha256": "6b5473459de29ef0175e3ee8d3e219fa8740f54585dc28a2c9494beb8b215633",
+      "definitionLfSha256": "0d5e631e0cc0a5cc942109e5a3dd45187b487f5a374208d58e411e3430abfd07",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "public.fmz_photo_annotation",
+      "arguments": "client_id text, week text, day integer, slot text, source_hash text, action text, strokes jsonb, expected_version bigint, request_id uuid",
+      "lastMigration": "20260909172334",
+      "bodyLfSha256": "da25eb7e7bb72b02f7a55da7a9717bfa0ea3810908dc63b49f71f24d3efec148",
+      "definitionLfSha256": "85901f79f3eec968b0fdf85a6af5dd28f2356817964cf0db9ae20120b5b941cb",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "public.fmz_prepare_invite",
+      "arguments": "client_id text, email text, display_name text",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "d3968ebfc157ae6aa27019b8483f3ac8801ff66083cbf8c78dcc9ce5e3b48cb1",
+      "definitionLfSha256": "38b43bcf887c80de02db42fd79f549b3fd516fe6fc84ef13d22a9569429556b2",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "public.fmz_read_workspace",
+      "arguments": "",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "cbda4bf7715bc6b6eb680c178740f406b96be20fb9ce8f92722fe98f9b22dc86",
+      "definitionLfSha256": "19890140a729c64594cdefc4b364c394d88c0ed107dc4f68a8617770ab1c8737",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "public.fmz_save_changes",
+      "arguments": "changes jsonb",
+      "lastMigration": "20260909103959",
+      "bodyLfSha256": "0527557da930710976e2fa4df445c6d42919ea014f9f35b4605e708f627a5fda",
+      "definitionLfSha256": "3707fa4db1deca4255ea64562bad63cc731e18486c1c75e78b7d3ef8014b5127",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "match": "PASS"
+    },
+    {
+      "name": "public.fmz_save_changes_once",
+      "arguments": "changes jsonb, request_id uuid",
+      "lastMigration": "20260909172334",
+      "bodyLfSha256": "13aad6207e86c4a61a8fa4ffa31ab9e90c57581e42b6e5dce8ac3dbd4fbc896f",
+      "definitionLfSha256": "7ffc0de88a3a38fad04859ccf30fa2ebbc80658b4dc28b76a0de94c32f2c6056",
+      "productionAcl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "match": "PASS"
+    }
+  ],
+  "objectCounts": {
+    "functions": 34,
+    "schemas": 2,
+    "newTables": 10,
+    "sequences": 1,
+    "ownedColumns": 80,
+    "ownedConstraints": 36,
+    "ownedIndexes": 20,
+    "policies": 4,
+    "targetIndexes": 8,
+    "targetTriggers": 2
+  },
+  "baselineDifferences": [
+    "Public schema service_role grants are preserved Supabase defaults; migration revokes do not target service_role.",
+    "Existing public-table foreign keys, legacy indexes and Storage platform columns/triggers are prerequisites, not objects created or changed by these six migrations.",
+    "Local PostgreSQL catalogs additionally expose named NOT NULL constraints; all corresponding column nullability flags match production."
+  ]
+}

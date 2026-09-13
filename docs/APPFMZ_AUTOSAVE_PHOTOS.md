@@ -1,5 +1,7 @@
 # Automatisch opslaan en privé-fotoannotaties
 
+> Identiteitscorrectie 13 september 2026: oorspronkelijke migrationnamen hieronder zijn historische namen. Zie [de gezamenlijke reconciliatie en canonical paden](APPFMZ_MIGRATION_RECONCILIATION_20260913.md). De SQL is niet opnieuw uitgevoerd.
+
 Scope: Yourizorge/fitmetzorge, appfmz.nl, hgoygcviutmynaihcvpd. Uitgewerkt vanaf main 2f9c2c92e1fea1b1a4bf29a87ca5ebdcbf4e2c9a. Geen AGENTS.md in de projectmap of bovenliggende projectmap gevonden. Bestaande publicatie- en beveiligingsinstructies behouden. Staging en marketing blijven buiten scope.
 
 ## Gevonden oorzaken en herstel
