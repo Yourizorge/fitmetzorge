@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-14T07:19:01.583Z",
+  "host": "https://appfmz.nl",
+  "pages": 1,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "livePDFWorker": true,
+  "zoom": true,
+  "privacyCleanup": true,
+  "errors": [],
+  "forbiddenRequests": [],
+  "productionLogin": false,
+  "productionWrites": false
+}

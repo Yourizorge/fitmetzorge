@@ -10,5 +10,6 @@ Geen echte klant, factuuruitgifte of bankgegevens. Deze bestanden zijn rechtstre
 - [Footer](footer.png)
 - [Mobiele PDF-preview: 390 px](mobiele-preview.png)
 - [Concept met bereikbare acties: 320 px](concept-320px.png)
+- [Live appfmz.nl: synthetische mobiele PDF-controle](live-mobiele-preview.png)
 
 De volledige matrix is reproduceerbaar via `tests/invoice-layout.test.cjs`; de screenshots via `tests/invoice-layout-ui.test.cjs` en Poppler plus `tests/invoice-layout-content.py`. De fysieke owneracceptatie van de layout staat nog open.

@@ -52,7 +52,14 @@ Staging, de losse website en AI-ontwikkeling zijn niet betrokken.
 
 ## Publicatie
 
-Voorbereid; live verificatie en definitieve commit worden na publicatie hieronder vastgelegd. De gevraagde screenshots worden vóór de push aan de owner getoond. Onderhoud is voor deze compatibele visuele wijziging niet nodig.
+**Gepubliceerd op 14 september 2026; APPFMZ is live en onderhoud is uit.** De gevraagde zes screenshots zijn vóór de push aan de owner getoond.
+
+- Runtimecommit: [`939eec0897c5291114e6a0f50fb92220ba7d63aa`](https://github.com/Yourizorge/fitmetzorge/commit/939eec0897c5291114e6a0f50fb92220ba7d63aa).
+- [Pages-publicatie 34817136803](https://github.com/Yourizorge/fitmetzorge/actions/runs/34817136803) is succesvol afgerond op **2026-09-14T07:17:47Z**.
+- Controle **2026-09-14T07:18:48.146Z**: alle **19 live runtimebestanden byte-identiek aan Git**. Alleen `invoice-documents.js`, `styles.css` en de twee verwijzingen in `index.html` veranderen ten opzichte van de eerder functioneel geaccepteerde runtime. De 16 overige bestanden, inclusief configuratie, logo, financiële/sync/autosavecode en PDF-bibliotheken, zijn identiek. Zie [SHA-256/MIME-manifest](APPFMZ_INVOICE_LAYOUT_ASSETS_20260913.json).
+- Live browsercontrole **2026-09-14T07:19:01.583Z**: op appfmz.nl renderen de gepubliceerde generator en de echte lokale PDF.js-worker een vaste synthetische A4. Mobiel vergroten, zoomen en wissen bij verwijderen van de bronpreview slagen. Nul browserfouten en nul verboden verzoeken; er is niet ingelogd en niets naar productie-API’s geschreven. Zie [controlebewijs](APPFMZ_INVOICE_LAYOUT_LIVE_20260914.json) en [live screenshot](examples/invoice-layout-20260913/live-mobiele-preview.png).
+
+Deze eindaanvulling bewaart uitsluitend documentatie, screenshots en verificatiebewijs. Een volgende automatische Pages-publicatie daarvan verandert de runtime niet. De definitieve documentatiecommit wordt bij oplevering als remote HEAD vermeld. De visuele owneracceptatie blijft open.
 
 ## Korte telefoontest
 
