@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "checked": "2026-09-14",
+  "sourceHashes": {
+    "tutorial/content.js": "400f0b636107633163328886c912300812f2618c7e5ccd462a36f65c56055697",
+    "tutorial/model.js": "b3069041f3966779f5414f79d79f7e1e8858bf71d4de98e4b35deb8746e708af"
+  },
+  "pdf": "output/pdf/APPFMZ-boekhouden-voor-beginners.pdf",
+  "pdfSHA256": "1052f3cbecceb0a2121cb621e016e994d510b34ce363a38e622785408e783040",
+  "generatedFromSameContent": true
+}

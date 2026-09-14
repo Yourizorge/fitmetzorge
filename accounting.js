@@ -27,7 +27,7 @@ window.FMZAccounting=(()=>{
   catch(e){if(gen===epoch&&e.code&&(/^(PT409|22|23|42|P0001)/.test(e.code)))pending=null;throw e;}
   finally{if(gen===epoch)commandBusy=false;}
  }
- function lock(){document.body.classList.remove('accounting-mode');epoch++;owner=null;access=null;snapshot=null;loading=null;pending=null;commandBusy=false;invoice=null;clearTimeout(invoiceTimer);modal?.close();modal?.remove();modal=null;formBusy=false;formDrafts.clear();invoiceDrafts.clear();importData=null;uploadStates.clear();pdfBytes.clear();urls.forEach(URL.revokeObjectURL);urls.clear();document.querySelectorAll('[data-accounting-root]').forEach(e=>e.replaceChildren());rendered='';}
+ function lock(){window.FMZTutorial?.close();document.body.classList.remove('accounting-mode');epoch++;owner=null;access=null;snapshot=null;loading=null;pending=null;commandBusy=false;invoice=null;clearTimeout(invoiceTimer);modal?.close();modal?.remove();modal=null;formBusy=false;formDrafts.clear();invoiceDrafts.clear();importData=null;uploadStates.clear();pdfBytes.clear();urls.forEach(URL.revokeObjectURL);urls.clear();document.querySelectorAll('[data-accounting-root]').forEach(e=>e.replaceChildren());rendered='';}
  function btn(label,action,id='',cls='secondary-btn'){return `<button type="button" class="${cls}" data-acc-action="${esc(action)}" data-id="${esc(id)}">${esc(label)}</button>`;}
  function input(name,label,value='',type='text',extra=''){return `<label class="field"><span>${esc(label)}</span><input name="${name}" type="${type}" value="${esc(value)}" ${extra}></label>`;}
  function area(name,label,value=''){return `<label class="field full"><span>${esc(label)}</span><textarea name="${name}" rows="3">${esc(value)}</textarea></label>`;}
@@ -91,7 +91,7 @@ window.FMZAccounting=(()=>{
   if(!snapshot||!ready()){root.innerHTML=panel('Administratie',info(error||'Ownerrechten controleren…')+btn('Opnieuw laden','reload'));rendered=stamp;return;}
   const selected=currentView==='invoice'?'sales':page;
   const content={overview, sales:salesHTML,expenses,bank:bankHTML,private:privateHTML,assets:assetsHTML,vat:vatHTML,reports,settings:settingsHTML}[selected]();
-  root.innerHTML=`<div class="acc-heading"><div><p class="eyebrow">FitMetZorge · privé voor de owner</p><h1 tabindex="-1">${esc(menus.find(m=>m[0]===selected)[1])}</h1></div>${btn('Verversen','reload')}</div><p data-acc-status role="status">${esc(error)}</p><div class="acc-layout"><details class="acc-navigation" ${innerWidth>1100?'open':''}><summary>Onderdeel kiezen: ${esc(menus.find(m=>m[0]===selected)[1])}</summary><nav class="acc-menu" aria-label="Administratieonderdelen">${menus.map(([id,label])=>`<button type="button" data-acc-page="${id}" class="${id===selected?'active':''}">${esc(label)}</button>`).join('')}</nav></details><div class="acc-content">${content}</div></div>`;
+  root.innerHTML=`<div class="acc-heading"><div><p class="eyebrow">FitMetZorge · privé voor de owner</p><h1 tabindex="-1">${esc(menus.find(m=>m[0]===selected)[1])}</h1></div><div class="fmz-course-entry">${btn('Uitleg & oefenen','tutorial')}<button type="button" data-acc-action="tutorial-help" data-id="${selected}" class="fmz-admin-section-help" aria-label="Uitleg bij ${esc(menus.find(m=>m[0]===selected)[1])}">?</button>${btn('Verversen','reload')}</div></div><p data-acc-status role="status">${esc(error)}</p><div class="acc-layout"><details class="acc-navigation" ${innerWidth>1100?'open':''}><summary>Onderdeel kiezen: ${esc(menus.find(m=>m[0]===selected)[1])}</summary><nav class="acc-menu" aria-label="Administratieonderdelen">${menus.map(([id,label])=>`<button type="button" data-acc-page="${id}" class="${id===selected?'active':''}">${esc(label)}</button>`).join('')}</nav></details><div class="acc-content">${content}</div></div>`;
   root.querySelectorAll('form[data-acc-form]').forEach(f=>{const d=formDrafts.get(f.dataset.accForm);if(d)for(const [k,v]of Object.entries(d.values)){const e=f.elements.namedItem(k);if(e&&e.type!=='file'){if(e.type==='checkbox')e.checked=v;else e.value=v;}}});rendered=stamp;
  }
  function selectChanged(e){
@@ -106,6 +106,8 @@ window.FMZAccounting=(()=>{
    if(a==='close'){if(formBusy||invoice?.busy)return;if(invoice?.dirty&&!(await persistInvoice(invoice)))return;modal?.close();invoice=null;clearTimeout(invoiceTimer);return;}
    if(a==='reload'){if(!snapshot){loading=null;await init();return;}await refresh();render(true);return;}
    assertOwner();
+   if(a==='tutorial'){window.FMZTutorial.open();return;}
+   if(a==='tutorial-help'){window.FMZTutorial.help(id);return;}
    if(a==='period-filter'){const scope=target.closest('.acc-period');periodType=scope.querySelector('[name=periodType]').value;const v=scope.querySelector('[name=periodValue]').value;periodValue=periodType==='year'?v.slice(0,4):periodType==='quarter'?(scope.querySelector('[name=quarterYear]')?.value||v.slice(0,4))+'-Q'+(v.includes('Q')?v.slice(-1):Math.ceil(Number(v.slice(5,7)||1)/3)):v.includes('Q')?v.slice(0,4)+'-'+String((Number(v.slice(-1))-1)*3+1).padStart(2,'0'):v.length===4?v+'-01':v;range();render(true);}
    else if(a==='new-package'||a==='new-invoice')await newInvoice(a==='new-package');
    else if(a==='invoice')await openInvoice(id);

@@ -1,0 +1,7 @@
+
+# Reproduce course source/manifest hashes across Windows and Unix checkouts.
+tutorial/** text eol=lf
+tutorial.html text eol=lf
+# Exact fixed exercise-file identity, including its intentional CRLF bytes.
+tutorial/examples/APPFMZ-OEFENBANK-september-2026.csv -text whitespace=cr-at-eol
+output/pdf/*.pdf binary

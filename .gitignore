@@ -3,3 +3,6 @@ tests/artifacts/
 .preview.log
 .preview-error.log
 supabase/.temp/
+
+# Local rendered PDF inspection pages (public deliverables live in output/pdf).
+tmp/pdfs/

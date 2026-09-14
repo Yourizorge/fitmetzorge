@@ -1,0 +1,14 @@
+[
+  {
+    "input": "vendor/pdfjs-6.3.289/pdf.mjs",
+    "sha256": "f80490490320511e5df18c580b9edd6b5db8058dceebaf6f161992e0a964b9e2",
+    "output": "tutorial/vendor/pdf.js",
+    "outputSha256": "57841059fa4197d5bbffc7e09b23122c8f2b3720c894aa2dddea32544350098a"
+  },
+  {
+    "input": "vendor/pdfjs-6.3.289/pdf.worker.mjs",
+    "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+    "output": "tutorial/vendor/pdf.worker.js",
+    "outputSha256": "9d7b6ba95dccd6f9526823210a161ba043b751eb5ae4b2c3cb44f2193a483816"
+  }
+]

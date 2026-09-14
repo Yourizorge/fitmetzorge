@@ -1,0 +1,7 @@
+Datum;Naam / Omschrijving;Rekening;Af Bij;Bedrag (EUR);Transactie ID
+2026-09-02;Noor Voorbeeld;OEFENBANK;Bij;350,00;OEF-T1
+2026-09-03;Oefenwinkel;OEFENBANK;Af;24,20;OEF-T2
+2026-09-03;Privé voorbeeld;OEFENBANK;Bij;0,20;OEF-T3
+2026-09-04;Privé voorbeeld;OEFENBANK;Af;100,00;OEF-T4
+2026-09-05;Onbekend voorbeeld;OEFENBANK;Af;9,99;OEF-T5
+2026-09-02;Noor Voorbeeld;OEFENBANK;Bij;350,00;OEF-T1

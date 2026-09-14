@@ -1,0 +1,175 @@
+{
+  "at": "2026-09-14T09:30:26.481Z",
+  "baseline": "624eeedacfa045b7a3fb1a2251cf0f4a71ada1fd",
+  "courseVersion": "1.0.0",
+  "lessons": 27,
+  "exerciseActions": 61,
+  "glossaryTerms": 35,
+  "fullRegression": {
+    "pass": 28,
+    "fail": 0,
+    "skipped": 0,
+    "logSHA256": "b6d75ef77a75debdc6c1503e37c5ee77de657e5112ad9c0d6e783aadeae5886f"
+  },
+  "finalTargeted": {
+    "pass": 5,
+    "fail": 0,
+    "logSHA256": "0b0ff305d7b25608d0a5f7689a4a476cdb518da2174c07fa3de0bd9e6973d274"
+  },
+  "isolation": {
+    "blocked": {
+      "parent": true,
+      "storage": true,
+      "cookies": true,
+      "accounting": true,
+      "parentCommand": true,
+      "fetch": true,
+      "upload": true,
+      "beacon": true
+    },
+    "allSyntheticTablesIdentical": true,
+    "tables": [
+      "auth.sessions",
+      "auth.users",
+      "fmz_accounting.accounts",
+      "fmz_accounting.audit",
+      "fmz_accounting.files",
+      "fmz_accounting.journals",
+      "fmz_accounting.lines",
+      "fmz_accounting.organizations",
+      "fmz_accounting.receipts",
+      "fmz_accounting.records",
+      "fmz_private.photo_annotations",
+      "fmz_private.write_receipts",
+      "public.client_invites",
+      "public.coach_workspaces",
+      "public.profiles",
+      "storage.buckets",
+      "storage.objects"
+    ],
+    "callsDuringHelpAndPractice": 0,
+    "storageUploads": 0,
+    "realNumbers": 0,
+    "emails": 0,
+    "externalCosts": 0
+  },
+  "responsive": {
+    "viewports": 4,
+    "themes": 2,
+    "routes": [
+      "home",
+      "topics",
+      "glossary",
+      "tasks",
+      "exercise"
+    ],
+    "horizontalOverflow": false,
+    "screenshots": [
+      "home-390-light.png",
+      "topics-390-light.png",
+      "glossary-390-light.png",
+      "tasks-390-light.png",
+      "exercise-390-light.png",
+      "home-390-dark.png",
+      "topics-390-dark.png",
+      "glossary-390-dark.png",
+      "tasks-390-dark.png",
+      "exercise-390-dark.png",
+      "home-1400-light.png",
+      "topics-1400-light.png",
+      "glossary-1400-light.png",
+      "tasks-1400-light.png",
+      "home-1400-dark.png",
+      "topics-1400-dark.png",
+      "glossary-1400-dark.png",
+      "tasks-1400-dark.png"
+    ]
+  },
+  "handbook": {
+    "pages": 75,
+    "allTextWithinA4": true,
+    "hyperlinks": 65,
+    "version": "1.0.0",
+    "review": "Rendered pages reviewed separately",
+    "visualReview": "PASS: all 75 rendered pages; additional full-size reading checks"
+  },
+  "practicePDFs": [
+    {
+      "file": "lesson-19-credit.pdf",
+      "pages": 1,
+      "watermarkEveryPage": true,
+      "sha256": "eebaf9da0a565eb2986178e1b17d8a6e7410e379d81d968160377c7ca5213aa6"
+    },
+    {
+      "file": "lesson-22-4.pdf",
+      "pages": 1,
+      "watermarkEveryPage": true,
+      "sha256": "9d48f84800b8d7fd1bc170b7dbfd23611129207564623e6653d67f73a37ed6f9"
+    },
+    {
+      "file": "lesson-24-1.pdf",
+      "pages": 1,
+      "watermarkEveryPage": true,
+      "sha256": "8646668759ab1b9623fb1a02f5b785d7cc4e02bbea1bf0d447ac849f56c0a17e"
+    },
+    {
+      "file": "lesson-25-0.pdf",
+      "pages": 1,
+      "watermarkEveryPage": true,
+      "sha256": "8646668759ab1b9623fb1a02f5b785d7cc4e02bbea1bf0d447ac849f56c0a17e"
+    },
+    {
+      "file": "lesson-27-11.pdf",
+      "pages": 1,
+      "watermarkEveryPage": true,
+      "sha256": "8646668759ab1b9623fb1a02f5b785d7cc4e02bbea1bf0d447ac849f56c0a17e"
+    },
+    {
+      "file": "lesson-27-credit.pdf",
+      "pages": 1,
+      "watermarkEveryPage": true,
+      "sha256": "f0a85af0452a96ebdd28c41e053041eb0311cc71bb5279446e84fbfc4b14ab1b"
+    },
+    {
+      "file": "lesson-9-1.pdf",
+      "pages": 1,
+      "watermarkEveryPage": true,
+      "sha256": "8646668759ab1b9623fb1a02f5b785d7cc4e02bbea1bf0d447ac849f56c0a17e"
+    }
+  ],
+  "unchangedRuntime": [
+    "app.js",
+    "sync.js",
+    "autosave.js",
+    "photos.js",
+    "invoices.js",
+    "accounting-model.js",
+    "accounting-reports.js",
+    "invoice-editor.js",
+    "invoice-documents.js",
+    "styles.css",
+    "config.js",
+    "fit-met-zorge-logo.png",
+    "vendor/pdf-lib-1.17.1.min.js",
+    "vendor/fflate-0.8.2.js",
+    "vendor/pdfjs-6.3.289/pdf.mjs",
+    "vendor/pdfjs-6.3.289/pdf.worker.mjs",
+    "Fit_Met_Zorge_Coach_App_standalone.html"
+  ],
+  "migrations": [
+    "20260909103959",
+    "20260909151429",
+    "20260909172334",
+    "20260910170351",
+    "20260910171555",
+    "20260911094831"
+  ],
+  "dryRun": {
+    "upToDate": true,
+    "migrations": [],
+    "seeds": [],
+    "roles": [],
+    "skipVault": true
+  },
+  "ownerAcceptance": "pending"
+}
