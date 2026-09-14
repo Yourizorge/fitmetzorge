@@ -5957,11 +5957,27 @@ body.light .acc-menu button.active{background:#f7edce;}
 .acc-dialog header{position:sticky;top:-22px;background:var(--surface,#181818);z-index:3;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.acc-dialog header h2{font-size:20px;min-width:0;flex:1}.acc-dialog header button{flex:none}
 .acc-dialog [hidden]{display:none!important}.acc-dialog summary,[data-accounting-root] summary{cursor:pointer;min-height:44px;padding:10px 0;box-sizing:border-box}
 .invoice-extra-line{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px 0;border-top:1px solid var(--line)}
-.invoice-draft-preview{background:#fff;color:#142135;border-radius:8px;padding:14px}.invoice-draft-preview p{margin:6px 0}.invoice-total{font-size:20px}
+.invoice-draft-preview{background:#fff;color:#142135;border-radius:8px;padding:14px;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:20px;row-gap:2px}.invoice-draft-preview p{margin:6px 0}.invoice-total{font-size:20px}.invoice-draft-preview .invoice-total{margin-left:auto}
+.fmz-pdf-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.fmz-pdf-toolbar button{min-width:44px;min-height:44px;cursor:pointer}
+.fmz-pdf-toolbar output{min-width:45px;text-align:center}
+.fmz-pdf-dialog{box-sizing:border-box;width:calc(100vw - 16px);max-width:1100px;height:calc(100dvh - 16px);max-height:calc(100dvh - 16px);padding:12px;border:1px solid #c5c9ce;border-radius:10px;background:#f1f2f4;color:#132236;overflow:hidden}
+.fmz-pdf-dialog[open]{display:flex;flex-direction:column;gap:12px}
+.fmz-pdf-dialog::backdrop{background:#081120b3}
+.fmz-pdf-dialog .fmz-pdf-toolbar{flex:none}
+.fmz-pdf-dialog button{background:#fff;color:#132236;border:1px solid #929aa5;border-radius:6px;padding:8px 12px}
+.fmz-pdf-dialog button:disabled{opacity:.45;cursor:default}
+.fmz-pdf-dialog button:focus-visible,.fmz-pdf-scroll:focus-visible{outline:3px solid #ae812a;outline-offset:2px}
+.fmz-pdf-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
+.fmz-pdf-scroll.is-zoomed{touch-action:none;cursor:grab}
+.fmz-pdf-scroll.is-zoomed:active{cursor:grabbing}
+.fmz-pdf-pages{display:grid;gap:12px;min-width:100%}
+.fmz-pdf-pages canvas{display:block;width:100%;height:auto;max-width:none;background:#fff}
 .invoice-a4{min-width:0;max-width:100%}.invoice-a4 [data-pdf-preview]{display:grid;gap:14px;min-width:0;max-width:100%}.invoice-a4 canvas{display:block;width:100%;height:auto;max-width:100%;box-shadow:0 2px 10px #0003;background:#fff}
 .acc-dialog:has(.invoice-a4){width:min(1050px,calc(100vw - 24px))}.acc-dialog .acc-actions{position:sticky;bottom:-22px;padding:12px 0;background:var(--surface,#181818);z-index:2}
 .acc-content,.acc-content .panel,.acc-dialog,.acc-dialog .field,.acc-navigation{overflow-wrap:anywhere}.acc-period .field{flex:1 1 140px;min-width:0}.acc-card .finance-card-actions{flex-wrap:wrap}.acc-form > .acc-check{grid-column:1/-1}.acc-form input[type=file]{width:100%;min-width:0}
 @media(max-width:760px){.acc-navigation{position:static}.acc-dialog header{top:-14px}.acc-dialog .acc-actions{bottom:-14px;display:grid;grid-template-columns:minmax(0,1fr)}.acc-dialog .acc-actions button{width:100%}.invoice-extra-line{grid-template-columns:minmax(0,1fr)}.acc-layout{display:block}.acc-content{margin-top:16px}.acc-dialog{max-height:calc(100dvh - 24px - var(--fmz-keyboard-inset,0px));margin-top:12px;margin-bottom:12px}}
+.acc-dialog:has(.invoice-a4) header,.acc-dialog:has(.invoice-a4) .acc-actions{background:#181818}
 body.light .acc-dialog header,body.light .acc-dialog .acc-actions{background:#f7f8fa}
 /* The coaching sticky topbar previously intercepted accounting controls on tablet. */
 body.accounting-mode .topbar{position:relative;top:auto;display:flex;flex-wrap:wrap;min-width:0}
