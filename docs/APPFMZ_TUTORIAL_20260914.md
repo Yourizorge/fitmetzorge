@@ -91,6 +91,24 @@ De cursus blijft **pending owneracceptatie** totdat de owner hem zelf volledig h
 - De lokale isolatietest bewijst ongewijzigde fixturetabellen, nul mutatie-RPC’s, nul Storage-uploads en vernietiging van de oefencontext bij accountlock. Alle negen helpdialogen zijn ook op smalle schermen gecontroleerd.
 - Productiemigrationlijst: zes gelijke local/remote versies. Dry-run met `--skip-vault`: up-to-date, lege migrations, seeds en roles.
 
-Publicatiecommit en livebewijs worden toegevoegd zodra de geautoriseerde push en controles op appfmz.nl zijn voltooid. Owneracceptatie blijft pending.
+Runtimecommit: **`5fd159e430d4d336e6b7d26bba4da2bee8a17135`**, gepusht naar `main`. GitHub Pages-run **34828532088** is geslaagd. **35 live bestanden** zijn byte-identiek aan deze Git-release, inclusief beide PDF’s met `application/pdf`. De 17 eerdere runtimebestanden buiten `index.html` en `accounting.js` zijn ongewijzigd.
+
+De publieke live cursus is zonder login op 390×844 doorlopen: alle twaalf toetsstappen, banksaldo €216,21, oorspronkelijke PDF, credit-preview, PDF/ZIP-downloads en handleiding. Er waren **15 uitsluitend publieke GET-verzoeken, nul Auth/database/Storage/Edge-verzoeken en nul browserfouten**. Dat is viewportemulatie; de owner doet nog de fysieke telefoontest.
+
+Productiepreservatie na publicatie: **alle 17 geaggregeerde tabelhashes en rijenaantallen identiek**, plus dezelfde catalogushash voor betrokken objecten en rechten. Individuele gegevenshashes en klantinhoud staan niet in GitHub. Er zijn geen applicatiewrites, migrations, schema- of historywijzigingen uitgevoerd.
+
+Machineleesbaar bewijs: [tests](APPFMZ_TUTORIAL_TESTS_20260914.json), [live bytes](APPFMZ_TUTORIAL_LIVE_20260914.json), [live oefentoets](APPFMZ_TUTORIAL_RUNTIME_20260914.json) en [productiepreservatie](APPFMZ_TUTORIAL_PRESERVATION_20260914.json). [Live cursus op telefoon](examples/tutorial/course-live-phone.png) en [live credit-preview](examples/tutorial/credit-live-phone.png).
+
+De aansluitende documentatiecommit verandert geen runtimebestand. De definitieve remote HEAD wordt bij oplevering apart bevestigd. Owneracceptatie blijft **pending**.
 
 Schermbeelden van de hoofdroutes: [start](examples/tutorial/home-1400-light.png), [lessen](examples/tutorial/topics-1400-light.png), [mobiel oefenen](examples/tutorial/exercise-390-light.png), [begrippen](examples/tutorial/glossary-1400-light.png), [taken](examples/tutorial/tasks-1400-light.png), [donker op telefoon](examples/tutorial/home-390-dark.png) en [hulp in Administratie](examples/tutorial/administration-help-mobile.png).
+
+## Gewijzigde bestanden
+
+- `index.html`, `accounting.js`: laden van de cursushulp, entrypoint, negen helpdialogen en sluiten bij sessielock.
+- `tutorial.html`, `tutorial/host.*`, `tutorial/course.*`, `tutorial/content.js`, `tutorial/model.js`: cursus, bridge, uitleg en uitsluitend lokale oefeningen.
+- `tutorial/vendor/*`, `tutorial/examples/*`, `tutorial/handbook-manifest.json`: lokale parser, licentie, reproduceerbare hashes en het vaste CSV-bestand.
+- `output/pdf/APPFMZ-boekhouden-voor-beginners.pdf` en `output/pdf/APPFMZ-oefenfactuur-NIET-GELDIG.pdf`: openbare leermaterialen.
+- `tests/build-tutorial-*`, `tests/tutorial-*.test.cjs`, `tests/verify-tutorial-*.cjs`, `tests/preview.cjs`: generatie, regressies, lokale preview en openbare liveverificatie.
+- Dit rapport, de vier bewijsmanifesten en `docs/examples/tutorial/*`: documentatie en uitsluitend synthetische schermbeelden.
+- `.gitattributes`, `.gitignore`: vaste byte-identiteit van CSV/PDF en bronbestanden; gerenderde tijdelijke controlepagina’s blijven buiten Git.

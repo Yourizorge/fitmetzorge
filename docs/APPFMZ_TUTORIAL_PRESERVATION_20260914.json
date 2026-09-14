@@ -1,0 +1,21 @@
+{
+  "project": "hgoygcviutmynaihcvpd",
+  "sourceCommit": "5fd159e430d4d336e6b7d26bba4da2bee8a17135",
+  "phase": "before and after publication",
+  "comparison": "PASS",
+  "tablesCompared": 17,
+  "allRowsAndHashesIdentical": true,
+  "catalogIdentical": true,
+  "catalogSHA256": "2e5e70ecf6cb895cbfb06c8053469d014d35fe0dc60934bdbaa1ecd1797309eb",
+  "customerContentsExported": false,
+  "individualDataHashesCommitted": false,
+  "applicationWritesExecuted": 0,
+  "migrationsApplied": 0,
+  "historyWrites": 0,
+  "schemaChanges": 0,
+  "storageUploads": 0,
+  "emails": 0,
+  "stagingOrAIChanges": 0,
+  "externalCosts": 0,
+  "privateEvidenceKeptOutsideGit": true
+}
