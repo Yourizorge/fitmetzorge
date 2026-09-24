@@ -1,0 +1,12 @@
+{
+  "project": "hgoygcviutmynaihcvpd",
+  "observedBeforeAppMigration": true,
+  "table": "storage.buckets",
+  "addedColumns": ["lifecycle_configuration", "lifecycle_configuration_generation"],
+  "newFieldsBothNull": true,
+  "rows": 1,
+  "originalFieldsSha256": "d3a2e1e2053141f923037abeb923ac25cd51816530d7efce534dc9e2a66f4365",
+  "fullRowAfterPlatformAdditionSha256": "d76c9d3cbcd12d82a26ce93c1f4375dc24fee669c688238fa1c51b07e21f5f9c",
+  "allOriginalFieldsIdentical": true,
+  "releaseChangesStorageSchema": false
+}

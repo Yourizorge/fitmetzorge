@@ -67,6 +67,7 @@ window.FMZDocuments=(()=>{
   function flow(value,size=9.5,font=regular,color=ink,gap=3){
    for(const row of d.wrap(value,width,size,font)){if(y+size+gap>limit)newPage();write(row,left,y,size,font,color);y+=size+gap;}
   }
+  if(doc.billing){const b=doc.billing;flow((b.cycle==='calendar_month'?'Per kalendermaand':b.cycle==='four_weeks'?'Per 4 weken (28 dagen)':'Eenmalig')+' · '+date(b.start)+' t/m '+date(b.end),9.5,bold);if(b.cycle==='four_weeks')flow('Facturatie iedere 4 weken (28 dagen), 13 betaalperiodes per jaar.',8.5);y+=6;}
   const title=clean(doc.packageLabel)||clean(doc.description)||clean(doc.lines?.[0]?.description);
   if(title){flow(title,14,regular,ink,4);y+=16;}
   const basis=exempt?'vrijgesteld':exclusive?'excl. btw':'incl. btw';

@@ -15,19 +15,19 @@ window.FMZAccounting=(()=>{
   if(owner===onlineProfile.id&&loading)return loading;
   if(owner===onlineProfile.id&&snapshot)return;
   owner=onlineProfile.id;const gen=++epoch;access=null;
-  loading=(async()=>{try{const data=await rpc('fmz_accounting_read');if(gen!==epoch)return;snapshot=data;access=true;revision++;error='';}catch(e){if(gen!==epoch)return;access=e.code==='42501'?false:null;error=access===false?'Administratie is alleen beschikbaar voor de geverifieerde owner.':'Administratie laden mislukt — opnieuw proberen.';}finally{if(gen===epoch){loading=null;renderNav();render(true);}}})();return loading;
+  loading=(async()=>{try{const data=await rpc('fmz_accounting_read');if(gen!==epoch)return;snapshot=data;access=true;revision++;error='';}catch(e){if(gen!==epoch)return;access=e.code==='42501'?false:null;error=access===false?'Administratie is alleen beschikbaar voor de geverifieerde owner.':'Administratie laden mislukt — opnieuw proberen.';}finally{if(gen===epoch){loading=null;renderNav();render(true);if(currentView==='clients'){renderClients();renderGoalForm();}}}})();return loading;
  }
  async function refresh(){assertOwner();snapshot=await rpc('fmz_accounting_read');revision++;rendered='';return snapshot;}
- async function command(action,payload){
+ async function command(action,payload,route='fmz_accounting_command'){
   assertOwner();if(commandBusy)throw Error('Een administratieverzoek wordt nog verwerkt.');
-  const body=JSON.stringify({action,payload});if(pending&&pending.body!==body)throw Error('Een eerdere opslag heeft nog geen bevestiging. Probeer eerst diezelfde handeling opnieuw.');
+  const body=JSON.stringify({action,payload,route});if(pending&&pending.body!==body)throw Error('Een eerdere opslag heeft nog geen bevestiging. Probeer eerst diezelfde handeling opnieuw.');
   if(!pending)pending={body,args:{action,payload:copy(payload),request_id:uid()}};
   commandBusy=true;const gen=epoch;
-  try{const result=await rpc('fmz_accounting_command',pending.args);assertOwner(gen);pending=null;return result;}
+  try{const result=await rpc(route,pending.args);assertOwner(gen);pending=null;return result;}
   catch(e){if(gen===epoch&&e.code&&(/^(PT409|22|23|42|P0001)/.test(e.code)))pending=null;throw e;}
   finally{if(gen===epoch)commandBusy=false;}
  }
- function lock(){window.FMZTutorial?.close();document.body.classList.remove('accounting-mode');epoch++;owner=null;access=null;snapshot=null;loading=null;pending=null;commandBusy=false;invoice=null;clearTimeout(invoiceTimer);modal?.close();modal?.remove();modal=null;formBusy=false;formDrafts.clear();invoiceDrafts.clear();importData=null;uploadStates.clear();pdfBytes.clear();urls.forEach(URL.revokeObjectURL);urls.clear();document.querySelectorAll('[data-accounting-root]').forEach(e=>e.replaceChildren());rendered='';}
+ function lock(){window.FMZBilling?.lock();window.FMZTutorial?.close();document.body.classList.remove('accounting-mode');epoch++;owner=null;access=null;snapshot=null;loading=null;pending=null;commandBusy=false;invoice=null;clearTimeout(invoiceTimer);modal?.close();modal?.remove();modal=null;formBusy=false;formDrafts.clear();invoiceDrafts.clear();importData=null;uploadStates.clear();pdfBytes.clear();urls.forEach(URL.revokeObjectURL);urls.clear();document.querySelectorAll('[data-accounting-root]').forEach(e=>e.replaceChildren());rendered='';}
  function btn(label,action,id='',cls='secondary-btn'){return `<button type="button" class="${cls}" data-acc-action="${esc(action)}" data-id="${esc(id)}">${esc(label)}</button>`;}
  function input(name,label,value='',type='text',extra=''){return `<label class="field"><span>${esc(label)}</span><input name="${name}" type="${type}" value="${esc(value)}" ${extra}></label>`;}
  function area(name,label,value=''){return `<label class="field full"><span>${esc(label)}</span><textarea name="${name}" rows="3">${esc(value)}</textarea></label>`;}
@@ -48,9 +48,10 @@ window.FMZAccounting=(()=>{
   return btn('Pakketfactuur: concept openen','new-package','','primary-btn')+' '+btn('Vrije factuur: concept openen','new-invoice')+select('salesStatus','Facturen tonen',[['all','Alle facturen'],['draft','Concept'],['posted','Definitief'],['paid','Betaald'],['cancelled','Geannuleerd'],['credited','Gecrediteerd']],salesFilter)+cards(list('invoice').filter(matches).slice().reverse().map(r=>{
    const d=r.data.document,i=p.invoices.find(x=>x.id===r.id),cancelled=!!r.data.cancellation_id;
    const links=list('invoice').filter(x=>x.parent_id===r.id&&x.status==='posted').map(x=>info('Credit: '+x.number+' · '+M.money(x.data.document.totalCents))+btn('Credit bekijken','detail',x.id)).join('');
+   const periodInfo=(d?.billing||r.data.billing);
    const correction=r.parent_id?info('Credit op '+(get(r.parent_id)?.number||'')):cancelled?info('Geannuleerd: '+r.data.cancellation_reason):'';
    const actions=r.status==='draft'?btn('Concept openen / bewerken','invoice',r.id)+btn('Concept verwijderen','draft-delete',r.id):btn('PDF openen','invoice-open',r.id)+btn('PDF downloaden','invoice-pdf',r.id)+btn('Delen','invoice-share',r.id)+(!r.parent_id&&!cancelled?btn('Factuur annuleren','invoice-cancel',r.id)+btn('Creditfactuur maken','credit',r.id):'')+btn('Boekingen en betalingen','detail',r.id);
-   return card(r.number||'Concept — nog geen factuur',info(d?.customer.name||r.data.customer?.name)+info(d?.description||r.data.description)+info(d?`${M.money(d.totalCents)} · ${r.parent_id?'Creditfactuur':i?.statusLabel}${i?' · resterend '+M.money(i.outstanding):''}`:'Alleen een concept; geen omzetboeking')+correction+links,actions);
+   return card(r.number||'Concept — nog geen factuur',info(d?.customer.name||r.data.customer?.name)+info(d?.description||r.data.description)+info(d?`${M.money(d.totalCents)} · ${r.parent_id?'Creditfactuur':i?.statusLabel}${i?' · resterend '+M.money(i.outstanding):''}`:'Alleen een concept; geen omzetboeking')+(periodInfo?info(FMZBillingPeriods.label(periodInfo.cycle)+' · '+FMZBillingPeriods.display(periodInfo.start)+' t/m '+FMZBillingPeriods.display(periodInfo.end)):'' )+correction+links,actions);
   }))+legacyHTML();
  }
 
@@ -189,7 +190,7 @@ window.FMZAccounting=(()=>{
  async function fileBlob(f){const gen=epoch;assertOwner(gen);const {data,error:e}=await supabaseClient.storage.from('fmz-finance').download(f.path);if(e)throw Error('Bestand downloaden mislukt — probeer opnieuw.');const bytes=await data.arrayBuffer();assertOwner(gen);if(bytes.byteLength!==f.bytes||await M.hash(bytes)!==f.sha256)throw Error('Bestandscontrole mislukt. Download niet gebruikt.');return new Blob([bytes],{type:f.mime});}
  async function openFile(id){const f=snapshot.files.find(f=>f.id===id&&f.status==='ready');if(!f)throw Error('Origineel bestand nog niet bevestigd.');const blob=await fileBlob(f);if(f.mime.startsWith('image/')&&!['image/heic','image/heif'].includes(f.mime)){const url=URL.createObjectURL(blob);urls.add(url);showModal(f.original_name,`<img class="acc-proof" src="${url}" alt="Origineel bewijs">${btn('Origineel downloaden','file-download',id)}`);modal.querySelector('[data-acc-action=file-download]').onclick=()=>downloadBlob(blob,f.original_name);}else downloadBlob(blob,f.original_name);}
  function currentSettings(d=today()){return copy(list('settings').filter(r=>r.status==='confirmed'&&r.date<=d).at(-1)?.data||list('settings').at(-1)?.data||{});}
- async function newInvoice(packageOnly=true){assertOwner();const selected=client();const opts=[['','Kies een klant'],...state.clients.map(c=>[c.id,c.name+' · '+clientPackageLabel(c)])];showModal(packageOnly?'Pakketfactuur openen':'Factuurconcept openen',`<div class="acc-form">${select('invoice_client','Klant',opts,selected?.id||'')}${btn('Concept openen','choose-invoice')}</div>`);modal.querySelector('[data-acc-action=choose-invoice]').onclick=()=>{
+ async function newInvoice(packageOnly=true){assertOwner();if(packageOnly)return FMZBilling.openInvoiceChooser();const selected=client();const opts=[['','Kies een klant'],...state.clients.map(c=>[c.id,c.name+' · '+clientPackageLabel(c)])];showModal(packageOnly?'Pakketfactuur openen':'Factuurconcept openen',`<div class="acc-form">${select('invoice_client','Klant',opts,selected?.id||'')}${btn('Concept openen','choose-invoice')}</div>`);modal.querySelector('[data-acc-action=choose-invoice]').onclick=()=>{
    const c=state.clients.find(c=>c.id===modal.querySelector('[name=invoice_client]').value);if(!c){status('Kies eerst een klant.',true);return;}
    const pkg=packageByValue(c.profile?.package),amountValue=packageOnly?clientPackageAmount(c):'',s=currentSettings(),id=uid();
    const raw={description:packageOnly?`Pakket: ${clientPackageLabel(c)} — ${monthLabel(today().slice(0,7))}`:'',amount:amountValue===''?'':String(amountValue),discount:'0',discountNote:'',date:today(),term:String(s.paymentTermDays??14),customerName:c.name,customerAddress:[c.profile?.address,c.profile?.postalCode,c.profile?.city].filter(Boolean).join(', '),customerEmail:c.email||'',serviceDate:today(),serviceExtent:packageOnly&&pkg?.sessions?`${pkg.sessions} trainingen in deze maand`:'',quantity:String(packageOnly&&pkg?.sessions?pkg.sessions:1)};
@@ -198,13 +199,14 @@ window.FMZAccounting=(()=>{
   };
  }
  async function openInvoice(id){assertOwner();let r=get(id);if(!r){const legacy=list('legacy').find(r=>r.status==='unreviewed')?.data.finance?.adminItems?.find(i=>i.id===id);if(legacy){showModal('Historische factuur',legacyCard(legacy)+info('Historische facturen zijn alleen-lezen en worden niet opnieuw uitgegeven.'));return;}throw Error('Factuur ontbreekt. Ververs de administratie.');}
-  if(r.status==='posted'){detail(id);return;}let d=invoiceDrafts.get(id);if(!d){d={id,owner,version:r.version,values:r.data.raw||{},clientId:r.data.client_id,packageLabel:r.data.packageLabel,creditOf:r.data.credit_of,dirty:false};invoiceDrafts.set(id,d);}showInvoice(d);
+  if(r.status==='posted'){detail(id);return;}let d=invoiceDrafts.get(id);if(!d){d={id,owner,version:r.version,values:r.data.raw||{},clientId:r.data.client_id,packageLabel:r.data.packageLabel,billing:r.data.billing,creditOf:r.data.credit_of,dirty:false};invoiceDrafts.set(id,d);}showInvoice(d);
  }
  async function creditInvoice(id){const original=get(id);if(!original||original.status!=='posted'||original.parent_id)throw Error('Kies een oorspronkelijke factuur.');const doc=original.data.document,remaining=doc.totalCents+list('invoice').filter(r=>r.status==='posted'&&r.parent_id===id).reduce((n,r)=>n+r.data.document.totalCents,0);if(remaining<=0)throw Error('Deze factuur is volledig gecrediteerd.');const d={id:uid(),owner,version:0,creditOf:id,packageLabel:doc.packageLabel,dirty:true,values:{description:'',amount:(remaining/100).toFixed(2),discount:'0',discountNote:'',date:today(),term:'14',customerName:doc.customer.name,customerAddress:doc.customer.address,customerEmail:doc.customer.email,serviceDate:doc.serviceDate,serviceExtent:doc.serviceExtent,quantity:'1'}};invoiceDrafts.set(d.id,d);showInvoice(d);}
  function showInvoice(d){
   invoice=d;d.values=FMZInvoiceEditor.normalize(d.values);const v=d.values;
   showModal(d.creditOf?'Creditfactuur — concept':'Factuur — concept',`<form id="invoiceDraftForm" class="acc-form" novalidate>
    <p class="full">${esc(d.packageLabel||'')} · ${d.creditOf?'Correctie op '+esc(get(d.creditOf)?.number):'Nummer volgt pas bij definitief opslaan'}</p>
+   ${d.billing?'<p class="full acc-notice">'+esc(FMZBillingPeriods.label(d.billing.cycle)+' · '+FMZBillingPeriods.display(d.billing.start)+' t/m '+FMZBillingPeriods.display(d.billing.end)+' · afspraakversie '+d.billing.agreementVersion)+'</p>':''}
    ${input('customerName','Klantnaam',v.customerName)}${input('customerEmail','Klant e-mail (er wordt niets verstuurd)',v.customerEmail,'email')}${input('customerAddress','Volledig klantadres',v.customerAddress)}
    ${select('priceMode','Ingevoerde regelprijzen',[['inclusive','Inclusief btw'],['exclusive','Exclusief btw']],v.priceMode)}
    ${area('description',d.creditOf?'Reden van credit':'Omschrijving regel 1',v.description)}${input('quantity','Aantal regel 1',v.quantity,'text','inputmode="decimal"')}${amount('unitPrice','Prijs per stuk (€)',v.unitPrice)}
@@ -216,6 +218,7 @@ window.FMZAccounting=(()=>{
    <details class="full invoice-a4" open><summary>A4-voorbeeld van de PDF</summary><p data-preview-status role="status">Voorbeeld voorbereiden…</p><div data-pdf-preview></div></details>
    <p data-invoice-message role="status" class="full">Concept — typen geeft geen factuur uit.</p><div class="full acc-actions">${btn('Definitief opslaan en PDF downloaden','invoice-save',d.id,'primary-btn')}${btn('Serverconcept verversen / vergelijken','invoice-refresh',d.id)}${btn('Concept verwijderen','draft-delete',d.id)}</div></form>`);
   const f=modal.querySelector('form');d.message=f.querySelector('[data-invoice-message]');
+  if(d.billing){v.period=d.billing.start+' t/m '+d.billing.end;f.elements.period.value=v.period;f.elements.period.readOnly=true;}
   for(const row of v.extraLines||[])addInvoiceLine(row);
   if(d.creditOf){for(const name of ['discount','discountPercent','priceMode','discountMode','quantity']){f.elements[name].readOnly=true;if(f.elements[name].tagName==='SELECT')f.elements[name].disabled=true;}v.discount='0';v.discountPercent='0';v.priceMode='inclusive';}
   d.capture=()=>{if(d.finalBusy)return;d.values={...d.values,...FMZInvoiceEditor.read(f)};d.dirty=true;if(!d.conflict)d.message.textContent=d.busy?'Nieuwere invoer nog niet opgeslagen…':'Niet opgeslagen';invoicePreview(d);clearTimeout(invoiceTimer);if(!d.conflict)invoiceTimer=setTimeout(()=>persistInvoice(d),650);};
@@ -229,6 +232,7 @@ window.FMZAccounting=(()=>{
   try{const lines=FMZInvoiceEditor.body(v),s=d.creditOf?get(d.creditOf).data.document.settings:currentSettings(body.date),totals=M.invoiceTotals(lines,['kor','exempt'].includes(s.vat_status)?0:Number(s.vat_basis_points??0));Object.assign(body,lines,{gross_cents:totals.grossCents,discount_cents:totals.discountCents,quantity:lines.lines[0].quantity_milli/1000});}catch(e){if(strict)throw e;}
   if(!d.creditOf)body.settings_id=list('settings').filter(r=>r.status==='confirmed'&&r.date<=body.date).at(-1)?.id||null;
   if(strict){M.date(v.date);M.date(v.serviceDate);if(!body.customer.name.trim()||!body.customer.address.trim())throw Error('Vul klantnaam en volledig adres in.');if(!body.description.trim()||!body.service_extent.trim()||!body.quantity||body.term_days===null||body.term_days>3650)throw Error('Controleer omschrijving, omvang, hoeveelheid en betaaltermijn.');}
+  if(d.billing)body.billing=copy(d.billing);
   return body;
  }
  function previewDocument(d,body=draftPayload(d,true)){const original=d.creditOf?get(d.creditOf).data.document:null,s=original?.settings||currentSettings(body.date),credited=d.creditOf?-list('invoice').filter(r=>r.status==='posted'&&r.parent_id===d.creditOf).reduce((n,r)=>n+r.data.document.totalCents,0):0;return FMZInvoiceEditor.document(body,s,d.logo,original,credited);}

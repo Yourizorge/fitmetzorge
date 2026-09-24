@@ -7,10 +7,10 @@ test('owner hotfix: actual goal controls bind to the selected client and survive
   if(!live)await p.route('**/*',r=>r.request().url().startsWith(url)?r.continue():r.abort());await p.goto(url);
   await p.locator('#loginForm select[name=role]').selectOption('trainer');await p.locator('#loginForm input[name=email]').fill(account.email);await p.locator('#loginForm input[name=password]').fill(account.password);await p.locator('#loginForm button[type=submit]').click();await p.waitForFunction(()=>onlineReady&&FMZAccounting.ready);
   await p.evaluate(()=>{state.ui.selectedClientId='a';showView('clients')});await p.locator('[data-edit-goals="a"]').click();
-  const f=p.locator('#goalForm');await f.locator('[name=package]').selectOption('pt-progressie');await f.locator('[name=goal]').fill('Synthetic first goal');
-  await p.waitForTimeout(1000);let stored=await read();assert.equal(stored.clients.find(c=>c.id==='a').profile.package,'pt-progressie','package must reach the actual server through the visible select');
+  const f=p.locator('#goalForm');await require('./billing-fixture.cjs').monthly(preview,p,'pt-progressie','a');await p.evaluate(()=>{renderAll();showView('clients')});assert.equal(await f.locator('[name=package]').isDisabled(),true);await f.locator('[name=goal]').fill('Synthetic first goal');
+  await p.waitForTimeout(1000);let stored=await read();assert.equal(await p.evaluate(()=>FMZBilling.get('a').package_id),'pt-progressie','versioned agreement is the billing source');
   assert.equal(stored.clients.find(c=>c.id==='a').goal,'Synthetic first goal');assert.equal(await f.locator('[type=submit]').isVisible(),true);
-  await p.locator('#clientSelect').selectOption('b');await f.locator('[name=package]').selectOption('pt-transformatie');await f.locator('[name=goal]').fill('Synthetic second goal');await f.locator('[type=submit]').click();
+  await p.locator('#clientSelect').selectOption('b');await require('./billing-fixture.cjs').monthly(preview,p,'pt-transformatie','b');await p.evaluate(()=>{renderAll();showView('clients')});await f.locator('[name=goal]').fill('Synthetic second goal');await f.locator('[type=submit]').click();
   await p.waitForFunction(()=>!hasPendingChanges());stored=await read();assert.equal(stored.clients.find(c=>c.id==='b').profile.package,'pt-transformatie');assert.equal(stored.clients.find(c=>c.id==='a').goal,'Synthetic first goal');
   await p.reload();await p.waitForFunction(()=>onlineReady);assert.equal(await p.evaluate(()=>state.clients.find(c=>c.id==='b').goal),'Synthetic second goal');
   await p.evaluate(()=>{state.ui.selectedClientId='b';showView('clients')});let fail=true,count=0;

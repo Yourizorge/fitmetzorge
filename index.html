@@ -248,17 +248,7 @@
                 <label class="field"><span>Startdatum</span><input name="startDate" type="date" /></label>
                 <label class="field">
                   <span>Pakket/abonnement</span>
-                  <select name="package">
-                    <option value="">Geen pakket gekozen</option>
-                    <option value="pt-basis">1-op-1 PT Basis - 4x per maand - €200 p/m</option>
-                    <option value="pt-progressie">1-op-1 PT Progressie - 8x per maand - €380 p/m</option>
-                    <option value="pt-transformatie">1-op-1 PT Transformatie - 12x per maand - €480 p/m</option>
-                    <option value="duo-basis">Duo Basis - 4x per maand - €260 p/m</option>
-                    <option value="duo-progressie">Duo Progressie - 8x per maand - €520 p/m</option>
-                    <option value="duo-transformatie">Duo Transformatie - 12x per maand - €780 p/m</option>
-                    <option value="online-coaching">Online Coaching - €200 p/m</option>
-                    <option value="custom">Anders / handmatig</option>
-                  </select>
+                  <input name="package" type="hidden" value=""><span>Leg na het aanmaken de klantafspraak vast via Klantafspraak / betaalperiode. Nieuwe overeenkomsten staan standaard op vier weken.</span>
                 </label>
               </div>
               <label class="field">
@@ -340,13 +330,13 @@
                 <span>Pakket/abonnement</span>
                 <select name="package">
                   <option value="">Geen pakket gekozen</option>
-                  <option value="pt-basis">1-op-1 PT Basis - 4x per maand - €200 p/m</option>
-                  <option value="pt-progressie">1-op-1 PT Progressie - 8x per maand - €380 p/m</option>
-                  <option value="pt-transformatie">1-op-1 PT Transformatie - 12x per maand - €480 p/m</option>
-                  <option value="duo-basis">Duo Basis - 4x per maand - €260 p/m</option>
-                  <option value="duo-progressie">Duo Progressie - 8x per maand - €520 p/m</option>
-                  <option value="duo-transformatie">Duo Transformatie - 12x per maand - €780 p/m</option>
-                  <option value="online-coaching">Online Coaching - €200 p/m</option>
+                  <option value="pt-basis">1-op-1 PT Basis - 4 trainingen - €200 per afgesproken periode</option>
+                  <option value="pt-progressie">1-op-1 PT Progressie - 8 trainingen - €380 per afgesproken periode</option>
+                  <option value="pt-transformatie">1-op-1 PT Transformatie - 12 trainingen - €480 per afgesproken periode</option>
+                  <option value="duo-basis">Duo Basis - 4 trainingen - €260 per afgesproken periode</option>
+                  <option value="duo-progressie">Duo Progressie - 8 trainingen - €520 per afgesproken periode</option>
+                  <option value="duo-transformatie">Duo Transformatie - 12 trainingen - €780 per afgesproken periode</option>
+                  <option value="online-coaching">Online Coaching - €200 per afgesproken periode</option>
                   <option value="custom">Anders / handmatig</option>
                 </select>
               </label>
@@ -1110,13 +1100,15 @@
     <script src="vendor/fflate-0.8.2.js"></script>
     <script src="accounting-model.js?v=20260911-owner"></script>
     <script src="accounting-reports.js?v=20260911-owner"></script>
-    <script src="invoice-documents.js?v=20260913-invoice"></script>
-    <script src="invoice-editor.js?v=20260911-owner"></script>
+    <script src="invoice-documents.js?v=20260924-billing"></script>
+    <script src="invoice-editor.js?v=20260924-billing"></script>
     <script src="invoices.js?v=20260911-owner"></script>
     <script src="tutorial/content.js?v=20260914-course"></script>
     <script src="tutorial/host.js?v=20260914-course"></script>
-    <script src="accounting.js?v=20260914-course"></script>
-    <script src="app.js?v=20260911-owner"></script>
+    <script src="billing-periods.js?v=20260924"></script>
+    <script src="accounting.js?v=20260924-billing"></script>
+    <script src="billing-ui.js?v=20260924"></script>
+    <script src="app.js?v=20260924-billing"></script>
     <script src="autosave.js?v=20260911-owner"></script>
     <script src="photos.js?v=20260909-autosave-r2"></script>
   </body>

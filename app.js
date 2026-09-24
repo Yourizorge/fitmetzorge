@@ -351,18 +351,18 @@ const ADMIN_TYPES = {
 };
 const CLIENT_PACKAGES = [
   { id: "", label: "Geen pakket gekozen", amount: "" },
-  { id: "pt-basis", label: "1-op-1 PT Basis - 4x per maand", amount: 200, sessions: 4 },
-  { id: "pt-progressie", label: "1-op-1 PT Progressie - 8x per maand", amount: 380, sessions: 8 },
-  { id: "pt-transformatie", label: "1-op-1 PT Transformatie - 12x per maand", amount: 480, sessions: 12 },
-  { id: "duo-basis", label: "Duo Basis - 4x per maand", amount: 260 },
-  { id: "duo-progressie", label: "Duo Progressie - 8x per maand", amount: 520 },
-  { id: "duo-transformatie", label: "Duo Transformatie - 12x per maand", amount: 780 },
+  { id: "pt-basis", legacyLabel: "1-op-1 PT Basis - 4x per maand", label: "1-op-1 PT Basis - 4 trainingen per periode", amount: 200, sessions: 4 },
+  { id: "pt-progressie", legacyLabel: "1-op-1 PT Progressie - 8x per maand", label: "1-op-1 PT Progressie - 8 trainingen per periode", amount: 380, sessions: 8 },
+  { id: "pt-transformatie", legacyLabel: "1-op-1 PT Transformatie - 12x per maand", label: "1-op-1 PT Transformatie - 12 trainingen per periode", amount: 480, sessions: 12 },
+  { id: "duo-basis", legacyLabel: "Duo Basis - 4x per maand", label: "Duo Basis - 4 trainingen per periode", amount: 260 },
+  { id: "duo-progressie", legacyLabel: "Duo Progressie - 8x per maand", label: "Duo Progressie - 8 trainingen per periode", amount: 520 },
+  { id: "duo-transformatie", legacyLabel: "Duo Transformatie - 12x per maand", label: "Duo Transformatie - 12 trainingen per periode", amount: 780 },
   { id: "online-coaching", label: "Online Coaching", amount: 200 },
   { id: "custom", label: "Anders / handmatig", amount: "" }
 ];
 const DEFAULT_APPOINTMENT_TYPES = [
   { id: "appt-intake", name: "Intake", duration: 45, price: 0, color: "#2563eb", category: "Kennismaking", location: "Hoogerheide", capacity: 1 },
-  { id: "appt-pt", name: "Personal training", duration: 60, price: 60, color: "#c89312", category: "Training", location: "Hoogerheide", capacity: 1 },
+  { id: "appt-pt", name: "Personal training", duration: 60, price: 55, color: "#c89312", category: "Training", location: "Hoogerheide", capacity: 1 },
   { id: "appt-checkin", name: "Check-in", duration: 30, price: 0, color: "#16a34a", category: "Begeleiding", location: "Online", capacity: 1 },
   { id: "appt-measurement", name: "Meting", duration: 30, price: 0, color: "#0ea5e9", category: "Voortgang", location: "Hoogerheide", capacity: 1 },
   { id: "appt-nutrition", name: "Voedingscheck", duration: 30, price: 0, color: "#db2777", category: "Voeding", location: "Online", capacity: 1 },
@@ -1314,14 +1314,14 @@ function appointmentAmount(appointment) {
 
 function packageByValue(value) {
   const clean = String(value || "").trim();
-  return CLIENT_PACKAGES.find((item) => item.id === clean || item.label === clean);
+  return CLIENT_PACKAGES.find((item) => item.id === clean || item.label === clean || item.legacyLabel === clean);
 }
 
 function packageLabel(value) {
   const clean = String(value || "").trim();
   if (!clean) return "Geen pakket gekozen";
   const found = packageByValue(clean);
-  return found ? found.label + (found.amount !== "" ? ` - ${currency(found.amount)} per maand` : "") : clean;
+  return found ? found.label + (found.amount !== "" ? ` - ${currency(found.amount)} per afgesproken periode` : "") : clean;
 }
 
 function packageAmount(value) {
@@ -1330,19 +1330,23 @@ function packageAmount(value) {
 }
 
 function clientPackageLabel(selected) {
+  const agreement=window.FMZBilling?.get(selected?.id);
+  if(agreement)return `${agreement.package_label} - ${currency(agreement.amount_cents/100)} ${FMZBillingPeriods.label(agreement.cycle)}${agreement.enabled?'':' - geen pakketfacturen'}`;
   return packageLabel(selected?.profile?.package || selected?.package || "");
 }
 
 function clientPackageAmount(selected) {
+  const agreement=window.FMZBilling?.get(selected?.id);
+  if(agreement)return agreement.amount_cents/100;
   return packageAmount(selected?.profile?.package || selected?.package || "");
 }
 
 function packageOptions(selectedValue = "") {
   const clean = String(selectedValue || "").trim();
-  const hasCustom = clean && !CLIENT_PACKAGES.some((item) => item.id === clean || item.label === clean);
+  const hasCustom = clean && !CLIENT_PACKAGES.some((item) => item.id === clean || item.label === clean || item.legacyLabel===clean);
   return `${CLIENT_PACKAGES.map((item) => {
-    const selected = clean === item.id || clean === item.label;
-    const price = item.amount !== "" && item.amount !== undefined ? ` - ${currency(item.amount)} p/m` : "";
+    const selected = clean === item.id || clean === item.label || clean === item.legacyLabel;
+    const price = item.amount !== "" && item.amount !== undefined ? ` - ${currency(item.amount)} per periode` : "";
     return `<option value="${escapeHTML(item.id || "")}" ${selected ? "selected" : ""}>${escapeHTML(item.label)}${price}</option>`;
   }).join("")}${hasCustom ? `<option value="${escapeHTML(clean)}" selected>${escapeHTML(clean)}</option>` : ""}`;
 }
@@ -2343,6 +2347,7 @@ function renderClients() {
           <span>${item.registered ? "Geregistreerd" : "Uitgenodigd, nog niet geregistreerd"}</span>
           <span>${escapeHTML(item.goal || "Geen doel ingevuld")}</span>
           <div class="card-actions">
+            ${window.FMZBilling?.controls(item.id)||''}
             <button class="secondary-btn" data-select-client="${escapeHTML(item.id)}" type="button">Selecteer</button>
             <button class="primary-btn" data-edit-goals="${escapeHTML(item.id)}" type="button">Doelen bewerken</button>
             <button class="secondary-btn" data-resend-invite="${escapeHTML(item.id)}" type="button">Uitnodiging opnieuw versturen</button>
@@ -2367,6 +2372,9 @@ function renderGoalForm() {
   form.elements.goal.value = selected.goal || "";
   const profile = selected.profile || defaultClientProfileData();
   if (form.elements.package) form.elements.package.innerHTML = packageOptions(profile.package || selected.package || "");
+  if(form.elements.package){form.elements.package.disabled=!!window.FMZAccounting?.ready;form.elements.package.closest('label').hidden=!!window.FMZAccounting?.ready;}
+  let agreementBox=form.querySelector('[data-client-billing]');if(!agreementBox){agreementBox=document.createElement('section');agreementBox.dataset.clientBilling='';agreementBox.className='acc-notice';form.append(agreementBox);}
+  agreementBox.innerHTML=window.FMZAccounting?.ready?(FMZBilling.summary(FMZBilling.get(selected.id))+FMZBilling.controls(selected.id)):'';
   Object.entries(profile).forEach(([key, value]) => {
     if (form.elements[key]) form.elements[key].value = value ?? "";
   });
