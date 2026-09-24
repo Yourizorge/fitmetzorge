@@ -1,0 +1,62 @@
+{
+  "file": "supabase/migrations/20260924133305_appfmz_billing_periods.sql",
+  "version": "20260924133305",
+  "productionName": "appfmz_billing_periods",
+  "sqlGitBytes": 19544,
+  "sqlGitSHA256": "1f0678e04120e22c18fcbd20952f9c149ab9ea67a9d83da86eaa18ac99038b0d",
+  "registeredStatementCount": 18,
+  "registeredStatementsSHA256": "d3af74526cc80016c9e978d72a4da0c785ad4a58b3e0ab3d66d85de453749f3d",
+  "statementHashRepresentation": "CLI statement array joined with semicolon and LF; distinct representation from whole-file hash",
+  "appliedOnce": true,
+  "legacyMigrationsReplayed": false,
+  "historyRepair": false,
+  "initialFreshCheckout": "e5e495bdc081ab7898996f4320fbe4e17da12d85",
+  "freshMigrationList": {
+    "migrations": [
+      {
+        "local": "20260909103959",
+        "remote": "20260909103959",
+        "time": "2026-09-09 10:39:59"
+      },
+      {
+        "local": "20260909151429",
+        "remote": "20260909151429",
+        "time": "2026-09-09 15:14:29"
+      },
+      {
+        "local": "20260909172334",
+        "remote": "20260909172334",
+        "time": "2026-09-09 17:23:34"
+      },
+      {
+        "local": "20260910170351",
+        "remote": "20260910170351",
+        "time": "2026-09-10 17:03:51"
+      },
+      {
+        "local": "20260910171555",
+        "remote": "20260910171555",
+        "time": "2026-09-10 17:15:55"
+      },
+      {
+        "local": "20260911094831",
+        "remote": "20260911094831",
+        "time": "2026-09-11 09:48:31"
+      },
+      {
+        "local": "20260924133305",
+        "remote": "20260924133305",
+        "time": "2026-09-24 13:33:05"
+      }
+    ],
+    "message": "Migrations listed"
+  },
+  "freshDryRun": {
+    "upToDate": true,
+    "dryRun": true,
+    "migrations": [],
+    "seeds": [],
+    "roles": [],
+    "message": "Remote database is up to date."
+  }
+}

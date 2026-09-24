@@ -1,6 +1,6 @@
 # APPFMZ — kalendermaand en vier weken
 
-Status: migration toegepast en productie-API getest; frontendpublicatie en eindcontrole in uitvoering. Scope: `Yourizorge/fitmetzorge`, `appfmz.nl`, Supabase `hgoygcviutmynaihcvpd`. Baseline `e42639fe840fddc61de50b77d3f7648cb1d538a2`.
+**Gepubliceerd en gecontroleerd; APPFMZ is live, onderhoud is uit.** Scope: `Yourizorge/fitmetzorge`, `appfmz.nl`, Supabase `hgoygcviutmynaihcvpd`. Baseline `e42639fe840fddc61de50b77d3f7648cb1d538a2`. Definitieve runtimecommit: [`377f3dd5f0f8664162dcf4ee5ae74249fe75895b`](https://github.com/Yourizorge/fitmetzorge/commit/377f3dd5f0f8664162dcf4ee5ae74249fe75895b). Latere bewijs-/testdocumentatie verandert de runtime niet. Owneracceptatie wacht op de fysieke telefoontest.
 
 ## Gedrag
 
@@ -42,9 +42,9 @@ De volledige regressieset omvat 31 tests, waaronder opslag, privacy, workouts, v
 
 Nieuwe controles: maandlengtes 28/29/30/31, 28 opeenvolgende vierwekencycli over jaargrenzen, expliciete versies, maand/four-weeks-keuze, uitsluiting, behouden oud concept, korting en btw, deel-/restcredit, annulering, dubbele aanvraag, verloren antwoord met dezelfde request-ID, PT409 zonder herhaallus, re-login, byte-identieke private PDF en mobiel/desktop. Browsercontrole op 320/390/768/1400px en beide bestaande thema's; verborgen native selecties en A4-vergroten worden echt bediend.
 
-De nieuwe A4-voorbeelden zijn gerenderd en visueel gecontroleerd. Productie-API- en livebrowserresultaten worden na uitvoering toegevoegd; deze voorbereiding claimt die nog niet.
+De nieuwe A4-voorbeelden zijn gerenderd en visueel gecontroleerd. Ook de echte PDF-tekst is uitgelezen: één geldige A4 per voorbeeld, juiste cyclus, datums, korting, nettobedrag, btw en eindtotaal. Zie [PDF-bewijs](APPFMZ_BILLING_PDF_20260924.json). Alle 31 afzonderlijke regressietests hebben een geslaagde uitvoering, inclusief gerichte herhalingen na correcties; [het testmanifest](APPFMZ_BILLING_TESTS_20260924.json) vermeldt de gebruikte runs en het synthetische herstelbewijs. De nieuwe browsertest kiest relatieve toekomstige datums en blijft daardoor ook na september uitvoerbaar.
 
-Tijdens de live desktopcontrole kwam een bestaande te brede bovenbalk met de langere synthetische trainernaam aan het licht. De aangescherpte lokale controle vond daarnaast de minimale kaartbreedte en de vaste doelenknop op 320px. De CSS-correctie is beperkt tot het klantscherm: bovenbalk/knoppen mogen omslaan en kaarten passen binnen hun kolom. De afspraakeditor zelf en de PDF-layout zijn ongewijzigd. Alle vier breedtes hebben na correctie nul horizontale overloop; doelen-autosave krijgt een gerichte regressieherhaling.
+Tijdens de live desktopcontrole kwam een bestaande te brede bovenbalk met de langere synthetische trainernaam aan het licht. De aangescherpte lokale controle vond daarnaast de minimale kaartbreedte en de vaste doelenknop op 320px. De CSS-correctie is beperkt tot het klantscherm: bovenbalk/knoppen mogen omslaan en kaarten passen binnen hun kolom. De afspraakeditor zelf en de PDF-layout zijn ongewijzigd. Alle vier breedtes hebben na correctie nul horizontale overloop; de gerichte regressieherhaling van doelen-autosave is PASS.
 
 Vaste synthetische voorbeelden: [vier weken](examples/billing-20260924/vier-weken.pdf), [kalendermaand](examples/billing-20260924/kalendermaand.pdf), [mobiele afspraakeditor](examples/billing-20260924/afspraak-mobiel.png). De laatste browserherhaling na het vastzetten van de serviceperiode is eveneens PASS. Er staan geen echte klantgegevens in deze voorbeelden.
 
@@ -60,7 +60,17 @@ Directe tabeltoegang, anon-RPC en clienttoegang tot de administratieve registrat
 
 De eerste productieproef stopte in de Node-testhulp door een PDF-lib/VM-realmverschil; de lege 204-logoutrespons moest ook worden verwerkt. Deze testhulp is gecorrigeerd, uitsluitend de eigen synthetische organisatie is opnieuw klaargezet en de volledige proef is daarna geslaagd. Dit vereiste geen runtime- of schemacorrectie.
 
-Frontendpublicatie en browser-/databehoudbewijs volgen hieronder. De controle gebruikt vier vers aangemaakte synthetische accounts, zonder e-mail. Alleen hun eigen tijdelijke administratie, PDF's en Authaccounts worden opgeruimd.
+De release is gepubliceerd via [Pages-run 36016910351](https://github.com/Yourizorge/fitmetzorge/actions/runs/36016910351), succesvol afgerond op 2026-09-24T15:00:56Z. [Alle 37 gecontroleerde livebestanden](APPFMZ_BILLING_ASSETS_20260924.json) zijn byte-identiek aan de runtimecommit. Bestanden buiten de acht genoemde runtimebestanden zijn ook gelijk aan de baseline, inclusief configuratie, sync/autosave, foto's, cursus, handboek en PDF-bibliotheken. Een eerdere push gaf een tijdelijke GitHub-500; de refs zijn gecontroleerd vóór de herhaling. Voor één tussenliggende publicatie is een expliciete Pages-build gestart, zonder hostinginstellingen te wijzigen.
+
+De [live browsercontrole](APPFMZ_BILLING_BROWSER_20260924.json) slaagde op 2026-09-24T15:02:11Z op 390px en 1400px: echte knoppen voor klantafspraak en PDF openen, passend/inzoomen, private downloads met juiste hash, wissen van privé-UI bij uitloggen en dezelfde volledige administratie na opnieuw inloggen. Nul browserfouten en nul applicatieschrijfverzoeken in deze lezing. [Mobiele afspraak](examples/billing-20260924/live-afspraak-mobiel.png) en [mobiele PDF-viewer](examples/billing-20260924/live-pdf-mobiel.png) gebruiken uitsluitend synthetische gegevens. Dit is een browserproef, geen vervanging voor de fysieke telefoontest.
+
+De vier vers aangemaakte synthetische accounts, hun gemarkeerde testorganisatie en hun twee private test-PDF's zijn opgeruimd. De eindcontrole vindt nul bijbehorende Authaccounts en nul testorganisaties. De echte administratie bevat exact drie afspraakregistraties: twee actief per kalendermaand en één uitgesloten. Boven de oorspronkelijke auditgrens staan uitsluitend de drie nieuwe registratie-auditregels.
+
+[Het databehoudbewijs](APPFMZ_BILLING_PRESERVATION_20260924.json), gemaakt op 2026-09-24T15:03:23Z, bevestigt alle oorspronkelijke tabelgegevens, oude auditregels en de byte-identieke bestaande private PDF. De twee reeds vóór onze migration toegevoegde lege platformkolommen zijn expliciet verantwoord. Geen oorspronkelijke klantinhoud, factuur, boeking, profiel, Authrecord of bestand is gewijzigd. Alle oorspronkelijke functiehashes blijven gelijk, behalve de bedoelde uitbreiding van `snapshot()`.
+
+[Het migrationbewijs](APPFMZ_BILLING_MIGRATION_PROOF_20260924.json) bevat bestandsnaam, Git-SQL-SHA-256, productieversie/naam, de zeven gelijke versies en de lege dry-run uit een volledig verse checkout van `e5e495bdc081ab7898996f4320fbe4e17da12d85`. De SQL is daarna niet veranderd. SHA-256 van de volledige Git-SQL: `1f0678e04120e22c18fcbd20952f9c149ab9ea67a9d83da86eaa18ac99038b0d`.
+
+De private checkpoint blijft bewaard. De bestaande lokale verwijdering van het cursus-PDF in de oorspronkelijke werkboom is ongemoeid gelaten; de release is vanuit een aparte werkboom gepubliceerd. Er is geen technische blocker voor deze betaalperiodewijziging. Nog door de owner te bevestigen: de fysieke bediening en de inhoudelijke keuze bij toekomstige echte klantafspraken/facturen.
 
 ## Korte telefoontest
 

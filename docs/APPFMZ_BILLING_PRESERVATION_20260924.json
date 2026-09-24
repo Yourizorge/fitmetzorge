@@ -1,0 +1,127 @@
+{
+  "at": "2026-09-24T15:03:23.239Z",
+  "baselineAt": "2026-09-24T13:59:39.693796+00:00",
+  "project": "hgoygcviutmynaihcvpd",
+  "allExistingDataUnchanged": true,
+  "tables": {
+    "auth.identities": {
+      "unchangedByRelease": true,
+      "sha256": "96a02293778ecf8036f0cf88f237fb8c985228aac9bc3a4c645f0bc9ec1945de"
+    },
+    "auth.users": {
+      "unchangedByRelease": true,
+      "sha256": "36583c7f9e7f4220678f974d44b5424a94937f73594e5930a26f92e35005c026"
+    },
+    "fmz_accounting.accounts": {
+      "unchangedByRelease": true,
+      "sha256": "fbc207e017bbad950cca2e4775629cf6be8684fadd54f60e38b4a90babecb888"
+    },
+    "fmz_accounting.audit": {
+      "unchangedByRelease": true,
+      "sha256": "e5dea1e8fb19434caa1d28a99988dd29402df4411faa39e02215d94a6b5a8f71"
+    },
+    "fmz_accounting.files": {
+      "unchangedByRelease": true,
+      "sha256": "8497cfa350032de2151f49ed4f4bbbc9d6e728b407d021fb11013352b64189e3"
+    },
+    "fmz_accounting.journals": {
+      "unchangedByRelease": true,
+      "sha256": "d7316f0b7b48766ef1246fa102aca22d51aa3dd359ae9922128011249a67fc65"
+    },
+    "fmz_accounting.lines": {
+      "unchangedByRelease": true,
+      "sha256": "dea8f62f791717a34f18f2fc3c7b5f87ce9803491161a8cb14635407fa7c9b73"
+    },
+    "fmz_accounting.organizations": {
+      "unchangedByRelease": true,
+      "sha256": "77670af5e990025cecf117476a3587c34fbb72145b95a5ab41dc3ced11042d4e"
+    },
+    "fmz_accounting.receipts": {
+      "unchangedByRelease": true,
+      "sha256": "1e412cc8bb6b358866294850cf9ff88742d412de95457e1d1a317bb09d0db902"
+    },
+    "fmz_accounting.records": {
+      "unchangedByRelease": true,
+      "sha256": "6cc203680255818f32678d5d81c556657c631673e83b1851698b6c1fcb4a9f5c"
+    },
+    "fmz_private.photo_annotations": {
+      "unchangedByRelease": true,
+      "sha256": "5332daa863227ee9967bd590d95319919eb8ec2d90b9f6c8b029e9b5eea2598a"
+    },
+    "fmz_private.write_receipts": {
+      "unchangedByRelease": true,
+      "sha256": "a8dbf0b314cabd3b7a3054776b4dd0d22d934fca519e9ecd591d89ae8a0702c1"
+    },
+    "public.client_invites": {
+      "unchangedByRelease": true,
+      "sha256": "1ded753f91c8d2fd8207c1420fb1869539a9a9e6a3cbea83dac6f30334139dc9"
+    },
+    "public.coach_workspaces": {
+      "unchangedByRelease": true,
+      "sha256": "1f31f4351d6972810ac7c893ff9830702fbbc17fc019fd5e969d86b5396ce4bb"
+    },
+    "public.profiles": {
+      "unchangedByRelease": true,
+      "sha256": "1e349c4c933d99053d5f82bc63d79156f72bf175d278c6e13c6e14638b1b78db"
+    },
+    "storage.buckets": {
+      "unchangedByRelease": true,
+      "sha256": "d76c9d3cbcd12d82a26ce93c1f4375dc24fee669c688238fa1c51b07e21f5f9c"
+    },
+    "storage.objects": {
+      "unchangedByRelease": true,
+      "sha256": "4650524377989461412ae500af8c45b555275253149cc04bd1383fd2c0384f22"
+    }
+  },
+  "storagePlatformAddition": {
+    "project": "hgoygcviutmynaihcvpd",
+    "observedBeforeAppMigration": true,
+    "table": "storage.buckets",
+    "addedColumns": [
+      "lifecycle_configuration",
+      "lifecycle_configuration_generation"
+    ],
+    "newFieldsBothNull": true,
+    "rows": 1,
+    "originalFieldsSha256": "d3a2e1e2053141f923037abeb923ac25cd51816530d7efce534dc9e2a66f4365",
+    "fullRowAfterPlatformAdditionSha256": "d76c9d3cbcd12d82a26ce93c1f4375dc24fee669c688238fa1c51b07e21f5f9c",
+    "allOriginalFieldsIdentical": true,
+    "releaseChangesStorageSchema": false
+  },
+  "originalAuditUpTo": 180,
+  "onlyChangedExistingFunction": [
+    "fmz_accounting.snapshot()"
+  ],
+  "newFunctions": [
+    {
+      "hash": "103e5527625622716d347dc49ff57a12ddedcb6b647b438bd3bd297cb78ef0b2",
+      "signature": "fmz_accounting.billing_catalog(text)"
+    },
+    {
+      "hash": "a5b11eaa1a06d25edf6df95c2ca1271b993e34bd2449d6e2a53373d328b6176e",
+      "signature": "fmz_accounting.billing_command(text,jsonb,uuid)"
+    },
+    {
+      "hash": "aaa733f8a34178ea0910f6c04f3d96d20dcffa32447242af32674488f9608f3c",
+      "signature": "fmz_accounting.billing_guard_invoice()"
+    },
+    {
+      "hash": "c202ff62932920036d74fc02c5aef6da1c65c0c0ebbd24685c78d8c922b2118a",
+      "signature": "fmz_accounting.billing_metadata(fmz_accounting.agreement_versions,jsonb)"
+    },
+    {
+      "hash": "1e8eab294c79c4e2ff4c2791a292a5f1e78cc55a766574864a972ebf52fbbccb",
+      "signature": "fmz_accounting.billing_period(fmz_accounting.agreement_versions,date)"
+    },
+    {
+      "hash": "f1ecd07eec69ca9fba440ea39479c559b56605c279cec92424c20e77cf1ae82b",
+      "signature": "fmz_accounting.billing_register_legacy(uuid,text,boolean,date)"
+    },
+    {
+      "hash": "458015a3830345a61e27c0b70644090080c2100d8a666e724687b577eea1fe76",
+      "signature": "fmz_billing_command(text,jsonb,uuid)"
+    }
+  ],
+  "oldPrivatePDFsByteIdentical": 1,
+  "realDataRestoredForTesting": false
+}

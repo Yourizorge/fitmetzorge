@@ -11,5 +11,5 @@ const sha=b=>createHash('sha256').update(b).digest('hex'),baseline='e42639fe840f
   let same=null;if(!file.startsWith('billing-')){const before=execFileSync('git',['show',baseline+':'+file],{maxBuffer:25*1024*1024});same=before.equals(actual);if(!changed.has(file)&&!same)throw Error(file+': outside release scope');}
   result.files.push({file,bytes:actual.length,sha256:sha(actual),mime:r.headers.get('content-type'),unchangedFromBaseline:same});
  }
- fs.writeFileSync('docs/APPFMZ_BILLING_ASSETS_20260924.json',JSON.stringify(result,null,2)+'\n');console.log('PASS '+files.length+' live files equal Git '+commit+'; unchanged assets preserved');
+ fs.writeFileSync(process.env.FMZ_BILLING_ASSET_OUTPUT||'docs/APPFMZ_BILLING_ASSETS_20260924.json',JSON.stringify(result,null,2)+'\n');console.log('PASS '+files.length+' live files equal Git '+commit+'; unchanged assets preserved');
 })().catch(e=>{console.error(e.message);process.exitCode=1});

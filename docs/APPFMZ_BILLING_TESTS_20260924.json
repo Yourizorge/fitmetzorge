@@ -1,0 +1,216 @@
+{
+  "at": "2026-09-24T15:41:19.424Z",
+  "completeRegressionTests": 31,
+  "pass": 31,
+  "failedRemaining": 0,
+  "note": "Full initial run plus targeted reruns after correcting old navigation fixtures and the client layout; no tests skipped. Relative future dates keep the new UI test repeatable.",
+  "tests": [
+    {
+      "name": "VAT reports distinguish net business base from non-deductible VAT and unknown opening periods",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "697.1463ms"
+    },
+    {
+      "name": "CSV mapping, signed integer cents, overlaps, ambiguous duplicates, periods and safe exports",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "49.3948ms"
+    },
+    {
+      "name": "cash VAT uses bank receipt dates and cumulative cent rounding, excludes deposits",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "38.1795ms"
+    },
+    {
+      "name": "owner administration phone and desktop: draft, PDF, payments, bank CSV, receipts, export and restored sources",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "76165.027ms"
+    },
+    {
+      "name": "owner ledger: invoice, VAT, payments, bank, private, audit, conflicts and archive protection",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "7205.6378ms"
+    },
+    {
+      "name": "idempotent writes and private draft/share annotations preserve originals and reject outsiders",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "7425.3943ms"
+    },
+    {
+      "name": "calendar months, leap days and exact consecutive 28-day cycles",
+      "status": "PASS",
+      "evidence": "billing-final-database.log",
+      "duration": "29.7212ms"
+    },
+    {
+      "name": "agreement migration preserves records; owner-only immutable versions and unique invoice periods",
+      "status": "PASS",
+      "evidence": "billing-final-database.log",
+      "duration": "12022.0009ms"
+    },
+    {
+      "name": "month and four-week agreements: phone controls, preview, private PDF, relogin and lost response",
+      "status": "PASS",
+      "evidence": "billing-final-repeatable.log",
+      "duration": "25759.4505ms"
+    },
+    {
+      "name": "browser + isolated PostgreSQL: persistence, trainer refresh, session privacy, XSS and compact images",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "31888.6393ms"
+    },
+    {
+      "name": "real A4 invoice documents preserve all lines across pages and share totals with preview",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "7975.1674ms"
+    },
+    {
+      "name": "Edge mail requests are intercepted; failed preparation never sends an invitation",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "224.2823ms"
+    },
+    {
+      "name": "autosave workout/nutrition flows, lost acknowledgement, draft/photo sharing and mobile drawing",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "50486.8819ms"
+    },
+    {
+      "name": "invoice layout preserves immutable cents and produces complete A4 variants",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "23234.1018ms"
+    },
+    {
+      "name": "invoice regression: both screens edit drafts, delayed acknowledgements, lost reply, conflict, PDF retry and session privacy",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "76055.4133ms"
+    },
+    {
+      "name": "six reconciled migrations retain their approved SQL and unique production identity",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "22.0793ms"
+    },
+    {
+      "name": "owner hotfix: actual goal controls bind to the selected client and survive server reload",
+      "status": "PASS",
+      "evidence": "billing-header-regression.log",
+      "duration": "14795.7946ms"
+    },
+    {
+      "name": "owner corrections: independent cents, tombstones, cancellation, partial credits and reversible imports",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "9592.2078ms"
+    },
+    {
+      "name": "isolated PostgreSQL: member/trainer chain, isolation, conflicts, profile authority and invites",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "7611.0736ms"
+    },
+    {
+      "name": "bounded recurrence handles month ends without repeated fees",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "3.833ms"
+    },
+    {
+      "name": "handbook and generated parser match reviewed course content and A4 PDF format",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "858.8263ms"
+    },
+    {
+      "name": "manual download, failed PDF retry and unavailable local progress keep isolation",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "17695.4359ms"
+    },
+    {
+      "name": "owner help and opaque exercises cannot mutate financial, member, auth, Storage or audit state",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "26286.5121ms"
+    },
+    {
+      "name": "resume, retry, reset, keyboard, mobile themes and all main routes remain usable",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "25784.5238ms"
+    },
+    {
+      "name": "27 complete lessons have eleven parts, checked primary sources and meaningful exercises",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "32.07ms"
+    },
+    {
+      "name": "all exercise transitions validate, preserve failed state and finish without any API",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "34.0003ms"
+    },
+    {
+      "name": "capstone deduplicates prior entries, preserves original, credits once and reconciles cents",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "2.1515ms"
+    },
+    {
+      "name": "bad money, oversized discounts and unreviewed files or drafts never advance",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "4.975ms"
+    },
+    {
+      "name": "every lesson and exercise works through the opaque browser UI, PDFs and completion",
+      "status": "PASS",
+      "evidence": "billing-regression.log",
+      "duration": "89712.4996ms"
+    },
+    {
+      "name": "A4 preview fits all screens, enlarges privately and keeps archived download/share bytes",
+      "status": "PASS",
+      "evidence": "billing-final-targeted.log",
+      "duration": "47697.2078ms"
+    },
+    {
+      "name": "owner administration actual mobile controls, themes, dropdowns, disclosures, corrections and PDF previews",
+      "status": "PASS",
+      "evidence": "billing-final-targeted.log",
+      "duration": "153779.6796ms"
+    }
+  ],
+  "syntheticRestore": {
+    "isolated": true,
+    "agreements": 3,
+    "records": 18,
+    "journals": 12,
+    "lines": 30,
+    "audit": 38,
+    "originalFiles": 5,
+    "allOriginalHashesMatch": true,
+    "balanced": true,
+    "ownerReadAfterRestore": true
+  },
+  "cleanup": {
+    "syntheticAuthRemaining": 0,
+    "syntheticOrganizationsRemaining": 0,
+    "realAgreements": 3,
+    "enabledCalendarMonth": 2,
+    "excluded": 1,
+    "onlyNewRealAuditAction": "billing_legacy_registration",
+    "newRealAuditRows": 3
+  }
+}

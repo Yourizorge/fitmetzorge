@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-24T15:02:11.292Z",
+  "host": "appfmz.nl",
+  "onlySynthetic": true,
+  "viewportWidths": [
+    390,
+    1400
+  ],
+  "agreementControls": true,
+  "privatePDFPreviewZoom": true,
+  "downloads": [
+    {
+      "cycle": "four_weeks",
+      "sha256": "0d45cda6f9c990ae75d3d86b154967946801d506a67b006ac3255d056c4c4854"
+    },
+    {
+      "cycle": "calendar_month",
+      "sha256": "8ed589b96b027f55f7ba5f7ae42c2ee9ca850784174b1d5e19620b9ed5a8df67"
+    }
+  ],
+  "sessionClearsPrivateUI": true,
+  "reloginSameSnapshot": true,
+  "applicationWrites": 0,
+  "errors": []
+}
