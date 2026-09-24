@@ -16,7 +16,7 @@ Status: migration toegepast en productie-API getest; frontendpublicatie en eindc
 
 ## Bestanden en databaseobjecten
 
-Nieuw: `billing-periods.js` (datumregels/catalogus), `billing-ui.js` (ownereditor), gerichte tests en verificatiescripts. Aangepast: `app.js`, `index.html`, `accounting.js`, `invoice-editor.js`, `invoice-documents.js` en bestaande testfixtures. `sync.js`, `autosave.js`, `photos.js`, stijlen, Edge Functions en cursusbestanden blijven ongewijzigd.
+Nieuw: `billing-periods.js` (datumregels/catalogus), `billing-ui.js` (ownereditor), gerichte tests en verificatiescripts. Aangepast: `app.js`, `index.html`, `accounting.js`, `invoice-editor.js`, `invoice-documents.js`, `styles.css` en bestaande testfixtures. `sync.js`, `autosave.js`, `photos.js`, Edge Functions en cursusbestanden blijven ongewijzigd.
 
 Nieuwe migration: `supabase/migrations/20260924133305_appfmz_billing_periods.sql`.
 
@@ -43,6 +43,8 @@ De volledige regressieset omvat 31 tests, waaronder opslag, privacy, workouts, v
 Nieuwe controles: maandlengtes 28/29/30/31, 28 opeenvolgende vierwekencycli over jaargrenzen, expliciete versies, maand/four-weeks-keuze, uitsluiting, behouden oud concept, korting en btw, deel-/restcredit, annulering, dubbele aanvraag, verloren antwoord met dezelfde request-ID, PT409 zonder herhaallus, re-login, byte-identieke private PDF en mobiel/desktop. Browsercontrole op 320/390/768/1400px en beide bestaande thema's; verborgen native selecties en A4-vergroten worden echt bediend.
 
 De nieuwe A4-voorbeelden zijn gerenderd en visueel gecontroleerd. Productie-API- en livebrowserresultaten worden na uitvoering toegevoegd; deze voorbereiding claimt die nog niet.
+
+Tijdens de live desktopcontrole kwam een bestaande te brede bovenbalk met de langere synthetische trainernaam aan het licht. De aangescherpte lokale controle vond daarnaast de minimale kaartbreedte en de vaste doelenknop op 320px. De CSS-correctie is beperkt tot het klantscherm: bovenbalk/knoppen mogen omslaan en kaarten passen binnen hun kolom. De afspraakeditor zelf en de PDF-layout zijn ongewijzigd. Alle vier breedtes hebben na correctie nul horizontale overloop; doelen-autosave krijgt een gerichte regressieherhaling.
 
 Vaste synthetische voorbeelden: [vier weken](examples/billing-20260924/vier-weken.pdf), [kalendermaand](examples/billing-20260924/kalendermaand.pdf), [mobiele afspraakeditor](examples/billing-20260924/afspraak-mobiel.png). De laatste browserherhaling na het vastzetten van de serviceperiode is eveneens PASS. Er staan geen echte klantgegevens in deze voorbeelden.
 

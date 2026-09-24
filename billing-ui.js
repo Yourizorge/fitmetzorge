@@ -4,7 +4,7 @@ window.FMZBilling=(()=>{
  const versions=id=>(FMZAccounting.snapshot?.agreements||[]).filter(v=>v.client_id===id),get=(id,at=today())=>B.active(versions(id),id,at);
  function allowed(){if(!FMZAccounting.ready)throw Error('Alleen de geverifieerde owner kan klantafspraken beheren.');}
  const field=(name,title,value,type='text')=>`<label class="field"><span>${esc(title)}</span><input name="${name}" type="${type}" value="${esc(value)}" required></label>`;
- const select=(name,title,options,value)=>`<label class="field"><span>${esc(title)}</span><select name="${name}">${options.map(([id,label])=>`<option value="${id}" ${id===value?'selected':''}>${esc(label)}</option>`).join('')}</select></label>`;
+ const select=(name,title,options,value)=>`<label class="field"><span>${esc(title)}</span><select name="${name}">${options.map(([id,label])=>`<option value="${esc(id)}" ${id===value?'selected':''}>${esc(label)}</option>`).join('')}</select></label>`;
  const note=v=>v.cycle==='four_weeks'?'Facturatie iedere 4 weken (28 dagen), 13 betaalperiodes per jaar. De cyclus loopt zonder reset door over de jaargrens.':v.cycle==='calendar_month'?'Serviceperiode: eerste tot en met laatste dag van de maand. Factuurdatum standaard aan het einde van de maand.':'Geen terugkerende betaalperiode.';
  function summary(v,at=today()){
   if(!v)return '<p>Er is op deze datum nog geen ingegane klantafspraak. Controleer hieronder ook de geplande versies. Nieuwe overeenkomsten staan standaard op vier weken.</p>';

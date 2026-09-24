@@ -3,7 +3,7 @@ const fs=require('node:fs'),{execFileSync}=require('node:child_process'),{create
 const sha=b=>createHash('sha256').update(b).digest('hex'),baseline='e42639fe840fddc61de50b77d3f7648cb1d538a2';
 (async()=>{
  const commit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),prior=require('../docs/APPFMZ_TUTORIAL_LIVE_20260914.json');
- const files=[...new Set([...prior.files.map(f=>f.file),'billing-periods.js','billing-ui.js'])],changed=new Set(['index.html','app.js','accounting.js','invoice-documents.js','invoice-editor.js','billing-periods.js','billing-ui.js']);
+ const files=[...new Set([...prior.files.map(f=>f.file),'billing-periods.js','billing-ui.js'])],changed=new Set(['index.html','styles.css','app.js','accounting.js','invoice-documents.js','invoice-editor.js','billing-periods.js','billing-ui.js']);
  const result={at:new Date().toISOString(),commit,baseline,host:'https://appfmz.nl',files:[]};
  for(const file of files){
   const expected=execFileSync('git',['show',commit+':'+file],{maxBuffer:25*1024*1024}),r=await fetch(result.host+'/'+file+'?verify='+commit,{cache:'no-store',signal:AbortSignal.timeout(45000)});

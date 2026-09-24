@@ -5983,6 +5983,13 @@ body.light .acc-dialog header,body.light .acc-dialog .acc-actions{background:#f7
 body.accounting-mode .topbar{position:relative;top:auto;display:flex;flex-wrap:wrap;min-width:0}
 body.accounting-mode .topbar-controls{flex-wrap:wrap;min-width:0;max-width:100%}
 body.accounting-mode .topbar-search{min-width:0;max-width:100%}
+/* The client agreement screen must also fit a long trainer name and all header controls. */
+body.trainer-mode:has(#clients.active) .topbar{display:flex;flex-wrap:wrap;min-width:0}
+body.trainer-mode:has(#clients.active) .topbar-controls{flex-wrap:wrap;min-width:0;max-width:100%}
+body.trainer-mode:has(#clients.active) .topbar-search{min-width:0;max-width:100%}
+#clients .client-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}
+#clients .client-card{min-width:0;overflow-wrap:anywhere}
+#clients .goal-save-actions{flex-wrap:wrap}
 @media(min-width:761px) and (max-width:1100px){
  body.accounting-mode .app-shell{display:block;padding-bottom:0}
  body.accounting-mode .sidebar{position:relative;top:auto;left:auto;right:auto;bottom:auto;width:auto;height:auto;margin:8px;padding:8px;border-radius:14px}

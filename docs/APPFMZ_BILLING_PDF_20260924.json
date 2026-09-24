@@ -1,0 +1,12 @@
+{
+  "vier-weken": {
+    "pages": 1,
+    "validA4PDF": true,
+    "periodDiscountNetVATTotalFound": true
+  },
+  "kalendermaand": {
+    "pages": 1,
+    "validA4PDF": true,
+    "periodDiscountNetVATTotalFound": true
+  }
+}
