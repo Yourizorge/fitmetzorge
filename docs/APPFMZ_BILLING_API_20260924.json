@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-24T14:36:43.612Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "onlySynthetic": true,
+  "cycles": [
+    "calendar_month",
+    "four_weeks"
+  ],
+  "concurrentPrepareOneInvoice": true,
+  "idempotentFinalNumber": true,
+  "discountsAndVAT": true,
+  "creditsPreserveBilling": true,
+  "oldAgreementAndDocumentsPreserved": true,
+  "privatePDFsIdenticalAfterRelogin": true,
+  "memberAndOtherTrainerDenied": true,
+  "revokedSessionDenied": true,
+  "conflict": {
+    "status": 409,
+    "code": "PT409",
+    "ms": 95,
+    "entireRollback": true
+  }
+}

@@ -1,6 +1,6 @@
 # APPFMZ — kalendermaand en vier weken
 
-Status: getest en voorbereid voor gecontroleerde publicatie. Productie- en publicatiebewijs wordt na uitvoering hieronder toegevoegd. Scope: `Yourizorge/fitmetzorge`, `appfmz.nl`, Supabase `hgoygcviutmynaihcvpd`. Baseline `e42639fe840fddc61de50b77d3f7648cb1d538a2`.
+Status: migration toegepast en productie-API getest; frontendpublicatie en eindcontrole in uitvoering. Scope: `Yourizorge/fitmetzorge`, `appfmz.nl`, Supabase `hgoygcviutmynaihcvpd`. Baseline `e42639fe840fddc61de50b77d3f7648cb1d538a2`.
 
 ## Gedrag
 
@@ -48,7 +48,17 @@ Vaste synthetische voorbeelden: [vier weken](examples/billing-20260924/vier-weke
 
 ## Publicatiebewijs
 
-Nog in uitvoering. Alleen de nieuwe migration mag pending zijn. Na toepassing moeten alle zeven lokale/productieversies gelijk zijn en moet `db push --dry-run --skip-vault` leeg zijn. Productie wordt getest met vier nieuw aangemaakte synthetische accounts, zonder e-mail. Alleen hun eigen tijdelijke administratie, PDF's en Authaccounts worden opgeruimd.
+De geteste runtime is vastgelegd in commit `9f79f8f5b5da3dce87889ee0e2d7a9dc882757d0`. Alleen migration `20260924133305_appfmz_billing_periods.sql` is transactioneel toegepast via CLI 2.117.0, na een dry-run met exact dat ene bestand, lege seed-/roleslijsten en `--skip-vault`. Alle zeven lokale/productieversies zijn gelijk; de volgende dry-run meldt `Remote database is up to date`.
+
+De drie expliciet bevestigde bestaande koppelingen zijn afzonderlijk geregistreerd met twee actieve maandafspraken en één uitsluiting. `2026-09-01` is de registratiegrens van de huidige maand; oorspronkelijke klant-startdatums en eerdere facturen zijn niet herschreven. Er zijn uitsluitend drie nieuwe afspraakversies en drie nieuwe auditregels aan de echte administratie toegevoegd.
+
+De echte PostgREST/Auth/Storage-keten slaagde op 2026-09-24T14:36:43Z: twee gelijktijdige aanvragen geven één periodefactuur, een herhaalde definitieve aanvraag behoudt hetzelfde nummer, beide cycli verwerken korting/btw en credits, oude versies/documenten blijven gelijk, opnieuw inloggen geeft dezelfde private PDF-bytes, leden en een andere trainer krijgen geen toegang, en een ingetrokken sessie wordt geweigerd. Eén HTTP409/PT409 kwam binnen 95 ms terug; de volledige snapshot bleef gelijk. Zie [API-bewijs](APPFMZ_BILLING_API_20260924.json).
+
+Directe tabeltoegang, anon-RPC en clienttoegang tot de administratieve registratiefunctie zijn geweigerd; RLS staat aan. De bestaande Auth-waarschuwing over gelekte-wachtwoordcontrole is onveranderd. Het nieuwe RLS-zonder-policy-informatiepunt is bewust: de private tabel heeft geen clientgrants en wordt uitsluitend via de bestaande ownercontrole ontsloten. Geen betaalde upgrade of beveiligingsinstelling gewijzigd.
+
+De eerste productieproef stopte in de Node-testhulp door een PDF-lib/VM-realmverschil; de lege 204-logoutrespons moest ook worden verwerkt. Deze testhulp is gecorrigeerd, uitsluitend de eigen synthetische organisatie is opnieuw klaargezet en de volledige proef is daarna geslaagd. Dit vereiste geen runtime- of schemacorrectie.
+
+Frontendpublicatie en browser-/databehoudbewijs volgen hieronder. De controle gebruikt vier vers aangemaakte synthetische accounts, zonder e-mail. Alleen hun eigen tijdelijke administratie, PDF's en Authaccounts worden opgeruimd.
 
 ## Korte telefoontest
 
