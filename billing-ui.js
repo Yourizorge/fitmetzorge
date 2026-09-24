@@ -7,7 +7,7 @@ window.FMZBilling=(()=>{
  const select=(name,title,options,value)=>`<label class="field"><span>${esc(title)}</span><select name="${name}">${options.map(([id,label])=>`<option value="${id}" ${id===value?'selected':''}>${esc(label)}</option>`).join('')}</select></label>`;
  const note=v=>v.cycle==='four_weeks'?'Facturatie iedere 4 weken (28 dagen), 13 betaalperiodes per jaar. De cyclus loopt zonder reset door over de jaargrens.':v.cycle==='calendar_month'?'Serviceperiode: eerste tot en met laatste dag van de maand. Factuurdatum standaard aan het einde van de maand.':'Geen terugkerende betaalperiode.';
  function summary(v,at=today()){
-  if(!v)return '<p>Er is nog geen bevestigde klantafspraak. Nieuwe overeenkomsten staan standaard op vier weken.</p>';
+  if(!v)return '<p>Er is op deze datum nog geen ingegane klantafspraak. Controleer hieronder ook de geplande versies. Nieuwe overeenkomsten staan standaard op vier weken.</p>';
   let p;try{p=B.period(v,at);}catch{p=B.period(v,v.effective_from);}
   const r=FMZAccounting.snapshot.records.find(r=>r.data.billing?.agreementVersionId===v.id&&r.data.billing?.start===p.start&&!r.parent_id&&!r.data.credit_of),projection=M.project(FMZAccounting.snapshot),status=r?.status==='posted'?projection.invoices.find(x=>x.id===r.id)?.statusLabel:r?'Concept':'Nog geen factuur';
   let next=p,nextVersion=v;
