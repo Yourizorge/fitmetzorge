@@ -2,7 +2,7 @@
 
 Scope: uitsluitend `Yourizorge/fitmetzorge`, `https://appfmz.nl`. Baseline: `787b15065d347cfa39fa374b7d4999a70c08eaa8`. De openbare live `index.html`, `app.js` en `styles.css` waren vóór aanpassing byte-identiek aan deze hoofdbranch. Werkbranch: `codex/trainer-media-pwa-20261015`.
 
-Status: frontend voorbereid en getest; publicatiebewijs wordt na de gecontroleerde Pages-publicatie toegevoegd. De huidige opdracht geeft toestemming voor deze frontendpublicatie. Het oude SQL-uitrolplan is historisch en wordt niet opnieuw uitgevoerd.
+**Status: gepubliceerd en live gecontroleerd; onderhoud is uit.** Runtimecommit: [`dda3a1f78599504a7351342684cbbaf4bece5e48`](https://github.com/Yourizorge/fitmetzorge/commit/dda3a1f78599504a7351342684cbbaf4bece5e48). De daaropvolgende bewijs-/testdocumentatie wijzigt geen runtimebestanden. De huidige opdracht geeft toestemming voor deze frontendpublicatie. Het oude SQL-uitrolplan is historisch en wordt niet opnieuw uitgevoerd.
 
 ## Inventaris en behoud
 
@@ -71,6 +71,16 @@ De laatste controle van de definitieve frontend is **4/4 PASS**: administratieve
 Alleen frontend/assets/tests/documentatie gaan naar Git. Remote main wordt opnieuw gecontroleerd vóór een fast-forward push. Publicatie volgt via de bestaande GitHub Pages-inrichting; geen hosting-, domein- of databaseconfiguratie aanpassen. Daarna vergelijkt `tests/verify-trainer-pwa-assets.cjs` de openbare livebestanden byte voor byte met de commit en controleert het onveranderde kernbestanden. Live login/installatie/manifest worden opnieuw in de browser gelezen, zonder echte accountgegevens.
 
 Deze frontend is compatibel met de bestaande backend; onderhoud is niet nodig. Geopende tabbladen worden niet gedwongen te verversen. Herstel is een gerichte Git-revert van uitsluitend deze frontendcommit en een normale Pages-publicatie; database en klantinhoud blijven staan. Staging, JARVIS/AI en de afzonderlijke website worden niet benaderd of aangepast.
+
+## Uitgevoerde publicatie en live bewijs
+
+De remote hoofdbranch was vlak vóór push nog exact de baseline. De geteste runtimecommit is eerst naar de aparte branch en vervolgens fast-forward naar `main` gepusht. [Pages-run 38714033096](https://github.com/Yourizorge/fitmetzorge/actions/runs/38714033096) voltooide succesvol op **15 oktober 2026, 09:36 UTC**.
+
+[Alle 48 gecontroleerde openbare livebestanden](APPFMZ_TRAINER_PWA_ASSETS_20261015.json) zijn byte-identiek aan de runtimecommit. Ook MIME-types voor manifest en PNG's zijn gecontroleerd. Alle beschermde runtime-/SQL-/configuratiebestanden zijn gelijk aan de baseline. De verificatie gebruikt alleen openbare GET-verzoeken; er is geen databaseverbinding gebruikt.
+
+De [live browserproef](APPFMZ_TRAINER_PWA_LIVE_20261015.json) slaagde: openbare login op vier formaten, echte `beforeinstallprompt` en aanroep van de browserinstallatieprompt, afzonderlijke fallback-uitleg, sluiten/Escape, manifest zonder parser- of installatieblokkades, Apple-metagegevens en de oude HTML-ingang naar dezelfde rootapp. Geen browserfouten, geen schrijfverzoeken, geen CacheStorage-inhoud en geen serviceworker. Er is geen installatiebevestiging gegeven en niet met echte accounts ingelogd. [Live login op telefoonformaat](examples/trainer-pwa-20261015/live-login-390.png).
+
+De eerste live test verwachtte ten onrechte altijd het uitlegvenster: de browser bood al de echte installatieprompt aan. De testhulp is gecorrigeerd om die twee ondersteunde paden afzonderlijk te bewijzen; hiervoor was geen runtimecorrectie nodig. Er is geen technische releaseblocker. De resterende controle is de fysieke telefooninstallatie en bediening door de owner.
 
 ## Korte fysieke telefoontest voor de owner
 

@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-15T09:39:24.512Z",
+  "host": "https://appfmz.nl",
+  "browser": "155.0.4283.45",
+  "scope": "public login, manifest, native prompt invoked (no installation confirmed), fallback helper with native event suppressed only in test, icons, legacy entry; no account login",
+  "nativePromptRequested": true,
+  "viewports": [
+    [
+      320,
+      740
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      1400,
+      950
+    ]
+  ],
+  "manifestErrors": [],
+  "installabilityErrors": [],
+  "errors": [],
+  "writeRequests": [],
+  "privateCaches": 0,
+  "serviceWorkers": 0,
+  "pass": true
+}
