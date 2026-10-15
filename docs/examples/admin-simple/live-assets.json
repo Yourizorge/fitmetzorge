@@ -1,0 +1,493 @@
+{
+  "at": "2026-10-15T14:45:49.171Z",
+  "commit": "e676eb1018f8053dee81bf81ac33b1e3fa445764",
+  "baseline": "64275478de3155410118e3464e40dfa747a19833",
+  "host": "https://appfmz.nl",
+  "files": [
+    {
+      "file": "index.html",
+      "bytes": 49754,
+      "sha256": "bded68b638ea51127be051919ae8195a1d24377e9857863ebb413974d59de273",
+      "mime": "text/html; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "app.js",
+      "bytes": 263137,
+      "sha256": "7f06ffaa05943a4ce450143fde84dbafa8bb2ee74b9c882fc5367f8c572063a9",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "sync.js",
+      "bytes": 5532,
+      "sha256": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "autosave.js",
+      "bytes": 9506,
+      "sha256": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "photos.js",
+      "bytes": 8768,
+      "sha256": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "invoices.js",
+      "bytes": 569,
+      "sha256": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "accounting.js",
+      "bytes": 83572,
+      "sha256": "1f30a6b56d9a51f0f19beb813004fa5e455f786a33cc321351203ed78a15eef0",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "accounting-model.js",
+      "bytes": 13985,
+      "sha256": "e64953b4cfa28f91851f0379f283413a642a5dd30fbbb712d6b811f77abfcaaa",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "accounting-reports.js",
+      "bytes": 4185,
+      "sha256": "d36bf221eb4b92bf0c0f2003dd9f137fa8558ab4009e67cc1fad6a3cb890c872",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "invoice-editor.js",
+      "bytes": 2617,
+      "sha256": "4de0482c49a5e54aa6776cf951d99ecaaa93ade6722cc72e5bc8da6f47400a44",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "invoice-documents.js",
+      "bytes": 17421,
+      "sha256": "f6eb997e04c45412137c28546d5ca7f8e0bc62e17b05773bde16f4866a5f932e",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "styles.css",
+      "bytes": 120054,
+      "sha256": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "config.js",
+      "bytes": 361,
+      "sha256": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "fit-met-zorge-logo.png",
+      "bytes": 257147,
+      "sha256": "940c6c9e66d73a642d67f453fc12e46e78f233e60432ea0ad426324af1493ecf",
+      "mime": "image/png",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "vendor/pdf-lib-1.17.1.min.js",
+      "bytes": 525099,
+      "sha256": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "vendor/fflate-0.8.2.js",
+      "bytes": 32665,
+      "sha256": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "vendor/pdfjs-6.3.289/pdf.mjs",
+      "bytes": 458705,
+      "sha256": "f80490490320511e5df18c580b9edd6b5db8058dceebaf6f161992e0a964b9e2",
+      "mime": "text/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "vendor/pdfjs-6.3.289/pdf.worker.mjs",
+      "bytes": 1265413,
+      "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+      "mime": "text/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "Fit_Met_Zorge_Coach_App_standalone.html",
+      "bytes": 401,
+      "sha256": "f8659339591402d6b7f467f504e869fc885c019af87b8473c97560c47d0f0b84",
+      "mime": "text/html; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "output/pdf/APPFMZ-boekhouden-voor-beginners.pdf",
+      "bytes": 635352,
+      "sha256": "307f9dc970ca0101755c4de6ee3a091ba38c0afe3b8a63bd9d1720b6346afaa5",
+      "mime": "application/pdf",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "output/pdf/APPFMZ-oefenfactuur-NIET-GELDIG.pdf",
+      "bytes": 3697,
+      "sha256": "8646668759ab1b9623fb1a02f5b785d7cc4e02bbea1bf0d447ac849f56c0a17e",
+      "mime": "application/pdf",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "tutorial.html",
+      "bytes": 667,
+      "sha256": "bce028d30026645ce5f118d31e6243250dcdcc4b0f28dccb6f11db8fc12546e7",
+      "mime": "text/html; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/content.js",
+      "bytes": 64793,
+      "sha256": "150df38a23145a9fec1e3893ae9fc6b1d5d779e46ec6bcc8180ff224d1120404",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/course.css",
+      "bytes": 9349,
+      "sha256": "9bca598bc1c829a80dc457f099e02d36aba53f8ffc66c9d6100ea7c023bfaec7",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/course.html",
+      "bytes": 1607,
+      "sha256": "c1c5971f742180f5734395ea970e73a106d7fbe76dfa8cd3f32eb0bfe7f5c95a",
+      "mime": "text/html; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/course.js",
+      "bytes": 34290,
+      "sha256": "cb351fb8ffa0da1816bb37f3dbf44fa2376cfb0f7c5d3cbe976cd8143c1984eb",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/examples/APPFMZ-OEFENBANK-september-2026.csv",
+      "bytes": 397,
+      "sha256": "90089dedc1eadf895fc81a5239577a0ee9cce1bcdf38fbca2fed8a74c903a2e1",
+      "mime": "text/csv; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/handbook-manifest.json",
+      "bytes": 547,
+      "sha256": "d23f8f5f2363b5fe3d934af466ea3c42b12b124132579f31d154f1a3b5178eaa",
+      "mime": "application/json; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/host.css",
+      "bytes": 1719,
+      "sha256": "4acf6afe632ad14eeaec37e2994955db1962b852c5fb347966ae5c038712ff37",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/host.js",
+      "bytes": 5642,
+      "sha256": "1b0281108f3b21f64ddf7be6aa26a48204ce631cda408c22f53a1f5ab4d06096",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/model.js",
+      "bytes": 30609,
+      "sha256": "4ff11e626c5b852d1f8124c5a9e67502e307d3a115918dc688e45fd2f70fb3b4",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/vendor/LICENSE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "mime": "application/octet-stream",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/vendor/manifest.json",
+      "bytes": 543,
+      "sha256": "692ac70c696b723f688182bbcb9e8e11ff5057d136d5e5a0d9e3d018d0ff6922",
+      "mime": "application/json; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/vendor/pdf.js",
+      "bytes": 457901,
+      "sha256": "57841059fa4197d5bbffc7e09b23122c8f2b3720c894aa2dddea32544350098a",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/vendor/pdf.worker.js",
+      "bytes": 1265545,
+      "sha256": "9d7b6ba95dccd6f9526823210a161ba043b751eb5ae4b2c3cb44f2193a483816",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "billing-periods.js",
+      "bytes": 2901,
+      "sha256": "f5efa6cb3fc833749842cdf3d8d0331f049fa78ac303f3b6301d448cb6cacc38",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "billing-ui.js",
+      "bytes": 11530,
+      "sha256": "03cd5af11beba690173432ee49e605abf27e93346cedffa41e4c0ada07743eae",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "layout.css",
+      "bytes": 10958,
+      "sha256": "a15f3013cb7e605ecb8d35b6b482745161acf38eadac4d88127b74cf12b216b0",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "presentation.js",
+      "bytes": 1114,
+      "sha256": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "pwa.js",
+      "bytes": 3312,
+      "sha256": "8fa0374fdcf6157c43cbbe78fe34944579ca109e821615e9bb9d4ea2afccdea0",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "pwa.css",
+      "bytes": 692,
+      "sha256": "572f13f67af1a5f62c645fc1398ca3cb5d8a1ed830ade0f0b36466d2748dfebb",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "bytes": 657,
+      "sha256": "c876807f02b2cd17314999c2e4f83018bba444e14507b78f204279b066a486e7",
+      "mime": "application/manifest+json; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "assets/pwa/icon-192.png",
+      "bytes": 7899,
+      "sha256": "a7d45cc70c9ead061d82eb73727265f0f75659d946813e2c111715c87e7da1bb",
+      "mime": "image/png",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "assets/pwa/icon-512.png",
+      "bytes": 29247,
+      "sha256": "ccb940517e7028de9e64e2b4e1e29c64ec3f4d963a7655dd4ab19343298b7c33",
+      "mime": "image/png",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "assets/pwa/maskable-512.png",
+      "bytes": 25043,
+      "sha256": "147c6f1b25e2af47e5fadc0813290eed535f31303884a3107dabb2a409db74b5",
+      "mime": "image/png",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "assets/pwa/apple-touch-icon.png",
+      "bytes": 4667,
+      "sha256": "13852f928cc28d5120b25cf764780693d780d07cbd2360aa11f1f122e853077b",
+      "mime": "image/png",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "assets/pwa/favicon-32.png",
+      "bytes": 489,
+      "sha256": "0ddd2972f011297f7905ea19dc4eefa0ec015b5f40643f5376f877be0fb4ab4c",
+      "mime": "image/png",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "assets/pwa/provenance.json",
+      "bytes": 1180,
+      "sha256": "63cdb027b5b6b88d13427208f040c7d51a5d5e18483762b1333647301a62e044",
+      "mime": "application/json; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "agenda-model.js",
+      "bytes": 3233,
+      "sha256": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "agenda.js",
+      "bytes": 25535,
+      "sha256": "66b7c5eda734968b9b4f2bd30ad54c7a9b1548cf4b232a0ea8ed44007ca2f8d6",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "agenda.css",
+      "bytes": 8792,
+      "sha256": "155398b53ee0d5f1217ef659fbd5a89dabf0c738ece8b3e8aa1ed0bb2e3b5e42",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "push.js",
+      "bytes": 3025,
+      "sha256": "04da09ec758ce4040f8bd31ef1f8244701b7abfb95cfda19b69d7b1ae7af8413",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "sw.js",
+      "bytes": 2159,
+      "sha256": "e62cefcbd1c749d6cc8643bdd8730ab866b398039d62ec400def128ba3b81ff6",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "tutorial/beginner-content.js",
+      "bytes": 7227,
+      "sha256": "3844980ab112fada16aa9771b2372c1f8fdf3d9774fd738a8547f2e6f9a08a18",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/beginner.css",
+      "bytes": 3173,
+      "sha256": "25f9c6e875f8412ac4a41f54892e3aca0280183ed884479165eeff18785f7ce8",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/demo-data.js",
+      "bytes": 1260,
+      "sha256": "f9212a8b0512b64e3949552ab1819e8c1bca1bf861dd84e227c2f92e55c5be06",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/media/betalingen-chapters.json",
+      "bytes": 1533,
+      "sha256": "7a0191268a6ceecb2afa1f2d5adcd4ae9cef53ba882597ee4d3b0ed045f6edd1",
+      "mime": "application/json; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/media/betalingen-nl.vtt",
+      "bytes": 898,
+      "sha256": "b4f2c7775c94f039a994bda272d0530014ac97903939e96a3d10bea6c5c15010",
+      "mime": "text/vtt; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/media/betalingen.mp4",
+      "bytes": 1580618,
+      "sha256": "b03c1b906b79cd967ea10cc438f99cb66302efa6bc02fa5d579349c09d5bbcb6",
+      "mime": "video/mp4",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/payment-example.js",
+      "bytes": 10123,
+      "sha256": "5c5b06495ffbadcbc07049e62ac7de7f04c75f7ac805ab759d28181751a78656",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/payment-practice-model.js",
+      "bytes": 3967,
+      "sha256": "cd62cc87bed7721256f64cb752d53f8191fba7f58688ba995e908553508ca673",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "tutorial/payment-practice.js",
+      "bytes": 9330,
+      "sha256": "0f321f0d1a738b89c122c4347c39e0fc09a219728b55c59ddf656e0a0ab411b7",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "payments-model.js",
+      "bytes": 6266,
+      "sha256": "dfe87e5b13496d6a06cdc30e8049d5c86dc5edfa2be4a7ecb0b106aed52e1312",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "payments-ui.js",
+      "bytes": 8473,
+      "sha256": "3359052ddc47d86a25dee7adce14d32f2424f31ef423758cf7df25185510d3cb",
+      "mime": "application/javascript; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "payments.css",
+      "bytes": 1757,
+      "sha256": "4415bef8930e890e7fc6b750d6d4bbb44379a4c44e72512414e7cf1df952ca2d",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "admin-design.css",
+      "bytes": 7123,
+      "sha256": "d14c9323cd8b3a60a3ea56a079d615abfffc95318ccf9f805a3b4f643e453e7b",
+      "mime": "text/css; charset=utf-8",
+      "unchangedFromBaseline": false
+    }
+  ],
+  "databaseAccess": false,
+  "protectedRuntimePaths": [
+    "app.js",
+    "config.js",
+    "sync.js",
+    "autosave.js",
+    "photos.js",
+    "billing-periods.js",
+    "billing-ui.js",
+    "invoice-documents.js",
+    "invoice-editor.js",
+    "invoices.js",
+    "accounting-reports.js",
+    "agenda.js",
+    "agenda-model.js",
+    "agenda.css",
+    "sw.js",
+    "pwa.js",
+    "pwa.css",
+    "manifest.webmanifest",
+    "assets/pwa",
+    "supabase/functions"
+  ]
+}

@@ -1,6 +1,6 @@
 # APPFMZ — eenvoudige betalingen, administratie en cursus
 
-Status: in uitvoering; nog niet gepubliceerd of door de owner geaccepteerd.
+Status: gepubliceerd en technisch geverifieerd op 15 oktober 2026. Live, geen onderhoud nodig. Owneracceptatie nog niet vastgelegd.
 
 Basis: `64275478de3155410118e3464e40dfa747a19833`, gecontroleerd tegen remote main. Aparte werkboom `appfmz-admin-simple`, branch `codex/admin-simplify-payments-20261015`. Geen bestaande werkboomwijzigingen overgenomen/verwijderd. Alleen `Yourizorge/fitmetzorge`, `appfmz.nl`, bevestigd Supabase-project `hgoygcviutmynaihcvpd` (FitmetZorge, ACTIVE_HEALTHY). Geen AGENTS.md aangetroffen. De bestaande releaseplannen zijn historisch; deze opdracht geeft toestemming voor dit pakket, niet voor een replay van oude migrations.
 
@@ -55,7 +55,7 @@ Uitsluitend synthetische gegevens; browseremulatie, geen fysieke telefoontest:
 
 Vers checkpoint van 15 oktober 2026 buiten Git en OneDrive, versleuteld met gecontroleerde authenticatie en SHA-256. Bevat 20 applicatietabellen, Auth-users/identities, Storage-metadata, objectdefinities/rechten en drie oorspronkelijke privébestanden. Ontsleuteling en originele bytes gecontroleerd; geen echte klantinhoud in de testdatabase geladen. De volledige schemaketen en herstel-/betaalflows draaien lokaal met synthetische gegevens. [Checkpointbewijs](examples/admin-simple/checkpoint.json).
 
-Voor de uitrol zijn 24 tabelhashes en bestaande functie-/policy-/rechtendefinities vastgelegd. Na gerichte opruiming worden deze opnieuw vergeleken. De migration voegt uitsluitend vier functies en één guardtrigger toe; geen bestaande financiële rij of definitief document wordt geconverteerd. De bestaande frontend blijft hiermee compatibel. Terugval is het gecontroleerd terugzetten van de frontend naar de baseline; de veilige additieve API kan aanwezig blijven. Geen history-repair, SQL-replay of herstel over nieuwere klantinvoer.
+Voor de uitrol zijn 24 tabelhashes en bestaande functie-/policy-/rechtendefinities vastgelegd. Na gerichte opruiming zijn deze opnieuw vergeleken en volledig gelijk gebleven. De migration voegt uitsluitend vier functies en één guardtrigger toe; geen bestaande financiële rij of definitief document wordt geconverteerd. De bestaande frontend blijft hiermee compatibel. Terugval is het gecontroleerd terugzetten van de frontend naar de baseline; de veilige additieve API kan aanwezig blijven. Geen history-repair, SQL-replay of herstel over nieuwere klantinvoer.
 
 ## Laatste releasecontrole
 
@@ -65,7 +65,13 @@ Productie: uitsluitend `20261015130925_appfmz_invoice_payments.sql` transactione
 
 [Echte PostgREST/Auth-proef](examples/admin-simple/production-api.json): drie verse eigen testaccounts, €200 + €150, verschillende datums, bank/kas, gelijktijdige identieke requests, verloren-antwoordherhaling, correctie, bestaande ontvangst koppelen, geen extra omzet/btw, herinloggen en sessie-intrekking PASS. Stale versie gaf één PT409/HTTP409 in 104 ms; volledige transactie bleef ongewijzigd. Lid, andere trainer en anonieme gebruiker geweigerd. Geen e-mail of push.
 
-Frontendpublicatie en gerichte opruiming volgen na deze geslaagde productieketen. Dit rapport is geen owneracceptatie.
+Runtimecommit: [e676eb1018f8053dee81bf81ac33b1e3fa445764](https://github.com/Yourizorge/fitmetzorge/commit/e676eb1018f8053dee81bf81ac33b1e3fa445764), fast-forward gepubliceerd naar main na controle van de actuele hoofdbranch. [GitHub Pages-run 38754077354](https://github.com/Yourizorge/fitmetzorge/actions/runs/38754077354) SUCCESS. [Alle 66 live bestanden](examples/admin-simple/live-assets.json) exact gelijk aan Git, inclusief MP4, PDF, cursus, manifest en iconen. De oude brede tutorial-tekstregel in Git vereiste een expliciete binaire MP4-uitzondering; vóór productie zijn de speelbare videobytes exact opnieuw geïndexeerd en geverifieerd.
+
+[Live browserbewijs](examples/admin-simple/live-browser.json): echte nieuwe betaalactie op appfmz.nl, herladen en opnieuw aanmelden bewaren dezelfde betaalde factuur; cursus opent; 390/1440px gecontroleerd. Alleen synthetische accounts. [Live telefoonbeeld](images/admin-simple/live-payment-390.png), [live laptopbeeld](images/admin-simple/live-payment-1440.png). Geen fysieke iPhoneproef geclaimd. Een hoofdletterverschil in de cursus-watermerkassertie is in het releasescript hersteld; hercontrole gebruikte de al bestaande betaling zonder nieuwe boeking.
+
+[Behoudsbewijs](examples/admin-simple/data-preservation.json): alle 24 oorspronkelijke tabellen exact dezelfde aantallen en SHA-256, alle 55 bestaande functies en hun rechten gelijk, policies/table grants gelijk, drie oorspronkelijke private bestanden byte-identiek. Dit omvat financiële historie, nummerreeks, betalingsafspraken, memberdata/fotoannotaties, Auth en agenda/meldingen. Alleen de drie eigen gemarkeerde accounts en hun testadministratie zijn verwijderd. Er is geen echte klant benaderd, geen echte factuur verstuurd, geen email/push verstuurd en geen echte eigenaarfactuur genummerd.
+
+De oorspronkelijke app-/autosave-/foto-/factuur-PDF-/billing-/agenda-/PWA-/Edge-runtime bleef gelijk; uitsluitend de bedoelde administratie-/cursusbestanden en hun inclusies zijn gewijzigd. De website, staging en AI zijn niet aangepast. Geen bekende technische blocker. Laatste documentatiecommit bevat alleen bewijs en een herhaalbare livecontrole; de releaseblobs blijven gelijk. Dit rapport is geen owneracceptatie.
 
 ## Korte eigenaarstest en backlog
 

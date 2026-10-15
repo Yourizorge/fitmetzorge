@@ -1,0 +1,146 @@
+{
+  "at": "2026-10-15T14:48:34.155Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "encryptedCheckpoint": "2026-10-15T14:14:16.876317+00:00",
+  "authenticatedDecryptAndHashVerified": true,
+  "appTables": 20,
+  "authUsersAndIdentitiesEncrypted": true,
+  "privateBinariesVerified": 3,
+  "realCustomerRowsRestoredForTesting": false,
+  "restorePath": "Authenticated private decryption plus exact original binaries; full schema and payment flows recreated locally with synthetic data only.",
+  "tables": {
+    "auth.identities": {
+      "rows": 9,
+      "sha256": "c65a6e85cc813d3e8df8cde50e1228a70e47ac0c59a704c8fbf3dba578ed8d7e"
+    },
+    "auth.users": {
+      "rows": 9,
+      "sha256": "7fb1ba8d8409ba49719c0a7e113c6129823423c3f52cf33439222098fb3eccc2"
+    },
+    "fmz_accounting.accounts": {
+      "rows": 22,
+      "sha256": "fbc207e017bbad950cca2e4775629cf6be8684fadd54f60e38b4a90babecb888"
+    },
+    "fmz_accounting.agreement_versions": {
+      "rows": 3,
+      "sha256": "dd9bfa7c922db40f29768974674363c195bf376b1064e5661b26926c0ede549c"
+    },
+    "fmz_accounting.audit": {
+      "rows": 63,
+      "sha256": "d6e6a3c61f3da3eee0a5446188a6491ed241fbced7251720f2f5a8d5e91a0363"
+    },
+    "fmz_accounting.files": {
+      "rows": 3,
+      "sha256": "0d3758656b8b914f0e55f8f0674340ebc77cb011d4c9f67fd1e6652845d1885b"
+    },
+    "fmz_accounting.journals": {
+      "rows": 9,
+      "sha256": "b83160e02ada195a28e6fa3547fbd7897a01b9fef43c40ca148661b1dbfa1bc1"
+    },
+    "fmz_accounting.lines": {
+      "rows": 22,
+      "sha256": "7f1cda5bc05605c81e5e0e8ea15c535d1ce429fd486abf7f96e423e71cf3daa8"
+    },
+    "fmz_accounting.organizations": {
+      "rows": 1,
+      "sha256": "ba91f665aeb94751802ac9e736a0e2ef8fe8a54d8d2da5ebf5ad916587bb451d"
+    },
+    "fmz_accounting.receipts": {
+      "rows": 59,
+      "sha256": "22678304200f9043b36d75c936ac25ec991394096a29d17309b4c711ab101fd6"
+    },
+    "fmz_accounting.records": {
+      "rows": 15,
+      "sha256": "a8bc8db81b2ef620bbeacad3377e6b75446eafbbc4bf66f280c6eb0a5b6c99c3"
+    },
+    "fmz_agenda.config": {
+      "rows": 1,
+      "sha256": "8a385df70140cce91d8d6361650a30b481af14e6eb2adbf9fad1e6b2bc2d9dd9"
+    },
+    "fmz_agenda.deliveries": {
+      "rows": 1,
+      "sha256": "76b9a47b26470714b7d40dfe2ee3efed91ac4277fb9534ca1dbb95dbce0aa3a5"
+    },
+    "fmz_agenda.events": {
+      "rows": 8,
+      "sha256": "d5530b84df8543075a4b70736d587eacb43ae5fa56b4c92d9c407c3916f0d8da"
+    },
+    "fmz_agenda.preferences": {
+      "rows": 1,
+      "sha256": "c37477c651e17e3367d889d273d0f30d6f099cf1813e95e500e03aec000b2a52"
+    },
+    "fmz_agenda.requests": {
+      "rows": 13,
+      "sha256": "b5d33ec1b8cf21de114060988aa777986abd87056c7d8b78792a6a08858d784b"
+    },
+    "fmz_agenda.subscriptions": {
+      "rows": 1,
+      "sha256": "de9859678db489d6f9f557ab3c066fdb7fdfba89aab100e7a3efc172d8a88cec"
+    },
+    "fmz_private.photo_annotations": {
+      "rows": 1,
+      "sha256": "5332daa863227ee9967bd590d95319919eb8ec2d90b9f6c8b029e9b5eea2598a"
+    },
+    "fmz_private.write_receipts": {
+      "rows": 348,
+      "sha256": "113aa9df930c29ceed3ab24a7f27dbbe9937c604ab0e88e1ea002d21fe238e5a"
+    },
+    "public.client_invites": {
+      "rows": 11,
+      "sha256": "deef5ee90f5618566747d837d563a55cde2e08638e6104bcfc671e2118590d35"
+    },
+    "public.coach_workspaces": {
+      "rows": 1,
+      "sha256": "866cd75a1f475d752babb4048fc120ec0ab08bc687baa3ca069943b2e3d3226d"
+    },
+    "public.profiles": {
+      "rows": 6,
+      "sha256": "bdbdb25afb3369127c0596696bf2641810fa27af7c0b9733cdad70d80bf1f2d6"
+    },
+    "storage.buckets": {
+      "rows": 1,
+      "sha256": "d76c9d3cbcd12d82a26ce93c1f4375dc24fee669c688238fa1c51b07e21f5f9c"
+    },
+    "storage.objects": {
+      "rows": 3,
+      "sha256": "bcbd7235ba5cca7170ecabb33d302e66a6a24becfbb856a9023bde3cc200ede5"
+    }
+  },
+  "allExistingTableRowsUnchanged": true,
+  "originalFunctionsUnchanged": 55,
+  "newFunctions": [
+    {
+      "acl": [
+        "postgres=X/postgres"
+      ],
+      "hash": "26ca8684cc9fd369f3dd966f358e4e4349ebe58dcc3b0ab548bf3cb5e825c711",
+      "signature": "fmz_accounting.guard_payment_receipt()"
+    },
+    {
+      "acl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres"
+      ],
+      "hash": "baa63a0a43bfd5b6911e94d4462e9b51465b935d14e62a38bfbbef30e6005b93",
+      "signature": "fmz_accounting.payment_command(text,jsonb,uuid)"
+    },
+    {
+      "acl": [
+        "postgres=X/postgres"
+      ],
+      "hash": "37a287c8af0fb1392e77a73988d65dc6240e7c30c74e2c4829d7ed23d4c24e82",
+      "signature": "fmz_accounting.payment_revision(uuid,uuid)"
+    },
+    {
+      "acl": [
+        "postgres=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "hash": "6e017d12788e57ed796c4ae69daa1382494be7f835db5cb2bf62387565110bc8",
+      "signature": "fmz_payment_command(text,jsonb,uuid)"
+    }
+  ],
+  "policiesAndTableGrantsUnchanged": true,
+  "allOriginalPrivateFilesByteIdentical": true
+}
