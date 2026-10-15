@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-15T11:19:09.539Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "syntheticOnly": true,
+  "noMail": true,
+  "noPushSubscription": true,
+  "concurrentCreateOneOccurrence": true,
+  "duoPerMember": true,
+  "memberAndOtherTrainerWriteDenied": true,
+  "memberReceivesOnlyOwnParticipant": true,
+  "conflict": {
+    "http": 409,
+    "code": "PT409",
+    "ms": 131,
+    "rollback": true
+  },
+  "attendanceCorrectionAndMonthMove": true,
+  "financeUnchanged": true,
+  "reloginPersistence": true,
+  "revokedSessionDenied": true,
+  "workerRPCDenied": true,
+  "actualCronInbox": true
+}

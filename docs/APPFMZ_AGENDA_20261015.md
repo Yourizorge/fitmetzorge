@@ -2,7 +2,7 @@
 
 Scope: uitsluitend `Yourizorge/fitmetzorge`, `appfmz.nl`, productieproject `hgoygcviutmynaihcvpd`. Baseline `ac497672f9c5d2877cd283c856c9467a89c02e44`. Werkbranch `codex/agenda-reminders-20261015`.
 
-**Status: lokaal getest, productiepublicatie in voorbereiding.** De owner heeft deze agenda-/meldingenrelease opgedragen, inclusief noodzakelijke minimale additieve backendvoorzieningen. Er wordt geen betaalde dienst geactiveerd. De eerdere trainer-/PWA-release is door de owner geaccepteerd; dat staat afzonderlijk in het bijbehorende rapport.
+**Status: lokale controles en echte backendproef PASS; frontendpublicatie wordt uitgevoerd.** Runtimecommit `c0a2fcbbed7f20785ab2f3c488add1af0ba66377`. De owner heeft deze agenda-/meldingenrelease opgedragen, inclusief noodzakelijke minimale additieve backendvoorzieningen. Er wordt geen betaalde dienst geactiveerd. De eerdere trainer-/PWA-release is door de owner geaccepteerd; dat staat afzonderlijk in het bijbehorende rapport.
 
 ## Inventaris en wijzigingen
 
@@ -37,6 +37,17 @@ Tijdzone: **Europe/Amsterdam**. Niet-bestaande tijden bij de zomertijdsprong wor
 - Gerenderde agenda: Edge op 320/390/768/844/1400px; alle vier weergaven. WebKit/iPhone en Android-emulatie: beide rollen op dezelfde vijf breedtes, liggend, grotere tekst, Escape/focus en push toestaan/weigeren/uitschakelen. Geen fysieke telefoon- of pushontvangst geclaimd. Push-API’s zijn in de browsergedragstest gecontroleerd gesimuleerd.
 - [Browsermetingen](examples/agenda-20261015/browser-checks.json), [mobiele/browsermetingen](examples/agenda-20261015/mobile-browser-checks.json).
 - Synthetische opslagproef: typen geeft geen afspraak; verbindingsverlies bewaart het formulier; expliciet opnieuw proberen maakt één afspraak; refresh/herladen bewaart dezelfde waarden; aanwezigheidsaantallen openen de juiste afspraken; leden zien geen andere deelnemer.
+- Definitieve gerichte ronde na de laatste presentatie-/privacyaanpassingen: 5/5 PASS (push/worker, beide agenda-browserproeven en bestaande browseropslag-/rol-/sessieregressie).
+- [Echte PostgREST/Auth/Cron-proef](examples/agenda-20261015/production-api-checks.json): vier nieuwe synthetische accounts, concurrente identieke aanvragen maken één afspraak; duo en aanwezigheid per deelnemer; andere trainer en leden kunnen niet wijzigen; correctie/verplaatsing/annulering behouden financiële sentinel; herinloggen bewaart gegevens; ingetrokken sessie geweigerd. Stale revision geeft één `PT409`/HTTP409 in 131 ms en laat de volledige workspace ongewijzigd. De werkelijke achtergrond-Cron heeft de in-appberichten aangemaakt. Geen e-mail of pushabonnement gebruikt.
+- [Live Edgeproef](examples/agenda-20261015/production-worker-checks.json): zonder eigen bearer HTTP401, met cron-bearer HTTP200; nul afleveringen geclaimd/verzonden. Dit bewijst de functiebeveiliging, nog geen fysieke pushontvangst.
+
+## Productiebackend
+
+Uitsluitend migration `20261015102946_appfmz_agenda_reminders.sql` is transactioneel toegepast; SHA-256 `b94baebec70b3e9e127ead68c1c2d58861bfaa1bde3e9be3571abf7b29439e55`. Alle acht lokale/remote versies zijn gelijk. `db push --dry-run --skip-vault` meldt `upToDate:true`, met lege migrations/seeds/roles. De zeven bestaande migrations zijn niet opnieuw uitgevoerd.
+
+`agenda-reminders` is ACTIVE versie 1. De eigen cron-bearer en VAPID-sleutels zijn ingesteld; push is technisch beschikbaar, maar staat per gebruiker uit totdat die bewust inschakelt. Cron `appfmz-agenda-reminders` draait iedere minuut; de gecontroleerde runs zijn geslaagd. `invite-client` blijft ACTIVE versie 7, JWT-verificatie aan, bestaand deploytijdstip en source ongewijzigd.
+
+De security-advisor heeft geen ERROR gevonden. RLS-zonder-policy is bij de private tabellen bewust deny-by-default: alleen gecontroleerde RPC’s hebben toegang. Er staan WARN-meldingen voor de standaardregistratie van de niet-verplaatsbare `pg_net`-extensie in public ([uitleg](https://supabase.com/docs/guides/database/database-linter?lint=0014_extension_in_public)) en de bestaande uitgeschakelde leaked-password protection ([uitleg](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection)). Deze release wijzigt geen Auth-instellingen of abonnement; `net` is geen nieuw publiek API-schema.
 
 | Weergave | Voor | Na |
 |---|---|---|
