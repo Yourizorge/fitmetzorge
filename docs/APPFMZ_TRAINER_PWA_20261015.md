@@ -1,5 +1,7 @@
 # APPFMZ — trainerweergave, oefenmedia en installatie
 
+> Owneracceptatie vastgelegd op 15 oktober 2026: in de aangeleverde agenda-opdracht accepteert de owner de eerdere trainer-, oefenmedia- en PWA-release. Dit betreft runtimecommit `dda3a1f78599504a7351342684cbbaf4bece5e48`; deze acceptatie geldt niet vooraf voor de nieuwe agenda-/meldingenrelease.
+
 Scope: uitsluitend `Yourizorge/fitmetzorge`, `https://appfmz.nl`. Baseline: `787b15065d347cfa39fa374b7d4999a70c08eaa8`. De openbare live `index.html`, `app.js` en `styles.css` waren vóór aanpassing byte-identiek aan deze hoofdbranch. Werkbranch: `codex/trainer-media-pwa-20261015`.
 
 **Status: gepubliceerd en live gecontroleerd; onderhoud is uit.** Runtimecommit: [`dda3a1f78599504a7351342684cbbaf4bece5e48`](https://github.com/Yourizorge/fitmetzorge/commit/dda3a1f78599504a7351342684cbbaf4bece5e48). De daaropvolgende bewijs-/testdocumentatie wijzigt geen runtimebestanden. De huidige opdracht geeft toestemming voor deze frontendpublicatie. Het oude SQL-uitrolplan is historisch en wordt niet opnieuw uitgevoerd.

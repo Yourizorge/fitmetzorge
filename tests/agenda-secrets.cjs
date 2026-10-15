@@ -1,0 +1,6 @@
+/* Writes new server secrets only to the explicitly supplied private directory. */
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict'),webpush=require('web-push');
+const dir=process.env.FMZ_AGENDA_PRIVATE;assert(dir&&!path.resolve(dir).startsWith(path.resolve(__dirname,'..')+path.sep));fs.mkdirSync(dir,{recursive:true});const file=path.join(dir,'agenda-secrets.env');assert(!fs.existsSync(file),'Preserve existing keys; never regenerate for a retry.');
+const keys=webpush.generateVAPIDKeys(),token=crypto.randomBytes(32).toString('base64url');fs.writeFileSync(file,`APPFMZ_AGENDA_WORKER_TOKEN=${token}\nAPPFMZ_VAPID_PUBLIC_KEY=${keys.publicKey}\nAPPFMZ_VAPID_PRIVATE_KEY=${keys.privateKey}\n`);
+fs.writeFileSync(path.join(dir,'configure-push.sql'),`begin;do $$begin if exists(select 1 from vault.secrets where name='appfmz_agenda_worker_token') then raise exception 'Preserve existing worker secret';end if;end$$;select vault.create_secret('${token}','appfmz_agenda_worker_token','APPFMZ agenda cron only');update fmz_agenda.config set public_key='${keys.publicKey}',enabled=false where id;commit;`);
+console.log('New push keys prepared outside Git. No secret printed; production unchanged.');

@@ -1,0 +1,727 @@
+{
+  "engine": "Playwright WebKit 26.5 on Windows (not physical Safari/iPhone)",
+  "results": [
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "light": false,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "light": true,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "light": false,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "light": true,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "light": false,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "light": true,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "light": false,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "light": true,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "light": false,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "light": true,
+      "id": "trackers",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "pass": true
+}

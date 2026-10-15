@@ -1,0 +1,60 @@
+# APPFMZ — agenda, maandtelling en optionele meldingen
+
+Scope: uitsluitend `Yourizorge/fitmetzorge`, `appfmz.nl`, productieproject `hgoygcviutmynaihcvpd`. Baseline `ac497672f9c5d2877cd283c856c9467a89c02e44`. Werkbranch `codex/agenda-reminders-20261015`.
+
+**Status: lokaal getest, productiepublicatie in voorbereiding.** De owner heeft deze agenda-/meldingenrelease opgedragen, inclusief noodzakelijke minimale additieve backendvoorzieningen. Er wordt geen betaalde dienst geactiveerd. De eerdere trainer-/PWA-release is door de owner geaccepteerd; dat staat afzonderlijk in het bijbehorende rapport.
+
+## Inventaris en wijzigingen
+
+De bestaande agenda bewaarde concrete afspraken in `coach_workspaces.state.clients[].appointments`. De oude tabel gebruikte wisselende tijdrijen zonder evenredige tijdschaal, verborg verstreken afspraken uit de week en maakte bij plannen/wijzigen een administratieregel aan. Verwijderen kon een gekoppelde administratieregel verwijderen. De oude browsermelding werkte alleen in de geopende browser en bevatte een klantnaam.
+
+De nieuwe dag-, week-, maand- en lijstweergave gebruiken dezelfde afspraken. Plannen, bewerken, herhalen, bekijken, annuleren en afspraaksoorten beheren blijven bereikbaar. De dag/weektijdlijn gebruikt werkelijke starttijd en duur; overlappende afspraken staan naast elkaar. Op kleine telefoons is week een leesbare lijst; maanddagen openen de betreffende dag. Appbediening opent de bestaande zoek-, klant-, sessie- en installatieknoppen. Geen slepen: de toegankelijke editor biedt dezelfde planning via expliciete bevestiging.
+
+Agendahandelingen schrijven uitsluitend afspraakvelden en de afgeleide meldingenwachtrij. Geen prijs, pakket, betaalcyclus, factuurnummer, boeking of auditregel wordt gekozen/aangemaakt/veranderd. Bestaande financiële velden op oude afspraken blijven bewaard; de financiële bediening blijft in de bestaande administratie. De nieuwe agenda-RPC weigert financiële velden. Historische facturen/PDF’s blijven ongewijzigd.
+
+Bij ieder klantprofiel staat **Afspraken deze maand**, met vorige/volgende kalendermaand en aanklikbare aantallen. Alleen `attended`/`completed` telt als geweest. Een verstreken afspraak zonder bewijs is **Aanwezigheid onbekend**. Geannuleerd/niet verschenen zijn apart. Nieuwe duoafspraken delen een concrete occurrence-ID maar bewaren aanwezigheid per deelnemer. Herhaling maakt maximaal 12 concrete afspraken met stabiele identiteit. Verplaatsen telt in de nieuwe afspraakmaand, onafhankelijk van maand- of vierwekenfacturatie.
+
+De read-only productie-inventaris vond 18 bestaande afspraken, zonder ontbrekende ID/datum of dubbele identiteit: 14 `planned`, vier zonder status. Er wordt geen aanwezigheid terugwerkend ingevuld. Onbekende oude privénotities blijven trainer-only; nieuwe gedeelde notities krijgen een afzonderlijk veld.
+
+## Opslag, rechten en meldingen
+
+`20261015102946_appfmz_agenda_reminders.sql` voegt het private schema `fmz_agenda` toe: idempotente verzoeken, eigen voorkeuren, duurzame berichten, pushabonnementen en afleveringen. Alle tabellen hebben RLS en geen directe anon/authenticated-toegang. De agenda blijft in de bestaande workspace. Bestaande functies en beveiligingsgrenzen worden niet vervangen.
+
+De nieuwe RPC’s gebruiken de bestaande gecontroleerde profiel-/sessieautoriteit. Alleen de trainer van de workspace kan wijzigen; een lid ontvangt alleen de eigen afspraakprojectie, zonder namen/statussen van andere deelnemers. Aanwezigheid, detailacties en berichtlinks worden server-side gecontroleerd. Een oude versie geeft één `PT409`/HTTP409; geen automatische conflictretry. Herhalen na een verloren antwoord gebruikt dezelfde request-ID. Concepten staan alleen in tabgeheugen, zijn aan het account gebonden en verdwijnen bij tabsluiting. Uitloggen schermt de UI af; niet-opgeslagen concepten worden niet aan een volgend account getoond.
+
+Cron verwerkt iedere minuut de duurzame wachtrij. Edge wordt alleen aangeroepen wanneer pushafleveringen klaarstaan. Wijzigingen/annuleringen en actuele rechten worden vóór verzending gecontroleerd. Een lease, unieke aflevering, maximaal vier pogingen, Web Push Topic, een stabiele notification-tag en een lokale ontvangstlijst met alleen willekeurige ID’s beperken dubbele afleveringen bij herstarts en netwerkherhaling. Verlopen abonnementen (404/410) worden opgeruimd. Er komt geen historische inhaalronde.
+
+Meldingen staan standaard zonder push en zonder voorafherinnering. Trainer en lid kiezen hun eigen voorkeur. Alleen **Meldingen inschakelen** vraagt browsertoestemming. Weigering/ontbrekende ondersteuning laat het in-appoverzicht werken. Push bevat uitsluitend algemene tekst; de link opent na inloggen de nog toegestane afspraak. De serviceworker heeft geen fetch-handler/cache, `skipWaiting` of automatische reload. Bestaande PWA-identiteit `/`, iconen en instellingen blijven gelijk. Lokale ontvangst-ID’s bevatten geen agenda-, klant- of sessiegegevens en verlopen na de geldigheid van de melding.
+
+De Edgefunctie gebruikt een afzonderlijke cron-bearersleutel; een gewone gebruiker-JWT geeft geen verzendrecht. Platform-JWT-verificatie voor deze nieuwe machinefunctie staat uit wegens deze expliciete eigen controle. `invite-client` blijft ongewijzigd met JWT-verificatie aan. VAPID-privésleutel en cron-token blijven uitsluitend server-side/Vault en in de private back-upmap.
+
+Tijdzone: **Europe/Amsterdam**. Niet-bestaande tijden bij de zomertijdsprong worden geweigerd. De dubbel voorkomende herfsttijd gebruikt de standaardtijd (de tweede 02:30). Kalendermaanden volgen de lokale afspraakdatum, niet de aanmaakdatum of toestelzone.
+
+## Controlebewijs
+
+- Volledige bestaande regressieronde: 38/38 PASS (34 bestaande plus vier toen aanwezige agenda-tests).
+- Aanvullende definitieve kernronde: 6/6 PASS, inclusief versleuteling/decryptie, workerbeveiliging, idempotentie, duo, maandgrenzen, PT409/rollback, verplaatsen/annuleren, DST, sessie-intrekking, geen backlog en synthetisch herstel.
+- Gerenderde agenda: Edge op 320/390/768/844/1400px; alle vier weergaven. WebKit/iPhone en Android-emulatie: beide rollen op dezelfde vijf breedtes, liggend, grotere tekst, Escape/focus en push toestaan/weigeren/uitschakelen. Geen fysieke telefoon- of pushontvangst geclaimd. Push-API’s zijn in de browsergedragstest gecontroleerd gesimuleerd.
+- [Browsermetingen](examples/agenda-20261015/browser-checks.json), [mobiele/browsermetingen](examples/agenda-20261015/mobile-browser-checks.json).
+- Synthetische opslagproef: typen geeft geen afspraak; verbindingsverlies bewaart het formulier; expliciet opnieuw proberen maakt één afspraak; refresh/herladen bewaart dezelfde waarden; aanwezigheidsaantallen openen de juiste afspraken; leden zien geen andere deelnemer.
+
+| Weergave | Voor | Na |
+|---|---|---|
+| Trainer telefoon | [Voor](examples/agenda-20261015/before-trainer-390.png) | [Na](examples/agenda-20261015/after-trainer-390.png) |
+| Trainer laptop | [Voor](examples/agenda-20261015/before-trainer-1400.png) | [Na](examples/agenda-20261015/after-trainer-1400.png) |
+| Lid telefoon | [Voor](examples/agenda-20261015/before-member-390.png) | [Na](examples/agenda-20261015/after-member-390.png) |
+| Lid laptop | [Voor](examples/agenda-20261015/before-member-1400.png) | [Na](examples/agenda-20261015/after-member-1400.png) |
+
+## Herstel en publicatievolgorde
+
+Een nieuw versleuteld checkpoint is gemaakt buiten Git/OneDrive, met alle 14 applicatietabellen, Auth, schemafuncties/rechten/constraints en drie private Storage-bestanden. Ciphertext, HMAC, plaintext-hash en de teruggelezen bestanden zijn geverifieerd. Echte klantgegevens zijn niet voor tests teruggezet. De restoreproef gebruikt uitsluitend vaste synthetische profielen, afspraken, verzoeken en berichten.
+
+De dry-run vóór toepassing noemt uitsluitend de bovenstaande nieuwe migration, met lege seed-/roleslijsten. Geen oude migration uitvoeren, geen repair/reset. Na de transactionele toevoeging volgen privésleutels, uitsluitend `agenda-reminders`, eigen synthetische PostgREST/Auth-proeven, Cron-controle, gegevensbehoud, frontendpublicatie en bytevergelijking. Geen automatische klantpush tijdens tests.
+
+Terugval: bij een SQL-fout rolt de transactie terug. Na een geslaagde toevoeging blijven tabellen en bestaande gegevens staan. Zet bij een workerprobleem `fmz_agenda.config.enabled=false` en de specifieke Cronjob uit; in-app agenda/administratie blijven bruikbaar. Bij een agenda-RPC-probleem geen schrijfknoppen vrijgeven, invoer behouden en gerichte correctie uitvoeren. Geen oude onveilige rechten herstellen, geen historie overschrijven en geen oude frontend met automatische agenda-financemutaties opnieuw vrijgeven.
+
+## Nog fysiek te bevestigen
+
+De owner heeft de geïnstalleerde APPFMZ op zijn eigen **iPhone** gekozen. Technische/browserresultaten bewijzen nog geen ontvangst op dat toestel. Na publicatie: open Agenda, maak een eigen testafspraak zonder prijs, controleer maandtelling/aanwezigheid, schakel meldingen bewust in en kies **Testmelding op mijn toestel**. Controleer de melding met de app op de achtergrond en open de afspraak via de melding. Verplaats/annuleer daarna de testafspraak en controleer het berichtenoverzicht.
+
+Technische bronnen: [Supabase scheduling](https://supabase.com/docs/guides/functions/schedule-functions), [WebKit Web Push](https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/), [Web Push library](https://github.com/web-push-libs/web-push). Changelog gecontroleerd; de aangekondigde verwijdering van oude TLS-ciphers vereist geen wijziging voor de geteste moderne browsers.

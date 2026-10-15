@@ -1,6 +1,6 @@
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path'); const {setup}=require('./database.cjs');
 async function start(port=8876){
- const database=await setup();await require('./accounting-database.cjs').extend(database);const blobs=new Map();let queue=Promise.resolve();const calls=[];
+ const database=await setup();await require('./accounting-database.cjs').extend(database);await require('./agenda-database.cjs').extend(database);const blobs=new Map();let queue=Promise.resolve();const calls=[];
  const server=http.createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
   const send=(status,data,type='application/json')=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store'});res.end(type==='application/json'?JSON.stringify(data):data)};
@@ -17,6 +17,8 @@ async function start(port=8876){
     if(name==='profile'){const result=await database.as(account,'select * from public.profiles where id=auth.uid()');return send(200,{data:result.rows[0],error:null});}
     if(name==='fmz_read_workspace')return send(200,{data:{state:await database.read(account),profile_id:database.ids[account]},error:null});
     if(name==='fmz_save_changes')return send(200,{data:await database.save(account,params.changes),error:null});
+    if(name==='fmz_agenda_read')return send(200,{data:await database.agenda(account),error:null});
+    if(name==='fmz_agenda_command')return send(200,{data:await database.command(account,params.action,params.payload,params.request_id),error:null});
     if(name==='fmz_save_changes_once')return send(200,{data:(await database.as(account,'select public.fmz_save_changes_once($1,$2) as result',[JSON.stringify(params.changes),params.request_id])).rows[0].result,error:null});
     if(name==='fmz_photo_annotation')return send(200,{data:(await database.as(account,'select public.fmz_photo_annotation($1,$2,$3,$4,$5,$6,$7,$8,$9) as result',[params.client_id,params.week,params.day,params.slot,params.source_hash||null,params.action||'read',JSON.stringify(params.strokes||[]),params.expected_version||0,params.request_id||null])).rows[0].result,error:null});
     return send(400,{error:{message:'Unsupported test RPC'}});

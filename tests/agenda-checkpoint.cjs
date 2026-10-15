@@ -1,0 +1,13 @@
+/* Read-only checkpoint verification. Real data is decrypted in memory, never restored for tests. */
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const dir=process.env.FMZ_COMPLETE_BACKUP_DIR;if(!dir)throw Error('Private backup path required');
+const {decrypt,packet}=require('./release-backup-complete.cjs');
+const backup=decrypt();assert.equal(backup.project,'hgoygcviutmynaihcvpd');
+const expected=['public.profiles','public.coach_workspaces','public.client_invites','fmz_private.write_receipts','fmz_private.photo_annotations',...['organizations','accounts','records','journals','lines','files','audit','receipts','agreement_versions'].map(t=>'fmz_accounting.'+t)];
+for(const table of expected){assert(Array.isArray(backup.tables[table]),table);assert(backup.columns.some(c=>c.table_name===table));}assert(backup.functions.length);assert(backup.constraints.length);assert(backup.grants.length);assert(Array.isArray(backup.auth_users));assert(Array.isArray(backup.auth_identities));
+const report={project:backup.project,at:new Date().toISOString(),checkpointAt:backup.created_at,plaintextSha256:packet().plaintext_sha256,encryptionAndHmacVerified:true,all14ApplicationTablesIncluded:expected.length===14,tableCounts:Object.fromEntries(expected.map(t=>[t,backup.tables[t].length])),schemaFunctionsGrantsConstraintsIncluded:true,authEncrypted:true,realDataRestoredForTesting:false,privateFiles:backup.storage_objects.length};
+fs.writeFileSync(path.join(dir,'checkpoint-verification.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({verified:true,applicationTables:expected.length,privateFiles:report.privateFiles,realDataRestored:false}));
+// An aggregate-only proof query; table data and credentials never enter Git output.
+const tables=[...expected,'storage.buckets','storage.objects','auth.users','auth.identities'];
+const proof=`begin read only;set local timezone='UTC';select jsonb_build_object('at',clock_timestamp(),'project','hgoygcviutmynaihcvpd','tables',jsonb_build_object(${tables.map(t=>`'${t}',(select jsonb_build_object('rows',count(*),'sha256',encode(extensions.digest(coalesce(string_agg(to_jsonb(t)::text,E'\\n' order by to_jsonb(t)::text),''),'sha256'),'hex')) from ${t} t)`).join(',')}),'functions',(select jsonb_agg(jsonb_build_object('signature',p.oid::regprocedure::text,'hash',encode(extensions.digest(pg_get_functiondef(p.oid),'sha256'),'hex')) order by p.oid::regprocedure::text) from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in('public','fmz_private','fmz_accounting') and p.prokind='f')) as proof;commit;`;
+fs.writeFileSync(path.join(dir,'preservation-query.sql'),proof);

@@ -1414,49 +1414,9 @@ function appointmentTypeOptions(selectedTypeId = "") {
     .join("");
 }
 
-function openAppointmentModal(options = {}) {
-  const form = $("#appointmentForm");
-  if (!form || !isTrainer()) return false;
-  if (!state.clients.length) {
-    alert("Voeg eerst een lid toe voordat je een afspraak plant.");
-    return false;
-  }
-  if (options.date && form.elements.date) form.elements.date.value = options.date;
-  if (options.time && options.time !== "no-time" && form.elements.time) form.elements.time.value = options.time;
-  if (!document.getElementById("appointmentFormHome")) {
-    const marker = document.createElement("span");
-    marker.id = "appointmentFormHome";
-    marker.hidden = true;
-    form.parentNode?.insertBefore(marker, form);
-  }
-  document.body.appendChild(form);
-  document.body.classList.add("appointment-modal-open");
-  setTimeout(() => form.elements.clientId?.focus(), 0);
-  return true;
-}
-
-function closeAppointmentModal() {
-  const form = $("#appointmentForm");
-  const marker = $("#appointmentFormHome");
-  if (form && marker?.parentNode && form.parentNode !== marker.parentNode) {
-    marker.parentNode.insertBefore(form, marker.nextSibling);
-  }
-  document.body.classList.remove("appointment-modal-open");
-}
-
-function applyAppointmentTypeToForm(typeId, options = {}) {
-  const form = $("#appointmentForm");
-  const type = appointmentTypeById(typeId);
-  if (!form || !type) return false;
-  if (!openAppointmentModal(options)) return false;
-  if (options.date && form.elements.date) form.elements.date.value = options.date;
-  if (options.time && options.time !== "no-time" && form.elements.time) form.elements.time.value = options.time;
-  if (form.elements.appointmentTypeId) form.elements.appointmentTypeId.value = type.id;
-  if (form.elements.type) form.elements.type.value = type.name || "";
-  if (form.elements.location) form.elements.location.value = type.location || "";
-  if (form.elements.amount) form.elements.amount.value = "";
-  return true;
-}
+function openAppointmentModal(options = {}) { window.FMZAgenda?.openEdit(null,options); }
+function closeAppointmentModal() {}
+function applyAppointmentTypeToForm(typeId, options = {}) { window.FMZAgenda?.openEdit(null,{...options,typeId}); }
 
 function clientNameById(clientId) {
   if (!clientId) return "Geen client";
@@ -1686,7 +1646,10 @@ function findAppointment(clientId, appointmentId) {
 }
 
 function nextAppointment(selected, now = new Date()) {
-  return selected.appointments.filter(item => new Date(item.date+'T'+(item.time || '00:00')) >= now)
+  const records = selected.id && window.FMZAgenda?.data
+    ? FMZAgenda.data.appointments.filter(a => a.participants.some(p => p.id === selected.id))
+    : selected.appointments;
+  return records.filter(a => FMZAgendaModel.status(a, now, a.participants?.find(p=>p.id===selected.id)) === 'planned')
     .sort((a,b) => (a.date+' '+a.time).localeCompare(b.date+' '+b.time))[0];
 }
 
@@ -1812,7 +1775,7 @@ function hasPendingChanges() {
 function lockOnlineSession() {
   if (onlineProfile && hasPendingChanges()) pendingDrafts.set(onlineProfile.id,{state:FMZSync.clone(state),baseline:cloudBaseline,raw:rawCloudState,pendingWrite});
   pendingWrite=null;
-  window.FMZPhotos?.lock(); window.FMZInvoices?.lock();
+  window.FMZPhotos?.lock(); window.FMZInvoices?.lock(); window.FMZAgenda?.lock();
   authGeneration++;
   window.clearTimeout(cloudSaveTimer);
   onlineReady=false; onlineProfile=null; cloudBaseline=null; rawCloudState=null;
@@ -2085,8 +2048,7 @@ function renderSelectors() {
   $("#clientSelect").innerHTML = options;
   $("#clientSelect").disabled = !state.clients.length;
   $("#clientSelect").closest(".field").style.display = isTrainer() ? "grid" : "none";
-  $("#appointmentClient").innerHTML = options;
-  $("#appointmentClient").disabled = !state.clients.length;
+
   const rateSelect = $("#appointmentRate");
   if (rateSelect) {
     rateSelect.innerHTML = `<option value="">Geen tarief</option>${rateOptions()}`;
@@ -2121,7 +2083,8 @@ function renderSelectors() {
 function renderTrainerDashboard() {
   const selected = client();
   const activeCount = state.clients.length;
-  const apptCount = state.clients.reduce((sum, item) => sum + item.appointments.length, 0);
+  const agendaAppointments = window.FMZAgenda?.data?.appointments || allAppointments();
+  const apptCount = agendaAppointments.length;
   const avgStepsAll = average(state.clients.flatMap((item) => weekArray(item, "stepsByWeek", "value").map((step) => step.value)));
   const attention = state.clients.filter((item) => {
     const stepsAvg = average(weekArray(item, "stepsByWeek", "value").map((step) => step.value));
@@ -2139,7 +2102,7 @@ function renderTrainerDashboard() {
     .join("");
 
   const today = todayISO();
-  const todaysAppointments = allAppointments().filter((item) => item.date === today);
+  const todaysAppointments = agendaAppointments.filter((item) => item.date === today && !['cancelled','no_show'].includes(item.status));
   const weekRevenue = allAppointments()
     .filter((item) => isDateInActiveWeek(item.date || ""))
     .reduce((sum, item) => sum + number(appointmentAmount(item.source || item), 0), 0);
@@ -2354,6 +2317,7 @@ function renderClients() {
             <button class="danger-btn" data-delete-client="${escapeHTML(item.id)}" type="button">Client verwijderen</button>
           </div>
           <span class="save-feedback" data-save-feedback="invite-${escapeHTML(item.id)}"></span>
+          ${window.FMZAgenda?.monthCard(item.id)||''}
         </div>
       `
     )
@@ -3402,60 +3366,7 @@ function renderAgendaTable(days, appointments) {
   `;
 }
 
-function renderAgenda() {
-  const selected = client();
-  const calendar = $("#weekCalendar");
-  $("#appointmentForm").style.display = isTrainer() && state.clients.length ? "block" : "none";
-  renderAppointmentTypes();
-  renderAgendaQuickTypes();
-  $("#calendarControls").style.display = isTrainer() ? "flex" : "none";
-  $("#agendaPanelTitle").textContent = isTrainer() ? "Weekagenda" : "Mijn afspraken";
-  renderPreviousAppointments(selected);
-
-  if (!isTrainer()) {
-    const appointments = selected.appointments
-      .filter((item) => !item.date || item.date >= todayISO())
-      .sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`));
-    renderAgendaStats([]);
-    calendar.className = "client-appointments";
-    calendar.innerHTML = appointments.length
-      ? appointments.map((item) => {
-        const apptType = appointmentTypeById(item.appointmentTypeId);
-        return `
-        <div class="client-appointment-card">
-          <span class="client-appointment-date">${formatLongDutchDate(item.date)} om ${escapeHTML(item.time || "--:--")}</span>
-          <strong>${escapeHTML(apptType?.name || item.type || "Afspraak")}</strong>
-          <span>${[item.location || apptType?.location || "", item.duration ? `${escapeHTML(item.duration)} min` : ""].filter(Boolean).map(escapeHTML).join(" | ")}</span>
-        </div>
-      `;
-      }).join("")
-      : `<div class="empty-state">Er staan nog geen afspraken ingepland.</div>`;
-    return;
-  }
-
-  calendar.className = "agenda-table-view trainer-calendar";
-  const weekStart = state.ui.calendarWeekStart;
-  const days = weekDates(weekStart);
-  const weekEnd = days[6].date;
-  $("#calendarWeekLabel").textContent = `${formatShortDate(weekStart)} - ${formatShortDate(weekEnd)}`;
-  if (!state.clients.length) {
-    calendar.className = "client-appointments";
-    calendar.innerHTML = emptyTrackerState("Nog geen clienten gekoppeld. Voeg eerst een client toe om afspraken te plannen.");
-    renderAgendaStats([]);
-    return;
-  }
-  const dateInput = $("#appointmentForm").elements.date;
-  if (!dateInput.value || dateInput.value < weekStart || dateInput.value > weekEnd) {
-    dateInput.value = weekStart;
-  }
-  const all = state.clients.flatMap((item) => item.appointments.map((appt) => ({ ...appt, clientName: item.name, clientId: item.id })));
-  const weekAppointments = all
-    .filter((item) => item.date >= weekStart && item.date <= weekEnd)
-    .filter((item) => !item.date || item.date >= todayISO())
-    .sort((a, b) => `${a.date || ""} ${a.time || ""}`.localeCompare(`${b.date || ""} ${b.time || ""}`));
-  renderAgendaStats(weekAppointments);
-  calendar.innerHTML = renderAgendaTable(days, weekAppointments);
-}
+function renderAgenda() { window.FMZAgenda?.render(); }
 
 function renderFinance() {
   if (!isTrainer()) return;
@@ -4288,17 +4199,7 @@ function recipeIngredients(recipe) {
   return recipe.rows.map((item) => `${escapeHTML(item.name)} ${formatRecipeAmount(item.grams)}`).join(", ");
 }
 
-function notifyAppointment(clientId, appointmentId) {
-  const selected = state.clients.find((item) => item.id === clientId);
-  const appointment = selected?.appointments.find((item) => item.id === appointmentId);
-  if (!selected || !appointment) return;
-  const body = `${escapeHTML(appointment.type || "Afspraak")} op ${escapeHTML(appointment.date)} om ${escapeHTML(appointment.time)}`;
-  if ("Notification" in window && Notification.permission === "granted") {
-    new Notification(`Afspraak voor ${escapeHTML(selected.name)}`, { body });
-  } else {
-    alert(`Melding: ${escapeHTML(selected.name)} - ${body}`);
-  }
-}
+
 
 document.addEventListener("click", async (event) => {
   const target = event.target.closest("button");
@@ -4746,75 +4647,7 @@ document.addEventListener("click", async (event) => {
     }
     saveState(); renderAll();
   }
-  if (target.dataset.notify) {
-    const [clientId, appointmentId] = target.dataset.notify.split(":");
-    notifyAppointment(clientId, appointmentId);
-  }
-  if (target.dataset.editAppointment) {
-    if (!isTrainer()) return;
-    const [clientId, appointmentId] = target.dataset.editAppointment.split(":");
-    const selected = state.clients.find((item) => item.id === clientId);
-    const appointment = findAppointment(clientId, appointmentId);
-    if (!appointment) return;
-    const nextDate = prompt("Datum aanpassen (YYYY-MM-DD)", appointment.date || todayISO());
-    if (nextDate === null) return;
-    const nextTime = prompt("Tijd aanpassen (HH:MM)", appointment.time || "09:00");
-    if (nextTime === null) return;
-    const nextType = prompt("Type afspraak", appointment.type || "Afspraak");
-    if (nextType === null) return;
-    const nextLocation = prompt("Locatie", appointment.location || appointmentTypeById(appointment.appointmentTypeId)?.location || "");
-    if (nextLocation === null) return;
-    appointment.date = nextDate || appointment.date;
-    appointment.day = dayNameFromDate(appointment.date);
-    appointment.time = nextTime || appointment.time;
-    appointment.type = nextType || appointment.type || "Afspraak";
-    appointment.location = nextLocation || appointment.location || "";
-    syncAppointmentAdminItem(selected, appointment);
-    saveState(); renderAll();
-    return;
-  }
-  if (target.dataset.deleteAppointment) {
-    if (!isTrainer()) return;
-    const [clientId, appointmentId] = target.dataset.deleteAppointment.split(":");
-    const selected = state.clients.find((item) => item.id === clientId);
-    const appointment = selected?.appointments.find((item) => item.id === appointmentId);
-    if (!selected || !appointment) return;
-    if (!confirm(`Afspraak ${escapeHTML(appointment.date || "")} ${escapeHTML(appointment.time || "")} verwijderen?`)) return;
-    selected.appointments = selected.appointments.filter((item) => item.id !== appointmentId);
-    state.trainerFinance.adminItems = financeAdminItems().filter((item) => item.appointmentId !== appointmentId);
-    saveState(); renderAll();
-    return;
-  }
-  if (target.dataset.expandRepeat) {
-    if(!isTrainer()) return;
-    const [clientId,id]=target.dataset.expandRepeat.split(':');
-    const selected=state.clients.find(c=>c.id===clientId), appointment=selected?.appointments.find(a=>a.id===id);
-    if(!appointment?.repeat) return;
-    if(!confirm('Maak maximaal 12 afspraken van deze herhaling? Vervolgafspraken krijgen geen automatische facturen of kosten.'))return;
-    const series=FMZSync.occurrences(appointment);
-    Object.assign(appointment,series[0]);
-    for(const occurrence of series.slice(1)) if(!selected.appointments.some(a=>a.id===occurrence.id)) selected.appointments.push(occurrence);
-    await persistActionFeedback(null,'Herhaling toegepast');
-  }
-  if (target.id === "prevWeek") {
-    state.ui.calendarWeekStart = addDaysISO(state.ui.calendarWeekStart, -7);
-    saveState(); renderAll();
-  }
-  if (target.id === "todayWeek") {
-    state.ui.calendarWeekStart = startOfWeekISO();
-    saveState(); renderAll();
-  }
-  if (target.id === "nextWeek") {
-    state.ui.calendarWeekStart = addDaysISO(state.ui.calendarWeekStart, 7);
-    saveState(); renderAll();
-  }
-  if (target.dataset.setAppointmentDate) {
-    openAppointmentModal({
-      date: target.dataset.setAppointmentDate,
-      time: target.dataset.setAppointmentTime
-    });
-    return;
-  }
+
 });
 
 document.addEventListener("keydown", (event) => {
@@ -5297,60 +5130,6 @@ $("#measurementForm").addEventListener("submit", (event) => {
   saveState(); renderAll();
 });
 
-$("#appointmentForm").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if(!isTrainer()) return;
-  const form=event.currentTarget;
-  if(form.dataset.saving) return;
-  if(form.dataset.pendingAppointment) {
-    form.dataset.saving='true';
-    try { if(await persistActionFeedback(null,'Afspraak ingepland')) {delete form.dataset.pendingAppointment;form.reset();closeAppointmentModal();} }
-    finally {delete form.dataset.saving;}
-    return;
-  }
-  const data = new FormData(form);
-  const selected = state.clients.find((item) => item.id === data.get("clientId"));
-  if (!selected) return;
-  const rate = rateById(data.get("rateId"));
-  const appointmentType = appointmentTypeById(data.get("appointmentTypeId"));
-  const manualAmount = data.get("amount");
-  const amount = manualAmount !== "" ? number(manualAmount) : "";
-  const appointment = {
-    id: `a${Date.now()}${Math.random().toString(16).slice(2)}`,
-    date: data.get("date"),
-    day: dayNameFromDate(data.get("date")),
-    time: data.get("time"),
-    appointmentTypeId: appointmentType?.id || "",
-    type: String(data.get("type") || "").trim() || appointmentType?.name || "Afspraak",
-    duration: appointmentType?.duration ?? "",
-    color: appointmentType?.color || "#c89312",
-    location: String(data.get("location") || "").trim() || appointmentType?.location || "",
-    repeat: data.get("repeat") || "",
-    rateId: rate?.id || "",
-    rateName: rate?.name || "",
-    amount,
-    paymentStatus: "unpaid",
-    adminItemSuppressed: false
-  };
-  const series = FMZSync.occurrences(appointment);
-  selected.appointments.push(...series);
-  syncAppointmentAdminItem(selected, series[0]);
-  form.dataset.pendingAppointment=appointment.id;
-  form.dataset.saving='true';
-  const ok = await persistActionFeedback(null, "Afspraak ingepland");
-  delete form.dataset.saving;
-  if(ok) {delete form.dataset.pendingAppointment;form.reset();closeAppointmentModal();}
-  if (!ok) alert("Afspraak opslaan mislukt.");
-});
-
-$("#notificationPermission")?.addEventListener("click", async () => {
-  if (!("Notification" in window)) {
-    alert("Browsermeldingen zijn niet beschikbaar.");
-    return;
-  }
-  await Notification.requestPermission();
-  saveState(); renderAll();
-});
 
 document.addEventListener("input", (event) => {
   const target = event.target;
@@ -5495,7 +5274,7 @@ document.addEventListener("change", async (event) => {
     const form = $("#appointmentForm");
     if (type && form) {
       form.elements.location.value = type.location || "";
-      form.elements.amount.value = "";
+      if(form.elements.amount) form.elements.amount.value = "";
     }
   }
   if (target.id === "financeMonthFilter" || target.id === "adminMonthFilter") {
@@ -5579,14 +5358,14 @@ async function init() {
   } catch { lockOnlineSession(); syncStatus('Online laden mislukt. Log opnieuw in.','error'); }
 }
 
-$('#refreshWorkspace')?.addEventListener('click',refreshOnlineWorkspace);
+$('#refreshWorkspace')?.addEventListener('click',async()=>{await refreshOnlineWorkspace();await window.FMZAgenda?.refresh();});
 $('#retrySave')?.addEventListener('click',()=>saveStateToCloud());
 $('#exportDraft')?.addEventListener('click',exportPendingInput);
 $('#discardDraft')?.addEventListener('click',async()=>{
   if(!onlineProfile || !confirm('Niet-opgeslagen wijzigingen verwerpen en online gegevens laden? Exporteer zo nodig eerst je invoer.'))return;
   await saveQueue; pendingWrite=null; onlineErrorMessage='';
   const saved=cloudBaseline; state=FMZSync.clone(saved); await refreshOnlineWorkspace();
-  delete $('#appointmentForm').dataset.pendingAppointment;
+
 });
 window.addEventListener('beforeunload',event=>{if(hasPendingChanges() || pendingDrafts.size || legacyLocalDraft){event.preventDefault();event.returnValue='';}});
 init();
