@@ -2,7 +2,7 @@
 
 Scope: uitsluitend `Yourizorge/fitmetzorge`, `appfmz.nl`, productieproject `hgoygcviutmynaihcvpd`. Baseline `ac497672f9c5d2877cd283c856c9467a89c02e44`. Werkbranch `codex/agenda-reminders-20261015`.
 
-**Status: lokale controles en echte backendproef PASS; frontendpublicatie wordt uitgevoerd.** Runtimecommit `c0a2fcbbed7f20785ab2f3c488add1af0ba66377`. De owner heeft deze agenda-/meldingenrelease opgedragen, inclusief noodzakelijke minimale additieve backendvoorzieningen. Er wordt geen betaalde dienst geactiveerd. De eerdere trainer-/PWA-release is door de owner geaccepteerd; dat staat afzonderlijk in het bijbehorende rapport.
+**Status: live gepubliceerd en gecontroleerd; laatste conceptherstel wordt afgerond.** Eerste runtimecommit `c0a2fcbbed7f20785ab2f3c488add1af0ba66377`, eerste publicatie `42ce0e0ecaca0b503ee9c8f57a3d94d43c815959`. De owner heeft deze agenda-/meldingenrelease opgedragen, inclusief noodzakelijke minimale additieve backendvoorzieningen. Er wordt geen betaalde dienst geactiveerd. De eerdere trainer-/PWA-release is door de owner geaccepteerd; dat staat afzonderlijk in het bijbehorende rapport.
 
 ## Inventaris en wijzigingen
 
@@ -40,6 +40,13 @@ Tijdzone: **Europe/Amsterdam**. Niet-bestaande tijden bij de zomertijdsprong wor
 - Definitieve gerichte ronde na de laatste presentatie-/privacyaanpassingen: 5/5 PASS (push/worker, beide agenda-browserproeven en bestaande browseropslag-/rol-/sessieregressie).
 - [Echte PostgREST/Auth/Cron-proef](examples/agenda-20261015/production-api-checks.json): vier nieuwe synthetische accounts, concurrente identieke aanvragen maken één afspraak; duo en aanwezigheid per deelnemer; andere trainer en leden kunnen niet wijzigen; correctie/verplaatsing/annulering behouden financiële sentinel; herinloggen bewaart gegevens; ingetrokken sessie geweigerd. Stale revision geeft één `PT409`/HTTP409 in 131 ms en laat de volledige workspace ongewijzigd. De werkelijke achtergrond-Cron heeft de in-appberichten aangemaakt. Geen e-mail of pushabonnement gebruikt.
 - [Live Edgeproef](examples/agenda-20261015/production-worker-checks.json): zonder eigen bearer HTTP401, met cron-bearer HTTP200; nul afleveringen geclaimd/verzonden. Dit bewijst de functiebeveiliging, nog geen fysieke pushontvangst.
+- [Echte geplande herinnering](examples/agenda-20261015/production-reminder-checks.json): synthetische afspraak met 15 minuten voorafherinnering. De server-Cron maakte deze zichtbaar om 11:26:05 UTC, met due-time 11:26:00 UTC. Geen browser-timer of handmatige tick gebruikt; geen pushabonnement of klantmelding.
+- [Gepubliceerde bestanden](APPFMZ_AGENDA_ASSETS_20261015.json): 53 live bestanden exact vergeleken met Git. Beschermde runtimebestanden, administratie, facturen, PDF’s, autosave, media en iconen blijven byte-identiek aan de baseline.
+- [Live browsercontrole](examples/agenda-20261015/live-browser-checks.json): aangemeld als eigen synthetische trainer en lid, op telefoon-/laptopformaat. Geen horizontale overflow, herladen bewaart gegevens, ledenprojectie blijft privé, maandkaarten zichtbaar, uitloggen leegt agenda; geen JavaScript-fouten. Dit is Edge-emulatie, geen fysieke iPhoneproef.
+
+Een extra regressie reproduceerde na de eerste publicatie een randgeval: een voorkeurenopslag verwijderde de waarschuwing van een nog niet opgeslagen afspraakconcept. Het herstel houdt die conceptstatus apart. Een onbevestigd verzoek krijgt bovendien een zichtbare herhaalknop die dezelfde request-ID en payload gebruikt, ook na sluiten van het venster. Een netwerkproef laat het oorspronkelijke serverantwoord bewust verloren gaan en controleert herstel zonder een tweede opdrachtidentiteit. Open concepten en onbevestigde verzoeken blijven alleen voor hetzelfde account in tabgeheugen bereikbaar.
+
+Na dit herstel: 5/5 gerichte tests PASS (nieuwe concept-/antwoordverliesregressie, beide agenda-browserproeven, beide push-/workerproeven). De nieuwe regressie faalde vóór de correctie en slaagt erna. Hiervoor is geen aanvullende databasewijziging gedaan.
 
 ## Productiebackend
 
