@@ -1,0 +1,1797 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:05.829
+Welkom bij de volledige administratierondleiding van FitMetZorge.
+
+2
+00:00:06.069 --> 00:00:12.605
+Je kijkt naar de echte gebouwde app, met een volledig afzonderlijke oefenadministratie.
+
+3
+00:00:12.845 --> 00:00:17.373
+Ons vaste bedrijf heet FitMetZorge Oefenbedrijf.
+
+4
+00:00:17.613 --> 00:00:22.211
+Noor Voorbeeld en Sam Oefen zijn verzonnen klanten.
+
+5
+00:00:22.451 --> 00:00:29.150
+Er wordt geen echte factuur verstuurd en je eigen administratie wordt nergens geopend.
+
+6
+00:00:32.417 --> 00:00:35.157
+Ik open Administratie.
+
+7
+00:00:35.397 --> 00:00:38.346
+Overzicht is je startpunt.
+
+8
+00:00:38.586 --> 00:00:43.171
+Nog open betekent wat klanten op dit moment nog moeten betalen.
+
+9
+00:00:43.411 --> 00:00:49.228
+Te laat is het openstaande deel waarvan de betaaltermijn voorbij is.
+
+10
+00:00:49.468 --> 00:00:56.631
+Ontvangen in periode gaat over geld dat in de gekozen periode aan facturen is gekoppeld.
+
+11
+00:00:56.871 --> 00:01:00.157
+Dat is niet hetzelfde als omzet.
+
+12
+00:01:03.417 --> 00:01:08.873
+Ik kies september 2026 en pas de periode toe.
+
+13
+00:01:09.113 --> 00:01:14.187
+In deze nieuwe oefenadministratie zijn de tellers nog nul.
+
+14
+00:01:14.427 --> 00:01:19.326
+Tijdens de volgende hoofdstukken bouwen we de administratie op.
+
+15
+00:01:19.566 --> 00:01:23.549
+Kijk steeds naar de periode boven het overzicht.
+
+16
+00:01:23.789 --> 00:01:31.985
+Openstaande bedragen kijken naar de huidige toestand; ontvangen bedragen horen bij het gekozen tijdvak.
+
+17
+00:01:35.250 --> 00:01:42.785
+Links staan de dagelijkse routes: Overzicht, Facturen, Bank/Kas en Overzichten.
+
+18
+00:01:43.025 --> 00:01:53.427
+Onder Meer administratie vind je Uitgaven en bonnen, Privé, Bezittingen en schulden, Btw-overzicht en Instellingen.
+
+19
+00:01:53.667 --> 00:01:58.486
+Je hoeft een gebeurtenis niet in ieder scherm opnieuw in te voeren.
+
+20
+00:01:58.726 --> 00:02:03.544
+Eén bevestigde boeking kan in meerdere overzichten terugkomen.
+
+21
+00:02:06.833 --> 00:02:10.943
+Het vraagteken geeft uitleg over dit onderdeel.
+
+22
+00:02:11.183 --> 00:02:16.385
+Uitleg en oefenen opent de cursus en de veilige voorbeelden.
+
+23
+00:02:16.625 --> 00:02:24.310
+Je kunt deze video pauzeren, tien seconden teruggaan, een hoofdstuk kiezen of langzamer afspelen.
+
+24
+00:02:24.550 --> 00:02:28.045
+Oefen eerst met de voorbeeldgegevens.
+
+25
+00:02:28.285 --> 00:02:33.475
+Gewoon de video bekijken doet niets in je echte administratie.
+
+26
+00:02:36.750 --> 00:02:39.989
+Ik open Administratie-instellingen.
+
+27
+00:02:40.229 --> 00:02:48.066
+Hier controleer je bedrijfsnaam, adres, contactgegevens en de gegevens die op de factuur komen.
+
+28
+00:02:48.306 --> 00:02:53.147
+De zichtbare voorbeeldgegevens zijn ongeldig voor echt gebruik.
+
+29
+00:02:53.387 --> 00:02:56.777
+Een wijziging krijgt een ingangsdatum.
+
+30
+00:02:57.017 --> 00:03:03.078
+Bestaande definitieve facturen blijven hun oorspronkelijke gegevens houden.
+
+31
+00:03:06.333 --> 00:03:14.994
+In dit oefenbedrijf zijn een fictief tarief van eenentwintig procent en het factuurstelsel vooraf ingesteld.
+
+32
+00:03:15.234 --> 00:03:18.764
+Dat is geen advies voor jouw onderneming.
+
+33
+00:03:19.004 --> 00:03:22.069
+Kopieer deze keuzes dus niet.
+
+34
+00:03:22.309 --> 00:03:30.122
+Controleer je eigen btw-status, stelsel en aangifteperiode aan je officiële gegevens.
+
+35
+00:03:30.362 --> 00:03:34.472
+De app dient geen belastingaangifte voor je in.
+
+36
+00:03:37.750 --> 00:03:44.635
+Nu open ik Bank/Kas en klap Rekeningen, beginstand en bankafstemming uit.
+
+37
+00:03:44.875 --> 00:03:49.879
+Een bankrekening is een plek waar je geld administratief volgt.
+
+38
+00:03:50.119 --> 00:03:54.333
+Een rekening toevoegen maakt geen verbinding met de bank.
+
+39
+00:03:54.573 --> 00:03:58.079
+Ik maak een tweede fictieve rekening aan.
+
+40
+00:03:58.319 --> 00:04:03.253
+Er wordt geen echte bankrekening of geldig rekeningnummer gebruikt.
+
+41
+00:04:06.500 --> 00:04:13.094
+Het openingssaldo is de stand aan het einde van de dag vóór je eerste transactiedag.
+
+42
+00:04:13.334 --> 00:04:19.337
+Hier vullen we bewust nul in, omdat deze oefenrekening leeg begint.
+
+43
+00:04:19.577 --> 00:04:24.801
+Bij je echte rekening neem je de gecontroleerde afschriftstand over.
+
+44
+00:04:25.041 --> 00:04:29.906
+Een leeg veld betekent onbekend, niet automatisch nul.
+
+45
+00:04:33.167 --> 00:04:38.043
+Een kasrekening is alleen voor munten en bankbiljetten.
+
+46
+00:04:38.283 --> 00:04:44.332
+Gebruik je geen contant geld, dan kun je Kas verbergen en later weer tonen.
+
+47
+00:04:44.572 --> 00:04:47.660
+Verbergen wist geen oude boekingen.
+
+48
+00:04:47.900 --> 00:04:57.478
+De controle hier is eenvoudig: de juiste rekeningnaam, de juiste soort en een bewust gekozen begindatum en beginstand.
+
+49
+00:05:00.750 --> 00:05:05.649
+Ik ga naar Klanten en open de betaalafspraak van Noor Voorbeeld.
+
+50
+00:05:05.889 --> 00:05:11.706
+De betaalafspraak bepaalt welk pakket en welke factuurperiode gelden.
+
+51
+00:05:11.946 --> 00:05:15.986
+De agenda bepaalt wanneer je elkaar ziet.
+
+52
+00:05:16.226 --> 00:05:28.591
+Een afspraak maken, aanwezigheid registreren, afronden of annuleren maakt geen factuur, geen betaling en geen wijziging van deze betaalafspraak.
+
+53
+00:05:31.833 --> 00:05:38.242
+Bij de één-op-één pakketten hoort Basis bij vier trainingen en tweehonderd euro.
+
+54
+00:05:38.482 --> 00:05:42.998
+Progressie heeft acht trainingen voor driehonderdtachtig euro.
+
+55
+00:05:43.238 --> 00:05:48.556
+Transformatie heeft twaalf trainingen voor vierhonderdtachtig euro.
+
+56
+00:05:48.796 --> 00:05:54.218
+Lees altijd het totale bedrag en de periode bij de afspraak.
+
+57
+00:05:54.458 --> 00:06:01.261
+Duo, online en individuele afspraken hebben hun eigen afgesproken tarieven.
+
+58
+00:06:04.583 --> 00:06:11.155
+Ik kies voor Noor Progressie per kalendermaand, met een ingangsdatum en een toelichting.
+
+59
+00:06:11.395 --> 00:06:16.166
+September loopt van één tot en met dertig september.
+
+60
+00:06:16.406 --> 00:06:22.896
+Dit zijn acht afgesproken trainingen, geen berekening met gemiddelde kalenderweken.
+
+61
+00:06:23.136 --> 00:06:28.767
+Controleer de echte afspraak met je klant voordat je zo'n keuze bevestigt.
+
+62
+00:06:32.083 --> 00:06:38.701
+Voor Sam Oefen laat ik een andere afspraak zien: vier weken vanaf zeven september.
+
+63
+00:06:38.941 --> 00:06:42.563
+Vier weken zijn achtentwintig dagen.
+
+64
+00:06:42.803 --> 00:06:49.851
+De eerste periode loopt hier tot en met vier oktober; de volgende begint vijf oktober.
+
+65
+00:06:50.091 --> 00:06:56.012
+Dit is dus niet hetzelfde als september of oktober als kalendermaand.
+
+66
+00:06:59.333 --> 00:07:04.651
+Terug bij Facturen kies ik Pakketfactuur: concept openen.
+
+67
+00:07:04.891 --> 00:07:08.734
+Ik kies Noor en een datum in september.
+
+68
+00:07:08.974 --> 00:07:13.548
+De app vindt de bijbehorende betaalafspraak en periode.
+
+69
+00:07:13.788 --> 00:07:18.571
+Controleer klant, pakket en begindatum voordat je verdergaat.
+
+70
+00:07:18.811 --> 00:07:27.310
+Voor een al bestaande pakketperiode opent de app de bestaande factuur; maak geen tweede maandpakket per losse training.
+
+71
+00:07:30.583 --> 00:07:37.317
+Dit is een concept: er is nog geen definitief factuurnummer en geen omzetboeking.
+
+72
+00:07:37.557 --> 00:07:44.094
+Ik controleer Noor, het fictieve adres en de omschrijving van de dienstverlening.
+
+73
+00:07:44.334 --> 00:07:49.790
+De eerste regel bevat acht trainingen van zevenenveertig euro vijftig.
+
+74
+00:07:50.030 --> 00:07:55.893
+Samen is dat driehonderdtachtig euro inclusief de ingestelde btw.
+
+75
+00:07:59.167 --> 00:08:04.287
+Ik vul dertig euro korting in, met de toelichting voorbeeldkorting.
+
+76
+00:08:04.527 --> 00:08:13.223
+In het voorbeeld zie je direct: oorspronkelijk driehonderdtachtig, korting dertig, totaal driehonderdvijftig euro.
+
+77
+00:08:13.463 --> 00:08:19.999
+Je kunt ook een percentage kiezen, maar controleer altijd de uiteindelijke eurobedragen.
+
+78
+00:08:20.239 --> 00:08:26.114
+Een negatieve korting of korting boven het subtotaal is niet toegestaan.
+
+79
+00:08:29.417 --> 00:08:35.628
+Met Factuurregel toevoegen kun je een echte extra dienst afzonderlijk beschrijven.
+
+80
+00:08:35.868 --> 00:08:41.592
+Ik voeg ter demonstratie een extra regel toe en verwijder die weer.
+
+81
+00:08:41.832 --> 00:08:46.394
+Daarna is het totaal opnieuw driehonderdvijftig euro.
+
+82
+00:08:46.634 --> 00:08:52.660
+Voeg geen regel toe voor een betaling: een betaling is geen nieuwe verkoop.
+
+83
+00:08:52.900 --> 00:08:57.776
+Controleer aantallen en eenheidsprijzen vóór bevestiging.
+
+84
+00:09:01.083 --> 00:09:07.875
+Ik controleer factuurdatum, betaaltermijn, leverdatum en omvang van de dienst.
+
+85
+00:09:08.115 --> 00:09:14.524
+In dit voorbeeld is de factuurdatum één september en de betaaltermijn veertien dagen.
+
+86
+00:09:14.764 --> 00:09:23.344
+De zichtbare voorbeeld-PDF helpt je om naam, omschrijving, korting en totaal nog eens rustig naast elkaar te bekijken.
+
+87
+00:09:26.667 --> 00:09:31.671
+De melding Concept opgeslagen volgt na bevestigde opslag.
+
+88
+00:09:31.911 --> 00:09:36.020
+Typen geeft geen definitieve factuur uit.
+
+89
+00:09:36.260 --> 00:09:42.959
+Een onbruikbaar concept kun je met Concept verwijderen wegdoen; die actie vraagt bevestiging.
+
+90
+00:09:43.199 --> 00:09:47.321
+Een definitieve factuur verwijder je zo niet.
+
+91
+00:09:47.561 --> 00:09:55.595
+Voor losse diensten bestaat ook Vrije factuur: concept openen, met dezelfde controle vóór uitgifte.
+
+92
+00:09:58.917 --> 00:10:04.489
+Alles klopt, dus ik kies Opslaan en PDF downloaden.
+
+93
+00:10:04.729 --> 00:10:08.178
+Nu pas wordt het concept definitief.
+
+94
+00:10:08.418 --> 00:10:15.233
+De oefenomgeving gebruikt een eigen, duidelijk gemarkeerd oefennummer en een watermerk.
+
+95
+00:10:15.473 --> 00:10:20.918
+In je echte administratie geeft de server een echt factuurnummer uit.
+
+96
+00:10:21.158 --> 00:10:27.636
+Een bevestigd nummer en de oorspronkelijke PDF blijven daarna bewaard.
+
+97
+00:10:30.917 --> 00:10:34.051
+Ik open de opgeslagen PDF.
+
+98
+00:10:34.291 --> 00:10:43.150
+Kijk naar de bedrijfsgegevens, Noor als klant, de omschrijving, acht trainingen, de korting en het eindtotaal.
+
+99
+00:10:43.390 --> 00:10:56.242
+In onze fictieve eenentwintigprocentssituatie bestaat driehonderdvijftig euro uit tweehonderdnegenentachtig euro zesentwintig omzet en zestig euro vierenzeventig btw.
+
+100
+00:10:56.482 --> 00:11:01.416
+Het watermerk maakt dit document ongeldig als echte factuur.
+
+101
+00:11:04.667 --> 00:11:10.936
+Met PDF downloaden krijg je later opnieuw hetzelfde opgeslagen document.
+
+102
+00:11:11.176 --> 00:11:18.107
+Als downloaden mislukt, gebruik je deze knop opnieuw; maak daarvoor geen nieuwe factuur.
+
+103
+00:11:18.347 --> 00:11:23.212
+Ook na opnieuw inloggen blijft de bevestigde factuur beschikbaar.
+
+104
+00:11:23.452 --> 00:11:28.723
+Controleer het gedownloade bestand voordat je het aan iemand doorgeeft.
+
+105
+00:11:32.000 --> 00:11:37.271
+Delen opent de PDF met een knop voor het deelvenster van je apparaat.
+
+106
+00:11:37.511 --> 00:11:41.981
+Ik laat de beschikbare actie zien, maar verstuur niets.
+
+107
+00:11:42.221 --> 00:11:51.021
+Werkt bestanden delen niet in je browser, download dan de PDF en deel die zelf vanuit Bestanden of je mailprogramma.
+
+108
+00:11:51.261 --> 00:11:54.048
+Controleer daar de ontvanger.
+
+109
+00:11:57.333 --> 00:12:03.765
+Een geopend deelvenster bewijst niet dat de klant de factuur heeft ontvangen of betaald.
+
+110
+00:12:04.005 --> 00:12:09.102
+Er is geen automatische mailverzending in deze demonstratie.
+
+111
+00:12:09.342 --> 00:12:14.659
+De factuur blijft open tot de betaling correct is geregistreerd.
+
+112
+00:12:14.899 --> 00:12:24.652
+Is een definitieve factuur inhoudelijk fout, dan gebruik je de passende correctie; je overschrijft het oorspronkelijke document niet.
+
+113
+00:12:27.917 --> 00:12:35.382
+Noor heeft volgens ons fictieve afschrift driehonderdvijftig euro betaald op vijftien september.
+
+114
+00:12:35.622 --> 00:12:41.520
+Eerst vergelijken we naam, bedrag en omschrijving met de bestaande factuur.
+
+115
+00:12:41.760 --> 00:12:45.556
+Een gelijk bedrag alleen bewijst nog geen match.
+
+116
+00:12:45.796 --> 00:12:52.170
+In deze oefening is de ontvangst nog niet eerder in Bank/Kas ingevoerd.
+
+117
+00:12:55.417 --> 00:12:59.445
+Ik kies Betaling registreren bij Noors factuur.
+
+118
+00:12:59.685 --> 00:13:04.422
+Het betaalvenster vult het openstaande bedrag vooraf in.
+
+119
+00:13:04.662 --> 00:13:08.970
+Dat is een voorstel, geen bewijs van ontvangst.
+
+120
+00:13:09.210 --> 00:13:13.935
+Controleer het bedrag dat werkelijk op je afschrift staat.
+
+121
+00:13:14.175 --> 00:13:21.710
+Registreer geen betaling omdat een training is geweest of omdat de factuur is verzonden.
+
+122
+00:13:25.000 --> 00:13:31.838
+Ik laat driehonderdvijftig euro staan, kies vijftien september en Zakelijke oefenbank.
+
+123
+00:13:32.078 --> 00:13:37.825
+De datum is de werkelijke ontvangst- of boekdatum op het afschrift.
+
+124
+00:13:38.065 --> 00:13:44.033
+Bij contant geld gebruik je de datum waarop je het ontving en kies je Kas.
+
+125
+00:13:44.273 --> 00:13:48.510
+De omschrijving maakt de betaling later herkenbaar.
+
+126
+00:13:51.833 --> 00:13:56.628
+Ik lees de samenvatting en kies Betaling registreren.
+
+127
+00:13:56.868 --> 00:14:01.849
+De app slaat één ontvangst met de koppeling naar deze factuur op.
+
+128
+00:14:02.089 --> 00:14:06.861
+Pas na de serverbevestiging sluiten we het venster.
+
+129
+00:14:07.101 --> 00:14:11.896
+Nu staat er nul euro open en is de factuur betaald.
+
+130
+00:14:12.136 --> 00:14:17.128
+Er is geen tweede factuur en geen tweede omzet ontstaan.
+
+131
+00:14:20.417 --> 00:14:28.718
+Bij een verbindingsfout blijft de invoer in het open venster staan en kun je dezelfde handeling opnieuw proberen.
+
+132
+00:14:28.958 --> 00:14:33.323
+Bij een conflict ververs en vergelijk je eerst.
+
+133
+00:14:33.563 --> 00:14:36.675
+Maak niet blind een nieuwe ontvangst.
+
+134
+00:14:36.915 --> 00:14:45.134
+Sluit een venster met onopgeslagen invoer niet zomaar; herstel na het sluiten van een tabblad wordt niet beloofd.
+
+135
+00:14:48.417 --> 00:14:51.226
+Ik open Bank/Kas.
+
+136
+00:14:51.466 --> 00:14:56.749
+De zojuist bevestigde driehonderdvijftig euro staat hier al.
+
+137
+00:14:56.989 --> 00:15:01.261
+Je ziet rekening, datum en omschrijving.
+
+138
+00:15:01.501 --> 00:15:06.041
+De bron is Zelf geregistreerde factuurbetaling.
+
+139
+00:15:06.281 --> 00:15:13.491
+Dat betekent dat jij de ontvangst hebt ingevoerd; de app heeft geen bankrekening uitgelezen.
+
+140
+00:15:13.731 --> 00:15:17.922
+Voer deze ontvangst dus niet nogmaals handmatig in.
+
+141
+00:15:21.167 --> 00:15:25.834
+Vanaf de bankmutatie open ik de bijbehorende factuur.
+
+142
+00:15:26.074 --> 00:15:30.950
+De betaling en het restant horen bij hetzelfde document.
+
+143
+00:15:31.190 --> 00:15:38.934
+Dit is de controle die dubbel boeken voorkomt: één factuur, één bankontvangst en één passende koppeling.
+
+144
+00:15:39.174 --> 00:15:45.141
+De factuur maakt de verkoop; de betaling maakt de schuld van de klant kleiner.
+
+145
+00:15:48.417 --> 00:15:55.952
+Bij Betalingen bekijken of corrigeren kun je de ontvangst en onderliggende boekingen bekijken.
+
+146
+00:15:56.192 --> 00:16:01.114
+Debet en credit zijn hier de twee kanten van een boeking.
+
+147
+00:16:01.354 --> 00:16:06.300
+Je hoeft die regels voor een gewone betaling niet zelf te maken.
+
+148
+00:16:06.540 --> 00:16:13.878
+Controleer vooral bron, datum, bedrag, rekening en het resterende factuurbedrag.
+
+149
+00:16:17.167 --> 00:16:19.872
+Ik ververs het overzicht.
+
+150
+00:16:20.112 --> 00:16:27.252
+De bevestigde betaling blijft bestaan en de bankstand blijft driehonderdvijftig euro.
+
+151
+00:16:27.492 --> 00:16:31.219
+Verversen voert geen nieuwe boeking uit.
+
+152
+00:16:31.459 --> 00:16:37.380
+Zie je een verschil met je echte bank, controleer dan eerst het afschrift en de bronnen.
+
+153
+00:16:37.620 --> 00:16:43.959
+Een administratieve stand is niet automatisch je werkelijke banksaldo of je winst.
+
+154
+00:16:47.250 --> 00:16:52.289
+We gebruiken nu een tweede oefenfactuur voor Noor, voor oktober.
+
+155
+00:16:52.529 --> 00:16:56.917
+Ook deze heeft driehonderdvijftig euro te betalen.
+
+156
+00:16:57.157 --> 00:17:01.453
+De septemberfactuur blijft apart en betaald.
+
+157
+00:17:01.693 --> 00:17:06.383
+Zo verwarren we geen betalingen van verschillende facturen.
+
+158
+00:17:06.623 --> 00:17:10.315
+Noor betaalt de nieuwe factuur in twee delen.
+
+159
+00:17:13.583 --> 00:17:19.226
+Bij Betaling registreren verander ik het bedrag in tweehonderd euro.
+
+160
+00:17:19.466 --> 00:17:24.017
+Ik kies vijftien oktober en Zakelijke oefenbank.
+
+161
+00:17:24.257 --> 00:17:29.725
+Controleer het werkelijk ontvangen deel, de datum en de rekening.
+
+162
+00:17:29.965 --> 00:17:34.818
+De app mag niet automatisch doen alsof de hele factuur betaald is.
+
+163
+00:17:38.083 --> 00:17:42.634
+Na bevestiging staat er honderdvijftig euro open.
+
+164
+00:17:42.874 --> 00:17:49.469
+Tweehonderd ontvangen plus honderdvijftig nog te ontvangen is samen driehonderdvijftig.
+
+165
+00:17:49.709 --> 00:17:53.180
+De factuur is gedeeltelijk betaald.
+
+166
+00:17:53.420 --> 00:17:59.005
+Je hoeft de oorspronkelijke factuur of het factuurbedrag niet aan te passen.
+
+167
+00:18:02.250 --> 00:18:08.357
+Ik registreer de tweede ontvangst van honderdvijftig euro op zestien oktober.
+
+168
+00:18:08.597 --> 00:18:13.020
+Ook dit is een afzonderlijke ontvangst met een eigen datum.
+
+169
+00:18:13.260 --> 00:18:16.685
+Na bevestiging is het restant nul.
+
+170
+00:18:16.925 --> 00:18:22.173
+Er zijn twee betalingen bij één factuur, geen twee verkopen.
+
+171
+00:18:25.417 --> 00:18:29.654
+Ik open Betalingen bekijken of corrigeren.
+
+172
+00:18:29.894 --> 00:18:33.668
+Hier zie je beide bedragen met hun datums.
+
+173
+00:18:33.908 --> 00:18:38.679
+Vergelijk dit met de twee regels op het afschrift.
+
+174
+00:18:38.919 --> 00:18:47.093
+Voor je kwartaalcontrole kan de betaaldatum uitmaken; verander die niet om een overzicht mooier te laten aansluiten.
+
+175
+00:18:47.333 --> 00:18:51.965
+Een verkeerde datum corrigeer je met een zichtbare correctie.
+
+176
+00:18:55.250 --> 00:19:02.379
+Soms staat een ontvangst al in Bank/Kas, bijvoorbeeld door CSV-import.
+
+177
+00:19:02.619 --> 00:19:10.618
+Voor deze demonstratie staat Sams ontvangst van tweehonderd euro al klaar, maar nog zonder factuurkoppeling.
+
+178
+00:19:10.858 --> 00:19:15.061
+Zijn factuur heeft ook tweehonderd euro open.
+
+179
+00:19:15.301 --> 00:19:19.411
+De ontvangst mag niet opnieuw worden ingevoerd.
+
+180
+00:19:22.667 --> 00:19:28.692
+Ik open Betaling registreren en kies de optie voor een bestaande ontvangst.
+
+181
+00:19:28.932 --> 00:19:35.260
+In de keuzelijst controleer ik rekening, datum, bedrag en omschrijving.
+
+182
+00:19:35.500 --> 00:19:39.424
+Ik selecteer Sams bestaande tweehonderd euro.
+
+183
+00:19:39.664 --> 00:19:46.165
+De samenvatting moet aangeven dat de bestaande bankmutatie wordt gebruikt.
+
+184
+00:19:49.417 --> 00:19:53.619
+Na bevestiging staat Sams factuur op betaald.
+
+185
+00:19:53.859 --> 00:20:01.638
+Het aantal bankontvangsten en het banksaldo veranderen hierdoor niet: alleen de koppeling is toegevoegd.
+
+186
+00:20:01.878 --> 00:20:06.870
+Dat is het belangrijke verschil met een nieuwe betaling registreren.
+
+187
+00:20:07.110 --> 00:20:12.196
+Eén afschriftregel moet ook hier één bankmutatie blijven.
+
+188
+00:20:15.500 --> 00:20:22.245
+De uitgebreidere route heet Koppelen of splitsen bij een niet-gekoppelde bankmutatie.
+
+189
+00:20:22.485 --> 00:20:29.591
+Die is bedoeld als één echte betaling bij meerdere posten hoort, bijvoorbeeld twee facturen.
+
+190
+00:20:29.831 --> 00:20:34.196
+Je kiest per deel de juiste bron en het bedrag.
+
+191
+00:20:34.436 --> 00:20:41.994
+Voeg of verwijder een deelregel vóór opslaan en controleer dat de delen samen bij de bron passen.
+
+192
+00:20:45.250 --> 00:20:51.647
+Kun je de betaler of factuur niet betrouwbaar bepalen, laat de ontvangst dan nog te beoordelen.
+
+193
+00:20:51.887 --> 00:20:56.125
+Koppel niet uitsluitend omdat een bedrag overeenkomt.
+
+194
+00:20:56.365 --> 00:21:02.251
+Bewaar de bankbron en zoek de juiste omschrijving of afspraak erbij.
+
+195
+00:21:02.491 --> 00:21:07.553
+Ook een privéontvangst of lening is geen factuurbetaling.
+
+196
+00:21:10.833 --> 00:21:19.703
+In ons oktobervoorbeeld blijkt de tweede betaaldatum onjuist ingevoerd: het geld kwam zeventien oktober binnen.
+
+197
+00:21:19.943 --> 00:21:24.030
+Het bedrag van honderdvijftig euro klopt wel.
+
+198
+00:21:24.270 --> 00:21:27.869
+We openen de betalingen van die factuur.
+
+199
+00:21:28.109 --> 00:21:35.133
+We verwijderen de oorspronkelijke invoer niet, maar maken een controleerbare correctie.
+
+200
+00:21:38.417 --> 00:21:43.955
+Bij de tweede betaling kies ik Corrigeren, foutieve invoer herstellen.
+
+201
+00:21:44.195 --> 00:21:54.098
+Ik kies dat deze hele zelf ingevoerde betaling fout is en vul een concrete reden in: betaaldatum moet zeventien oktober zijn.
+
+202
+00:21:54.338 --> 00:21:57.194
+Eerst bekijk ik het effect.
+
+203
+00:21:57.434 --> 00:21:59.988
+Pas daarna bevestig ik.
+
+204
+00:22:00.228 --> 00:22:03.746
+Dit maakt geen geld naar Noor over.
+
+205
+00:22:07.000 --> 00:22:11.946
+Na bevestiging blijft de oude betaling zichtbaar als gecorrigeerd.
+
+206
+00:22:12.186 --> 00:22:16.586
+Tijdelijk staat honderdvijftig euro opnieuw open.
+
+207
+00:22:16.826 --> 00:22:26.149
+In dit geval was de ontvangst handmatig via de betaalactie gemaakt, dus de foutieve ontvangst en koppeling worden tegengeboekt.
+
+208
+00:22:26.389 --> 00:22:32.693
+Bij een bestaande bankbron blijft die bron staan en corrigeer je alleen de koppeling.
+
+209
+00:22:36.000 --> 00:22:42.896
+Nu registreer ik de werkelijke honderdvijftig euro met zeventien oktober als datum.
+
+210
+00:22:43.136 --> 00:22:46.050
+De factuur is weer betaald.
+
+211
+00:22:46.290 --> 00:22:54.824
+De historie vertelt wat oorspronkelijk was ingevoerd, waarom dat fout was en welke ontvangst nu geldt.
+
+212
+00:22:55.064 --> 00:23:00.811
+De omzet en btw van de factuur zijn niet opnieuw geboekt.
+
+213
+00:23:04.083 --> 00:23:12.559
+Is de bronperiode afgesloten of is de betaling ingewikkeld verdeeld, dan kan de app de correctie blokkeren.
+
+214
+00:23:12.799 --> 00:23:18.093
+Ga dan eerst terug naar de bron en de periodecontrole.
+
+215
+00:23:18.333 --> 00:23:23.917
+Maak geen omweg met een nieuwe factuur of een willekeurige balanspost.
+
+216
+00:23:24.157 --> 00:23:30.647
+Een conflict vraagt verversen en vergelijken, geen eindeloos opnieuw klikken.
+
+217
+00:23:33.917 --> 00:23:39.977
+Nu oefenen we een volledig verzonnen handmatige ontvangst van negentig euro.
+
+218
+00:23:40.217 --> 00:23:44.292
+Dit is uitsluitend fictief oefenmateriaal.
+
+219
+00:23:44.532 --> 00:23:48.932
+We voeren deze opzettelijke fout in via Bank en Kas.
+
+220
+00:23:49.172 --> 00:23:56.104
+In je echte administratie maak je alleen een mutatie wanneer die werkelijk heeft plaatsgevonden.
+
+221
+00:23:56.344 --> 00:24:01.800
+Handmatig ingevoerd betekent op zichzelf niet dat een regel fout is.
+
+222
+00:24:05.083 --> 00:24:10.366
+Bij deze regel kies ik Corrigeren, foutieve invoer herstellen.
+
+223
+00:24:10.606 --> 00:24:16.086
+Ik leg uit dat de hele ontvangst verzonnen is en kies Effect bekijken.
+
+224
+00:24:16.326 --> 00:24:22.444
+Het voorstel laat zien dat de administratieve bankstand negentig euro daalt.
+
+225
+00:24:22.684 --> 00:24:28.094
+Er is geen factuur gekoppeld, dus er verandert geen factuurbetaling.
+
+226
+00:24:28.334 --> 00:24:31.492
+Omzet en kosten blijven gelijk.
+
+227
+00:24:31.732 --> 00:24:34.658
+Er is nog niets gecorrigeerd.
+
+228
+00:24:37.917 --> 00:24:41.760
+Na controle bevestig ik de getoonde correctie.
+
+229
+00:24:42.000 --> 00:24:47.410
+De oorspronkelijke regel blijft met een tegenboeking in de historie staan.
+
+230
+00:24:47.650 --> 00:24:52.689
+Dit verwijdert geen factuur, bestand of controlehistorie.
+
+231
+00:24:52.929 --> 00:25:02.797
+Een foutieve beginstand heeft een eigen herstelactie: je kunt die vervangen door een gecontroleerd saldo of terugzetten naar onbekend.
+
+232
+00:25:03.037 --> 00:25:06.543
+Onbekend is niet hetzelfde als nul.
+
+233
+00:25:09.833 --> 00:25:17.066
+Bij een echte ontvangst die aan de verkeerde factuur hangt, kiezen we uitsluitend de koppeling losmaken.
+
+234
+00:25:17.306 --> 00:25:21.602
+Dat oefenen we met de bestaande ontvangst van Sam.
+
+235
+00:25:21.842 --> 00:25:26.358
+Bekijk het effect: de bankstand blijft gelijk.
+
+236
+00:25:26.598 --> 00:25:34.307
+De factuur krijgt weer tweehonderd euro open, terwijl de ontvangst beschikbaar blijft om aan de juiste factuur te koppelen.
+
+237
+00:25:34.547 --> 00:25:38.251
+Zo verzinnen we geen tweede ontvangst.
+
+238
+00:25:41.500 --> 00:25:47.038
+Ik koppel dezelfde bestaande ontvangst opnieuw via Betaling registreren.
+
+239
+00:25:47.278 --> 00:25:51.887
+Controleer datum, rekening en het beschikbare bedrag.
+
+240
+00:25:52.127 --> 00:25:59.941
+De factuur is daarna weer voldaan, zonder extra bankmutatie, omzet of factuur-btw.
+
+241
+00:26:00.181 --> 00:26:05.544
+Gebruik deze route alleen wanneer de factuurkoppeling werkelijk correct is.
+
+242
+00:26:05.784 --> 00:26:11.671
+Bij twijfel vergelijk je eerst het afschrift en de oorspronkelijke factuur.
+
+243
+00:26:14.917 --> 00:26:20.362
+Voor een andere oefenfactuur betaalt Sam vijftig euro contant.
+
+244
+00:26:20.602 --> 00:26:24.723
+In Betaling registreren kies ik Oefenkas.
+
+245
+00:26:24.963 --> 00:26:29.932
+Na bevestiging staat het geld in Kas en niet op de bank.
+
+246
+00:26:30.172 --> 00:26:35.304
+Alleen werkelijk ontvangen biljetten en munten horen hier.
+
+247
+00:26:35.544 --> 00:26:39.131
+Een bankoverschrijving hoort niet in Kas.
+
+248
+00:26:42.417 --> 00:26:45.633
+Ik open Uitgaven en bonnen.
+
+249
+00:26:45.873 --> 00:26:54.000
+We voeren een fictieve aankoop van trainingsmateriaal in: vierentwintig euro twintig inclusief btw.
+
+250
+00:26:54.240 --> 00:27:00.776
+Ik vul leverancier, factuurdatum, omschrijving en de passende categorie in.
+
+251
+00:27:01.016 --> 00:27:05.637
+De aankoop wordt maar één keer als uitgave vastgelegd.
+
+252
+00:27:08.917 --> 00:27:19.400
+Ik kies de btw-behandeling volgens de oefenbon: vier euro twintig btw, volledig zakelijk en in dit voorbeeld volledig aftrekbaar.
+
+253
+00:27:19.640 --> 00:27:22.566
+Dat is geen algemene aanname.
+
+254
+00:27:22.806 --> 00:27:28.646
+Zonder bewijs of bij onduidelijke btw laat je de juiste waarschuwing staan.
+
+255
+00:27:28.886 --> 00:27:35.086
+Ik voeg een duidelijk synthetische bon toe; er wordt geen echt document geüpload.
+
+256
+00:27:38.333 --> 00:27:42.199
+De bon wordt in dit voorbeeld contant betaald.
+
+257
+00:27:42.439 --> 00:27:48.244
+Eerst staat de uitgave met een openstaand bedrag in de administratie.
+
+258
+00:27:48.484 --> 00:27:53.941
+Ik leg de uitgaande kasmutatie vast en koppel die aan deze uitgave.
+
+259
+00:27:54.181 --> 00:28:00.694
+Nu is Kas vijfentwintig euro tachtig en staat deze leverancier niet meer open.
+
+260
+00:28:00.934 --> 00:28:04.766
+De koppeling maakt geen tweede kostenpost.
+
+261
+00:28:08.083 --> 00:28:13.853
+Heb je een zakelijke bon privé betaald, kies dan Privé voorgeschoten.
+
+262
+00:28:14.093 --> 00:28:18.261
+De app houdt bij wat de onderneming nog aan jou moet vergoeden.
+
+263
+00:28:18.501 --> 00:28:22.228
+Dat is iets anders dan een privéstorting.
+
+264
+00:28:22.468 --> 00:28:29.237
+Een foutieve uitgave kun je tegenboeken met een reden; het origineel blijft bestaan.
+
+265
+00:28:29.477 --> 00:28:35.293
+Een eventuele echte terugbetaling moet daarna apart worden gekoppeld.
+
+266
+00:28:38.583 --> 00:28:42.252
+Ik open Facturen en kies Nog open.
+
+267
+00:28:42.492 --> 00:28:46.927
+Hier staat alleen wat nog van klanten te ontvangen is.
+
+268
+00:28:47.167 --> 00:28:52.183
+Een gedeeltelijk betaalde factuur toont het resterende bedrag.
+
+269
+00:28:52.423 --> 00:29:01.420
+In ons voorbeeld staat ook een afzonderlijke onbetaalde oefenfactuur klaar, zodat je het verschil met de al betaalde facturen kunt zien.
+
+270
+00:29:04.667 --> 00:29:10.216
+Met Te laat zie je openstaande facturen waarvan de vervaldatum voorbij is.
+
+271
+00:29:10.456 --> 00:29:17.039
+Een verstreken datum bewijst geen betaling en geen aanwezigheid bij een training.
+
+272
+00:29:17.279 --> 00:29:22.968
+Controleer eerst of het geld misschien al op je bank staat maar nog niet is gekoppeld.
+
+273
+00:29:26.250 --> 00:29:33.448
+De andere filters zijn Concept, Definitief, Betaald, Geannuleerd en Gecrediteerd.
+
+274
+00:29:33.688 --> 00:29:37.891
+Concept betekent nog geen definitieve factuur.
+
+275
+00:29:38.131 --> 00:29:43.890
+Gecrediteerd betekent dat een correctiefactuur bij het origineel hoort.
+
+276
+00:29:44.130 --> 00:29:47.845
+Het is niet automatisch een terugbetaling.
+
+277
+00:29:48.085 --> 00:29:53.762
+Gebruik het filter om de bron te vinden en open daarna de details.
+
+278
+00:29:57.083 --> 00:30:02.482
+Als de klant echt nog moet betalen, neem je zelf passend contact op.
+
+279
+00:30:02.722 --> 00:30:08.643
+In deze route is geen automatische aanmaning of incasso ingericht.
+
+280
+00:30:08.883 --> 00:30:13.794
+Verstuur geen dubbele factuur alleen om aandacht te vragen.
+
+281
+00:30:14.034 --> 00:30:20.269
+Download zo nodig de bestaande PDF opnieuw en controleer de ontvanger buiten de app.
+
+282
+00:30:23.583 --> 00:30:30.561
+Annuleren is beperkt tot een factuur die niet is verzonden en nooit betaald of gekoppeld is.
+
+283
+00:30:30.801 --> 00:30:35.445
+Ik gebruik daarvoor een aparte foutief gemaakte oefenfactuur.
+
+284
+00:30:35.685 --> 00:30:40.909
+Ik vul de reden in en bevestig dat aan die voorwaarden is voldaan.
+
+285
+00:30:41.149 --> 00:30:47.094
+Het nummer, de oorspronkelijke PDF en de historie blijven bewaard.
+
+286
+00:30:50.417 --> 00:30:56.640
+Voor een verzonden of betaalde factuur gebruik je zo nodig een creditfactuur.
+
+287
+00:30:56.880 --> 00:31:03.068
+Ik open een creditconcept op een aparte betaalde oefenfactuur van vijftig euro.
+
+288
+00:31:03.308 --> 00:31:07.464
+Ik vul de reden en het te corrigeren bedrag in.
+
+289
+00:31:07.704 --> 00:31:14.217
+Controleer de verwijzing naar het origineel; een credit is geen nieuwe gewone verkoop.
+
+290
+00:31:17.500 --> 00:31:22.933
+Na controle maak ik de oefencredit definitief en open de PDF.
+
+291
+00:31:23.173 --> 00:31:29.989
+De bedragen zijn negatief en de relatie met het oorspronkelijke document blijft zichtbaar.
+
+292
+00:31:30.229 --> 00:31:38.518
+Omdat de oorspronkelijke vijftig euro al ontvangen was, ontstaat in dit voorbeeld een bedrag dat aan de klant terug moet.
+
+293
+00:31:41.833 --> 00:31:45.456
+De credit heeft nog geen geld verplaatst.
+
+294
+00:31:45.696 --> 00:31:53.033
+De echte terugbetaling doe je buiten APPFMZ via je bank, of je geeft aantoonbaar contant terug.
+
+295
+00:31:53.273 --> 00:32:00.146
+Registreer pas daarna de werkelijke uitgaande bank- of kasmutatie met de juiste datum.
+
+296
+00:32:00.386 --> 00:32:05.750
+Gebruik geen verzonnen betaling om het overzicht op nul te zetten.
+
+297
+00:32:09.000 --> 00:32:18.172
+Ik laat de fictieve terugbetaling van vijftig euro zien als uitgaande bankmutatie en koppel die aan de oorspronkelijke factuur.
+
+298
+00:32:18.412 --> 00:32:22.475
+Nu sluit het terug te betalen bedrag aan.
+
+299
+00:32:22.715 --> 00:32:29.705
+Je ziet nog steeds de oorspronkelijke factuur, ontvangst, credit en terugbetaling.
+
+300
+00:32:29.945 --> 00:32:34.171
+Dat volledige spoor is het doel van de controle.
+
+301
+00:32:37.417 --> 00:32:41.724
+Ik open Privéstortingen en privéopnames.
+
+302
+00:32:41.964 --> 00:32:47.827
+Het oefenbedrijf krijgt twintig cent van privé op de zakelijke bank.
+
+303
+00:32:48.067 --> 00:32:53.570
+Ik kies Ontvangen, de juiste datum en nul komma twintig euro.
+
+304
+00:32:53.810 --> 00:32:58.524
+Na bevestiging stijgt de bankstand met twintig cent.
+
+305
+00:32:58.764 --> 00:33:02.792
+Dit is geen omzet en geen klantbetaling.
+
+306
+00:33:06.083 --> 00:33:11.203
+Nu neem ik in het voorbeeld tien cent van de zakelijke bank op voor privé.
+
+307
+00:33:11.443 --> 00:33:16.668
+Ik kies Uitgegeven, Privéopname en de juiste datum.
+
+308
+00:33:16.908 --> 00:33:22.132
+Dat verlaagt de bankstand, maar is geen zakelijke kostenpost.
+
+309
+00:33:22.372 --> 00:33:27.980
+Bewaar dit onderscheid ook wanneer je jezelf grotere bedragen overmaakt.
+
+310
+00:33:31.250 --> 00:33:37.357
+Een overboeking tussen twee eigen zakelijke rekeningen is weer iets anders.
+
+311
+00:33:37.597 --> 00:33:44.749
+Voor ons voorbeeld verplaatsen we honderd euro van Zakelijke oefenbank naar de tweede oefenrekening.
+
+312
+00:33:44.989 --> 00:33:52.361
+We leggen de werkelijke uitgaande en inkomende mutatie vast, met herkenbare omschrijvingen.
+
+313
+00:33:55.667 --> 00:34:03.875
+Bij Eigen overboeking kies ik de uitgaande en de inkomende mutatie, de koppeldatum en honderd euro.
+
+314
+00:34:04.115 --> 00:34:08.620
+Na bevestiging is de tussenrekening afgehandeld.
+
+315
+00:34:08.860 --> 00:34:14.990
+Het totaal van beide eigen bankrekeningen is door deze overboeking niet veranderd.
+
+316
+00:34:15.230 --> 00:34:21.499
+Er is geen omzet, geen btw en geen nieuwe kostenpost ontstaan.
+
+317
+00:34:24.750 --> 00:34:36.174
+Contant geld van Kas naar je bank brengen werkt volgens hetzelfde principe: één uitgaande kasmutatie en één inkomende bankmutatie koppelen als eigen overboeking.
+
+318
+00:34:36.414 --> 00:34:39.502
+De verkoop was al eerder geboekt.
+
+319
+00:34:39.742 --> 00:34:45.745
+Tel het storten van diezelfde biljetten daarom niet opnieuw als omzet.
+
+320
+00:34:49.000 --> 00:34:53.423
+Ik open Bank/Kas en de rekeningcontrole.
+
+321
+00:34:53.663 --> 00:35:01.686
+Bankstand vergelijken kijkt of beginstand plus de geregistreerde mutaties aansluit op het afschrift.
+
+322
+00:35:01.926 --> 00:35:07.255
+Het is geen bankkoppeling en het registreert geen factuurbetaling.
+
+323
+00:35:07.495 --> 00:35:12.824
+Kies op beide plekken dezelfde rekening en dezelfde einddatum.
+
+324
+00:35:16.083 --> 00:35:25.116
+In ons oefenvoorbeeld vergelijken we de bankstand op vijftien september met een fictief afschrift van driehonderdvijftig euro.
+
+325
+00:35:25.356 --> 00:35:29.942
+De beginstand was nul en er was toen één ontvangst.
+
+326
+00:35:30.182 --> 00:35:34.733
+Latere oktoberboekingen horen niet bij deze vergelijking.
+
+327
+00:35:34.973 --> 00:35:40.662
+Ik vul datum, afschriftbedrag en een duidelijke bronvermelding in.
+
+328
+00:35:43.917 --> 00:35:47.167
+Na bevestiging is het verschil nul.
+
+329
+00:35:47.407 --> 00:35:52.760
+Dat betekent dat de twee standen op die datum aansluiten.
+
+330
+00:35:53.000 --> 00:36:00.186
+Het bewijst niet automatisch dat iedere omschrijving, btw-keuze of factuurkoppeling juist is.
+
+331
+00:36:00.426 --> 00:36:04.130
+Die controles blijven apart nodig.
+
+332
+00:36:07.417 --> 00:36:17.134
+Bij een verschil controleer je eerst de beginstand, ontbrekende of dubbele mutaties, kas tegenover bank en de gekozen datums.
+
+333
+00:36:17.374 --> 00:36:21.983
+Boek het verschil niet zomaar als kosten of omzet weg.
+
+334
+00:36:22.223 --> 00:36:31.035
+De uitgebreide balanscorrectie is alleen voor een onderbouwde correctie met bekende bron, zo nodig samen met je boekhouder.
+
+335
+00:36:34.333 --> 00:36:40.591
+Een bank-CSV download je zelf bij je bank, buiten APPFMZ.
+
+336
+00:36:40.831 --> 00:36:45.046
+De exacte knoppen kunnen per bank veranderen.
+
+337
+00:36:45.286 --> 00:36:50.812
+Hier kies je vervolgens je zakelijke rekening en het CSV-bestand.
+
+338
+00:36:51.052 --> 00:36:55.139
+APPFMZ vraagt nooit om je bankwachtwoord.
+
+339
+00:36:55.379 --> 00:37:00.824
+Voor deze opname gebruiken we uitsluitend een meegeleverd fictief bestand.
+
+340
+00:37:04.083 --> 00:37:06.823
+Ik open het importvoorbeeld.
+
+341
+00:37:07.063 --> 00:37:14.052
+Controleer de kolommen voor datum, bedrag, richting, rekening en omschrijving.
+
+342
+00:37:14.292 --> 00:37:20.655
+Bij een onbekend formaat kun je de kolommen koppelen en het voorbeeld opnieuw bekijken.
+
+343
+00:37:20.895 --> 00:37:26.293
+Controleer een paar regels tegen het afschrift voordat je iets bevestigt.
+
+344
+00:37:29.583 --> 00:37:36.689
+De ontvangst van driehonderdvijftig euro lijkt op de betaling die we al handmatig hebben vastgelegd.
+
+345
+00:37:36.929 --> 00:37:41.445
+Ik controleer datum, rekening en omschrijving.
+
+346
+00:37:41.685 --> 00:37:46.132
+In dit voorbeeld is het aantoonbaar dezelfde ontvangst.
+
+347
+00:37:46.372 --> 00:37:55.184
+Ik koppel daarom de CSV-bron aan de bestaande betaling, in plaats van nog eens driehonderdvijftig euro te importeren.
+
+348
+00:37:58.500 --> 00:38:04.084
+Een afzonderlijke fictieve ontvangst van twaalf euro is wel nieuw.
+
+349
+00:38:04.324 --> 00:38:08.434
+Die geselecteerde regel importeer ik één keer.
+
+350
+00:38:08.674 --> 00:38:17.173
+Hij staat daarna nog te koppelen, want een import weet niet vanzelf bij welke factuur of andere categorie het bedrag hoort.
+
+351
+00:38:17.413 --> 00:38:21.105
+Bewaar twijfelgevallen voor controle.
+
+352
+00:38:24.417 --> 00:38:28.666
+Ik open hetzelfde CSV-bestand nog eens.
+
+353
+00:38:28.906 --> 00:38:36.174
+Reeds geïmporteerde regels worden herkend en staan niet zomaar opnieuw geselecteerd.
+
+354
+00:38:36.414 --> 00:38:45.133
+Controleer ook mogelijke overeenkomsten: niet elke gelijke datum en elk gelijk bedrag is dezelfde gebeurtenis.
+
+355
+00:38:45.373 --> 00:38:51.607
+Alleen bij aantoonbaar verschillende ontvangsten leg je een afzonderlijke reden vast.
+
+356
+00:38:54.917 --> 00:39:04.623
+Een onjuiste, nog ongekoppelde import kan met een reden worden teruggedraaid, zolang de bijbehorende controles dat toelaten.
+
+357
+00:39:04.863 --> 00:39:09.878
+De originele CSV en historie blijven bewaard.
+
+358
+00:39:10.118 --> 00:39:14.843
+Ik laat die handeling voor onze losse twaalf euro zien.
+
+359
+00:39:15.083 --> 00:39:20.784
+Een al gekoppelde of afgestemde import draai je niet blind in één keer terug.
+
+360
+00:39:24.083 --> 00:39:30.051
+Ik open Overzichten en kies het derde kwartaal van 2026.
+
+361
+00:39:30.291 --> 00:39:33.472
+Dat is juli tot en met september.
+
+362
+00:39:33.712 --> 00:39:38.124
+Omzet is de verkoopopbrengst zonder btw.
+
+363
+00:39:38.364 --> 00:39:41.998
+Ontvangen bedragen zijn geldstromen.
+
+364
+00:39:42.238 --> 00:39:46.638
+Kosten horen bij zakelijke aankopen en verbruik.
+
+365
+00:39:46.878 --> 00:39:52.671
+Resultaat is hier omzet min de geboekte kosten; het is niet je banksaldo.
+
+366
+00:39:55.917 --> 00:40:08.641
+Onze septemberfactuur van driehonderdvijftig euro bevat in dit fictieve voorbeeld tweehonderdnegenentachtig euro zesentwintig omzet en zestig euro vierenzeventig btw.
+
+367
+00:40:08.881 --> 00:40:12.759
+De ontvangst betaalt diezelfde factuur.
+
+368
+00:40:12.999 --> 00:40:16.970
+Ze voegt geen tweede omzet of btw toe.
+
+369
+00:40:17.210 --> 00:40:23.073
+Een lening, privéstorting of eigen overboeking is evenmin een verkoop.
+
+370
+00:40:26.333 --> 00:40:29.224
+Ik open Btw-overzicht.
+
+371
+00:40:29.464 --> 00:40:35.327
+Hier zie je de ingestelde methode, bedragen en controlepunten.
+
+372
+00:40:35.567 --> 00:40:42.371
+Bij factuurstelsel en kasstelsel verschilt het moment waarop omzet-btw meetelt.
+
+373
+00:40:42.611 --> 00:40:49.530
+Voorbelasting is de aftrekbare btw op zakelijke inkopen; aftrek heeft voorwaarden.
+
+374
+00:40:49.770 --> 00:40:56.550
+Volg je bevestigde instellingen en de officiële regels, niet het oefentarief.
+
+375
+00:40:59.833 --> 00:41:03.920
+Lees waarschuwingen vóór je de bedragen gebruikt.
+
+376
+00:41:04.160 --> 00:41:13.146
+Een ontbrekende bon, onbekende behandeling of nog niet aangesloten historie kan een overzicht onvolledig maken.
+
+377
+00:41:13.386 --> 00:41:19.528
+Technisch afgestemd betekent dat de berekening aansluit op de aanwezige boekingen.
+
+378
+00:41:19.768 --> 00:41:24.865
+Het is geen fiscaal akkoord en geen ingediende aangifte.
+
+379
+00:41:28.167 --> 00:41:36.178
+Je kunt het btw-overzicht als PDF downloaden om te controleren of met je boekhouder te bespreken.
+
+380
+00:41:36.418 --> 00:41:42.408
+De daadwerkelijke aangifte en betaling gebeuren buiten APPFMZ.
+
+381
+00:41:42.648 --> 00:41:46.456
+Ook zonder omzet kan aangifte nodig blijven.
+
+382
+00:41:46.696 --> 00:41:56.147
+Je persoonlijke inkomstenbelasting en eventuele bijzondere fiscale situaties worden niet met één knop in deze app geregeld.
+
+383
+00:41:59.417 --> 00:42:11.085
+Bij Overzichten kun je een volledig administratieoverzicht, een verkoopoverzicht, een uitgavenoverzicht en een btw-overzicht als PDF downloaden.
+
+384
+00:42:11.325 --> 00:42:15.005
+Controleer vooraf de gekozen periode.
+
+385
+00:42:15.245 --> 00:42:23.767
+Een export is een kopie van de administratie; het verstuurt geen facturen en dient geen aangifte in.
+
+386
+00:42:27.083 --> 00:42:31.692
+Ik kies Volledige export en back-up downloaden.
+
+387
+00:42:31.932 --> 00:42:42.509
+De ZIP bevat leesbare overzichten, CSV-bestanden, grootboek, wijzigingsgeschiedenis en de bevestigde originele bijlagen.
+
+388
+00:42:42.749 --> 00:42:47.800
+Bewaar je echte export op een veilige plek buiten dit apparaat.
+
+389
+00:42:48.040 --> 00:42:53.554
+Een nog niet bevestigde upload moet eerst worden afgerond.
+
+390
+00:42:56.833 --> 00:43:01.338
+Na controle kun je bij Instellingen een periode afsluiten.
+
+391
+00:43:01.578 --> 00:43:06.570
+Ik kies in de oefenadministratie september, met een reden.
+
+392
+00:43:06.810 --> 00:43:14.577
+Doe dit pas nadat bronnen, openstaande posten, bankstand en btw-controles zijn bekeken.
+
+393
+00:43:14.817 --> 00:43:20.053
+Afsluiten is geen fiscale aangifte en geen betaling.
+
+394
+00:43:23.333 --> 00:43:27.652
+De afgesloten periode staat nu in de lijst.
+
+395
+00:43:27.892 --> 00:43:34.336
+Boekingen en correcties die deze periode raken kunnen worden geblokkeerd.
+
+396
+00:43:34.576 --> 00:43:40.462
+Dat helpt voorkomen dat gecontroleerde cijfers ongemerkt veranderen.
+
+397
+00:43:40.702 --> 00:43:47.668
+Ontdek je later een fout, wis dan geen oorspronkelijke documenten om de blokkade te omzeilen.
+
+398
+00:43:50.917 --> 00:43:56.931
+Als een gecontroleerde correctie echt nodig is, bestaat Heropenen met reden.
+
+399
+00:43:57.171 --> 00:44:01.188
+Ik toon dat in deze oefenadministratie.
+
+400
+00:44:01.428 --> 00:44:06.443
+De reden en de heropening blijven in de geschiedenis staan.
+
+401
+00:44:06.683 --> 00:44:15.333
+Werk daarna de correctie, controle en zo nodig de export bij, en sluit de periode opnieuw wanneer alles aansluit.
+
+402
+00:44:18.583 --> 00:44:24.737
+Bij Bezittingen en schulden staan onderdelen die niet iedere week nodig zijn.
+
+403
+00:44:24.977 --> 00:44:31.641
+Een lening is geld dat je later moet terugbetalen; de ontvangst is geen omzet.
+
+404
+00:44:31.881 --> 00:44:40.054
+Ik registreer een fictieve bestaande schuld van duizend euro op de beginbalans, met een datum en omschrijving.
+
+405
+00:44:40.294 --> 00:44:44.927
+Gebruik die beginbalanskeuze niet voor een nieuwe ontvangst.
+
+406
+00:44:48.167 --> 00:44:55.934
+Bij een nieuwe lening leg je de lening vast en koppel je de werkelijke ontvangst vanuit Bank/Kas aan die schuld.
+
+407
+00:44:56.174 --> 00:45:01.259
+Bij een aflossing koppel je de uitgaande mutatie aan de lening.
+
+408
+00:45:01.499 --> 00:45:04.808
+Rente verwerk je apart als uitgave.
+
+409
+00:45:05.048 --> 00:45:09.761
+Zo blijft aflossen iets anders dan zakelijke kosten.
+
+410
+00:45:13.083 --> 00:45:18.610
+Een bedrijfsmiddel is bijvoorbeeld een apparaat dat je meerdere jaren gebruikt.
+
+411
+00:45:18.850 --> 00:45:28.416
+Ik registreer een fictief bestaand trainingsapparaat met een boekwaarde van duizend euro en een gecontroleerde restwaarde van honderd euro.
+
+412
+00:45:28.656 --> 00:45:33.660
+De beginbalanskeuze bevestigt dat dit geen nieuwe aankoop is.
+
+413
+00:45:33.900 --> 00:45:39.101
+Een nieuwe aankoop koppel je aan de eerder geboekte aanschafuitgave.
+
+414
+00:45:42.417 --> 00:45:46.573
+Afschrijven verdeelt de kosten over de gebruiksduur.
+
+415
+00:45:46.813 --> 00:45:49.785
+Het is geen nieuwe bankbetaling.
+
+416
+00:45:50.025 --> 00:45:57.316
+Ik open Gecontroleerd afschrijven en boek in deze oefening tien euro met een vastgelegde grondslag.
+
+417
+00:45:57.556 --> 00:46:01.492
+De boekwaarde wordt negenhonderdnegentig euro.
+
+418
+00:46:01.732 --> 00:46:07.943
+Kies echte termijnen en bedragen pas na controle van de toepasselijke regels.
+
+419
+00:46:11.250 --> 00:46:18.355
+De knoppen Boekingen laten de bron en veranderingen van lening of bedrijfsmiddel zien.
+
+420
+00:46:18.595 --> 00:46:24.900
+Dit zijn onderwerpen waarbij de juiste beginbalans en onderbouwing belangrijk zijn.
+
+421
+00:46:25.140 --> 00:46:31.583
+Gebruik geen verzonnen schuld of bezit om een verschil in je bankstand op te lossen.
+
+422
+00:46:31.823 --> 00:46:37.558
+Raadpleeg bij twijfel je boekhouder voordat je echte gegevens bevestigt.
+
+423
+00:46:40.833 --> 00:46:45.396
+Bij Facturen kan Historische administratie staan.
+
+424
+00:46:45.636 --> 00:46:51.128
+Dat zijn oude bronnen die niet automatisch opnieuw in het grootboek zijn geboekt.
+
+425
+00:46:51.368 --> 00:46:55.837
+Oude facturen en PDF's worden niet herberekend.
+
+426
+00:46:56.077 --> 00:47:02.242
+Bij Instellingen leg je vast wat bij de aansluiting van die historie is gecontroleerd.
+
+427
+00:47:02.482 --> 00:47:08.612
+Een vinkje of toelichting boekt ontbrekende historie niet vanzelf goed.
+
+428
+00:47:11.917 --> 00:47:17.780
+Bij Bron en boekingen vind je originele bestanden en de bewaargrondslag.
+
+429
+00:47:18.020 --> 00:47:25.415
+Basisgegevens moet je doorgaans zeven jaar bewaren; voor bepaalde gegevens gelden langere termijnen.
+
+430
+00:47:25.655 --> 00:47:31.367
+Een onbekend einde van de actualiteit betekent hier blijven bewaren.
+
+431
+00:47:31.607 --> 00:47:36.797
+De app verwijdert je documenten niet automatisch na een willekeurige datum.
+
+432
+00:47:40.083 --> 00:47:47.990
+De uitgebreide route Gecontroleerde balanscorrectie vraagt bron, reden en twee passende rekeningen.
+
+433
+00:47:48.230 --> 00:47:53.721
+Dat is geen gewone betaalactie en geen vervanging voor een creditfactuur.
+
+434
+00:47:53.961 --> 00:47:59.232
+Ik laat het formulier zien, maar boek geen willekeurige correctie.
+
+435
+00:47:59.472 --> 00:48:04.383
+Laat zo'n keuze onderbouwen wanneer je de werking nog niet begrijpt.
+
+436
+00:48:07.667 --> 00:48:12.148
+Krijg je Niet opgeslagen, sluit dan je invoer niet zomaar.
+
+437
+00:48:12.388 --> 00:48:17.195
+Wacht op bevestiging of probeer dezelfde handeling opnieuw.
+
+438
+00:48:17.435 --> 00:48:24.377
+Krijg je een opslagconflict, ververs en vergelijk de actuele gegevens voordat je verdergaat.
+
+439
+00:48:24.617 --> 00:48:30.248
+Een ouder scherm mag niet stilzwijgend nieuwere invoer overschrijven.
+
+440
+00:48:30.488 --> 00:48:36.549
+De oorspronkelijke documenten en correctiehistorie blijven je controlebasis.
+
+441
+00:48:39.833 --> 00:48:46.161
+De agenda en aanwezigheidsregistratie staan los van facturatie.
+
+442
+00:48:46.401 --> 00:48:52.368
+Iemand kan aanwezig zijn zonder al betaald te hebben, of vooruit betaald hebben.
+
+443
+00:48:52.608 --> 00:48:57.670
+Het maandoverzicht van afspraken is geen factuurberekening.
+
+444
+00:48:57.910 --> 00:49:04.203
+Controleer daarom pakketafspraak, factuur en bankontvangst ieder op hun eigen bron.
+
+445
+00:49:07.500 --> 00:49:14.315
+Je kunt nu per hoofdstuk terugkijken en in Uitleg en oefenen veilig verder oefenen.
+
+446
+00:49:14.555 --> 00:49:23.437
+De beginnersroute, de uitgebreide lessen, begrippenlijst, taken en PDF-handleiding blijven beschikbaar.
+
+447
+00:49:23.677 --> 00:49:27.473
+Je bestaande cursusvoortgang blijft behouden.
+
+448
+00:49:27.713 --> 00:49:35.434
+Start in je echte administratie met één gecontroleerde gebeurtenis en controleer daarna het resultaat.
+
+449
+00:49:35.674 --> 00:49:41.038
+Dat is beter dan dezelfde bedragen op meerdere plekken opnieuw invoeren.

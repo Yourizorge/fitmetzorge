@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-15T16:01:15.504Z",
+  "ownerExplicitlyConfirmedFourListedErrors": true,
+  "originalInvoicesRetained": true,
+  "newInvoicesOrNumbers": 0,
+  "onlyChangedTables": [
+    "fmz_accounting.records",
+    "fmz_accounting.journals",
+    "fmz_accounting.lines",
+    "fmz_accounting.audit",
+    "fmz_accounting.receipts"
+  ],
+  "expectedAdditions": {
+    "records": 6,
+    "journals": 6,
+    "lines": 12,
+    "audit": 4,
+    "receipts": 4
+  },
+  "unchangedTables": [
+    "auth.identities",
+    "auth.users",
+    "fmz_accounting.accounts",
+    "fmz_accounting.agreement_versions",
+    "fmz_accounting.files",
+    "fmz_accounting.organizations",
+    "fmz_agenda.config",
+    "fmz_agenda.deliveries",
+    "fmz_agenda.events",
+    "fmz_agenda.preferences",
+    "fmz_agenda.requests",
+    "fmz_agenda.subscriptions",
+    "fmz_private.photo_annotations",
+    "fmz_private.write_receipts",
+    "public.client_invites",
+    "public.coach_workspaces",
+    "public.profiles",
+    "storage.buckets",
+    "storage.objects"
+  ],
+  "functionsPoliciesGrantsUnchanged": true
+}

@@ -1,3 +1,5 @@
+/* Historical 6874173 recorder: reproduce this short video from that checkout.
+ * The current complete course uses record-spoken-course.cjs with the updated shared repair UI. */
 /* Real isolated owner screens; fixed fictional data; offline Dutch narration. */
 const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process'),{chromium}=require('playwright'),{start}=require('./preview.cjs');
 const dir='tests/artifacts/bank-repair-video',media='tutorial/media';fs.mkdirSync(dir,{recursive:true});fs.mkdirSync(media,{recursive:true});

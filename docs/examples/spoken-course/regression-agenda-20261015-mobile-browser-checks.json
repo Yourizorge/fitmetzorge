@@ -1,0 +1,567 @@
+{
+  "emulation": true,
+  "physicalPushReceived": false,
+  "pushAPIStubbed": true,
+  "report": [
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 320,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 320,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 320,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 320,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 390,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 390,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 390,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 390,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 768,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 768,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 768,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 768,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 844,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 844,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 844,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 844,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 1400,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 1400,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 1400,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "trainer",
+      "width": 1400,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 320,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 320,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 320,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 320,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 390,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 390,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 390,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 390,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 768,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 768,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 768,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 768,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 844,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 844,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 844,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 844,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 1400,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 1400,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 1400,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "role": "member",
+      "width": 1400,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 320,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 320,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 320,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 320,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 390,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 390,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 390,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 390,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 768,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 768,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 768,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 768,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 844,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 844,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 844,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 844,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 1400,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 1400,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 1400,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "trainer",
+      "width": 1400,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 320,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 320,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 320,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 320,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 390,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 390,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 390,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 390,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 768,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 768,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 768,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 768,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 844,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 844,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 844,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 844,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 1400,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 1400,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 1400,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "engine": "android",
+      "role": "member",
+      "width": 1400,
+      "mode": "list",
+      "overflow": false
+    }
+  ]
+}

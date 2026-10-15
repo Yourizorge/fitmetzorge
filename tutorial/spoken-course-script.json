@@ -1,0 +1,679 @@
+{
+  "version": "3.0.0",
+  "checked": "2026-10-15",
+  "title": "APPFMZ — volledige gesproken administratierondleiding",
+  "synthetic": true,
+  "company": "FitMetZorge Oefenbedrijf",
+  "voice": "Piper nl_NL-ronnie-medium, lokaal gegenereerd",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Welkom en het administratieoverzicht",
+      "coverage": [
+        "overview",
+        "show-open",
+        "show-late",
+        "show-receipts",
+        "show-bank",
+        "show-checks",
+        "reload",
+        "tutorial",
+        "tutorial-help"
+      ],
+      "scenes": [
+        {
+          "id": "01-welkom",
+          "text": "Welkom bij de volledige administratierondleiding van FitMetZorge. Je kijkt naar de echte gebouwde app, met een volledig afzonderlijke oefenadministratie. Ons vaste bedrijf heet FitMetZorge Oefenbedrijf. Noor Voorbeeld en Sam Oefen zijn verzonnen klanten. Er wordt geen echte factuur verstuurd en je eigen administratie wordt nergens geopend."
+        },
+        {
+          "id": "01-overzicht",
+          "text": "Ik open Administratie. Overzicht is je startpunt. Nog open betekent wat klanten op dit moment nog moeten betalen. Te laat is het openstaande deel waarvan de betaaltermijn voorbij is. Ontvangen in periode gaat over geld dat in de gekozen periode aan facturen is gekoppeld. Dat is niet hetzelfde als omzet."
+        },
+        {
+          "id": "01-periode",
+          "text": "Ik kies september 2026 en pas de periode toe. In deze nieuwe oefenadministratie zijn de tellers nog nul. Tijdens de volgende hoofdstukken bouwen we de administratie op. Kijk steeds naar de periode boven het overzicht. Openstaande bedragen kijken naar de huidige toestand; ontvangen bedragen horen bij het gekozen tijdvak."
+        },
+        {
+          "id": "01-routes",
+          "text": "Links staan de dagelijkse routes: Overzicht, Facturen, Bank/Kas en Overzichten. Onder Meer administratie vind je Uitgaven en bonnen, Privé, Bezittingen en schulden, Btw-overzicht en Instellingen. Je hoeft een gebeurtenis niet in ieder scherm opnieuw in te voeren. Eén bevestigde boeking kan in meerdere overzichten terugkomen."
+        },
+        {
+          "id": "01-hulp",
+          "text": "Het vraagteken geeft uitleg over dit onderdeel. Uitleg en oefenen opent de cursus en de veilige voorbeelden. Je kunt deze video pauzeren, tien seconden teruggaan, een hoofdstuk kiezen of langzamer afspelen. Oefen eerst met de voorbeeldgegevens. Gewoon de video bekijken doet niets in je echte administratie."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Bedrijfsgegevens, rekeningen en beginstand",
+      "coverage": [
+        "settings",
+        "account",
+        "opening",
+        "account-visibility"
+      ],
+      "scenes": [
+        {
+          "id": "02-instellingen",
+          "text": "Ik open Administratie-instellingen. Hier controleer je bedrijfsnaam, adres, contactgegevens en de gegevens die op de factuur komen. De zichtbare voorbeeldgegevens zijn ongeldig voor echt gebruik. Een wijziging krijgt een ingangsdatum. Bestaande definitieve facturen blijven hun oorspronkelijke gegevens houden."
+        },
+        {
+          "id": "02-btw",
+          "text": "In dit oefenbedrijf zijn een fictief tarief van eenentwintig procent en het factuurstelsel vooraf ingesteld. Dat is geen advies voor jouw onderneming. Kopieer deze keuzes dus niet. Controleer je eigen btw-status, stelsel en aangifteperiode aan je officiële gegevens. De app dient geen belastingaangifte voor je in."
+        },
+        {
+          "id": "02-rekening",
+          "text": "Nu open ik Bank/Kas en klap Rekeningen, beginstand en bankafstemming uit. Een bankrekening is een plek waar je geld administratief volgt. Een rekening toevoegen maakt geen verbinding met de bank. Ik maak een tweede fictieve rekening aan. Er wordt geen echte bankrekening of geldig rekeningnummer gebruikt."
+        },
+        {
+          "id": "02-beginstand",
+          "text": "Het openingssaldo is de stand aan het einde van de dag vóór je eerste transactiedag. Hier vullen we bewust nul in, omdat deze oefenrekening leeg begint. Bij je echte rekening neem je de gecontroleerde afschriftstand over. Een leeg veld betekent onbekend, niet automatisch nul."
+        },
+        {
+          "id": "02-kas",
+          "text": "Een kasrekening is alleen voor munten en bankbiljetten. Gebruik je geen contant geld, dan kun je Kas verbergen en later weer tonen. Verbergen wist geen oude boekingen. De controle hier is eenvoudig: de juiste rekeningnaam, de juiste soort en een bewust gekozen begindatum en beginstand."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Klant, pakket en maand of vier weken",
+      "coverage": [
+        "client-agreement",
+        "billing-form",
+        "billing-invoice",
+        "agenda-separation"
+      ],
+      "scenes": [
+        {
+          "id": "03-klant",
+          "text": "Ik ga naar Klanten en open de betaalafspraak van Noor Voorbeeld. De betaalafspraak bepaalt welk pakket en welke factuurperiode gelden. De agenda bepaalt wanneer je elkaar ziet. Een afspraak maken, aanwezigheid registreren, afronden of annuleren maakt geen factuur, geen betaling en geen wijziging van deze betaalafspraak."
+        },
+        {
+          "id": "03-pakket",
+          "text": "Bij de één-op-één pakketten hoort Basis bij vier trainingen en tweehonderd euro. Progressie heeft acht trainingen voor driehonderdtachtig euro. Transformatie heeft twaalf trainingen voor vierhonderdtachtig euro. Lees altijd het totale bedrag en de periode bij de afspraak. Duo, online en individuele afspraken hebben hun eigen afgesproken tarieven."
+        },
+        {
+          "id": "03-maand",
+          "text": "Ik kies voor Noor Progressie per kalendermaand, met een ingangsdatum en een toelichting. September loopt van één tot en met dertig september. Dit zijn acht afgesproken trainingen, geen berekening met gemiddelde kalenderweken. Controleer de echte afspraak met je klant voordat je zo'n keuze bevestigt."
+        },
+        {
+          "id": "03-vierweken",
+          "text": "Voor Sam Oefen laat ik een andere afspraak zien: vier weken vanaf zeven september. Vier weken zijn achtentwintig dagen. De eerste periode loopt hier tot en met vier oktober; de volgende begint vijf oktober. Dit is dus niet hetzelfde als september of oktober als kalendermaand."
+        },
+        {
+          "id": "03-kiezen",
+          "text": "Terug bij Facturen kies ik Pakketfactuur: concept openen. Ik kies Noor en een datum in september. De app vindt de bijbehorende betaalafspraak en periode. Controleer klant, pakket en begindatum voordat je verdergaat. Voor een al bestaande pakketperiode opent de app de bestaande factuur; maak geen tweede maandpakket per losse training."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Factuurconcept, trainingsregels en korting",
+      "coverage": [
+        "invoice",
+        "new-package",
+        "new-invoice",
+        "choose-invoice",
+        "invoice-line-add",
+        "invoice-line-remove",
+        "draft-delete"
+      ],
+      "scenes": [
+        {
+          "id": "04-concept",
+          "text": "Dit is een concept: er is nog geen definitief factuurnummer en geen omzetboeking. Ik controleer Noor, het fictieve adres en de omschrijving van de dienstverlening. De eerste regel bevat acht trainingen van zevenenveertig euro vijftig. Samen is dat driehonderdtachtig euro inclusief de ingestelde btw."
+        },
+        {
+          "id": "04-korting",
+          "text": "Ik vul dertig euro korting in, met de toelichting voorbeeldkorting. In het voorbeeld zie je direct: oorspronkelijk driehonderdtachtig, korting dertig, totaal driehonderdvijftig euro. Je kunt ook een percentage kiezen, maar controleer altijd de uiteindelijke eurobedragen. Een negatieve korting of korting boven het subtotaal is niet toegestaan."
+        },
+        {
+          "id": "04-regels",
+          "text": "Met Factuurregel toevoegen kun je een echte extra dienst afzonderlijk beschrijven. Ik voeg ter demonstratie een extra regel toe en verwijder die weer. Daarna is het totaal opnieuw driehonderdvijftig euro. Voeg geen regel toe voor een betaling: een betaling is geen nieuwe verkoop. Controleer aantallen en eenheidsprijzen vóór bevestiging."
+        },
+        {
+          "id": "04-datums",
+          "text": "Ik controleer factuurdatum, betaaltermijn, leverdatum en omvang van de dienst. In dit voorbeeld is de factuurdatum één september en de betaaltermijn veertien dagen. De zichtbare voorbeeld-PDF helpt je om naam, omschrijving, korting en totaal nog eens rustig naast elkaar te bekijken."
+        },
+        {
+          "id": "04-bewaren",
+          "text": "De melding Concept opgeslagen volgt na bevestigde opslag. Typen geeft geen definitieve factuur uit. Een onbruikbaar concept kun je met Concept verwijderen wegdoen; die actie vraagt bevestiging. Een definitieve factuur verwijder je zo niet. Voor losse diensten bestaat ook Vrije factuur: concept openen, met dezelfde controle vóór uitgifte."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Definitief maken, PDF en bewust delen",
+      "coverage": [
+        "invoice-save",
+        "invoice-open",
+        "invoice-pdf",
+        "invoice-share",
+        "native-share",
+        "pdf-viewer"
+      ],
+      "scenes": [
+        {
+          "id": "05-definitief",
+          "text": "Alles klopt, dus ik kies Opslaan en PDF downloaden. Nu pas wordt het concept definitief. De oefenomgeving gebruikt een eigen, duidelijk gemarkeerd oefennummer en een watermerk. In je echte administratie geeft de server een echt factuurnummer uit. Een bevestigd nummer en de oorspronkelijke PDF blijven daarna bewaard."
+        },
+        {
+          "id": "05-pdf",
+          "text": "Ik open de opgeslagen PDF. Kijk naar de bedrijfsgegevens, Noor als klant, de omschrijving, acht trainingen, de korting en het eindtotaal. In onze fictieve eenentwintigprocentssituatie bestaat driehonderdvijftig euro uit tweehonderdnegenentachtig euro zesentwintig omzet en zestig euro vierenzeventig btw. Het watermerk maakt dit document ongeldig als echte factuur."
+        },
+        {
+          "id": "05-opnieuw",
+          "text": "Met PDF downloaden krijg je later opnieuw hetzelfde opgeslagen document. Als downloaden mislukt, gebruik je deze knop opnieuw; maak daarvoor geen nieuwe factuur. Ook na opnieuw inloggen blijft de bevestigde factuur beschikbaar. Controleer het gedownloade bestand voordat je het aan iemand doorgeeft."
+        },
+        {
+          "id": "05-delen",
+          "text": "Delen opent de PDF met een knop voor het deelvenster van je apparaat. Ik laat de beschikbare actie zien, maar verstuur niets. Werkt bestanden delen niet in je browser, download dan de PDF en deel die zelf vanuit Bestanden of je mailprogramma. Controleer daar de ontvanger."
+        },
+        {
+          "id": "05-controle",
+          "text": "Een geopend deelvenster bewijst niet dat de klant de factuur heeft ontvangen of betaald. Er is geen automatische mailverzending in deze demonstratie. De factuur blijft open tot de betaling correct is geregistreerd. Is een definitieve factuur inhoudelijk fout, dan gebruik je de passende correctie; je overschrijft het oorspronkelijke document niet."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Een volledige betaling registreren",
+      "coverage": [
+        "payment",
+        "payment-create",
+        "payment-validation"
+      ],
+      "scenes": [
+        {
+          "id": "06-ontvangst",
+          "text": "Noor heeft volgens ons fictieve afschrift driehonderdvijftig euro betaald op vijftien september. Eerst vergelijken we naam, bedrag en omschrijving met de bestaande factuur. Een gelijk bedrag alleen bewijst nog geen match. In deze oefening is de ontvangst nog niet eerder in Bank/Kas ingevoerd."
+        },
+        {
+          "id": "06-open",
+          "text": "Ik kies Betaling registreren bij Noors factuur. Het betaalvenster vult het openstaande bedrag vooraf in. Dat is een voorstel, geen bewijs van ontvangst. Controleer het bedrag dat werkelijk op je afschrift staat. Registreer geen betaling omdat een training is geweest of omdat de factuur is verzonden."
+        },
+        {
+          "id": "06-velden",
+          "text": "Ik laat driehonderdvijftig euro staan, kies vijftien september en Zakelijke oefenbank. De datum is de werkelijke ontvangst- of boekdatum op het afschrift. Bij contant geld gebruik je de datum waarop je het ontving en kies je Kas. De omschrijving maakt de betaling later herkenbaar."
+        },
+        {
+          "id": "06-bevestigen",
+          "text": "Ik lees de samenvatting en kies Betaling registreren. De app slaat één ontvangst met de koppeling naar deze factuur op. Pas na de serverbevestiging sluiten we het venster. Nu staat er nul euro open en is de factuur betaald. Er is geen tweede factuur en geen tweede omzet ontstaan."
+        },
+        {
+          "id": "06-fout",
+          "text": "Bij een verbindingsfout blijft de invoer in het open venster staan en kun je dezelfde handeling opnieuw proberen. Bij een conflict ververs en vergelijk je eerst. Maak niet blind een nieuwe ontvangst. Sluit een venster met onopgeslagen invoer niet zomaar; herstel na het sluiten van een tabblad wordt niet beloofd."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Bank/Kas en het boekingsspoor controleren",
+      "coverage": [
+        "bank",
+        "bank-activity",
+        "detail",
+        "file"
+      ],
+      "scenes": [
+        {
+          "id": "07-automatisch",
+          "text": "Ik open Bank/Kas. De zojuist bevestigde driehonderdvijftig euro staat hier al. Je ziet rekening, datum en omschrijving. De bron is Zelf geregistreerde factuurbetaling. Dat betekent dat jij de ontvangst hebt ingevoerd; de app heeft geen bankrekening uitgelezen. Voer deze ontvangst dus niet nogmaals handmatig in."
+        },
+        {
+          "id": "07-koppeling",
+          "text": "Vanaf de bankmutatie open ik de bijbehorende factuur. De betaling en het restant horen bij hetzelfde document. Dit is de controle die dubbel boeken voorkomt: één factuur, één bankontvangst en één passende koppeling. De factuur maakt de verkoop; de betaling maakt de schuld van de klant kleiner."
+        },
+        {
+          "id": "07-boekingen",
+          "text": "Bij Betalingen bekijken of corrigeren kun je de ontvangst en onderliggende boekingen bekijken. Debet en credit zijn hier de twee kanten van een boeking. Je hoeft die regels voor een gewone betaling niet zelf te maken. Controleer vooral bron, datum, bedrag, rekening en het resterende factuurbedrag."
+        },
+        {
+          "id": "07-verversen",
+          "text": "Ik ververs het overzicht. De bevestigde betaling blijft bestaan en de bankstand blijft driehonderdvijftig euro. Verversen voert geen nieuwe boeking uit. Zie je een verschil met je echte bank, controleer dan eerst het afschrift en de bronnen. Een administratieve stand is niet automatisch je werkelijke banksaldo of je winst."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Deelbetaling: €200 en daarna €150",
+      "coverage": [
+        "payment-partial",
+        "payment-history"
+      ],
+      "scenes": [
+        {
+          "id": "08-start",
+          "text": "We gebruiken nu een tweede oefenfactuur voor Noor, voor oktober. Ook deze heeft driehonderdvijftig euro te betalen. De septemberfactuur blijft apart en betaald. Zo verwarren we geen betalingen van verschillende facturen. Noor betaalt de nieuwe factuur in twee delen."
+        },
+        {
+          "id": "08-eerste",
+          "text": "Bij Betaling registreren verander ik het bedrag in tweehonderd euro. Ik kies vijftien oktober en Zakelijke oefenbank. Controleer het werkelijk ontvangen deel, de datum en de rekening. De app mag niet automatisch doen alsof de hele factuur betaald is."
+        },
+        {
+          "id": "08-restant",
+          "text": "Na bevestiging staat er honderdvijftig euro open. Tweehonderd ontvangen plus honderdvijftig nog te ontvangen is samen driehonderdvijftig. De factuur is gedeeltelijk betaald. Je hoeft de oorspronkelijke factuur of het factuurbedrag niet aan te passen."
+        },
+        {
+          "id": "08-tweede",
+          "text": "Ik registreer de tweede ontvangst van honderdvijftig euro op zestien oktober. Ook dit is een afzonderlijke ontvangst met een eigen datum. Na bevestiging is het restant nul. Er zijn twee betalingen bij één factuur, geen twee verkopen."
+        },
+        {
+          "id": "08-historie",
+          "text": "Ik open Betalingen bekijken of corrigeren. Hier zie je beide bedragen met hun datums. Vergelijk dit met de twee regels op het afschrift. Voor je kwartaalcontrole kan de betaaldatum uitmaken; verander die niet om een overzicht mooier te laten aansluiten. Een verkeerde datum corrigeer je met een zichtbare correctie."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Een bestaande bankontvangst koppelen",
+      "coverage": [
+        "payment-existing",
+        "bank",
+        "allocate",
+        "add-split",
+        "remove-split"
+      ],
+      "scenes": [
+        {
+          "id": "09-bestaand",
+          "text": "Soms staat een ontvangst al in Bank/Kas, bijvoorbeeld door CSV-import. Voor deze demonstratie staat Sams ontvangst van tweehonderd euro al klaar, maar nog zonder factuurkoppeling. Zijn factuur heeft ook tweehonderd euro open. De ontvangst mag niet opnieuw worden ingevoerd."
+        },
+        {
+          "id": "09-selecteer",
+          "text": "Ik open Betaling registreren en kies de optie voor een bestaande ontvangst. In de keuzelijst controleer ik rekening, datum, bedrag en omschrijving. Ik selecteer Sams bestaande tweehonderd euro. De samenvatting moet aangeven dat de bestaande bankmutatie wordt gebruikt."
+        },
+        {
+          "id": "09-koppel",
+          "text": "Na bevestiging staat Sams factuur op betaald. Het aantal bankontvangsten en het banksaldo veranderen hierdoor niet: alleen de koppeling is toegevoegd. Dat is het belangrijke verschil met een nieuwe betaling registreren. Eén afschriftregel moet ook hier één bankmutatie blijven."
+        },
+        {
+          "id": "09-splitsen",
+          "text": "De uitgebreidere route heet Koppelen of splitsen bij een niet-gekoppelde bankmutatie. Die is bedoeld als één echte betaling bij meerdere posten hoort, bijvoorbeeld twee facturen. Je kiest per deel de juiste bron en het bedrag. Voeg of verwijder een deelregel vóór opslaan en controleer dat de delen samen bij de bron passen."
+        },
+        {
+          "id": "09-controle",
+          "text": "Kun je de betaler of factuur niet betrouwbaar bepalen, laat de ontvangst dan nog te beoordelen. Koppel niet uitsluitend omdat een bedrag overeenkomt. Bewaar de bankbron en zoek de juiste omschrijving of afspraak erbij. Ook een privéontvangst of lening is geen factuurbetaling."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Een betaalfout corrigeren met historie",
+      "coverage": [
+        "payment-correct",
+        "payment-refresh",
+        "bank-repair"
+      ],
+      "scenes": [
+        {
+          "id": "10-fout",
+          "text": "In ons oktobervoorbeeld blijkt de tweede betaaldatum onjuist ingevoerd: het geld kwam zeventien oktober binnen. Het bedrag van honderdvijftig euro klopt wel. We openen de betalingen van die factuur. We verwijderen de oorspronkelijke invoer niet, maar maken een controleerbare correctie."
+        },
+        {
+          "id": "10-reden",
+          "text": "Bij de tweede betaling kies ik Corrigeren, foutieve invoer herstellen. Ik kies dat deze hele zelf ingevoerde betaling fout is en vul een concrete reden in: betaaldatum moet zeventien oktober zijn. Eerst bekijk ik het effect. Pas daarna bevestig ik. Dit maakt geen geld naar Noor over."
+        },
+        {
+          "id": "10-teruggedraaid",
+          "text": "Na bevestiging blijft de oude betaling zichtbaar als gecorrigeerd. Tijdelijk staat honderdvijftig euro opnieuw open. In dit geval was de ontvangst handmatig via de betaalactie gemaakt, dus de foutieve ontvangst en koppeling worden tegengeboekt. Bij een bestaande bankbron blijft die bron staan en corrigeer je alleen de koppeling."
+        },
+        {
+          "id": "10-juist",
+          "text": "Nu registreer ik de werkelijke honderdvijftig euro met zeventien oktober als datum. De factuur is weer betaald. De historie vertelt wat oorspronkelijk was ingevoerd, waarom dat fout was en welke ontvangst nu geldt. De omzet en btw van de factuur zijn niet opnieuw geboekt."
+        },
+        {
+          "id": "10-grenzen",
+          "text": "Is de bronperiode afgesloten of is de betaling ingewikkeld verdeeld, dan kan de app de correctie blokkeren. Ga dan eerst terug naar de bron en de periodecontrole. Maak geen omweg met een nieuwe factuur of een willekeurige balanspost. Een conflict vraagt verversen en vergelijken, geen eindeloos opnieuw klikken."
+        },
+        {
+          "id": "10-bankfout",
+          "text": "Nu oefenen we een volledig verzonnen handmatige ontvangst van negentig euro. Dit is uitsluitend fictief oefenmateriaal. We voeren deze opzettelijke fout in via Bank en Kas. In je echte administratie maak je alleen een mutatie wanneer die werkelijk heeft plaatsgevonden. Handmatig ingevoerd betekent op zichzelf niet dat een regel fout is."
+        },
+        {
+          "id": "10-bankeffect",
+          "text": "Bij deze regel kies ik Corrigeren, foutieve invoer herstellen. Ik leg uit dat de hele ontvangst verzonnen is en kies Effect bekijken. Het voorstel laat zien dat de administratieve bankstand negentig euro daalt. Er is geen factuur gekoppeld, dus er verandert geen factuurbetaling. Omzet en kosten blijven gelijk. Er is nog niets gecorrigeerd."
+        },
+        {
+          "id": "10-bankbevestigen",
+          "text": "Na controle bevestig ik de getoonde correctie. De oorspronkelijke regel blijft met een tegenboeking in de historie staan. Dit verwijdert geen factuur, bestand of controlehistorie. Een foutieve beginstand heeft een eigen herstelactie: je kunt die vervangen door een gecontroleerd saldo of terugzetten naar onbekend. Onbekend is niet hetzelfde als nul."
+        },
+        {
+          "id": "10-losmaken",
+          "text": "Bij een echte ontvangst die aan de verkeerde factuur hangt, kiezen we uitsluitend de koppeling losmaken. Dat oefenen we met de bestaande ontvangst van Sam. Bekijk het effect: de bankstand blijft gelijk. De factuur krijgt weer tweehonderd euro open, terwijl de ontvangst beschikbaar blijft om aan de juiste factuur te koppelen. Zo verzinnen we geen tweede ontvangst."
+        },
+        {
+          "id": "10-opnieuwkoppelen",
+          "text": "Ik koppel dezelfde bestaande ontvangst opnieuw via Betaling registreren. Controleer datum, rekening en het beschikbare bedrag. De factuur is daarna weer voldaan, zonder extra bankmutatie, omzet of factuur-btw. Gebruik deze route alleen wanneer de factuurkoppeling werkelijk correct is. Bij twijfel vergelijk je eerst het afschrift en de oorspronkelijke factuur."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Contant ontvangen en zakelijke uitgaven",
+      "coverage": [
+        "expense",
+        "expense-correction",
+        "proof",
+        "cash",
+        "paid-private"
+      ],
+      "scenes": [
+        {
+          "id": "11-contant",
+          "text": "Voor een andere oefenfactuur betaalt Sam vijftig euro contant. In Betaling registreren kies ik Oefenkas. Na bevestiging staat het geld in Kas en niet op de bank. Alleen werkelijk ontvangen biljetten en munten horen hier. Een bankoverschrijving hoort niet in Kas."
+        },
+        {
+          "id": "11-uitgave",
+          "text": "Ik open Uitgaven en bonnen. We voeren een fictieve aankoop van trainingsmateriaal in: vierentwintig euro twintig inclusief btw. Ik vul leverancier, factuurdatum, omschrijving en de passende categorie in. De aankoop wordt maar één keer als uitgave vastgelegd."
+        },
+        {
+          "id": "11-bon",
+          "text": "Ik kies de btw-behandeling volgens de oefenbon: vier euro twintig btw, volledig zakelijk en in dit voorbeeld volledig aftrekbaar. Dat is geen algemene aanname. Zonder bewijs of bij onduidelijke btw laat je de juiste waarschuwing staan. Ik voeg een duidelijk synthetische bon toe; er wordt geen echt document geüpload."
+        },
+        {
+          "id": "11-betalen",
+          "text": "De bon wordt in dit voorbeeld contant betaald. Eerst staat de uitgave met een openstaand bedrag in de administratie. Ik leg de uitgaande kasmutatie vast en koppel die aan deze uitgave. Nu is Kas vijfentwintig euro tachtig en staat deze leverancier niet meer open. De koppeling maakt geen tweede kostenpost."
+        },
+        {
+          "id": "11-voorschot",
+          "text": "Heb je een zakelijke bon privé betaald, kies dan Privé voorgeschoten. De app houdt bij wat de onderneming nog aan jou moet vergoeden. Dat is iets anders dan een privéstorting. Een foutieve uitgave kun je tegenboeken met een reden; het origineel blijft bestaan. Een eventuele echte terugbetaling moet daarna apart worden gekoppeld."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Openstaande en te late facturen",
+      "coverage": [
+        "salesStatus",
+        "show-open",
+        "show-late",
+        "historical-invoices"
+      ],
+      "scenes": [
+        {
+          "id": "12-open",
+          "text": "Ik open Facturen en kies Nog open. Hier staat alleen wat nog van klanten te ontvangen is. Een gedeeltelijk betaalde factuur toont het resterende bedrag. In ons voorbeeld staat ook een afzonderlijke onbetaalde oefenfactuur klaar, zodat je het verschil met de al betaalde facturen kunt zien."
+        },
+        {
+          "id": "12-laat",
+          "text": "Met Te laat zie je openstaande facturen waarvan de vervaldatum voorbij is. Een verstreken datum bewijst geen betaling en geen aanwezigheid bij een training. Controleer eerst of het geld misschien al op je bank staat maar nog niet is gekoppeld."
+        },
+        {
+          "id": "12-filters",
+          "text": "De andere filters zijn Concept, Definitief, Betaald, Geannuleerd en Gecrediteerd. Concept betekent nog geen definitieve factuur. Gecrediteerd betekent dat een correctiefactuur bij het origineel hoort. Het is niet automatisch een terugbetaling. Gebruik het filter om de bron te vinden en open daarna de details."
+        },
+        {
+          "id": "12-opvolgen",
+          "text": "Als de klant echt nog moet betalen, neem je zelf passend contact op. In deze route is geen automatische aanmaning of incasso ingericht. Verstuur geen dubbele factuur alleen om aandacht te vragen. Download zo nodig de bestaande PDF opnieuw en controleer de ontvanger buiten de app."
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Annuleren, credit en echte terugbetaling",
+      "coverage": [
+        "invoice-cancel",
+        "credit",
+        "refund",
+        "invoice_sent"
+      ],
+      "scenes": [
+        {
+          "id": "13-annuleren",
+          "text": "Annuleren is beperkt tot een factuur die niet is verzonden en nooit betaald of gekoppeld is. Ik gebruik daarvoor een aparte foutief gemaakte oefenfactuur. Ik vul de reden in en bevestig dat aan die voorwaarden is voldaan. Het nummer, de oorspronkelijke PDF en de historie blijven bewaard."
+        },
+        {
+          "id": "13-credit",
+          "text": "Voor een verzonden of betaalde factuur gebruik je zo nodig een creditfactuur. Ik open een creditconcept op een aparte betaalde oefenfactuur van vijftig euro. Ik vul de reden en het te corrigeren bedrag in. Controleer de verwijzing naar het origineel; een credit is geen nieuwe gewone verkoop."
+        },
+        {
+          "id": "13-creditpdf",
+          "text": "Na controle maak ik de oefencredit definitief en open de PDF. De bedragen zijn negatief en de relatie met het oorspronkelijke document blijft zichtbaar. Omdat de oorspronkelijke vijftig euro al ontvangen was, ontstaat in dit voorbeeld een bedrag dat aan de klant terug moet."
+        },
+        {
+          "id": "13-geenbetaling",
+          "text": "De credit heeft nog geen geld verplaatst. De echte terugbetaling doe je buiten APPFMZ via je bank, of je geeft aantoonbaar contant terug. Registreer pas daarna de werkelijke uitgaande bank- of kasmutatie met de juiste datum. Gebruik geen verzonnen betaling om het overzicht op nul te zetten."
+        },
+        {
+          "id": "13-refund",
+          "text": "Ik laat de fictieve terugbetaling van vijftig euro zien als uitgaande bankmutatie en koppel die aan de oorspronkelijke factuur. Nu sluit het terug te betalen bedrag aan. Je ziet nog steeds de oorspronkelijke factuur, ontvangst, credit en terugbetaling. Dat volledige spoor is het doel van de controle."
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Privégeld en eigen overboekingen",
+      "coverage": [
+        "private",
+        "transfer"
+      ],
+      "scenes": [
+        {
+          "id": "14-storting",
+          "text": "Ik open Privéstortingen en privéopnames. Het oefenbedrijf krijgt twintig cent van privé op de zakelijke bank. Ik kies Ontvangen, de juiste datum en nul komma twintig euro. Na bevestiging stijgt de bankstand met twintig cent. Dit is geen omzet en geen klantbetaling."
+        },
+        {
+          "id": "14-opname",
+          "text": "Nu neem ik in het voorbeeld tien cent van de zakelijke bank op voor privé. Ik kies Uitgegeven, Privéopname en de juiste datum. Dat verlaagt de bankstand, maar is geen zakelijke kostenpost. Bewaar dit onderscheid ook wanneer je jezelf grotere bedragen overmaakt."
+        },
+        {
+          "id": "14-overboeking",
+          "text": "Een overboeking tussen twee eigen zakelijke rekeningen is weer iets anders. Voor ons voorbeeld verplaatsen we honderd euro van Zakelijke oefenbank naar de tweede oefenrekening. We leggen de werkelijke uitgaande en inkomende mutatie vast, met herkenbare omschrijvingen."
+        },
+        {
+          "id": "14-koppelen",
+          "text": "Bij Eigen overboeking kies ik de uitgaande en de inkomende mutatie, de koppeldatum en honderd euro. Na bevestiging is de tussenrekening afgehandeld. Het totaal van beide eigen bankrekeningen is door deze overboeking niet veranderd. Er is geen omzet, geen btw en geen nieuwe kostenpost ontstaan."
+        },
+        {
+          "id": "14-kasbank",
+          "text": "Contant geld van Kas naar je bank brengen werkt volgens hetzelfde principe: één uitgaande kasmutatie en één inkomende bankmutatie koppelen als eigen overboeking. De verkoop was al eerder geboekt. Tel het storten van diezelfde biljetten daarom niet opnieuw als omzet."
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Bankstand vergelijken met een afschrift",
+      "coverage": [
+        "reconcile",
+        "opening"
+      ],
+      "scenes": [
+        {
+          "id": "15-datum",
+          "text": "Ik open Bank/Kas en de rekeningcontrole. Bankstand vergelijken kijkt of beginstand plus de geregistreerde mutaties aansluit op het afschrift. Het is geen bankkoppeling en het registreert geen factuurbetaling. Kies op beide plekken dezelfde rekening en dezelfde einddatum."
+        },
+        {
+          "id": "15-afschrift",
+          "text": "In ons oefenvoorbeeld vergelijken we de bankstand op vijftien september met een fictief afschrift van driehonderdvijftig euro. De beginstand was nul en er was toen één ontvangst. Latere oktoberboekingen horen niet bij deze vergelijking. Ik vul datum, afschriftbedrag en een duidelijke bronvermelding in."
+        },
+        {
+          "id": "15-nul",
+          "text": "Na bevestiging is het verschil nul. Dat betekent dat de twee standen op die datum aansluiten. Het bewijst niet automatisch dat iedere omschrijving, btw-keuze of factuurkoppeling juist is. Die controles blijven apart nodig."
+        },
+        {
+          "id": "15-verschil",
+          "text": "Bij een verschil controleer je eerst de beginstand, ontbrekende of dubbele mutaties, kas tegenover bank en de gekozen datums. Boek het verschil niet zomaar als kosten of omzet weg. De uitgebreide balanscorrectie is alleen voor een onderbouwde correctie met bekende bron, zo nodig samen met je boekhouder."
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "CSV-import en mogelijke duplicaten",
+      "coverage": [
+        "import-start",
+        "import-preview",
+        "import-confirm",
+        "import-source",
+        "import-undo"
+      ],
+      "scenes": [
+        {
+          "id": "16-download",
+          "text": "Een bank-CSV download je zelf bij je bank, buiten APPFMZ. De exacte knoppen kunnen per bank veranderen. Hier kies je vervolgens je zakelijke rekening en het CSV-bestand. APPFMZ vraagt nooit om je bankwachtwoord. Voor deze opname gebruiken we uitsluitend een meegeleverd fictief bestand."
+        },
+        {
+          "id": "16-voorbeeld",
+          "text": "Ik open het importvoorbeeld. Controleer de kolommen voor datum, bedrag, richting, rekening en omschrijving. Bij een onbekend formaat kun je de kolommen koppelen en het voorbeeld opnieuw bekijken. Controleer een paar regels tegen het afschrift voordat je iets bevestigt."
+        },
+        {
+          "id": "16-bron",
+          "text": "De ontvangst van driehonderdvijftig euro lijkt op de betaling die we al handmatig hebben vastgelegd. Ik controleer datum, rekening en omschrijving. In dit voorbeeld is het aantoonbaar dezelfde ontvangst. Ik koppel daarom de CSV-bron aan de bestaande betaling, in plaats van nog eens driehonderdvijftig euro te importeren."
+        },
+        {
+          "id": "16-nieuwe",
+          "text": "Een afzonderlijke fictieve ontvangst van twaalf euro is wel nieuw. Die geselecteerde regel importeer ik één keer. Hij staat daarna nog te koppelen, want een import weet niet vanzelf bij welke factuur of andere categorie het bedrag hoort. Bewaar twijfelgevallen voor controle."
+        },
+        {
+          "id": "16-herhalen",
+          "text": "Ik open hetzelfde CSV-bestand nog eens. Reeds geïmporteerde regels worden herkend en staan niet zomaar opnieuw geselecteerd. Controleer ook mogelijke overeenkomsten: niet elke gelijke datum en elk gelijk bedrag is dezelfde gebeurtenis. Alleen bij aantoonbaar verschillende ontvangsten leg je een afzonderlijke reden vast."
+        },
+        {
+          "id": "16-terugdraaien",
+          "text": "Een onjuiste, nog ongekoppelde import kan met een reden worden teruggedraaid, zolang de bijbehorende controles dat toelaten. De originele CSV en historie blijven bewaard. Ik laat die handeling voor onze losse twaalf euro zien. Een al gekoppelde of afgestemde import draai je niet blind in één keer terug."
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Omzet, ontvangsten, kosten en btw",
+      "coverage": [
+        "vat",
+        "period-filter",
+        "report-vat",
+        "report-sales",
+        "report-expenses",
+        "reports"
+      ],
+      "scenes": [
+        {
+          "id": "17-periode",
+          "text": "Ik open Overzichten en kies het derde kwartaal van 2026. Dat is juli tot en met september. Omzet is de verkoopopbrengst zonder btw. Ontvangen bedragen zijn geldstromen. Kosten horen bij zakelijke aankopen en verbruik. Resultaat is hier omzet min de geboekte kosten; het is niet je banksaldo."
+        },
+        {
+          "id": "17-verschil",
+          "text": "Onze septemberfactuur van driehonderdvijftig euro bevat in dit fictieve voorbeeld tweehonderdnegenentachtig euro zesentwintig omzet en zestig euro vierenzeventig btw. De ontvangst betaalt diezelfde factuur. Ze voegt geen tweede omzet of btw toe. Een lening, privéstorting of eigen overboeking is evenmin een verkoop."
+        },
+        {
+          "id": "17-btw",
+          "text": "Ik open Btw-overzicht. Hier zie je de ingestelde methode, bedragen en controlepunten. Bij factuurstelsel en kasstelsel verschilt het moment waarop omzet-btw meetelt. Voorbelasting is de aftrekbare btw op zakelijke inkopen; aftrek heeft voorwaarden. Volg je bevestigde instellingen en de officiële regels, niet het oefentarief."
+        },
+        {
+          "id": "17-waarschuwingen",
+          "text": "Lees waarschuwingen vóór je de bedragen gebruikt. Een ontbrekende bon, onbekende behandeling of nog niet aangesloten historie kan een overzicht onvolledig maken. Technisch afgestemd betekent dat de berekening aansluit op de aanwezige boekingen. Het is geen fiscaal akkoord en geen ingediende aangifte."
+        },
+        {
+          "id": "17-aangifte",
+          "text": "Je kunt het btw-overzicht als PDF downloaden om te controleren of met je boekhouder te bespreken. De daadwerkelijke aangifte en betaling gebeuren buiten APPFMZ. Ook zonder omzet kan aangifte nodig blijven. Je persoonlijke inkomstenbelasting en eventuele bijzondere fiscale situaties worden niet met één knop in deze app geregeld."
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Exporteren en een periode afsluiten",
+      "coverage": [
+        "report-all",
+        "export",
+        "close-period",
+        "reopen",
+        "file-download"
+      ],
+      "scenes": [
+        {
+          "id": "18-pdfs",
+          "text": "Bij Overzichten kun je een volledig administratieoverzicht, een verkoopoverzicht, een uitgavenoverzicht en een btw-overzicht als PDF downloaden. Controleer vooraf de gekozen periode. Een export is een kopie van de administratie; het verstuurt geen facturen en dient geen aangifte in."
+        },
+        {
+          "id": "18-zip",
+          "text": "Ik kies Volledige export en back-up downloaden. De ZIP bevat leesbare overzichten, CSV-bestanden, grootboek, wijzigingsgeschiedenis en de bevestigde originele bijlagen. Bewaar je echte export op een veilige plek buiten dit apparaat. Een nog niet bevestigde upload moet eerst worden afgerond."
+        },
+        {
+          "id": "18-afsluiten",
+          "text": "Na controle kun je bij Instellingen een periode afsluiten. Ik kies in de oefenadministratie september, met een reden. Doe dit pas nadat bronnen, openstaande posten, bankstand en btw-controles zijn bekeken. Afsluiten is geen fiscale aangifte en geen betaling."
+        },
+        {
+          "id": "18-bescherming",
+          "text": "De afgesloten periode staat nu in de lijst. Boekingen en correcties die deze periode raken kunnen worden geblokkeerd. Dat helpt voorkomen dat gecontroleerde cijfers ongemerkt veranderen. Ontdek je later een fout, wis dan geen oorspronkelijke documenten om de blokkade te omzeilen."
+        },
+        {
+          "id": "18-heropenen",
+          "text": "Als een gecontroleerde correctie echt nodig is, bestaat Heropenen met reden. Ik toon dat in deze oefenadministratie. De reden en de heropening blijven in de geschiedenis staan. Werk daarna de correctie, controle en zo nodig de export bij, en sluit de periode opnieuw wanneer alles aansluit."
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Leningen en bedrijfsmiddelen",
+      "coverage": [
+        "loan",
+        "asset",
+        "depreciation",
+        "allocate-loan"
+      ],
+      "scenes": [
+        {
+          "id": "19-lening",
+          "text": "Bij Bezittingen en schulden staan onderdelen die niet iedere week nodig zijn. Een lening is geld dat je later moet terugbetalen; de ontvangst is geen omzet. Ik registreer een fictieve bestaande schuld van duizend euro op de beginbalans, met een datum en omschrijving. Gebruik die beginbalanskeuze niet voor een nieuwe ontvangst."
+        },
+        {
+          "id": "19-nieuwelening",
+          "text": "Bij een nieuwe lening leg je de lening vast en koppel je de werkelijke ontvangst vanuit Bank/Kas aan die schuld. Bij een aflossing koppel je de uitgaande mutatie aan de lening. Rente verwerk je apart als uitgave. Zo blijft aflossen iets anders dan zakelijke kosten."
+        },
+        {
+          "id": "19-middel",
+          "text": "Een bedrijfsmiddel is bijvoorbeeld een apparaat dat je meerdere jaren gebruikt. Ik registreer een fictief bestaand trainingsapparaat met een boekwaarde van duizend euro en een gecontroleerde restwaarde van honderd euro. De beginbalanskeuze bevestigt dat dit geen nieuwe aankoop is. Een nieuwe aankoop koppel je aan de eerder geboekte aanschafuitgave."
+        },
+        {
+          "id": "19-afschrijven",
+          "text": "Afschrijven verdeelt de kosten over de gebruiksduur. Het is geen nieuwe bankbetaling. Ik open Gecontroleerd afschrijven en boek in deze oefening tien euro met een vastgelegde grondslag. De boekwaarde wordt negenhonderdnegentig euro. Kies echte termijnen en bedragen pas na controle van de toepasselijke regels."
+        },
+        {
+          "id": "19-controle",
+          "text": "De knoppen Boekingen laten de bron en veranderingen van lening of bedrijfsmiddel zien. Dit zijn onderwerpen waarbij de juiste beginbalans en onderbouwing belangrijk zijn. Gebruik geen verzonnen schuld of bezit om een verschil in je bankstand op te lossen. Raadpleeg bij twijfel je boekhouder voordat je echte gegevens bevestigt."
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Historie, bewijs, grenzen en zelfstandig verder",
+      "coverage": [
+        "legacy-review",
+        "legacy-pdf",
+        "retention",
+        "correction",
+        "audit",
+        "course-progress",
+        "agenda-separation",
+        "invoice-conflict"
+      ],
+      "scenes": [
+        {
+          "id": "20-historie",
+          "text": "Bij Facturen kan Historische administratie staan. Dat zijn oude bronnen die niet automatisch opnieuw in het grootboek zijn geboekt. Oude facturen en PDF's worden niet herberekend. Bij Instellingen leg je vast wat bij de aansluiting van die historie is gecontroleerd. Een vinkje of toelichting boekt ontbrekende historie niet vanzelf goed."
+        },
+        {
+          "id": "20-bewaar",
+          "text": "Bij Bron en boekingen vind je originele bestanden en de bewaargrondslag. Basisgegevens moet je doorgaans zeven jaar bewaren; voor bepaalde gegevens gelden langere termijnen. Een onbekend einde van de actualiteit betekent hier blijven bewaren. De app verwijdert je documenten niet automatisch na een willekeurige datum."
+        },
+        {
+          "id": "20-correctie",
+          "text": "De uitgebreide route Gecontroleerde balanscorrectie vraagt bron, reden en twee passende rekeningen. Dat is geen gewone betaalactie en geen vervanging voor een creditfactuur. Ik laat het formulier zien, maar boek geen willekeurige correctie. Laat zo'n keuze onderbouwen wanneer je de werking nog niet begrijpt."
+        },
+        {
+          "id": "20-fouten",
+          "text": "Krijg je Niet opgeslagen, sluit dan je invoer niet zomaar. Wacht op bevestiging of probeer dezelfde handeling opnieuw. Krijg je een opslagconflict, ververs en vergelijk de actuele gegevens voordat je verdergaat. Een ouder scherm mag niet stilzwijgend nieuwere invoer overschrijven. De oorspronkelijke documenten en correctiehistorie blijven je controlebasis."
+        },
+        {
+          "id": "20-agenda",
+          "text": "De agenda en aanwezigheidsregistratie staan los van facturatie. Iemand kan aanwezig zijn zonder al betaald te hebben, of vooruit betaald hebben. Het maandoverzicht van afspraken is geen factuurberekening. Controleer daarom pakketafspraak, factuur en bankontvangst ieder op hun eigen bron."
+        },
+        {
+          "id": "20-verder",
+          "text": "Je kunt nu per hoofdstuk terugkijken en in Uitleg en oefenen veilig verder oefenen. De beginnersroute, de uitgebreide lessen, begrippenlijst, taken en PDF-handleiding blijven beschikbaar. Je bestaande cursusvoortgang blijft behouden. Start in je echte administratie met één gecontroleerde gebeurtenis en controleer daarna het resultaat. Dat is beter dan dezelfde bedragen op meerdere plekken opnieuw invoeren."
+        }
+      ]
+    }
+  ],
+  "examplePeriod": "september–oktober 2026 (vaste fictieve tijdlijn; geen terugwerkende klantafspraak)"
+}

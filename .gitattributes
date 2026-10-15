@@ -6,3 +6,7 @@ tutorial.html text eol=lf
 tutorial/examples/APPFMZ-OEFENBANK-september-2026.csv -text whitespace=cr-at-eol
 output/pdf/*.pdf binary
 tutorial/media/*.mp4 binary
+
+tutorial/media/*.jpg binary
+tutorial/media/*.wav binary
+tutorial/media/*.m4a binary

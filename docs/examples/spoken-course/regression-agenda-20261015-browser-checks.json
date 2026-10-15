@@ -1,0 +1,106 @@
+{
+  "browser": "Edge emulation",
+  "checks": [
+    {
+      "width": 320,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "mode": "list",
+      "overflow": false
+    },
+    {
+      "width": 1400,
+      "mode": "day",
+      "overflow": false
+    },
+    {
+      "width": 1400,
+      "mode": "week",
+      "overflow": false
+    },
+    {
+      "width": 1400,
+      "mode": "month",
+      "overflow": false
+    },
+    {
+      "width": 1400,
+      "mode": "list",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

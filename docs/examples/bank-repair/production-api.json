@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-15T15:56:24.209Z",
+  "realPostgREST": true,
+  "syntheticOnly": true,
+  "previewReadOnly": true,
+  "concurrentAndLostResponseRetryOneCorrection": true,
+  "invoiceUnchanged": true,
+  "existingReceiptUnlinkOnly": true,
+  "noSecondRevenueOrVAT": true,
+  "unknownOpeningNotZero": true,
+  "conflict": {
+    "code": "PT409",
+    "status": 409,
+    "ms": 129,
+    "completeRollback": true
+  },
+  "memberAndOtherTrainerDenied": true,
+  "reloginPersistence": true,
+  "noEmails": true
+}

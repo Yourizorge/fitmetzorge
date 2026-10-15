@@ -1,0 +1,41 @@
+{
+  "project": "hgoygcviutmynaihcvpd",
+  "readOnlyVerification": true,
+  "migrations": [
+    {
+      "version": "20261015152613",
+      "name": "appfmz_bank_repair",
+      "statement_count": 1,
+      "sql_bytes": 13726,
+      "sql_sha256": "ba85fe0707fd91503bc8adce6931eff35333e2b834dbe284129cd54e1479892c"
+    },
+    {
+      "version": "20261015154448",
+      "name": "appfmz_unknown_opening_repair",
+      "statement_count": 4,
+      "sql_bytes": 12834,
+      "sql_sha256": "2229be47c6b5c2f8b513f9fead1e39caac8c58d99aa29ec60e12e4925e914c1c"
+    }
+  ],
+  "advisors": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 19,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "extension_in_public",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0014_extension_in_public"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "newSecurityWarnings": false
+}

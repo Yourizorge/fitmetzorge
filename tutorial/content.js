@@ -1,6 +1,6 @@
 /* Public teaching material only. Never receives an accounting snapshot or identity. */
 (function(root){
- const checked='2026-10-15',version='2.1.0',disclaimer='Dit is algemene uitleg en geen persoonlijk fiscaal advies.';
+ const checked='2026-10-15',version='3.0.0',disclaimer='Dit is algemene uitleg en geen persoonlijk fiscaal advies.';
  const bd='https://www.belastingdienst.nl/wps/wcm/connect/';
  const sources={
   administration:['Belastingdienst · Een goede administratie',bd+'bldcontentnl/belastingdienst/zakelijk/ondernemen/onderneming_starten/houd-een-goede-administratie-bij/'],
@@ -329,7 +329,7 @@
  lessons[10].sections[0]='Het betaalvenster gebruikt de bestaande boekingsketen. Een nieuwe ontvangst wordt meteen aan de factuur gekoppeld. Staat de bankmutatie al in Bank/Kas, kies die dan: er komt geen tweede ontvangst bij.';
  lessons[10].sections[6]='Oefen de nieuwe hoofdhandeling in de route van 12 stappen: €200 ontvangen laat €150 open, daarna betaalt €150 de factuur. De aanvullende oefening hieronder leert je bestaande bankmutaties beoordelen en koppelen.';
  lessons[17].title='Bankstand vergelijken';lessons[17].sections[0]='Bankstand vergelijken (voorheen Afstemmen) vergelijkt het administratieve saldo op één einddatum met je echte afschrift. Dit koppelt geen betaling aan een factuur en maakt geen ontvangst.';
- lessons[18].sections[0]+=' Een betalingsinvoer corrigeren is weer iets anders: via Boekingen en betalingen → Invoerfout corrigeren blijft het origineel bestaan met een tegenboeking. Dit maakt geen credit en stort geen geld terug.';
+ lessons[18].sections[0]+=' Een betalingsinvoer corrigeren is weer iets anders: via Betalingen bekijken / corrigeren → Corrigeren / Foutieve invoer herstellen blijft het origineel bestaan met een tegenboeking. Dit maakt geen credit en stort geen geld terug.';
  lessons[20].sections[0]+=' Betalen maakt geen tweede omzetboeking. Bij het factuurstelsel is de factuurdatum meestal bepalend; bij particuliere verkopen zonder factuurplicht, vooruitbetalingen en andere wettelijke uitzonderingen kan een ander moment gelden. Het kasstelsel volgt daadwerkelijk ontvangen geld voor de omzet-btw. Voorbelasting heeft eigen voorwaarden.';
  glossary['Betaling registreren']='Eén bevestiging bij de factuur verwerkt de ontvangst én de koppeling in Bank/Kas. Een bestaande bankmutatie kies je expliciet zodat die niet dubbel wordt geboekt.';
  glossary['Betalingscorrectie']='Een zichtbare tegenboeking van fout ingevoerde ontvangst of koppeling, met reden en historie. Geen creditfactuur en geen echte terugbetaling.';

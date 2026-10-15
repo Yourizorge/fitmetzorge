@@ -1,0 +1,530 @@
+{
+  "originalBaseCommit": "3db0806efc268179a3c805050db12427f5083b27",
+  "integratedBaseCommit": "d8a64420d85a5aca129866d1ff827c2a185f65cf",
+  "workingTree": true,
+  "recordingSynthetic": true,
+  "scenes": [
+    {
+      "id": "01-welkom",
+      "frames": 9,
+      "rawSeconds": 0.83
+    },
+    {
+      "id": "01-overzicht",
+      "frames": 19,
+      "rawSeconds": 1.482
+    },
+    {
+      "id": "01-periode",
+      "frames": 37,
+      "rawSeconds": 2.441
+    },
+    {
+      "id": "01-routes",
+      "frames": 22,
+      "rawSeconds": 1.362
+    },
+    {
+      "id": "01-hulp",
+      "frames": 20,
+      "rawSeconds": 1.627
+    },
+    {
+      "id": "02-instellingen",
+      "frames": 23,
+      "rawSeconds": 1.733
+    },
+    {
+      "id": "02-btw",
+      "frames": 10,
+      "rawSeconds": 0.902
+    },
+    {
+      "id": "02-rekening",
+      "frames": 45,
+      "rawSeconds": 4.082
+    },
+    {
+      "id": "02-beginstand",
+      "frames": 54,
+      "rawSeconds": 3.515
+    },
+    {
+      "id": "02-kas",
+      "frames": 32,
+      "rawSeconds": 2.13
+    },
+    {
+      "id": "03-klant",
+      "frames": 17,
+      "rawSeconds": 1.713
+    },
+    {
+      "id": "03-pakket",
+      "frames": 12,
+      "rawSeconds": 1.348
+    },
+    {
+      "id": "03-maand",
+      "frames": 59,
+      "rawSeconds": 4.502
+    },
+    {
+      "id": "03-vierweken",
+      "frames": 41,
+      "rawSeconds": 4.51
+    },
+    {
+      "id": "03-kiezen",
+      "frames": 54,
+      "rawSeconds": 6.319
+    },
+    {
+      "id": "04-concept",
+      "frames": 76,
+      "rawSeconds": 17.917
+    },
+    {
+      "id": "04-korting",
+      "frames": 38,
+      "rawSeconds": 7.49
+    },
+    {
+      "id": "04-regels",
+      "frames": 31,
+      "rawSeconds": 5.313
+    },
+    {
+      "id": "04-datums",
+      "frames": 64,
+      "rawSeconds": 13.795
+    },
+    {
+      "id": "04-bewaren",
+      "frames": 13,
+      "rawSeconds": 1.015
+    },
+    {
+      "id": "05-definitief",
+      "frames": 34,
+      "rawSeconds": 10.615
+    },
+    {
+      "id": "05-pdf",
+      "frames": 26,
+      "rawSeconds": 2.059
+    },
+    {
+      "id": "05-opnieuw",
+      "frames": 19,
+      "rawSeconds": 1.402
+    },
+    {
+      "id": "05-delen",
+      "frames": 35,
+      "rawSeconds": 2.534
+    },
+    {
+      "id": "05-controle",
+      "frames": 18,
+      "rawSeconds": 2.018
+    },
+    {
+      "id": "06-ontvangst",
+      "frames": 34,
+      "rawSeconds": 2.903
+    },
+    {
+      "id": "06-open",
+      "frames": 30,
+      "rawSeconds": 2.325
+    },
+    {
+      "id": "06-velden",
+      "frames": 48,
+      "rawSeconds": 4.267
+    },
+    {
+      "id": "06-bevestigen",
+      "frames": 19,
+      "rawSeconds": 1.973
+    },
+    {
+      "id": "06-fout",
+      "frames": 29,
+      "rawSeconds": 3.605
+    },
+    {
+      "id": "07-automatisch",
+      "frames": 36,
+      "rawSeconds": 2.409
+    },
+    {
+      "id": "07-koppeling",
+      "frames": 18,
+      "rawSeconds": 1.323
+    },
+    {
+      "id": "07-boekingen",
+      "frames": 5,
+      "rawSeconds": 0.857
+    },
+    {
+      "id": "07-verversen",
+      "frames": 32,
+      "rawSeconds": 2.333
+    },
+    {
+      "id": "08-start",
+      "frames": 7,
+      "rawSeconds": 0.971
+    },
+    {
+      "id": "08-eerste",
+      "frames": 52,
+      "rawSeconds": 3.966
+    },
+    {
+      "id": "08-restant",
+      "frames": 21,
+      "rawSeconds": 1.427
+    },
+    {
+      "id": "08-tweede",
+      "frames": 77,
+      "rawSeconds": 4.735
+    },
+    {
+      "id": "08-historie",
+      "frames": 31,
+      "rawSeconds": 2.353
+    },
+    {
+      "id": "09-bestaand",
+      "frames": 6,
+      "rawSeconds": 0.885
+    },
+    {
+      "id": "09-selecteer",
+      "frames": 63,
+      "rawSeconds": 4.655
+    },
+    {
+      "id": "09-koppel",
+      "frames": 22,
+      "rawSeconds": 1.537
+    },
+    {
+      "id": "09-splitsen",
+      "frames": 55,
+      "rawSeconds": 3.566
+    },
+    {
+      "id": "09-controle",
+      "frames": 20,
+      "rawSeconds": 1.584
+    },
+    {
+      "id": "10-fout",
+      "frames": 33,
+      "rawSeconds": 2.973
+    },
+    {
+      "id": "10-reden",
+      "frames": 34,
+      "rawSeconds": 2.092
+    },
+    {
+      "id": "10-teruggedraaid",
+      "frames": 75,
+      "rawSeconds": 6.07
+    },
+    {
+      "id": "10-juist",
+      "frames": 108,
+      "rawSeconds": 7.984
+    },
+    {
+      "id": "10-grenzen",
+      "frames": 4,
+      "rawSeconds": 0.907
+    },
+    {
+      "id": "10-bankfout",
+      "frames": 86,
+      "rawSeconds": 8.678
+    },
+    {
+      "id": "10-bankeffect",
+      "frames": 52,
+      "rawSeconds": 4.818
+    },
+    {
+      "id": "10-bankbevestigen",
+      "frames": 29,
+      "rawSeconds": 2.426
+    },
+    {
+      "id": "10-losmaken",
+      "frames": 72,
+      "rawSeconds": 6.55
+    },
+    {
+      "id": "10-opnieuwkoppelen",
+      "frames": 66,
+      "rawSeconds": 6.932
+    },
+    {
+      "id": "11-contant",
+      "frames": 78,
+      "rawSeconds": 6.727
+    },
+    {
+      "id": "11-uitgave",
+      "frames": 64,
+      "rawSeconds": 6.337
+    },
+    {
+      "id": "11-bon",
+      "frames": 58,
+      "rawSeconds": 5.665
+    },
+    {
+      "id": "11-betalen",
+      "frames": 116,
+      "rawSeconds": 8.545
+    },
+    {
+      "id": "11-voorschot",
+      "frames": 21,
+      "rawSeconds": 2.754
+    },
+    {
+      "id": "12-open",
+      "frames": 23,
+      "rawSeconds": 1.574
+    },
+    {
+      "id": "12-laat",
+      "frames": 8,
+      "rawSeconds": 0.783
+    },
+    {
+      "id": "12-filters",
+      "frames": 12,
+      "rawSeconds": 1.541
+    },
+    {
+      "id": "12-opvolgen",
+      "frames": 9,
+      "rawSeconds": 1.033
+    },
+    {
+      "id": "13-annuleren",
+      "frames": 48,
+      "rawSeconds": 2.929
+    },
+    {
+      "id": "13-credit",
+      "frames": 56,
+      "rawSeconds": 7.569
+    },
+    {
+      "id": "13-creditpdf",
+      "frames": 50,
+      "rawSeconds": 8.477
+    },
+    {
+      "id": "13-geenbetaling",
+      "frames": 42,
+      "rawSeconds": 3.624
+    },
+    {
+      "id": "13-refund",
+      "frames": 107,
+      "rawSeconds": 11.343
+    },
+    {
+      "id": "14-storting",
+      "frames": 75,
+      "rawSeconds": 6.066
+    },
+    {
+      "id": "14-opname",
+      "frames": 58,
+      "rawSeconds": 4.62
+    },
+    {
+      "id": "14-overboeking",
+      "frames": 124,
+      "rawSeconds": 11.904
+    },
+    {
+      "id": "14-koppelen",
+      "frames": 49,
+      "rawSeconds": 7.025
+    },
+    {
+      "id": "14-kasbank",
+      "frames": 6,
+      "rawSeconds": 0.991
+    },
+    {
+      "id": "15-datum",
+      "frames": 31,
+      "rawSeconds": 2.551
+    },
+    {
+      "id": "15-afschrift",
+      "frames": 45,
+      "rawSeconds": 3.749
+    },
+    {
+      "id": "15-nul",
+      "frames": 24,
+      "rawSeconds": 2.661
+    },
+    {
+      "id": "15-verschil",
+      "frames": 7,
+      "rawSeconds": 1.014
+    },
+    {
+      "id": "16-download",
+      "frames": 29,
+      "rawSeconds": 2.968
+    },
+    {
+      "id": "16-voorbeeld",
+      "frames": 28,
+      "rawSeconds": 3.741
+    },
+    {
+      "id": "16-bron",
+      "frames": 24,
+      "rawSeconds": 1.916
+    },
+    {
+      "id": "16-nieuwe",
+      "frames": 21,
+      "rawSeconds": 1.658
+    },
+    {
+      "id": "16-herhalen",
+      "frames": 37,
+      "rawSeconds": 2.899
+    },
+    {
+      "id": "16-terugdraaien",
+      "frames": 52,
+      "rawSeconds": 5.239
+    },
+    {
+      "id": "17-periode",
+      "frames": 45,
+      "rawSeconds": 3.907
+    },
+    {
+      "id": "17-verschil",
+      "frames": 26,
+      "rawSeconds": 3.354
+    },
+    {
+      "id": "17-btw",
+      "frames": 58,
+      "rawSeconds": 5.947
+    },
+    {
+      "id": "17-waarschuwingen",
+      "frames": 9,
+      "rawSeconds": 0.936
+    },
+    {
+      "id": "17-aangifte",
+      "frames": 18,
+      "rawSeconds": 1.534
+    },
+    {
+      "id": "18-pdfs",
+      "frames": 38,
+      "rawSeconds": 4.139
+    },
+    {
+      "id": "18-zip",
+      "frames": 12,
+      "rawSeconds": 2.965
+    },
+    {
+      "id": "18-afsluiten",
+      "frames": 74,
+      "rawSeconds": 7.706
+    },
+    {
+      "id": "18-bescherming",
+      "frames": 9,
+      "rawSeconds": 0.957
+    },
+    {
+      "id": "18-heropenen",
+      "frames": 43,
+      "rawSeconds": 4.467
+    },
+    {
+      "id": "19-lening",
+      "frames": 77,
+      "rawSeconds": 5.456
+    },
+    {
+      "id": "19-nieuwelening",
+      "frames": 45,
+      "rawSeconds": 3.39
+    },
+    {
+      "id": "19-middel",
+      "frames": 92,
+      "rawSeconds": 7.404
+    },
+    {
+      "id": "19-afschrijven",
+      "frames": 75,
+      "rawSeconds": 5.76
+    },
+    {
+      "id": "19-controle",
+      "frames": 17,
+      "rawSeconds": 1.5
+    },
+    {
+      "id": "20-historie",
+      "frames": 51,
+      "rawSeconds": 5.567
+    },
+    {
+      "id": "20-bewaar",
+      "frames": 43,
+      "rawSeconds": 4.054
+    },
+    {
+      "id": "20-correctie",
+      "frames": 35,
+      "rawSeconds": 2.523
+    },
+    {
+      "id": "20-fouten",
+      "frames": 25,
+      "rawSeconds": 4.355
+    },
+    {
+      "id": "20-agenda",
+      "frames": 13,
+      "rawSeconds": 1.385
+    },
+    {
+      "id": "20-verder",
+      "frames": 23,
+      "rawSeconds": 2.422
+    }
+  ],
+  "externalRequests": 0,
+  "pageErrors": []
+}

@@ -1,5 +1,7 @@
 # APPFMZ — eenvoudige betalingen, administratie en cursus
 
+> Vervolg: de bevestigde historische correcties en volledige gesproken cursus staan in [het gecombineerde releaserapport](APPFMZ_BANK_REPAIR_SPOKEN_COURSE_20261015.md). Onderstaande gegevens beschrijven de eerdere release.
+
 Status: gepubliceerd en technisch geverifieerd op 15 oktober 2026. Live, geen onderhoud nodig. Owneracceptatie nog niet vastgelegd.
 
 Basis: `64275478de3155410118e3464e40dfa747a19833`, gecontroleerd tegen remote main. Aparte werkboom `appfmz-admin-simple`, branch `codex/admin-simplify-payments-20261015`. Geen bestaande werkboomwijzigingen overgenomen/verwijderd. Alleen `Yourizorge/fitmetzorge`, `appfmz.nl`, bevestigd Supabase-project `hgoygcviutmynaihcvpd` (FitmetZorge, ACTIVE_HEALTHY). Geen AGENTS.md aangetroffen. De bestaande releaseplannen zijn historisch; deze opdracht geeft toestemming voor dit pakket, niet voor een replay van oude migrations.

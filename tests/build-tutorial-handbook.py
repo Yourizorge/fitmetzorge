@@ -67,12 +67,23 @@ for name,caption in [('home-1400-light.png','Start: kies leren, een los onderwer
  story.append(KeepTogether([p(caption,'h2'),Image(str(f),width=width,height=height),Spacer(1,14)]))
 story.append(PageBreak());heading('De nieuwe hoofdroute: 12 stappen','beginner-route')
 story.append(p('Start hier. Gebruik dezelfde betaalvelden en controles in de afgeschermde oefenomgeving. Al je eerdere lesvoortgang blijft behouden. Opnieuw oefenen wist alleen tijdelijke voorbeeldgegevens.'))
-story.append(link('Bekijk de echte schermopname met Nederlandse ondertitels','https://appfmz.nl/tutorial.html'))
+story.append(link('Bekijk de volledige gesproken rondleiding met Nederlandse ondertitels','https://appfmz.nl/tutorial.html?video=1'))
+spoken=json.loads((ROOT/'tutorial/spoken-course-script.json').read_text(encoding='utf-8'))
+story.append(PageBreak());heading('De gesproken rondleiding','spoken-tour')
+story.append(p('Vernieuwd: 20 hoofdstukken met Nederlandse gesproken uitleg, echte schermopnamen en uitsluitend fictieve gegevens. Je kunt pauzeren, tien seconden terug, de snelheid kiezen, het beeld vergroten en een hoofdstuk apart afspelen. Het transcript staat bij ieder hoofdstuk en is ook te downloaden. Je bestaande cursusvoortgang blijft behouden.'))
+for chapter in spoken['chapters']:
+ story.append(link(str(chapter['id'])+'. '+chapter['title'],'https://appfmz.nl/tutorial.html?video=1&chapter='+str(chapter['id'])))
+story.append(p('De opname gebruikt een geïsoleerde oefenklok voor september–oktober 2026. Alleen het fictieve bedrijf gebruikt in dit voorbeeld 21% btw en het factuurstelsel. Neem geen instellingen over zonder controle van je eigen situatie. De stem is kunstmatig en lokaal gegenereerd.','small'))
+story.append(PageBreak());heading('Een fout herstellen zonder geschiedenis te wissen','bank-repair')
+for title,text in [('Foutieve Bank/Kas-invoer','Open de regel en kies Corrigeren / Foutieve invoer herstellen. Beschrijf de fout. Kies Effect bekijken. Controleer de bankstand, gekoppelde facturen en het resterende bedrag. Vink pas daarna de bevestiging aan en bevestig de correctie. De oorspronkelijke regel en reden blijven bewaard.'),('Echte ontvangst, verkeerde koppeling','Kies alleen de factuurkoppeling losmaken. De bankontvangst blijft staan en komt weer beschikbaar. Open de juiste bestaande factuur, kies Betaling registreren en selecteer deze ontvangst. Geen tweede ontvangst of omzet boeken.'),('Foutieve beginstand','Gebruik Beginstand corrigeren. Vervang alleen door een gecontroleerde datum en afschriftsaldo, of zet een onjuiste invoer terug naar onbekend. Onbekend betekent niet nul. Een afgesloten of afgestemde periode kan eerst onderzoek vereisen.'),('Veilig oefenen','Open in de beginnersroute Bank/Kas. Kies Bestaande ontvangst koppelen oefenen of Foutieve Bank/Kas-invoer herstellen oefenen. Iedere knop start een vaste fictieve oefenronde. Je lesvoortgang blijft behouden; echte gegevens worden niet gelezen of veranderd.')]:
+ story.extend([p(title,'h2'),p(text)])
+story.append(link('Bekijk de volledige herstelvoorbeelden in hoofdstuk 10','https://appfmz.nl/tutorial.html?video=1&chapter=10'))
 for step in D['beginner']['steps']:
  story.append(PageBreak());heading('Stap '+str(step['id'])+' — '+step['title'],'beginner-'+str(step['id']))
  for label,key in [('Wat doe ik?','what'),('Waarom doe ik dit?','why'),('Waar tik ik?','tap'),('Wat hoort zichtbaar te zijn?','result'),('Wat doe ik bij een fout?','error')]:
   story.extend([p(label,'h2'),p(step[key])])
  story.append(p('Controleer de uitkomst in de oefening. Oefenfacturen zijn niet geldig. Er worden geen echte nummers, e-mails, bankmutaties of klantgegevens gebruikt.','small'))
+ for chapter in step.get('videoChapters',[]):story.append(link('Bijbehorende gesproken uitleg: hoofdstuk '+str(chapter),'https://appfmz.nl/tutorial.html?video=1&chapter='+str(chapter)))
  if step['id']==5:
   f=ROOT/'docs/images/admin-simple/after-payment-laptop.png'
   if f.exists():

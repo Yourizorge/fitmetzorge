@@ -1,0 +1,15 @@
+{
+  "source": "supabase/migrations/20261015154448_appfmz_unknown_opening_repair.sql",
+  "sourceLF_SHA256": "63d0b8f6cd6692b19c84ad0153c7157e864c34cf108a5b9020ca1cba708c5e62",
+  "allFunctionBodiesExactInProduction": true,
+  "functions": [
+    {
+      "name": "bank_repair_plan",
+      "bodySHA256": "61b63c13cc5bdd673d13176d55189e4544774aa8caca41875d216583c13cc19b"
+    },
+    {
+      "name": "bank_repair_command",
+      "bodySHA256": "1bc585bc375c234a81b68ec7c0bc80073d97306a7d8b1fe55345f8f3defc91c4"
+    }
+  ]
+}

@@ -1,0 +1,6076 @@
+{
+  "duration": 2983.8333333333335,
+  "chapters": 20,
+  "scenes": 104,
+  "voice": "Piper nl_NL-ronnie-medium, lokaal gegenereerd",
+  "voiceLocal": true,
+  "actualSyntheticDOM": true,
+  "screenPacing": "Original screen frames paced across each spoken scene; final frame held for reading",
+  "format": "H.264 High/yuv420p + AAC mono/48kHz + Dutch mov_text; MP4 faststart",
+  "videoSHA256": "a04795d6172356c4133f5f6e5a90388e3332d1e830a8599d8287cbbf3b8cbfb8",
+  "videoBytes": 68004871,
+  "sceneEvidence": [
+    {
+      "id": "01-welkom",
+      "start": 0,
+      "duration": 31.916666666666668,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 0.83,
+      "voiceSeconds": 28.889795918367348,
+      "sourceHash": "d53c06b44f17cd332b0450ee0345a30d169b4a9bbb341e5daa0f21b55a8e3cf4",
+      "wavSHA256": "fe32b00dc3363aae1ceaf031ed1b170e28895be4c118ed181e8ffca838331145",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 7,
+        "journals": 2,
+        "lines": 4,
+        "audit": 6
+      }
+    },
+    {
+      "id": "01-overzicht",
+      "start": 31.916666666666668,
+      "duration": 31.0,
+      "screenFrames": 19,
+      "rawCaptureSeconds": 1.482,
+      "voiceSeconds": 27.980408163265306,
+      "sourceHash": "7fb559d16e31b02443c2c610d30a213908e9c27ba7f79dbd66097c78b7354e49",
+      "wavSHA256": "d96bb255128b09ec443c83b470976bbf1c60d8187229868e2d9bc343a482f6cf",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 7,
+        "journals": 2,
+        "lines": 4,
+        "audit": 6
+      }
+    },
+    {
+      "id": "01-periode",
+      "start": 62.91666666666667,
+      "duration": 31.833333333333332,
+      "screenFrames": 37,
+      "rawCaptureSeconds": 2.441,
+      "voiceSeconds": 28.808526077097504,
+      "sourceHash": "96da6152b1d798e2b140ca05cd6b0a1db4601453358ec1c7df79d63e7fcfa9fd",
+      "wavSHA256": "4f4c7df5b2ea938867757677ceeaaa8375613031843644d792433b553bd19a02",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 7,
+        "journals": 2,
+        "lines": 4,
+        "audit": 6
+      }
+    },
+    {
+      "id": "01-routes",
+      "start": 94.75,
+      "duration": 31.583333333333332,
+      "screenFrames": 22,
+      "rawCaptureSeconds": 1.362,
+      "voiceSeconds": 28.533696145124715,
+      "sourceHash": "0bff76b7e388fc434167030037ffe07d25a05ac599b790256519d7cc84b1324e",
+      "wavSHA256": "ed3665705adca63bca547cefc65bb5c8baaae60f453c5e65f00dc05b3c8c4bdb",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 7,
+        "journals": 2,
+        "lines": 4,
+        "audit": 6
+      }
+    },
+    {
+      "id": "01-hulp",
+      "start": 126.33333333333333,
+      "duration": 29.916666666666668,
+      "screenFrames": 20,
+      "rawCaptureSeconds": 1.627,
+      "voiceSeconds": 26.88126984126984,
+      "sourceHash": "93b69dda2d0d456579701cb952e32ed73ce21d0e1a27967ea9c4e5638fab17d5",
+      "wavSHA256": "0f12a2ad4acc074faebcfb269ee0cd1ac88397ca8a9959956b1b9527ec952b68",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 7,
+        "journals": 2,
+        "lines": 4,
+        "audit": 6
+      }
+    },
+    {
+      "id": "02-instellingen",
+      "start": 156.25,
+      "duration": 29.583333333333332,
+      "screenFrames": 23,
+      "rawCaptureSeconds": 1.733,
+      "voiceSeconds": 26.56780045351474,
+      "sourceHash": "3291423d306a40b78172b3f70869dd042c29d22d33d7ae9bc042036c8532807c",
+      "wavSHA256": "9acc3a0540b72bd2d4f84c73397d459cbe99c248013aa696b706baffc8c29d04",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 7,
+        "journals": 2,
+        "lines": 4,
+        "audit": 6
+      }
+    },
+    {
+      "id": "02-btw",
+      "start": 185.83333333333334,
+      "duration": 31.416666666666668,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 0.902,
+      "voiceSeconds": 28.378956916099774,
+      "sourceHash": "b94c5143febf68c326f8b026d2af4bf6a42a672f8e53a42b0119cbe6521cd594",
+      "wavSHA256": "7c6e0cd0aa05d1757b7f7dac2f50c8f959a9c7f67f7de80dd61bc3c15175e28f",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 7,
+        "journals": 2,
+        "lines": 4,
+        "audit": 6
+      }
+    },
+    {
+      "id": "02-rekening",
+      "start": 217.25,
+      "duration": 28.75,
+      "screenFrames": 45,
+      "rawCaptureSeconds": 4.082,
+      "voiceSeconds": 25.743492063492063,
+      "sourceHash": "3f027a9a38dbf3a1fd0433dc0b2520736d10f222decb25fe2aea3dab5c74f567",
+      "wavSHA256": "eb6d74e01d6c899f3121275ee2e91aac4590e400990b8c3d84c4dc32edf0585b",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 7,
+        "journals": 2,
+        "lines": 4,
+        "audit": 6
+      }
+    },
+    {
+      "id": "02-beginstand",
+      "start": 246.0,
+      "duration": 26.666666666666668,
+      "screenFrames": 54,
+      "rawCaptureSeconds": 3.515,
+      "voiceSeconds": 23.645895691609976,
+      "sourceHash": "55fb7c484819365cf0346d94baf8523714f083a5f2b43fb0d5faec733ff1ebe1",
+      "wavSHA256": "7ff1d42bf4c69c27da585c8f3e54c1e6ad0fed5ea7062b09e1c7981ba244acb5",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 9,
+        "journals": 3,
+        "lines": 6,
+        "audit": 7
+      }
+    },
+    {
+      "id": "02-kas",
+      "start": 272.6666666666667,
+      "duration": 27.583333333333332,
+      "screenFrames": 32,
+      "rawCaptureSeconds": 2.13,
+      "voiceSeconds": 24.551473922902495,
+      "sourceHash": "2ad9ea3f7e9488c654027d92e96cf6af507c69d320c9a94ea1b8e4f067f8485e",
+      "wavSHA256": "f65889e9bf9b7f036b1df0a23877923d67656b58e69b088b5074dc97b61f496e",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 9,
+        "journals": 3,
+        "lines": 6,
+        "audit": 9
+      }
+    },
+    {
+      "id": "03-klant",
+      "start": 300.25,
+      "duration": 31.083333333333332,
+      "screenFrames": 17,
+      "rawCaptureSeconds": 1.713,
+      "voiceSeconds": 28.080907029478457,
+      "sourceHash": "42975d24cfd01eefc283d3e4646c299ad15a6ed5bba3e93dcc68dd792ede12ca",
+      "wavSHA256": "cd5ccaba06ba7c04d1911df9a21d66daf96f6772264fe93ddd9547dd969736c5",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 9,
+        "journals": 3,
+        "lines": 6,
+        "audit": 9
+      }
+    },
+    {
+      "id": "03-pakket",
+      "start": 331.3333333333333,
+      "duration": 32.75,
+      "screenFrames": 12,
+      "rawCaptureSeconds": 1.348,
+      "voiceSeconds": 29.66766439909297,
+      "sourceHash": "bd9af1ebacf9779f0c74bfd371d42cc1eeb7fda39a9343a23e083dfc15c20f9c",
+      "wavSHA256": "79ff9d413d69ffbe7765392277b96a725414323fe671710178d0d93000b33e8a",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 9,
+        "journals": 3,
+        "lines": 6,
+        "audit": 9
+      }
+    },
+    {
+      "id": "03-maand",
+      "start": 364.0833333333333,
+      "duration": 27.5,
+      "screenFrames": 59,
+      "rawCaptureSeconds": 4.502,
+      "voiceSeconds": 24.423764172335602,
+      "sourceHash": "cb5bc65ff8d31302192472893de5fe90891cafc55f3bbd4383f77f0d8a52b34c",
+      "wavSHA256": "04694e45caf610025f23dbbd0f656a41c51987cc4615c467031dd407674c1b6b",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 9,
+        "journals": 3,
+        "lines": 6,
+        "audit": 10
+      }
+    },
+    {
+      "id": "03-vierweken",
+      "start": 391.5833333333333,
+      "duration": 27.25,
+      "screenFrames": 41,
+      "rawCaptureSeconds": 4.51,
+      "voiceSeconds": 24.168344671201815,
+      "sourceHash": "5adc886fb0a9b5f5b42e63431d8ccfb8af91db7f8b929c8e60690e93f81fcad2",
+      "wavSHA256": "963c36f03027b6354840936133460dd54149e80916c324f31d538eabcc2bdf39",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 9,
+        "journals": 3,
+        "lines": 6,
+        "audit": 10
+      }
+    },
+    {
+      "id": "03-kiezen",
+      "start": 418.8333333333333,
+      "duration": 31.25,
+      "screenFrames": 54,
+      "rawCaptureSeconds": 6.319,
+      "voiceSeconds": 28.21641723356009,
+      "sourceHash": "93c89024b71aa7b1c09a60021dbbf800d42946d6b42c61d922f4449ff2e0939e",
+      "wavSHA256": "cabc8c3bc1aeb748b46cacc29637e2791c7f3acfb95b01eb994116b258fe4c3c",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 10,
+        "journals": 3,
+        "lines": 6,
+        "audit": 12
+      }
+    },
+    {
+      "id": "04-concept",
+      "start": 450.0833333333333,
+      "duration": 28.583333333333332,
+      "screenFrames": 76,
+      "rawCaptureSeconds": 17.917,
+      "voiceSeconds": 25.549931972789114,
+      "sourceHash": "8a979d227e40229b05ba894a52df590329571a9cfc447ab26d057c4d134e61ad",
+      "wavSHA256": "36b71e37b5044a89d12a2b9fea8b69c3dfb0c89e316989a6dff9099f45185137",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 10,
+        "journals": 3,
+        "lines": 6,
+        "audit": 12
+      }
+    },
+    {
+      "id": "04-korting",
+      "start": 478.66666666666663,
+      "duration": 30.25,
+      "screenFrames": 38,
+      "rawCaptureSeconds": 7.49,
+      "voiceSeconds": 27.186938775510203,
+      "sourceHash": "ea35a18358f071682dfb6eae2d206546323c650335143f35bd7941061b6d5ffa",
+      "wavSHA256": "2687835635f37cf126687a7bd21ead9614888101ff18b94db7693bcebd94792f",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 10,
+        "journals": 3,
+        "lines": 6,
+        "audit": 12
+      }
+    },
+    {
+      "id": "04-regels",
+      "start": 508.91666666666663,
+      "duration": 31.666666666666668,
+      "screenFrames": 31,
+      "rawCaptureSeconds": 5.313,
+      "voiceSeconds": 28.59954648526077,
+      "sourceHash": "8356d2411683b3ca467e8ea109054e8bf376edbca0827302a712ab398b44e494",
+      "wavSHA256": "f5f27b75442a76f4a3a9676338584b3ed02a8d6f2dfd7decdaf3d79e9b7d83a0",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 10,
+        "journals": 3,
+        "lines": 6,
+        "audit": 12
+      }
+    },
+    {
+      "id": "04-datums",
+      "start": 540.5833333333333,
+      "duration": 25.583333333333332,
+      "screenFrames": 64,
+      "rawCaptureSeconds": 13.795,
+      "voiceSeconds": 22.50031746031746,
+      "sourceHash": "b21cbb625ac9788980a393b79d36966633853aa6c738d3dfac6ed080a0a6ebd6",
+      "wavSHA256": "d710b73a231ccc1c19141552c7fd400072ef762e54d7a63095dcd53dbd3f5196",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 10,
+        "journals": 3,
+        "lines": 6,
+        "audit": 12
+      }
+    },
+    {
+      "id": "04-bewaren",
+      "start": 566.1666666666666,
+      "duration": 32.25,
+      "screenFrames": 13,
+      "rawCaptureSeconds": 1.015,
+      "voiceSeconds": 29.16843537414966,
+      "sourceHash": "7dd33009c4daa748ebfb040e4b137d4d661d76054c4049993740e3233d8ca97a",
+      "wavSHA256": "b18ac3a9e8d9182a0eb92b5d0fcea9a7a54250a01adb77926419a1ba8a26aac0",
+      "ledger": {
+        "revenue": 0,
+        "outputVAT": 0,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [],
+        "records": 10,
+        "journals": 3,
+        "lines": 6,
+        "audit": 12
+      }
+    },
+    {
+      "id": "05-definitief",
+      "start": 598.4166666666666,
+      "duration": 32.0,
+      "screenFrames": 34,
+      "rawCaptureSeconds": 10.615,
+      "voiceSeconds": 28.959455782312926,
+      "sourceHash": "ba572a353837eadff8328c12c40270e7896189016d84b0c9474574c34bf875c8",
+      "wavSHA256": "82e3a5cb288f24f23500871e95e8f5f633f73c3a0396efbfc91bdb22781097a8",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 10,
+        "journals": 4,
+        "lines": 9,
+        "audit": 27
+      }
+    },
+    {
+      "id": "05-pdf",
+      "start": 630.4166666666666,
+      "duration": 33.75,
+      "screenFrames": 26,
+      "rawCaptureSeconds": 2.059,
+      "voiceSeconds": 30.739591836734693,
+      "sourceHash": "82bcd47709383e79f02c789b94dc851f7b8d315a43a22c1330a594142b31626c",
+      "wavSHA256": "6bd43a52c3424d05afd6ef0b6edaba658b5b0f986986e5de43da1cd7c12bc0c8",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 10,
+        "journals": 4,
+        "lines": 9,
+        "audit": 27
+      }
+    },
+    {
+      "id": "05-opnieuw",
+      "start": 664.1666666666666,
+      "duration": 27.333333333333332,
+      "screenFrames": 19,
+      "rawCaptureSeconds": 1.402,
+      "voiceSeconds": 24.29605442176871,
+      "sourceHash": "b9eea2a9410fdb50172886e0fc4b2443f6bac408acd8a2a2710bb3698673db29",
+      "wavSHA256": "212bf46af9ffb2ac43e1665c28daf5151377483bfd6a16fd8e20a9bc74a3e168",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 10,
+        "journals": 4,
+        "lines": 9,
+        "audit": 27
+      }
+    },
+    {
+      "id": "05-delen",
+      "start": 691.5,
+      "duration": 25.333333333333332,
+      "screenFrames": 35,
+      "rawCaptureSeconds": 2.534,
+      "voiceSeconds": 22.287528344671202,
+      "sourceHash": "475b93639e574c3aa617eb234948fed7742ea678662222b108ee7a98d2f1bff3",
+      "wavSHA256": "f6f95bae558a3adb44a5e92365139a8743aecbd32dbaf1b86d8c0ba7de5f74ab",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 10,
+        "journals": 4,
+        "lines": 9,
+        "audit": 27
+      }
+    },
+    {
+      "id": "05-controle",
+      "start": 716.8333333333334,
+      "duration": 30.583333333333332,
+      "screenFrames": 18,
+      "rawCaptureSeconds": 2.018,
+      "voiceSeconds": 27.55845804988662,
+      "sourceHash": "4c668e73141d761d3f7bc659b0682fe188d103fef48a012780e34a97bbe589da",
+      "wavSHA256": "d650b6c41d8c5e1a1559bb0e8d517064fc9193d0c4c526551baefa0763be9677",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 10,
+        "journals": 4,
+        "lines": 9,
+        "audit": 27
+      }
+    },
+    {
+      "id": "06-ontvangst",
+      "start": 747.4166666666667,
+      "duration": 27.5,
+      "screenFrames": 34,
+      "rawCaptureSeconds": 2.903,
+      "voiceSeconds": 24.49342403628118,
+      "sourceHash": "a6df83338c755554b1fda2817fb814222300d94421339d746e8a276ea8117a95",
+      "wavSHA256": "c5f4347d99cd30fa338ee68a83809fe6806397b3354ab875269b29da1c2baabf",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 10,
+        "journals": 4,
+        "lines": 9,
+        "audit": 27
+      }
+    },
+    {
+      "id": "06-open",
+      "start": 774.9166666666667,
+      "duration": 29.583333333333332,
+      "screenFrames": 30,
+      "rawCaptureSeconds": 2.325,
+      "voiceSeconds": 26.53297052154195,
+      "sourceHash": "0ced764a7347cd6ba34a4cd901244e849f6387b9d0c18046562d53ae107685f3",
+      "wavSHA256": "367684139ffe389af775f09677cf451eac7a81a05c16ec7509524a0d6d63ce3a",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 10,
+        "journals": 4,
+        "lines": 9,
+        "audit": 27
+      }
+    },
+    {
+      "id": "06-velden",
+      "start": 804.5000000000001,
+      "duration": 26.833333333333332,
+      "screenFrames": 48,
+      "rawCaptureSeconds": 4.267,
+      "voiceSeconds": 23.750385487528344,
+      "sourceHash": "0a90b1d1302ebd3b493127e07068d1ddc733a5ae5ae20ec3a276c5c43189cb03",
+      "wavSHA256": "42dc0f8593e36f87985bc23c29882da7af30e949269414fc99c0bcb033ef0605",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 0
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 10,
+        "journals": 4,
+        "lines": 9,
+        "audit": 27
+      }
+    },
+    {
+      "id": "06-bevestigen",
+      "start": 831.3333333333335,
+      "duration": 28.583333333333332,
+      "screenFrames": 19,
+      "rawCaptureSeconds": 1.973,
+      "voiceSeconds": 25.53451247165533,
+      "sourceHash": "f0b2374aa53bbf2d2d8bb7322d13976d5e7ca08d84b11260f01220f543ba340d",
+      "wavSHA256": "17cdfe2bafa6c7f785e905695737802d8d2997aa7e40ef4dbb0221850650edfc",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 35000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 12,
+        "journals": 6,
+        "lines": 13,
+        "audit": 28
+      }
+    },
+    {
+      "id": "06-fout",
+      "start": 859.9166666666669,
+      "duration": 28.0,
+      "screenFrames": 29,
+      "rawCaptureSeconds": 3.605,
+      "voiceSeconds": 24.9578231292517,
+      "sourceHash": "f304a70f44e17477537732af7e2719ea6698375dd7701f74d2243b2b71cb8f55",
+      "wavSHA256": "68ef9b21efd18d8039a346725d7a6d42e148b4bb5bce980ad44edbd64d5ca430",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 35000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 12,
+        "journals": 6,
+        "lines": 13,
+        "audit": 28
+      }
+    },
+    {
+      "id": "07-automatisch",
+      "start": 887.9166666666669,
+      "duration": 32.75,
+      "screenFrames": 36,
+      "rawCaptureSeconds": 2.409,
+      "voiceSeconds": 29.74512471655329,
+      "sourceHash": "4fc746582d18408e82ec6e259b6deb4d348af2371bbf25dc4536006ae4d974fe",
+      "wavSHA256": "5d11db3c1f7735202cf49d7e3192117c51e0a4be12661be2f39580cd443560b2",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 35000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 12,
+        "journals": 6,
+        "lines": 13,
+        "audit": 28
+      }
+    },
+    {
+      "id": "07-koppeling",
+      "start": 920.6666666666669,
+      "duration": 27.25,
+      "screenFrames": 18,
+      "rawCaptureSeconds": 1.323,
+      "voiceSeconds": 24.214784580498865,
+      "sourceHash": "51407adf46e8ec8b437cc1a6d5ff85d5b5cfd4f939adb2350833bd8f745cea41",
+      "wavSHA256": "18d92493130fff279073f2d8f2cc6d9faccef78c417040434c28bfa92fecb5f3",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 35000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 12,
+        "journals": 6,
+        "lines": 13,
+        "audit": 28
+      }
+    },
+    {
+      "id": "07-boekingen",
+      "start": 947.9166666666669,
+      "duration": 28.75,
+      "screenFrames": 5,
+      "rawCaptureSeconds": 0.857,
+      "voiceSeconds": 25.700861678004536,
+      "sourceHash": "b28e9b13461ae98bd5a93d88133002d614e15c48004f969a20e07963ec06740f",
+      "wavSHA256": "6cf7699bdf432dca12cc519b50bb1eb17f96c0306ab2317bc54070f1bf94a317",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 35000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 12,
+        "journals": 6,
+        "lines": 13,
+        "audit": 28
+      }
+    },
+    {
+      "id": "07-verversen",
+      "start": 976.6666666666669,
+      "duration": 30.083333333333332,
+      "screenFrames": 32,
+      "rawCaptureSeconds": 2.333,
+      "voiceSeconds": 27.03219954648526,
+      "sourceHash": "8551d9d3aa3aa11c8168547f16abcf689d0343a39d87662aaf323b145bcd383a",
+      "wavSHA256": "44d5afb1e4c6a10d681a061e0fd43a8cc6d536d80d9e715a035380f49afc5e3b",
+      "ledger": {
+        "revenue": 28926,
+        "outputVAT": 6074,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 35000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 12,
+        "journals": 6,
+        "lines": 13,
+        "audit": 28
+      }
+    },
+    {
+      "id": "08-start",
+      "start": 1006.7500000000002,
+      "duration": 26.333333333333332,
+      "screenFrames": 7,
+      "rawCaptureSeconds": 0.971,
+      "voiceSeconds": 23.305396825396826,
+      "sourceHash": "caa9ace546a357114177872472a9314ba1636ee6a6338a2d455c31c4fec85a98",
+      "wavSHA256": "6884005a73a0227c3c6876851f183baa2d811ee244cf172dd8ad98800a90469c",
+      "ledger": {
+        "revenue": 57852,
+        "outputVAT": 12148,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 35000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 13,
+        "journals": 7,
+        "lines": 16,
+        "audit": 30
+      }
+    },
+    {
+      "id": "08-eerste",
+      "start": 1033.0833333333335,
+      "duration": 24.5,
+      "screenFrames": 52,
+      "rawCaptureSeconds": 3.966,
+      "voiceSeconds": 21.47482993197279,
+      "sourceHash": "ee7a63a4804ce9061e4c2350dce29a44c25956856ad6f415f775d6ce4af4e765",
+      "wavSHA256": "4ad1658dca7a05449b13e6f74b1a0878cfa1b3ae9694b4f89bc3b2ebe57da6f7",
+      "ledger": {
+        "revenue": 57852,
+        "outputVAT": 12148,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 35000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 35000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 13,
+        "journals": 7,
+        "lines": 16,
+        "audit": 30
+      }
+    },
+    {
+      "id": "08-restant",
+      "start": 1057.5833333333335,
+      "duration": 24.166666666666668,
+      "screenFrames": 21,
+      "rawCaptureSeconds": 1.427,
+      "voiceSeconds": 21.161360544217686,
+      "sourceHash": "0328aa544eb8e8f6aa9ae38c90b89d44444dbd91e3b2eede1589231cced9d111",
+      "wavSHA256": "4ec094f994abc1cba5c287e465f220ad0975ff235aa2054990c942893b8dea1b",
+      "ledger": {
+        "revenue": 57852,
+        "outputVAT": 12148,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 55000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 15000,
+            "status": "Gedeeltelijk betaald"
+          }
+        ],
+        "records": 15,
+        "journals": 9,
+        "lines": 20,
+        "audit": 31
+      }
+    },
+    {
+      "id": "08-tweede",
+      "start": 1081.7500000000002,
+      "duration": 23.166666666666668,
+      "screenFrames": 77,
+      "rawCaptureSeconds": 4.735,
+      "voiceSeconds": 20.162902494331068,
+      "sourceHash": "8132175fb9eff254c7f2ba4be602b5aefd27080bb5c9bf3ea3363f7abffe1f98",
+      "wavSHA256": "b9c4ac1d6015958b48c0f4e59f584d631d21234649dc28ca25f3f449349849c8",
+      "ledger": {
+        "revenue": 57852,
+        "outputVAT": 12148,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 70000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 17,
+        "journals": 11,
+        "lines": 24,
+        "audit": 32
+      }
+    },
+    {
+      "id": "08-historie",
+      "start": 1104.916666666667,
+      "duration": 29.833333333333332,
+      "screenFrames": 31,
+      "rawCaptureSeconds": 2.353,
+      "voiceSeconds": 26.78839002267574,
+      "sourceHash": "2f28f0b08c432f6a6eba9464b04a4ad5084a023d1fc03a3e6336353b6effc57e",
+      "wavSHA256": "234dfdccaa55eebf056a1ce57cd2a28af2202c4ede409f31985db4a88ddab704",
+      "ledger": {
+        "revenue": 57852,
+        "outputVAT": 12148,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 70000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 17,
+        "journals": 11,
+        "lines": 24,
+        "audit": 32
+      }
+    },
+    {
+      "id": "09-bestaand",
+      "start": 1134.7500000000002,
+      "duration": 27.416666666666668,
+      "screenFrames": 6,
+      "rawCaptureSeconds": 0.885,
+      "voiceSeconds": 24.400544217687074,
+      "sourceHash": "ff86a3a2044a8d7927cc335aa34f8d00aa2fa7934c1b2fe1fe13b2afd4cd9e41",
+      "wavSHA256": "2e4e4a0f4ecdf30d76a91771bd078c6ba0f0ac181260dbde32d221385baf29d5",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 90000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 20000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 19,
+        "journals": 13,
+        "lines": 29,
+        "audit": 35
+      }
+    },
+    {
+      "id": "09-selecteer",
+      "start": 1162.166666666667,
+      "duration": 26.75,
+      "screenFrames": 63,
+      "rawCaptureSeconds": 4.655,
+      "voiceSeconds": 23.738775510204082,
+      "sourceHash": "4eb6b537c384f163845b164e4ea4d0f3b409f5e1afecde2027f3a7e92b8ebfa0",
+      "wavSHA256": "eeb1dc3a862278a30231ef108634e3a8100cf97e9574e5906e1d259f854147fd",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 90000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 20000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 19,
+        "journals": 13,
+        "lines": 29,
+        "audit": 35
+      }
+    },
+    {
+      "id": "09-koppel",
+      "start": 1188.916666666667,
+      "duration": 26.083333333333332,
+      "screenFrames": 22,
+      "rawCaptureSeconds": 1.537,
+      "voiceSeconds": 23.018956916099775,
+      "sourceHash": "de84a86c1e7fbdc5ca4e4c454b172e96b6f2c53e0e02f01ddc4b49990c9a312a",
+      "wavSHA256": "bfdffc50dda77109f9dc7c5aa3ac85fdab553de47929e9b89d7dc2a44b8a0ad4",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 90000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 20,
+        "journals": 14,
+        "lines": 31,
+        "audit": 36
+      }
+    },
+    {
+      "id": "09-splitsen",
+      "start": 1215.0000000000002,
+      "duration": 29.75,
+      "screenFrames": 55,
+      "rawCaptureSeconds": 3.566,
+      "voiceSeconds": 26.734149659863945,
+      "sourceHash": "5511a9fe283ebd482ac64ffabaf674d759324ee750f80bca4ac341e967a54f83",
+      "wavSHA256": "88bf461ca4ca05fca7cf664588763a8bfe9bf8055803fcd6e684a17304784ffa",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 21,
+        "journals": 15,
+        "lines": 33,
+        "audit": 37
+      }
+    },
+    {
+      "id": "09-controle",
+      "start": 1244.7500000000002,
+      "duration": 25.583333333333332,
+      "screenFrames": 20,
+      "rawCaptureSeconds": 1.584,
+      "voiceSeconds": 22.54294784580499,
+      "sourceHash": "2b66f4a05a130c07a6644e68c2867d4e7b99596124bc2e04a6eff5acd07efe27",
+      "wavSHA256": "6ecfded91c85eb3c80abc90b95169de18901cbe3df5a22b2edda5f5f7bd10663",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 21,
+        "journals": 15,
+        "lines": 33,
+        "audit": 37
+      }
+    },
+    {
+      "id": "10-fout",
+      "start": 1270.3333333333335,
+      "duration": 27.583333333333332,
+      "screenFrames": 33,
+      "rawCaptureSeconds": 2.973,
+      "voiceSeconds": 24.539863945578233,
+      "sourceHash": "a53b42d17ccbcad503177f9c7fe0599879678fe6d2430ac5a73168d75b60b262",
+      "wavSHA256": "9d92a4d3133c577465814bc2c684b4843b89f9f9467214e6c0a5cb5991d04829",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 21,
+        "journals": 15,
+        "lines": 33,
+        "audit": 37
+      }
+    },
+    {
+      "id": "10-reden",
+      "start": 1297.9166666666667,
+      "duration": 28.583333333333332,
+      "screenFrames": 34,
+      "rawCaptureSeconds": 2.092,
+      "voiceSeconds": 25.569342403628117,
+      "sourceHash": "f2822184a48731967b453d2b996017202ef51c4547338ab41240af00faa2725d",
+      "wavSHA256": "ea1b6ed27944d6129992384c658b3b8331de633f72feecc5f54ce820e8121921",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 21,
+        "journals": 15,
+        "lines": 33,
+        "audit": 37
+      }
+    },
+    {
+      "id": "10-teruggedraaid",
+      "start": 1326.5,
+      "duration": 29.0,
+      "screenFrames": 75,
+      "rawCaptureSeconds": 6.07,
+      "voiceSeconds": 25.933061224489794,
+      "sourceHash": "34ee49591f52bebac662edb7820c3e2d8fc0d6bd9f8d43d4da0480ae3ab14198",
+      "wavSHA256": "092c70935775c6e53f2973c8eeed8b9961cc22cd4a97291755e9ad2e9ed42cba",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 76000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 15000,
+            "status": "Gedeeltelijk betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 23,
+        "journals": 17,
+        "lines": 37,
+        "audit": 38
+      }
+    },
+    {
+      "id": "10-juist",
+      "start": 1355.5,
+      "duration": 28.083333333333332,
+      "screenFrames": 108,
+      "rawCaptureSeconds": 7.984,
+      "voiceSeconds": 25.050702947845807,
+      "sourceHash": "1bbf3e17778ef44ee4eaa779bdc7545e7ad62770bc35a80976db1165e1cc4e42",
+      "wavSHA256": "ede772e8bf75fe46ec2e4a74c3f67193ac972934b608c5e1f042df50b1d7e57d",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 25,
+        "journals": 19,
+        "lines": 41,
+        "audit": 39
+      }
+    },
+    {
+      "id": "10-grenzen",
+      "start": 1383.5833333333333,
+      "duration": 29.833333333333332,
+      "screenFrames": 4,
+      "rawCaptureSeconds": 0.907,
+      "voiceSeconds": 26.803809523809523,
+      "sourceHash": "06807810674dbc340db9a98887937dcb1a331db17940871451afb6aa22055725",
+      "wavSHA256": "46a72829ee2151a6dec49f5b6c9763fe305c854178d3641e0b5bc42d2cc03f1c",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 25,
+        "journals": 19,
+        "lines": 41,
+        "audit": 39
+      }
+    },
+    {
+      "id": "10-bankfout",
+      "start": 1413.4166666666665,
+      "duration": 31.166666666666668,
+      "screenFrames": 86,
+      "rawCaptureSeconds": 8.678,
+      "voiceSeconds": 28.123537414965988,
+      "sourceHash": "feb8fe2c547ad7027c7fd5696399656e13fe153c3ae437cc934a4e3ee2d415ca",
+      "wavSHA256": "5bf1edd0931c71e132e26170fbe0584635713ec5a508296dd4e66e5fec7218be",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 100000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 26,
+        "journals": 20,
+        "lines": 43,
+        "audit": 40
+      }
+    },
+    {
+      "id": "10-bankeffect",
+      "start": 1444.5833333333333,
+      "duration": 32.833333333333336,
+      "screenFrames": 52,
+      "rawCaptureSeconds": 4.818,
+      "voiceSeconds": 29.814784580498866,
+      "sourceHash": "0e386b66efc7f157baa9fb3a5d2c417a14588f81caa4b9834d42132022aedf7d",
+      "wavSHA256": "390c146a0eb129a73c7da07b74e96b713ba9d314d867270aa8f8fe22f166de79",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 100000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 26,
+        "journals": 20,
+        "lines": 43,
+        "audit": 40
+      }
+    },
+    {
+      "id": "10-bankbevestigen",
+      "start": 1477.4166666666665,
+      "duration": 31.916666666666668,
+      "screenFrames": 29,
+      "rawCaptureSeconds": 2.426,
+      "voiceSeconds": 28.86657596371882,
+      "sourceHash": "7d16a2f919a993150b55a19cda60f43c9eeef6f11dbf6580283d246b83062503",
+      "wavSHA256": "27da9071a95bb51caf3ecef03a926a98b778adb0e588706444859b3b10ec29cd",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 27,
+        "journals": 21,
+        "lines": 45,
+        "audit": 41
+      }
+    },
+    {
+      "id": "10-losmaken",
+      "start": 1509.3333333333333,
+      "duration": 31.666666666666668,
+      "screenFrames": 72,
+      "rawCaptureSeconds": 6.55,
+      "voiceSeconds": 28.657596371882086,
+      "sourceHash": "b5796d63b273533b18c140fca30ef3fdfcd803ca8292322cc3cb53a0fe5e59a2",
+      "wavSHA256": "41406feb6a4a6970187905cc923853fdb2a20a90dc197ef3c1b4de98de58c41c",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 20000,
+            "status": "Openstaand"
+          }
+        ],
+        "records": 28,
+        "journals": 22,
+        "lines": 47,
+        "audit": 42
+      }
+    },
+    {
+      "id": "10-opnieuwkoppelen",
+      "start": 1541.0,
+      "duration": 33.416666666666664,
+      "screenFrames": 66,
+      "rawCaptureSeconds": 6.932,
+      "voiceSeconds": 30.410702947845806,
+      "sourceHash": "96252aae5f2b004b8f3c08cea8862d7db471048966409c3913acb7e62d5625ab",
+      "wavSHA256": "3fc25225b17b56205f96e6edb6c9c84fa5f2be413c3462c3e2bc79670ef9a358",
+      "ledger": {
+        "revenue": 74381,
+        "outputVAT": 15619,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 0
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 29,
+        "journals": 23,
+        "lines": 49,
+        "audit": 43
+      }
+    },
+    {
+      "id": "11-contant",
+      "start": 1574.4166666666667,
+      "duration": 27.5,
+      "screenFrames": 78,
+      "rawCaptureSeconds": 6.727,
+      "voiceSeconds": 24.454784580498867,
+      "sourceHash": "6d0677d2548fd532d4bbf3d6e83479bf4faa3cce28ca9fa8d27a7928e6538c69",
+      "wavSHA256": "cfdb9a13d745cac23d2c88a1d3bafc46531e79304df7b726324f810584b74537",
+      "ledger": {
+        "revenue": 78513,
+        "outputVAT": 16487,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 5000
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 32,
+        "journals": 26,
+        "lines": 56,
+        "audit": 46
+      }
+    },
+    {
+      "id": "11-uitgave",
+      "start": 1601.9166666666667,
+      "duration": 26.5,
+      "screenFrames": 64,
+      "rawCaptureSeconds": 6.337,
+      "voiceSeconds": 23.460136054421767,
+      "sourceHash": "14ebd441c8e7dcdb4283770f26fa77335462d47921da4abe7a5aafc726502b3a",
+      "wavSHA256": "6873f79f609960a37d826bf820299761902dd4331125b756448d1286c5159c80",
+      "ledger": {
+        "revenue": 78513,
+        "outputVAT": 16487,
+        "inputVAT": 0,
+        "cost": 0,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 5000
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 32,
+        "journals": 26,
+        "lines": 56,
+        "audit": 46
+      }
+    },
+    {
+      "id": "11-bon",
+      "start": 1628.4166666666667,
+      "duration": 29.416666666666668,
+      "screenFrames": 58,
+      "rawCaptureSeconds": 5.665,
+      "voiceSeconds": 26.40907029478458,
+      "sourceHash": "150c0fc825d2bc12597c1043ed4a14a584df48a8c113596857a2be660504d49d",
+      "wavSHA256": "207160116a10e4e0d52308cac13f563c5176472b3069891ab7bc8cbc65fdd30b",
+      "ledger": {
+        "revenue": 78513,
+        "outputVAT": 16487,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 5000
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 33,
+        "journals": 27,
+        "lines": 61,
+        "audit": 49
+      }
+    },
+    {
+      "id": "11-betalen",
+      "start": 1657.8333333333335,
+      "duration": 29.75,
+      "screenFrames": 116,
+      "rawCaptureSeconds": 8.545,
+      "voiceSeconds": 26.672290249433107,
+      "sourceHash": "0f2bab54341afbe50940368640a3a12fe11544fb6079aa420241552dae441523",
+      "wavSHA256": "7c70d0a1bb95fd4f0a4ea75e4448a9f666c982f91be2c75a6c8f46699abb16f3",
+      "ledger": {
+        "revenue": 78513,
+        "outputVAT": 16487,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 35,
+        "journals": 29,
+        "lines": 65,
+        "audit": 51
+      }
+    },
+    {
+      "id": "11-voorschot",
+      "start": 1687.5833333333335,
+      "duration": 30.5,
+      "screenFrames": 21,
+      "rawCaptureSeconds": 2.754,
+      "voiceSeconds": 27.45015873015873,
+      "sourceHash": "fc39f10893ce611c7140caf0ada60191ab92ab25d43040dad09b88ac614bf6cd",
+      "wavSHA256": "621867a05fef1dd8e9db726d59f774c9c608851198819a9c6d1365eee32d03ac",
+      "ledger": {
+        "revenue": 78513,
+        "outputVAT": 16487,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 35,
+        "journals": 29,
+        "lines": 65,
+        "audit": 51
+      }
+    },
+    {
+      "id": "12-open",
+      "start": 1718.0833333333335,
+      "duration": 26.083333333333332,
+      "screenFrames": 23,
+      "rawCaptureSeconds": 1.574,
+      "voiceSeconds": 23.077006802721087,
+      "sourceHash": "569e5846571bf28842a2d3696a502be035e1a65c0695349f8ea032cec47d9851",
+      "wavSHA256": "c38b422896e794bb5e4693d6707d0546640a7dcfee9504e1bb0a7a524d862b2b",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 36,
+        "journals": 30,
+        "lines": 68,
+        "audit": 53
+      }
+    },
+    {
+      "id": "12-laat",
+      "start": 1744.1666666666667,
+      "duration": 21.583333333333332,
+      "screenFrames": 8,
+      "rawCaptureSeconds": 0.783,
+      "voiceSeconds": 18.541315192743763,
+      "sourceHash": "cec918306dd3dd95da52a78404f861701a953fed2025ca39ce75a933ede7cd2d",
+      "wavSHA256": "6816c8e2dfc0c8ebbc37bc785286646109a2c56e397c9bdc8c170a7aebfe44de",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 36,
+        "journals": 30,
+        "lines": 68,
+        "audit": 53
+      }
+    },
+    {
+      "id": "12-filters",
+      "start": 1765.75,
+      "duration": 30.833333333333332,
+      "screenFrames": 12,
+      "rawCaptureSeconds": 1.541,
+      "voiceSeconds": 27.75201814058957,
+      "sourceHash": "a2fe8f4639df208c7a8d00da3ae18b02b2e9c19ea9a16059697ba4935764a4a4",
+      "wavSHA256": "d20c135a550fe344ae1f0714c672071e4143fa05ba827292f3cc3bc509d9a437",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 36,
+        "journals": 30,
+        "lines": 68,
+        "audit": 53
+      }
+    },
+    {
+      "id": "12-opvolgen",
+      "start": 1796.5833333333333,
+      "duration": 26.5,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 1.033,
+      "voiceSeconds": 23.42530612244898,
+      "sourceHash": "eb149699baa25299404f182ee063937e1937c4dbb4ba3b222614ce10a46397be",
+      "wavSHA256": "32b9f271357ca4ccc72fee6c6c19027647def0dc4ea2bf1eceb098be972d460e",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 36,
+        "journals": 30,
+        "lines": 68,
+        "audit": 53
+      }
+    },
+    {
+      "id": "13-annuleren",
+      "start": 1823.0833333333333,
+      "duration": 26.833333333333332,
+      "screenFrames": 48,
+      "rawCaptureSeconds": 2.929,
+      "voiceSeconds": 23.750385487528344,
+      "sourceHash": "a3e1e6eac92ebeca1661f18d7f9e574afebd7c97fb9bd1d2fcc462a68832af8f",
+      "wavSHA256": "bb5e0b47263f7210e502b8e0ad79bbaad31be4e6d2ca4dfd73960a91a5bc6394",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 38,
+        "journals": 32,
+        "lines": 74,
+        "audit": 56
+      }
+    },
+    {
+      "id": "13-credit",
+      "start": 1849.9166666666665,
+      "duration": 27.083333333333332,
+      "screenFrames": 56,
+      "rawCaptureSeconds": 7.569,
+      "voiceSeconds": 24.040634920634922,
+      "sourceHash": "b8988f61e12d54315d5aa595919e217f01f8d7d28b6eac26bf2eaf5f8557ee9e",
+      "wavSHA256": "872875b36a2e005dd56976c9733dd00c46ba692e1d28632efa475b2f3c3f59f7",
+      "ledger": {
+        "revenue": 88843,
+        "outputVAT": 18657,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 96000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 42,
+        "journals": 35,
+        "lines": 81,
+        "audit": 59
+      }
+    },
+    {
+      "id": "13-creditpdf",
+      "start": 1876.9999999999998,
+      "duration": 24.333333333333332,
+      "screenFrames": 50,
+      "rawCaptureSeconds": 8.477,
+      "voiceSeconds": 21.258049886621315,
+      "sourceHash": "f64d4c81457ec917574465df865abf1281295d7d985da6c44bf5549d4fb24080",
+      "wavSHA256": "717318f3e09a7e6479fdb2d93228145ff4ba0b40d8bb5947c553de9908d25cf1",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 96000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": -5000,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 42,
+        "journals": 36,
+        "lines": 84,
+        "audit": 65
+      }
+    },
+    {
+      "id": "13-geenbetaling",
+      "start": 1901.333333333333,
+      "duration": 27.166666666666668,
+      "screenFrames": 42,
+      "rawCaptureSeconds": 3.624,
+      "voiceSeconds": 24.15673469387755,
+      "sourceHash": "09fdbac9227d45ebea9430e4aa57bae57c024952fcef3836ac3f4260b1478720",
+      "wavSHA256": "17e6493abdb2bba4b3f278533f906b3df81e833d0f3507baf3c006f50bad1e4d",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 96000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": -5000,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 42,
+        "journals": 36,
+        "lines": 84,
+        "audit": 65
+      }
+    },
+    {
+      "id": "13-refund",
+      "start": 1928.4999999999998,
+      "duration": 28.416666666666668,
+      "screenFrames": 107,
+      "rawCaptureSeconds": 11.343,
+      "voiceSeconds": 25.41061224489796,
+      "sourceHash": "f8f3434206378f846ad7755ff3ed0b0fc6e9e874455b3ce3e65a286aaa4156f2",
+      "wavSHA256": "bcf46d7ab084dd875c386c04fdc53d6d1165d61f456366750e71196a7deb33c5",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91000
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 44,
+        "journals": 38,
+        "lines": 88,
+        "audit": 67
+      }
+    },
+    {
+      "id": "14-storting",
+      "start": 1956.9166666666665,
+      "duration": 28.666666666666668,
+      "screenFrames": 75,
+      "rawCaptureSeconds": 6.066,
+      "voiceSeconds": 25.61578231292517,
+      "sourceHash": "9fce2e3eff99dbf726e8f971f12433a1e24d7ca88d20477c7fcf8303c591fc69",
+      "wavSHA256": "823df22d47acef891501e1d14f33dd84e5593e5f615167fe0fd967d3d4f1e265",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91020
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 46,
+        "journals": 40,
+        "lines": 92,
+        "audit": 68
+      }
+    },
+    {
+      "id": "14-opname",
+      "start": 1985.5833333333333,
+      "duration": 25.166666666666668,
+      "screenFrames": 58,
+      "rawCaptureSeconds": 4.62,
+      "voiceSeconds": 22.136598639455784,
+      "sourceHash": "52ccab4c50ab102f55e25a9ae26c77c0488af02a74288884687b6d7564d28fbc",
+      "wavSHA256": "f6c9fef3972253f1ffa5a6835f41a88b09e5f3f2389e2b16540a82c94b5f472d",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 91010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 0
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 48,
+        "journals": 42,
+        "lines": 96,
+        "audit": 69
+      }
+    },
+    {
+      "id": "14-overboeking",
+      "start": 2010.75,
+      "duration": 24.416666666666668,
+      "screenFrames": 124,
+      "rawCaptureSeconds": 11.904,
+      "voiceSeconds": 21.35092970521542,
+      "sourceHash": "a5513b09ba2c0beafac4b9c637724a231791bac401f8f01aa27e77dc40885a5a",
+      "wavSHA256": "3c4e89918198b40b31f40220b700187255c0e69d941e2da1f2012ce55a6a26f4",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 50,
+        "journals": 44,
+        "lines": 100,
+        "audit": 71
+      }
+    },
+    {
+      "id": "14-koppelen",
+      "start": 2035.1666666666667,
+      "duration": 29.083333333333332,
+      "screenFrames": 49,
+      "rawCaptureSeconds": 7.025,
+      "voiceSeconds": 26.072380952380954,
+      "sourceHash": "60dc4372af3636a6795f1bb93a2aea8216454c462471338f0768531e94cd11fd",
+      "wavSHA256": "490fa4a07ac111091ea8584861d645c3054d12c2fdef205ce644c852d891aed0",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 51,
+        "journals": 45,
+        "lines": 102,
+        "audit": 72
+      }
+    },
+    {
+      "id": "14-kasbank",
+      "start": 2064.25,
+      "duration": 24.25,
+      "screenFrames": 6,
+      "rawCaptureSeconds": 0.991,
+      "voiceSeconds": 21.23482993197279,
+      "sourceHash": "e8829fa81d64e0af446b26e4c787fc41ffa2b88f02682affc986ebedc0efa822",
+      "wavSHA256": "4bdaccb6342da8bd6435e2205c219b810a0ee707f368296a64ebff9297b42e27",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 51,
+        "journals": 45,
+        "lines": 102,
+        "audit": 72
+      }
+    },
+    {
+      "id": "15-datum",
+      "start": 2088.5,
+      "duration": 27.083333333333332,
+      "screenFrames": 31,
+      "rawCaptureSeconds": 2.551,
+      "voiceSeconds": 24.063854875283447,
+      "sourceHash": "d8d1f14fd3845029c5a5beb51867a2229aef5388c79e19516c56dd5e63af5296",
+      "wavSHA256": "a8a09940eadd690bad420b0f26ae07327c7e13ba82b2e46d389d0c273e91cb79",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 51,
+        "journals": 45,
+        "lines": 102,
+        "audit": 72
+      }
+    },
+    {
+      "id": "15-afschrift",
+      "start": 2115.5833333333335,
+      "duration": 27.833333333333332,
+      "screenFrames": 45,
+      "rawCaptureSeconds": 3.749,
+      "voiceSeconds": 24.818503401360545,
+      "sourceHash": "c9fa719c239d4a822ea95d884cc286ad8af398caf3e288142eb39e43791e5354",
+      "wavSHA256": "3dac5b0d026a63b2723c5fa0d2b7050e391c37fbf13a660408d29dff81cc5df5",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 51,
+        "journals": 45,
+        "lines": 102,
+        "audit": 72
+      }
+    },
+    {
+      "id": "15-nul",
+      "start": 2143.416666666667,
+      "duration": 23.5,
+      "screenFrames": 24,
+      "rawCaptureSeconds": 2.661,
+      "voiceSeconds": 20.45315192743764,
+      "sourceHash": "1166e88d929dc718e0a319095392598f9ceebaa641dff5814d5273ffb68a40a9",
+      "wavSHA256": "ec0ff1de341033d9630061266e254045f0fd722002b8f40be8d6ffbf3219cf3d",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 52,
+        "journals": 45,
+        "lines": 102,
+        "audit": 73
+      }
+    },
+    {
+      "id": "15-verschil",
+      "start": 2166.916666666667,
+      "duration": 26.916666666666668,
+      "screenFrames": 7,
+      "rawCaptureSeconds": 1.014,
+      "voiceSeconds": 23.858684807256235,
+      "sourceHash": "e068db4c9eb2bbc780390759ac3656a1fbd392b676dbaa371c0c56b8837f9d81",
+      "wavSHA256": "e2278e9676514c69dbaf9f92887f9e9a665d208ff8e79be26a826d790fca156b",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 52,
+        "journals": 45,
+        "lines": 102,
+        "audit": 73
+      }
+    },
+    {
+      "id": "16-download",
+      "start": 2193.8333333333335,
+      "duration": 29.75,
+      "screenFrames": 29,
+      "rawCaptureSeconds": 2.968,
+      "voiceSeconds": 26.730340136054423,
+      "sourceHash": "a23b0dd76b8c4f12e8f07223b05ad9b2db90adb3815e2919dbda51198215bcee",
+      "wavSHA256": "a00abbc6f7f42df7916dfb0e663500dd9a8ebb5457d2ad6a102987549294f984",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 52,
+        "journals": 45,
+        "lines": 102,
+        "audit": 73
+      }
+    },
+    {
+      "id": "16-voorbeeld",
+      "start": 2223.5833333333335,
+      "duration": 25.5,
+      "screenFrames": 28,
+      "rawCaptureSeconds": 3.741,
+      "voiceSeconds": 22.450068027210886,
+      "sourceHash": "a7bd9dfffba8a971bf012fd5f0edae7489d99a4075bf22b001256a0bbaa5cb32",
+      "wavSHA256": "463cb7fdb8e01eda7e4adb95bf4e9082008ae2ced6b402189152f975529b8e8a",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 52,
+        "journals": 45,
+        "lines": 102,
+        "audit": 73
+      }
+    },
+    {
+      "id": "16-bron",
+      "start": 2249.0833333333335,
+      "duration": 28.916666666666668,
+      "screenFrames": 24,
+      "rawCaptureSeconds": 1.916,
+      "voiceSeconds": 25.84018140589569,
+      "sourceHash": "3708b211c2eb1f7372614050ead92f14e87d42307dc9aee8b369479d60281e28",
+      "wavSHA256": "b0f6d9c4607e235f7fa870eb258c9ff5bbe35036031417a3a160099e66e74c88",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 52,
+        "journals": 45,
+        "lines": 102,
+        "audit": 76
+      }
+    },
+    {
+      "id": "16-nieuwe",
+      "start": 2278.0,
+      "duration": 25.916666666666668,
+      "screenFrames": 21,
+      "rawCaptureSeconds": 1.658,
+      "voiceSeconds": 22.84480725623583,
+      "sourceHash": "3358e13c44904232095ff2e0836b8f680a5f36f29d59c6bb60d4a6d0d9153991",
+      "wavSHA256": "09c53909a3d4ab55aba2139df326bf123b35da6f706153295e53370bc2cf2ba1",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 82210
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 54,
+        "journals": 46,
+        "lines": 104,
+        "audit": 77
+      }
+    },
+    {
+      "id": "16-herhalen",
+      "start": 2303.9166666666665,
+      "duration": 30.5,
+      "screenFrames": 37,
+      "rawCaptureSeconds": 2.899,
+      "voiceSeconds": 27.430748299319728,
+      "sourceHash": "a32c6557c5d4cebe27629f7e0873eb5e45b16c8b7b7ee0d373bda0ea9790e7fb",
+      "wavSHA256": "98f49831a5c7cb9caaff3af637c55de54e54809b31280f6cfcf9bf82229f8c0a",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 82210
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 54,
+        "journals": 46,
+        "lines": 104,
+        "audit": 77
+      }
+    },
+    {
+      "id": "16-terugdraaien",
+      "start": 2334.4166666666665,
+      "duration": 29.166666666666668,
+      "screenFrames": 52,
+      "rawCaptureSeconds": 5.239,
+      "voiceSeconds": 26.10721088435374,
+      "sourceHash": "ca6d9160b0e5d8701b127ba8781beddc13d88beef86b832b28ce9bfd3c48e88c",
+      "wavSHA256": "daf9ef4777acd81941c75edbfa2b66109b9d7a8301c24db76b5e95d8bd0b425d",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 78
+      }
+    },
+    {
+      "id": "17-periode",
+      "start": 2363.583333333333,
+      "duration": 31.833333333333332,
+      "screenFrames": 45,
+      "rawCaptureSeconds": 3.907,
+      "voiceSeconds": 28.827936507936506,
+      "sourceHash": "79a26bfa2ecd421776b99a0382ae6ccc78ca07b0b7db68bc4d74deea4f8de1dc",
+      "wavSHA256": "3886c144fa1f750d30230114ab5b9794e2803944ae76848cae99abd30837e44d",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 78
+      }
+    },
+    {
+      "id": "17-verschil",
+      "start": 2395.4166666666665,
+      "duration": 30.416666666666668,
+      "screenFrames": 26,
+      "rawCaptureSeconds": 3.354,
+      "voiceSeconds": 27.39591836734694,
+      "sourceHash": "de8a52e09a4e0c1ad0938a319e688fedc1f0c0eab20000f3a16d1852a14465a4",
+      "wavSHA256": "699b6281f4a733caf75640c3d26736e659d483643f5d798baccb6193917167f2",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 78
+      }
+    },
+    {
+      "id": "17-btw",
+      "start": 2425.833333333333,
+      "duration": 33.5,
+      "screenFrames": 58,
+      "rawCaptureSeconds": 5.947,
+      "voiceSeconds": 30.457142857142856,
+      "sourceHash": "cc6a8e6d6e70d70fb0db782b20bbeeb547cdcb1a5cc76fd0d1c858e1430b4ec2",
+      "wavSHA256": "51cbaba845fc6472a427c722ab5a0cadb6a91efeab2e59782c0e7cfc818f5871",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 78
+      }
+    },
+    {
+      "id": "17-waarschuwingen",
+      "start": 2459.333333333333,
+      "duration": 28.333333333333332,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 0.936,
+      "voiceSeconds": 25.271292517006803,
+      "sourceHash": "97358b122603477d8c41f3b1328534387a59179339bff42ed313cf3bda49f4a9",
+      "wavSHA256": "830cb6570ee650ea6600cec3b8c626536097a13cbb26d303554f862b98fb03fb",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 78
+      }
+    },
+    {
+      "id": "17-aangifte",
+      "start": 2487.6666666666665,
+      "duration": 31.25,
+      "screenFrames": 18,
+      "rawCaptureSeconds": 1.534,
+      "voiceSeconds": 28.220226757369616,
+      "sourceHash": "0852e8e84854e557c1bc7d497cb28517bd61dd8507fccb4ac1b5f12bd5fc1249",
+      "wavSHA256": "8cc4c16d7db3c00b938dfaff47672cc01bc650464429513060af236a6cbfede2",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 78
+      }
+    },
+    {
+      "id": "18-pdfs",
+      "start": 2518.9166666666665,
+      "duration": 27.666666666666668,
+      "screenFrames": 38,
+      "rawCaptureSeconds": 4.139,
+      "voiceSeconds": 24.59011337868481,
+      "sourceHash": "c389da055b70a686e11b482c453feeb71082d24c3371e2e0d81e33e2caf53892",
+      "wavSHA256": "c2b7caae0777fc5653c41faf392858fc7eeaa58d5f810073d1ac46d1bb11b11b",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 78
+      }
+    },
+    {
+      "id": "18-zip",
+      "start": 2546.583333333333,
+      "duration": 29.75,
+      "screenFrames": 12,
+      "rawCaptureSeconds": 2.965,
+      "voiceSeconds": 26.71092970521542,
+      "sourceHash": "da3d259cae8606618104d13d354e7b895103e7da3a32247c2c5c89231fa54b9c",
+      "wavSHA256": "25cc04c9863dc0937112074f8d7b94f80c5618053ca0ce2655b5bd0d8f85dad1",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 78
+      }
+    },
+    {
+      "id": "18-afsluiten",
+      "start": 2576.333333333333,
+      "duration": 26.5,
+      "screenFrames": 74,
+      "rawCaptureSeconds": 7.706,
+      "voiceSeconds": 23.460136054421767,
+      "sourceHash": "f735880bd3c2409b8a2ff8dd6dd7466c6bcbd91b8cc6476c006e21daa5f38ea9",
+      "wavSHA256": "c78320ebeb23851debf921c44c3e4d2f15ffc79cd6142e8af1a61be5009c8a9c",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 56,
+        "journals": 47,
+        "lines": 106,
+        "audit": 80
+      }
+    },
+    {
+      "id": "18-bescherming",
+      "start": 2602.833333333333,
+      "duration": 27.583333333333332,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 0.957,
+      "voiceSeconds": 24.57469387755102,
+      "sourceHash": "dff13c15acfa36d2f59b57941e784b91388c788b0aade62eedd060c80c4fbdf3",
+      "wavSHA256": "97802b1f67c565bc0b5874d733c942de692a84c5285cdec208cc4f3dc1d0f3a6",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 56,
+        "journals": 47,
+        "lines": 106,
+        "audit": 80
+      }
+    },
+    {
+      "id": "18-heropenen",
+      "start": 2630.4166666666665,
+      "duration": 27.666666666666668,
+      "screenFrames": 43,
+      "rawCaptureSeconds": 4.467,
+      "voiceSeconds": 24.65596371882086,
+      "sourceHash": "27dd7f514e92dfedaa9ce2b14f85ac79ca6b534e23a9596be79f349878425b65",
+      "wavSHA256": "725998f3231e2e34084a4f65035b20ecd9f6f329032fd24777da1579d6b35fb8",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 56,
+        "journals": 47,
+        "lines": 106,
+        "audit": 81
+      }
+    },
+    {
+      "id": "19-lening",
+      "start": 2658.083333333333,
+      "duration": 29.583333333333332,
+      "screenFrames": 77,
+      "rawCaptureSeconds": 5.456,
+      "voiceSeconds": 26.583219954648527,
+      "sourceHash": "e7b796ebe12fd901a2731ceebac4fca591ce15c4ee92a86cd1004a2d2519b3c2",
+      "wavSHA256": "9ac490c0fd8a273e8a0beffa1b19d0cf2a93f07a93d6732f3fbd2a0b46e6db83",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 57,
+        "journals": 48,
+        "lines": 108,
+        "audit": 82
+      }
+    },
+    {
+      "id": "19-nieuwelening",
+      "start": 2687.6666666666665,
+      "duration": 24.916666666666668,
+      "screenFrames": 45,
+      "rawCaptureSeconds": 3.39,
+      "voiceSeconds": 21.834739229024944,
+      "sourceHash": "c2189a51c1eedc7672d546cda2ef3cbc53b8f18c2f30be5ac0171cd6f08fd910",
+      "wavSHA256": "d0813ac654f1c3e3e2f157543bec0c690fee8f616b746eae996d14c11bb637a3",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 57,
+        "journals": 48,
+        "lines": 108,
+        "audit": 82
+      }
+    },
+    {
+      "id": "19-middel",
+      "start": 2712.583333333333,
+      "duration": 29.333333333333332,
+      "screenFrames": 92,
+      "rawCaptureSeconds": 7.404,
+      "voiceSeconds": 26.258140589569162,
+      "sourceHash": "7d7bbaa5f7c1da5b6bbbdb839d6748b45127a467d07449ffb32a932ceefad9f9",
+      "wavSHA256": "a6587b1b5e33aabb21e17fbb2c5c6014b0f0f2576f0a5da5f5b61bcc0e361afe",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 58,
+        "journals": 49,
+        "lines": 110,
+        "audit": 83
+      }
+    },
+    {
+      "id": "19-afschrijven",
+      "start": 2741.9166666666665,
+      "duration": 28.833333333333332,
+      "screenFrames": 75,
+      "rawCaptureSeconds": 5.76,
+      "voiceSeconds": 25.76671201814059,
+      "sourceHash": "3e2db3d703d47c99a22765412d5a2d1a94e8005d95c621943291bd10429788ff",
+      "wavSHA256": "370c4474d2d12af8a802d9f6e56fa10e46d8945a2979f1229e46d8546a370af7",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 3000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 59,
+        "journals": 50,
+        "lines": 112,
+        "audit": 84
+      }
+    },
+    {
+      "id": "19-controle",
+      "start": 2770.75,
+      "duration": 29.583333333333332,
+      "screenFrames": 17,
+      "rawCaptureSeconds": 1.5,
+      "voiceSeconds": 26.548390022675736,
+      "sourceHash": "032036d988402a0bf6113157bf404cdb79069bdce4bdc0f4d4c653c92532e6b2",
+      "wavSHA256": "6304b18475546b9f0d247d8a2385a02d47a9655801cf69887d9cf67966408869",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 3000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 59,
+        "journals": 50,
+        "lines": 112,
+        "audit": 84
+      }
+    },
+    {
+      "id": "20-historie",
+      "start": 2800.3333333333335,
+      "duration": 31.083333333333332,
+      "screenFrames": 51,
+      "rawCaptureSeconds": 5.567,
+      "voiceSeconds": 28.01904761904762,
+      "sourceHash": "6eb66f105e7f6d8dcf28a44af6aeceb879c0650351ba1dee33494ce5962e8eb2",
+      "wavSHA256": "4acb98bc3ebc4c472df840898d8588174018abb0325c212391651ac5d3ef939e",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 3000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 59,
+        "journals": 50,
+        "lines": 112,
+        "audit": 84
+      }
+    },
+    {
+      "id": "20-bewaar",
+      "start": 2831.416666666667,
+      "duration": 28.166666666666668,
+      "screenFrames": 43,
+      "rawCaptureSeconds": 4.054,
+      "voiceSeconds": 25.120362811791384,
+      "sourceHash": "9f183c9e7c5ba68c34bc262433827173c63ef40c9a169ca92d0008e83fb7546c",
+      "wavSHA256": "4b8b1d0853aa73fa81ef027af628fc6f42cc723da1efffc029213bba6ef563af",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 3000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 59,
+        "journals": 50,
+        "lines": 112,
+        "audit": 84
+      }
+    },
+    {
+      "id": "20-correctie",
+      "start": 2859.5833333333335,
+      "duration": 27.583333333333332,
+      "screenFrames": 35,
+      "rawCaptureSeconds": 2.523,
+      "voiceSeconds": 24.539863945578233,
+      "sourceHash": "1ede32dd264b795a4dcbc7a7a54203d5779823dacbd214e1f83af8b24e4dcbaa",
+      "wavSHA256": "29b2c46f535989a30247b4629c0ada116724e0790bdadcd7356fd56ac7bca979",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 3000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 59,
+        "journals": 50,
+        "lines": 112,
+        "audit": 84
+      }
+    },
+    {
+      "id": "20-fouten",
+      "start": 2887.166666666667,
+      "duration": 32.166666666666664,
+      "screenFrames": 25,
+      "rawCaptureSeconds": 4.355,
+      "voiceSeconds": 29.121995464852606,
+      "sourceHash": "d5a7662ec8d642db2a9c0284b99d2478c7b74b1c1f307ffb981dce4f19874cc0",
+      "wavSHA256": "afc2b545c5b802e34df14c85c21bcf2d0822817a6bdfe64aba61dd67d831a4dd",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 3000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 59,
+        "journals": 50,
+        "lines": 112,
+        "audit": 84
+      }
+    },
+    {
+      "id": "20-agenda",
+      "start": 2919.3333333333335,
+      "duration": 27.666666666666668,
+      "screenFrames": 13,
+      "rawCaptureSeconds": 1.385,
+      "voiceSeconds": 24.60952380952381,
+      "sourceHash": "42b8b3cbf6c1b4934679c7224989b1b6e102f9a5f9556b86a2089471ba7edd72",
+      "wavSHA256": "089c8c003835ae638bc4213e4da31a9cda6d053a31e316c1e74c53dbac631029",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 3000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 59,
+        "journals": 50,
+        "lines": 112,
+        "audit": 84
+      }
+    },
+    {
+      "id": "20-verder",
+      "start": 2947.0,
+      "duration": 36.833333333333336,
+      "screenFrames": 23,
+      "rawCaptureSeconds": 2.422,
+      "voiceSeconds": 33.77759637188208,
+      "sourceHash": "0152949d70876d31913d06273de3b66627b343222b76e614e1279ddb76fe3f12",
+      "wavSHA256": "0a2f53aaa8048171ea8f4311a601797a8c9aa4b601a6ff5be9e0481150a6b2df",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 3000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 59,
+        "journals": 50,
+        "lines": 112,
+        "audit": 84
+      }
+    }
+  ]
+}

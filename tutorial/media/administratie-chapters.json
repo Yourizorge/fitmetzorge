@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Welkom en het administratieoverzicht",
+    "start": 0,
+    "end": 156.25
+  },
+  {
+    "id": 2,
+    "title": "Bedrijfsgegevens, rekeningen en beginstand",
+    "start": 156.25,
+    "end": 300.25
+  },
+  {
+    "id": 3,
+    "title": "Klant, pakket en maand of vier weken",
+    "start": 300.25,
+    "end": 450.0833333333333
+  },
+  {
+    "id": 4,
+    "title": "Factuurconcept, trainingsregels en korting",
+    "start": 450.0833333333333,
+    "end": 598.4166666666666
+  },
+  {
+    "id": 5,
+    "title": "Definitief maken, PDF en bewust delen",
+    "start": 598.4166666666666,
+    "end": 747.4166666666667
+  },
+  {
+    "id": 6,
+    "title": "Een volledige betaling registreren",
+    "start": 747.4166666666667,
+    "end": 887.9166666666669
+  },
+  {
+    "id": 7,
+    "title": "Bank/Kas en het boekingsspoor controleren",
+    "start": 887.9166666666669,
+    "end": 1006.7500000000002
+  },
+  {
+    "id": 8,
+    "title": "Deelbetaling: €200 en daarna €150",
+    "start": 1006.7500000000002,
+    "end": 1134.7500000000002
+  },
+  {
+    "id": 9,
+    "title": "Een bestaande bankontvangst koppelen",
+    "start": 1134.7500000000002,
+    "end": 1270.3333333333335
+  },
+  {
+    "id": 10,
+    "title": "Een betaalfout corrigeren met historie",
+    "start": 1270.3333333333335,
+    "end": 1574.4166666666667
+  },
+  {
+    "id": 11,
+    "title": "Contant ontvangen en zakelijke uitgaven",
+    "start": 1574.4166666666667,
+    "end": 1718.0833333333335
+  },
+  {
+    "id": 12,
+    "title": "Openstaande en te late facturen",
+    "start": 1718.0833333333335,
+    "end": 1823.0833333333333
+  },
+  {
+    "id": 13,
+    "title": "Annuleren, credit en echte terugbetaling",
+    "start": 1823.0833333333333,
+    "end": 1956.9166666666665
+  },
+  {
+    "id": 14,
+    "title": "Privégeld en eigen overboekingen",
+    "start": 1956.9166666666665,
+    "end": 2088.5
+  },
+  {
+    "id": 15,
+    "title": "Bankstand vergelijken met een afschrift",
+    "start": 2088.5,
+    "end": 2193.8333333333335
+  },
+  {
+    "id": 16,
+    "title": "CSV-import en mogelijke duplicaten",
+    "start": 2193.8333333333335,
+    "end": 2363.583333333333
+  },
+  {
+    "id": 17,
+    "title": "Omzet, ontvangsten, kosten en btw",
+    "start": 2363.583333333333,
+    "end": 2518.9166666666665
+  },
+  {
+    "id": 18,
+    "title": "Exporteren en een periode afsluiten",
+    "start": 2518.9166666666665,
+    "end": 2658.083333333333
+  },
+  {
+    "id": 19,
+    "title": "Leningen en bedrijfsmiddelen",
+    "start": 2658.083333333333,
+    "end": 2800.3333333333335
+  },
+  {
+    "id": 20,
+    "title": "Historie, bewijs, grenzen en zelfstandig verder",
+    "start": 2800.3333333333335,
+    "end": 2983.8333333333335
+  }
+]

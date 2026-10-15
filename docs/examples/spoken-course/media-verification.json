@@ -1,0 +1,19 @@
+{
+  "mp4SHA256": "a04795d6172356c4133f5f6e5a90388e3332d1e830a8599d8287cbbf3b8cbfb8",
+  "bytes": 68004871,
+  "durationSeconds": 2983.8333333333335,
+  "actualAACStreamDecodedInFull": true,
+  "meanVolumeDB": -18.8,
+  "peakVolumeDB": -1.4,
+  "video": "H.264 yuv420p",
+  "audio": "AAC mono 48000Hz",
+  "chapters": 20,
+  "subtitleCues": 449,
+  "syntheticScenes": 104,
+  "captureExternalRequests": 0,
+  "privateContentScanPassed": true,
+  "metadataSynthetic": true,
+  "allJournalsBalanced": true,
+  "partial200Then150Verified": true,
+  "physicalIPhoneHearing": "Owner still needs to confirm"
+}
