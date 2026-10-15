@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-15T14:42:42.375Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "realPostgREST": true,
+  "syntheticOnly": true,
+  "concurrentSameRequestOneBankOneAllocation": true,
+  "discardedAnswerRetrySameResult": true,
+  "partial200Then150": true,
+  "differentDates": true,
+  "bankAndCashSeparate": true,
+  "conflict": {
+    "code": "PT409",
+    "status": 409,
+    "ms": 104,
+    "completeRollback": true
+  },
+  "correctionRetainsInvoiceAndAudit": true,
+  "existingBankReuseNoNewReceipt": true,
+  "noSecondRevenueOrVAT": true,
+  "memberAndOtherTrainerDenied": true,
+  "anonymousDenied": true,
+  "revokedSessionDenied": true,
+  "reloginPersistence": true,
+  "noMailOrPush": true
+}

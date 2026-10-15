@@ -61,7 +61,11 @@ Voor de uitrol zijn 24 tabelhashes en bestaande functie-/policy-/rechtendefiniti
 
 [Alle 51 regressieonderdelen hebben definitief PASS-bewijs](examples/admin-simple/regressions.json). De volledige ronde had 49 PASS en twee onjuiste testaannames; na gerichte correcties slaagden de betaal-/boekhoud-/PWA-controles en de trainerlayout. Er is geen productiefout verborgen door een test weg te laten. De bestaande 27 lessen en 61 oefenhandelingen zijn ook volledig in de browser doorlopen.
 
-Productie-/publicatiecontrole volgt hieronder na de geteste branchcommit. Dit rapport is geen owneracceptatie.
+Productie: uitsluitend `20261015130925_appfmz_invoice_payments.sql` transactioneel toegepast. SHA-256 `b1753191c35f547d2e48cfac83930c6410ba77504b74e19ab9ce23028d84f5e8`. [Alle negen migrationidentiteiten gelijk](examples/admin-simple/migration-list.json); [dry-run up-to-date, migrations/seeds/roles leeg](examples/admin-simple/migration-dry-run.json). Geen bestaande migration opnieuw uitgevoerd.
+
+[Echte PostgREST/Auth-proef](examples/admin-simple/production-api.json): drie verse eigen testaccounts, €200 + €150, verschillende datums, bank/kas, gelijktijdige identieke requests, verloren-antwoordherhaling, correctie, bestaande ontvangst koppelen, geen extra omzet/btw, herinloggen en sessie-intrekking PASS. Stale versie gaf één PT409/HTTP409 in 104 ms; volledige transactie bleef ongewijzigd. Lid, andere trainer en anonieme gebruiker geweigerd. Geen e-mail of push.
+
+Frontendpublicatie en gerichte opruiming volgen na deze geslaagde productieketen. Dit rapport is geen owneracceptatie.
 
 ## Korte eigenaarstest en backlog
 
