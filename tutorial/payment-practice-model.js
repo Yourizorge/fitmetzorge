@@ -14,7 +14,8 @@
     }else throw Error('Onbekende oefenhandeling.');receipts.set(payload.id,{hash,result:clone(result)});return result;
    }catch(e){s=before;throw e;}
   }
-  return{snapshot:()=>s,execute,uuid};
+  function addExistingReceipt(data){const a=get(data.account_id);if(!a||a.kind!=='account'||!Number.isSafeInteger(data.cents)||data.cents<=0)throw Error('Gebruik een positieve ontvangst op de oefenrekening.');A.date(data.date);const id=data.id||uuid();if(get(id))throw Error('Deze oefenontvangst bestaat al.');record(id,'bank',data.date,{...data,account_code:a.data.code});post(id,data.date,[[a.data.code,data.cents,id],['1400',-data.cents,id]]);return id;}
+  return{snapshot:()=>s,execute,uuid,addExistingReceipt};
  }
  const api={create};if(node)module.exports=api;else root.FMZPaymentPracticeModel=api;
 })(typeof window==='undefined'?globalThis:window);

@@ -12,6 +12,8 @@ async function start(port=8876){
     if(name==='fmz_accounting_read')return send(200,{data:(await database.as(account,'select public.fmz_accounting_read() result')).rows[0].result,error:null});
     if(name==='fmz_billing_command')return send(200,{data:(await database.as(account,'select public.fmz_billing_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
     if(name==='fmz_accounting_command')return send(200,{data:(await database.as(account,'select public.fmz_accounting_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
+    if(name==='fmz_bank_repair_preview')return send(200,{data:(await database.as(account,'select public.fmz_bank_repair_preview($1,$2) result',[params.action,JSON.stringify(params.payload)])).rows[0].result,error:null});
+    if(name==='fmz_bank_repair_command')return send(200,{data:(await database.as(account,'select public.fmz_bank_repair_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
     if(name==='fmz_payment_command')return send(200,{data:(await database.as(account,'select public.fmz_payment_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
     if(name==='storage_upload'){const bytes=Buffer.from(params.base64,'base64');await database.as(account,'insert into storage.objects(bucket_id,name,metadata) values($1,$2,$3)',['fmz-finance',params.path,JSON.stringify({size:bytes.length})]);if(blobs.has(params.path))return send(409,{error:{message:'Already exists'}});blobs.set(params.path,{base64:params.base64,mime:params.mime});return send(200,{data:{path:params.path},error:null});}
     if(name==='storage_download'){const rows=(await database.as(account,'select name from storage.objects where bucket_id=$1 and name=$2',['fmz-finance',params.path])).rows;if(!rows.length||!blobs.has(params.path))return send(403,{error:{message:'Denied'}});return send(200,{data:blobs.get(params.path),error:null});}
@@ -37,7 +39,7 @@ async function start(port=8876){
   }catch{send(404,{})}
  });
  await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,'127.0.0.1',resolve)});
- return {url:`http://127.0.0.1:${server.address().port}`,calls,database,blobs,close:async()=>{await new Promise(r=>server.close(r));await database.db.close();}};
+ return {url:`http://127.0.0.1:${server.address().port}`,calls,database,blobs,close:async()=>{await queue;await new Promise(r=>{server.close(r);server.closeAllConnections();});await database.db.close();}};
 }
 module.exports={start};
 if(require.main===module)start().then(x=>console.log('Synthetic preview: '+x.url));

@@ -1,0 +1,5 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),{randomUUID}=require('node:crypto'),A=require('../accounting-model.js'),P=require('../payments-model.js'),Practice=require('../tutorial/payment-practice-model.js');
+test('optional existing-receipt exercise matches SQL and links without a second bank receipt',async()=>{
+ const f=await require('./payments-fixture.cjs').setup();try{const invoice=await f.invoice(),m=Practice.create(await f.snapshot()),data={id:randomUUID(),account_id:f.bank.id,date:'2026-09-15',cents:35000,description:'Bestaande oefenontvangst'};await f.cmd('bank',{id:data.id,data});m.addExistingReceipt(data);const payload={id:randomUUID(),...P.prepare(await f.snapshot(),invoice.id,{amount:'350',date:data.date,account_id:f.bank.id,bank_id:data.id})};m.execute('register',payload);await f.pay('register',payload);for(const s of [m.snapshot(),await f.snapshot()]){assert.equal(s.records.filter(r=>r.kind==='bank').length,1);assert.equal(P.revision(s,invoice.id).outstanding,0);assert.equal(A.project(s).bank.find(x=>x.id===f.bank.id).cents,35000);assert.equal(A.project(s).revenue,28926);}
+ }finally{await f.db.close();}
+});

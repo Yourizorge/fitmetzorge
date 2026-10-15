@@ -1,5 +1,5 @@
 """Public course handbook; inputs contain static synthetic course material only."""
-import json, html
+import json, html, os
 from pathlib import Path
 from reportlab.platypus import BaseDocTemplate, PageTemplate, Frame, Paragraph, Spacer, PageBreak, KeepTogether, Image, Table, TableStyle
 from reportlab.platypus.tableofcontents import TableOfContents
@@ -13,8 +13,10 @@ from pypdf import PdfReader
 ROOT=Path(__file__).resolve().parent.parent
 D=json.loads((ROOT/'tests/artifacts/tutorial/handbook-content.json').read_text(encoding='utf-8'))
 OUT=ROOT/'output/pdf'; OUT.mkdir(parents=True,exist_ok=True)
-pdfmetrics.registerFont(TTFont('Course','C:/Windows/Fonts/arial.ttf'))
-pdfmetrics.registerFont(TTFont('CourseBold','C:/Windows/Fonts/arialbd.ttf'))
+font_regular=os.environ.get('FMZ_FONT_REGULAR', 'C:/Windows/Fonts/arial.ttf' if os.name=='nt' else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf')
+font_bold=os.environ.get('FMZ_FONT_BOLD', 'C:/Windows/Fonts/arialbd.ttf' if os.name=='nt' else '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf')
+pdfmetrics.registerFont(TTFont('Course',font_regular))
+pdfmetrics.registerFont(TTFont('CourseBold',font_bold))
 pdfmetrics.registerFontFamily('Course',normal='Course',bold='CourseBold',italic='Course',boldItalic='CourseBold')
 ink=colors.HexColor('#192c32');green=colors.HexColor('#246554');muted=colors.HexColor('#526561');soft=colors.HexColor('#e9f0eb');gold=colors.HexColor('#b89a58')
 styles={

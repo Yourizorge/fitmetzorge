@@ -6,6 +6,7 @@ async function extend({db,ids}){
  await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20260911094831_appfmz_owner_hotfix.sql'),'utf8'));
  await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations',fs.readdirSync(path.join(__dirname,'../supabase/migrations')).find(f=>f.endsWith('_appfmz_billing_periods.sql'))),'utf8'));
  await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20261015130925_appfmz_invoice_payments.sql'),'utf8'));
+ await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations',fs.readdirSync(path.join(__dirname,'../supabase/migrations')).find(f=>f.endsWith('_appfmz_bank_repair.sql'))),'utf8'));
  return (await db.query('select fmz_accounting.provision($1,$2) id',[ids.trainer,'Synthetic owner'])).rows[0].id;
 }
 module.exports={extend};
