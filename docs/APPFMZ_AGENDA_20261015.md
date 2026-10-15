@@ -2,7 +2,7 @@
 
 Scope: uitsluitend `Yourizorge/fitmetzorge`, `appfmz.nl`, productieproject `hgoygcviutmynaihcvpd`. Baseline `ac497672f9c5d2877cd283c856c9467a89c02e44`. Werkbranch `codex/agenda-reminders-20261015`.
 
-**Status: live gepubliceerd en gecontroleerd; laatste conceptherstel wordt afgerond.** Eerste runtimecommit `c0a2fcbbed7f20785ab2f3c488add1af0ba66377`, eerste publicatie `42ce0e0ecaca0b503ee9c8f57a3d94d43c815959`. De owner heeft deze agenda-/meldingenrelease opgedragen, inclusief noodzakelijke minimale additieve backendvoorzieningen. Er wordt geen betaalde dienst geactiveerd. De eerdere trainer-/PWA-release is door de owner geaccepteerd; dat staat afzonderlijk in het bijbehorende rapport.
+**Status: PASS — gepubliceerd op appfmz.nl en live gecontroleerd.** Definitieve runtimecommit `42d42eb7c22c23493473b600e02d2455e56d8dae`; [geslaagde publicatie](https://github.com/Yourizorge/fitmetzorge/actions/runs/38727708099). De afrondende documentatiecommit wijzigt geen runtimebestanden. Eerste implementatiecommit `c0a2fcbbed7f20785ab2f3c488add1af0ba66377`. De owner heeft deze agenda-/meldingenrelease opgedragen, inclusief noodzakelijke minimale additieve backendvoorzieningen. Er is geen betaalde dienst geactiveerd. De eerdere trainer-/PWA-release is door de owner geaccepteerd; dat staat afzonderlijk in het bijbehorende rapport. Fysieke iPhone-pushontvangst en owneracceptatie van deze agenda-uitbreiding staan nog open.
 
 ## Inventaris en wijzigingen
 
@@ -48,11 +48,15 @@ Een extra regressie reproduceerde na de eerste publicatie een randgeval: een voo
 
 Na dit herstel: 5/5 gerichte tests PASS (nieuwe concept-/antwoordverliesregressie, beide agenda-browserproeven, beide push-/workerproeven). De nieuwe regressie faalde vóór de correctie en slaagt erna. Hiervoor is geen aanvullende databasewijziging gedaan.
 
+De definitieve runtime is daarna opnieuw live gecontroleerd: alle 53 bestanden gelijk aan commit `42d42eb7c22c23493473b600e02d2455e56d8dae`, beide rollen op 390/1400px zonder fouten. Live screenshots met uitsluitend eigen synthetische gegevens: [trainer telefoon](examples/agenda-20261015/live-trainer-390.png), [trainer laptop](examples/agenda-20261015/live-trainer-1400.png), [lid telefoon](examples/agenda-20261015/live-member-390.png), [lid laptop](examples/agenda-20261015/live-member-1400.png).
+
 ## Productiebackend
 
 Uitsluitend migration `20261015102946_appfmz_agenda_reminders.sql` is transactioneel toegepast; SHA-256 `b94baebec70b3e9e127ead68c1c2d58861bfaa1bde3e9be3571abf7b29439e55`. Alle acht lokale/remote versies zijn gelijk. `db push --dry-run --skip-vault` meldt `upToDate:true`, met lege migrations/seeds/roles. De zeven bestaande migrations zijn niet opnieuw uitgevoerd.
 
 `agenda-reminders` is ACTIVE versie 1. De eigen cron-bearer en VAPID-sleutels zijn ingesteld; push is technisch beschikbaar, maar staat per gebruiker uit totdat die bewust inschakelt. Cron `appfmz-agenda-reminders` draait iedere minuut; de gecontroleerde runs zijn geslaagd. `invite-client` blijft ACTIVE versie 7, JWT-verificatie aan, bestaand deploytijdstip en source ongewijzigd.
+
+Definitief reproduceerbaar bewijs: [migrationlijst](examples/agenda-20261015/migration-list.json), [lege dry-run](examples/agenda-20261015/migration-dry-run.json), [RLS/Cron/opruimstatus](examples/agenda-20261015/production-status.json). De zes nieuwe private tabellen hebben RLS; anon kan de read-RPC niet uitvoeren, gewone gebruikers kunnen de worker niet uitvoeren of de berichtentabel direct lezen.
 
 De security-advisor heeft geen ERROR gevonden. RLS-zonder-policy is bij de private tabellen bewust deny-by-default: alleen gecontroleerde RPC’s hebben toegang. Er staan WARN-meldingen voor de standaardregistratie van de niet-verplaatsbare `pg_net`-extensie in public ([uitleg](https://supabase.com/docs/guides/database/database-linter?lint=0014_extension_in_public)) en de bestaande uitgeschakelde leaked-password protection ([uitleg](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection)). Deze release wijzigt geen Auth-instellingen of abonnement; `net` is geen nieuw publiek API-schema.
 
@@ -69,10 +73,19 @@ Een nieuw versleuteld checkpoint is gemaakt buiten Git/OneDrive, met alle 14 app
 
 De dry-run vóór toepassing noemt uitsluitend de bovenstaande nieuwe migration, met lege seed-/roleslijsten. Geen oude migration uitvoeren, geen repair/reset. Na de transactionele toevoeging volgen privésleutels, uitsluitend `agenda-reminders`, eigen synthetische PostgREST/Auth-proeven, Cron-controle, gegevensbehoud, frontendpublicatie en bytevergelijking. Geen automatische klantpush tijdens tests.
 
+Deze volgorde is uitgevoerd. De vier eigen testaccounts zijn op marker/e-mailadres gecontroleerd en uitsluitend hun afspraken, voorkeuren, berichten, verzoeken, profielen en Auth-accounts zijn verwijderd. [Gegevensbehoud](examples/agenda-20261015/data-preservation.json) vergelijkt het moment direct vóór de migration met na opruimen: alle 18 bestaande tabellen exact dezelfde aantallen en inhoudshashes, alle 41 oorspronkelijke functies dezelfde definitiehash, alle drie private Storage-bestanden byte-identiek aan het versleutelde checkpoint. Dit omvat bestaande memberdata, afspraken, financiële afspraken, facturen, boekingen, audit, Auth en PDF’s. Staging, website en JARVIS/AI zijn niet gewijzigd. APPFMZ blijft beschikbaar; geen onderhoudsscherm actief.
+
 Terugval: bij een SQL-fout rolt de transactie terug. Na een geslaagde toevoeging blijven tabellen en bestaande gegevens staan. Zet bij een workerprobleem `fmz_agenda.config.enabled=false` en de specifieke Cronjob uit; in-app agenda/administratie blijven bruikbaar. Bij een agenda-RPC-probleem geen schrijfknoppen vrijgeven, invoer behouden en gerichte correctie uitvoeren. Geen oude onveilige rechten herstellen, geen historie overschrijven en geen oude frontend met automatische agenda-financemutaties opnieuw vrijgeven.
 
 ## Nog fysiek te bevestigen
 
-De owner heeft de geïnstalleerde APPFMZ op zijn eigen **iPhone** gekozen. Technische/browserresultaten bewijzen nog geen ontvangst op dat toestel. Na publicatie: open Agenda, maak een eigen testafspraak zonder prijs, controleer maandtelling/aanwezigheid, schakel meldingen bewust in en kies **Testmelding op mijn toestel**. Controleer de melding met de app op de achtergrond en open de afspraak via de melding. Verplaats/annuleer daarna de testafspraak en controleer het berichtenoverzicht.
+De owner heeft de geïnstalleerde APPFMZ op zijn eigen **iPhone** gekozen. Technische/browserresultaten bewijzen nog geen ontvangst op dat toestel.
+
+1. Open FitMetZorge vanaf het beginscherm. Bekijk Agenda in Dag/Week/Maand/Lijst en open een bestaande afspraak.
+2. Bekijk bij een lid **Afspraken deze maand**, wissel maand en tik een aantal open. Registreer uitsluitend werkelijke aanwezigheid; dit maakt geen financiële handeling.
+3. Ga naar **Agenda → Meldingen → Meldingen inschakelen**, sta meldingen toe en tik **Testmelding op mijn toestel**. Zet de app op de achtergrond en wacht ongeveer één minuut. Controleer dat de tekst geen klantgegevens bevat.
+4. Tik de testmelding aan: die opent na eventuele login het berichtenoverzicht. Een echte afspraakmelding opent de betreffende toegestane afspraak. Controleer vervolgens een gekozen voorafherinnering bij een eigen toekomstige afspraak; de trainer kiest zijn eigen herinnering, het lid apart de zijne.
+
+Geen bestaande klant heeft een testpush of e-mail gekregen. De sender-autorisatie, versleuteling, providerfoutafhandeling en serverwachtrij zijn technisch getest; de Apple-provideraflevering en zichtbare ontvangst op de fysieke iPhone worden pas als geslaagd aangemerkt na deze ownerproef.
 
 Technische bronnen: [Supabase scheduling](https://supabase.com/docs/guides/functions/schedule-functions), [WebKit Web Push](https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/), [Web Push library](https://github.com/web-push-libs/web-push). Changelog gecontroleerd; de aangekondigde verwijdering van oude TLS-ciphers vereist geen wijziging voor de geteste moderne browsers.

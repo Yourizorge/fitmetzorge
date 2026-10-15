@@ -1,6 +1,6 @@
 {
-  "at": "2026-10-15T11:23:14.582Z",
-  "commit": "42ce0e0ecaca0b503ee9c8f57a3d94d43c815959",
+  "at": "2026-10-15T11:31:45.355Z",
+  "commit": "42d42eb7c22c23493473b600e02d2455e56d8dae",
   "baseline": "ac497672f9c5d2877cd283c856c9467a89c02e44",
   "host": "https://appfmz.nl",
   "files": [
@@ -349,8 +349,8 @@
     },
     {
       "file": "agenda.js",
-      "bytes": 25028,
-      "sha256": "4352e4baee25e8eaa2fc3857983af313499961b334b1af3ad59b83133ed3f8a6",
+      "bytes": 25535,
+      "sha256": "66b7c5eda734968b9b4f2bd30ad54c7a9b1548cf4b232a0ea8ed44007ca2f8d6",
       "mime": "application/javascript; charset=utf-8",
       "unchangedFromBaseline": false
     },

@@ -1,0 +1,84 @@
+{
+  "at": "2026-10-15T11:32:38.886Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "before": "2026-10-15T11:12:58.941042+00:00",
+  "after": "2026-10-15T11:32:37.473263+00:00",
+  "tables": [
+    {
+      "table": "auth.identities",
+      "unchanged": true
+    },
+    {
+      "table": "auth.users",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.accounts",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.agreement_versions",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.audit",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.files",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.journals",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.lines",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.organizations",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.receipts",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.records",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_private.photo_annotations",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_private.write_receipts",
+      "unchanged": true
+    },
+    {
+      "table": "public.client_invites",
+      "unchanged": true
+    },
+    {
+      "table": "public.coach_workspaces",
+      "unchanged": true
+    },
+    {
+      "table": "public.profiles",
+      "unchanged": true
+    },
+    {
+      "table": "storage.buckets",
+      "unchanged": true
+    },
+    {
+      "table": "storage.objects",
+      "unchanged": true
+    }
+  ],
+  "originalFunctions": 41,
+  "originalFunctionsUnchanged": true,
+  "privateStorageFiles": 3,
+  "privateStorageBytesUnchanged": true
+}

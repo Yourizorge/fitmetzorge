@@ -16,5 +16,5 @@ const baseline='ac497672f9c5d2877cd283c856c9467a89c02e44',sha=b=>createHash('sha
   report.files.push({file,bytes:actual.length,sha256:sha(actual),mime,unchangedFromBaseline:!changed.has(file)});
  }
  const protectedDiff=execFileSync('git',['diff','--name-only',baseline,commit,'--','supabase/functions/invite-client','config.js','sync.js','autosave.js','photos.js','accounting.js','accounting-model.js','accounting-reports.js','billing-periods.js','billing-ui.js','invoice-documents.js','invoice-editor.js','invoices.js','styles.css','tutorial','output','fit-met-zorge-logo.png','assets/fit-met-zorge-logo.png','assets/fit-met-zorge-logo-cropped.png'],{encoding:'utf8'}).trim();assert.equal(protectedDiff,'');
- report.protectedSourceDiff=[];fs.writeFileSync('docs/APPFMZ_AGENDA_ASSETS_20261015.json',JSON.stringify(report,null,2)+'\n');console.log(`PASS ${files.length} public live files exactly match ${commit}; protected application source unchanged.`);
+ report.protectedSourceDiff=[];if(process.env.FMZ_VERIFY_WRITE!=='0')fs.writeFileSync('docs/APPFMZ_AGENDA_ASSETS_20261015.json',JSON.stringify(report,null,2)+'\n');console.log(`PASS ${files.length} public live files exactly match ${commit}; protected application source unchanged.`);
 })().catch(error=>{console.error(error);process.exitCode=1;});
