@@ -1,6 +1,6 @@
 # APPFMZ — betaalhistorie en controleerbaar Bank/Kas-herstel
 
-Bron: `3db0806efc268179a3c805050db12427f5083b27`. Uitsluitend APPFMZ, project `hgoygcviutmynaihcvpd`. Staging, JARVIS en de website zijn niet gewijzigd. Publicatiebewijs wordt apart vastgelegd in `docs/examples/bank-repair/release.json`.
+Bron: `3db0806efc268179a3c805050db12427f5083b27`. Uitsluitend APPFMZ, project `hgoygcviutmynaihcvpd`. Staging, JARVIS en de website zijn niet gewijzigd. Implementatiecommit: `687417359ab445373baff52741679720f4dad497`. [Pages-publicatie](https://github.com/Yourizorge/fitmetzorge/actions/runs/38763557268) geslaagd. Alle 18 gewijzigde publieke app-/cursus-/videobestanden zijn via HTTPS byte-identiek gecontroleerd. [Gesaneerd publicatiebewijs](examples/bank-repair/release.json).
 
 ## Oorzaak van de ontbrekende betaalactie
 

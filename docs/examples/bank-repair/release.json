@@ -1,0 +1,186 @@
+{
+  "commit": "687417359ab445373baff52741679720f4dad497",
+  "checked_at": "2026-10-15T15:49:39.689527+00:00",
+  "assets": [
+    {
+      "path": "accounting.js",
+      "http": 200,
+      "bytes": 85753,
+      "sha256": "be2fbeeaa03d56af7fd6fd6be1eae2f36c4e197aedf0bbb2ad0f90e9da0abbf9",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "bank-repair-ui.js",
+      "http": 200,
+      "bytes": 6171,
+      "sha256": "a38d08fac21b834f7ac3b54b7c107ae9045fc60e9679762d1205fc3f6ee07e22",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "index.html",
+      "http": 200,
+      "bytes": 49837,
+      "sha256": "0a3bb511197630e166d7f2f6ee647d1117c610e59c0a1c5cc991ab0e7997b0aa",
+      "equal": true,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "payments-model.js",
+      "http": 200,
+      "bytes": 6346,
+      "sha256": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "payments-ui.js",
+      "http": 200,
+      "bytes": 8505,
+      "sha256": "eea5623bd944102265ea6996851b7d4e330a554a04bc4a8254f916cd2da127ff",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "payments.css",
+      "http": 200,
+      "bytes": 2841,
+      "sha256": "9781b27faca8406a76cb652c8c12eb4cf6e9d1f6c30b029c694f48ac9337ea61",
+      "equal": true,
+      "content_type": "text/css; charset=utf-8"
+    },
+    {
+      "path": "output/pdf/APPFMZ-boekhouden-voor-beginners.pdf",
+      "http": 200,
+      "bytes": 793888,
+      "sha256": "4c9d0ba26bc0f7398900fdb47e721c53ba59e1a191c91de5b96daaa59f8059c2",
+      "equal": true,
+      "content_type": "application/pdf"
+    },
+    {
+      "path": "tutorial/bank-repair-demo-data.js",
+      "http": 200,
+      "bytes": 2281,
+      "sha256": "8c94916be5023269b67dae53af6f172e095f8235cd9ee3b077a903b529110095",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "tutorial/beginner-content.js",
+      "http": 200,
+      "bytes": 8115,
+      "sha256": "862bdfa989f3d1a25bb59dd867dc03ec14153d32f291b30980060e687a9bdf04",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "tutorial/content.js",
+      "http": 200,
+      "bytes": 64808,
+      "sha256": "aece1a3ed8c974782d49077adceae8764d4f0287506ff3142b603d42bf2cf5c9",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "tutorial/course.html",
+      "http": 200,
+      "bytes": 1736,
+      "sha256": "3e85c259288f8c36947222376efdba99458de1a9973d14a54c1a21e76ca0b795",
+      "equal": true,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "tutorial/course.js",
+      "http": 200,
+      "bytes": 35033,
+      "sha256": "9ef9561470ad95a167a0aa5ea29e48c7549aa43bc408825bd6a3fcc43f7a0d22",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "tutorial/handbook-manifest.json",
+      "http": 200,
+      "bytes": 547,
+      "sha256": "0a4445dbdad6bcfad449cc65102eb3343fc13b8b9bc47d84bb5ac3d48c954527",
+      "equal": true,
+      "content_type": "application/json; charset=utf-8"
+    },
+    {
+      "path": "tutorial/media/bank-kas-herstel-nl.vtt",
+      "http": 200,
+      "bytes": 1849,
+      "sha256": "6d10025d4fd9271eefd2fde1e8d7288d24fd798a34f01974ef52d3a332130140",
+      "equal": true,
+      "content_type": "text/vtt; charset=utf-8"
+    },
+    {
+      "path": "tutorial/media/bank-kas-herstel-transcript.txt",
+      "http": 200,
+      "bytes": 1782,
+      "sha256": "f9565966848d0af74b7c1cb2f49a392dfa35fd499551bf0a62a3e0097927b6c0",
+      "equal": true,
+      "content_type": "text/plain; charset=utf-8"
+    },
+    {
+      "path": "tutorial/media/bank-kas-herstel.mp4",
+      "http": 200,
+      "bytes": 4093503,
+      "sha256": "684f553e51ec6cbb94324ce9d372b2cf60054d888021c0c269919d9ff363c2f6",
+      "equal": true,
+      "content_type": "video/mp4"
+    },
+    {
+      "path": "tutorial/payment-practice-model.js",
+      "http": 200,
+      "bytes": 4444,
+      "sha256": "14673005e58edb629e1e37249e253a15a1b1164eda17ff50c0ea09f48f194323",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "tutorial/payment-practice.js",
+      "http": 200,
+      "bytes": 9818,
+      "sha256": "02d5f2d660007829ec8fc42788436c621c76b09255621734cc794adc6e1ac13c",
+      "equal": true,
+      "content_type": "application/javascript; charset=utf-8"
+    }
+  ],
+  "all_equal": true,
+  "pages": {
+    "run_id": 38763557268,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Yourizorge/fitmetzorge/actions/runs/38763557268"
+  },
+  "migration": {
+    "version": "20261015152613",
+    "local_hosted_identity_count": 10,
+    "registered_sql_byte_identical": true,
+    "native_cli_dry_run_performed": false
+  },
+  "data_preservation": {
+    "eight_selected_table_hashes_equal": true,
+    "historical_corrections_applied": false,
+    "synthetic_hosted_sql_test_rolled_back": true,
+    "private_storage_bytes_rehashed": false
+  },
+  "verification": {
+    "selected_core_tests_pass": 25,
+    "hosted_sql_rpc_test": "PASS_WITH_SYNTHETIC_DATA_AND_ROLLBACK",
+    "real_owner_http_login_test": false,
+    "native_video_playback_in_headless_chromium": "SKIP_CODEC_UNAVAILABLE",
+    "physical_iphone_acceptance": false,
+    "broader_pdf_preview_tests": "NOT_PASS_IN_THIS_ENGINE_BASELINE_REPRODUCED"
+  },
+  "spoken_video": {
+    "seconds": 118.04,
+    "chapters": 9,
+    "language": "nl",
+    "synthetic_data": true,
+    "local_computer_voice": true,
+    "full_administration_spoken_course_complete": false
+  },
+  "bank_feed_activated": false
+}
