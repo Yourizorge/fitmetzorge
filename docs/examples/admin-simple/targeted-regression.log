@@ -1,0 +1,33 @@
+PASS owner settings
+PDF pt-basis Opgeslagen — PDF-download gestart
+PDF pt-progressie Opgeslagen — PDF-download gestart
+PDF pt-transformatie Opgeslagen — PDF-download gestart
+PASS 3 monthly amounts, private real PDFs and no invoice from typing
+PASS lost refresh after confirmed booking retries read without a duplicate
+PASS partial/full payment, 20-cent deposit and bank reconciliation
+PASS ING preview and overlapping CSV deduplication
+PASS receipts/VAT/private advance, re-login, identical stored PDF, portable export and all original hashes
+✔ owner administration phone and desktop: draft, PDF, payments, bank CSV, receipts, export and restored sources (40907.6898ms)
+✔ payment form on real rendered screens: lost response, reopen, partials, stale device, corrections, source reuse, login and responsive access (19321.5038ms)
+✔ one invoice payment uses the existing ledger; partial receipts, two-device conflict, idempotency, bank versus cash and correction history (3622.6877ms)
+✔ existing receipt linking and unlink correction make no extra receipt; manual receipt/CSV guard and explicit source attachment prevent duplicate imports (2600.8773ms)
+✔ cash-basis VAT follows actual receipt dates and reversals without changing invoice tax settings; closed source periods are protected (2200.429ms)
+✖ rendered trainer/member layout: all navigation, bounded moving media, touch widths, focus and enlarged text (53952.8967ms)
+✔ PWA manifest, original padded icons, native prompt lifecycle, iPhone help, standalone role/session and no cache writes (18035.5958ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 143316.4223
+
+✖ failing tests:
+
+test at tests\trainer-pwa.test.cjs:21:1
+✖ rendered trainer/member layout: all navigation, bounded moving media, touch widths, focus and enlarged text (53952.8967ms)
+  TypeError: Cannot read properties of null (reading 'height')
+      at TestContext.<anonymous> (<workspace>\tests\trainer-pwa.test.cjs:30:73)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

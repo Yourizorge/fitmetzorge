@@ -26,6 +26,9 @@ test('rendered trainer/member layout: all navigation, bounded moving media, touc
    const views=await page.evaluate(()=>allowedViews().map(([id])=>id));assert.equal(views.length,role==='trainer'?11:5);
    for(const [width,height]of [[320,740],[390,844],[768,1024],[844,390],[1024,768],[1400,950]]){
     await page.setViewportSize({width,height});
+    // The member agenda intentionally folds the header into Appbediening.
+    // Measure the normal header on home, then visit every view at this width.
+    await navigate(page,role==='trainer'?'trainer-dashboard':'client-home');
     assert(await page.locator('.topbar').evaluate(e=>getComputedStyle(e).flexDirection==='row'),'header flex bases must describe widths, not tall mobile rows');
     if(width===390)assert((await page.locator('.topbar').boundingBox()).height<360,'compact phone header');
     for(const id of views){

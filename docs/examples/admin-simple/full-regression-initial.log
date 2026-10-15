@@ -1,0 +1,133 @@
+✔ VAT reports distinguish net business base from non-deductible VAT and unknown opening periods (21.2459ms)
+✔ CSV mapping, signed integer cents, overlaps, ambiguous duplicates, periods and safe exports (15.6107ms)
+✔ cash VAT uses bank receipt dates and cumulative cent rounding, excludes deposits (18.933ms)
+PASS owner settings
+PDF pt-basis Opgeslagen — PDF-download gestart
+PDF pt-progressie Opgeslagen — PDF-download gestart
+PDF pt-transformatie Opgeslagen — PDF-download gestart
+PASS 3 monthly amounts, private real PDFs and no invoice from typing
+PASS lost refresh after confirmed booking retries read without a duplicate
+PASS partial/full payment, 20-cent deposit and bank reconciliation
+PASS ING preview and overlapping CSV deduplication
+PASS receipts/VAT/private advance, re-login, identical stored PDF, portable export and all original hashes
+✔ owner administration phone and desktop: draft, PDF, payments, bank CSV, receipts, export and restored sources (60013.188ms)
+✔ owner ledger: invoice, VAT, payments, bank, private, audit, conflicts and archive protection (6503.1782ms)
+✔ appointment draft survives unrelated preferences and a lost response can be retried once after closing (12882.3624ms)
+(node:21592) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Web Push encryption and authenticated worker: only valid jobs, no sensitive payload, bounded network calls (346.1426ms)
+✔ push worker duplicates and deep links reveal no private data; no fetch/cache/update takeover (100.2114ms)
+✔ real calendar screens: navigation, month counts, explicit save, retry, attendance and privacy (15943.8385ms)
+✔ WebKit/iPhone and Android emulation: all views, text enlargement, keyboard, explicit push opt-in (33032.624ms)
+✔ agenda commands preserve all finance; duo, attendance, conflicts, recurrence and role boundaries (4080.0938ms)
+✔ calendar months, Amsterdam boundaries, unknown history and duplicate occurrences (2.8399ms)
+✔ durable reminders: opt-in, reschedule/cancel, DST, bounded retry, sessions and no backlog (4595.2402ms)
+✔ isolated restore: synthetic agenda, receipts and notifications recover without finance changes (5978.3748ms)
+✔ idempotent writes and private draft/share annotations preserve originals and reject outsiders (4774.2472ms)
+✔ calendar months, leap days and exact consecutive 28-day cycles (10.6374ms)
+✔ agreement migration preserves records; owner-only immutable versions and unique invoice periods (4970.3113ms)
+✔ month and four-week agreements: phone controls, preview, private PDF, relogin and lost response (31048.318ms)
+✔ browser + isolated PostgreSQL: persistence, trainer refresh, session privacy, XSS and compact images (22879.909ms)
+✔ real A4 invoice documents preserve all lines across pages and share totals with preview (2475.8736ms)
+(node:24456) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Edge mail requests are intercepted; failed preparation never sends an invitation (170.5441ms)
+PASS debounce/focus/incomplete input/date binding, newer input and lost-response retry
+PASS workout and nutrition create/edit/publish and daily quantities retained
+PASS original photo unchanged, private concept, sharing and mobile viewer
+PASS explicit completion, performed sets/reps, trainer date/week and removal preserve daily history
+✔ autosave workout/nutrition flows, lost acknowledgement, draft/photo sharing and mobile drawing (52540.769ms)
+✔ A4 preview fits all screens, enlarges privately and keeps archived download/share bytes (40000.1313ms)
+✔ invoice layout preserves immutable cents and produces complete A4 variants (30020.7652ms)
+PASS draft scope, incomplete fields, delayed acknowledgement and idempotent lost reply
+PASS one conflict, input retained and explicit comparison before resave
+PASS PDF retry uses same final invoice and session loss clears private UI
+✔ invoice regression: both screens edit drafts, delayed acknowledgements, lost reply, conflict, PDF retry and session privacy (79099.2154ms)
+✔ six reconciled migrations retain their approved SQL and unique production identity (23.2833ms)
+✔ owner administration actual mobile controls, themes, dropdowns, disclosures, corrections and PDF previews (217084.8693ms)
+✔ owner hotfix: actual goal controls bind to the selected client and survive server reload (21377.1187ms)
+✔ owner corrections: independent cents, tombstones, cancellation, partial credits and reversible imports (3275.2665ms)
+✔ actual MP4 is playable with chapters, captions, pause and replay on desktop and iPhone browser emulation (19382.1248ms)
+✔ isolated practice uses shared rules and reproduces SQL totals, partial receipts, correction and idempotency (3644.375ms)
+MediaRecorder MP4 support: true
+✔ 12 beginner steps use actual shared payment UI, preserve prior progress and make zero API calls (7281.0643ms)
+✔ WebKit iPhone emulation: shared payment form, enlarged text, scroll and safe local receipt (3998.2212ms)
+✖ payment form on real rendered screens: lost response, reopen, partials, stale device, corrections, source reuse, login and responsive access (11744.2738ms)
+✔ one invoice payment uses the existing ledger; partial receipts, two-device conflict, idempotency, bank versus cash and correction history (3856.5761ms)
+✔ existing receipt linking and unlink correction make no extra receipt; manual receipt/CSV guard and explicit source attachment prevent duplicate imports (2718.6307ms)
+✔ cash-basis VAT follows actual receipt dates and reversals without changing invoice tax settings; closed source periods are protected (1728.72ms)
+✔ isolated PostgreSQL: member/trainer chain, isolation, conflicts, profile authority and invites (2698.9112ms)
+✔ bounded recurrence handles month ends without repeated fees (2.7125ms)
+✖ rendered trainer/member layout: all navigation, bounded moving media, touch widths, focus and enlarged text (51063.5746ms)
+✔ PWA manifest, original padded icons, native prompt lifecycle, iPhone help, standalone role/session and no cache writes (22585.2086ms)
+✔ WebKit engine: phone/landscape/tablet/laptop, both roles, install help, focus and reload (99772.4757ms)
+✔ handbook and generated parser match reviewed course content and A4 PDF format (130.1179ms)
+✔ manual download, failed PDF retry and unavailable local progress keep isolation (7576.453ms)
+✔ owner help and opaque exercises cannot mutate financial, member, auth, Storage or audit state (13116.9545ms)
+✔ resume, retry, reset, keyboard, mobile themes and all main routes remain usable (11620.1132ms)
+✔ 27 complete lessons have eleven parts, checked primary sources and meaningful exercises (11.3135ms)
+✔ all exercise transitions validate, preserve failed state and finish without any API (6.2254ms)
+✔ capstone deduplicates prior entries, preserves original, credits once and reconciles cents (0.7206ms)
+✔ bad money, oversized discounts and unreviewed files or drafts never advance (0.5796ms)
+PASS lesson 1
+PASS lesson 2
+PASS lesson 3
+PASS lesson 4
+PASS lesson 5
+PASS lesson 6
+PASS lesson 7
+PASS lesson 8
+PASS lesson 9
+PASS lesson 10
+PASS lesson 11
+PASS lesson 12
+PASS lesson 13
+PASS lesson 14
+PASS lesson 15
+PASS lesson 16
+PASS lesson 17
+PASS lesson 18
+PASS lesson 19
+PASS lesson 20
+PASS lesson 21
+PASS lesson 22
+PASS lesson 23
+PASS lesson 24
+PASS lesson 25
+PASS lesson 26
+PASS lesson 27
+✔ every lesson and exercise works through the opaque browser UI, PDFs and completion (36711.3028ms)
+ℹ tests 51
+ℹ suites 0
+ℹ pass 49
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 974524.1771
+
+✖ failing tests:
+
+test at tests\payments-ui.test.cjs:2:1
+✖ payment form on real rendered screens: lost response, reopen, partials, stale device, corrections, source reuse, login and responsive access (11744.2738ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /geen openstaand/. Input:
+
+  'Je registreert € 150,00 ontvangen op Zakelijke oefenbank op 16 september 2026. Deze factuur wordt volledig betaald. Bank/Kas wordt automatisch bijgewerkt; voer deze ontvangst daar niet opnieuw in.'
+
+      at TestContext.<anonymous> (<workspace>\tests\payments-ui.test.cjs:16:532)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Je registreert € 150,00 ontvangen op Zakelijke oefenbank op 16 september 2026. Deze factuur wordt volledig betaald. Bank/Kas wordt automatisch bijgewerkt; voer deze ontvangst daar niet opnieuw in.',
+    expected: /geen openstaand/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\trainer-pwa.test.cjs:21:1
+✖ rendered trainer/member layout: all navigation, bounded moving media, touch widths, focus and enlarged text (51063.5746ms)
+  TypeError: Cannot read properties of null (reading 'height')
+      at TestContext.<anonymous> (<workspace>\tests\trainer-pwa.test.cjs:30:73)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

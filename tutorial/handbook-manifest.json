@@ -1,11 +1,12 @@
 {
-  "version": "1.0.0",
-  "checked": "2026-09-14",
+  "version": "2.0.0",
+  "checked": "2026-10-15",
   "sourceHashes": {
-    "tutorial/content.js": "400f0b636107633163328886c912300812f2618c7e5ccd462a36f65c56055697",
-    "tutorial/model.js": "b3069041f3966779f5414f79d79f7e1e8858bf71d4de98e4b35deb8746e708af"
+    "tutorial/content.js": "150df38a23145a9fec1e3893ae9fc6b1d5d779e46ec6bcc8180ff224d1120404",
+    "tutorial/model.js": "4ff11e626c5b852d1f8124c5a9e67502e307d3a115918dc688e45fd2f70fb3b4",
+    "tutorial/beginner-content.js": "3844980ab112fada16aa9771b2372c1f8fdf3d9774fd738a8547f2e6f9a08a18"
   },
   "pdf": "output/pdf/APPFMZ-boekhouden-voor-beginners.pdf",
-  "pdfSHA256": "1052f3cbecceb0a2121cb621e016e994d510b34ce363a38e622785408e783040",
+  "pdfSHA256": "307f9dc970ca0101755c4de6ee3a091ba38c0afe3b8a63bd9d1720b6346afaa5",
   "generatedFromSameContent": true
 }

@@ -1,0 +1,20 @@
+/* Temporary synthetic ledger adapter. Shared validation, cents and projections;
+   no IO, real identities, private data, URLs or storage. Parity-tested against SQL. */
+(function(root){'use strict';const node=typeof module!=='undefined',A=node?require('../accounting-model.js'):root.FMZAccountingModel,P=node?require('../payments-model.js'):root.FMZPaymentsModel,fixture=node?require('./payment-example.js'):root.FMZPaymentExample,clone=v=>JSON.parse(JSON.stringify(v));
+ function create(seed=fixture){let s=clone(seed),n=0;const receipts=new Map(),get=id=>s.records.find(r=>r.id===id),uuid=()=>`OEF-ACTIE-${++n}`;
+  function record(id,kind,date,data,parent_id=null){const r={id,kind,date,data:clone(data),parent_id,status:'posted',version:1,created_at:`2026-10-15T12:00:${String(n%60).padStart(2,'0')}Z`};s.records.push(r);return r;}
+  function post(id,date,items){const jid=uuid();s.journals.push({id:jid,record_id:id,date,description:'Oefenboeking'});items.forEach(([account_code,cents,reference_id],line_no)=>s.lines.push({journal_id:jid,line_no,account_code,cents,reference_id}));}
+  function execute(action,payload){const hash=JSON.stringify([action,payload]);if(receipts.has(payload.id)){const r=receipts.get(payload.id);if(r.hash!==hash)throw Object.assign(Error('Dit oefenverzoek hoort bij andere invoer.'),{code:'PT409'});return clone(r.result);}const before=clone(s);let result;
+   try{const d=payload.data;
+    if(action==='register'){const actual=P.prepare(s,d.invoice_id,{amount:(d.cents/100).toFixed(2),...d});if(JSON.stringify(actual.expected)!==JSON.stringify(payload.expected))throw Object.assign(Error('De factuur is intussen gewijzigd.'),{code:'PT409'});if(d.date>'2026-10-15')throw Error('Geen toekomstige betaaldatum.');let bankId=d.bank_id;
+     if(!bankId){bankId=uuid();record(bankId,'bank',d.date,{...d,payment_id:payload.id,entry_origin:'invoice_payment',payment_invoice_id:d.invoice_id,account_code:get(d.account_id).data.code});post(bankId,d.date,[[get(d.account_id).data.code,d.cents,bankId],['1400',-d.cents,bankId]]);}else if(JSON.stringify(actual.bank_expected)!==JSON.stringify(payload.bank_expected))throw Object.assign(Error('De ontvangst is intussen gekoppeld.'),{code:'PT409'});
+     record(payload.id,'allocation',d.date,{bank_id:bankId,parts:[{type:'invoice',target_id:d.invoice_id,cents:d.cents}]});post(payload.id,d.date,[['1400',d.cents,bankId],['1100',-d.cents,d.invoice_id]]);result={payment_id:payload.id,bank_id:bankId,invoice_id:d.invoice_id,outstanding:A.project(s).balance('1100',d.invoice_id)};
+    }else if(action==='correct'){const p=P.payments(s).find(p=>p.id===d.payment_id);if(!p?.canCorrect||p.version!==payload.version||JSON.stringify(P.revision(s,p.invoiceId))!==JSON.stringify(payload.expected))throw Object.assign(Error('Betaling gewijzigd of al gecorrigeerd.'),{code:'PT409'});if(String(d.reason||'').trim().length<10)throw Error('Beschrijf de invoerfout.');record(payload.id,'correction',p.date,{payment_reversal:true,payment_id:p.id,invoice_id:p.invoiceId,bank_id:p.bankId,cents:p.cents,reason:d.reason,cleared_bank:p.clearsBank,effective_date:p.date},p.id);
+     for(const id of [p.id,...(p.clearsBank?[p.bankId]:[])]){const journals=s.journals.filter(j=>j.record_id===id);for(const j of journals)post(payload.id,j.date,s.lines.filter(l=>l.journal_id===j.id).map(l=>[l.account_code,-l.cents,l.reference_id]));const r=get(id);r.status='reversed';r.version++;r.data.payment_correction_id=payload.id;}result={payment_id:p.id,correction_id:payload.id,bank_id:p.bankId,invoice_id:p.invoiceId,cleared_bank:p.clearsBank,outstanding:A.project(s).balance('1100',p.invoiceId)};
+    }else throw Error('Onbekende oefenhandeling.');receipts.set(payload.id,{hash,result:clone(result)});return result;
+   }catch(e){s=before;throw e;}
+  }
+  return{snapshot:()=>s,execute,uuid};
+ }
+ const api={create};if(node)module.exports=api;else root.FMZPaymentPracticeModel=api;
+})(typeof window==='undefined'?globalThis:window);

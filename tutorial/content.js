@@ -1,6 +1,6 @@
 /* Public teaching material only. Never receives an accounting snapshot or identity. */
 (function(root){
- const checked='2026-09-14',version='1.0.0',disclaimer='Dit is algemene uitleg en geen persoonlijk fiscaal advies.';
+ const checked='2026-10-15',version='2.0.0',disclaimer='Dit is algemene uitleg en geen persoonlijk fiscaal advies.';
  const bd='https://www.belastingdienst.nl/wps/wcm/connect/';
  const sources={
   administration:['Belastingdienst · Een goede administratie',bd+'bldcontentnl/belastingdienst/zakelijk/ondernemen/onderneming_starten/houd-een-goede-administratie-bij/'],
@@ -23,7 +23,7 @@
  const lessons=[];
  function lesson(title,where,what,why,when,avoid,example,doNow,result,mistakes,quiz,refs=[]){lessons.push({id:lessons.length+1,title,sections:[what,why,where,when,avoid,example,doNow,result,mistakes,'Beantwoord beide vragen. Je krijgt uitleg bij ieder antwoord.','Ga verder als je de oefening en de korte controle begrijpt. Je mag ook overslaan; dat telt nog niet als afgerond.'],quiz,refs});}
  const q=(question,options,correct,feedback)=>({question,options,correct,feedback});
- lesson('Wat is boekhouden?','Administratie → Overzicht. De onderliggende gebeurtenissen vind je bij Verkoopfacturen, Uitgaven en bonnen en Bank en Kas.',
+ lesson('Wat is boekhouden?','Administratie → Overzicht. De onderliggende gebeurtenissen vind je bij Facturen, Uitgaven en bonnen en Bank/Kas.',
   'Je administratie is het controleerbare verhaal van je onderneming: wat je verkoopt, uitgeeft, bezit en verschuldigd bent. Omzet is verkoopopbrengst zonder de btw die je afdraagt. Een ontvangst is geld dat binnenkomt. Kosten verlagen het bedrijfsresultaat; een uitgave is geld dat weggaat. Winst is globaal omzet min zakelijke kosten. Btw is een belasting op leveringen en diensten; inkomstenbelasting gaat over je persoonlijke jaarinkomen.',
   'Je wilt weten wat klanten nog moeten betalen en welke documenten bij iedere boeking horen. Als eenmanszaak heb je een controleerbare administratie nodig. Digitale facturen en basisgegevens bewaar je doorgaans zeven jaar; er bestaan langere termijnen, bijvoorbeeld voor onroerende zaken en bepaalde btw-regelingen. Controleer wat voor jouw gegevens geldt.',
   'Leg zakelijke gebeurtenissen vast wanneer ze plaatsvinden. Bewaar het bewijs en koppel de latere betaling aan de oorspronkelijke factuur.',
@@ -33,17 +33,17 @@
   'Je houdt één verkoop van €200 apart van de betaling en de privéstorting. Bij echte btw-plicht is de omzet het bedrag exclusief btw.',
   'Een factuur verwarren met een bankbetaling. Een privéontvangst als omzet indelen. Documenten wissen zodra ze betaald zijn.',
   [q('Een klant betaalt een bestaande factuur. Wat doe je?',['Nieuwe verkoop boeken','Betaling aan die factuur koppelen'],1,'De verkoop bestaat al. De koppeling verlaagt wat de klant nog moet betalen.'),q('Is het banksaldo automatisch je winst?',['Ja','Nee'],1,'Op de bank kunnen ook btw en privéstortingen staan; winst is een ander overzicht.')],['administration','retention']);
- lesson('Rondleiding door Administratie','De negen onderdelen in het menu van Administratie.',
-  'Overzicht vat bedragen en waarschuwingen samen. Verkoopfacturen bevat concepten, definitieve facturen en correcties. Uitgaven en bonnen bevat zakelijke aankopen en bewijs. Bank en Kas bevat geldbewegingen en afstemming. Privéstortingen en privéopnames houdt privégeld apart. Bezittingen en schulden bevat bijvoorbeeld een bedrijfsmiddel of lening. Btw-overzicht bereidt je controle voor. Rapporten en export maakt bestanden. Administratie-instellingen bevat bedrijfsgegevens en bevestigde instellingen.',
+ lesson('Rondleiding door Administratie','De vijf hoofdroutes en de overige onderdelen in het menu van Administratie.',
+  'Overzicht vat bedragen en waarschuwingen samen. Facturen bevat concepten, definitieve facturen en correcties. Uitgaven en bonnen bevat zakelijke aankopen en bewijs. Bank/Kas bevat geldbewegingen en afstemming. Privéstortingen en privéopnames houdt privégeld apart. Bezittingen en schulden bevat bijvoorbeeld een bedrijfsmiddel of lening. Btw-overzicht bereidt je controle voor. Overzichten maakt bestanden. Administratie-instellingen bevat bedrijfsgegevens en bevestigde instellingen.',
   'Je hoeft niet te raden waar iets hoort. De overzichten rekenen uit bestaande boekingen; jij controleert gegevens, bewijs, koppelingen en waarschuwingen.',
-  'Begin bij Overzicht en open daarna het onderdeel van de gebeurtenis. Een bankontvangst verwerk je bij Bank en Kas, de oorspronkelijke factuur bij Verkoopfacturen.',
+  'Begin bij Overzicht en open daarna het onderdeel van de gebeurtenis. Een bankontvangst verwerk je bij Bank/Kas, de oorspronkelijke factuur bij Facturen.',
   'Voer een bedrag niet opnieuw in bij ieder overzicht. Dezelfde boeking kan op meerdere plekken zichtbaar zijn zonder meerdere transacties te worden.',
-  'Een bon van een oefenwinkel staat bij Uitgaven en bonnen; de betaling staat bij Bank en Kas. Het overzicht verbindt die gegevens.',
+  'Een bon van een oefenwinkel staat bij Uitgaven en bonnen; de betaling staat bij Bank/Kas. Het overzicht verbindt die gegevens.',
   'Open alle negen voorbeeldonderdelen en plaats de drie voorbeeldtaken op de juiste plek.',
   'Je weet waar je een bon, een betaling en een export vindt. Er is niets in de echte administratie geopend of gewijzigd.',
   'Een berekend overzicht behandelen als invoerscherm. Denken dat een automatische berekening ook bewijs of fiscaal akkoord geeft.',
-  [q('Waar koppel je een bankbetaling?',['Bank en Kas','Administratie-instellingen'],0,'De ontvangst staat bij de banktransacties.'),q('Wie controleert de brongegevens?',['Ikzelf','Een totaalkaart bewijst alles'],0,'Een berekening kan pas betrouwbaar zijn als de ingevoerde gegevens en koppelingen kloppen.')]);
- lesson('Bedrijfsinstellingen','Administratie → Administratie-instellingen. Niet ieder hieronder uitgelegd begrip heeft een apart veld in de huidige app.',
+  [q('Waar koppel je een bankbetaling?',['Bank/Kas','Administratie-instellingen'],0,'De ontvangst staat bij de banktransacties.'),q('Wie controleert de brongegevens?',['Ikzelf','Een totaalkaart bewijst alles'],0,'Een berekening kan pas betrouwbaar zijn als de ingevoerde gegevens en koppelingen kloppen.')]);
+ lesson('Bedrijfsinstellingen','Administratie → Meer administratie → Administratie-instellingen. Niet ieder hieronder uitgelegd begrip heeft een apart veld in de huidige app.',
   'Bedrijfsgegevens vertellen wie de factuur uitgeeft en waar de klant kan betalen. De tabel bij deze les legt per gegeven uit waar je het vindt, wanneer het nodig is en wat ontbrekende informatie betekent. Btw-periode is het tijdvak voor de aangifte; een stelsel bepaalt op welk moment omzet-btw in het overzicht komt.',
   'Onjuiste naam, adres, btw-identificatie of rekeninggegevens kunnen een factuur onvolledig maken of betaling bemoeilijken. Controleer echte gegevens met je eigen registraties en belastingbrieven.',
   'Controleer bij de start en na een werkelijke wijziging. Kijk vóór definitief factureren of de bedrijfsgegevens compleet zijn.',
@@ -53,7 +53,7 @@
   'Je ziet de fictieve bedrijfskaart en een controle op ontbrekende gegevens. De echte instellingen zijn niet geladen.',
   'Een fictief KVK- of btw-nummer overnemen. IBAN verwarren met bankkoppeling. Zelf een nummerreeks proberen te resetten. Btw-behandeling afleiden uit alleen het pakket.',
   [q('Kiest deze cursus jouw btw-stelsel?',['Nee, dat controleer ik met mijn eigen gegevens','Ja, altijd 21%'],0,'De 21% is alleen een rekensituatie. De bestaande bevestigde instelling blijft leidend.'),q('Maakt een IBAN invullen een bankkoppeling?',['Ja','Nee'],1,'Een bankkoppeling is een afzonderlijke voorziening; hier wordt die niet aangelegd.')],['invoice','method','inglink']);
- lesson('Bank instellen en openingssaldo','Administratie → Bank en Kas → rekening. Daar zie je openingssaldo en berekend saldo.',
+ lesson('Bank instellen en openingssaldo','Administratie → Bank/Kas → rekening. Daar zie je openingssaldo en berekend saldo.',
   'Bank is de weergave van je zakelijke rekening in de boekhouding. Het openingssaldo is het saldo waarmee je begint. In de huidige APPFMZ-invoer kies je de eerste transactiedag; het openingssaldo hoort bij het einde van de dag ervoor.',
   'Datum en saldo moeten hetzelfde meetmoment beschrijven. Anders lijkt er later geld te ontbreken of dubbel te staan.',
   'Bij het aansluiten van de administratie. Neem daarna alle transacties vanaf de eerste transactiedag op.',
@@ -63,7 +63,7 @@
   'Openingssaldo €0,20, berekend saldo €0,20 zolang er nog geen transacties zijn.',
   'Het saldo van vandaag combineren met de startdatum van vorige maand. Dezelfde storting zowel in het begin als in de import opnemen.',
   [q('Eerste transactiedag is 1 september. Bij welk moment hoort het openingssaldo?',['Einde 31 augustus','Einde 30 september'],0,'De app sluit aan op het einde van de vorige dag.'),q('Moet iedere CSV een nieuw openingssaldo krijgen?',['Nee','Ja'],0,'Import voegt transacties toe aan de bestaande aansluiting.')],['inglink']);
- lesson('Privéstorting van €0,20','Administratie → Bank en Kas voor de transactie; daarna ook zichtbaar bij Privéstortingen en privéopnames en het rekeningoverzicht.',
+ lesson('Privéstorting van €0,20','Administratie → Bank/Kas voor de transactie; daarna ook zichtbaar bij Privéstortingen en privéopnames en het rekeningoverzicht.',
   'Een privéstorting is geld dat je zelf vanuit privé in je eenmanszaak stopt. Het ondernemingsvermogen, wat van jou in de onderneming zit, neemt toe.',
   'Je wilt voorkomen dat eigen geld als een nieuwe klantverkoop of winst wordt geteld.',
   'Als een aantoonbare overboeking uit jouw privégeld komt. Controleer de herkomst.',
@@ -72,8 +72,8 @@
   'Open de ontvangst en kies uit omzet, klantbetaling, privéstorting, lening of onbekend.',
   'Privéstorting €0,20. Bank en ondernemingsvermogen stijgen; geen verkoopfactuur, omzet, winst, zakelijke kosten of automatische btw.',
   'Een privéstorting een factuurnummer geven. Het bedrag nog eens als omzet boeken.',
-  [q('Maakt een privéstorting winst?',['Ja','Nee'],1,'Je brengt eigen vermogen in. Je verkoopt geen dienst.'),q('Waar kun je de boeking terugvinden?',['Privémutaties en Bank en Kas','Alleen Verkoopfacturen'],0,'Er wordt juist geen verkoopfactuur gemaakt.')],['private']);
- lesson('Kas begrijpen','Administratie → Bank en Kas. Kas is de rekening voor werkelijk contant geld.',
+  [q('Maakt een privéstorting winst?',['Ja','Nee'],1,'Je brengt eigen vermogen in. Je verkoopt geen dienst.'),q('Waar kun je de boeking terugvinden?',['Privémutaties en Bank/Kas','Alleen Facturen'],0,'Er wordt juist geen verkoopfactuur gemaakt.')],['private']);
+ lesson('Kas begrijpen','Administratie → Bank/Kas. Kas is de rekening voor werkelijk contant geld.',
   'Kas betekent munten en bankbiljetten die zakelijk aanwezig zijn. Geld op ING is bankgeld. Een interne overboeking verplaatst geld tussen je eigen zakelijke rekeningen.',
   'Door kas en bank apart bij te houden kun je het geld daadwerkelijk tellen en vergelijken.',
   'Gebruik Kas als je contante betalingen ontvangt of doet. Zonder contant geld kun je Kas verbergen; geschiedenis hoeft niet te verdwijnen.',
@@ -83,7 +83,7 @@
   'De eerste route laat Kas veilig verborgen. De tweede eindigt met Kas €0 en Bank €50 hoger, zonder extra omzet.',
   'Verbergen verwarren met verwijderen. Een interne overboeking als klantbetaling kiezen.',
   [q('Waar hoort geld op ING?',['Kas','Bank'],1,'Kas is uitsluitend contant geld.'),q('Is kasgeld op de bank storten opnieuw omzet?',['Nee','Ja'],0,'Hetzelfde geld wisselt alleen van zakelijke plek.')]);
- lesson('Pakketten, prijzen en facturen','Verkoopfacturen → concept. Pakketprijzen komen uit de bestaande pakketdefinities.',
+ lesson('Pakketten, prijzen en facturen','Facturen → concept. Pakketprijzen komen uit de bestaande pakketdefinities.',
   'Een pakketprijs is het totaal voor de afgesproken maand. Een factuurregel beschrijft wat je levert; aantal × regelprijs vormt de basis. Korting verlaagt die basis. Exclusief btw is zonder belasting, inclusief btw is het te betalen bedrag. Betaaltermijn is het aantal dagen; vervaldatum is de uiterste betaaldag. Factuurperiode beschrijft wanneer je levert; factuurnummer identificeert het document.',
   'De klant moet kunnen zien wat de maand kost en waar een korting vandaan komt.',
   'Bij een nieuwe maandfactuur: Basis 4 trainingen €200; Progressie 8 trainingen €380; Transformatie 12 trainingen €480. Aantal 1 betekent één maandpakket.',
@@ -93,7 +93,7 @@
   'De maandbedragen zijn €200, €380 en €480. Het bedrag van €350 is inclusief de bestaande btw-behandeling; er komt geen tweede btw bovenop.',
   'Prijs per training als maandprijs gebruiken. Btw bij een inclusief bedrag optellen. De oefen-btw als jouw fiscale keuze behandelen.',
   [q('Wat is Progressie per maand?',['€47,50','€380'],1,'€47,50 is de aanvullende prijs per training; het maandpakket is €380.'),q('€380 min €30 is…',['€350 inclusief de gekozen btw-behandeling','€350 plus altijd nog 21%'],0,'De bestaande inclusief-btw-invoer bepaalt het te betalen bedrag.')],['invoice','method']);
- lesson('Conceptfactuur maken','Administratie → Verkoopfacturen → concept openen. Bewerk eerst, controleer daarna de A4-preview.',
+ lesson('Conceptfactuur maken','Administratie → Facturen → concept openen. Bewerk eerst, controleer daarna de A4-preview.',
   'Een concept is een bewerkbare voorbereiding. Het is nog geen definitieve of verzonden factuur. In de echte administratie kun je een concept verwijderen zolang het niet definitief is.',
   'Je kunt klant, data, omschrijving en korting controleren voordat je een definitief document uitgeeft.',
   'Maak voor de fictieve klant een septemberfactuur. De factuurdatum is de datum van uitgifte; de periode beschrijft de dienstverlening. De vervaldatum volgt uit de afgesproken betaaltermijn.',
@@ -103,7 +103,7 @@
   'De preview en het opgeslagen oefenconcept bevatten dezelfde €350. Er is geen echt factuurnummer.',
   'Een negatieve korting, korting boven het bedrag, ontbrekende datum of lege prijs. Definitief maken terwijl de preview nog niet klopt.',
   [q('Is een opgeslagen concept al verzonden?',['Nee','Ja'],0,'Opslaan, definitief maken en verzenden zijn verschillende handelingen.'),q('Kun je een concept nog aanpassen?',['Ja','Nee'],0,'Juist vóór definitief maken controleer en verbeter je het concept.')],['invoice']);
- lesson('Factuur definitief maken','Verkoopfacturen → gecontroleerd concept → Opslaan en PDF downloaden. Controleer de concrete knoptekst bij de definitieve handeling.',
+ lesson('Factuur definitief maken','Facturen → gecontroleerd concept → Opslaan en PDF downloaden. Controleer de concrete knoptekst bij de definitieve handeling.',
   'Een definitieve factuur legt de beoordeelde gegevens vast. Normaal krijgt die een uniek, opeenvolgend nummer. De oefenmodus gebruikt uitsluitend OEFEN-2026-001; dat nummer wordt nooit gereserveerd in de echte administratie.',
   'Een bewaard document moet later dezelfde bedragen tonen. Een download opnieuw proberen hoort geen nieuwe factuur te maken.',
   'Pas wanneer klant, uitgiftedatum, periode, regels, korting en totaal kloppen. Bewaar de uiteindelijke PDF.',
@@ -113,7 +113,7 @@
   'Eén definitieve oefenfactuur; opnieuw klikken maakt geen tweede. Geen Storage-upload, e-mail of echt nummer.',
   'Een download verwarren met verzending. Een fout herstellen door het definitieve origineel te overschrijven; gebruik de passende correctieroute.',
   [q('Een download faalt. Wat probeer je opnieuw?',['Dezelfde PDF downloaden','Een tweede factuur uitgeven'],0,'De definitieve gegevens en het nummer blijven gelijk.'),q('Is het oefennummer een echte reservering?',['Nee','Ja'],0,'Het is een vaste synthetische aanduiding in tijdelijk geheugen.')],['invoice','retention']);
- lesson('Openstaand versus betaald','Verkoopfacturen voor de status; Bank en Kas voor de ontvangen betaling en koppeling.',
+ lesson('Openstaand versus betaald','Facturen voor de status; Bank/Kas voor de ontvangen betaling en koppeling.',
   'Openstaand is het bedrag dat nog aan de factuur moet worden gekoppeld. Betaald betekent dat de juiste ontvangst volledig is gekoppeld. Een overbetaling kan juist een bedrag opleveren dat je moet terugbetalen.',
   'Je wilt weten of er werkelijk geld ontvangen is en welke klant nog moet betalen.',
   'Controleer na een ontvangen betaling of bedrag, datum, klant en factuur bij elkaar horen.',
@@ -123,7 +123,7 @@
   'Voor koppelen: €350 open. Erna: €0 open en Betaald. Geen extra verkoop.',
   'Status handmatig willen forceren zonder ontvangst. Het banksaldo verwarren met openstaande facturen.',
   [q('Zet een factuur maken geld op de bank?',['Nee','Ja'],0,'Een factuur is een vordering; de ontvangst is een aparte gebeurtenis.'),q('Is een onverklaarde bijschrijving altijd een betaalde factuur?',['Nee','Ja'],0,'Je moet eerst weten bij welke klant en factuur de betaling hoort.')]);
- lesson('Betaling aan factuur koppelen','Administratie → Bank en Kas → transactie verwerken → factuur kiezen.',
+ lesson('Betaling aan factuur koppelen','Administratie → Bank/Kas → transactie verwerken → factuur kiezen.',
   'Koppelen verbindt een bankontvangst aan een bestaande verkoop. De factuur blijft bestaan; het nog te ontvangen bedrag neemt af.',
   'Daarmee voorkom je dubbele omzet en kun je de status van iedere factuur verklaren.',
   'Controleer betaler, datum, bedrag en beschikbare factuur. Een omschrijving kan onjuist zijn; controleer dan extra bewijs voordat je koppelt.',
@@ -133,7 +133,7 @@
   'Alleen gecontroleerde ontvangsten zijn gekoppeld. De bekende factuur is Betaald; de onbekende betaling blijft zichtbaar voor beoordeling.',
   'Iedere deelbetaling opnieuw factureren. Blind een omschrijving volgen. Een dubbele regel als tweede betaling importeren.',
   [q('Na €100 op €350 blijft open…',['€250','€350'],0,'Een deelbetaling verlaagt het openstaande bedrag met precies het gekoppelde bedrag.'),q('Een betaling past bij geen factuur. Wat doe je?',['Later beoordelen','Willekeurige factuur selecteren'],0,'Bewaar het twijfelgeval totdat je de herkomst kunt onderbouwen.')]);
- lesson('Uitgaven en bonnen','Administratie → Uitgaven en bonnen; koppel de betaling in Bank en Kas.',
+ lesson('Uitgaven en bonnen','Administratie → Meer administratie → Uitgaven en bonnen; koppel de betaling in Bank/Kas.',
   'Een uitgave is geld dat je betaalt. Zakelijke kosten horen bij de onderneming; privé-uitgaven niet. Een bon of inkoopfactuur onderbouwt de leverancier, datum, prestatie en belasting. Voorbelasting is inkoop-btw die je volgens de regels mag aftrekken.',
   'Een bankafschrijving vertelt vaak onvoldoende wat je kocht en of kosten of btw aftrekbaar zijn.',
   'Leg leverancier, factuur- of bondatum, omschrijving, categorie, bedrag, btw-behandeling en bewijs vast. De betaaldatum kan anders zijn dan de bondatum. Koppel de banktransactie apart.',
@@ -143,7 +143,7 @@
   'Eén uitgave van €24,20, één gekoppelde bankafschrijving, het synthetische bewijs en afzonderlijke bedragen €20,00 en €4,20.',
   'De betaling nogmaals als kosten boeken. Een privéaankoop zakelijk noemen. Btw aftrekken alleen omdat het bedrag 21% lijkt te bevatten.',
   [q('Bewijst een bankafschrijving aftrekbare btw?',['Nee','Ja'],0,'Je hebt de juiste onderbouwing én een toegestane btw-behandeling nodig.'),q('Welke datum hoort bij het document?',['Factuur- of bondatum','Altijd de dag van uploaden'],0,'De documentdatum en betaaldatum zijn verschillende gegevens.')],['costs','input']);
- lesson('Privégeld opnemen','Administratie → Bank en Kas → Privéopname. Terug te vinden bij Privéstortingen en privéopnames.',
+ lesson('Privégeld opnemen','Administratie → Bank/Kas → Privéopname. Terug te vinden bij Privéstortingen en privéopnames.',
   'Een privéopname is geld dat je uit je eenmanszaak naar privé haalt. Het vermindert wat van jou in de onderneming zit.',
   'Je wilt privébestedingen gescheiden houden van kosten van je onderneming.',
   'Bij de aantoonbare overboeking van de zakelijke rekening naar jezelf voor privégebruik.',
@@ -153,7 +153,7 @@
   'De privémutatie is herkenbaar en telt niet mee als kosten of automatische btw-aftrek.',
   'Privéopname onder loon of bedrijfskosten zetten. Denken dat een lagere bankstand automatisch minder belasting betekent.',
   [q('Is €100 privé opnemen salaris aan jezelf bij een eenmanszaak?',['Nee','Ja'],0,'Je boekt een onttrekking aan je ondernemingsvermogen.'),q('Verlaagt deze opname automatisch de winst?',['Nee','Ja'],0,'Privéopnames zijn geen zakelijke kosten.')],['private']);
- lesson('Wat is een CSV?','Administratie → Bank en Kas → CSV importeren; controleer eerst het voorbeeld.',
+ lesson('Wat is een CSV?','Administratie → Bank/Kas → CSV importeren; controleer eerst het voorbeeld.',
   'CSV is een tekstbestand met regels en kolommen. Een bankregel bevat bijvoorbeeld datum, bedrag, tegenpartij en omschrijving. Bij ING Zakelijk bestaat een puntkommagescheiden CSV-formaat.',
   'Met een bestand hoef je niet iedere transactie over te typen. Toch moet je rekening, periode, kolommen en duplicaten controleren.',
   'Gebruik een CSV-export van je eigen bank in je eigen beveiligde administratie. Bewaar het bronbestand gecontroleerd.',
@@ -163,7 +163,7 @@
   'Je herkent regels, kolommen en de dubbele transactie voordat je importeert.',
   'Een PDF hernoemen naar .csv. Een echt bankbestand in een oefening proberen. Aannemen dat ieder tekstbestand veilig is om te delen.',
   [q('Is een CSV een factuur?',['Nee','Ja'],0,'Het is een bestand met transactiegegevens, geen verkoop- of inkoopfactuur.'),q('Kan een bank-CSV gevoelige informatie bevatten?',['Ja','Nee'],0,'Namen, rekeninggegevens en betalingen verdienen dezelfde bescherming als andere financiële gegevens.')],['ingcsv']);
- lesson('ING-CSV downloaden','Eerst bij ING zelf. Daarna Administratie → Bank en Kas → CSV importeren in APPFMZ.',
+ lesson('ING-CSV downloaden','Eerst bij ING zelf. Daarna Administratie → Bank/Kas → CSV importeren in APPFMZ.',
   'Je downloadt bij de bank transacties over een gekozen periode. ING kan namen en plekken van knoppen wijzigen. De officiële formatenpagina vermeldt CSV voor Mijn ING Zakelijk; een MT940-bestand is een ander formaat.',
   'Een volledige periode maakt het eenvoudiger om te zien of betalingen ontbreken. CSV downloaden is geen automatische bankkoppeling.',
   'Bijvoorbeeld iedere maand vóór je de rekening afstemt. De stappenlijst hieronder is een algemene route, geen inlogscherm.',
@@ -173,7 +173,7 @@
   'Je weet waar het bestand vandaan komt en controleert het in APPFMZ vóór de echte import.',
   'In een zoekresultaat of nagebouwd inlogscherm je wachtwoord invullen. Een verkeerde rekening of overlappende periode ongecontroleerd importeren.',
   [q('Waar log je in bij ING?',['Alleen bij ING zelf','In de APPFMZ-oefening'],0,'APPFMZ heeft je ING-wachtwoord niet nodig.'),q('Waar controleer je de import vóór bevestigen?',['In het importvoorbeeld','Dat hoeft niet'],0,'Controleer rekening, data, bedragen en dubbele regels.')],['ingcsv','ingdownload','inglink']);
- lesson('CSV-import oefenen','De aparte oefenbank in deze cursus. In de echte app zit import onder Bank en Kas.',
+ lesson('CSV-import oefenen','De aparte oefenbank in deze cursus. In de echte app zit import onder Bank/Kas.',
   'Een importvoorbeeld toont wat het bestand zou toevoegen. Een duplicaat is een regel die dezelfde bankgebeurtenis voorstelt; die mag niet opnieuw meetellen.',
   'Je controleert de gegevens voordat ze in het overzicht komen. Herhaald importeren mag geen extra betaling opleveren.',
   'Kies uitsluitend het meegeleverde ING-achtige bestand, Oefenbank en september 2026. Controleer de kolommen en de dubbele regel.',
@@ -183,7 +183,7 @@
   'Eerste import: vijf unieke transacties, duplicaat overgeslagen. Herhaling: nul nieuwe transacties. Geen upload.',
   'Alle regels aanvinken inclusief een duplicaat. Een ander rekeningnummer negeren. Al aanwezige betalingen nogmaals meetellen.',
   [q('Hoeveel verschillende transacties staan in het bestand?',['5','6'],0,'De zesde regel herhaalt de eerste transactie.'),q('Wat voegt dezelfde import opnieuw toe?',['Niets','Nog eens €350'],0,'Dezelfde bron-ID wordt maar één keer opgenomen.')],['ingcsv']);
- lesson('Transacties verwerken','Administratie → Bank en Kas → ongekoppelde transacties.',
+ lesson('Transacties verwerken','Administratie → Bank/Kas → ongekoppelde transacties.',
   'Verwerken vertelt waarom geld binnenkomt of weggaat. Je kiest klantbetaling, zakelijke uitgave, privé in of uit, interne overboeking, onbekend of later beoordelen.',
   'Een bankbedrag op zichzelf vertelt niet welke boeking erbij hoort. Het openstaande werk moet zichtbaar blijven.',
   'Na de import: vergelijk voorstellen met facturen, bonnen en de werkelijke herkomst. Controleer twijfelgevallen zelf.',
@@ -193,7 +193,7 @@
   'Vier verwerkte regels en één zichtbaar twijfelgeval. Een voorstel heeft niets vanzelf definitief gemaakt.',
   'Een ontvangst zowel aan een factuur koppelen als losse omzet boeken. Een interne verplaatsing tussen eigen rekeningen als nieuwe verkoop indelen.',
   [q('Is een automatisch voorstel bewijs?',['Nee','Ja'],0,'Je controleert het voorstel tegen de onderliggende gebeurtenis.'),q('Wat doe je zonder bewijs voor €9,99?',['Later beoordelen','Verzin een leverancier'],0,'Het openstaande punt blijft zichtbaar tot je voldoende informatie hebt.')]);
- lesson('Afstemmen','Administratie → Bank en Kas → Afstemmen bij de juiste rekening.',
+ lesson('Afstemmen','Administratie → Bank/Kas → Rekeningen, beginstand en bankafstemming → Bankstand vergelijken bij de juiste rekening.',
   'Afstemmen is vergelijken: het berekende APPFMZ-banksaldo moet overeenkomen met het werkelijke ING-saldo op precies dezelfde einddatum. Het verandert niet vanzelf je bankgegevens.',
   'Een verschil helpt ontbrekende of dubbele transacties en een verkeerd openingssaldo ontdekken. Een verkeerde koppeling vraagt ook inhoudelijke controle, zelfs wanneer het banksaldo al klopt.',
   'Importeer eerst alle transacties tot de einddatum. Een praktische routine is maandelijks en vóór de kwartaalcontrole, niet na iedere losse transactie.',
@@ -203,7 +203,7 @@
   'Na de gerichte correctie: berekend €216,21, bank €216,21, verschil €0,00. De bronregel blijft controleerbaar.',
   'Een verschil wegboeken zonder oorzaak. De eerste of laatste dag van de periode overslaan. Denken dat nul verschil ook iedere btw-boeking goedkeurt.',
   [q('Moet je na iedere transactie afstemmen?',['Nee','Ja'],0,'Een regelmatige volledige periodecontrole is meestal duidelijker.'),q('Mag je een ontbrekende betaling oplossen met een verzonnen saldo?',['Nee','Ja'],0,'Zoek en herstel de oorzaak met het bankbewijs.')]);
- lesson('Verwijderen, annuleren en crediteren','Verkoopfacturen → concept verwijderen, geschikte factuur annuleren of credit maken. De app controleert de toegestane route.',
+ lesson('Verwijderen, annuleren en crediteren','Facturen → concept verwijderen, geschikte factuur annuleren of credit maken. De app controleert de toegestane route.',
   'Een concept verwijderen ruimt een nog niet definitief document op. Annuleren is alleen voor een daarvoor geschikte definitieve, onbetaalde en niet verzonden factuur. Een creditfactuur is een afzonderlijk correctiedocument dat naar het origineel verwijst.',
   'Je bewaart wat er is gebeurd, inclusief reden en oorspronkelijke factuur. Een credit is geen stille wijziging van het origineel.',
   'Gebruik bij een verzonden, betaalde of verwerkte factuur de passende creditroute. Controleer de concrete situatie en fiscale verwerking. Bij twijfel laat je de correctie beoordelen.',
@@ -213,7 +213,7 @@
   'Geannuleerd of volledig gecrediteerd telt niet als actieve openstaande verkoop. De gedeeltelijke correctie en eventuele terugbetaalverplichting blijven zichtbaar.',
   'De oorspronkelijke PDF overschrijven. Een credit als bankterugbetaling behandelen. Een geannuleerde factuur toch als openstaande omzet laten staan.',
   [q('Blijft het origineel bij een credit bewaard?',['Ja','Nee'],0,'Het creditdocument verwijst naar de oorspronkelijke factuur.'),q('Maakt een credit automatisch geld over?',['Nee','Ja'],0,'Een echte terugbetaling is een aparte bankgebeurtenis.')],['invoice','administration']);
- lesson('Bezittingen en schulden','Administratie → Bezittingen en schulden.',
+ lesson('Bezittingen en schulden','Administratie → Meer administratie → Bezittingen en schulden.',
   'Een zakelijk bezit is iets van waarde voor je onderneming. Een schuld is een verplichting aan iemand anders. Een bedrijfsmiddel gebruik je doorgaans langer, zoals apparatuur. Een lening brengt geld binnen én een terugbetaalverplichting mee.',
   'Niet iedere aankoop is onmiddellijk dezelfde soort kostenpost. Het overzicht laat zien wat je hebt en nog moet terugbetalen.',
   'Leg onderbouwde bezittingen en schulden vast en laat de juiste verwerking bepalen. Afschrijven betekent aanschafkosten over gebruiksjaren verdelen; de regels hangen van de situatie af.',
@@ -223,7 +223,7 @@
   'Bank +€1.000 en schuld +€1.000; geen €1.000 winst. Het apparaat blijft ter beoordeling van de passende verwerking.',
   'Alle aankopen meteen aftrekken. Aflossing en rente verwarren; die hebben verschillende betekenissen.',
   [q('Is een lening ontvangen omzet?',['Nee','Ja'],0,'Je moet het geleende bedrag terugbetalen.'),q('Bepaalt deze cursus jouw afschrijving?',['Nee','Ja'],0,'De oefening legt begrippen uit en neemt geen persoonlijke fiscale beslissing.')],['asset','costs']);
- lesson('Btw begrijpen','Administratie → Btw-overzicht. De bestaande bevestigde instellingen bepalen de berekening.',
+ lesson('Btw begrijpen','Administratie → Meer administratie → Btw-overzicht. De bestaande bevestigde instellingen bepalen de berekening.',
   'Je kunt btw aan klanten berekenen en btw op zakelijke inkopen betalen. Alleen toegestane, aantoonbare inkoop-btw is voorbelasting. Uitgaande btw min aftrekbare voorbelasting geeft een voorlopig saldo: positief te betalen, negatief mogelijk terug te vragen.',
   'Ontvangen btw is niet volledig vrij besteedbaar. Btw is een andere belasting dan inkomstenbelasting en is geen winst.',
   'Controleer per passend tijdvak het gebruikte tarief, de onderbouwing en correcties. Bij factuurstelsel en kasstelsel kan het moment van omzet-btw verschillen; de inkoop-btw volgt de regels voor ontvangen facturen.',
@@ -233,7 +233,7 @@
   'De vergelijking toont afzonderlijk verkoop-btw, inkoop-btw en het voorlopige verschil; geen definitieve persoonlijke belastingberekening.',
   'Omzet inclusief btw als winst gebruiken. Alle uitgaven-btw automatisch aftrekken. Aangiftemoment verwarren met betaaldatum zonder het juiste stelsel te controleren.',
   [q('Wat trek je af van de verkoop-btw?',['Alle bankuitgaven','Alleen toegestane voorbelasting'],1,'Niet ieder betaald bedrag of iedere inkoop-btw is aftrekbaar.'),q('Bewijst het overzicht dat je aangifte juist is?',['Nee','Ja'],0,'Je blijft de instellingen, onderbouwing en uitzonderingen controleren.')],['method','input']);
- lesson('Btw-kwartaal controleren','Administratie → Btw-overzicht; documenten en bankcontrole in de bijbehorende onderdelen.',
+ lesson('Btw-kwartaal controleren','Administratie → Meer administratie → Btw-overzicht; documenten en bankcontrole in de bijbehorende onderdelen.',
   'Een kwartaalcontrole brengt verkoop, correcties, inkopen en geldstromen voor één periode samen. Het is voorbereiding op de aangifte, geen automatische indiening.',
   'Ontbrekende bonnen, ongekoppelde transacties of een verkeerde periode kunnen het overzicht onvolledig maken.',
   'De meeste ondernemers doen per kwartaal aangifte, maar jouw brief en Mijn Belastingdienst Zakelijk bepalen het tijdvak en de deadline. Als een aangifte klaarstaat kan ook zonder omzet aangifte nodig zijn. Controleer bijzondere regelingen zoals KOR afzonderlijk.',
@@ -243,7 +243,7 @@
   'Je hebt een controleerbaar voorlopig overzicht. In het echt open je zelf de juiste aangifte bij Mijn Belastingdienst Zakelijk, controleer en vul je de bedragen in en dien je daar in. Betalen doe je afzonderlijk met het juiste betalingskenmerk.',
   'De PDF als ingediende aangifte beschouwen. Een willekeurig kwartaal kiezen. Vergeten dat nihil-aangifte of afzonderlijke betaling nodig kan zijn.',
   [q('Dient APPFMZ deze aangifte automatisch in?',['Nee','Ja'],0,'Het overzicht bereidt je eigen controle en indiening voor.'),q('Waar controleer je jouw tijdvak?',['Eigen brief en Mijn Belastingdienst Zakelijk','Altijd het oefenkwartaal gebruiken'],0,'Jouw officiële aangiftegegevens bepalen periode en uiterste datum.')],['period','nil','filing']);
- lesson('Winst en inkomstenbelasting','Administratie → Overzicht en Rapporten en export voor het bedrijfsresultaat. Je eigen inkomstenbelastingaangifte is afzonderlijk.',
+ lesson('Winst en inkomstenbelasting','Administratie → Overzicht en Overzichten voor het bedrijfsresultaat. Je eigen inkomstenbelastingaangifte is afzonderlijk.',
   'Globaal is winst omzet zonder af te dragen btw minus zakelijke kosten. Voor een fiscale winstberekening kunnen aanvullende regels en correcties gelden. Privéstortingen zijn geen winst; privéopnames geen zakelijke kosten.',
   'Het bedrag op je bank is niet hetzelfde als inkomen dat je vrij kunt besteden. Je wilt je bedrijfsresultaat en verplichtingen apart begrijpen.',
   'Maak een jaaroverzicht voor je eigen controle en eventuele boekhouder. Ondernemingswinst en, als dat van toepassing is, loon kunnen beide in je jaarlijkse inkomstenbelastingaangifte horen.',
@@ -253,7 +253,7 @@
   'Een duidelijk administratief resultaat, zonder voorspelling van je persoonlijke belastingaanslag.',
   'Alle ontvangsten omzet noemen. Privéopname als aftrekbare kosten kiezen. Een btw-reservering voor een definitieve inkomstenbelastingberekening aanzien.',
   [q('Verandert een privéstorting de winst?',['Nee','Ja'],0,'Dat is een vermogensbeweging, geen verkoop.'),q('Is dit resultaat jouw definitieve belastingaanslag?',['Nee','Ja'],0,'De persoonlijke aangifte en fiscale regels vragen een afzonderlijke beoordeling.')],['income','private','costs']);
- lesson('Rapporten en export','Administratie → Rapporten en export. Factuur-PDF’s kun je ook bij de factuur opnieuw openen.',
+ lesson('Overzichten','Administratie → Overzichten. Factuur-PDF’s kun je ook bij de factuur opnieuw openen.',
   'Een rapport is een leesbaar overzicht; een export verzamelt gegevens voor bewaren of verdere controle. Een grootboek groepeert boekingen naar soort. Auditgeschiedenis laat zien welke vastgelegde handelingen bij de administratie horen.',
   'Je wilt informatie kunnen terugvinden, onderbouwen en veilig aan een boekhouder geven.',
   'Kies de juiste periode. De huidige app biedt verkoop-, uitgaven-, btw- en volledige overzichten. De volledige ZIP bevat ook bijbehorende gegevens zoals grootboek, openstaande posten, Bank/Kas en documentbestanden; niet ieder deel heeft een eigen losse knop.',
@@ -263,7 +263,7 @@
   'Je weet welk bestand je kunt overhandigen en dat originele bewijsstukken en toegang tot de administratie behouden moeten blijven.',
   'Alleen een totaalscreenshot bewaren. Een ZIP aannemen als volledig zonder de inhoud te bekijken. Echte exports openbaar delen.',
   [q('Wat geef je voor een controle liever mee?',['Overzichten plus onderliggende bewijsstukken','Alleen een banksaldo'],0,'Een bedrag moet herleidbaar zijn tot de boeking en documenten.'),q('Verstuurt deze download een e-mail?',['Nee','Ja'],0,'De oefening maakt uitsluitend een lokaal bestand.')],['administration','retention']);
- lesson('Bewaren en back-up','Rapporten en export; daarna je eigen beveiligde bewaarlocatie buiten deze oefening.',
+ lesson('Bewaren en back-up','Overzichten; daarna je eigen beveiligde bewaarlocatie buiten deze oefening.',
   'Een back-up is een extra kopie waarmee je gegevens kunt terugvinden als de eerste plek niet beschikbaar is. Digitaal ontvangen en gemaakte facturen bewaar je digitaal in de vereiste vorm.',
   'Je wilt documenten leesbaar en controleerbaar houden, ook na een apparaatwissel of wijziging van software. Algemene bewaartermijnen kennen uitzonderingen; controleer jouw situatie.',
   'Download periodiek een volledige export en controleer of bestanden werkelijk openen. Bewaar een tweede kopie op een beveiligde locatie met beperkte toegang. Bewaar bonnen en bankafschriften ook.',
@@ -296,8 +296,8 @@
  const glossary={
   omzet:'Opbrengst van verkopen, zonder de btw die je afdraagt. Een betaling van een bestaande factuur is geen tweede omzet.',winst:'Globaal: omzet min zakelijke kosten. De fiscale winst kan aanvullende correcties vragen.',btw:'Belasting op leveringen en diensten. Een andere belasting dan inkomstenbelasting.',voorbelasting:'Inkoop-btw die je volgens de regels mag aftrekken, met passende onderbouwing.',factuur:'Document met de uitgever, afnemer, levering, datum, nummer en bedragen.',creditfactuur:'Afzonderlijk correctiedocument dat naar een oorspronkelijke factuur verwijst.',debiteur:'Klant van wie je nog geld tegoed hebt.',uitgave:'Geld dat je betaalt. Dat is niet automatisch zakelijke kosten.',bon:'Bewijs van een aankoop; controleer of het voldoende informatie bevat voor jouw verwerking.',Bank:'Je zakelijke bankrekening zoals opgenomen in je administratie.',Kas:'Werkelijk zakelijk contant geld: munten en biljetten.',openingssaldo:'Saldo bij de start van je aansluiting. In APPFMZ: einde van de dag vóór de eerste transactiedag.',eindsaldo:'Saldo op het gekozen eindmoment, na alle transacties tot dat moment.',afstemmen:'Berekend saldo en werkelijk banksaldo op dezelfde datum vergelijken.',CSV:'Tekstbestand met regels en kolommen, bijvoorbeeld banktransacties.',privéstorting:'Eigen privégeld dat je in je eenmanszaak brengt; geen omzet.',privéopname:'Geld dat je uit je eenmanszaak naar privé haalt; geen zakelijke kosten.',grootboek:'Overzicht van boekingen gegroepeerd naar soort, bijvoorbeeld bank, omzet en kosten.',bezit:'Iets van waarde dat bij de onderneming hoort.',schuld:'Bedrag of verplichting die de onderneming aan een ander verschuldigd is.',openstaand:'Bedrag dat nog moet worden betaald of gekoppeld.',betaald:'De juiste ontvangst is volledig aan de factuur gekoppeld.',aangiftetijdvak:'De periode waarvoor jouw aangifte geldt, volgens de Belastingdienst.',betalingskenmerk:'De specifieke referentie waarmee een belastingbetaling bij de juiste verplichting hoort.',auditgeschiedenis:'Controleerbare geschiedenis van vastgelegde handelingen en correcties. De oefengeschiedenis is uitsluitend synthetisch.', 'back-up':'Extra beveiligde kopie die je op leesbaarheid en volledigheid controleert.', ontvangst:'Geld dat binnenkomt, bijvoorbeeld betaling, lening of privéstorting.',kosten:'Zakelijke lasten die bij het bedrijfsresultaat horen; niet iedere bankuitgave is kosten.',inkomstenbelasting:'Belasting op je persoonlijke jaarinkomen; geen aparte heffing per factuur.',factuurstelsel:'Btw-stelsel waarbij voor omzet-btw doorgaans de factuurdatum bepalend is; controleer de toepasselijke regels.',kasstelsel:'Btw-stelsel waarbij ontvangsten bepalend zijn voor omzet-btw; niet vrij te kiezen voor iedere situatie.',afschrijving:'Aanschafkosten van een bedrijfsmiddel over gebruiksjaren verdelen volgens de toepasselijke regels.',KOR:'Kleineondernemersregeling: een specifieke btw-regeling met voorwaarden. De cursus kiest deze niet voor jou.', vervaldatum:'Uiterste betaaldatum van de factuur.', 'interne overboeking':'Geld verplaatsen tussen eigen zakelijke rekeningen, bijvoorbeeld Kas naar Bank; geen nieuwe omzet.'
  };
- const tasks={week:['Nieuwe bonnen toevoegen','Onbekende transacties beoordelen','Openstaande facturen controleren','Mislukte opslagmeldingen oplossen'],month:['Banktransacties importeren','Betalingen koppelen','Uitgaven koppelen','Privémutaties controleren','Bank afstemmen','Kas controleren','Openstaande facturen bekijken','Back-up downloaden'],quarter:['Alle maanden controleren','Bank/Kas afstemmen','Ontbrekende bonnen oplossen','Creditfacturen controleren','Btw-overzicht bekijken','Waarschuwingen oplossen','PDF en ZIP bewaren','Eigen aangifte bij Mijn Belastingdienst Zakelijk controleren en indienen','Met het juiste betalingskenmerk betalen indien verschuldigd'],year:['Volledige administratie exporteren','Jaaroverzicht controleren','Begin- en eindsaldi aansluiten','Inkomsten en kosten controleren','Gegevens voor inkomstenbelasting of boekhouder verzamelen','Bewaartermijn en back-up controleren']};
- const ingSteps=['Open Mijn ING Zakelijk in een browser via ING zelf.','Log veilig bij ING in.','Open de juiste zakelijke betaalrekening.','Open Af- en bijschrijvingen of de aangeboden afschriftenroute.','Kies Downloaden of Exporteren.','Kies begin- en einddatum.','Kies het beschikbare CSV-formaat.','Bewaar het bestand op een herkenbare beveiligde plek.','Open APPFMZ.','Ga naar Administratie → Bank en Kas → CSV importeren.','Selecteer je bestand in de echte beveiligde administratie.','Controleer rekening, periode, bedragen, kolommen en duplicaten in het importvoorbeeld.','Bevestig de import pas na die controle.'];
+ const tasks={week:['Nieuwe bonnen toevoegen','Onbekende transacties beoordelen','Openstaande facturen controleren','Mislukte opslagmeldingen oplossen'],month:['Banktransacties importeren','Betalingen koppelen','Uitgaven koppelen','Privémutaties controleren','Bankstand vergelijken','Kas controleren','Openstaande facturen bekijken','Back-up downloaden'],quarter:['Alle maanden controleren','Bank/Kas met afschrift vergelijken','Ontbrekende bonnen oplossen','Creditfacturen controleren','Btw-overzicht bekijken','Waarschuwingen oplossen','PDF en ZIP bewaren','Eigen aangifte bij Mijn Belastingdienst Zakelijk controleren en indienen','Met het juiste betalingskenmerk betalen indien verschuldigd'],year:['Volledige administratie exporteren','Jaaroverzicht controleren','Begin- en eindsaldi aansluiten','Inkomsten en kosten controleren','Gegevens voor inkomstenbelasting of boekhouder verzamelen','Bewaartermijn en back-up controleren']};
+ const ingSteps=['Open Mijn ING Zakelijk in een browser via ING zelf.','Log veilig bij ING in.','Open de juiste zakelijke betaalrekening.','Open Af- en bijschrijvingen of de aangeboden afschriftenroute.','Kies Downloaden of Exporteren.','Kies begin- en einddatum.','Kies het beschikbare CSV-formaat.','Bewaar het bestand op een herkenbare beveiligde plek.','Open APPFMZ.','Ga naar Administratie → Bank/Kas → CSV importeren.','Selecteer je bestand in de echte beveiligde administratie.','Controleer rekening, periode, bedragen, kolommen en duplicaten in het importvoorbeeld.','Bevestig de import pas na die controle.'];
  const fieldHelp=[
   ['Bedrijfsnaam','Eigen KVK-registratie','Identiteit op de factuur; controleer geregistreerde naam. Ontbrekend: niet definitief maken.','Bedrijfsnaam'],
   ['Handelsnaam','Eigen KVK-registratie','Een geregistreerde handelsnaam kan onder voorwaarden worden gebruikt; identiteit en adres moeten correct zijn.','Geen afzonderlijk veld; controleer Bedrijfsnaam'],
@@ -318,7 +318,33 @@
   ['Btw-periode','Eigen aangiftebrief / Mijn Belastingdienst Zakelijk','Controleer jouw tijdvak en deadline. Ontbrekend of onzeker: eerst uitzoeken.','Btw-periode'],
   ['Factuur- of kasstelsel','Eigen toepasselijke regels en fiscale beoordeling','Bepaalt het moment van omzet-btw. Niet kiezen op basis van de oefening.','Btw-stelsel']
  ];
- const help={overview:{title:'Overzicht',lesson:2,text:'Hier zie je berekende totalen en waarschuwingen. Open de bijbehorende boeking om de herkomst te controleren.',example:'Een betaling verlaagt openstaand, zonder een tweede verkoop.',refs:['administration']},sales:{title:'Verkoopfacturen',lesson:8,text:'Bewerk een concept, controleer de preview en maak pas daarna expliciet definitief.',example:'Progressie €380 min €30 korting geeft €350 te betalen.',refs:['invoice']},expenses:{title:'Uitgaven en bonnen',lesson:12,text:'Leg de zakelijke aankoop en het bewijs vast; koppel de betaling afzonderlijk.',example:'€24,20 met fictief toegestane 21% bevat €4,20 voorbelasting.',refs:['input']},bank:{title:'Bank en Kas',lesson:18,text:'Importeer transacties, controleer de koppelingen en vergelijk het saldo op dezelfde einddatum.',example:'€226,20 berekend tegenover €216,21 op de bank: zoek de ontbrekende €9,99.',refs:['ingcsv']},private:{title:'Privéstortingen en privéopnames',lesson:5,text:'Houd privégeld bij een eenmanszaak apart van omzet en zakelijke kosten.',example:'€0,20 uit privé is een privéstorting, geen klantverkoop.',refs:['private']},assets:{title:'Bezittingen en schulden',lesson:20,text:'Leg vast wat de onderneming heeft en nog moet terugbetalen. Laat fiscale verwerking onderbouwen.',example:'Een lening verhoogt bank én schuld, geen omzet.',refs:['asset']},vat:{title:'Btw-overzicht',lesson:21,text:'Controleer een voorlopig overzicht tegen instellingen, bewijs en jouw aangiftetijdvak.',example:'Verkoop-btw min toegestane voorbelasting geeft een voorlopig saldo.',refs:['method','filing']},reports:{title:'Rapporten en export',lesson:24,text:'Download periodeoverzichten en de volledige export; controleer de documenten en bewaar ze veilig.',example:'Een ZIP voor controle bevat gegevens én onderliggende bewijsstukken.',refs:['retention']},settings:{title:'Administratie-instellingen',lesson:3,text:'Controleer bedrijfsgegevens en fiscale instellingen tegen je eigen registraties en brieven.',example:'IBAN invullen maakt nog geen ING-koppeling.',refs:['invoice','inglink']}};
- const content={version,checked,disclaimer,sources,headings,lessons,glossary,tasks,ingSteps,fieldHelp,help};
+ const help={overview:{title:'Overzicht',lesson:2,text:'Hier zie je berekende totalen en waarschuwingen. Open de bijbehorende boeking om de herkomst te controleren.',example:'Een betaling verlaagt openstaand, zonder een tweede verkoop.',refs:['administration']},sales:{title:'Facturen',lesson:8,text:'Bewerk een concept, controleer de preview en maak pas daarna expliciet definitief.',example:'Progressie €380 min €30 korting geeft €350 te betalen.',refs:['invoice']},expenses:{title:'Uitgaven en bonnen',lesson:12,text:'Leg de zakelijke aankoop en het bewijs vast; koppel de betaling afzonderlijk.',example:'€24,20 met fictief toegestane 21% bevat €4,20 voorbelasting.',refs:['input']},bank:{title:'Bank/Kas',lesson:18,text:'Importeer transacties, controleer de koppelingen en vergelijk het saldo op dezelfde einddatum.',example:'€226,20 berekend tegenover €216,21 op de bank: zoek de ontbrekende €9,99.',refs:['ingcsv']},private:{title:'Privéstortingen en privéopnames',lesson:5,text:'Houd privégeld bij een eenmanszaak apart van omzet en zakelijke kosten.',example:'€0,20 uit privé is een privéstorting, geen klantverkoop.',refs:['private']},assets:{title:'Bezittingen en schulden',lesson:20,text:'Leg vast wat de onderneming heeft en nog moet terugbetalen. Laat fiscale verwerking onderbouwen.',example:'Een lening verhoogt bank én schuld, geen omzet.',refs:['asset']},vat:{title:'Btw-overzicht',lesson:21,text:'Controleer een voorlopig overzicht tegen instellingen, bewijs en jouw aangiftetijdvak.',example:'Verkoop-btw min toegestane voorbelasting geeft een voorlopig saldo.',refs:['method','filing']},reports:{title:'Overzichten',lesson:24,text:'Download periodeoverzichten en de volledige export; controleer de documenten en bewaar ze veilig.',example:'Een ZIP voor controle bevat gegevens én onderliggende bewijsstukken.',refs:['retention']},settings:{title:'Administratie-instellingen',lesson:3,text:'Controleer bedrijfsgegevens en fiscale instellingen tegen je eigen registraties en brieven.',example:'IBAN invullen maakt nog geen ING-koppeling.',refs:['invoice','inglink']}};
+ // Refresh every existing lesson and checklist without renumbering its progress key.
+ const currentWhere={2:'Administratie: Overzicht, Facturen, Bank/Kas, Overzichten en Uitleg & oefenen. Uitgaven, privé, bezittingen, btw en instellingen staan bij Meer administratie.',5:'Administratie → Meer administratie → Privéstortingen en privéopnames. De boeking verschijnt automatisch in Bank/Kas.',7:'Facturen → Pakketfactuur: concept openen. De bestaande klantafspraak bepaalt kalendermaand of vier weken; de agenda staat hier los van.',10:'Facturen → Betaald ontvangen. Bedrag, werkelijke datum en bank of kas controleren, daarna Betaling registreren.',11:'Facturen → Betaald ontvangen → Staat deze ontvangst al in Bank/Kas? Kies de bestaande ontvangst om een dubbele bankboeking te voorkomen.',13:'Administratie → Meer administratie → Privéstortingen en privéopnames → Privéopname.',18:'Bank/Kas → Rekeningen, beginstand en bankafstemming → Bankstand vergelijken.',23:'Overzichten voor omzet, kosten en resultaat. Ontvangen geld staat apart op Overzicht; dit is geen inkomstenbelastingaangifte.'};
+ for(const l of lessons){l.renewed='20261015';if(currentWhere[l.id])l.sections[2]=currentWhere[l.id];l.sections[10]='Ga verder of open de vernieuwde route van 12 stappen. Oefening opnieuw doen wist alleen deze tijdelijke oefening; je eerder afgeronde lessen blijven staan.';}
+ lessons[6].sections[0]+=' De opgeslagen klantafspraak bepaalt de periode. Bestaande maandafspraken blijven behouden; nieuwe afspraken staan standaard op vier weken. De maandvoorbeelden hieronder wijzigen geen klantafspraak.';
+ lessons[9].sections[0]='Een factuur is pas betaald als de ontvangst aantoonbaar is gekoppeld. Betaald ontvangen opent een gecontroleerd betaalvenster. Eén bevestiging verwerkt de ontvangst, de factuurkoppeling en Bank/Kas; alleen een statusvinkje is onvoldoende.';
+ lessons[9].sections[8]='Dezelfde ontvangst na Betaling registreren nogmaals in Bank/Kas invoeren. Verzonden verwarren met betaald. Bij een verloren antwoord blind een nieuwe betaling maken in plaats van dezelfde opslag opnieuw proberen.';
+ lessons[10].title='Betaling registreren of bestaande ontvangst koppelen';
+ lessons[10].sections[0]='Het betaalvenster gebruikt de bestaande boekingsketen. Een nieuwe ontvangst wordt meteen aan de factuur gekoppeld. Staat de bankmutatie al in Bank/Kas, kies die dan: er komt geen tweede ontvangst bij.';
+ lessons[10].sections[6]='Oefen de nieuwe hoofdhandeling in de route van 12 stappen: €200 ontvangen laat €150 open, daarna betaalt €150 de factuur. De aanvullende oefening hieronder leert je bestaande bankmutaties beoordelen en koppelen.';
+ lessons[17].title='Bankstand vergelijken';lessons[17].sections[0]='Bankstand vergelijken (voorheen Afstemmen) vergelijkt het administratieve saldo op één einddatum met je echte afschrift. Dit koppelt geen betaling aan een factuur en maakt geen ontvangst.';
+ lessons[18].sections[0]+=' Een betalingsinvoer corrigeren is weer iets anders: via Boekingen en betalingen → Invoerfout corrigeren blijft het origineel bestaan met een tegenboeking. Dit maakt geen credit en stort geen geld terug.';
+ lessons[20].sections[0]+=' Betalen maakt geen tweede omzetboeking. Bij het factuurstelsel is de factuurdatum meestal bepalend; bij particuliere verkopen zonder factuurplicht, vooruitbetalingen en andere wettelijke uitzonderingen kan een ander moment gelden. Het kasstelsel volgt daadwerkelijk ontvangen geld voor de omzet-btw. Voorbelasting heeft eigen voorwaarden.';
+ glossary['Betaling registreren']='Eén bevestiging bij de factuur verwerkt de ontvangst én de koppeling in Bank/Kas. Een bestaande bankmutatie kies je expliciet zodat die niet dubbel wordt geboekt.';
+ glossary['Betalingscorrectie']='Een zichtbare tegenboeking van fout ingevoerde ontvangst of koppeling, met reden en historie. Geen creditfactuur en geen echte terugbetaling.';
+ glossary['Administratief saldo']='De stand berekend uit jouw ingevoerde boekingen. APPFMZ leest je bank niet automatisch uit.';
+ glossary['Afstemmen']='Bankstand vergelijken: het administratieve saldo vergelijken met het bankafschrift op dezelfde einddatum. Een betaling registreren is een andere handeling.';
+ tasks.week[2]='Openstaande en te late facturen controleren; bewezen ontvangst via Betaald ontvangen registreren';
+ tasks.month[1]='Reeds aanwezige bankontvangsten koppelen; zelf geregistreerde ontvangsten niet nogmaals invoeren';
+ help.sales.title='Facturen';help.sales.text='Controleer een concept vóór definitief opslaan. Bij een ontvangst kies je Betaald ontvangen; Bank/Kas wordt meteen bijgewerkt.';
+ help.bank.text='Bekijk ontvangsten en uitgaven met hun bron. Bij latere CSV-import koppel je een bestaande zelf geregistreerde ontvangst. Bankstand vergelijken toetst het saldo aan een afschrift op dezelfde dag.';
+ help.bank.example='€200 ontvangen op €350 laat €150 open; Bank/Kas toont die €200 automatisch.';
+ help.overview.text='Nog open en Te laat tonen de stand t/m vandaag. Ontvangen toont gekoppelde factuurontvangsten in de gekozen periode. Omzet staat afzonderlijk bij Overzichten.';
+ sources.invoiceMethod=['Belastingdienst · Factuurstelsel',bd+'bldcontentnl/belastingdienst/zakelijk/btw/btw_aangifte_doen_en_betalen/bereken_het_bedrag/hoe_berekent_u_het_btw_bedrag/factuurstelsel'];
+ sources.cashMethod=['Belastingdienst · Kasstelsel',bd+'bldcontentnl/belastingdienst/zakelijk/btw/btw_aangifte_doen_en_betalen/bereken_het_bedrag/hoe_berekent_u_het_btw_bedrag/kasstelsel/'];
+ lessons[20].refs.push('invoiceMethod','cashMethod');
+ const beginner=typeof module!=='undefined'?require('./beginner-content.js'):root.FMZBeginnerContent;
+ const content={beginner,version,checked,disclaimer,sources,headings,lessons,glossary,tasks,ingSteps,fieldHelp,help};
  if(typeof module!=='undefined')module.exports=content;else root.FMZCourseContent=content;
 })(typeof window==='undefined'?globalThis:window);

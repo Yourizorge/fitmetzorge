@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-15T14:18:45.169Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "encryptedCheckpoint": "2026-10-15T14:14:16.876317+00:00",
+  "authenticatedDecryptAndHashVerified": true,
+  "appTables": 20,
+  "authUsersAndIdentitiesEncrypted": true,
+  "privateBinariesVerified": 3,
+  "realCustomerRowsRestoredForTesting": false,
+  "restorePath": "Authenticated private decryption plus exact original binaries; full schema and payment flows recreated locally with synthetic data only."
+}

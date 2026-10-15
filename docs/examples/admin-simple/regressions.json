@@ -1,0 +1,321 @@
+{
+  "at": "2026-10-15T14:39:01.306Z",
+  "uniqueTests": 51,
+  "allHaveFinalPass": true,
+  "initialFullRun": {
+    "passed": 49,
+    "failed": 2
+  },
+  "corrections": [
+    "Payment test waits for asynchronous refresh acknowledgement before checking the new balance.",
+    "Trainer test measures the normal header on role home; accepted member agenda intentionally collapses it behind Appbediening."
+  ],
+  "finalTests": [
+    {
+      "name": "VAT reports distinguish net business base from non-deductible VAT and unknown opening periods",
+      "pass": true,
+      "ms": 21.2459,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "CSV mapping, signed integer cents, overlaps, ambiguous duplicates, periods and safe exports",
+      "pass": true,
+      "ms": 15.6107,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "cash VAT uses bank receipt dates and cumulative cent rounding, excludes deposits",
+      "pass": true,
+      "ms": 18.933,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "owner administration phone and desktop: draft, PDF, payments, bank CSV, receipts, export and restored sources",
+      "pass": true,
+      "ms": 40907.6898,
+      "evidence": "targeted-regression.log"
+    },
+    {
+      "name": "owner ledger: invoice, VAT, payments, bank, private, audit, conflicts and archive protection",
+      "pass": true,
+      "ms": 6503.1782,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "appointment draft survives unrelated preferences and a lost response can be retried once after closing",
+      "pass": true,
+      "ms": 12882.3624,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "Web Push encryption and authenticated worker: only valid jobs, no sensitive payload, bounded network calls",
+      "pass": true,
+      "ms": 346.1426,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "push worker duplicates and deep links reveal no private data; no fetch/cache/update takeover",
+      "pass": true,
+      "ms": 100.2114,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "real calendar screens: navigation, month counts, explicit save, retry, attendance and privacy",
+      "pass": true,
+      "ms": 15943.8385,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "WebKit/iPhone and Android emulation: all views, text enlargement, keyboard, explicit push opt-in",
+      "pass": true,
+      "ms": 33032.624,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "agenda commands preserve all finance; duo, attendance, conflicts, recurrence and role boundaries",
+      "pass": true,
+      "ms": 4080.0938,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "calendar months, Amsterdam boundaries, unknown history and duplicate occurrences",
+      "pass": true,
+      "ms": 2.8399,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "durable reminders: opt-in, reschedule/cancel, DST, bounded retry, sessions and no backlog",
+      "pass": true,
+      "ms": 4595.2402,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "isolated restore: synthetic agenda, receipts and notifications recover without finance changes",
+      "pass": true,
+      "ms": 5978.3748,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "idempotent writes and private draft/share annotations preserve originals and reject outsiders",
+      "pass": true,
+      "ms": 4774.2472,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "calendar months, leap days and exact consecutive 28-day cycles",
+      "pass": true,
+      "ms": 10.6374,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "agreement migration preserves records; owner-only immutable versions and unique invoice periods",
+      "pass": true,
+      "ms": 4970.3113,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "month and four-week agreements: phone controls, preview, private PDF, relogin and lost response",
+      "pass": true,
+      "ms": 31048.318,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "browser + isolated PostgreSQL: persistence, trainer refresh, session privacy, XSS and compact images",
+      "pass": true,
+      "ms": 22879.909,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "real A4 invoice documents preserve all lines across pages and share totals with preview",
+      "pass": true,
+      "ms": 2475.8736,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "Edge mail requests are intercepted; failed preparation never sends an invitation",
+      "pass": true,
+      "ms": 170.5441,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "autosave workout/nutrition flows, lost acknowledgement, draft/photo sharing and mobile drawing",
+      "pass": true,
+      "ms": 52540.769,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "A4 preview fits all screens, enlarges privately and keeps archived download/share bytes",
+      "pass": true,
+      "ms": 40000.1313,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "invoice layout preserves immutable cents and produces complete A4 variants",
+      "pass": true,
+      "ms": 30020.7652,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "invoice regression: both screens edit drafts, delayed acknowledgements, lost reply, conflict, PDF retry and session privacy",
+      "pass": true,
+      "ms": 79099.2154,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "six reconciled migrations retain their approved SQL and unique production identity",
+      "pass": true,
+      "ms": 23.2833,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "owner administration actual mobile controls, themes, dropdowns, disclosures, corrections and PDF previews",
+      "pass": true,
+      "ms": 217084.8693,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "owner hotfix: actual goal controls bind to the selected client and survive server reload",
+      "pass": true,
+      "ms": 21377.1187,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "owner corrections: independent cents, tombstones, cancellation, partial credits and reversible imports",
+      "pass": true,
+      "ms": 3275.2665,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "actual MP4 is playable with chapters, captions, pause and replay on desktop and iPhone browser emulation",
+      "pass": true,
+      "ms": 19382.1248,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "isolated practice uses shared rules and reproduces SQL totals, partial receipts, correction and idempotency",
+      "pass": true,
+      "ms": 3644.375,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "12 beginner steps use actual shared payment UI, preserve prior progress and make zero API calls",
+      "pass": true,
+      "ms": 7281.0643,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "WebKit iPhone emulation: shared payment form, enlarged text, scroll and safe local receipt",
+      "pass": true,
+      "ms": 3998.2212,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "payment form on real rendered screens: lost response, reopen, partials, stale device, corrections, source reuse, login and responsive access",
+      "pass": true,
+      "ms": 19321.5038,
+      "evidence": "targeted-regression.log"
+    },
+    {
+      "name": "one invoice payment uses the existing ledger; partial receipts, two-device conflict, idempotency, bank versus cash and correction history",
+      "pass": true,
+      "ms": 3622.6877,
+      "evidence": "targeted-regression.log"
+    },
+    {
+      "name": "existing receipt linking and unlink correction make no extra receipt; manual receipt/CSV guard and explicit source attachment prevent duplicate imports",
+      "pass": true,
+      "ms": 2600.8773,
+      "evidence": "targeted-regression.log"
+    },
+    {
+      "name": "cash-basis VAT follows actual receipt dates and reversals without changing invoice tax settings; closed source periods are protected",
+      "pass": true,
+      "ms": 2200.429,
+      "evidence": "targeted-regression.log"
+    },
+    {
+      "name": "isolated PostgreSQL: member/trainer chain, isolation, conflicts, profile authority and invites",
+      "pass": true,
+      "ms": 2698.9112,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "bounded recurrence handles month ends without repeated fees",
+      "pass": true,
+      "ms": 2.7125,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "rendered trainer/member layout: all navigation, bounded moving media, touch widths, focus and enlarged text",
+      "pass": true,
+      "ms": 65979.6352,
+      "evidence": "trainer-layout-final.log"
+    },
+    {
+      "name": "PWA manifest, original padded icons, native prompt lifecycle, iPhone help, standalone role/session and no cache writes",
+      "pass": true,
+      "ms": 18035.5958,
+      "evidence": "targeted-regression.log"
+    },
+    {
+      "name": "WebKit engine: phone/landscape/tablet/laptop, both roles, install help, focus and reload",
+      "pass": true,
+      "ms": 99772.4757,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "handbook and generated parser match reviewed course content and A4 PDF format",
+      "pass": true,
+      "ms": 130.1179,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "manual download, failed PDF retry and unavailable local progress keep isolation",
+      "pass": true,
+      "ms": 7576.453,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "owner help and opaque exercises cannot mutate financial, member, auth, Storage or audit state",
+      "pass": true,
+      "ms": 13116.9545,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "resume, retry, reset, keyboard, mobile themes and all main routes remain usable",
+      "pass": true,
+      "ms": 11620.1132,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "27 complete lessons have eleven parts, checked primary sources and meaningful exercises",
+      "pass": true,
+      "ms": 11.3135,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "all exercise transitions validate, preserve failed state and finish without any API",
+      "pass": true,
+      "ms": 6.2254,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "capstone deduplicates prior entries, preserves original, credits once and reconciles cents",
+      "pass": true,
+      "ms": 0.7206,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "bad money, oversized discounts and unreviewed files or drafts never advance",
+      "pass": true,
+      "ms": 0.5796,
+      "evidence": "full-regression-initial.log"
+    },
+    {
+      "name": "every lesson and exercise works through the opaque browser UI, PDFs and completion",
+      "pass": true,
+      "ms": 36711.3028,
+      "evidence": "full-regression-initial.log"
+    }
+  ]
+}

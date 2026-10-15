@@ -5,7 +5,7 @@ test('owner administration phone and desktop: draft, PDF, payments, bank CSV, re
  const browser=await chromium.launch({headless:true,channel:'msedge'}),p=await browser.newPage({acceptDownloads:true,viewport:{width:1400,height:1000}}),errors=[];
  p.on('pageerror',e=>{errors.push(e.message);console.log('PAGEERROR',e.message)});
  async function login(){await p.locator('#loginForm select[name=role]').selectOption('trainer');await p.locator('#loginForm input[name=email]').fill(account.email);await p.locator('#loginForm input[name=password]').fill(account.password);await p.locator('#loginForm button[type=submit]').click();await p.waitForFunction(()=>onlineReady&&FMZAccounting.ready);}
- async function page(name){await p.evaluate(name=>{showView('administration');document.querySelector(`[data-acc-page="${name}"]`).click()},name);}
+ async function page(name){await p.evaluate(name=>{showView('administration');document.querySelector(`[data-acc-page="${name}"]`).click()},name);if(name==='bank'){while(await p.locator('.acc-advanced:not([open])>summary').count())await p.locator('.acc-advanced:not([open])>summary').first().click();}}
  async function submit(id){await p.locator(`[data-acc-form="${id}"] [type=submit]`).click();await p.waitForFunction(()=>[...document.querySelectorAll('[data-acc-status]')].some(e=>e.textContent==='Opgeslagen'));}
  const fill=async(form,values)=>{for(const [k,v]of Object.entries(values))await form.locator(`[name="${k}"]`).fill(String(v));};
  try{

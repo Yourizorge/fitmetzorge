@@ -1,0 +1,48 @@
+{
+  "recorded": "2026-10-15",
+  "source": "Built opaque-origin synthetic practice UI, Playwright real interactions",
+  "subtitles": "burned-in Dutch captions; additional VTT",
+  "duration": 48.996,
+  "chapters": [
+    {
+      "time": 2.046,
+      "title": "Factuur openen",
+      "text": "1. Open de oefenfactuur. €380 min €30 korting = €350 te betalen."
+    },
+    {
+      "time": 6.579,
+      "title": "Betaling registreren",
+      "text": "2. Betaald ontvangen: controleer bedrag, datum en rekening. Eén bevestiging is voldoende."
+    },
+    {
+      "time": 12.32,
+      "title": "Bank/Kas",
+      "text": "3. Bank/Kas is meteen bijgewerkt. Voer deze €350 niet opnieuw in."
+    },
+    {
+      "time": 17.826,
+      "title": "Deelbetalingen",
+      "text": "4. Nieuwe oefenronde: registreer €200. Er blijft €150 open."
+    },
+    {
+      "time": 23.589,
+      "title": "Tweede ontvangst",
+      "text": "5. Registreer de tweede €150 op de volgende betaaldatum. De factuur is betaald."
+    },
+    {
+      "time": 30.497,
+      "title": "Invoer corrigeren",
+      "text": "6. Verkeerd ingevoerd? Kies Invoerfout corrigeren. De historie en originele factuur blijven bewaard."
+    },
+    {
+      "time": 38.302,
+      "title": "Nog open",
+      "text": "7. Nog open toont wat nog te ontvangen is. Deze oefenfactuur heeft €150 open."
+    },
+    {
+      "time": 43.994,
+      "title": "Kwartaaloverzicht",
+      "text": "8. Overzichten: ontvangen geld en omzet staan apart. Controleer het gekozen kwartaal."
+    }
+  ]
+}

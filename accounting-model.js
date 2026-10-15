@@ -50,7 +50,14 @@
    if(r.kind==='correction'&&r.data.invoice_cancellation&&r.date>=from&&r.date<=to){const original=records.get(r.parent_id),doc=original?.data.document;if(doc?.vatMethod==='invoice')vat.push({id:r.id,date:r.date,label:'Annulering '+original.number,output:-doc.vatCents,input:0,rate:doc.vatBasisPoints,revenue:-doc.netCents,cost:0,correction:true});}
   }
   const cumulative=new Map();
-  const allocations=s.records.filter(r=>r.kind==='allocation').map(r=>({r,b:records.get(r.data.bank_id)})).sort((a,b)=>(a.b.date+a.r.created_at).localeCompare(b.b.date+b.r.created_at));
+  const allocations=s.records.filter(r=>r.kind==='allocation').map(r=>({r,b:records.get(r.data.bank_id)}));
+  // A correction reverses the original receipt's VAT effect on its open source date.
+  // The original allocation and bank record remain in the audit trail.
+  for(const correction of s.records.filter(r=>r.kind==='correction'&&r.data.payment_reversal)){
+   const original=records.get(correction.data.payment_id),bank=original&&records.get(original.data.bank_id);
+   if(original&&bank)allocations.push({r:{...correction,data:{...correction.data,parts:original.data.parts}},b:{...bank,date:correction.data.effective_date||bank.date,data:{...bank.data,cents:-bank.data.cents}}});
+  }
+  allocations.sort((a,b)=>(a.b.date+a.r.created_at).localeCompare(b.b.date+b.r.created_at));
   for(const {r,b} of allocations)for(const part of r.data.parts){const inv=records.get(part.target_id);if(part.type!=='invoice'||inv?.data.document.vatMethod!=='cash')continue;const doc=inv.data.document,prev=cumulative.get(inv.id)||0,next=prev+part.cents*Math.sign(b.data.cents);cumulative.set(inv.id,next);if(b.date>=from&&b.date<=to){const tax=Math.round(next*doc.vatCents/doc.totalCents)-Math.round(prev*doc.vatCents/doc.totalCents);vat.push({id:r.id,date:b.date,label:`Ontvangst/terugbetaling ${inv.number}`,output:tax,input:0,rate:doc.vatBasisPoints,revenue:next-prev-tax,cost:0,correction:b.data.cents<0});}}
   const unallocated=s.records.filter(r=>r.kind==='bank'&&r.date<=to&&balance('1400',r.id)!==0);if(unallocated.length)flags.push(`${unallocated.length} ongekoppelde bankmutaties; controleer o.a. nog niet herkende btw-ontvangsten`);
   if(s.files.some(f=>f.status!=='ready'))flags.push('Bronbestanden nog niet volledig opgeslagen');
