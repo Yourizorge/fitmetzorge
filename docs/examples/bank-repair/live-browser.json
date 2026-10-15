@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-15T17:10:48.045Z",
+  "host": "https://appfmz.nl",
+  "syntheticOnly": true,
+  "realAuthPostgREST": true,
+  "visiblePaymentAction": true,
+  "existingReceiptLinkedWithoutSecondBankEntry": true,
+  "noSecondRevenueOrVAT": true,
+  "reloadAndRelogin": true,
+  "serverPreviewReadOnly": true,
+  "explicitConfirmation": true,
+  "unlinkKeepsBankAndOriginalInvoice": true,
+  "viewports": [
+    390,
+    1440
+  ],
+  "physicalPhone": false,
+  "errors": []
+}
