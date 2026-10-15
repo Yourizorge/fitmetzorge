@@ -1,0 +1,200 @@
+{
+  "at": "2026-10-15T09:34:27.157Z",
+  "distinctPassingTests": 34,
+  "runs": [
+    {
+      "file": "trainer-pwa-regression.log",
+      "sha256": "ec8a6ca42e6c5eca7a832ba3deb1c68946bd4515d277625d67156b13678b579d",
+      "passed": 30,
+      "failed": 1
+    },
+    {
+      "file": "trainer-pwa-final-regression.log",
+      "sha256": "a8ce312797628a06ca4a664e43d000dab66fb0ab0bcd993ef81cdc96f1d4130b",
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "file": "trainer-pwa-release-checks.log",
+      "sha256": "3c0def97507306ef9f94909036c53e910a4a8f7b97238efc0ec3831b668e6c8a",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "tests": [
+    {
+      "name": "VAT reports distinguish net business base from non-deductible VAT and unknown opening periods",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "CSV mapping, signed integer cents, overlaps, ambiguous duplicates, periods and safe exports",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "cash VAT uses bank receipt dates and cumulative cent rounding, excludes deposits",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "owner administration phone and desktop: draft, PDF, payments, bank CSV, receipts, export and restored sources",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "owner ledger: invoice, VAT, payments, bank, private, audit, conflicts and archive protection",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "idempotent writes and private draft/share annotations preserve originals and reject outsiders",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "calendar months, leap days and exact consecutive 28-day cycles",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "agreement migration preserves records; owner-only immutable versions and unique invoice periods",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "month and four-week agreements: phone controls, preview, private PDF, relogin and lost response",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "browser + isolated PostgreSQL: persistence, trainer refresh, session privacy, XSS and compact images",
+      "run": "trainer-pwa-final-regression.log",
+      "pass": true
+    },
+    {
+      "name": "real A4 invoice documents preserve all lines across pages and share totals with preview",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "Edge mail requests are intercepted; failed preparation never sends an invitation",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "autosave workout/nutrition flows, lost acknowledgement, draft/photo sharing and mobile drawing",
+      "run": "trainer-pwa-final-regression.log",
+      "pass": true
+    },
+    {
+      "name": "A4 preview fits all screens, enlarges privately and keeps archived download/share bytes",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "invoice layout preserves immutable cents and produces complete A4 variants",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "invoice regression: both screens edit drafts, delayed acknowledgements, lost reply, conflict, PDF retry and session privacy",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "six reconciled migrations retain their approved SQL and unique production identity",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "owner hotfix: actual goal controls bind to the selected client and survive server reload",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "owner corrections: independent cents, tombstones, cancellation, partial credits and reversible imports",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "isolated PostgreSQL: member/trainer chain, isolation, conflicts, profile authority and invites",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "bounded recurrence handles month ends without repeated fees",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "handbook and generated parser match reviewed course content and A4 PDF format",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "manual download, failed PDF retry and unavailable local progress keep isolation",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "owner help and opaque exercises cannot mutate financial, member, auth, Storage or audit state",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "resume, retry, reset, keyboard, mobile themes and all main routes remain usable",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "27 complete lessons have eleven parts, checked primary sources and meaningful exercises",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "all exercise transitions validate, preserve failed state and finish without any API",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "capstone deduplicates prior entries, preserves original, credits once and reconciles cents",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "bad money, oversized discounts and unreviewed files or drafts never advance",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "every lesson and exercise works through the opaque browser UI, PDFs and completion",
+      "run": "trainer-pwa-regression.log",
+      "pass": true
+    },
+    {
+      "name": "WebKit engine: phone/landscape/tablet/laptop, both roles, install help, focus and reload",
+      "run": "trainer-pwa-release-checks.log",
+      "pass": true
+    },
+    {
+      "name": "owner administration actual mobile controls, themes, dropdowns, disclosures, corrections and PDF previews",
+      "run": "trainer-pwa-release-checks.log",
+      "pass": true
+    },
+    {
+      "name": "rendered trainer/member layout: all navigation, bounded moving media, touch widths, focus and enlarged text",
+      "run": "trainer-pwa-release-checks.log",
+      "pass": true
+    },
+    {
+      "name": "PWA manifest, original padded icons, native prompt lifecycle, iPhone help, standalone role/session and no cache writes",
+      "run": "trainer-pwa-release-checks.log",
+      "pass": true
+    }
+  ],
+  "renderedViews": 80,
+  "overflow": 0,
+  "browserErrors": 0,
+  "note": "Initial suite 30/31; covered administration selector corrected and full administration interaction test rerun PASS. Final changed UI verified by four passing release tests. Synthetic data only; no physical phone."
+}

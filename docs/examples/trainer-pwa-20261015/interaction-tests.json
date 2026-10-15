@@ -1,0 +1,678 @@
+{
+  "browser": "Headless Microsoft Edge, viewport emulation (no physical phone)",
+  "results": [
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "invoice",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "finance",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "height": 740,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "invoice",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "finance",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "height": 844,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "invoice",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "finance",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "height": 1024,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "invoice",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "finance",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "height": 390,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "invoice",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "finance",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1024,
+      "height": 768,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "trainer-dashboard",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "clients",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "training-log",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "administration",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "invoice",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "finance",
+      "pass": true
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "height": 950,
+      "id": "settings",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "height": 740,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "height": 844,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "height": 1024,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "height": 390,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1024,
+      "height": 768,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1024,
+      "height": 768,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1024,
+      "height": 768,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1024,
+      "height": 768,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1024,
+      "height": 768,
+      "id": "agenda",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "id": "client-home",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "id": "training",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "id": "nutrition",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "id": "trackers",
+      "pass": true
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "height": 950,
+      "id": "agenda",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

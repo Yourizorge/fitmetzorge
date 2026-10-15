@@ -1,0 +1,140 @@
+/* APPFMZ presentation only. Keep app roles, forms and action handlers intact. */
+body.trainer-mode {
+  background: radial-gradient(circle at 20% -10%, #b88a153d, transparent 34%),
+    radial-gradient(circle at 100% 0%, #1d4ed133, transparent 36%), var(--bg);
+}
+body.trainer-mode .app-shell { grid-template-columns: 224px minmax(0, 1fr); }
+body.trainer-mode .content { padding: 16px clamp(14px, 2.5vw, 36px) 100px; }
+body.trainer-mode .view { max-width: none; min-width: 0; }
+body.trainer-mode .sidebar { border-radius: 22px; }
+body.trainer-mode .nav { min-height: 0; overflow-y: auto; }
+body.trainer-mode .nav-btn { min-height: 44px; white-space: normal; text-align: left; }
+body.trainer-mode .nav-btn.active { background: var(--gold-2); color: #17120a; }
+body.trainer-mode .nav-btn.active i { color: inherit; }
+body.trainer-mode .panel,
+body.trainer-mode .kpi,
+body.trainer-mode .client-card,
+body.trainer-mode .trainer-preview-card { border-radius: 22px; min-width: 0; }
+body.trainer-mode .view-head { gap: 16px; flex-wrap: wrap; align-items: center; }
+body.trainer-mode .view-head h1 { font-size: clamp(1.65rem, 3vw, 2.2rem); overflow-wrap: anywhere; }
+body.trainer-mode :is(.panel-head,.tracker-card-head,.tracker-week-head,.training-day-header,.schema-copy-panel) { flex-wrap: wrap; }
+body.trainer-mode :is(.kpi-grid,.trainer-preview-grid,.client-grid) { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+body.trainer-mode .table-wrap { max-width: 100%; overflow: auto; }
+body.trainer-mode :is(.field,input,select,textarea) { max-width: 100%; }
+body.trainer-mode :is(.training-session-area,.training-days,.training-day,.exercise-library-panel,.panel) { min-width: 0; }
+body.trainer-mode :is(.training-form,.nutrition-form,.manual-exercise-form) { grid-template-columns: repeat(auto-fit,minmax(min(150px,100%),1fr)); }
+body.trainer-mode .training-builder { grid-template-columns: minmax(0, 1fr) minmax(220px, 280px); }
+body.trainer-mode .training-day-sidebar { grid-column: 1 / -1; }
+body.trainer-mode .training-day-tabs { grid-template-columns: repeat(auto-fit,minmax(min(108px,100%),1fr)); }
+body.trainer-mode .training-day-tab { min-height: 60px; }
+body.trainer-mode .exercise-library-list { max-height: 70dvh; overflow-y: auto; grid-template-columns: minmax(0,1fr); }
+body.trainer-mode .exercise-library-item strong { white-space: normal; overflow-wrap: anywhere; }
+body.trainer-mode :is(.training-log-title,.training-log-targets,.training-log-results,.training-log-summary) { flex-wrap: wrap; min-width: 0; }
+body.trainer-mode .training-log-title { display: flex; gap: 8px; }
+body.trainer-mode .training-log-exercise-main { overflow-wrap: anywhere; }
+body.trainer-mode .goal-save-actions { flex-wrap: wrap; }
+body.trainer-mode .settings-hero { min-width:0; overflow-wrap:anywhere; }
+body.trainer-mode .settings-hero h1 { font-size:clamp(1.8rem,4vw,3rem); line-height:1.15; }
+body.trainer-mode .settings-rate-row { grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr)); }
+body.trainer-mode .tracker-week-days { grid-template-columns:repeat(auto-fit,minmax(min(128px,100%),1fr)); }
+@media (min-width:901px) {
+  body.trainer-mode .sidebar { grid-column:1; grid-row:1/-1; }
+  body.trainer-mode .topbar { grid-column:2; grid-row:1; }
+  body.trainer-mode .content { grid-column:2; grid-row:2; }
+  body.trainer-mode .nav { grid-template-columns:minmax(0,1fr); }
+}
+
+/* Flexible headers keep all account and save controls reachable in both roles. */
+body.logged-in .topbar { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; align-content:start; position:relative; min-width:0; gap:12px; padding:16px; background:var(--bg); }
+body.logged-in .topbar-controls { display:flex; flex-wrap:wrap; min-width:0; max-width:100%; gap:8px; flex:1 1 460px; }
+body.logged-in .topbar-controls .field.compact { flex:1 1 150px; min-width:0; }
+body.logged-in .topbar-search { flex:1 1 190px; min-width:0; max-width:100%; }
+body.logged-in .trainer-top-brand { min-width:0; gap:8px; }
+body.logged-in .trainer-top-brand img { width:64px; height:64px; }
+body.logged-in .current-user { display:block; overflow-wrap:anywhere; }
+body.logged-in .sync-status { min-width:0; overflow-wrap:anywhere; }
+body.logged-in .sync-actions > div { right:0; max-width:calc(100vw - 32px); }
+
+/* Bound the image itself, not only its wrapper. The log previously rendered
+   trainer images at their intrinsic (sometimes thousands of pixels) size. */
+:is(.exercise-photo,.exercise-library-photo,.training-log-photo) {
+  flex:none; min-width:0; max-width:100%; overflow:hidden; position:relative;
+  background:#fff; contain:layout paint;
+}
+:is(.exercise-photo,.exercise-library-photo,.training-log-photo) > img,
+body.trainer-mode .training-exercise-card .exercise-photo > img {
+  display:block; width:100%; height:100%; max-width:100%; max-height:100%; object-fit:contain;
+}
+body.trainer-mode .training-exercise-card .exercise-photo { width:112px; height:112px; min-height:112px; max-height:112px; }
+.training-log-photo { width:84px; height:84px; }
+.training-exercise-card .exercise-title-row { display:flex; flex-wrap:wrap; min-width:0; gap:10px; }
+.training-exercise-card .exercise-title-row > div { min-width:0; overflow-wrap:anywhere; }
+.training-exercise-card .exercise-title-row > div:first-child { flex:1 1 180px; }
+.training-exercise-card .exercise-title-row .schema-card-actions { justify-content:flex-start; }
+.training-exercise-card .exercise-target-grid { grid-template-columns:repeat(auto-fit,minmax(min(100px,100%),1fr)); }
+.training-exercise-card .exercise-log { grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr)); }
+.training-exercise-card :is(input,textarea) { width:100%; }
+.training-exercise-card :is(.exercise-meta,.target-pill) { overflow-wrap:anywhere; }
+.training-exercise-card .exercise-log label { min-width:0; }
+/* The trainer-only library is hidden for members; don't reserve its empty column. */
+body.client-mode .training-builder { grid-template-columns:180px minmax(0,1fr); }
+@media (max-width:900px) {
+  body.client-mode .training-builder { grid-template-columns:minmax(0,1fr); }
+}
+
+button:focus-visible,summary:focus-visible,a:focus-visible { outline:3px solid var(--gold-2); outline-offset:3px; }
+@media (max-width:1180px) {
+  body.trainer-mode .training-builder { grid-template-columns:minmax(0,1fr); }
+  body.trainer-mode .exercise-library-list { grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); max-height:480px; }
+}
+@media (max-width:900px) {
+  body.trainer-mode .app-shell { display:block; padding-bottom:calc(96px + env(safe-area-inset-bottom)); }
+  body.trainer-mode .content { padding:16px max(12px,env(safe-area-inset-right)) 80px max(12px,env(safe-area-inset-left)); }
+  body.trainer-mode .sidebar {
+    position:fixed; left:50%; right:auto; top:auto; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:60;
+    transform:translateX(-50%); width:min(720px,calc(100% - 24px)); height:auto; margin:0; padding:8px;
+    overflow:visible; background:var(--bg); border:1px solid var(--line); border-radius:22px;
+  }
+  body.trainer-mode .sidebar-brand { display:none; }
+  body.trainer-mode .nav { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; position:relative; overflow:visible; gap:8px; }
+  body.trainer-mode .nav-menu-wrap { display:block; position:static; }
+  body.trainer-mode :is(.nav-current,.nav-arrow) { display:flex; align-items:center; justify-content:center; min-height:44px; border:1px solid var(--line); border-radius:14px; color:var(--text); background:var(--surface); }
+  body.trainer-mode .nav-current { width:100%; gap:10px; font-weight:800; }
+  body.trainer-mode .nav-current strong { color:var(--gold-2); }
+  body.trainer-mode .nav-track { display:none; }
+  body.trainer-mode .nav.menu-open .nav-track { display:grid; position:absolute; left:0; right:0; bottom:calc(100% + 16px); max-height:60dvh; overflow-y:auto; padding:10px; background:var(--bg); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); }
+  body.trainer-mode .nav-btn { justify-content:flex-start; padding:10px; }
+  body.trainer-mode .nav-btn span { display:block; }
+  body.trainer-mode .topbar-search { display:flex; }
+  body.trainer-mode :is(.split-layout,.client-layout,.tracker-client-grid,.settings-feature-grid,.agenda-pro,.summary-layout) { grid-template-columns:minmax(0,1fr); }
+  body.trainer-mode :is(.tracker-overview-head,.tracker-card-head,.tracker-week-head) { display:flex; flex-wrap:wrap; }
+  body.trainer-mode .goal-save-actions { bottom:calc(90px + env(safe-area-inset-bottom)); }
+  /* Administration has long forms: retain its existing in-flow navigation so
+     the bottom bar never covers payment/category controls. */
+  body.trainer-mode.accounting-mode .sidebar { position:relative; left:auto; bottom:auto; transform:none; width:auto; margin:12px; }
+  body.trainer-mode.accounting-mode .nav.menu-open .nav-track { bottom:auto; top:calc(100% + 12px); }
+}
+@media (max-width:600px) {
+  body.trainer-mode :is(.training-session-list.exercise-row .training-exercise-card.exercise-card,.training-exercise-card) { grid-template-columns:96px minmax(0,1fr); }
+  body.trainer-mode .training-exercise-card .exercise-photo { width:96px; height:96px; min-height:96px; max-height:96px; }
+  body.trainer-mode .training-exercise-card .exercise-card-main { display:contents; }
+  body.trainer-mode .training-exercise-card .exercise-title-row { grid-column:2; display:flex; }
+  body.trainer-mode .training-exercise-card :is(.exercise-meta,.exercise-target-grid,.exercise-log) { grid-column:1/-1; }
+  body.trainer-mode .training-exercise-card :is(.exercise-target-grid,.exercise-log) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  body.trainer-mode :is(.form-grid.compact,.progress-photo-grid,.profile-summary-grid,.settings-type-row,.rate-row) { grid-template-columns:minmax(0,1fr); }
+  body.trainer-mode :is(.week-toolbar,.calendar-controls,.training-day-header) { display:flex; flex-wrap:wrap; }
+  body.trainer-mode .training-day-header > * { max-width:100%; min-width:0; }
+  body.trainer-mode .training-session-list.exercise-row { padding:8px; }
+}
+/* Installed windows include safe areas without changing stored app state. */
+@media (display-mode:standalone) {
+  body .topbar { padding-top:max(16px,env(safe-area-inset-top)); }
+  body .content { padding-left:max(14px,env(safe-area-inset-left)); padding-right:max(14px,env(safe-area-inset-right)); }
+}
+body.client-mode .sidebar { bottom:calc(14px + env(safe-area-inset-bottom)); }
+body.client-mode .app-shell { padding-bottom:calc(110px + env(safe-area-inset-bottom)); }
+@media (max-width:600px) {
+  body.client-mode .tracker-day-tabs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-flow:row; }
+  body.client-mode .tracker-day-tab { min-width:0; }
+}
+@media (prefers-reduced-motion:reduce) { .view.active { animation:none; } html { scroll-behavior:auto; } }

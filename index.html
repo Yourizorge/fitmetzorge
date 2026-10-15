@@ -2,10 +2,19 @@
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fit Met Zorge Coach App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#070b12" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="FitMetZorge" />
+    <title>FitMetZorge</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/pwa/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/pwa/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css?v=20260924-billing" />
     <link rel="stylesheet" href="tutorial/host.css?v=20260914-course" />
+    <link rel="stylesheet" href="layout.css?v=20261015" />
+    <link rel="stylesheet" href="pwa.css?v=20261015" />
   </head>
   <body class="logged-out">
     <section id="loginScreen" class="login-screen">
@@ -98,6 +107,7 @@
           <p id="setPasswordMessage" class="login-message"></p>
         </form>
         <p id="onlineStatus" class="auth-note"></p>
+        <button class="secondary-btn" type="button" data-install-app>App installeren</button>
       </div>
     </section>
 
@@ -141,6 +151,7 @@
           </div></details>
           <button id="logoutButton" class="secondary-btn" type="button">Uitloggen</button>
           <button id="themeToggle" class="icon-btn" type="button" aria-label="Thema wisselen" title="Thema wisselen">◐</button>
+          <button class="secondary-btn" type="button" data-install-app>App installeren</button>
         </div>
       </header>
 
@@ -1111,5 +1122,7 @@
     <script src="app.js?v=20260924-billing"></script>
     <script src="autosave.js?v=20260911-owner"></script>
     <script src="photos.js?v=20260909-autosave-r2"></script>
+    <script src="presentation.js?v=20261015"></script>
+    <script src="pwa.js?v=20261015"></script>
   </body>
 </html>

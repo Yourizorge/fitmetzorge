@@ -1,0 +1,1872 @@
+{
+  "phase": "before",
+  "emulation": true,
+  "views": [
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "trainer-dashboard",
+      "label": "Dashboard",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "clients",
+      "label": "Leden",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "training",
+      "label": "Schema builder",
+      "scroll": 337,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "training-log",
+      "label": "Trainingslog",
+      "scroll": 394,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "training-log-title",
+          "width": 146
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 146
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 146
+        },
+        {
+          "tag": "DIV",
+          "cl": "training-log-targets",
+          "width": 146
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 108
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 55
+        },
+        {
+          "tag": "DIV",
+          "cl": "training-log-results",
+          "width": 146
+        },
+        {
+          "tag": "DIV",
+          "cl": "",
+          "width": 42
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 336,
+      "overflow": [
+        {
+          "tag": "SECTION",
+          "cl": "tracker-week-block",
+          "width": 236
+        },
+        {
+          "tag": "DIV",
+          "cl": "tracker-week-day ",
+          "width": 128
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "SMALL",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "DIV",
+          "cl": "tracker-week-day ",
+          "width": 128
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 102
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "administration",
+      "label": "Administratie",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "invoice",
+      "label": "Facturen",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "finance",
+      "label": "Financien",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "settings",
+      "label": "Instellingen",
+      "scroll": 552,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "settings-hero",
+          "width": 302
+        },
+        {
+          "tag": "P",
+          "cl": "eyebrow",
+          "width": 302
+        },
+        {
+          "tag": "H1",
+          "cl": "",
+          "width": 302
+        },
+        {
+          "tag": "DIV",
+          "cl": "settings-feature-grid",
+          "width": 302
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "settings-feature-card",
+          "width": 302
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 252
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 252
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "settings-feature-card",
+          "width": 302
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "trainer-dashboard",
+      "label": "Dashboard",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "clients",
+      "label": "Leden",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "training",
+      "label": "Schema builder",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "training-log",
+      "label": "Trainingslog",
+      "scroll": 1727,
+      "overflow": [
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 400
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 500
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 400
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 400
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 400
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 390,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "tracker-week-day ",
+          "width": 128
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "SMALL",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "DIV",
+          "cl": "tracker-week-day today",
+          "width": 128
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "SMALL",
+          "cl": "",
+          "width": 102
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "administration",
+      "label": "Administratie",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "invoice",
+      "label": "Facturen",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "finance",
+      "label": "Financien",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "settings",
+      "label": "Instellingen",
+      "scroll": 552,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "settings-hero",
+          "width": 302
+        },
+        {
+          "tag": "P",
+          "cl": "eyebrow",
+          "width": 302
+        },
+        {
+          "tag": "H1",
+          "cl": "",
+          "width": 302
+        },
+        {
+          "tag": "DIV",
+          "cl": "settings-feature-grid",
+          "width": 302
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "settings-feature-card",
+          "width": 302
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "settings-feature-card",
+          "width": 302
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "settings-feature-card",
+          "width": 302
+        },
+        {
+          "tag": "SECTION",
+          "cl": "panel settings-card settings-invoice-card",
+          "width": 302
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "trainer-dashboard",
+      "label": "Dashboard",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "clients",
+      "label": "Leden",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "training",
+      "label": "Schema builder",
+      "scroll": 768,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "exercise-title-row",
+          "width": 380
+        },
+        {
+          "tag": "DIV",
+          "cl": "schema-card-actions",
+          "width": 227
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "danger-btn",
+          "width": 95
+        },
+        {
+          "tag": "DIV",
+          "cl": "exercise-target-grid",
+          "width": 380
+        },
+        {
+          "tag": "LABEL",
+          "cl": "mini-target",
+          "width": 89
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 89
+        },
+        {
+          "tag": "INPUT",
+          "cl": "",
+          "width": 89
+        },
+        {
+          "tag": "DIV",
+          "cl": "exercise-meta",
+          "width": 380
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "training-log",
+      "label": "Trainingslog",
+      "scroll": 768,
+      "overflow": [
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 768,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "tracker-week-day ",
+          "width": 128
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "SMALL",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "DIV",
+          "cl": "tracker-week-day ",
+          "width": 128
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "SMALL",
+          "cl": "",
+          "width": 102
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "administration",
+      "label": "Administratie",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "invoice",
+      "label": "Facturen",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "finance",
+      "label": "Financien",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "settings",
+      "label": "Instellingen",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "trainer-dashboard",
+      "label": "Dashboard",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "clients",
+      "label": "Leden",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "training",
+      "label": "Schema builder",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "training-log",
+      "label": "Trainingslog",
+      "scroll": 844,
+      "overflow": [
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 844,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "tracker-week-day ",
+          "width": 128
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "SMALL",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "DIV",
+          "cl": "tracker-week-day ",
+          "width": 128
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 102
+        },
+        {
+          "tag": "SMALL",
+          "cl": "",
+          "width": 102
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "administration",
+      "label": "Administratie",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "invoice",
+      "label": "Facturen",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "finance",
+      "label": "Financien",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "settings",
+      "label": "Instellingen",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "trainer-dashboard",
+      "label": "Dashboard",
+      "scroll": 1420,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "topbar-controls",
+          "width": 670
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "icon-btn",
+          "width": 22
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 1420,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "topbar-controls",
+          "width": 670
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "icon-btn",
+          "width": 22
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "clients",
+      "label": "Leden",
+      "scroll": 1400,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "training",
+      "label": "Schema builder",
+      "scroll": 1420,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "topbar-controls",
+          "width": 670
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "icon-btn",
+          "width": 22
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "training-log",
+      "label": "Trainingslog",
+      "scroll": 1420,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "topbar-controls",
+          "width": 670
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "icon-btn",
+          "width": 22
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        },
+        {
+          "tag": "IMG",
+          "cl": "",
+          "width": 1600
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 1420,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "topbar-controls",
+          "width": 670
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "icon-btn",
+          "width": 22
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 1420,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "topbar-controls",
+          "width": 670
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "icon-btn",
+          "width": 22
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "administration",
+      "label": "Administratie",
+      "scroll": 1400,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "invoice",
+      "label": "Facturen",
+      "scroll": 1400,
+      "overflow": []
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "finance",
+      "label": "Financien",
+      "scroll": 1420,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "topbar-controls",
+          "width": 670
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "icon-btn",
+          "width": 22
+        }
+      ]
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "settings",
+      "label": "Instellingen",
+      "scroll": 1420,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cl": "topbar-controls",
+          "width": 670
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "icon-btn",
+          "width": 22
+        }
+      ]
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "id": "client-home",
+      "label": "Mijn dashboard",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "id": "training",
+      "label": "Training",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 320,
+      "overflow": [
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab active today",
+          "width": 100
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 74
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 74
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 73
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 47
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 47
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 85
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 59
+        }
+      ]
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 320,
+      "overflow": [
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab active today",
+          "width": 100
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 74
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 74
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 73
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 47
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 47
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 85
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 59
+        }
+      ]
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 320,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "id": "client-home",
+      "label": "Mijn dashboard",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "id": "training",
+      "label": "Training",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 390,
+      "overflow": [
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab active today",
+          "width": 100
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 74
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 74
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 73
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 47
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 47
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 85
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 59
+        }
+      ]
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 390,
+      "overflow": [
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab active today",
+          "width": 100
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 73
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 47
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 47
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 85
+        },
+        {
+          "tag": "STRONG",
+          "cl": "",
+          "width": 59
+        },
+        {
+          "tag": "SPAN",
+          "cl": "",
+          "width": 59
+        },
+        {
+          "tag": "BUTTON",
+          "cl": "tracker-day-tab  ",
+          "width": 76
+        }
+      ]
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "id": "client-home",
+      "label": "Mijn dashboard",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "id": "training",
+      "label": "Training",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "id": "client-home",
+      "label": "Mijn dashboard",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "id": "training",
+      "label": "Training",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 844,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "id": "client-home",
+      "label": "Mijn dashboard",
+      "scroll": 1400,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "id": "training",
+      "label": "Training",
+      "scroll": 1400,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "id": "nutrition",
+      "label": "Voeding",
+      "scroll": 1400,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "id": "trackers",
+      "label": "Trackers",
+      "scroll": 1400,
+      "overflow": []
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "id": "agenda",
+      "label": "Agenda",
+      "scroll": 1400,
+      "overflow": []
+    }
+  ],
+  "media": [
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "training",
+      "card": {
+        "x": 126,
+        "y": -1.390625,
+        "width": 150,
+        "height": 972.734375,
+        "top": -1.390625,
+        "right": 276,
+        "bottom": 971.34375,
+        "left": 126
+      },
+      "media": {
+        "x": 139,
+        "y": 11.609375,
+        "width": 96,
+        "height": 120,
+        "top": 11.609375,
+        "right": 235,
+        "bottom": 131.609375,
+        "left": 139
+      },
+      "image": {
+        "x": 140,
+        "y": 12.609375,
+        "width": 94,
+        "height": 564,
+        "top": 12.609375,
+        "right": 234,
+        "bottom": 576.609375,
+        "left": 140
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 320,
+      "id": "training-log",
+      "card": {
+        "x": 113,
+        "y": -0.921875,
+        "width": 176,
+        "height": 527.265625,
+        "top": -0.921875,
+        "right": 289,
+        "bottom": 526.34375,
+        "left": 113
+      },
+      "media": {
+        "x": 126,
+        "y": 12.078125,
+        "width": 84,
+        "height": 84,
+        "top": 12.078125,
+        "right": 210,
+        "bottom": 96.078125,
+        "left": 126
+      },
+      "image": {
+        "x": 127,
+        "y": 13.078125,
+        "width": 400,
+        "height": 2400,
+        "top": 13.078125,
+        "right": 527,
+        "bottom": 2413.078125,
+        "left": 127
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "training",
+      "card": {
+        "x": 126,
+        "y": -4.546875,
+        "width": 220,
+        "height": 821.546875,
+        "top": -4.546875,
+        "right": 346,
+        "bottom": 817,
+        "left": 126
+      },
+      "media": {
+        "x": 139,
+        "y": 8.453125,
+        "width": 96,
+        "height": 120,
+        "top": 8.453125,
+        "right": 235,
+        "bottom": 128.453125,
+        "left": 139
+      },
+      "image": {
+        "x": 140,
+        "y": 9.453125,
+        "width": 94,
+        "height": 564,
+        "top": 9.453125,
+        "right": 234,
+        "bottom": 573.453125,
+        "left": 140
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 390,
+      "id": "training-log",
+      "card": {
+        "x": 113,
+        "y": -2.484375,
+        "width": 246,
+        "height": 527.265625,
+        "top": -2.484375,
+        "right": 359,
+        "bottom": 524.78125,
+        "left": 113
+      },
+      "media": {
+        "x": 126,
+        "y": 10.515625,
+        "width": 84,
+        "height": 84,
+        "top": 10.515625,
+        "right": 210,
+        "bottom": 94.515625,
+        "left": 126
+      },
+      "image": {
+        "x": 127,
+        "y": 11.515625,
+        "width": 400,
+        "height": 2400,
+        "top": 11.515625,
+        "right": 527,
+        "bottom": 2411.515625,
+        "left": 127
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "training",
+      "card": {
+        "x": 314,
+        "y": -3.40625,
+        "width": 430,
+        "height": 471.375,
+        "top": -3.40625,
+        "right": 744,
+        "bottom": 467.96875,
+        "left": 314
+      },
+      "media": {
+        "x": 327,
+        "y": 9.59375,
+        "width": 112,
+        "height": 120,
+        "top": 9.59375,
+        "right": 439,
+        "bottom": 129.59375,
+        "left": 327
+      },
+      "image": {
+        "x": 328,
+        "y": 10.59375,
+        "width": 110,
+        "height": 660,
+        "top": 10.59375,
+        "right": 438,
+        "bottom": 670.59375,
+        "left": 328
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 768,
+      "id": "training-log",
+      "card": {
+        "x": 117,
+        "y": 0.28125,
+        "width": 610.96875,
+        "height": 269.140625,
+        "top": 0.28125,
+        "right": 727.96875,
+        "bottom": 269.421875,
+        "left": 117
+      },
+      "media": {
+        "x": 130,
+        "y": 13.28125,
+        "width": 84,
+        "height": 84,
+        "top": 13.28125,
+        "right": 214,
+        "bottom": 97.28125,
+        "left": 130
+      },
+      "image": {
+        "x": 131,
+        "y": 14.28125,
+        "width": 400,
+        "height": 2400,
+        "top": 14.28125,
+        "right": 531,
+        "bottom": 2414.28125,
+        "left": 131
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "training",
+      "card": {
+        "x": 314,
+        "y": -0.6875,
+        "width": 466.6875,
+        "height": 471.375,
+        "top": -0.6875,
+        "right": 780.6875,
+        "bottom": 470.6875,
+        "left": 314
+      },
+      "media": {
+        "x": 327,
+        "y": 12.3125,
+        "width": 112,
+        "height": 120,
+        "top": 12.3125,
+        "right": 439,
+        "bottom": 132.3125,
+        "left": 327
+      },
+      "image": {
+        "x": 328,
+        "y": 13.3125,
+        "width": 110,
+        "height": 660,
+        "top": 13.3125,
+        "right": 438,
+        "bottom": 673.3125,
+        "left": 328
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 844,
+      "id": "training-log",
+      "card": {
+        "x": 117,
+        "y": -0.28125,
+        "width": 684.6875,
+        "height": 269.140625,
+        "top": -0.28125,
+        "right": 801.6875,
+        "bottom": 268.859375,
+        "left": 117
+      },
+      "media": {
+        "x": 130,
+        "y": 12.71875,
+        "width": 84,
+        "height": 84,
+        "top": 12.71875,
+        "right": 214,
+        "bottom": 96.71875,
+        "left": 130
+      },
+      "image": {
+        "x": 131,
+        "y": 13.71875,
+        "width": 400,
+        "height": 2400,
+        "top": 13.71875,
+        "right": 531,
+        "bottom": 2413.71875,
+        "left": 131
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "training",
+      "card": {
+        "x": 546,
+        "y": 0.25,
+        "width": 478,
+        "height": 471.375,
+        "top": 0.25,
+        "right": 1024,
+        "bottom": 471.625,
+        "left": 546
+      },
+      "media": {
+        "x": 559,
+        "y": 13.25,
+        "width": 112,
+        "height": 120,
+        "top": 13.25,
+        "right": 671,
+        "bottom": 133.25,
+        "left": 559
+      },
+      "image": {
+        "x": 560,
+        "y": 14.25,
+        "width": 110,
+        "height": 660,
+        "top": 14.25,
+        "right": 670,
+        "bottom": 674.25,
+        "left": 560
+      }
+    },
+    {
+      "role": "trainer",
+      "width": 1400,
+      "id": "training-log",
+      "card": {
+        "x": 311,
+        "y": -0.03125,
+        "width": 1038,
+        "height": 245.34375,
+        "top": -0.03125,
+        "right": 1349,
+        "bottom": 245.3125,
+        "left": 311
+      },
+      "media": {
+        "x": 324,
+        "y": 12.96875,
+        "width": 84,
+        "height": 84,
+        "top": 12.96875,
+        "right": 408,
+        "bottom": 96.96875,
+        "left": 324
+      },
+      "image": {
+        "x": 325,
+        "y": 13.96875,
+        "width": 400,
+        "height": 2400,
+        "top": 13.96875,
+        "right": 725,
+        "bottom": 2413.96875,
+        "left": 325
+      }
+    },
+    {
+      "role": "member",
+      "width": 320,
+      "id": "training",
+      "card": {
+        "x": 40,
+        "y": -4.15625,
+        "width": 241.6875,
+        "height": 838.375,
+        "top": -4.15625,
+        "right": 281.6875,
+        "bottom": 834.21875,
+        "left": 40
+      },
+      "media": {
+        "x": 55,
+        "y": 10.84375,
+        "width": 211.6875,
+        "height": 150,
+        "top": 10.84375,
+        "right": 266.6875,
+        "bottom": 160.84375,
+        "left": 55
+      },
+      "image": {
+        "x": 56,
+        "y": 11.84375,
+        "width": 209.6875,
+        "height": 148,
+        "top": 11.84375,
+        "right": 265.6875,
+        "bottom": 159.84375,
+        "left": 56
+      }
+    },
+    {
+      "role": "member",
+      "width": 390,
+      "id": "training",
+      "card": {
+        "x": 40,
+        "y": -5.793701171875,
+        "width": 310,
+        "height": 783.78125,
+        "top": -5.793701171875,
+        "right": 350,
+        "bottom": 777.987548828125,
+        "left": 40
+      },
+      "media": {
+        "x": 55,
+        "y": 9.206298828125,
+        "width": 280,
+        "height": 150,
+        "top": 9.206298828125,
+        "right": 335,
+        "bottom": 159.206298828125,
+        "left": 55
+      },
+      "image": {
+        "x": 56,
+        "y": 10.206298828125,
+        "width": 278,
+        "height": 148,
+        "top": 10.206298828125,
+        "right": 334,
+        "bottom": 158.206298828125,
+        "left": 56
+      }
+    },
+    {
+      "role": "member",
+      "width": 768,
+      "id": "training",
+      "card": {
+        "x": 247.03125,
+        "y": 0.359375,
+        "width": 467.9375,
+        "height": 369.78125,
+        "top": 0.359375,
+        "right": 714.96875,
+        "bottom": 370.140625,
+        "left": 247.03125
+      },
+      "media": {
+        "x": 260.03125,
+        "y": 13.359375,
+        "width": 116,
+        "height": 88,
+        "top": 13.359375,
+        "right": 376.03125,
+        "bottom": 101.359375,
+        "left": 260.03125
+      },
+      "image": {
+        "x": 261.03125,
+        "y": 14.359375,
+        "width": 114,
+        "height": 86,
+        "top": 14.359375,
+        "right": 375.03125,
+        "bottom": 100.359375,
+        "left": 261.03125
+      }
+    },
+    {
+      "role": "member",
+      "width": 844,
+      "id": "training",
+      "card": {
+        "x": 249.3125,
+        "y": -2.234375,
+        "width": 539.375,
+        "height": 335.1875,
+        "top": -2.234375,
+        "right": 788.6875,
+        "bottom": 332.953125,
+        "left": 249.3125
+      },
+      "media": {
+        "x": 262.3125,
+        "y": 10.765625,
+        "width": 116,
+        "height": 88,
+        "top": 10.765625,
+        "right": 378.3125,
+        "bottom": 98.765625,
+        "left": 262.3125
+      },
+      "image": {
+        "x": 263.3125,
+        "y": 11.765625,
+        "width": 114,
+        "height": 86,
+        "top": 11.765625,
+        "right": 377.3125,
+        "bottom": 97.765625,
+        "left": 263.3125
+      }
+    },
+    {
+      "role": "member",
+      "width": 1400,
+      "id": "training",
+      "card": {
+        "x": 394,
+        "y": -0.828125,
+        "width": 522,
+        "height": 348.78125,
+        "top": -0.828125,
+        "right": 916,
+        "bottom": 347.953125,
+        "left": 394
+      },
+      "media": {
+        "x": 407,
+        "y": 12.171875,
+        "width": 116,
+        "height": 88,
+        "top": 12.171875,
+        "right": 523,
+        "bottom": 100.171875,
+        "left": 407
+      },
+      "image": {
+        "x": 408,
+        "y": 13.171875,
+        "width": 114,
+        "height": 86,
+        "top": 13.171875,
+        "right": 522,
+        "bottom": 99.171875,
+        "left": 408
+      }
+    }
+  ],
+  "errors": []
+}

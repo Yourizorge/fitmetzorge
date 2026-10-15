@@ -1,0 +1,37 @@
+{
+  "source": "fit-met-zorge-logo.png",
+  "sourceSHA256": "940c6c9e66d73a642d67f453fc12e46e78f233e60432ea0ad426324af1493ecf",
+  "method": "Full source contain-resized on opaque white square; original unchanged. Maskable visible logo inside central 80% circle.",
+  "outputs": [
+    {
+      "file": "assets/pwa/icon-192.png",
+      "size": 192,
+      "scale": 0.88,
+      "sha256": "a7d45cc70c9ead061d82eb73727265f0f75659d946813e2c111715c87e7da1bb"
+    },
+    {
+      "file": "assets/pwa/icon-512.png",
+      "size": 512,
+      "scale": 0.88,
+      "sha256": "ccb940517e7028de9e64e2b4e1e29c64ec3f4d963a7655dd4ab19343298b7c33"
+    },
+    {
+      "file": "assets/pwa/maskable-512.png",
+      "size": 512,
+      "scale": 0.76,
+      "sha256": "147c6f1b25e2af47e5fadc0813290eed535f31303884a3107dabb2a409db74b5"
+    },
+    {
+      "file": "assets/pwa/apple-touch-icon.png",
+      "size": 180,
+      "scale": 0.76,
+      "sha256": "13852f928cc28d5120b25cf764780693d780d07cbd2360aa11f1f122e853077b"
+    },
+    {
+      "file": "assets/pwa/favicon-32.png",
+      "size": 32,
+      "scale": 0.88,
+      "sha256": "0ddd2972f011297f7905ea19dc4eefa0ec015b5f40643f5376f877be0fb4ab4c"
+    }
+  ]
+}
