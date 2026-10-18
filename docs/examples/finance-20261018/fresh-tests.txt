@@ -1,0 +1,18 @@
+✔ finance: recorded today, paid in September; invoice and money periods stay distinct; sources and filters remain traceable (6765.9053ms)
+✔ finance: VAT settlement totals use declaration period, preserve profit and make partial/custom coverage unknown (2989.2024ms)
+✔ six reconciled migrations retain their approved SQL and unique production identity (9.111ms)
+✔ VAT: full/partial payments, retry, no profit/VAT duplication, source trace and preserved invoices (6878.2519ms)
+✔ VAT: existing bank, wrong period unlink, relink, refund and immutable correction history (3325.2129ms)
+✔ VAT: false manual payment reverses exactly; old repair path and duplicate CSV cannot bypass linking (2276.4577ms)
+✔ VAT: owner/session restrictions, read-only preview, conflicts and rollback (2128.5658ms)
+✔ VAT: SQL/JS basis parity for cash, corrected receipt, expense and credit (3580.6724ms)
+✔ VAT: declaration difference is explicit; overlapping periods, invalid amounts, future dates and closed dates reject (2116.3413ms)
+✔ VAT: later CSV evidence attaches to the existing outgoing payment without a duplicate or losing the source (2465.3573ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33459.7619

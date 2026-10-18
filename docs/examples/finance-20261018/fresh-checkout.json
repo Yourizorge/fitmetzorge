@@ -1,0 +1,16 @@
+{
+  "commit": "4c8cb8a8d2f46bdaca9c1d667eef33cbbb8c04c6",
+  "freshRemoteClone": true,
+  "cleanCheckout": true,
+  "canonicalVersionsMatch": 12,
+  "localOnly": 0,
+  "remoteOnly": 0,
+  "duplicates": 0,
+  "dryRunUpToDate": true,
+  "noSQLExecuted": true,
+  "sqlAndMigrationTestsPassed": 10,
+  "handbookSourceAndPDFHashesPassed": true,
+  "dependencies": "Existing local Node modules via NODE_PATH; fresh tracked source from GitHub",
+  "projectSelectedExplicitly": "hgoygcviutmynaihcvpd",
+  "migrationGitBlobSHA256": "51254833ccb1085661b7c145a370616ff61dda39166b553985fa6159d5a6a53f"
+}

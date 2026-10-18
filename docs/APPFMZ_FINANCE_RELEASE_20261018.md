@@ -2,7 +2,7 @@
 
 Scope: uitsluitend `Yourizorge/fitmetzorge`, `appfmz.nl` en Supabase `hgoygcviutmynaihcvpd`. Uitgangscommit `368cdb37f5e21bc09f0d99a09d51c7fd07c61e4b`. Branch `codex/finance-vat-course-20261018`.
 
-Status vóór frontendpublicatie: implementatie, database, opname en lokale regressies gecontroleerd. Live verificatie en het uiteindelijke behoudsbewijs worden na publicatie aan ditzelfde rapport toegevoegd. De fysieke iPhoneacceptatie staat open.
+**Status: PASS — gepubliceerd en live gecontroleerd op 18 oktober 2026.** APPFMZ blijft bereikbaar. Runtimecommit `4c8cb8a8d2f46bdaca9c1d667eef33cbbb8c04c6` staat op `main` en de releasebranch. Deze afsluitende bewijsupdate verandert geen runtimebestand. De fysieke iPhoneacceptatie staat open.
 
 ## Aanleiding en read-only onderzoek
 
@@ -112,3 +112,26 @@ Uitsluitend synthetische gegevens; alle apparaten hieronder zijn browseremulatie
 [Herstelproef vóór wijziging](examples/finance-20261018/backup-restore.json), [beveiligingscontrole](examples/finance-20261018/security.json) en [volledige gewijzigde bestandenlijst](examples/finance-20261018/changed-files.txt).
 
 De definitieve Edge/WebKit-mediatest slaagt op de nieuwe MP4, inclusief gedecodeerde AAC, 523 ondertitelcues, hoofdstukken, snelheid, terugspoelen, volume, behouden lesvoortgang en hervatten. Daarbij is een echte WebKit-race hersteld: metadata kon beschikbaar zijn voordat doorspoelen mogelijk was. De speler wacht nu op de beschikbare seekrange en bewaart de opgeslagen positie totdat hervatten is gelukt. Een tijdelijke nulpositie wist de voortgang niet meer. [Browserbewijs](examples/spoken-course/browser.json).
+
+## Definitieve publicatie en behoud
+
+- [GitHub Pages-publicatie](https://github.com/Yourizorge/fitmetzorge/actions/runs/39114461197): geslaagd voor [runtimecommit 4c8cb8a](https://github.com/Yourizorge/fitmetzorge/commit/4c8cb8a8d2f46bdaca9c1d667eef33cbbb8c04c6). De definitieve documentatie-HEAD staat bij de [commits op main](https://github.com/Yourizorge/fitmetzorge/commits/main) en wordt ook rechtstreeks aan de owner gerapporteerd.
+- [Live bestandsbewijs](examples/finance-20261018/live-assets.json): 68 gepubliceerde runtime-/cursusbestanden byte-identiek aan Git. De 14 gecontroleerde oorspronkelijke kernmodules zijn ongewijzigd. De gepubliceerde MP4 bevat de gecontroleerde AAC-audiotrack.
+- [Live bediening](examples/finance-20261018/live-browser.json): eigen synthetische sessie; betaaldatums, registratietijden en banklinks zichtbaar; één btw-teruggaaf opgeslagen; winst gelijk; behouden na reload en opnieuw aanmelden; alle financiële pagina’s en veilige oefenroute bereikbaar op 390 en 1440 px, zonder horizontale overflow of JavaScriptfouten. De test selecteert expliciet de bankrekening; een eerdere proef zonder rekening werd terecht niet opgeslagen.
+- [Gepubliceerde mediaspeler](examples/spoken-course/live-browser.json): Edge en WebKit spelen de daadwerkelijke nieuwe MP4 af met audio, 20 hoofdstukken, ondertitels, terugspoelen, snelheid, volume en behouden hervatpositie/lesvoortgang. Geen fysieke iPhone getest.
+- [Verse checkout](examples/finance-20261018/fresh-checkout.json) rechtstreeks van de gepushte commit: schone bron, alle twaalf local/remote versies gelijk, geen dubbele of eenzijdige migration, [lege dry-run](examples/finance-20261018/fresh-dry-run.txt), tien gerichte SQL-/migrationtests en de handleiding-/bronhashcontrole geslaagd. Alleen bestaande lokale Node-dependencies zijn hergebruikt; geen verborgen lokale bronwijzigingen.
+- [Behoud na opschoning](examples/finance-20261018/preservation.json): alle twintig oorspronkelijke applicatietabellen exact gelijk aan het versleutelde checkpoint, inclusief facturen/nummers, betaalafspraken, bevestigde betalingen, tegenboekingen, audit en agenda. Auth-identiteiten en Storage-metadata gelijk; drie originele private bestanden byte-identiek. Alle bestaande functiebody’s/ACL’s, kolommen, indexen, policies en tabelrechten gelijk. Uitsluitend de bedoelde aanvullende btw-objecten bestaan erbij.
+- Alleen de drie eigen, vooraf gemarkeerde synthetische accounts en hun geïsoleerde financiële gegevens zijn verwijderd. Geen herstel over productie uitgevoerd. Geen echte factuur, e-mail, geldbetaling of push verzonden. Staging, JARVIS, AI en de bedrijfswebsite zijn ongemoeid gelaten.
+
+### Live screenshots met uitsluitend synthetische gegevens
+
+| Scherm | Telefoonemulatie | Laptopemulatie |
+|---|---|---|
+| Overzicht | [390 px](images/finance-20261018/live-overview-390.png) | [1440 px](images/finance-20261018/live-overview-1440.png) |
+| Facturen / betaalhistorie | [390 px](images/finance-20261018/live-sales-390.png) | [1440 px](images/finance-20261018/live-sales-1440.png) |
+| Bank/Kas | [390 px](images/finance-20261018/live-bank-390.png) | [1440 px](images/finance-20261018/live-bank-1440.png) |
+| Btw | [390 px](images/finance-20261018/live-vat-390.png) | [1440 px](images/finance-20261018/live-vat-1440.png) |
+
+### Grenzen die open blijven
+
+De fysieke hoorbaarheid, installatiecontext, hardwarevolumeknoppen en bediening op de eigen iPhone moeten door de owner worden bevestigd. WebKit op Windows is geen fysieke Safari/iPhone-test. Een bankkoppeling is uitsluitend onderzocht en niet geactiveerd. Het werkelijk indienen van een belastingaangifte en uitvoeren van een bankbetaling blijven buiten APPFMZ. De eigen fiscale instellingen zijn niet gewijzigd. Er is geen resterende technische releaseblocker aangetroffen in de uitgevoerde controles.

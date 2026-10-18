@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-18T08:40:52.314Z",
+  "at": "2026-10-18T09:20:26.608Z",
   "migration": "20261018073658_appfmz_vat_settlements.sql",
   "migrationSHA256": "51254833ccb1085661b7c145a370616ff61dda39166b553985fa6159d5a6a53f",
   "productionVersion": "20261018073658",

@@ -1,0 +1,432 @@
+{
+  "at": "2026-10-18T09:14:58.866Z",
+  "commit": "4c8cb8a8d2f46bdaca9c1d667eef33cbbb8c04c6",
+  "base": "368cdb37f5e21bc09f0d99a09d51c7fd07c61e4b",
+  "allLiveBytesIdentical": true,
+  "unchangedProtectedRuntime": [
+    "app.js",
+    "sync.js",
+    "autosave.js",
+    "accounting-model.js",
+    "payments-model.js",
+    "payments-ui.js",
+    "bank-repair-ui.js",
+    "invoice-documents.js",
+    "agenda.js",
+    "agenda-model.js",
+    "push.js",
+    "pwa.js",
+    "sw.js",
+    "manifest.webmanifest"
+  ],
+  "files": [
+    {
+      "file": "accounting-model.js",
+      "bytes": 13985,
+      "sha256": "e64953b4cfa28f91851f0379f283413a642a5dd30fbbb712d6b811f77abfcaaa",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "accounting-reports.js",
+      "bytes": 5320,
+      "sha256": "a257ff0f0d9fbb00841a2ab03357ec70792a79b54d2bb42a567a1b8a18fe07d7",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "accounting.js",
+      "bytes": 86543,
+      "sha256": "d625f7cb05d16f8c09823064cc891333432c5861032b78af714a8a4b004ac12e",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "admin-design.css",
+      "bytes": 7123,
+      "sha256": "d14c9323cd8b3a60a3ea56a079d615abfffc95318ccf9f805a3b4f643e453e7b",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "agenda-model.js",
+      "bytes": 3233,
+      "sha256": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "agenda.css",
+      "bytes": 8792,
+      "sha256": "155398b53ee0d5f1217ef659fbd5a89dabf0c738ece8b3e8aa1ed0bb2e3b5e42",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "agenda.js",
+      "bytes": 25535,
+      "sha256": "66b7c5eda734968b9b4f2bd30ad54c7a9b1548cf4b232a0ea8ed44007ca2f8d6",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "app.js",
+      "bytes": 263137,
+      "sha256": "7f06ffaa05943a4ce450143fde84dbafa8bb2ee74b9c882fc5367f8c572063a9",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "autosave.js",
+      "bytes": 9506,
+      "sha256": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "bank-repair-ui.js",
+      "bytes": 8149,
+      "sha256": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "billing-periods.js",
+      "bytes": 2901,
+      "sha256": "f5efa6cb3fc833749842cdf3d8d0331f049fa78ac303f3b6301d448cb6cacc38",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "billing-ui.js",
+      "bytes": 11530,
+      "sha256": "03cd5af11beba690173432ee49e605abf27e93346cedffa41e4c0ada07743eae",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "config.js",
+      "bytes": 361,
+      "sha256": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "finance-model.js",
+      "bytes": 8481,
+      "sha256": "758a2525cd11a57842f0e8d1b2a4a23e05563a083d95b33bc95ed8983b5b7948",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "finance-ui.js",
+      "bytes": 17955,
+      "sha256": "41c535dd7897c679e926211b5f83adae3e58ee6ec25e55e12f2111a8c52a9d8e",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "finance.css",
+      "bytes": 2731,
+      "sha256": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "Fit_Met_Zorge_Coach_App_standalone.html",
+      "bytes": 401,
+      "sha256": "f8659339591402d6b7f467f504e869fc885c019af87b8473c97560c47d0f0b84",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "file": "index.html",
+      "bytes": 50109,
+      "sha256": "1f2f7a4d89f9af483e960ba9aa51dce29e85a3b1b15b470ea37c3f63d9a2a174",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "file": "invoice-documents.js",
+      "bytes": 17421,
+      "sha256": "f6eb997e04c45412137c28546d5ca7f8e0bc62e17b05773bde16f4866a5f932e",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "invoice-editor.js",
+      "bytes": 2617,
+      "sha256": "4de0482c49a5e54aa6776cf951d99ecaaa93ade6722cc72e5bc8da6f47400a44",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "invoices.js",
+      "bytes": 569,
+      "sha256": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "layout.css",
+      "bytes": 10958,
+      "sha256": "a15f3013cb7e605ecb8d35b6b482745161acf38eadac4d88127b74cf12b216b0",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "maintenance.html",
+      "bytes": 1266,
+      "sha256": "b3fe6149b85aeb8d271d841684d1c6c4f3af3e6d2993b354673f445534d3708d",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "file": "manifest.webmanifest",
+      "bytes": 657,
+      "sha256": "c876807f02b2cd17314999c2e4f83018bba444e14507b78f204279b066a486e7",
+      "contentType": "application/manifest+json; charset=utf-8"
+    },
+    {
+      "file": "output/pdf/APPFMZ-boekhouden-voor-beginners.pdf",
+      "bytes": 685866,
+      "sha256": "a7812e5bdb61163c37484e987dadb295e060a4a3107cd252608ef1ef2d0dbddd",
+      "contentType": "application/pdf"
+    },
+    {
+      "file": "payments-model.js",
+      "bytes": 6346,
+      "sha256": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "payments-ui.js",
+      "bytes": 8505,
+      "sha256": "eea5623bd944102265ea6996851b7d4e330a554a04bc4a8254f916cd2da127ff",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "payments.css",
+      "bytes": 3160,
+      "sha256": "666e5f8f33011a5278b8bd316c33a2e4ace2ac9415d98a7bbc9d50bbb8978c86",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "photos.js",
+      "bytes": 8768,
+      "sha256": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "presentation.js",
+      "bytes": 1114,
+      "sha256": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "push.js",
+      "bytes": 3025,
+      "sha256": "04da09ec758ce4040f8bd31ef1f8244701b7abfb95cfda19b69d7b1ae7af8413",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "pwa.css",
+      "bytes": 692,
+      "sha256": "572f13f67af1a5f62c645fc1398ca3cb5d8a1ed830ade0f0b36466d2748dfebb",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "pwa.js",
+      "bytes": 3312,
+      "sha256": "8fa0374fdcf6157c43cbbe78fe34944579ca109e821615e9bb9d4ea2afccdea0",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "styles.css",
+      "bytes": 120054,
+      "sha256": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "sw.js",
+      "bytes": 2159,
+      "sha256": "e62cefcbd1c749d6cc8643bdd8730ab866b398039d62ec400def128ba3b81ff6",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "sync.js",
+      "bytes": 5532,
+      "sha256": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial.html",
+      "bytes": 691,
+      "sha256": "bf5ec52596f98d65b907c222d10cc77d7e88c813950205d5c1737fc39958adcc",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "file": "tutorial/bank-repair-demo-data.js",
+      "bytes": 2281,
+      "sha256": "8c94916be5023269b67dae53af6f172e095f8235cd9ee3b077a903b529110095",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/beginner-content.js",
+      "bytes": 8431,
+      "sha256": "db64a8b9c1446dec6615d177662aa616c46529e34d95c7d76e83f5a52ba61550",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/beginner.css",
+      "bytes": 3173,
+      "sha256": "25f9c6e875f8412ac4a41f54892e3aca0280183ed884479165eeff18785f7ce8",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "tutorial/content.js",
+      "bytes": 71206,
+      "sha256": "dcb9d02f7d671eff4556b240d91d3259d7bacaa4578112792bd3f9627cf7355a",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/course.css",
+      "bytes": 9349,
+      "sha256": "9bca598bc1c829a80dc457f099e02d36aba53f8ffc66c9d6100ea7c023bfaec7",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "tutorial/course.html",
+      "bytes": 2376,
+      "sha256": "ebbcaaf0d86fe32e9a82e60708b6721e4f236bed5ca7bc2362e34e87ed03a042",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "file": "tutorial/course.js",
+      "bytes": 34450,
+      "sha256": "4d5745e9268094c9e3f737e0c7b51a1a35d9f347a5406bcc4eed187501594914",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/demo-data.js",
+      "bytes": 1260,
+      "sha256": "f9212a8b0512b64e3949552ab1819e8c1bca1bf861dd84e227c2f92e55c5be06",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/finance-content.js",
+      "bytes": 5417,
+      "sha256": "3b432bb553d7facd3cc95c9d65b4bf560630715f8b150c250b14c2bbb3e2202b",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/finance-practice-model.js",
+      "bytes": 8897,
+      "sha256": "d5916f40f96cfc45fb413bed1d0d391013c9a7fded283cb9a494af4a58fb1fc1",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/finance-practice.js",
+      "bytes": 9147,
+      "sha256": "65dbe2a09d765f314df35b1b9a25e01decc3a6c390adddf1151e0234968ba036",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/handbook-manifest.json",
+      "bytes": 760,
+      "sha256": "8624b11adeb90e539282a718e605b709b5f325121bbadc98edfc5451b376bcc2",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "file": "tutorial/host.css",
+      "bytes": 1719,
+      "sha256": "4acf6afe632ad14eeaec37e2994955db1962b852c5fb347966ae5c038712ff37",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "tutorial/host.js",
+      "bytes": 6355,
+      "sha256": "e5dbb140fff76c6a40a77a5872bfb5da638cb93dc863c5cb5d5872cbc2416f39",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/media/administratie-chapters.json",
+      "bytes": 2736,
+      "sha256": "9802f038d6bdfd5d4df568b69384a81f536cc65778a683b6e33531ec366e192f",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "file": "tutorial/media/administratie-nl.vtt",
+      "bytes": 54693,
+      "sha256": "6ae1039c606d27f5836bdd4e2efdf1a063fbd937996957a68a26451dc61afb55",
+      "contentType": "text/vtt; charset=utf-8"
+    },
+    {
+      "file": "tutorial/media/administratie-poster.jpg",
+      "bytes": 142748,
+      "sha256": "097e5c9c65ff2495349f83d0438cf198e3ebeaa96e65c46f37d57a6b1783b77b",
+      "contentType": "image/jpeg"
+    },
+    {
+      "file": "tutorial/media/administratie-rondleiding.mp4",
+      "bytes": 73892420,
+      "sha256": "ca941e7b67897ca5036436ada3e33a9e45b709becb5d8ac4be2406bb3d9c5b0e",
+      "contentType": "video/mp4"
+    },
+    {
+      "file": "tutorial/media/administratie-transcript.txt",
+      "bytes": 37858,
+      "sha256": "cbad18689030ea483f48f67685540c14d1f94af458429e21b6c5264420117f1a",
+      "contentType": "text/plain; charset=utf-8"
+    },
+    {
+      "file": "tutorial/model.js",
+      "bytes": 30607,
+      "sha256": "6593fb18f66710b603ebdadc3441f3924cca0536856fa39d6c7ef4cc30d0a89a",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/payment-example.js",
+      "bytes": 10123,
+      "sha256": "5c5b06495ffbadcbc07049e62ac7de7f04c75f7ac805ab759d28181751a78656",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/payment-practice-model.js",
+      "bytes": 7924,
+      "sha256": "c20073e87794365ec9f9037f9ffe554c2f28f7e4628d5b7a1ec36154703e8fd7",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/payment-practice.js",
+      "bytes": 11440,
+      "sha256": "83da8a31d8ecfdba7bc466ce5a77ea769fb3799522707587e93f52095134b523",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/spoken-course-script.json",
+      "bytes": 50688,
+      "sha256": "422ced8be32011765a048cf6facb32186cbcbfc378df56e0f4f179aa0a14480c",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "file": "tutorial/spoken-data.js",
+      "bytes": 124374,
+      "sha256": "402afb6efb3e6d052da4e82bddf77c2bf74dbed40940ab7c87330fd6b95920a2",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/spoken-player.css",
+      "bytes": 1748,
+      "sha256": "438c8bd645783cda25cd9ea206b51555d37f2f639f8224d313e9391bb71f1ece",
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "file": "tutorial/spoken-player.js",
+      "bytes": 9192,
+      "sha256": "3cf5af1db0f7401b3fc4307a19ea4c4f15d401b1afdac1ebac09cf9a9474f886",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/vendor/manifest.json",
+      "bytes": 543,
+      "sha256": "692ac70c696b723f688182bbcb9e8e11ff5057d136d5e5a0d9e3d018d0ff6922",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "file": "tutorial/vendor/pdf.js",
+      "bytes": 457901,
+      "sha256": "57841059fa4197d5bbffc7e09b23122c8f2b3720c894aa2dddea32544350098a",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/vendor/pdf.worker.js",
+      "bytes": 1265545,
+      "sha256": "9d7b6ba95dccd6f9526823210a161ba043b751eb5ae4b2c3cb44f2193a483816",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "vat-ui.js",
+      "bytes": 10881,
+      "sha256": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0",
+      "contentType": "application/javascript; charset=utf-8"
+    }
+  ]
+}
