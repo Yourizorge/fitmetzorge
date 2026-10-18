@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-18T08:41:34.196Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "findings": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 19
+    },
+    {
+      "name": "extension_in_public",
+      "level": "WARN",
+      "count": 1
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1
+    }
+  ],
+  "existingFindingsOnly": true,
+  "noAuthOrExtensionSettingsChanged": true
+}

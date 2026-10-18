@@ -1,0 +1,19 @@
+{
+  "integratedBaseCommit": "368cdb37f5e21bc09f0d99a09d51c7fd07c61e4b",
+  "method": "Actual Edge CDP screencast; last frame held for spoken explanation",
+  "actualSyntheticDOM": true,
+  "scenes": 119,
+  "cursorActions": 361,
+  "errors": [],
+  "externalRequests": [],
+  "runtimeFrozenDuringCapture": true,
+  "runtimeContentUnchangedAfterCapture": true,
+  "lineEndingNormalizationAfterCapture": [
+    {
+      "file": "tutorial.html",
+      "onlyCRLFtoLF": true
+    }
+  ],
+  "captureManifestSHA256": "50f6758b8afcd57caf4dde74fcddc75bfbee7527b4153329356d5417d26da0af",
+  "ledgerSHA256": "6a7a0f6dbb8e413b311e7584cb146a5d5e58d588d0013d87260a6e46c7d860ad"
+}

@@ -1,4 +1,4 @@
-"""Encode real synthetic screen captures and locally spoken WAVs into one portable course.
+"""Encode real synthetic screen captures and Dutch narrated WAVs into one portable course.
 No network, production inputs, or paid services. Real frames are paced and held for narration.
 """
 import json, math, wave, subprocess, hashlib, os, shutil
@@ -22,7 +22,7 @@ def stamp(n):
 assert CAP['synthetic'] and not CAP['errors'] and not CAP['external']
 capture={r['id']:r for r in CAP['scenes']}
 assert set(capture)=={s['id'] for c in C['chapters'] for s in c['scenes']}
-data={'version':C['version'],'voice':C['voice'],'chapters':[],'cues':[],'synthetic':True}
+data={'version':C['version'],'voice':C['voice'],'voiceTechnology':C['voiceTechnology'],'chapters':[],'cues':[],'synthetic':True}
 proof=[];clips=[];position=0;written=0
 with wave.open(str(TMP/'narration.wav'),'wb') as joined:
     joined.setnchannels(1);joined.setsampwidth(2);joined.setframerate(RATE)
@@ -47,7 +47,7 @@ with wave.open(str(TMP/'narration.wav'),'wb') as joined:
                 end=changes[i+1][0] if i+1<len(changes) else round(duration*FPS)
                 manifest.extend(["file '"+quoted(p)+"'",f'duration {(end-tick)/FPS:.9f}'])
             manifest.append("file '"+quoted(changes[-1][1])+"'")
-            listing=TMP/(ident+'.ffconcat');listing.write_text('\n'.join(manifest)+'\n',encoding='utf-8')
+            listing=TMP/(ident+'.ffconcat');listing.write_text('\n'.join(manifest)+'\n',encoding='utf-8',newline='\n')
             clip=TMP/(ident+'.mp4');cache=TMP/(ident+'.sha256');digest=hashlib.sha256(listing.read_bytes()).hexdigest()
             if not clip.exists() or not cache.exists() or cache.read_text()!=digest:
                 run(['-f','concat','-safe','0','-i',listing,'-vf','fps=12,format=yuv420p','-t',duration,'-an','-c:v','libx264','-preset','medium','-crf','27','-profile:v','high','-level:v','4.0','-r',FPS,'-video_track_timescale','12000',clip]);cache.write_text(digest)
@@ -65,19 +65,19 @@ with wave.open(str(TMP/'narration.wav'),'wb') as joined:
         chapter['end']=position
 data['duration']=position
 vtt='WEBVTT\n\n'+'\n\n'.join(f'{i+1}\n{stamp(c["start"])} --> {stamp(c["end"])}\n{c["text"]}' for i,c in enumerate(data['cues']))+'\n'
-(OUT/'administratie-nl.vtt').write_text(vtt,encoding='utf-8')
-(OUT/'administratie-transcript.txt').write_text(C['title']+'\nVernieuwd 15 oktober 2026. Uitsluitend vaste fictieve gegevens.\n\n'+'\n\n'.join(f'{ch["id"]}. {ch["title"]} ({stamp(ch["start"])})\n'+'\n\n'.join(s['text'] for s in ch['scenes']) for ch in data['chapters']),encoding='utf-8')
-(TMP/'clips.txt').write_text('\n'.join("file '"+quoted(p)+"'" for p in clips),encoding='utf-8')
-meta=[';FFMETADATA1','title=APPFMZ - Nederlandse administratiecursus','artist=FitMetZorge Oefenbedrijf','comment=Uitsluitend synthetische gegevens; lokale kunstmatige Nederlandse stem; geen echte facturen.']
+(OUT/'administratie-nl.vtt').write_text(vtt,encoding='utf-8',newline='\n')
+(OUT/'administratie-transcript.txt').write_text(C['title']+'\nVernieuwd 18 oktober 2026. Uitsluitend vaste fictieve gegevens.\n\n'+'\n\n'.join(f'{ch["id"]}. {ch["title"]} ({stamp(ch["start"])})\n'+'\n\n'.join(s['text'] for s in ch['scenes']) for ch in data['chapters']),encoding='utf-8',newline='\n')
+(TMP/'clips.txt').write_text('\n'.join("file '"+quoted(p)+"'" for p in clips),encoding='utf-8',newline='\n')
+meta=[';FFMETADATA1','title=APPFMZ - Nederlandse administratiecursus','artist=FitMetZorge Oefenbedrijf','comment=Uitsluitend synthetische gegevens; kunstmatige Nederlandse Colette-stem; kosteloze Edge-voorleesdienst; geen echte facturen.']
 for ch in data['chapters']:meta.extend(['[CHAPTER]','TIMEBASE=1/1000','START='+str(round(ch['start']*1000)),'END='+str(round(ch['end']*1000)),'title='+ch['title'].replace('=','\\=')])
-(TMP/'chapters.ffmeta').write_text('\n'.join(meta)+'\n',encoding='utf-8')
+(TMP/'chapters.ffmeta').write_text('\n'.join(meta)+'\n',encoding='utf-8',newline='\n')
 run(['-f','concat','-safe','0','-i',TMP/'clips.txt','-c','copy',TMP/'silent-edit.mp4'])
 run(['-i',TMP/'silent-edit.mp4','-i',TMP/'narration.wav','-i',OUT/'administratie-nl.vtt','-i',TMP/'chapters.ffmeta','-map','0:v:0','-map','1:a:0','-map','2:s:0','-map_metadata','3','-map_chapters','3','-c:v','copy','-c:a','aac','-ar','48000','-b:a','96k','-af','loudnorm=I=-18:TP=-1.5:LRA=7','-c:s','mov_text','-metadata:s:a:0','language=nld','-metadata:s:s:0','language=nld','-movflags','+faststart','-t',position,OUT/'administratie-rondleiding.mp4'])
 run(['-ss','2','-i',OUT/'administratie-rondleiding.mp4','-frames:v','1','-q:v','2',OUT/'administratie-poster.jpg'])
-(ROOT/'tutorial/spoken-data.js').write_text('/* Public, synthetic chapter timings and exact spoken transcript. */\nwindow.FMZSpokenCourse='+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n',encoding='utf-8')
-(OUT/'administratie-chapters.json').write_text(json.dumps([{k:c[k] for k in ['id','title','start','end']} for c in data['chapters']],ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-report={'duration':position,'chapters':len(data['chapters']),'scenes':len(proof),'voice':C['voice'],'voiceLocal':True,'actualSyntheticDOM':True,'screenPacing':'Original screen frames paced across each spoken scene; final frame held for reading','format':'H.264 High/yuv420p + AAC mono/48kHz + Dutch mov_text; MP4 faststart','videoSHA256':hashlib.sha256((OUT/'administratie-rondleiding.mp4').read_bytes()).hexdigest(),'videoBytes':(OUT/'administratie-rondleiding.mp4').stat().st_size,'sceneEvidence':proof}
+(ROOT/'tutorial/spoken-data.js').write_text('/* Public, synthetic chapter timings and exact spoken transcript. */\nwindow.FMZSpokenCourse='+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n',encoding='utf-8',newline='\n')
+(OUT/'administratie-chapters.json').write_text(json.dumps([{k:c[k] for k in ['id','title','start','end']} for c in data['chapters']],ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+report={'duration':position,'chapters':len(data['chapters']),'scenes':len(proof),'voice':C['voice'],'voiceLocal':False,'voiceCostsEUR':0,'voiceService':'Microsoft Edge free read-aloud; fictional public script only','actualSyntheticDOM':True,'screenPacing':'Original screen frames paced across each spoken scene; final frame held for reading','format':'H.264 High/yuv420p + AAC mono/48kHz + Dutch mov_text; MP4 faststart','videoSHA256':hashlib.sha256((OUT/'administratie-rondleiding.mp4').read_bytes()).hexdigest(),'videoBytes':(OUT/'administratie-rondleiding.mp4').stat().st_size,'sceneEvidence':proof}
 (ROOT/'docs/examples/spoken-course').mkdir(parents=True,exist_ok=True)
-(ROOT/'docs/examples/spoken-course/montage.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+(ROOT/'docs/examples/spoken-course/montage.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 assert report['videoBytes']<100_000_000,'Must fit the existing Git release transport'
 print('COMPLETE',round(position/60,2),'minutes;',report['videoBytes'],'bytes',flush=True)

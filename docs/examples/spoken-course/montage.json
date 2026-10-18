@@ -1,24 +1,26 @@
 {
-  "duration": 2983.8333333333335,
+  "duration": 3256.6666666666674,
   "chapters": 20,
-  "scenes": 104,
-  "voice": "Piper nl_NL-ronnie-medium, lokaal gegenereerd",
-  "voiceLocal": true,
+  "scenes": 119,
+  "voice": "Microsoft Edge Colette, Nederlands (nl-NL-ColetteNeural)",
+  "voiceLocal": false,
+  "voiceCostsEUR": 0,
+  "voiceService": "Microsoft Edge free read-aloud; fictional public script only",
   "actualSyntheticDOM": true,
   "screenPacing": "Original screen frames paced across each spoken scene; final frame held for reading",
   "format": "H.264 High/yuv420p + AAC mono/48kHz + Dutch mov_text; MP4 faststart",
-  "videoSHA256": "a04795d6172356c4133f5f6e5a90388e3332d1e830a8599d8287cbbf3b8cbfb8",
-  "videoBytes": 68004871,
+  "videoSHA256": "ca941e7b67897ca5036436ada3e33a9e45b709becb5d8ac4be2406bb3d9c5b0e",
+  "videoBytes": 73892420,
   "sceneEvidence": [
     {
       "id": "01-welkom",
       "start": 0,
-      "duration": 31.916666666666668,
+      "duration": 29.666666666666668,
       "screenFrames": 9,
-      "rawCaptureSeconds": 0.83,
-      "voiceSeconds": 28.889795918367348,
-      "sourceHash": "d53c06b44f17cd332b0450ee0345a30d169b4a9bbb341e5daa0f21b55a8e3cf4",
-      "wavSHA256": "fe32b00dc3363aae1ceaf031ed1b170e28895be4c118ed181e8ffca838331145",
+      "rawCaptureSeconds": 0.7,
+      "voiceSeconds": 26.591972789115648,
+      "sourceHash": "0273fba5874de1043df0dd23f997163140a201e7847376489a452bf8155b06a2",
+      "wavSHA256": "e62ddf431bbff6dcd235dbe0cd6514f0a0941fa36dace48edb3b32cae64e7542",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -43,13 +45,13 @@
     },
     {
       "id": "01-overzicht",
-      "start": 31.916666666666668,
-      "duration": 31.0,
-      "screenFrames": 19,
-      "rawCaptureSeconds": 1.482,
-      "voiceSeconds": 27.980408163265306,
-      "sourceHash": "7fb559d16e31b02443c2c610d30a213908e9c27ba7f79dbd66097c78b7354e49",
-      "wavSHA256": "d96bb255128b09ec443c83b470976bbf1c60d8187229868e2d9bc343a482f6cf",
+      "start": 29.666666666666668,
+      "duration": 34.416666666666664,
+      "screenFrames": 20,
+      "rawCaptureSeconds": 1.12,
+      "voiceSeconds": 31.391972789115645,
+      "sourceHash": "58313f18c431ec666b948940f889a0da12ad1170e005a243cb19c4f008032b12",
+      "wavSHA256": "fb0ddc4bb2ae50ff370491ddd1f475110eca1f50f0ccda4a1e3d9a61708fd545",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -74,13 +76,13 @@
     },
     {
       "id": "01-periode",
-      "start": 62.91666666666667,
-      "duration": 31.833333333333332,
-      "screenFrames": 37,
-      "rawCaptureSeconds": 2.441,
-      "voiceSeconds": 28.808526077097504,
-      "sourceHash": "96da6152b1d798e2b140ca05cd6b0a1db4601453358ec1c7df79d63e7fcfa9fd",
-      "wavSHA256": "4f4c7df5b2ea938867757677ceeaaa8375613031843644d792433b553bd19a02",
+      "start": 64.08333333333333,
+      "duration": 32.416666666666664,
+      "screenFrames": 34,
+      "rawCaptureSeconds": 1.941,
+      "voiceSeconds": 29.4,
+      "sourceHash": "9931cfe961c3f4e6e2b9140ef86fc0a53dea2c20dcd352726d97540b5afbba74",
+      "wavSHA256": "1178b1b3775b4057188e7ccb14b6b99551fcd7b712158deca302bc0948befb58",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -105,13 +107,13 @@
     },
     {
       "id": "01-routes",
-      "start": 94.75,
-      "duration": 31.583333333333332,
-      "screenFrames": 22,
-      "rawCaptureSeconds": 1.362,
-      "voiceSeconds": 28.533696145124715,
-      "sourceHash": "0bff76b7e388fc434167030037ffe07d25a05ac599b790256519d7cc84b1324e",
-      "wavSHA256": "ed3665705adca63bca547cefc65bb5c8baaae60f453c5e65f00dc05b3c8c4bdb",
+      "start": 96.5,
+      "duration": 29.0,
+      "screenFrames": 19,
+      "rawCaptureSeconds": 0.788,
+      "voiceSeconds": 25.991972789115646,
+      "sourceHash": "d07e806761843843fdaa2606ef28e2dc31c5685cf75c853fcdf46fd3e4d84995",
+      "wavSHA256": "4cda4992ed87833db7d407a3b28220e4f05e7d8ed7c200dce2ae9662c0671139",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -136,13 +138,13 @@
     },
     {
       "id": "01-hulp",
-      "start": 126.33333333333333,
-      "duration": 29.916666666666668,
-      "screenFrames": 20,
-      "rawCaptureSeconds": 1.627,
-      "voiceSeconds": 26.88126984126984,
-      "sourceHash": "93b69dda2d0d456579701cb952e32ed73ce21d0e1a27967ea9c4e5638fab17d5",
-      "wavSHA256": "0f12a2ad4acc074faebcfb269ee0cd1ac88397ca8a9959956b1b9527ec952b68",
+      "start": 125.5,
+      "duration": 31.25,
+      "screenFrames": 21,
+      "rawCaptureSeconds": 1.083,
+      "voiceSeconds": 28.176009070294786,
+      "sourceHash": "2288f48864c106e1ebd1e543eaf000cd806309e67b861aa514220fdeab9a4e56",
+      "wavSHA256": "c13e34d2a3ac7aca7358c38d80f8ec350253fbeeb873234fa8ea6cdf15d942fd",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -167,13 +169,13 @@
     },
     {
       "id": "02-instellingen",
-      "start": 156.25,
-      "duration": 29.583333333333332,
-      "screenFrames": 23,
-      "rawCaptureSeconds": 1.733,
-      "voiceSeconds": 26.56780045351474,
-      "sourceHash": "3291423d306a40b78172b3f70869dd042c29d22d33d7ae9bc042036c8532807c",
-      "wavSHA256": "9acc3a0540b72bd2d4f84c73397d459cbe99c248013aa696b706baffc8c29d04",
+      "start": 156.75,
+      "duration": 28.333333333333332,
+      "screenFrames": 20,
+      "rawCaptureSeconds": 1.336,
+      "voiceSeconds": 25.296009070294783,
+      "sourceHash": "de26bc449fd9ddba49e02f539bddbb79f23609a5e2bcedf5c9831b4ad57d3eb3",
+      "wavSHA256": "eff30c019d81fca09d1cac7e99879f147851b747bb21a6d2e980fc635fcca4dc",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -198,13 +200,13 @@
     },
     {
       "id": "02-btw",
-      "start": 185.83333333333334,
-      "duration": 31.416666666666668,
-      "screenFrames": 10,
-      "rawCaptureSeconds": 0.902,
-      "voiceSeconds": 28.378956916099774,
-      "sourceHash": "b94c5143febf68c326f8b026d2af4bf6a42a672f8e53a42b0119cbe6521cd594",
-      "wavSHA256": "7c6e0cd0aa05d1757b7f7dac2f50c8f959a9c7f67f7de80dd61bc3c15175e28f",
+      "start": 185.08333333333334,
+      "duration": 29.0,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 0.538,
+      "voiceSeconds": 25.92,
+      "sourceHash": "451401b2f8705db516ac183e7837b35cd95b39729f15d4c4a23ee36cebcf85db",
+      "wavSHA256": "894c031600e40c72101d965ca427e6973b55c829a7fb0c8fba339735577ce895",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -229,13 +231,13 @@
     },
     {
       "id": "02-rekening",
-      "start": 217.25,
-      "duration": 28.75,
-      "screenFrames": 45,
-      "rawCaptureSeconds": 4.082,
-      "voiceSeconds": 25.743492063492063,
-      "sourceHash": "3f027a9a38dbf3a1fd0433dc0b2520736d10f222decb25fe2aea3dab5c74f567",
-      "wavSHA256": "eb6d74e01d6c899f3121275ee2e91aac4590e400990b8c3d84c4dc32edf0585b",
+      "start": 214.08333333333334,
+      "duration": 27.166666666666668,
+      "screenFrames": 41,
+      "rawCaptureSeconds": 2.693,
+      "voiceSeconds": 24.144036281179137,
+      "sourceHash": "acb3df7fed7b0e0578ad3d4ac4481fe9a7fe553a5d73e5b1d99f8245bf71bfa1",
+      "wavSHA256": "ce51482142a706c6d77bacd901b7fc4a650ef3828dc3f0e5be60fe69f783063f",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -260,13 +262,13 @@
     },
     {
       "id": "02-beginstand",
-      "start": 246.0,
-      "duration": 26.666666666666668,
-      "screenFrames": 54,
-      "rawCaptureSeconds": 3.515,
-      "voiceSeconds": 23.645895691609976,
-      "sourceHash": "55fb7c484819365cf0346d94baf8523714f083a5f2b43fb0d5faec733ff1ebe1",
-      "wavSHA256": "7ff1d42bf4c69c27da585c8f3e54c1e6ad0fed5ea7062b09e1c7981ba244acb5",
+      "start": 241.25,
+      "duration": 24.666666666666668,
+      "screenFrames": 49,
+      "rawCaptureSeconds": 2.896,
+      "voiceSeconds": 21.6,
+      "sourceHash": "7b9b0471ad6ea8484085d49d80978874a5a9f966e7eb0693b12667641c3f15bb",
+      "wavSHA256": "dde3635023cb40798043348ca49f21aa247699460c142ceea99045e31a182eb8",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -295,13 +297,13 @@
     },
     {
       "id": "02-kas",
-      "start": 272.6666666666667,
-      "duration": 27.583333333333332,
-      "screenFrames": 32,
-      "rawCaptureSeconds": 2.13,
-      "voiceSeconds": 24.551473922902495,
-      "sourceHash": "2ad9ea3f7e9488c654027d92e96cf6af507c69d320c9a94ea1b8e4f067f8485e",
-      "wavSHA256": "f65889e9bf9b7f036b1df0a23877923d67656b58e69b088b5074dc97b61f496e",
+      "start": 265.9166666666667,
+      "duration": 25.916666666666668,
+      "screenFrames": 21,
+      "rawCaptureSeconds": 1.336,
+      "voiceSeconds": 22.896009070294784,
+      "sourceHash": "8b662bd870ac8e71f771b04787080918bdb4769639996aff0c8a95665fb27ba5",
+      "wavSHA256": "588506e2e321bcf1a7907f371752fca7833c15a99a21cf95828ec47a6c659fc2",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -330,13 +332,13 @@
     },
     {
       "id": "03-klant",
-      "start": 300.25,
-      "duration": 31.083333333333332,
-      "screenFrames": 17,
-      "rawCaptureSeconds": 1.713,
-      "voiceSeconds": 28.080907029478457,
-      "sourceHash": "42975d24cfd01eefc283d3e4646c299ad15a6ed5bba3e93dcc68dd792ede12ca",
-      "wavSHA256": "cd5ccaba06ba7c04d1911df9a21d66daf96f6772264fe93ddd9547dd969736c5",
+      "start": 291.83333333333337,
+      "duration": 28.166666666666668,
+      "screenFrames": 18,
+      "rawCaptureSeconds": 1.262,
+      "voiceSeconds": 25.151972789115646,
+      "sourceHash": "0c50a003a0e9cab663ae26089de3a6f831eb95a85b65c89bb90800ea5b4780e8",
+      "wavSHA256": "79755a74aa743fd630ff489d8ee387052bede4af75c0540dc4efcc64a7d81b36",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -365,13 +367,13 @@
     },
     {
       "id": "03-pakket",
-      "start": 331.3333333333333,
-      "duration": 32.75,
+      "start": 320.00000000000006,
+      "duration": 30.083333333333332,
       "screenFrames": 12,
-      "rawCaptureSeconds": 1.348,
-      "voiceSeconds": 29.66766439909297,
-      "sourceHash": "bd9af1ebacf9779f0c74bfd371d42cc1eeb7fda39a9343a23e083dfc15c20f9c",
-      "wavSHA256": "79ff9d413d69ffbe7765392277b96a725414323fe671710178d0d93000b33e8a",
+      "rawCaptureSeconds": 0.849,
+      "voiceSeconds": 27.071972789115645,
+      "sourceHash": "d0abf4d12e1058d188ababb314348439cae358e80af12d20eb9c172a0604a308",
+      "wavSHA256": "db9d957156980e1ac69174b374f83eb921fc9ef12e1bdfe8dffefcb6b90fc94d",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -400,13 +402,13 @@
     },
     {
       "id": "03-maand",
-      "start": 364.0833333333333,
-      "duration": 27.5,
-      "screenFrames": 59,
-      "rawCaptureSeconds": 4.502,
-      "voiceSeconds": 24.423764172335602,
-      "sourceHash": "cb5bc65ff8d31302192472893de5fe90891cafc55f3bbd4383f77f0d8a52b34c",
-      "wavSHA256": "04694e45caf610025f23dbbd0f656a41c51987cc4615c467031dd407674c1b6b",
+      "start": 350.08333333333337,
+      "duration": 25.666666666666668,
+      "screenFrames": 53,
+      "rawCaptureSeconds": 2.954,
+      "voiceSeconds": 22.631972789115647,
+      "sourceHash": "2ca506c30899d13676abfdf3dd8679838ad1551472d247f19a9affc9cce0d177",
+      "wavSHA256": "d08d0a9f86e74aa4cb42136b1258b382ceadb373bff7fc0bb2fbdff36c9cd512",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -435,13 +437,13 @@
     },
     {
       "id": "03-vierweken",
-      "start": 391.5833333333333,
-      "duration": 27.25,
-      "screenFrames": 41,
-      "rawCaptureSeconds": 4.51,
-      "voiceSeconds": 24.168344671201815,
-      "sourceHash": "5adc886fb0a9b5f5b42e63431d8ccfb8af91db7f8b929c8e60690e93f81fcad2",
-      "wavSHA256": "963c36f03027b6354840936133460dd54149e80916c324f31d538eabcc2bdf39",
+      "start": 375.75000000000006,
+      "duration": 25.083333333333332,
+      "screenFrames": 47,
+      "rawCaptureSeconds": 2.799,
+      "voiceSeconds": 22.056009070294785,
+      "sourceHash": "c11b2e99b7066b33316057ffe6fb76c7d6b4e77731e5143ffd4b2717f25c69e6",
+      "wavSHA256": "76970c771e27de8551b267b4ee59f1ba49411a0849fc0a7edc516010c7fe0f45",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -470,13 +472,13 @@
     },
     {
       "id": "03-kiezen",
-      "start": 418.8333333333333,
-      "duration": 31.25,
-      "screenFrames": 54,
-      "rawCaptureSeconds": 6.319,
-      "voiceSeconds": 28.21641723356009,
-      "sourceHash": "93c89024b71aa7b1c09a60021dbbf800d42946d6b42c61d922f4449ff2e0939e",
-      "wavSHA256": "cabc8c3bc1aeb748b46cacc29637e2791c7f3acfb95b01eb994116b258fe4c3c",
+      "start": 400.83333333333337,
+      "duration": 29.916666666666668,
+      "screenFrames": 53,
+      "rawCaptureSeconds": 3.556,
+      "voiceSeconds": 26.856009070294785,
+      "sourceHash": "872e9985d1d0c6fc0047083da26e94cabb3cfc16dda288266cc94d75f37012d0",
+      "wavSHA256": "3e2055f88863425a272bb0180f1a5ab4f96e1124722738979de8878d497bdf9a",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -505,13 +507,13 @@
     },
     {
       "id": "04-concept",
-      "start": 450.0833333333333,
-      "duration": 28.583333333333332,
-      "screenFrames": 76,
-      "rawCaptureSeconds": 17.917,
-      "voiceSeconds": 25.549931972789114,
-      "sourceHash": "8a979d227e40229b05ba894a52df590329571a9cfc447ab26d057c4d134e61ad",
-      "wavSHA256": "36b71e37b5044a89d12a2b9fea8b69c3dfb0c89e316989a6dff9099f45185137",
+      "start": 430.75000000000006,
+      "duration": 27.166666666666668,
+      "screenFrames": 67,
+      "rawCaptureSeconds": 17.395,
+      "voiceSeconds": 24.096009070294784,
+      "sourceHash": "325df8a1ef974bf59c95bedf4b0cb270ee1f807cab694a1498897d88e5df018a",
+      "wavSHA256": "6b067b24311b6d4d8f84c3f76abf5a2b29f3bdf088c09485cbd15ca75aeb253c",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -540,13 +542,13 @@
     },
     {
       "id": "04-korting",
-      "start": 478.66666666666663,
-      "duration": 30.25,
-      "screenFrames": 38,
-      "rawCaptureSeconds": 7.49,
-      "voiceSeconds": 27.186938775510203,
-      "sourceHash": "ea35a18358f071682dfb6eae2d206546323c650335143f35bd7941061b6d5ffa",
-      "wavSHA256": "2687835635f37cf126687a7bd21ead9614888101ff18b94db7693bcebd94792f",
+      "start": 457.91666666666674,
+      "duration": 29.0,
+      "screenFrames": 32,
+      "rawCaptureSeconds": 4.51,
+      "voiceSeconds": 25.991972789115646,
+      "sourceHash": "2d6d38416bc80460a6c2939acb64ef097cf83be0431a674721d67641e3c3fde7",
+      "wavSHA256": "9330e286e73374885194ab57ac41d85582d4b64aa7a84e990446205ff584b56e",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -575,13 +577,13 @@
     },
     {
       "id": "04-regels",
-      "start": 508.91666666666663,
-      "duration": 31.666666666666668,
-      "screenFrames": 31,
-      "rawCaptureSeconds": 5.313,
-      "voiceSeconds": 28.59954648526077,
-      "sourceHash": "8356d2411683b3ca467e8ea109054e8bf376edbca0827302a712ab398b44e494",
-      "wavSHA256": "f5f27b75442a76f4a3a9676338584b3ed02a8d6f2dfd7decdaf3d79e9b7d83a0",
+      "start": 486.91666666666674,
+      "duration": 29.5,
+      "screenFrames": 30,
+      "rawCaptureSeconds": 2.261,
+      "voiceSeconds": 26.448027210884355,
+      "sourceHash": "cd5f222a465354644a9c20ea7771970f4b7ee51ad131c1868f1d632711d9f187",
+      "wavSHA256": "627d09dc69aa82a42a8b08e6da789ec47275936a43f47ba8760b03ff55bcc7ba",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -610,13 +612,13 @@
     },
     {
       "id": "04-datums",
-      "start": 540.5833333333333,
-      "duration": 25.583333333333332,
-      "screenFrames": 64,
-      "rawCaptureSeconds": 13.795,
-      "voiceSeconds": 22.50031746031746,
-      "sourceHash": "b21cbb625ac9788980a393b79d36966633853aa6c738d3dfac6ed080a0a6ebd6",
-      "wavSHA256": "d710b73a231ccc1c19141552c7fd400072ef762e54d7a63095dcd53dbd3f5196",
+      "start": 516.4166666666667,
+      "duration": 25.666666666666668,
+      "screenFrames": 54,
+      "rawCaptureSeconds": 6.625,
+      "voiceSeconds": 22.631972789115647,
+      "sourceHash": "4fc9da34481efd521082c02d978d462618a28c8e6257a60dd05ef3d50c49bd50",
+      "wavSHA256": "7286d3ac3941d67fc5bdcacd5f7ee62501e95949b63652c7a9f8b5be28808162",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -645,13 +647,13 @@
     },
     {
       "id": "04-bewaren",
-      "start": 566.1666666666666,
-      "duration": 32.25,
-      "screenFrames": 13,
-      "rawCaptureSeconds": 1.015,
-      "voiceSeconds": 29.16843537414966,
-      "sourceHash": "7dd33009c4daa748ebfb040e4b137d4d661d76054c4049993740e3233d8ca97a",
-      "wavSHA256": "b18ac3a9e8d9182a0eb92b5d0fcea9a7a54250a01adb77926419a1ba8a26aac0",
+      "start": 542.0833333333334,
+      "duration": 30.5,
+      "screenFrames": 15,
+      "rawCaptureSeconds": 3.238,
+      "voiceSeconds": 27.456009070294783,
+      "sourceHash": "fe907440e4a81220a1a606d31449bb5efedce4b586cd4cb80320f5288eb8431b",
+      "wavSHA256": "a47fd8da00e920ad37e0d1b8e23a7cb7199086fbf0d347ae3deec2262a9bcd0b",
       "ledger": {
         "revenue": 0,
         "outputVAT": 0,
@@ -680,13 +682,13 @@
     },
     {
       "id": "05-definitief",
-      "start": 598.4166666666666,
-      "duration": 32.0,
-      "screenFrames": 34,
-      "rawCaptureSeconds": 10.615,
-      "voiceSeconds": 28.959455782312926,
-      "sourceHash": "ba572a353837eadff8328c12c40270e7896189016d84b0c9474574c34bf875c8",
-      "wavSHA256": "82e3a5cb288f24f23500871e95e8f5f633f73c3a0396efbfc91bdb22781097a8",
+      "start": 572.5833333333334,
+      "duration": 29.333333333333332,
+      "screenFrames": 37,
+      "rawCaptureSeconds": 9.365,
+      "voiceSeconds": 26.328027210884354,
+      "sourceHash": "4334f1feb13e5ce41bcd56e54d770a572808dea8ea637c4097f12fcd8be7f7d7",
+      "wavSHA256": "4bfa6544be9b640c8da94be9aa36928682d1430c2d0ff29ba2649c464e4a9c62",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -717,18 +719,18 @@
         "records": 10,
         "journals": 4,
         "lines": 9,
-        "audit": 27
+        "audit": 23
       }
     },
     {
       "id": "05-pdf",
-      "start": 630.4166666666666,
-      "duration": 33.75,
-      "screenFrames": 26,
-      "rawCaptureSeconds": 2.059,
-      "voiceSeconds": 30.739591836734693,
-      "sourceHash": "82bcd47709383e79f02c789b94dc851f7b8d315a43a22c1330a594142b31626c",
-      "wavSHA256": "6bd43a52c3424d05afd6ef0b6edaba658b5b0f986986e5de43da1cd7c12bc0c8",
+      "start": 601.9166666666667,
+      "duration": 32.666666666666664,
+      "screenFrames": 25,
+      "rawCaptureSeconds": 2,
+      "voiceSeconds": 29.591972789115648,
+      "sourceHash": "c0eb9a9667fe0132ab5ba119ba40d84369201c52914bb635d482763652fdb1f4",
+      "wavSHA256": "a5e601d1e4c5f5cf76c3a87ef90de0e9ad13a3cd023be109b51a76f5f8604198",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -759,18 +761,18 @@
         "records": 10,
         "journals": 4,
         "lines": 9,
-        "audit": 27
+        "audit": 23
       }
     },
     {
       "id": "05-opnieuw",
-      "start": 664.1666666666666,
-      "duration": 27.333333333333332,
-      "screenFrames": 19,
-      "rawCaptureSeconds": 1.402,
-      "voiceSeconds": 24.29605442176871,
-      "sourceHash": "b9eea2a9410fdb50172886e0fc4b2443f6bac408acd8a2a2710bb3698673db29",
-      "wavSHA256": "212bf46af9ffb2ac43e1665c28daf5151377483bfd6a16fd8e20a9bc74a3e168",
+      "start": 634.5833333333334,
+      "duration": 26.833333333333332,
+      "screenFrames": 15,
+      "rawCaptureSeconds": 1.324,
+      "voiceSeconds": 23.784036281179137,
+      "sourceHash": "341bfbf93b0daefc0412ccf578488f9b6fd549183421d60fb96eca217faa7177",
+      "wavSHA256": "a54c74955c20a9952ec69ffc341b858fb7daee1ec2fb0080a68ad6fbd1bfbaa4",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -801,18 +803,18 @@
         "records": 10,
         "journals": 4,
         "lines": 9,
-        "audit": 27
+        "audit": 23
       }
     },
     {
       "id": "05-delen",
-      "start": 691.5,
-      "duration": 25.333333333333332,
-      "screenFrames": 35,
-      "rawCaptureSeconds": 2.534,
-      "voiceSeconds": 22.287528344671202,
-      "sourceHash": "475b93639e574c3aa617eb234948fed7742ea678662222b108ee7a98d2f1bff3",
-      "wavSHA256": "f6f95bae558a3adb44a5e92365139a8743aecbd32dbaf1b86d8c0ba7de5f74ab",
+      "start": 661.4166666666667,
+      "duration": 24.75,
+      "screenFrames": 26,
+      "rawCaptureSeconds": 1.541,
+      "voiceSeconds": 21.744036281179138,
+      "sourceHash": "8d7036f7e971f46beea47a5ad446daffc5417793a9c0a05e9245f1540b474564",
+      "wavSHA256": "b7a98fb3ad4243597adf6306e0a60216aa941377d1ee9cf02358f98adcd62341",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -843,18 +845,18 @@
         "records": 10,
         "journals": 4,
         "lines": 9,
-        "audit": 27
+        "audit": 23
       }
     },
     {
       "id": "05-controle",
-      "start": 716.8333333333334,
-      "duration": 30.583333333333332,
+      "start": 686.1666666666667,
+      "duration": 29.166666666666668,
       "screenFrames": 18,
-      "rawCaptureSeconds": 2.018,
-      "voiceSeconds": 27.55845804988662,
-      "sourceHash": "4c668e73141d761d3f7bc659b0682fe188d103fef48a012780e34a97bbe589da",
-      "wavSHA256": "d650b6c41d8c5e1a1559bb0e8d517064fc9193d0c4c526551baefa0763be9677",
+      "rawCaptureSeconds": 0.893,
+      "voiceSeconds": 26.136009070294783,
+      "sourceHash": "2fbb133f07266f39681c74aa4c5083aaaec6fe5af628e08842703064232fc75d",
+      "wavSHA256": "9c8fb9b4d7204ea458299fb09ab77b11b0de3760fddee19e2679abd992db58ba",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -885,18 +887,18 @@
         "records": 10,
         "journals": 4,
         "lines": 9,
-        "audit": 27
+        "audit": 23
       }
     },
     {
       "id": "06-ontvangst",
-      "start": 747.4166666666667,
-      "duration": 27.5,
-      "screenFrames": 34,
-      "rawCaptureSeconds": 2.903,
-      "voiceSeconds": 24.49342403628118,
-      "sourceHash": "a6df83338c755554b1fda2817fb814222300d94421339d746e8a276ea8117a95",
-      "wavSHA256": "c5f4347d99cd30fa338ee68a83809fe6806397b3354ab875269b29da1c2baabf",
+      "start": 715.3333333333334,
+      "duration": 26.0,
+      "screenFrames": 31,
+      "rawCaptureSeconds": 1.675,
+      "voiceSeconds": 22.92,
+      "sourceHash": "9611cb547dfcbad17cade99ac35d2ff5dde59ba2da72fe91e1f4c4cfa7d24072",
+      "wavSHA256": "73eaf22944f61b4b62f87b27ff041cdca247c78cff40b62ebdd19a119619f6ba",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -927,18 +929,18 @@
         "records": 10,
         "journals": 4,
         "lines": 9,
-        "audit": 27
+        "audit": 23
       }
     },
     {
       "id": "06-open",
-      "start": 774.9166666666667,
-      "duration": 29.583333333333332,
-      "screenFrames": 30,
-      "rawCaptureSeconds": 2.325,
-      "voiceSeconds": 26.53297052154195,
-      "sourceHash": "0ced764a7347cd6ba34a4cd901244e849f6387b9d0c18046562d53ae107685f3",
-      "wavSHA256": "367684139ffe389af775f09677cf451eac7a81a05c16ec7509524a0d6d63ce3a",
+      "start": 741.3333333333334,
+      "duration": 27.5,
+      "screenFrames": 28,
+      "rawCaptureSeconds": 1.565,
+      "voiceSeconds": 24.48,
+      "sourceHash": "7143b95619bca1bb1fa68c8de3c5277188b5df06b8fb8ac6ffdb70339528ba0d",
+      "wavSHA256": "556405984fcfd415e90a9d02741cede3379e082f5525f911d2b1f8c52b03911f",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -969,18 +971,18 @@
         "records": 10,
         "journals": 4,
         "lines": 9,
-        "audit": 27
+        "audit": 23
       }
     },
     {
       "id": "06-velden",
-      "start": 804.5000000000001,
-      "duration": 26.833333333333332,
-      "screenFrames": 48,
-      "rawCaptureSeconds": 4.267,
-      "voiceSeconds": 23.750385487528344,
-      "sourceHash": "0a90b1d1302ebd3b493127e07068d1ddc733a5ae5ae20ec3a276c5c43189cb03",
-      "wavSHA256": "42dc0f8593e36f87985bc23c29882da7af30e949269414fc99c0bcb033ef0605",
+      "start": 768.8333333333334,
+      "duration": 25.25,
+      "screenFrames": 49,
+      "rawCaptureSeconds": 2.503,
+      "voiceSeconds": 22.176009070294786,
+      "sourceHash": "014ac8feefd7a09a6685a19c1633f1908469d2ceb562253e5dbecd8586d1ce66",
+      "wavSHA256": "dd684c661d48162c0d8d2bb825d58ed6d12f645de91444612c068909af7b013b",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -1011,18 +1013,18 @@
         "records": 10,
         "journals": 4,
         "lines": 9,
-        "audit": 27
+        "audit": 23
       }
     },
     {
       "id": "06-bevestigen",
-      "start": 831.3333333333335,
-      "duration": 28.583333333333332,
+      "start": 794.0833333333334,
+      "duration": 27.0,
       "screenFrames": 19,
-      "rawCaptureSeconds": 1.973,
-      "voiceSeconds": 25.53451247165533,
-      "sourceHash": "f0b2374aa53bbf2d2d8bb7322d13976d5e7ca08d84b11260f01220f543ba340d",
-      "wavSHA256": "17cdfe2bafa6c7f785e905695737802d8d2997aa7e40ef4dbb0221850650edfc",
+      "rawCaptureSeconds": 2.384,
+      "voiceSeconds": 24.0,
+      "sourceHash": "14ba7cff831744e2a51b4ad86d26bd509c7cf2a815f5d555d27597591da6cd66",
+      "wavSHA256": "e4456118ce1b4e283df43fec7d9084f5cfe00f691eacf126b607b19cef72d230",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -1053,18 +1055,18 @@
         "records": 12,
         "journals": 6,
         "lines": 13,
-        "audit": 28
+        "audit": 24
       }
     },
     {
       "id": "06-fout",
-      "start": 859.9166666666669,
-      "duration": 28.0,
+      "start": 821.0833333333334,
+      "duration": 32.916666666666664,
       "screenFrames": 29,
-      "rawCaptureSeconds": 3.605,
-      "voiceSeconds": 24.9578231292517,
-      "sourceHash": "f304a70f44e17477537732af7e2719ea6698375dd7701f74d2243b2b71cb8f55",
-      "wavSHA256": "68ef9b21efd18d8039a346725d7a6d42e148b4bb5bce980ad44edbd64d5ca430",
+      "rawCaptureSeconds": 1.794,
+      "voiceSeconds": 29.88,
+      "sourceHash": "5037d74d42b6072caab1dacf2d32b459deda8831dbfbd152b1f326af455b4595",
+      "wavSHA256": "93195ceee04ef6655c701e5491b2092d36e6d0b90fdd11482d2cfdeb63ee234b",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -1095,18 +1097,18 @@
         "records": 12,
         "journals": 6,
         "lines": 13,
-        "audit": 28
+        "audit": 24
       }
     },
     {
       "id": "07-automatisch",
-      "start": 887.9166666666669,
-      "duration": 32.75,
-      "screenFrames": 36,
-      "rawCaptureSeconds": 2.409,
-      "voiceSeconds": 29.74512471655329,
-      "sourceHash": "4fc746582d18408e82ec6e259b6deb4d348af2371bbf25dc4536006ae4d974fe",
-      "wavSHA256": "5d11db3c1f7735202cf49d7e3192117c51e0a4be12661be2f39580cd443560b2",
+      "start": 854.0,
+      "duration": 30.416666666666668,
+      "screenFrames": 28,
+      "rawCaptureSeconds": 1.635,
+      "voiceSeconds": 27.38403628117914,
+      "sourceHash": "fbbb06ea473532715f028302ed2a4405138f0b69a06b107516b91ce18b99bc78",
+      "wavSHA256": "b4834f8c0f09eeebd80d2cff69faa113d2330c7757a65f226adff8755004be15",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -1137,18 +1139,18 @@
         "records": 12,
         "journals": 6,
         "lines": 13,
-        "audit": 28
+        "audit": 24
       }
     },
     {
       "id": "07-koppeling",
-      "start": 920.6666666666669,
-      "duration": 27.25,
+      "start": 884.4166666666666,
+      "duration": 26.0,
       "screenFrames": 18,
-      "rawCaptureSeconds": 1.323,
-      "voiceSeconds": 24.214784580498865,
-      "sourceHash": "51407adf46e8ec8b437cc1a6d5ff85d5b5cfd4f939adb2350833bd8f745cea41",
-      "wavSHA256": "18d92493130fff279073f2d8f2cc6d9faccef78c417040434c28bfa92fecb5f3",
+      "rawCaptureSeconds": 1.109,
+      "voiceSeconds": 22.991972789115646,
+      "sourceHash": "f4adab67c8d38d3dc2b9c4bea33790f0303208b3bfa3996f84043e11858f9f27",
+      "wavSHA256": "84ccce5e3602380e6cc4ab234e58dd81946e2321cbb129f7ea15e43c7cf6cc4b",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -1179,18 +1181,18 @@
         "records": 12,
         "journals": 6,
         "lines": 13,
-        "audit": 28
+        "audit": 24
       }
     },
     {
       "id": "07-boekingen",
-      "start": 947.9166666666669,
-      "duration": 28.75,
-      "screenFrames": 5,
-      "rawCaptureSeconds": 0.857,
-      "voiceSeconds": 25.700861678004536,
-      "sourceHash": "b28e9b13461ae98bd5a93d88133002d614e15c48004f969a20e07963ec06740f",
-      "wavSHA256": "6cf7699bdf432dca12cc519b50bb1eb17f96c0306ab2317bc54070f1bf94a317",
+      "start": 910.4166666666666,
+      "duration": 26.083333333333332,
+      "screenFrames": 8,
+      "rawCaptureSeconds": 0.572,
+      "voiceSeconds": 23.04,
+      "sourceHash": "ed90cbac05e15df2c4419c291bba3a5ae89bdfaef10be5150e837058bddb49fc",
+      "wavSHA256": "88ff40661e3b9c7c7629b943b278a4787a8241592b0b7b1b65a60e853e0a800a",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -1221,18 +1223,18 @@
         "records": 12,
         "journals": 6,
         "lines": 13,
-        "audit": 28
+        "audit": 24
       }
     },
     {
       "id": "07-verversen",
-      "start": 976.6666666666669,
-      "duration": 30.083333333333332,
+      "start": 936.5,
+      "duration": 28.583333333333332,
       "screenFrames": 32,
-      "rawCaptureSeconds": 2.333,
-      "voiceSeconds": 27.03219954648526,
-      "sourceHash": "8551d9d3aa3aa11c8168547f16abcf689d0343a39d87662aaf323b145bcd383a",
-      "wavSHA256": "44d5afb1e4c6a10d681a061e0fd43a8cc6d536d80d9e715a035380f49afc5e3b",
+      "rawCaptureSeconds": 2.035,
+      "voiceSeconds": 25.536009070294785,
+      "sourceHash": "c07c6959c4d754ab324b256ee433d81a931eafef8b850bb7cd655120ae03e5b7",
+      "wavSHA256": "474538bb3ac53f83718842854a1b5be9a2ad27bb6fb6ab4a435f5bfaad8ff82d",
       "ledger": {
         "revenue": 28926,
         "outputVAT": 6074,
@@ -1263,18 +1265,18 @@
         "records": 12,
         "journals": 6,
         "lines": 13,
-        "audit": 28
+        "audit": 24
       }
     },
     {
       "id": "08-start",
-      "start": 1006.7500000000002,
-      "duration": 26.333333333333332,
-      "screenFrames": 7,
-      "rawCaptureSeconds": 0.971,
-      "voiceSeconds": 23.305396825396826,
-      "sourceHash": "caa9ace546a357114177872472a9314ba1636ee6a6338a2d455c31c4fec85a98",
-      "wavSHA256": "6884005a73a0227c3c6876851f183baa2d811ee244cf172dd8ad98800a90469c",
+      "start": 965.0833333333334,
+      "duration": 25.25,
+      "screenFrames": 8,
+      "rawCaptureSeconds": 0.403,
+      "voiceSeconds": 22.176009070294786,
+      "sourceHash": "c6d089bd4bdd522d8cd6eb615f2b98856ac99fe7d8bdeb9f1662c2f0829368f3",
+      "wavSHA256": "41dc86e77ee042818a844717ba9ddb94d720953eb80301431bead1e6c4e59115",
       "ledger": {
         "revenue": 57852,
         "outputVAT": 12148,
@@ -1311,18 +1313,18 @@
         "records": 13,
         "journals": 7,
         "lines": 16,
-        "audit": 30
+        "audit": 26
       }
     },
     {
       "id": "08-eerste",
-      "start": 1033.0833333333335,
-      "duration": 24.5,
-      "screenFrames": 52,
-      "rawCaptureSeconds": 3.966,
-      "voiceSeconds": 21.47482993197279,
-      "sourceHash": "ee7a63a4804ce9061e4c2350dce29a44c25956856ad6f415f775d6ce4af4e765",
-      "wavSHA256": "4ad1658dca7a05449b13e6f74b1a0878cfa1b3ae9694b4f89bc3b2ebe57da6f7",
+      "start": 990.3333333333334,
+      "duration": 22.916666666666668,
+      "screenFrames": 46,
+      "rawCaptureSeconds": 2.919,
+      "voiceSeconds": 19.896009070294784,
+      "sourceHash": "d8f3ab70883451797bd7b4fc2d375cdc148c1920f92c23823351e0859851de24",
+      "wavSHA256": "5f04e83ae76feb59334feb2e6a1b2000b6aa73c6bca9000a1a153b5787c4f601",
       "ledger": {
         "revenue": 57852,
         "outputVAT": 12148,
@@ -1359,18 +1361,18 @@
         "records": 13,
         "journals": 7,
         "lines": 16,
-        "audit": 30
+        "audit": 26
       }
     },
     {
       "id": "08-restant",
-      "start": 1057.5833333333335,
-      "duration": 24.166666666666668,
-      "screenFrames": 21,
-      "rawCaptureSeconds": 1.427,
-      "voiceSeconds": 21.161360544217686,
-      "sourceHash": "0328aa544eb8e8f6aa9ae38c90b89d44444dbd91e3b2eede1589231cced9d111",
-      "wavSHA256": "4ec094f994abc1cba5c287e465f220ad0975ff235aa2054990c942893b8dea1b",
+      "start": 1013.25,
+      "duration": 23.333333333333332,
+      "screenFrames": 22,
+      "rawCaptureSeconds": 1.527,
+      "voiceSeconds": 20.304036281179137,
+      "sourceHash": "513d99b82dc018066166866abf83884f1c77c87d0dbd439b4311f3db9d7796ea",
+      "wavSHA256": "e7021256a53373ee7d6302dbaa871e1036fe3ec884b86e1f38f19d0b9f43ee20",
       "ledger": {
         "revenue": 57852,
         "outputVAT": 12148,
@@ -1407,18 +1409,18 @@
         "records": 15,
         "journals": 9,
         "lines": 20,
-        "audit": 31
+        "audit": 27
       }
     },
     {
       "id": "08-tweede",
-      "start": 1081.7500000000002,
-      "duration": 23.166666666666668,
-      "screenFrames": 77,
-      "rawCaptureSeconds": 4.735,
-      "voiceSeconds": 20.162902494331068,
-      "sourceHash": "8132175fb9eff254c7f2ba4be602b5aefd27080bb5c9bf3ea3363f7abffe1f98",
-      "wavSHA256": "b9c4ac1d6015958b48c0f4e59f584d631d21234649dc28ca25f3f449349849c8",
+      "start": 1036.5833333333333,
+      "duration": 22.583333333333332,
+      "screenFrames": 66,
+      "rawCaptureSeconds": 4.537,
+      "voiceSeconds": 19.536009070294785,
+      "sourceHash": "9f7522fb0e0420e7b8e752ec805c5b917e22b159c0bd9558dc9d8f1d38f4301e",
+      "wavSHA256": "df97a7be1d7b3615b7b3e5bcb05d1ebfd9e911b57feae83dcb63c0d0efeefdae",
       "ledger": {
         "revenue": 57852,
         "outputVAT": 12148,
@@ -1455,18 +1457,18 @@
         "records": 17,
         "journals": 11,
         "lines": 24,
-        "audit": 32
+        "audit": 28
       }
     },
     {
       "id": "08-historie",
-      "start": 1104.916666666667,
-      "duration": 29.833333333333332,
+      "start": 1059.1666666666665,
+      "duration": 28.0,
       "screenFrames": 31,
-      "rawCaptureSeconds": 2.353,
-      "voiceSeconds": 26.78839002267574,
-      "sourceHash": "2f28f0b08c432f6a6eba9464b04a4ad5084a023d1fc03a3e6336353b6effc57e",
-      "wavSHA256": "234dfdccaa55eebf056a1ce57cd2a28af2202c4ede409f31985db4a88ddab704",
+      "rawCaptureSeconds": 1.839,
+      "voiceSeconds": 24.96,
+      "sourceHash": "0b7d42e2f860ee8afa981b80943ae9667eaaee2fcef7e7c755879e48d913fc56",
+      "wavSHA256": "40fd383b08192f345d3e7c2e2f56217c6f34a26dfb30c0e230b96c142a2ab9c0",
       "ledger": {
         "revenue": 57852,
         "outputVAT": 12148,
@@ -1503,18 +1505,18 @@
         "records": 17,
         "journals": 11,
         "lines": 24,
-        "audit": 32
+        "audit": 28
       }
     },
     {
       "id": "09-bestaand",
-      "start": 1134.7500000000002,
-      "duration": 27.416666666666668,
-      "screenFrames": 6,
-      "rawCaptureSeconds": 0.885,
-      "voiceSeconds": 24.400544217687074,
-      "sourceHash": "ff86a3a2044a8d7927cc335aa34f8d00aa2fa7934c1b2fe1fe13b2afd4cd9e41",
-      "wavSHA256": "2e4e4a0f4ecdf30d76a91771bd078c6ba0f0ac181260dbde32d221385baf29d5",
+      "start": 1087.1666666666665,
+      "duration": 25.666666666666668,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 0.499,
+      "voiceSeconds": 22.608027210884355,
+      "sourceHash": "1fc08b05160c3146d41bb312846448ee792ba6ac0eaf64970fd2044474d73a5d",
+      "wavSHA256": "5998c90de9f0774a1ac94e0b67332e60ffe627df86fec9fa67963d5dc6b087e4",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1557,18 +1559,18 @@
         "records": 19,
         "journals": 13,
         "lines": 29,
-        "audit": 35
+        "audit": 31
       }
     },
     {
       "id": "09-selecteer",
-      "start": 1162.166666666667,
-      "duration": 26.75,
-      "screenFrames": 63,
-      "rawCaptureSeconds": 4.655,
-      "voiceSeconds": 23.738775510204082,
-      "sourceHash": "4eb6b537c384f163845b164e4ea4d0f3b409f5e1afecde2027f3a7e92b8ebfa0",
-      "wavSHA256": "eeb1dc3a862278a30231ef108634e3a8100cf97e9574e5906e1d259f854147fd",
+      "start": 1112.8333333333333,
+      "duration": 24.416666666666668,
+      "screenFrames": 55,
+      "rawCaptureSeconds": 3.219,
+      "voiceSeconds": 21.408027210884352,
+      "sourceHash": "26b09b64b7fde1883a21d7232f5386761b06c32247181f16e74a20f85778e7e9",
+      "wavSHA256": "9b97b311aa9708beabe379b4d06d175d0c28b89f18974751767ed998b6aac47f",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1611,18 +1613,18 @@
         "records": 19,
         "journals": 13,
         "lines": 29,
-        "audit": 35
+        "audit": 31
       }
     },
     {
       "id": "09-koppel",
-      "start": 1188.916666666667,
-      "duration": 26.083333333333332,
-      "screenFrames": 22,
-      "rawCaptureSeconds": 1.537,
-      "voiceSeconds": 23.018956916099775,
-      "sourceHash": "de84a86c1e7fbdc5ca4e4c454b172e96b6f2c53e0e02f01ddc4b49990c9a312a",
-      "wavSHA256": "bfdffc50dda77109f9dc7c5aa3ac85fdab553de47929e9b89d7dc2a44b8a0ad4",
+      "start": 1137.25,
+      "duration": 24.666666666666668,
+      "screenFrames": 21,
+      "rawCaptureSeconds": 2.662,
+      "voiceSeconds": 21.6,
+      "sourceHash": "6a9dddf0f1806c56986e39485f9471da69e07c9ff27f91e6beb4ec4da932f995",
+      "wavSHA256": "3166b7b580883790ab04af53a09c40c903d9e688d32580efb316d4491a3b2907",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1665,18 +1667,18 @@
         "records": 20,
         "journals": 14,
         "lines": 31,
-        "audit": 36
+        "audit": 32
       }
     },
     {
       "id": "09-splitsen",
-      "start": 1215.0000000000002,
-      "duration": 29.75,
-      "screenFrames": 55,
-      "rawCaptureSeconds": 3.566,
-      "voiceSeconds": 26.734149659863945,
-      "sourceHash": "5511a9fe283ebd482ac64ffabaf674d759324ee750f80bca4ac341e967a54f83",
-      "wavSHA256": "88bf461ca4ca05fca7cf664588763a8bfe9bf8055803fcd6e684a17304784ffa",
+      "start": 1161.9166666666667,
+      "duration": 27.0,
+      "screenFrames": 52,
+      "rawCaptureSeconds": 3.464,
+      "voiceSeconds": 23.928027210884355,
+      "sourceHash": "a6ba36a3be951d4e176e22a12870218b48605d42113205eed1fe230bbd1706d1",
+      "wavSHA256": "859df978537b70e6d7d79d6cd443e806fa6f6d97f00bef0699bea85408dd621d",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1719,18 +1721,18 @@
         "records": 21,
         "journals": 15,
         "lines": 33,
-        "audit": 37
+        "audit": 33
       }
     },
     {
       "id": "09-controle",
-      "start": 1244.7500000000002,
-      "duration": 25.583333333333332,
-      "screenFrames": 20,
-      "rawCaptureSeconds": 1.584,
-      "voiceSeconds": 22.54294784580499,
-      "sourceHash": "2b66f4a05a130c07a6644e68c2867d4e7b99596124bc2e04a6eff5acd07efe27",
-      "wavSHA256": "6ecfded91c85eb3c80abc90b95169de18901cbe3df5a22b2edda5f5f7bd10663",
+      "start": 1188.9166666666667,
+      "duration": 25.0,
+      "screenFrames": 17,
+      "rawCaptureSeconds": 1.197,
+      "voiceSeconds": 21.936009070294784,
+      "sourceHash": "52256e86b19b9029d08b8eaa20a66c3eedd50e84c169f67dc3ea87f9b19b86be",
+      "wavSHA256": "e7a914a288fb1ea6ab1ea392f3dc6758eccb7dc13d3a5d98467fb1ee9e3e32b7",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1773,18 +1775,18 @@
         "records": 21,
         "journals": 15,
         "lines": 33,
-        "audit": 37
+        "audit": 33
       }
     },
     {
       "id": "10-fout",
-      "start": 1270.3333333333335,
-      "duration": 27.583333333333332,
-      "screenFrames": 33,
-      "rawCaptureSeconds": 2.973,
-      "voiceSeconds": 24.539863945578233,
-      "sourceHash": "a53b42d17ccbcad503177f9c7fe0599879678fe6d2430ac5a73168d75b60b262",
-      "wavSHA256": "9d92a4d3133c577465814bc2c684b4843b89f9f9467214e6c0a5cb5991d04829",
+      "start": 1213.9166666666667,
+      "duration": 25.25,
+      "screenFrames": 28,
+      "rawCaptureSeconds": 1.839,
+      "voiceSeconds": 22.2,
+      "sourceHash": "a40530e83c77ec775f47b82693368802b32cba1204ae2ff6bc3cef7cf25427c9",
+      "wavSHA256": "3f76fba786dc581c51e41e3290710a3079996a043be190392f88d686094dbc65",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1827,18 +1829,18 @@
         "records": 21,
         "journals": 15,
         "lines": 33,
-        "audit": 37
+        "audit": 33
       }
     },
     {
       "id": "10-reden",
-      "start": 1297.9166666666667,
-      "duration": 28.583333333333332,
-      "screenFrames": 34,
-      "rawCaptureSeconds": 2.092,
-      "voiceSeconds": 25.569342403628117,
-      "sourceHash": "f2822184a48731967b453d2b996017202ef51c4547338ab41240af00faa2725d",
-      "wavSHA256": "ea1b6ed27944d6129992384c658b3b8331de633f72feecc5f54ce820e8121921",
+      "start": 1239.1666666666667,
+      "duration": 26.666666666666668,
+      "screenFrames": 29,
+      "rawCaptureSeconds": 2.8,
+      "voiceSeconds": 23.616009070294783,
+      "sourceHash": "f09e80747c123291406f4ba189d64e9df155642649359184205ee14801cbcd1e",
+      "wavSHA256": "42d1a5d3769ca57d185445a35fe2cf0c0070d30b9c138b489e9d2178fee5fac3",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1881,18 +1883,18 @@
         "records": 21,
         "journals": 15,
         "lines": 33,
-        "audit": 37
+        "audit": 33
       }
     },
     {
       "id": "10-teruggedraaid",
-      "start": 1326.5,
-      "duration": 29.0,
-      "screenFrames": 75,
-      "rawCaptureSeconds": 6.07,
-      "voiceSeconds": 25.933061224489794,
-      "sourceHash": "34ee49591f52bebac662edb7820c3e2d8fc0d6bd9f8d43d4da0480ae3ab14198",
-      "wavSHA256": "092c70935775c6e53f2973c8eeed8b9961cc22cd4a97291755e9ad2e9ed42cba",
+      "start": 1265.8333333333335,
+      "duration": 27.75,
+      "screenFrames": 66,
+      "rawCaptureSeconds": 3.884,
+      "voiceSeconds": 24.72,
+      "sourceHash": "d661f008e4ec35efa2b83bdccc075302b77703b6d0a80b995be97117cd73f2f3",
+      "wavSHA256": "610bbc478a17248448245d9d37fabdaec0b1cc1bdcc35102bfe0fb737f638cbc",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1935,18 +1937,18 @@
         "records": 23,
         "journals": 17,
         "lines": 37,
-        "audit": 38
+        "audit": 34
       }
     },
     {
       "id": "10-juist",
-      "start": 1355.5,
-      "duration": 28.083333333333332,
-      "screenFrames": 108,
-      "rawCaptureSeconds": 7.984,
-      "voiceSeconds": 25.050702947845807,
-      "sourceHash": "1bbf3e17778ef44ee4eaa779bdc7545e7ad62770bc35a80976db1165e1cc4e42",
-      "wavSHA256": "ede772e8bf75fe46ec2e4a74c3f67193ac972934b608c5e1f042df50b1d7e57d",
+      "start": 1293.5833333333335,
+      "duration": 25.666666666666668,
+      "screenFrames": 102,
+      "rawCaptureSeconds": 5.354,
+      "voiceSeconds": 22.631972789115647,
+      "sourceHash": "b9cbf202b1c27863c46d9561d186295b0f4bcd6c44ef8a986d91ac1e06cdb7c7",
+      "wavSHA256": "d80b8d56654a1775f121fac1caae8e5523103c48cf03a3ab1d5fa150a22a4b72",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -1989,18 +1991,18 @@
         "records": 25,
         "journals": 19,
         "lines": 41,
-        "audit": 39
+        "audit": 35
       }
     },
     {
       "id": "10-grenzen",
-      "start": 1383.5833333333333,
-      "duration": 29.833333333333332,
+      "start": 1319.2500000000002,
+      "duration": 27.0,
       "screenFrames": 4,
-      "rawCaptureSeconds": 0.907,
-      "voiceSeconds": 26.803809523809523,
-      "sourceHash": "06807810674dbc340db9a98887937dcb1a331db17940871451afb6aa22055725",
-      "wavSHA256": "46a72829ee2151a6dec49f5b6c9763fe305c854178d3641e0b5bc42d2cc03f1c",
+      "rawCaptureSeconds": 0.403,
+      "voiceSeconds": 23.951972789115647,
+      "sourceHash": "e7b275f7b252ead2f2bc45c8518f8a01b9cd3afd5c33ef8a65d5b9effc292ed8",
+      "wavSHA256": "fdc750d97785037dbd466399949f00921b89a7897f9e4ddde075e00d4e7aa57e",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -2043,18 +2045,18 @@
         "records": 25,
         "journals": 19,
         "lines": 41,
-        "audit": 39
+        "audit": 35
       }
     },
     {
       "id": "10-bankfout",
-      "start": 1413.4166666666665,
-      "duration": 31.166666666666668,
-      "screenFrames": 86,
-      "rawCaptureSeconds": 8.678,
-      "voiceSeconds": 28.123537414965988,
-      "sourceHash": "feb8fe2c547ad7027c7fd5696399656e13fe153c3ae437cc934a4e3ee2d415ca",
-      "wavSHA256": "5bf1edd0931c71e132e26170fbe0584635713ec5a508296dd4e66e5fec7218be",
+      "start": 1346.2500000000002,
+      "duration": 29.583333333333332,
+      "screenFrames": 81,
+      "rawCaptureSeconds": 5.821,
+      "voiceSeconds": 26.52,
+      "sourceHash": "20f26ec285d7946cf84dd6b997bf585234f7bb670cad2651cfe2d28e0159fd49",
+      "wavSHA256": "107b80cb97f1ee242b6e457bfe84b6e9836217bdbe8746277061eed19c7fd7e9",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -2097,18 +2099,18 @@
         "records": 26,
         "journals": 20,
         "lines": 43,
-        "audit": 40
+        "audit": 36
       }
     },
     {
       "id": "10-bankeffect",
-      "start": 1444.5833333333333,
-      "duration": 32.833333333333336,
-      "screenFrames": 52,
-      "rawCaptureSeconds": 4.818,
-      "voiceSeconds": 29.814784580498866,
-      "sourceHash": "0e386b66efc7f157baa9fb3a5d2c417a14588f81caa4b9834d42132022aedf7d",
-      "wavSHA256": "390c146a0eb129a73c7da07b74e96b713ba9d314d867270aa8f8fe22f166de79",
+      "start": 1375.8333333333335,
+      "duration": 31.25,
+      "screenFrames": 50,
+      "rawCaptureSeconds": 3.389,
+      "voiceSeconds": 28.176009070294786,
+      "sourceHash": "16572f788c7fdee66c840706607bdba5c74ac5246f5f5aeed17433b886370530",
+      "wavSHA256": "374c15d03b1777b27f16576750f995ff9462de91150ed8164b0017a9f8cc6b01",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -2151,18 +2153,18 @@
         "records": 26,
         "journals": 20,
         "lines": 43,
-        "audit": 40
+        "audit": 36
       }
     },
     {
       "id": "10-bankbevestigen",
-      "start": 1477.4166666666665,
-      "duration": 31.916666666666668,
-      "screenFrames": 29,
-      "rawCaptureSeconds": 2.426,
-      "voiceSeconds": 28.86657596371882,
-      "sourceHash": "7d16a2f919a993150b55a19cda60f43c9eeef6f11dbf6580283d246b83062503",
-      "wavSHA256": "27da9071a95bb51caf3ecef03a926a98b778adb0e588706444859b3b10ec29cd",
+      "start": 1407.0833333333335,
+      "duration": 30.083333333333332,
+      "screenFrames": 30,
+      "rawCaptureSeconds": 1.751,
+      "voiceSeconds": 27.071972789115645,
+      "sourceHash": "eb6ce4c9f3d8447433d00e7b1bd3e5b41411d430eee582fe93708a7537596fe7",
+      "wavSHA256": "15546b241dc30f626408e83406aff89b9c09a53cc86544f018a847ad232fbaae",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -2205,18 +2207,18 @@
         "records": 27,
         "journals": 21,
         "lines": 45,
-        "audit": 41
+        "audit": 37
       }
     },
     {
       "id": "10-losmaken",
-      "start": 1509.3333333333333,
-      "duration": 31.666666666666668,
-      "screenFrames": 72,
-      "rawCaptureSeconds": 6.55,
-      "voiceSeconds": 28.657596371882086,
-      "sourceHash": "b5796d63b273533b18c140fca30ef3fdfcd803ca8292322cc3cb53a0fe5e59a2",
-      "wavSHA256": "41406feb6a4a6970187905cc923853fdb2a20a90dc197ef3c1b4de98de58c41c",
+      "start": 1437.1666666666667,
+      "duration": 30.416666666666668,
+      "screenFrames": 71,
+      "rawCaptureSeconds": 4.328,
+      "voiceSeconds": 27.336009070294786,
+      "sourceHash": "98b3bb71a2f190879fc2a21073c03f3670577de4dab7e0d8b4f45282f0ddc3db",
+      "wavSHA256": "9c805e490348e324765779f6cc00bfcbc135eae712ec544439fac4485362e9e9",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -2259,18 +2261,18 @@
         "records": 28,
         "journals": 22,
         "lines": 47,
-        "audit": 42
+        "audit": 38
       }
     },
     {
       "id": "10-opnieuwkoppelen",
-      "start": 1541.0,
-      "duration": 33.416666666666664,
-      "screenFrames": 66,
-      "rawCaptureSeconds": 6.932,
-      "voiceSeconds": 30.410702947845806,
-      "sourceHash": "96252aae5f2b004b8f3c08cea8862d7db471048966409c3913acb7e62d5625ab",
-      "wavSHA256": "3fc25225b17b56205f96e6edb6c9c84fa5f2be413c3462c3e2bc79670ef9a358",
+      "start": 1467.5833333333335,
+      "duration": 32.5,
+      "screenFrames": 71,
+      "rawCaptureSeconds": 3.638,
+      "voiceSeconds": 29.471972789115647,
+      "sourceHash": "942a4b7c0a3bb37e984b7060dc1a6dc55adac1a59cfedddbe8f7199a38b11129",
+      "wavSHA256": "da65191ead3026dfb66f880216224a1173300ceccc953e2e7f6257788bb65321",
       "ledger": {
         "revenue": 74381,
         "outputVAT": 15619,
@@ -2313,18 +2315,18 @@
         "records": 29,
         "journals": 23,
         "lines": 49,
-        "audit": 43
+        "audit": 39
       }
     },
     {
       "id": "11-contant",
-      "start": 1574.4166666666667,
-      "duration": 27.5,
-      "screenFrames": 78,
-      "rawCaptureSeconds": 6.727,
-      "voiceSeconds": 24.454784580498867,
-      "sourceHash": "6d0677d2548fd532d4bbf3d6e83479bf4faa3cce28ca9fa8d27a7928e6538c69",
-      "wavSHA256": "cfdb9a13d745cac23d2c88a1d3bafc46531e79304df7b726324f810584b74537",
+      "start": 1500.0833333333335,
+      "duration": 25.25,
+      "screenFrames": 83,
+      "rawCaptureSeconds": 4.776,
+      "voiceSeconds": 22.22403628117914,
+      "sourceHash": "fbae699a96d33dbd7dfd8f6fc8431ab1315f43ce5be378dbad56eea2e7eaeffd",
+      "wavSHA256": "5e5aa3d8be9c51e822f4988cdedd409f2559762367b193365931ad0047882e35",
       "ledger": {
         "revenue": 78513,
         "outputVAT": 16487,
@@ -2373,18 +2375,18 @@
         "records": 32,
         "journals": 26,
         "lines": 56,
-        "audit": 46
+        "audit": 42
       }
     },
     {
       "id": "11-uitgave",
-      "start": 1601.9166666666667,
-      "duration": 26.5,
-      "screenFrames": 64,
-      "rawCaptureSeconds": 6.337,
-      "voiceSeconds": 23.460136054421767,
-      "sourceHash": "14ebd441c8e7dcdb4283770f26fa77335462d47921da4abe7a5aafc726502b3a",
-      "wavSHA256": "6873f79f609960a37d826bf820299761902dd4331125b756448d1286c5159c80",
+      "start": 1525.3333333333335,
+      "duration": 24.666666666666668,
+      "screenFrames": 67,
+      "rawCaptureSeconds": 3.831,
+      "voiceSeconds": 21.648027210884354,
+      "sourceHash": "126ac68bbf6341aa429b0afafb9b4689c31e7e3d1107c3f0707666376e329456",
+      "wavSHA256": "7a368e1489a2665e156ed9814ebb3869e2877191a88344f242f1e76eacb96aca",
       "ledger": {
         "revenue": 78513,
         "outputVAT": 16487,
@@ -2433,18 +2435,18 @@
         "records": 32,
         "journals": 26,
         "lines": 56,
-        "audit": 46
+        "audit": 42
       }
     },
     {
       "id": "11-bon",
-      "start": 1628.4166666666667,
-      "duration": 29.416666666666668,
-      "screenFrames": 58,
-      "rawCaptureSeconds": 5.665,
-      "voiceSeconds": 26.40907029478458,
-      "sourceHash": "150c0fc825d2bc12597c1043ed4a14a584df48a8c113596857a2be660504d49d",
-      "wavSHA256": "207160116a10e4e0d52308cac13f563c5176472b3069891ab7bc8cbc65fdd30b",
+      "start": 1550.0000000000002,
+      "duration": 28.666666666666668,
+      "screenFrames": 54,
+      "rawCaptureSeconds": 4.357,
+      "voiceSeconds": 25.631972789115647,
+      "sourceHash": "412a43f9e561899abe588f410e41a5f93bad3341b901abceb97b54d5e3fe4511",
+      "wavSHA256": "c14bd7570f8d3dcfb9f481a2072277ec75a45ad5924a4b208bc71f1a806ea415",
       "ledger": {
         "revenue": 78513,
         "outputVAT": 16487,
@@ -2493,18 +2495,18 @@
         "records": 33,
         "journals": 27,
         "lines": 61,
-        "audit": 49
+        "audit": 45
       }
     },
     {
       "id": "11-betalen",
-      "start": 1657.8333333333335,
-      "duration": 29.75,
-      "screenFrames": 116,
-      "rawCaptureSeconds": 8.545,
-      "voiceSeconds": 26.672290249433107,
-      "sourceHash": "0f2bab54341afbe50940368640a3a12fe11544fb6079aa420241552dae441523",
-      "wavSHA256": "7c70d0a1bb95fd4f0a4ea75e4448a9f666c982f91be2c75a6c8f46699abb16f3",
+      "start": 1578.666666666667,
+      "duration": 28.25,
+      "screenFrames": 105,
+      "rawCaptureSeconds": 6.363,
+      "voiceSeconds": 25.2,
+      "sourceHash": "375348ec13a18e9250c24f8096990464a650fe6447aa0ae8dd1d9c6bafbfb893",
+      "wavSHA256": "32b2bae2f7cb2dc6109efc22375f6985b7f3dc26b3bbee03eed1854bf0f87f5a",
       "ledger": {
         "revenue": 78513,
         "outputVAT": 16487,
@@ -2553,18 +2555,18 @@
         "records": 35,
         "journals": 29,
         "lines": 65,
-        "audit": 51
+        "audit": 47
       }
     },
     {
       "id": "11-voorschot",
-      "start": 1687.5833333333335,
-      "duration": 30.5,
+      "start": 1606.916666666667,
+      "duration": 28.083333333333332,
       "screenFrames": 21,
-      "rawCaptureSeconds": 2.754,
-      "voiceSeconds": 27.45015873015873,
-      "sourceHash": "fc39f10893ce611c7140caf0ada60191ab92ab25d43040dad09b88ac614bf6cd",
-      "wavSHA256": "621867a05fef1dd8e9db726d59f774c9c608851198819a9c6d1365eee32d03ac",
+      "rawCaptureSeconds": 1.577,
+      "voiceSeconds": 25.08,
+      "sourceHash": "0b6c6ab3eba6c86af92b17e038c3594e61fed4e25c273378f4d49925f391d3be",
+      "wavSHA256": "ab228154b0ac0119e2d754e6cb1a10fea9ce166bec18037854db98f91c44a11b",
       "ledger": {
         "revenue": 78513,
         "outputVAT": 16487,
@@ -2613,18 +2615,18 @@
         "records": 35,
         "journals": 29,
         "lines": 65,
-        "audit": 51
+        "audit": 47
       }
     },
     {
       "id": "12-open",
-      "start": 1718.0833333333335,
-      "duration": 26.083333333333332,
-      "screenFrames": 23,
-      "rawCaptureSeconds": 1.574,
-      "voiceSeconds": 23.077006802721087,
-      "sourceHash": "569e5846571bf28842a2d3696a502be035e1a65c0695349f8ea032cec47d9851",
-      "wavSHA256": "c38b422896e794bb5e4693d6707d0546640a7dcfee9504e1bb0a7a524d862b2b",
+      "start": 1635.0000000000002,
+      "duration": 25.0,
+      "screenFrames": 19,
+      "rawCaptureSeconds": 1.088,
+      "voiceSeconds": 21.984036281179137,
+      "sourceHash": "64ac4084504bd23daa1d82370209dc4e7faa3dc45f3e45582f0b58650bdc1fd3",
+      "wavSHA256": "8d5cb4b81c76140f8a05b4efa32b7d682f2a142b82fb13f7f97ee1600692a642",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -2679,18 +2681,18 @@
         "records": 36,
         "journals": 30,
         "lines": 68,
-        "audit": 53
+        "audit": 49
       }
     },
     {
       "id": "12-laat",
-      "start": 1744.1666666666667,
-      "duration": 21.583333333333332,
-      "screenFrames": 8,
-      "rawCaptureSeconds": 0.783,
-      "voiceSeconds": 18.541315192743763,
-      "sourceHash": "cec918306dd3dd95da52a78404f861701a953fed2025ca39ce75a933ede7cd2d",
-      "wavSHA256": "6816c8e2dfc0c8ebbc37bc785286646109a2c56e397c9bdc8c170a7aebfe44de",
+      "start": 1660.0000000000002,
+      "duration": 21.166666666666668,
+      "screenFrames": 6,
+      "rawCaptureSeconds": 0.374,
+      "voiceSeconds": 18.144036281179137,
+      "sourceHash": "c3537d83a05b5016f146131cf9b241dd76a765b7f3b67e816fc80d739d637bc8",
+      "wavSHA256": "5eb77cb70a538745c7d9b8091b54f19bea95da4607048027dfa443d5c55e6cc7",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -2745,18 +2747,18 @@
         "records": 36,
         "journals": 30,
         "lines": 68,
-        "audit": 53
+        "audit": 49
       }
     },
     {
       "id": "12-filters",
-      "start": 1765.75,
-      "duration": 30.833333333333332,
+      "start": 1681.166666666667,
+      "duration": 28.166666666666668,
       "screenFrames": 12,
-      "rawCaptureSeconds": 1.541,
-      "voiceSeconds": 27.75201814058957,
-      "sourceHash": "a2fe8f4639df208c7a8d00da3ae18b02b2e9c19ea9a16059697ba4935764a4a4",
-      "wavSHA256": "d20c135a550fe344ae1f0714c672071e4143fa05ba827292f3cc3bc509d9a437",
+      "rawCaptureSeconds": 1.022,
+      "voiceSeconds": 25.128027210884355,
+      "sourceHash": "4b74c2553496abef02d0bca787fa43b2e122ea4bf3adb45639b3f2ebc3d1dcaa",
+      "wavSHA256": "cfd99823c7ad559f9039c54ca569c622cc24ef045e4adae2cfd61dcb25a17282",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -2811,18 +2813,18 @@
         "records": 36,
         "journals": 30,
         "lines": 68,
-        "audit": 53
+        "audit": 49
       }
     },
     {
       "id": "12-opvolgen",
-      "start": 1796.5833333333333,
-      "duration": 26.5,
-      "screenFrames": 9,
-      "rawCaptureSeconds": 1.033,
-      "voiceSeconds": 23.42530612244898,
-      "sourceHash": "eb149699baa25299404f182ee063937e1937c4dbb4ba3b222614ce10a46397be",
-      "wavSHA256": "32b9f271357ca4ccc72fee6c6c19027647def0dc4ea2bf1eceb098be972d460e",
+      "start": 1709.3333333333337,
+      "duration": 25.916666666666668,
+      "screenFrames": 8,
+      "rawCaptureSeconds": 0.534,
+      "voiceSeconds": 22.896009070294784,
+      "sourceHash": "d529580116b0e7a9a6aed7b22f9a54c009ea487f6aac39224d34fc1fb91e84a1",
+      "wavSHA256": "e4bc02b3e0f180c8610e936285f5c6cea1b2b4316a5d51b241c4f6d3f3624b4c",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -2877,18 +2879,18 @@
         "records": 36,
         "journals": 30,
         "lines": 68,
-        "audit": 53
+        "audit": 49
       }
     },
     {
       "id": "13-annuleren",
-      "start": 1823.0833333333333,
-      "duration": 26.833333333333332,
-      "screenFrames": 48,
-      "rawCaptureSeconds": 2.929,
-      "voiceSeconds": 23.750385487528344,
-      "sourceHash": "a3e1e6eac92ebeca1661f18d7f9e574afebd7c97fb9bd1d2fcc462a68832af8f",
-      "wavSHA256": "bb5e0b47263f7210e502b8e0ad79bbaad31be4e6d2ca4dfd73960a91a5bc6394",
+      "start": 1735.2500000000005,
+      "duration": 25.416666666666668,
+      "screenFrames": 41,
+      "rawCaptureSeconds": 2.764,
+      "voiceSeconds": 22.34403628117914,
+      "sourceHash": "f9cbb522479110a686541a65177da45dfe4c28d07585731aaac4a179e4ac7654",
+      "wavSHA256": "4532da7e8a6bcfe2fb879111e66ed6e99713fc713260f02564e1ab0e054ea4b2",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -2949,18 +2951,18 @@
         "records": 38,
         "journals": 32,
         "lines": 74,
-        "audit": 56
+        "audit": 52
       }
     },
     {
       "id": "13-credit",
-      "start": 1849.9166666666665,
-      "duration": 27.083333333333332,
-      "screenFrames": 56,
-      "rawCaptureSeconds": 7.569,
-      "voiceSeconds": 24.040634920634922,
-      "sourceHash": "b8988f61e12d54315d5aa595919e217f01f8d7d28b6eac26bf2eaf5f8557ee9e",
-      "wavSHA256": "872875b36a2e005dd56976c9733dd00c46ba692e1d28632efa475b2f3c3f59f7",
+      "start": 1760.6666666666672,
+      "duration": 25.25,
+      "screenFrames": 46,
+      "rawCaptureSeconds": 2.027,
+      "voiceSeconds": 22.22403628117914,
+      "sourceHash": "800c7d35275272cbb2deaf8aa6a5dfad075f8cd71896e6d7f5633741e9201f52",
+      "wavSHA256": "39c7d5bdcebf7c8e18c96800c8ec415adf5b467561cca933f2aefea6d8dda629",
       "ledger": {
         "revenue": 88843,
         "outputVAT": 18657,
@@ -3024,21 +3026,21 @@
             "status": "Betaald"
           }
         ],
-        "records": 42,
+        "records": 41,
         "journals": 35,
         "lines": 81,
-        "audit": 59
+        "audit": 55
       }
     },
     {
       "id": "13-creditpdf",
-      "start": 1876.9999999999998,
-      "duration": 24.333333333333332,
-      "screenFrames": 50,
-      "rawCaptureSeconds": 8.477,
-      "voiceSeconds": 21.258049886621315,
-      "sourceHash": "f64d4c81457ec917574465df865abf1281295d7d985da6c44bf5549d4fb24080",
-      "wavSHA256": "717318f3e09a7e6479fdb2d93228145ff4ba0b40d8bb5947c553de9908d25cf1",
+      "start": 1785.9166666666672,
+      "duration": 23.666666666666668,
+      "screenFrames": 54,
+      "rawCaptureSeconds": 11.147,
+      "voiceSeconds": 20.616009070294783,
+      "sourceHash": "a86e1d68873e669cb14f737a92b72ac716f568a8f066213207f38e01be82eefe",
+      "wavSHA256": "411f5b722481821688063c0593d9dc6eb53e6969b096b3b4fe351e42ba9450d1",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3105,18 +3107,18 @@
         "records": 42,
         "journals": 36,
         "lines": 84,
-        "audit": 65
+        "audit": 60
       }
     },
     {
       "id": "13-geenbetaling",
-      "start": 1901.333333333333,
-      "duration": 27.166666666666668,
-      "screenFrames": 42,
-      "rawCaptureSeconds": 3.624,
-      "voiceSeconds": 24.15673469387755,
-      "sourceHash": "09fdbac9227d45ebea9430e4aa57bae57c024952fcef3836ac3f4260b1478720",
-      "wavSHA256": "17e6493abdb2bba4b3f278533f906b3df81e833d0f3507baf3c006f50bad1e4d",
+      "start": 1809.583333333334,
+      "duration": 26.333333333333332,
+      "screenFrames": 37,
+      "rawCaptureSeconds": 3.034,
+      "voiceSeconds": 23.28,
+      "sourceHash": "7fe4008011b1da8f99b79f8a6e538f32ee83d715434404e1e0bedee1d97a502a",
+      "wavSHA256": "777b2929c53c0706e38a26f6887c2e3ea309799eae78843b94c62b774d476ce8",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3183,18 +3185,18 @@
         "records": 42,
         "journals": 36,
         "lines": 84,
-        "audit": 65
+        "audit": 60
       }
     },
     {
       "id": "13-refund",
-      "start": 1928.4999999999998,
-      "duration": 28.416666666666668,
-      "screenFrames": 107,
-      "rawCaptureSeconds": 11.343,
-      "voiceSeconds": 25.41061224489796,
-      "sourceHash": "f8f3434206378f846ad7755ff3ed0b0fc6e9e874455b3ce3e65a286aaa4156f2",
-      "wavSHA256": "bcf46d7ab084dd875c386c04fdc53d6d1165d61f456366750e71196a7deb33c5",
+      "start": 1835.9166666666672,
+      "duration": 26.583333333333332,
+      "screenFrames": 114,
+      "rawCaptureSeconds": 11.574,
+      "voiceSeconds": 23.54403628117914,
+      "sourceHash": "674f2ae4301280273f1762647b927fe2b1f0535dce4e187c1f62dbc03cf80346",
+      "wavSHA256": "eca20b96c93f4bf974f265c259ae518a0333608aa3a4a35e71f868532a04063b",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3261,18 +3263,18 @@
         "records": 44,
         "journals": 38,
         "lines": 88,
-        "audit": 67
+        "audit": 62
       }
     },
     {
       "id": "14-storting",
-      "start": 1956.9166666666665,
-      "duration": 28.666666666666668,
+      "start": 1862.5000000000005,
+      "duration": 26.583333333333332,
       "screenFrames": 75,
-      "rawCaptureSeconds": 6.066,
-      "voiceSeconds": 25.61578231292517,
-      "sourceHash": "9fce2e3eff99dbf726e8f971f12433a1e24d7ca88d20477c7fcf8303c591fc69",
-      "wavSHA256": "823df22d47acef891501e1d14f33dd84e5593e5f615167fe0fd967d3d4f1e265",
+      "rawCaptureSeconds": 4.267,
+      "voiceSeconds": 23.52,
+      "sourceHash": "a1df05009b91198fa8c43894ef8386b7694b5d71b3a57927a84686b906ba7d48",
+      "wavSHA256": "16f6c3fe61a7f120c0ffe24417da87794b5aede5fd97856b2b3025c1544dc0fa",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3339,18 +3341,18 @@
         "records": 46,
         "journals": 40,
         "lines": 92,
-        "audit": 68
+        "audit": 63
       }
     },
     {
       "id": "14-opname",
-      "start": 1985.5833333333333,
-      "duration": 25.166666666666668,
-      "screenFrames": 58,
-      "rawCaptureSeconds": 4.62,
-      "voiceSeconds": 22.136598639455784,
-      "sourceHash": "52ccab4c50ab102f55e25a9ae26c77c0488af02a74288884687b6d7564d28fbc",
-      "wavSHA256": "f6c9fef3972253f1ffa5a6835f41a88b09e5f3f2389e2b16540a82c94b5f472d",
+      "start": 1889.0833333333337,
+      "duration": 24.25,
+      "screenFrames": 56,
+      "rawCaptureSeconds": 3.035,
+      "voiceSeconds": 21.24,
+      "sourceHash": "5658c3a825221a06074a979f358f71b1f2ac9e65ae5d254ce42dd2799cd221df",
+      "wavSHA256": "595f89d7c464c0ca7db4c960ffec2f76812983bca45d2658d5e4b6503a5b546a",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3417,18 +3419,18 @@
         "records": 48,
         "journals": 42,
         "lines": 96,
-        "audit": 69
+        "audit": 64
       }
     },
     {
       "id": "14-overboeking",
-      "start": 2010.75,
-      "duration": 24.416666666666668,
-      "screenFrames": 124,
-      "rawCaptureSeconds": 11.904,
-      "voiceSeconds": 21.35092970521542,
-      "sourceHash": "a5513b09ba2c0beafac4b9c637724a231791bac401f8f01aa27e77dc40885a5a",
-      "wavSHA256": "3c4e89918198b40b31f40220b700187255c0e69d941e2da1f2012ce55a6a26f4",
+      "start": 1913.3333333333337,
+      "duration": 22.416666666666668,
+      "screenFrames": 117,
+      "rawCaptureSeconds": 10.534,
+      "voiceSeconds": 19.391972789115645,
+      "sourceHash": "6f308d322a566407c39be06eb29d54a7ba927ad88e76bf9e5692fd37934001ba",
+      "wavSHA256": "731bfa2bfe38039214f2d480eb2d52598d82a74cf26500163b6728068b93c13d",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3495,18 +3497,18 @@
         "records": 50,
         "journals": 44,
         "lines": 100,
-        "audit": 71
+        "audit": 66
       }
     },
     {
       "id": "14-koppelen",
-      "start": 2035.1666666666667,
-      "duration": 29.083333333333332,
-      "screenFrames": 49,
-      "rawCaptureSeconds": 7.025,
-      "voiceSeconds": 26.072380952380954,
-      "sourceHash": "60dc4372af3636a6795f1bb93a2aea8216454c462471338f0768531e94cd11fd",
-      "wavSHA256": "490fa4a07ac111091ea8584861d645c3054d12c2fdef205ce644c852d891aed0",
+      "start": 1935.7500000000005,
+      "duration": 27.333333333333332,
+      "screenFrames": 63,
+      "rawCaptureSeconds": 3.664,
+      "voiceSeconds": 24.311972789115647,
+      "sourceHash": "d286c3707c931fc7a585d1ba7bd6133ef05bb156432dc31dbe134a443c4ccac9",
+      "wavSHA256": "225790fa3beeec6eac9d33c8bb0dc1ac3d8ce2d3052be2e3470bf09d08e92b99",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3573,18 +3575,18 @@
         "records": 51,
         "journals": 45,
         "lines": 102,
-        "audit": 72
+        "audit": 67
       }
     },
     {
       "id": "14-kasbank",
-      "start": 2064.25,
-      "duration": 24.25,
-      "screenFrames": 6,
-      "rawCaptureSeconds": 0.991,
-      "voiceSeconds": 21.23482993197279,
-      "sourceHash": "e8829fa81d64e0af446b26e4c787fc41ffa2b88f02682affc986ebedc0efa822",
-      "wavSHA256": "4bdaccb6342da8bd6435e2205c219b810a0ee707f368296a64ebff9297b42e27",
+      "start": 1963.0833333333337,
+      "duration": 23.166666666666668,
+      "screenFrames": 7,
+      "rawCaptureSeconds": 0.443,
+      "voiceSeconds": 20.111972789115647,
+      "sourceHash": "8acf7b2a35a77abced2e0055aa493bc75712017a260d333cba0c1ada205649d0",
+      "wavSHA256": "8e9f9843303f9614e9c5b27185be7645e5075b6023a6702ddbe0583dc47c341d",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3651,18 +3653,18 @@
         "records": 51,
         "journals": 45,
         "lines": 102,
-        "audit": 72
+        "audit": 67
       }
     },
     {
       "id": "15-datum",
-      "start": 2088.5,
-      "duration": 27.083333333333332,
-      "screenFrames": 31,
-      "rawCaptureSeconds": 2.551,
-      "voiceSeconds": 24.063854875283447,
-      "sourceHash": "d8d1f14fd3845029c5a5beb51867a2229aef5388c79e19516c56dd5e63af5296",
-      "wavSHA256": "a8a09940eadd690bad420b0f26ae07327c7e13ba82b2e46d389d0c273e91cb79",
+      "start": 1986.2500000000005,
+      "duration": 24.916666666666668,
+      "screenFrames": 30,
+      "rawCaptureSeconds": 1.999,
+      "voiceSeconds": 21.911972789115648,
+      "sourceHash": "6be8405f709001a820eaf790b652d196240bd02239f1b41bc5e9c4e7902ec856",
+      "wavSHA256": "e70ba0c118fe1e6d45ae714dcca8847e739ad86a1a73b6a9f15482403fcb4c4b",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3729,18 +3731,18 @@
         "records": 51,
         "journals": 45,
         "lines": 102,
-        "audit": 72
+        "audit": 67
       }
     },
     {
       "id": "15-afschrift",
-      "start": 2115.5833333333335,
-      "duration": 27.833333333333332,
-      "screenFrames": 45,
-      "rawCaptureSeconds": 3.749,
-      "voiceSeconds": 24.818503401360545,
-      "sourceHash": "c9fa719c239d4a822ea95d884cc286ad8af398caf3e288142eb39e43791e5354",
-      "wavSHA256": "3dac5b0d026a63b2723c5fa0d2b7050e391c37fbf13a660408d29dff81cc5df5",
+      "start": 2011.1666666666672,
+      "duration": 26.25,
+      "screenFrames": 47,
+      "rawCaptureSeconds": 2.047,
+      "voiceSeconds": 23.208027210884353,
+      "sourceHash": "bb030123137f6d073e1e61fbe381864ca5d13530c345b52201b99283bee34e5a",
+      "wavSHA256": "d3df103796bc798970ab05fca7b5a95d5d74136ef994c28e831646c0184227b6",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3807,18 +3809,18 @@
         "records": 51,
         "journals": 45,
         "lines": 102,
-        "audit": 72
+        "audit": 67
       }
     },
     {
       "id": "15-nul",
-      "start": 2143.416666666667,
-      "duration": 23.5,
-      "screenFrames": 24,
-      "rawCaptureSeconds": 2.661,
-      "voiceSeconds": 20.45315192743764,
-      "sourceHash": "1166e88d929dc718e0a319095392598f9ceebaa641dff5814d5273ffb68a40a9",
-      "wavSHA256": "ec0ff1de341033d9630061266e254045f0fd722002b8f40be8d6ffbf3219cf3d",
+      "start": 2037.4166666666672,
+      "duration": 22.166666666666668,
+      "screenFrames": 23,
+      "rawCaptureSeconds": 1.525,
+      "voiceSeconds": 19.104036281179138,
+      "sourceHash": "6f8a350bd5d88f62d8d5c156c57b0d01b0e0e4472e8a194a7759b71425c7228f",
+      "wavSHA256": "328fdb5c85394b9a323a8b058e544e6f4104459d05ff27aeb86efee17bbd10b9",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3885,18 +3887,18 @@
         "records": 52,
         "journals": 45,
         "lines": 102,
-        "audit": 73
+        "audit": 68
       }
     },
     {
       "id": "15-verschil",
-      "start": 2166.916666666667,
-      "duration": 26.916666666666668,
-      "screenFrames": 7,
-      "rawCaptureSeconds": 1.014,
-      "voiceSeconds": 23.858684807256235,
-      "sourceHash": "e068db4c9eb2bbc780390759ac3656a1fbd392b676dbaa371c0c56b8837f9d81",
-      "wavSHA256": "e2278e9676514c69dbaf9f92887f9e9a665d208ff8e79be26a826d790fca156b",
+      "start": 2059.583333333334,
+      "duration": 25.833333333333332,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 0.412,
+      "voiceSeconds": 22.751972789115648,
+      "sourceHash": "620565b8584f52eedefdd96d70306629f9cf4c09efeaaa0c7cdf1e19158c4f69",
+      "wavSHA256": "52c42f39ccd887ab6843480ff523e4e64f6e1e8ba2b75a6c39a74980a4e63814",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -3963,18 +3965,18 @@
         "records": 52,
         "journals": 45,
         "lines": 102,
-        "audit": 73
+        "audit": 68
       }
     },
     {
       "id": "16-download",
-      "start": 2193.8333333333335,
-      "duration": 29.75,
+      "start": 2085.4166666666674,
+      "duration": 27.833333333333332,
       "screenFrames": 29,
-      "rawCaptureSeconds": 2.968,
-      "voiceSeconds": 26.730340136054423,
-      "sourceHash": "a23b0dd76b8c4f12e8f07223b05ad9b2db90adb3815e2919dbda51198215bcee",
-      "wavSHA256": "a00abbc6f7f42df7916dfb0e663500dd9a8ebb5457d2ad6a102987549294f984",
+      "rawCaptureSeconds": 1.781,
+      "voiceSeconds": 24.816009070294786,
+      "sourceHash": "d8fbc6393c9536c01a8f9d8bf3bfa3b5d9277eae7e1e4d2a95159773c619867b",
+      "wavSHA256": "1f828d3a29a1a7288a35e81f9a29d43846573a06b594b21f2f9e28fd1a3ac5a3",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4041,18 +4043,18 @@
         "records": 52,
         "journals": 45,
         "lines": 102,
-        "audit": 73
+        "audit": 68
       }
     },
     {
       "id": "16-voorbeeld",
-      "start": 2223.5833333333335,
-      "duration": 25.5,
-      "screenFrames": 28,
-      "rawCaptureSeconds": 3.741,
-      "voiceSeconds": 22.450068027210886,
-      "sourceHash": "a7bd9dfffba8a971bf012fd5f0edae7489d99a4075bf22b001256a0bbaa5cb32",
-      "wavSHA256": "463cb7fdb8e01eda7e4adb95bf4e9082008ae2ced6b402189152f975529b8e8a",
+      "start": 2113.250000000001,
+      "duration": 24.083333333333332,
+      "screenFrames": 37,
+      "rawCaptureSeconds": 1.876,
+      "voiceSeconds": 21.02403628117914,
+      "sourceHash": "1b52b8a15c1e82cc121fd7cb693a33a3169533e3ad0a70a2f0c1482692ed2fe5",
+      "wavSHA256": "183bb014163dbd16e2d4cf926db73e2c2df744539d25708e27e32f8e356ff5fe",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4119,18 +4121,18 @@
         "records": 52,
         "journals": 45,
         "lines": 102,
-        "audit": 73
+        "audit": 68
       }
     },
     {
       "id": "16-bron",
-      "start": 2249.0833333333335,
-      "duration": 28.916666666666668,
-      "screenFrames": 24,
-      "rawCaptureSeconds": 1.916,
-      "voiceSeconds": 25.84018140589569,
-      "sourceHash": "3708b211c2eb1f7372614050ead92f14e87d42307dc9aee8b369479d60281e28",
-      "wavSHA256": "b0f6d9c4607e235f7fa870eb258c9ff5bbe35036031417a3a160099e66e74c88",
+      "start": 2137.3333333333344,
+      "duration": 28.083333333333332,
+      "screenFrames": 21,
+      "rawCaptureSeconds": 2.122,
+      "voiceSeconds": 25.08,
+      "sourceHash": "6f27300fdaec7ea47596a730cae21f0903caa068b7ae4d026d4927471ced05ea",
+      "wavSHA256": "c7852f9d75bd78056ffeac1d21d9ca72ccf83bf24143cebd489fb7a11f931f34",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4197,18 +4199,18 @@
         "records": 52,
         "journals": 45,
         "lines": 102,
-        "audit": 76
+        "audit": 71
       }
     },
     {
       "id": "16-nieuwe",
-      "start": 2278.0,
-      "duration": 25.916666666666668,
-      "screenFrames": 21,
-      "rawCaptureSeconds": 1.658,
-      "voiceSeconds": 22.84480725623583,
-      "sourceHash": "3358e13c44904232095ff2e0836b8f680a5f36f29d59c6bb60d4a6d0d9153991",
-      "wavSHA256": "09c53909a3d4ab55aba2139df326bf123b35da6f706153295e53370bc2cf2ba1",
+      "start": 2165.416666666668,
+      "duration": 24.416666666666668,
+      "screenFrames": 19,
+      "rawCaptureSeconds": 1.477,
+      "voiceSeconds": 21.336009070294786,
+      "sourceHash": "70112e6a99e67366ca00ebab0f97833c723abf0cde0fc91e8bca07f0ef5f4373",
+      "wavSHA256": "887e1cfe8d2621f3a0fa3553494f44de96d7b08d92c2b8d230b6fbe914b2c924",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4275,18 +4277,18 @@
         "records": 54,
         "journals": 46,
         "lines": 104,
-        "audit": 77
+        "audit": 72
       }
     },
     {
       "id": "16-herhalen",
-      "start": 2303.9166666666665,
-      "duration": 30.5,
-      "screenFrames": 37,
-      "rawCaptureSeconds": 2.899,
-      "voiceSeconds": 27.430748299319728,
-      "sourceHash": "a32c6557c5d4cebe27629f7e0873eb5e45b16c8b7b7ee0d373bda0ea9790e7fb",
-      "wavSHA256": "98f49831a5c7cb9caaff3af637c55de54e54809b31280f6cfcf9bf82229f8c0a",
+      "start": 2189.8333333333344,
+      "duration": 28.833333333333332,
+      "screenFrames": 31,
+      "rawCaptureSeconds": 2.132,
+      "voiceSeconds": 25.8,
+      "sourceHash": "4b0450ac20007a31cf1e3e7f0b874a2af5cdf8b3cbf831fa9280514fac6887cc",
+      "wavSHA256": "9ba5618246e0a3f3c90a8bc627f9b1c122b40b009487261f4f34c81b580071c6",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4353,18 +4355,18 @@
         "records": 54,
         "journals": 46,
         "lines": 104,
-        "audit": 77
+        "audit": 72
       }
     },
     {
       "id": "16-terugdraaien",
-      "start": 2334.4166666666665,
-      "duration": 29.166666666666668,
-      "screenFrames": 52,
-      "rawCaptureSeconds": 5.239,
-      "voiceSeconds": 26.10721088435374,
-      "sourceHash": "ca6d9160b0e5d8701b127ba8781beddc13d88beef86b832b28ce9bfd3c48e88c",
-      "wavSHA256": "daf9ef4777acd81941c75edbfa2b66109b9d7a8301c24db76b5e95d8bd0b425d",
+      "start": 2218.666666666668,
+      "duration": 27.416666666666668,
+      "screenFrames": 57,
+      "rawCaptureSeconds": 3.721,
+      "voiceSeconds": 24.408027210884352,
+      "sourceHash": "6cc9a68e08b2ac6345fd10f834f305336ca2d681ad64c05e5b3619e483fa02d9",
+      "wavSHA256": "7c4ad6c6b446e394814ffbff153f4f1ba4c64fba1524c37580abb3bd08ef33ac",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4431,18 +4433,18 @@
         "records": 55,
         "journals": 47,
         "lines": 106,
-        "audit": 78
+        "audit": 73
       }
     },
     {
       "id": "17-periode",
-      "start": 2363.583333333333,
-      "duration": 31.833333333333332,
-      "screenFrames": 45,
-      "rawCaptureSeconds": 3.907,
-      "voiceSeconds": 28.827936507936506,
-      "sourceHash": "79a26bfa2ecd421776b99a0382ae6ccc78ca07b0b7db68bc4d74deea4f8de1dc",
-      "wavSHA256": "3886c144fa1f750d30230114ab5b9794e2803944ae76848cae99abd30837e44d",
+      "start": 2246.0833333333344,
+      "duration": 29.583333333333332,
+      "screenFrames": 40,
+      "rawCaptureSeconds": 2.628,
+      "voiceSeconds": 26.54403628117914,
+      "sourceHash": "3c29ce0135db93f4b7f19184e7a18dad507cd7d86813d3ba8182800fbad045ad",
+      "wavSHA256": "8cb52ad7779c8e14bdf3032fca4a4aefbf697933d08d594bf0f9c19aa8254825",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4509,18 +4511,18 @@
         "records": 55,
         "journals": 47,
         "lines": 106,
-        "audit": 78
+        "audit": 73
       }
     },
     {
       "id": "17-verschil",
-      "start": 2395.4166666666665,
-      "duration": 30.416666666666668,
-      "screenFrames": 26,
-      "rawCaptureSeconds": 3.354,
-      "voiceSeconds": 27.39591836734694,
-      "sourceHash": "de8a52e09a4e0c1ad0938a319e688fedc1f0c0eab20000f3a16d1852a14465a4",
-      "wavSHA256": "699b6281f4a733caf75640c3d26736e659d483643f5d798baccb6193917167f2",
+      "start": 2275.666666666668,
+      "duration": 27.166666666666668,
+      "screenFrames": 31,
+      "rawCaptureSeconds": 1.763,
+      "voiceSeconds": 24.096009070294784,
+      "sourceHash": "4be75584657277122ac82d70d03f81f1cbdb518f82e6374485c90dfbb34ddc0f",
+      "wavSHA256": "90457fa79c1c102555daa0b294dcb61adad2aef5a7cb1bd12c00289cf0013fc8",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4587,18 +4589,252 @@
         "records": 55,
         "journals": 47,
         "lines": 106,
-        "audit": 78
+        "audit": 73
+      }
+    },
+    {
+      "id": "17-inkomsten",
+      "start": 2302.8333333333344,
+      "duration": 29.166666666666668,
+      "screenFrames": 57,
+      "rawCaptureSeconds": 3.54,
+      "voiceSeconds": 26.136009070294783,
+      "sourceHash": "9d1e6ebb5e547b11491ec974fe8c5886203c33f3f558d1e95b25921d2cb67982",
+      "wavSHA256": "d8214e68b998d0f38de12a4242c568524cd20a5df428aa22f6c8807af7b63249",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 73
+      }
+    },
+    {
+      "id": "17-uitgaven",
+      "start": 2332.000000000001,
+      "duration": 28.666666666666668,
+      "screenFrames": 18,
+      "rawCaptureSeconds": 1.085,
+      "voiceSeconds": 25.656009070294786,
+      "sourceHash": "9069c0fe11b97b3fa2501104ed31c2758dc283edaf3154727b2563170d15cad9",
+      "wavSHA256": "4f1b9b684d17dbc1f4333c42a66de0b7332a8a37198d4118a352000f90d84c83",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 73
+      }
+    },
+    {
+      "id": "17-winst",
+      "start": 2360.6666666666674,
+      "duration": 30.5,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 1.02,
+      "voiceSeconds": 27.431972789115648,
+      "sourceHash": "864cc571b5864ee8cb90952c92453f8f73b3961dceb9b03c0ca21df5517acadd",
+      "wavSHA256": "fbd1a343330ae7a4de168c1375b80e262eb1947c7bb3d4583a783667f9ad3493",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 81010
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 55,
+        "journals": 47,
+        "lines": 106,
+        "audit": 73
       }
     },
     {
       "id": "17-btw",
-      "start": 2425.833333333333,
-      "duration": 33.5,
-      "screenFrames": 58,
-      "rawCaptureSeconds": 5.947,
-      "voiceSeconds": 30.457142857142856,
-      "sourceHash": "cc6a8e6d6e70d70fb0db782b20bbeeb547cdcb1a5cc76fd0d1c858e1430b4ec2",
-      "wavSHA256": "51cbaba845fc6472a427c722ab5a0cadb6a91efeab2e59782c0e7cfc818f5871",
+      "start": 2391.1666666666674,
+      "duration": 33.75,
+      "screenFrames": 38,
+      "rawCaptureSeconds": 2.216,
+      "voiceSeconds": 30.744036281179138,
+      "sourceHash": "be75f5a779139dc31bd95a7d252245f1019be25c3087ec912f3a7766d98c3df5",
+      "wavSHA256": "cf300af7eb7c0925e7d24382e6952345be5b1be7c9c6089d8a3e9f9e34d07f0e",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4665,18 +4901,18 @@
         "records": 55,
         "journals": 47,
         "lines": 106,
-        "audit": 78
+        "audit": 73
       }
     },
     {
       "id": "17-waarschuwingen",
-      "start": 2459.333333333333,
-      "duration": 28.333333333333332,
-      "screenFrames": 9,
-      "rawCaptureSeconds": 0.936,
-      "voiceSeconds": 25.271292517006803,
-      "sourceHash": "97358b122603477d8c41f3b1328534387a59179339bff42ed313cf3bda49f4a9",
-      "wavSHA256": "830cb6570ee650ea6600cec3b8c626536097a13cbb26d303554f862b98fb03fb",
+      "start": 2424.9166666666674,
+      "duration": 28.416666666666668,
+      "screenFrames": 8,
+      "rawCaptureSeconds": 0.4,
+      "voiceSeconds": 25.34403628117914,
+      "sourceHash": "c72f1b3f3bc2a400d9c7420fb65247ca49a8721cdb31684e1c95bf262acb98ca",
+      "wavSHA256": "306a19ceec9dd5fb8de530a5f89ca23095c930dc22906210b779c8db1e807b60",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4743,18 +4979,18 @@
         "records": 55,
         "journals": 47,
         "lines": 106,
-        "audit": 78
+        "audit": 73
       }
     },
     {
       "id": "17-aangifte",
-      "start": 2487.6666666666665,
-      "duration": 31.25,
-      "screenFrames": 18,
-      "rawCaptureSeconds": 1.534,
-      "voiceSeconds": 28.220226757369616,
-      "sourceHash": "0852e8e84854e557c1bc7d497cb28517bd61dd8507fccb4ac1b5f12bd5fc1249",
-      "wavSHA256": "8cc4c16d7db3c00b938dfaff47672cc01bc650464429513060af236a6cbfede2",
+      "start": 2453.333333333334,
+      "duration": 30.916666666666668,
+      "screenFrames": 17,
+      "rawCaptureSeconds": 1.668,
+      "voiceSeconds": 27.888027210884353,
+      "sourceHash": "0a543c5850f0983772a45c8a511e68f52a6871c8c39b3c6939874aa33787dc27",
+      "wavSHA256": "e5361ab9314c0cf69619613a6fef5ce846d51a88f2ab8d586b524fdc7ef5a357",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4821,18 +5057,18 @@
         "records": 55,
         "journals": 47,
         "lines": 106,
-        "audit": 78
+        "audit": 73
       }
     },
     {
-      "id": "18-pdfs",
-      "start": 2518.9166666666665,
-      "duration": 27.666666666666668,
-      "screenFrames": 38,
-      "rawCaptureSeconds": 4.139,
-      "voiceSeconds": 24.59011337868481,
-      "sourceHash": "c389da055b70a686e11b482c453feeb71082d24c3371e2e0d81e33e2caf53892",
-      "wavSHA256": "c2b7caae0777fc5653c41faf392858fc7eeaa58d5f810073d1ac46d1bb11b11b",
+      "id": "17-vastleggen",
+      "start": 2484.2500000000005,
+      "duration": 30.583333333333332,
+      "screenFrames": 111,
+      "rawCaptureSeconds": 5.159,
+      "voiceSeconds": 27.528027210884353,
+      "sourceHash": "f542fb42628cc122dec1da56e31afa478293e09bb7388aad5acb25c0a4d18f3f",
+      "wavSHA256": "4df4289cc487071a974f431974e19eff06962584dbae56294a47fef8d6f4d278",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -4899,330 +5135,18 @@
         "records": 55,
         "journals": 47,
         "lines": 106,
-        "audit": 78
+        "audit": 73
       }
     },
     {
-      "id": "18-zip",
-      "start": 2546.583333333333,
-      "duration": 29.75,
-      "screenFrames": 12,
-      "rawCaptureSeconds": 2.965,
-      "voiceSeconds": 26.71092970521542,
-      "sourceHash": "da3d259cae8606618104d13d354e7b895103e7da3a32247c2c5c89231fa54b9c",
-      "wavSHA256": "25cc04c9863dc0937112074f8d7b94f80c5618053ca0ce2655b5bd0d8f85dad1",
-      "ledger": {
-        "revenue": 84711,
-        "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 2000,
-        "bank": [
-          {
-            "name": "Zakelijke oefenbank",
-            "cents": 81010
-          },
-          {
-            "name": "Oefenkas",
-            "cents": 2580
-          },
-          {
-            "name": "Tweede oefenrekening",
-            "cents": 10000
-          }
-        ],
-        "invoices": [
-          {
-            "number": "OEFEN-2026-0001",
-            "total": 35000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0005",
-            "total": 7500,
-            "outstanding": 7500,
-            "status": "Openstaand"
-          },
-          {
-            "number": "OEFEN-2026-0002",
-            "total": 35000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0006",
-            "total": 3000,
-            "outstanding": 0,
-            "status": "Geannuleerd"
-          },
-          {
-            "number": "OEFEN-2026-0007",
-            "total": 5000,
-            "outstanding": 0,
-            "status": "Gecrediteerd"
-          },
-          {
-            "number": "OEFEN-2026-0003",
-            "total": 20000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0004",
-            "total": 5000,
-            "outstanding": 0,
-            "status": "Betaald"
-          }
-        ],
-        "records": 55,
-        "journals": 47,
-        "lines": 106,
-        "audit": 78
-      }
-    },
-    {
-      "id": "18-afsluiten",
-      "start": 2576.333333333333,
-      "duration": 26.5,
-      "screenFrames": 74,
-      "rawCaptureSeconds": 7.706,
-      "voiceSeconds": 23.460136054421767,
-      "sourceHash": "f735880bd3c2409b8a2ff8dd6dd7466c6bcbd91b8cc6476c006e21daa5f38ea9",
-      "wavSHA256": "c78320ebeb23851debf921c44c3e4d2f15ffc79cd6142e8af1a61be5009c8a9c",
-      "ledger": {
-        "revenue": 84711,
-        "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 2000,
-        "bank": [
-          {
-            "name": "Zakelijke oefenbank",
-            "cents": 81010
-          },
-          {
-            "name": "Oefenkas",
-            "cents": 2580
-          },
-          {
-            "name": "Tweede oefenrekening",
-            "cents": 10000
-          }
-        ],
-        "invoices": [
-          {
-            "number": "OEFEN-2026-0001",
-            "total": 35000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0005",
-            "total": 7500,
-            "outstanding": 7500,
-            "status": "Openstaand"
-          },
-          {
-            "number": "OEFEN-2026-0002",
-            "total": 35000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0006",
-            "total": 3000,
-            "outstanding": 0,
-            "status": "Geannuleerd"
-          },
-          {
-            "number": "OEFEN-2026-0007",
-            "total": 5000,
-            "outstanding": 0,
-            "status": "Gecrediteerd"
-          },
-          {
-            "number": "OEFEN-2026-0003",
-            "total": 20000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0004",
-            "total": 5000,
-            "outstanding": 0,
-            "status": "Betaald"
-          }
-        ],
-        "records": 56,
-        "journals": 47,
-        "lines": 106,
-        "audit": 80
-      }
-    },
-    {
-      "id": "18-bescherming",
-      "start": 2602.833333333333,
-      "duration": 27.583333333333332,
-      "screenFrames": 9,
-      "rawCaptureSeconds": 0.957,
-      "voiceSeconds": 24.57469387755102,
-      "sourceHash": "dff13c15acfa36d2f59b57941e784b91388c788b0aade62eedd060c80c4fbdf3",
-      "wavSHA256": "97802b1f67c565bc0b5874d733c942de692a84c5285cdec208cc4f3dc1d0f3a6",
-      "ledger": {
-        "revenue": 84711,
-        "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 2000,
-        "bank": [
-          {
-            "name": "Zakelijke oefenbank",
-            "cents": 81010
-          },
-          {
-            "name": "Oefenkas",
-            "cents": 2580
-          },
-          {
-            "name": "Tweede oefenrekening",
-            "cents": 10000
-          }
-        ],
-        "invoices": [
-          {
-            "number": "OEFEN-2026-0001",
-            "total": 35000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0005",
-            "total": 7500,
-            "outstanding": 7500,
-            "status": "Openstaand"
-          },
-          {
-            "number": "OEFEN-2026-0002",
-            "total": 35000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0006",
-            "total": 3000,
-            "outstanding": 0,
-            "status": "Geannuleerd"
-          },
-          {
-            "number": "OEFEN-2026-0007",
-            "total": 5000,
-            "outstanding": 0,
-            "status": "Gecrediteerd"
-          },
-          {
-            "number": "OEFEN-2026-0003",
-            "total": 20000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0004",
-            "total": 5000,
-            "outstanding": 0,
-            "status": "Betaald"
-          }
-        ],
-        "records": 56,
-        "journals": 47,
-        "lines": 106,
-        "audit": 80
-      }
-    },
-    {
-      "id": "18-heropenen",
-      "start": 2630.4166666666665,
-      "duration": 27.666666666666668,
-      "screenFrames": 43,
-      "rawCaptureSeconds": 4.467,
-      "voiceSeconds": 24.65596371882086,
-      "sourceHash": "27dd7f514e92dfedaa9ce2b14f85ac79ca6b534e23a9596be79f349878425b65",
-      "wavSHA256": "725998f3231e2e34084a4f65035b20ecd9f6f329032fd24777da1579d6b35fb8",
-      "ledger": {
-        "revenue": 84711,
-        "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 2000,
-        "bank": [
-          {
-            "name": "Zakelijke oefenbank",
-            "cents": 81010
-          },
-          {
-            "name": "Oefenkas",
-            "cents": 2580
-          },
-          {
-            "name": "Tweede oefenrekening",
-            "cents": 10000
-          }
-        ],
-        "invoices": [
-          {
-            "number": "OEFEN-2026-0001",
-            "total": 35000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0005",
-            "total": 7500,
-            "outstanding": 7500,
-            "status": "Openstaand"
-          },
-          {
-            "number": "OEFEN-2026-0002",
-            "total": 35000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0006",
-            "total": 3000,
-            "outstanding": 0,
-            "status": "Geannuleerd"
-          },
-          {
-            "number": "OEFEN-2026-0007",
-            "total": 5000,
-            "outstanding": 0,
-            "status": "Gecrediteerd"
-          },
-          {
-            "number": "OEFEN-2026-0003",
-            "total": 20000,
-            "outstanding": 0,
-            "status": "Betaald"
-          },
-          {
-            "number": "OEFEN-2026-0004",
-            "total": 5000,
-            "outstanding": 0,
-            "status": "Betaald"
-          }
-        ],
-        "records": 56,
-        "journals": 47,
-        "lines": 106,
-        "audit": 81
-      }
-    },
-    {
-      "id": "19-lening",
-      "start": 2658.083333333333,
+      "id": "17-aangifte-effect",
+      "start": 2514.833333333334,
       "duration": 29.583333333333332,
-      "screenFrames": 77,
-      "rawCaptureSeconds": 5.456,
-      "voiceSeconds": 26.583219954648527,
-      "sourceHash": "e7b796ebe12fd901a2731ceebac4fca591ce15c4ee92a86cd1004a2d2519b3c2",
-      "wavSHA256": "9ac490c0fd8a273e8a0beffa1b19d0cf2a93f07a93d6732f3fbd2a0b46e6db83",
+      "screenFrames": 47,
+      "rawCaptureSeconds": 2.908,
+      "voiceSeconds": 26.568027210884352,
+      "sourceHash": "50758711ac178b2e1839332a63f4f1d0cb4555e93d0116b0254bdf961155fb15",
+      "wavSHA256": "6933254033c8cb79d23325ce8330ff0384bf8eb77274dbe7b9b0932df6610407",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -5286,21 +5210,21 @@
             "status": "Betaald"
           }
         ],
-        "records": 57,
-        "journals": 48,
-        "lines": 108,
-        "audit": 82
+        "records": 56,
+        "journals": 47,
+        "lines": 106,
+        "audit": 74
       }
     },
     {
-      "id": "19-nieuwelening",
-      "start": 2687.6666666666665,
-      "duration": 24.916666666666668,
-      "screenFrames": 45,
-      "rawCaptureSeconds": 3.39,
-      "voiceSeconds": 21.834739229024944,
-      "sourceHash": "c2189a51c1eedc7672d546cda2ef3cbc53b8f18c2f30be5ac0171cd6f08fd910",
-      "wavSHA256": "d0813ac654f1c3e3e2f157543bec0c690fee8f616b746eae996d14c11bb637a3",
+      "id": "17-btw-deel",
+      "start": 2544.4166666666674,
+      "duration": 29.083333333333332,
+      "screenFrames": 65,
+      "rawCaptureSeconds": 3.052,
+      "voiceSeconds": 26.016009070294785,
+      "sourceHash": "ef6133ec073327656b442870f572a31f50614761aea0ed49426c3c0a25c6ecaa",
+      "wavSHA256": "694a03e1f2d87c424edafc0083928f4045dd366c80de21cdf091381313a57a61",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -5364,21 +5288,21 @@
             "status": "Betaald"
           }
         ],
-        "records": 57,
-        "journals": 48,
-        "lines": 108,
-        "audit": 82
+        "records": 56,
+        "journals": 47,
+        "lines": 106,
+        "audit": 74
       }
     },
     {
-      "id": "19-middel",
-      "start": 2712.583333333333,
-      "duration": 29.333333333333332,
-      "screenFrames": 92,
-      "rawCaptureSeconds": 7.404,
-      "voiceSeconds": 26.258140589569162,
-      "sourceHash": "7d7bbaa5f7c1da5b6bbbdb839d6748b45127a467d07449ffb32a932ceefad9f9",
-      "wavSHA256": "a6587b1b5e33aabb21e17fbb2c5c6014b0f0f2576f0a5da5f5b61bcc0e361afe",
+      "id": "17-btw-herhalen",
+      "start": 2573.500000000001,
+      "duration": 28.666666666666668,
+      "screenFrames": 36,
+      "rawCaptureSeconds": 3.528,
+      "voiceSeconds": 25.631972789115647,
+      "sourceHash": "6564ab39813aac769337c529f2273700bbbc3a609ecc243af04f541a1a6e9ab1",
+      "wavSHA256": "e44db683e03fb31cfe1175840fc07268886bdc0c68fa8a7daf6c4df7247a39ca",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
@@ -5387,7 +5311,7 @@
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 79010
           },
           {
             "name": "Oefenkas",
@@ -5445,27 +5369,573 @@
         "records": 58,
         "journals": 49,
         "lines": 110,
+        "audit": 75
+      }
+    },
+    {
+      "id": "17-btw-rest",
+      "start": 2602.1666666666674,
+      "duration": 27.916666666666668,
+      "screenFrames": 99,
+      "rawCaptureSeconds": 5.055,
+      "voiceSeconds": 24.888027210884353,
+      "sourceHash": "283f1473f4a6d170497b64041f86cd9b3abd7b7b24238e042a8a7bad5acd8b87",
+      "wavSHA256": "030ab4e9902fc67221467177eabf330925615b20e28b21265a3e088c0bbad6dd",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 73634
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 60,
+        "journals": 51,
+        "lines": 114,
+        "audit": 76
+      }
+    },
+    {
+      "id": "17-btw-bank",
+      "start": 2630.083333333334,
+      "duration": 27.75,
+      "screenFrames": 15,
+      "rawCaptureSeconds": 0.994,
+      "voiceSeconds": 24.744036281179138,
+      "sourceHash": "2a549536cef3c56abdedd911ffaf017b9a7b71b65a06ebec4b04a8e4f8632281",
+      "wavSHA256": "9e7853404d5e859b859c998cb2863a1d7e5f5b7284d857d3308f6610d9c65538",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 73634
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 60,
+        "journals": 51,
+        "lines": 114,
+        "audit": 76
+      }
+    },
+    {
+      "id": "17-btw-correctie",
+      "start": 2657.833333333334,
+      "duration": 26.833333333333332,
+      "screenFrames": 87,
+      "rawCaptureSeconds": 5.384,
+      "voiceSeconds": 23.831972789115646,
+      "sourceHash": "54cea9c036d4375c4b4306979856bee2d68b9ad2c3d37b98e80f709698169685",
+      "wavSHA256": "681dab0f62184e3565f1b3ae7a99e0a5fcb8c9d052e7f8e263f41d82029d7a9b",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 73634
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 61,
+        "journals": 52,
+        "lines": 116,
+        "audit": 77
+      }
+    },
+    {
+      "id": "17-btw-koppel",
+      "start": 2684.6666666666674,
+      "duration": 26.416666666666668,
+      "screenFrames": 76,
+      "rawCaptureSeconds": 3.138,
+      "voiceSeconds": 23.4,
+      "sourceHash": "bad0281220816c0ffcd6fb165446dd048ba080ee1f30d0d7becc543eceecc05c",
+      "wavSHA256": "f51db75b66c0a6f910268cde08a4509d7671f58974152e9360d02e39fa8e581d",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 420,
+        "cost": 2000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 73634
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 62,
+        "journals": 53,
+        "lines": 118,
+        "audit": 78
+      }
+    },
+    {
+      "id": "17-teruggaaf-bron",
+      "start": 2711.083333333334,
+      "duration": 28.25,
+      "screenFrames": 114,
+      "rawCaptureSeconds": 7.444,
+      "voiceSeconds": 25.176009070294786,
+      "sourceHash": "e7240944b4a857863a88c1536e63257f1fa91e1758f8488521a91bd4052ec094",
+      "wavSHA256": "bb7ac2aaae5d701ae57ee329fc087cf01f76a62ef657d8fe422517cf6310d363",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 73634
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 63,
+        "journals": 54,
+        "lines": 123,
+        "audit": 81
+      }
+    },
+    {
+      "id": "17-teruggaaf-aangifte",
+      "start": 2739.333333333334,
+      "duration": 28.333333333333332,
+      "screenFrames": 135,
+      "rawCaptureSeconds": 7.273,
+      "voiceSeconds": 25.296009070294783,
+      "sourceHash": "2233a6cb2534a30a3099bc3f9f6274fc534a1c6066ab774f90b3a22f2c939059",
+      "wavSHA256": "7f54dc04f0b6237fe14270cb41f72c95fc97eb5bfb11e928c2dbba28daed82c8",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 73634
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 64,
+        "journals": 54,
+        "lines": 123,
+        "audit": 82
+      }
+    },
+    {
+      "id": "17-teruggaaf-ontvangst",
+      "start": 2767.6666666666674,
+      "duration": 24.666666666666668,
+      "screenFrames": 99,
+      "rawCaptureSeconds": 5.383,
+      "voiceSeconds": 21.648027210884354,
+      "sourceHash": "5480d137b555960191262707fb9723d96b71cac8a078d20c8e1c96f31c4a64a8",
+      "wavSHA256": "bb6838f8cbb3ebcc71852eb6c173d90e049f64fa0b34a26efb82fc033c986bdc",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 66,
+        "journals": 56,
+        "lines": 127,
         "audit": 83
       }
     },
     {
-      "id": "19-afschrijven",
-      "start": 2741.9166666666665,
-      "duration": 28.833333333333332,
-      "screenFrames": 75,
-      "rawCaptureSeconds": 5.76,
-      "voiceSeconds": 25.76671201814059,
-      "sourceHash": "3e2db3d703d47c99a22765412d5a2d1a94e8005d95c621943291bd10429788ff",
-      "wavSHA256": "370c4474d2d12af8a802d9f6e56fa10e46d8945a2979f1229e46d8546a370af7",
+      "id": "17-periodegrenzen",
+      "start": 2792.333333333334,
+      "duration": 27.583333333333332,
+      "screenFrames": 58,
+      "rawCaptureSeconds": 2.656,
+      "voiceSeconds": 24.576009070294784,
+      "sourceHash": "51a3adc5503b7912873822225da7b16cc5c79588f08cb139f8d554e91da04870",
+      "wavSHA256": "d97f04c13af4ff7ce20e81132d3b2eb95d86bdbd00344ecc9ba38261fa8aa75d",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 3000,
+        "inputVAT": 2520,
+        "cost": 12000,
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 75734
           },
           {
             "name": "Oefenkas",
@@ -5520,30 +5990,732 @@
             "status": "Betaald"
           }
         ],
-        "records": 59,
-        "journals": 50,
-        "lines": 112,
-        "audit": 84
+        "records": 66,
+        "journals": 56,
+        "lines": 127,
+        "audit": 83
+      }
+    },
+    {
+      "id": "18-pdfs",
+      "start": 2819.9166666666674,
+      "duration": 25.75,
+      "screenFrames": 39,
+      "rawCaptureSeconds": 3.07,
+      "voiceSeconds": 22.728027210884353,
+      "sourceHash": "019771afeacc4021581bb9dfb287fa6b77d6063fc161fb4e2db7f44d609b8edc",
+      "wavSHA256": "af18ae8a5d659a3f1a144f882015433a83d999cd279113175401e8f251b8159e",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 66,
+        "journals": 56,
+        "lines": 127,
+        "audit": 83
+      }
+    },
+    {
+      "id": "18-zip",
+      "start": 2845.6666666666674,
+      "duration": 27.0,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 2.225,
+      "voiceSeconds": 23.928027210884355,
+      "sourceHash": "f2ffb57c6d017a0b9418a6ae7bc719b223ee70df47dfbc4f3375790044e97366",
+      "wavSHA256": "50fc312ad5db1f826d9dc08aebb80a52f90335196c107f3ab830222d9d179c54",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 66,
+        "journals": 56,
+        "lines": 127,
+        "audit": 83
+      }
+    },
+    {
+      "id": "18-afsluiten",
+      "start": 2872.6666666666674,
+      "duration": 24.5,
+      "screenFrames": 74,
+      "rawCaptureSeconds": 4.364,
+      "voiceSeconds": 21.456009070294783,
+      "sourceHash": "7a41e387f1194a97cf58ef51400201c5aa2274e2a0f03a9778ec8a5e2f5c955c",
+      "wavSHA256": "a08ce5f8633acc7428f09be8c918d9f5579173f0a4b3ba6fb7592fdf2fac883e",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 67,
+        "journals": 56,
+        "lines": 127,
+        "audit": 85
+      }
+    },
+    {
+      "id": "18-bescherming",
+      "start": 2897.1666666666674,
+      "duration": 24.75,
+      "screenFrames": 8,
+      "rawCaptureSeconds": 0.434,
+      "voiceSeconds": 21.671972789115646,
+      "sourceHash": "4c7532e31a0c0a76e0606521e5cbdb0c7fbc2fb1ff11c636ea1b045e4af0b6dd",
+      "wavSHA256": "8d0adf0d9085cd5f5e124b2840542e380a291b1669bed574777a1598a65f1b2a",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 67,
+        "journals": 56,
+        "lines": 127,
+        "audit": 85
+      }
+    },
+    {
+      "id": "18-heropenen",
+      "start": 2921.9166666666674,
+      "duration": 25.833333333333332,
+      "screenFrames": 44,
+      "rawCaptureSeconds": 2.411,
+      "voiceSeconds": 22.8,
+      "sourceHash": "dd694f9ebbf8babe3c252226ac5e62932e33978dafafd2322c08ba4fc439bbb9",
+      "wavSHA256": "da0daef3b37cacc62cc32cb1c967d51177088db4e1648df3bb4e393e80c301f1",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 67,
+        "journals": 56,
+        "lines": 127,
+        "audit": 86
+      }
+    },
+    {
+      "id": "19-lening",
+      "start": 2947.750000000001,
+      "duration": 27.75,
+      "screenFrames": 78,
+      "rawCaptureSeconds": 3.55,
+      "voiceSeconds": 24.744036281179138,
+      "sourceHash": "7340be2d8b5a1455698da1f9c6d2919789625b17e6befd49a9ba3e526391754c",
+      "wavSHA256": "64b6abde3b898631e56b1a4a215ff576169846725a038d73107f0cc9e9b17428",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 68,
+        "journals": 57,
+        "lines": 129,
+        "audit": 87
+      }
+    },
+    {
+      "id": "19-nieuwelening",
+      "start": 2975.500000000001,
+      "duration": 23.75,
+      "screenFrames": 42,
+      "rawCaptureSeconds": 3.226,
+      "voiceSeconds": 20.688027210884353,
+      "sourceHash": "117cbcb633cc50f8fbba3d6c11b29add4472340be7fcbe0272f424555860abbf",
+      "wavSHA256": "72c3fe610b2418976d8f168d8ac34e922f12eec802c825e48eae211fab4fa83a",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 68,
+        "journals": 57,
+        "lines": 129,
+        "audit": 87
+      }
+    },
+    {
+      "id": "19-middel",
+      "start": 2999.250000000001,
+      "duration": 28.833333333333332,
+      "screenFrames": 86,
+      "rawCaptureSeconds": 5.024,
+      "voiceSeconds": 25.82403628117914,
+      "sourceHash": "f0b73a5282d6b9d6a6a0798a7d0b109e58f254fc1ce4dc90e7c237a2ae672abc",
+      "wavSHA256": "a7ed49c4e08620fa7c92d7e5c4424ad765111e1414e7daa27b87abd3653e9569",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 12000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 69,
+        "journals": 58,
+        "lines": 131,
+        "audit": 88
+      }
+    },
+    {
+      "id": "19-afschrijven",
+      "start": 3028.0833333333344,
+      "duration": 26.75,
+      "screenFrames": 64,
+      "rawCaptureSeconds": 5.177,
+      "voiceSeconds": 23.736009070294784,
+      "sourceHash": "270a2b5394bb7dedf804ea2b4442c7a1a73cd4aaa06b9da5eb1bcaff647544e8",
+      "wavSHA256": "fd5a901ff96505a04d16eb55ce6faddbcfb99af1cb5f4c9f41b2c5eeb0487d78",
+      "ledger": {
+        "revenue": 84711,
+        "outputVAT": 17789,
+        "inputVAT": 2520,
+        "cost": 13000,
+        "bank": [
+          {
+            "name": "Zakelijke oefenbank",
+            "cents": 75734
+          },
+          {
+            "name": "Oefenkas",
+            "cents": 2580
+          },
+          {
+            "name": "Tweede oefenrekening",
+            "cents": 10000
+          }
+        ],
+        "invoices": [
+          {
+            "number": "OEFEN-2026-0001",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0005",
+            "total": 7500,
+            "outstanding": 7500,
+            "status": "Openstaand"
+          },
+          {
+            "number": "OEFEN-2026-0002",
+            "total": 35000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0006",
+            "total": 3000,
+            "outstanding": 0,
+            "status": "Geannuleerd"
+          },
+          {
+            "number": "OEFEN-2026-0007",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Gecrediteerd"
+          },
+          {
+            "number": "OEFEN-2026-0003",
+            "total": 20000,
+            "outstanding": 0,
+            "status": "Betaald"
+          },
+          {
+            "number": "OEFEN-2026-0004",
+            "total": 5000,
+            "outstanding": 0,
+            "status": "Betaald"
+          }
+        ],
+        "records": 70,
+        "journals": 59,
+        "lines": 133,
+        "audit": 89
       }
     },
     {
       "id": "19-controle",
-      "start": 2770.75,
-      "duration": 29.583333333333332,
-      "screenFrames": 17,
-      "rawCaptureSeconds": 1.5,
-      "voiceSeconds": 26.548390022675736,
-      "sourceHash": "032036d988402a0bf6113157bf404cdb79069bdce4bdc0f4d4c653c92532e6b2",
-      "wavSHA256": "6304b18475546b9f0d247d8a2385a02d47a9655801cf69887d9cf67966408869",
+      "start": 3054.8333333333344,
+      "duration": 26.916666666666668,
+      "screenFrames": 16,
+      "rawCaptureSeconds": 2.361,
+      "voiceSeconds": 23.856009070294785,
+      "sourceHash": "fbf94819c210be76ee9453e4a1b334bc30e2860fcf9d25e831770cf00f55ef29",
+      "wavSHA256": "2239ae69f9db1950654cb04038a141c32a98896b43696c9ba91656b10cbafb65",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 3000,
+        "inputVAT": 2520,
+        "cost": 13000,
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 75734
           },
           {
             "name": "Oefenkas",
@@ -5598,30 +6770,30 @@
             "status": "Betaald"
           }
         ],
-        "records": 59,
-        "journals": 50,
-        "lines": 112,
-        "audit": 84
+        "records": 70,
+        "journals": 59,
+        "lines": 133,
+        "audit": 89
       }
     },
     {
       "id": "20-historie",
-      "start": 2800.3333333333335,
-      "duration": 31.083333333333332,
-      "screenFrames": 51,
-      "rawCaptureSeconds": 5.567,
-      "voiceSeconds": 28.01904761904762,
-      "sourceHash": "6eb66f105e7f6d8dcf28a44af6aeceb879c0650351ba1dee33494ce5962e8eb2",
-      "wavSHA256": "4acb98bc3ebc4c472df840898d8588174018abb0325c212391651ac5d3ef939e",
+      "start": 3081.750000000001,
+      "duration": 29.25,
+      "screenFrames": 53,
+      "rawCaptureSeconds": 3.398,
+      "voiceSeconds": 26.231972789115645,
+      "sourceHash": "da0a8fab3180203ea4bf390a7574237698b31b1c4f89c2a9e448ef8345e94e6b",
+      "wavSHA256": "436753d226d17b60db9abaff4970979f88d5f938f3fc13206c8a26763e93550c",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 3000,
+        "inputVAT": 2520,
+        "cost": 13000,
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 75734
           },
           {
             "name": "Oefenkas",
@@ -5676,30 +6848,30 @@
             "status": "Betaald"
           }
         ],
-        "records": 59,
-        "journals": 50,
-        "lines": 112,
-        "audit": 84
+        "records": 70,
+        "journals": 59,
+        "lines": 133,
+        "audit": 89
       }
     },
     {
       "id": "20-bewaar",
-      "start": 2831.416666666667,
-      "duration": 28.166666666666668,
-      "screenFrames": 43,
-      "rawCaptureSeconds": 4.054,
-      "voiceSeconds": 25.120362811791384,
-      "sourceHash": "9f183c9e7c5ba68c34bc262433827173c63ef40c9a169ca92d0008e83fb7546c",
-      "wavSHA256": "4b8b1d0853aa73fa81ef027af628fc6f42cc723da1efffc029213bba6ef563af",
+      "start": 3111.000000000001,
+      "duration": 27.583333333333332,
+      "screenFrames": 40,
+      "rawCaptureSeconds": 3.601,
+      "voiceSeconds": 24.576009070294784,
+      "sourceHash": "2d4893d1918bbae7abc05537d27b050639bcd466ed4026e214f9e11f5153c7d3",
+      "wavSHA256": "088d6ebd5787c7ab73711e4318a18f9dde4b492b64c80595d4c1b49c4f46a96f",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 3000,
+        "inputVAT": 2520,
+        "cost": 13000,
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 75734
           },
           {
             "name": "Oefenkas",
@@ -5754,30 +6926,30 @@
             "status": "Betaald"
           }
         ],
-        "records": 59,
-        "journals": 50,
-        "lines": 112,
-        "audit": 84
+        "records": 70,
+        "journals": 59,
+        "lines": 133,
+        "audit": 89
       }
     },
     {
       "id": "20-correctie",
-      "start": 2859.5833333333335,
-      "duration": 27.583333333333332,
-      "screenFrames": 35,
-      "rawCaptureSeconds": 2.523,
-      "voiceSeconds": 24.539863945578233,
-      "sourceHash": "1ede32dd264b795a4dcbc7a7a54203d5779823dacbd214e1f83af8b24e4dcbaa",
-      "wavSHA256": "29b2c46f535989a30247b4629c0ada116724e0790bdadcd7356fd56ac7bca979",
+      "start": 3138.5833333333344,
+      "duration": 26.166666666666668,
+      "screenFrames": 32,
+      "rawCaptureSeconds": 1.791,
+      "voiceSeconds": 23.088027210884352,
+      "sourceHash": "dd0197ea007ee27bc66ea9c74dd4ee5f6f6c1677256373dde584ac01021d751e",
+      "wavSHA256": "245db0307b2bd1184ed22c812ab5739cb709e993f8644ed6b5c0bc918461b245",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 3000,
+        "inputVAT": 2520,
+        "cost": 13000,
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 75734
           },
           {
             "name": "Oefenkas",
@@ -5832,30 +7004,30 @@
             "status": "Betaald"
           }
         ],
-        "records": 59,
-        "journals": 50,
-        "lines": 112,
-        "audit": 84
+        "records": 70,
+        "journals": 59,
+        "lines": 133,
+        "audit": 89
       }
     },
     {
       "id": "20-fouten",
-      "start": 2887.166666666667,
-      "duration": 32.166666666666664,
-      "screenFrames": 25,
-      "rawCaptureSeconds": 4.355,
-      "voiceSeconds": 29.121995464852606,
-      "sourceHash": "d5a7662ec8d642db2a9c0284b99d2478c7b74b1c1f307ffb981dce4f19874cc0",
-      "wavSHA256": "afc2b545c5b802e34df14c85c21bcf2d0822817a6bdfe64aba61dd67d831a4dd",
+      "start": 3164.750000000001,
+      "duration": 31.666666666666668,
+      "screenFrames": 26,
+      "rawCaptureSeconds": 5.667,
+      "voiceSeconds": 28.584036281179138,
+      "sourceHash": "8bdd47e83b4900724b62c948397e536545acff85a69cc537593721eaad1a866b",
+      "wavSHA256": "e10aa23aeb2db8dac0fe7f871037412602ce4f7fd5105795bb0eeba945b7529a",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 3000,
+        "inputVAT": 2520,
+        "cost": 13000,
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 75734
           },
           {
             "name": "Oefenkas",
@@ -5910,30 +7082,30 @@
             "status": "Betaald"
           }
         ],
-        "records": 59,
-        "journals": 50,
-        "lines": 112,
-        "audit": 84
+        "records": 70,
+        "journals": 59,
+        "lines": 133,
+        "audit": 89
       }
     },
     {
       "id": "20-agenda",
-      "start": 2919.3333333333335,
-      "duration": 27.666666666666668,
-      "screenFrames": 13,
-      "rawCaptureSeconds": 1.385,
-      "voiceSeconds": 24.60952380952381,
-      "sourceHash": "42b8b3cbf6c1b4934679c7224989b1b6e102f9a5f9556b86a2089471ba7edd72",
-      "wavSHA256": "089c8c003835ae638bc4213e4da31a9cda6d053a31e316c1e74c53dbac631029",
+      "start": 3196.4166666666674,
+      "duration": 25.75,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 1.74,
+      "voiceSeconds": 22.728027210884353,
+      "sourceHash": "7a5f57335fa623f5042b7b359be134c6431e0ff5a524e2c9fba3f5b2203905db",
+      "wavSHA256": "937f27bb08ce35aebec0d8edfd984dd9480655d5a66add3a7b5093a76ee81500",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 3000,
+        "inputVAT": 2520,
+        "cost": 13000,
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 75734
           },
           {
             "name": "Oefenkas",
@@ -5988,30 +7160,30 @@
             "status": "Betaald"
           }
         ],
-        "records": 59,
-        "journals": 50,
-        "lines": 112,
-        "audit": 84
+        "records": 70,
+        "journals": 59,
+        "lines": 133,
+        "audit": 89
       }
     },
     {
       "id": "20-verder",
-      "start": 2947.0,
-      "duration": 36.833333333333336,
-      "screenFrames": 23,
-      "rawCaptureSeconds": 2.422,
-      "voiceSeconds": 33.77759637188208,
-      "sourceHash": "0152949d70876d31913d06273de3b66627b343222b76e614e1279ddb76fe3f12",
-      "wavSHA256": "0a2f53aaa8048171ea8f4311a601797a8c9aa4b601a6ff5be9e0481150a6b2df",
+      "start": 3222.1666666666674,
+      "duration": 34.5,
+      "screenFrames": 24,
+      "rawCaptureSeconds": 1.913,
+      "voiceSeconds": 31.464036281179137,
+      "sourceHash": "e56b29f7b8e9f7ec84dd106afd4e99767755801448eac6f320385ef34a5461d6",
+      "wavSHA256": "4a250c72efdc9c5a0017eb1e6fe83c0df75627bf17e11508d4cba0cad8576e2f",
       "ledger": {
         "revenue": 84711,
         "outputVAT": 17789,
-        "inputVAT": 420,
-        "cost": 3000,
+        "inputVAT": 2520,
+        "cost": 13000,
         "bank": [
           {
             "name": "Zakelijke oefenbank",
-            "cents": 81010
+            "cents": 75734
           },
           {
             "name": "Oefenkas",
@@ -6066,10 +7238,10 @@
             "status": "Betaald"
           }
         ],
-        "records": 59,
-        "journals": 50,
-        "lines": 112,
-        "audit": 84
+        "records": 70,
+        "journals": 59,
+        "lines": 133,
+        "audit": 89
       }
     }
   ]

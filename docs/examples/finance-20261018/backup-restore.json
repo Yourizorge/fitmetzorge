@@ -1,0 +1,13 @@
+{
+  "project": "hgoygcviutmynaihcvpd",
+  "created_at": "2026-10-18T08:27:45.100122+00:00",
+  "verified_at": "2026-10-18T08:28:02.917Z",
+  "isolatedRowsAndConstraintsRestored": true,
+  "storageObjects": 3,
+  "embeddedCustomerPhotosIncluded": true,
+  "authRecordsEncrypted": true,
+  "privateBinariesDecryptedAndVerified": 3,
+  "applicationTables": 20,
+  "checkpointOutsideGit": true,
+  "noProductionRestore": true
+}

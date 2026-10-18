@@ -1,13 +1,14 @@
 {
-  "version": "3.0.0",
-  "checked": "2026-10-15",
+  "version": "4.0.0",
+  "checked": "2026-10-18",
   "sourceHashes": {
-    "tutorial/content.js": "9246fbbe93266103aafcd859ef536ecadf4c27e3e77b6cb8af3665958737665b",
-    "tutorial/model.js": "4ff11e626c5b852d1f8124c5a9e67502e307d3a115918dc688e45fd2f70fb3b4",
-    "tutorial/beginner-content.js": "fd9bef14ffe420785de50c857913af863654fe65a42f7a1c4476bd61870e4c67",
-    "tutorial/spoken-course-script.json": "18fb4786afff01dc1488be9294e4ff5e585139858ffd0b6c2102d56c9b08474c"
+    "tutorial/content.js": "dcb9d02f7d671eff4556b240d91d3259d7bacaa4578112792bd3f9627cf7355a",
+    "tutorial/model.js": "6593fb18f66710b603ebdadc3441f3924cca0536856fa39d6c7ef4cc30d0a89a",
+    "tutorial/beginner-content.js": "db64a8b9c1446dec6615d177662aa616c46529e34d95c7d76e83f5a52ba61550",
+    "tutorial/finance-content.js": "3b432bb553d7facd3cc95c9d65b4bf560630715f8b150c250b14c2bbb3e2202b",
+    "tutorial/spoken-course-script.json": "422ced8be32011765a048cf6facb32186cbcbfc378df56e0f4f179aa0a14480c"
   },
   "pdf": "output/pdf/APPFMZ-boekhouden-voor-beginners.pdf",
-  "pdfSHA256": "d155aecb3398a06ab3c7072858d0123c5aa528ca01d232a150137c7152db455d",
+  "pdfSHA256": "a7812e5bdb61163c37484e987dadb295e060a4a3107cd252608ef1ef2d0dbddd",
   "generatedFromSameContent": true
 }

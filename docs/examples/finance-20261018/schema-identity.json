@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-18T08:40:52.314Z",
+  "migration": "20261018073658_appfmz_vat_settlements.sql",
+  "migrationSHA256": "51254833ccb1085661b7c145a370616ff61dda39166b553985fa6159d5a6a53f",
+  "productionVersion": "20261018073658",
+  "productionName": "appfmz_vat_settlements",
+  "allSevenFunctionBodiesAndApplicationACLsMatchLocalTests": true,
+  "productionDefaultServiceRoleExecuteGrantRetained": true,
+  "constraintAndTriggerMatch": true,
+  "normalizedOnlyCRLFAndOuterWhitespace": true,
+  "functions": [
+    {
+      "schema": "fmz_accounting",
+      "name": "guard_vat_bank",
+      "definitionSHA256": "fc5ddea1597049d0c0d5882bff5eb9aa34fe2ac0cc7f92892b7dab9ab28b1a44"
+    },
+    {
+      "schema": "fmz_accounting",
+      "name": "vat_basis",
+      "definitionSHA256": "31826f3c3c6594e5ede84d966712a637787168c7b9ed559ded8d1e32e6d8236a"
+    },
+    {
+      "schema": "fmz_accounting",
+      "name": "vat_command",
+      "definitionSHA256": "58744f6b02338c70b7fcc0805eb241648270301f85d92bfee59c2beec679fe09"
+    },
+    {
+      "schema": "fmz_accounting",
+      "name": "vat_plan",
+      "definitionSHA256": "dbe96dd9f6a91b879a012f256cedb88df5441c27090839c61f8f404ff2f34cdf"
+    },
+    {
+      "schema": "fmz_accounting",
+      "name": "vat_preview",
+      "definitionSHA256": "e2b0fbf88d3e45c7842c6e3fc5216d4b0d807fcbe39021cc20357ccdf8525252"
+    },
+    {
+      "schema": "public",
+      "name": "fmz_vat_command",
+      "definitionSHA256": "3d6f3acff441c3fe73864d67e0df8661f753417ec4a40ffaf72993bead690912"
+    },
+    {
+      "schema": "public",
+      "name": "fmz_vat_preview",
+      "definitionSHA256": "97ace5adf98921014de2c93305f7d67c5c277fc28bca3ed6835b73aaa9b7f4e5"
+    }
+  ]
+}

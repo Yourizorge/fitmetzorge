@@ -1,7 +1,7 @@
 /* Host bridge accepts progress flags only. Never accepts a URL, payload, command or file. */
 window.FMZTutorial=(()=>{
  const KEY='fmz-course-progress-v1';let dialog=null,frame=null,listener=null,launcher=null,nonce='',helpDialog=null;
- const fresh=()=>({version:1,current:1,completed:[],last:0,tasks:[],beginnerDone:[],reviewed:[]});
+ const fresh=()=>({version:1,current:1,completed:[],last:0,tasks:[],beginnerDone:[],reviewed:[],video:{version:'',position:0,volume:1,rate:1}});
  function clean(value){
   const p=fresh();if(!value||typeof value!=='object')return p;
   if(Number.isInteger(value.current)&&value.current>=1&&value.current<=27)p.current=value.current;
@@ -9,6 +9,7 @@ window.FMZTutorial=(()=>{
   if(Array.isArray(value.completed))p.completed=[...new Set(value.completed.filter(n=>Number.isInteger(n)&&n>=1&&n<=27))].sort((a,b)=>a-b);
   if(Array.isArray(value.tasks))p.tasks=[...new Set(value.tasks.filter(s=>typeof s==='string'&&/^(week|month|quarter|year)-(?:[0-9]|1[0-2])$/.test(s)))].slice(0,45);
   for(const [key,max] of [['beginnerDone',12],['reviewed',27]])if(Array.isArray(value[key]))p[key]=[...new Set(value[key].filter(n=>Number.isInteger(n)&&n>=1&&n<=max))];
+  if(value.video&&typeof value.video==='object'){const v=value.video;if(typeof v.version==='string'&&/^[a-zA-Z0-9._-]{1,30}$/.test(v.version))p.video.version=v.version;if(Number.isFinite(v.position)&&v.position>=0&&v.position<=14400)p.video.position=Math.floor(v.position);if(Number.isFinite(v.volume)&&v.volume>=0&&v.volume<=1)p.video.volume=v.volume;if([.75,1,1.25,1.5,2].includes(v.rate))p.video.rate=v.rate;}
   return p;
  }
  function read(){try{return clean(JSON.parse(localStorage.getItem(KEY)))}catch{return fresh();}}
@@ -18,7 +19,7 @@ window.FMZTutorial=(()=>{
  function open(lesson=0){
   close();launcher=document.activeElement;nonce=crypto.randomUUID();dialog=document.createElement('dialog');dialog.className='fmz-course-host';dialog.setAttribute('aria-label','APPFMZ uitleg en oefenen');
   const header=document.createElement('header'),title=document.createElement('strong');title.textContent='APPFMZ · Uitleg & oefenen';const button=document.createElement('button');button.type='button';button.textContent='Naar mijn echte administratie';button.addEventListener('click',close);header.append(title,button);
-  frame=document.createElement('iframe');frame.title='Beginnerscursus en afgeschermde oefenadministratie';frame.setAttribute('sandbox','allow-scripts allow-downloads');frame.referrerPolicy='no-referrer';frame.src='tutorial/course.html?v=20261015#'+nonce;frame.allow='camera \'none\'; microphone \'none\'; geolocation \'none\'; payment \'none\'; clipboard-write \'none\'';
+  frame=document.createElement('iframe');frame.title='Beginnerscursus en afgeschermde oefenadministratie';frame.setAttribute('sandbox','allow-scripts allow-downloads');frame.referrerPolicy='no-referrer';frame.allowFullscreen=true;frame.src='tutorial/course.html?v=20261018-finance#'+nonce;frame.allow='camera \'none\'; microphone \'none\'; geolocation \'none\'; payment \'none\'; clipboard-write \'none\'';
   listener=e=>{if(e.source!==frame?.contentWindow||e.origin!=='null'||e.data?.channel!=='fmz-course-v1'||e.data.nonce!==nonce)return;
    if(e.data.type==='ready')frame.contentWindow.postMessage({channel:'fmz-course-v1',nonce,type:'init',progress:read(),video:document.body.hasAttribute('data-tutorial-standalone')&&new URLSearchParams(location.search).get('video')==='1',videoChapter:Math.max(0,Math.min(20,Number(new URLSearchParams(location.search).get('chapter'))||0)),lesson:Number.isInteger(lesson)&&lesson>=1&&lesson<=27?lesson:0,theme:document.body.classList.contains('light')?'light':'dark'},'*');
    else if(e.data.type==='progress'){try{localStorage.setItem(KEY,JSON.stringify(clean(e.data.progress)));frame.contentWindow.postMessage({channel:'fmz-course-v1',nonce,type:'saved'},'*')}catch{frame.contentWindow.postMessage({channel:'fmz-course-v1',nonce,type:'save-error'},'*')}}

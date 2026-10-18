@@ -1,0 +1,23 @@
+/* Scoped owner finance presentation. Member/trainer training screens are untouched. */
+[data-accounting-root] .acc-metrics {grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:12px;}
+[data-accounting-root] .acc-metric {min-width:0;text-align:left;overflow-wrap:anywhere;}
+[data-accounting-root] .acc-metric strong {font-size:clamp(1.2rem,2.1vw,1.85rem);font-variant-numeric:tabular-nums;}
+[data-accounting-root] .acc-panel>.acc-metrics {margin-block:16px;}
+.fmz-invoice-totals {display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;}
+.fmz-invoice-totals span {display:grid;gap:4px;padding:10px 14px;border:1px solid #ffffff26;background:#20b6b20d;border-radius:12px;font-size:.9rem;}
+.fmz-invoice-totals strong {font-size:1.2rem;font-variant-numeric:tabular-nums;}
+.fmz-payment-summary {margin:10px 0;padding:12px;border-inline-start:3px solid #38c9bb;border-radius:0 10px 10px 0;background:#38c9bb0c;}
+.fmz-payment-summary p {margin:6px 0;}.fmz-payment-summary small {display:block;margin-bottom:8px;}
+.fmz-payment-summary.is-corrected {border-color:#bcbcc5;background:#ffffff08;}
+.fmz-bank-filters {padding:14px;border:1px solid #ffffff26;border-radius:16px;margin-bottom:16px;}
+[data-accounting-root] .acc-card>div,.acc-dialog .acc-card>div {min-width:0;}
+/* The legacy finance actions had three fixed columns, even inside a 250px rail. */
+[data-accounting-root] .acc-card,.acc-dialog .acc-card {display:grid;grid-template-columns:minmax(0,1fr);align-items:start;}
+[data-accounting-root] .acc-card .finance-card-actions,.acc-dialog .acc-card .finance-card-actions {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));max-width:none;width:100%;align-content:start;align-items:stretch;}
+[data-accounting-root] .acc-card button,.acc-dialog .acc-card button {overflow-wrap:normal;word-break:normal;}
+[data-accounting-root] .acc-card details,.acc-dialog .acc-card details {margin-block:12px;}
+[data-accounting-root] summary,.acc-dialog summary {cursor:pointer;min-height:44px;align-content:center;}
+.acc-dialog [data-vat-form] input,.acc-dialog [data-vat-form] select,.acc-dialog [data-vat-form] textarea {max-width:100%;min-width:0;}
+.acc-dialog [data-vat-preview] .acc-notice {max-height:none;}
+@media(min-width:1000px){[data-accounting-root] .acc-card,.acc-dialog .acc-card {grid-template-columns:minmax(0,1fr) minmax(200px,250px);gap:20px;}}
+@media(max-width:760px){.fmz-invoice-totals {display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));}.fmz-payment-summary button {width:100%;}.fmz-bank-filters {padding:10px;}[data-accounting-root] .acc-metric {padding:16px;}.acc-dialog [data-vat-form] .fmz-payment-actions {display:grid;grid-template-columns:minmax(0,1fr);}}

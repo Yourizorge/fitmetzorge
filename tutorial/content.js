@@ -1,6 +1,6 @@
 /* Public teaching material only. Never receives an accounting snapshot or identity. */
 (function(root){
- const checked='2026-10-15',version='3.0.0',disclaimer='Dit is algemene uitleg en geen persoonlijk fiscaal advies.';
+ const checked='2026-10-18',version='4.0.0',disclaimer='Dit is algemene uitleg en geen persoonlijk fiscaal advies.';
  const bd='https://www.belastingdienst.nl/wps/wcm/connect/';
  const sources={
   administration:['Belastingdienst · Een goede administratie',bd+'bldcontentnl/belastingdienst/zakelijk/ondernemen/onderneming_starten/houd-een-goede-administratie-bij/'],
@@ -33,13 +33,13 @@
   'Je houdt één verkoop van €200 apart van de betaling en de privéstorting. Bij echte btw-plicht is de omzet het bedrag exclusief btw.',
   'Een factuur verwarren met een bankbetaling. Een privéontvangst als omzet indelen. Documenten wissen zodra ze betaald zijn.',
   [q('Een klant betaalt een bestaande factuur. Wat doe je?',['Nieuwe verkoop boeken','Betaling aan die factuur koppelen'],1,'De verkoop bestaat al. De koppeling verlaagt wat de klant nog moet betalen.'),q('Is het banksaldo automatisch je winst?',['Ja','Nee'],1,'Op de bank kunnen ook btw en privéstortingen staan; winst is een ander overzicht.')],['administration','retention']);
- lesson('Rondleiding door Administratie','De vijf hoofdroutes en de overige onderdelen in het menu van Administratie.',
+ lesson('Rondleiding door Administratie','De hoofdroutes en de overige onderdelen in het menu van Administratie.',
   'Overzicht vat bedragen en waarschuwingen samen. Facturen bevat concepten, definitieve facturen en correcties. Uitgaven en bonnen bevat zakelijke aankopen en bewijs. Bank/Kas bevat geldbewegingen en afstemming. Privéstortingen en privéopnames houdt privégeld apart. Bezittingen en schulden bevat bijvoorbeeld een bedrijfsmiddel of lening. Btw-overzicht bereidt je controle voor. Overzichten maakt bestanden. Administratie-instellingen bevat bedrijfsgegevens en bevestigde instellingen.',
   'Je hoeft niet te raden waar iets hoort. De overzichten rekenen uit bestaande boekingen; jij controleert gegevens, bewijs, koppelingen en waarschuwingen.',
   'Begin bij Overzicht en open daarna het onderdeel van de gebeurtenis. Een bankontvangst verwerk je bij Bank/Kas, de oorspronkelijke factuur bij Facturen.',
   'Voer een bedrag niet opnieuw in bij ieder overzicht. Dezelfde boeking kan op meerdere plekken zichtbaar zijn zonder meerdere transacties te worden.',
   'Een bon van een oefenwinkel staat bij Uitgaven en bonnen; de betaling staat bij Bank/Kas. Het overzicht verbindt die gegevens.',
-  'Open alle negen voorbeeldonderdelen en plaats de drie voorbeeldtaken op de juiste plek.',
+  'Open alle twaalf voorbeeldonderdelen en plaats de drie voorbeeldtaken op de juiste plek.',
   'Je weet waar je een bon, een betaling en een export vindt. Er is niets in de echte administratie geopend of gewijzigd.',
   'Een berekend overzicht behandelen als invoerscherm. Denken dat een automatische berekening ook bewijs of fiscaal akkoord geeft.',
   [q('Waar koppel je een bankbetaling?',['Bank/Kas','Administratie-instellingen'],0,'De ontvangst staat bij de banktransacties.'),q('Wie controleert de brongegevens?',['Ikzelf','Een totaalkaart bewijst alles'],0,'Een berekening kan pas betrouwbaar zijn als de ingevoerde gegevens en koppelingen kloppen.')]);
@@ -344,6 +344,35 @@
  sources.invoiceMethod=['Belastingdienst · Factuurstelsel',bd+'bldcontentnl/belastingdienst/zakelijk/btw/btw_aangifte_doen_en_betalen/bereken_het_bedrag/hoe_berekent_u_het_btw_bedrag/factuurstelsel'];
  sources.cashMethod=['Belastingdienst · Kasstelsel',bd+'bldcontentnl/belastingdienst/zakelijk/btw/btw_aangifte_doen_en_betalen/bereken_het_bedrag/hoe_berekent_u_het_btw_bedrag/kasstelsel/'];
  lessons[20].refs.push('invoiceMethod','cashMethod');
+ // October finance update: keep all prior lesson IDs and completed flags.
+ for(const l of lessons){l.renewed='20261018';l.sections=l.sections.map(t=>t.replaceAll('Uitgaven en bonnen','Kosten en bonnen'));}
+ lessons[1].sections[2]='Administratie → Overzicht, Facturen, Inkomsten, Uitgaven, Winst, Bank/Kas, Btw en Overzichten. Kosten en bonnen, privé, bezittingen en instellingen staan bij Meer administratie.';
+ lessons[1].sections[0]='Overzicht scheidt facturen, geldstromen en resultaat. Inkomsten volgt de betaaldatum van ontvangsten; Uitgaven toont uitgaande mutaties en zakelijke kosten afzonderlijk. Winst is omzet min zakelijke kosten. Btw bevat berekeningen, vastgelegde aangiften, betalingen en teruggaven. Tik op een bedrag om de bronnen te bekijken.';
+ lessons[9].sections[0]+=' De factuurkaart toont totaal, ontvangen, restant, werkelijke betaaldatum, rekening en registratiemoment. Via Naar Bank/Kas open je de ontvangst; daar staat de factuurlink terug. Filters: Alle facturen, Openstaand, Gedeeltelijk betaald, Betaald, Te laat en Gecorrigeerd.';
+ lessons[9].sections[5]='Noor betaalt op 24 september €200 op een factuur van €350. Je registreert dit in oktober. De ontvangst hoort bij september; oktober als invoermaand verandert de betaaldatum niet. Er blijft €150 open.';
+ lessons[20].sections[2]='Administratie → Btw. Kies maand, kwartaal, jaar of aangepaste periode. Tik op de berekende btw of voorbelasting voor de bronnen.';
+ lessons[20].sections[0]+=' Berekende btw en een werkelijk gedane aangifte blijven apart. Leg na controle de werkelijk ingediende aangifte vast, inclusief bedrag en datum. Verschillen, bijvoorbeeld afronding, vragen een toelichting en blijven zichtbaar. Daarna registreer je de werkelijke betaling of teruggave, of koppel je een bestaande Bank/Kas-regel. Dit wijzigt geen omzet, kosten of winst.';
+ lessons[20].sections[6]='Open Nieuwe financiële bediening oefenen. Kwartaal 3: €60,74 verkoop-btw min €4,20 voorbelasting is €56,54. Leg alleen de fictieve aangifte vast. Registreer €20 en daarna €36,54; controleer saldo en Bank/Kas. In kwartaal 2 oefen je de teruggaaf van €21.';
+ lessons[20].sections[7]='Na de eerste btw-betaling staat €36,54 open, na de tweede €0. De winst van het fictieve kwartaal 3 blijft €269,26. Een teruggaaf komt op Bank/Kas, zonder extra omzet. Aangifte en overboeking gebeuren buiten APPFMZ.';
+ lessons[20].quiz=[q('Verlaagt een btw-betaling de gewone bedrijfswinst?',['Ja','Nee'],1,'De betaling vereffent btw en is geen zakelijke kostenpost.'),q('Een btw-bankmutatie staat al in Bank/Kas. Wat doe je?',['Nogmaals als nieuwe betaling boeken','De bestaande mutatie aan de juiste btw-periode koppelen'],1,'Koppelen voorkomt een tweede bankmutatie.')];
+ lessons[21].sections[2]='Administratie → Btw en Bank/Kas; controleer vervolgens de aangifte buiten APPFMZ.';
+ lessons[21].sections[0]+=' Een berekende €0 bewijst niet dat alle gegevens aanwezig zijn. Niet volledig geregistreerd en Onbekend blijven zichtbaar. Bij een selectie die een aangifteperiode doorsnijdt, open je de volledige periode om het juiste betalingssaldo te zien. Een beginstand wordt nooit uit vermoedens ingevuld.';
+ lessons[22].sections[2]='Administratie → Inkomsten, Uitgaven en Winst. Dezelfde gekozen periode houdt de overzichten vergelijkbaar.';
+ lessons[22].sections[0]+=' Het nieuwe dashboard toont omzet, zakelijke kosten zonder aftrekbare btw, winst vóór inkomstenbelasting en afzonderlijke geldstromen. Niet-aftrekbare btw kan wel bij kosten horen. Privéstortingen, privéopnames en btw-betalingen zijn geen omzet of gewone kosten.';
+ lessons[22].sections[6]='Open Nieuwe financiële bediening oefenen en vergelijk kwartaal 3 met oktober. Kijk vanuit Winst naar de oorspronkelijke factuur en kostenbron; kijk vanuit Inkomsten naar de betaaldatum.';
+ glossary['Betaaldatum']='De dag waarop het geld werkelijk is ontvangen of betaald. Deze bepaalt de periode van geldstromen.';
+ glossary['Registratiedatum']='Het moment waarop je de handeling in APPFMZ opslaat. Dit is niet automatisch de betaaldatum.';
+ glossary['Btw-betaling']='Een werkelijke betaling aan de Belastingdienst, gekoppeld aan een vastgelegde aangifteperiode. Geen gewone kosten en geen automatische overboeking.';
+ glossary['Btw-teruggaaf']='Een werkelijke ontvangst van de Belastingdienst. Koppel deze aan de juiste aangifteperiode; dit is geen verkoopomzet.';
+ glossary['Voorbelasting']='Btw op zakelijke inkopen die je volgens de toepasselijke regels mag aftrekken. APPFMZ gebruikt jouw bevestigde verwerking en bewijs.';
+ glossary['Netto geldstroom']='Geregistreerde ontvangsten min uitgaande Bank/Kas-mutaties in een periode. Dit is niet hetzelfde als winst.';
+ tasks.quarter.push('Werkelijk ingediende btw-aangifte vastleggen, eventuele verschillen toelichten en betalingen of teruggaven aan de juiste periode koppelen');
+ help.income={title:'Inkomsten',lesson:10,text:'Ontvangsten staan op de werkelijke betaaldatum. Open de factuurlink voor het resterende bedrag en de historie.',example:'In oktober ingevoerd, op 24 september betaald: zichtbaar in september.',refs:['administration']};
+ help.outgoings={title:'Uitgaven',lesson:12,text:'Geld dat weggaat en zakelijke kosten zijn verschillende overzichten. Btw en privéopnames blijven afzonderlijk.',example:'Een bon van €24,20 kan €20 kosten en €4,20 aftrekbare btw bevatten in de vaste oefensituatie.',refs:['costs','input']};
+ help.profit={title:'Winst',lesson:23,text:'Omzet exclusief btw min zakelijke kosten zonder aftrekbare btw. Dit is vóór inkomstenbelasting, en niet je banksaldo.',example:'€289,26 omzet min €20 kosten geeft €269,26 winst.',refs:['costs','income']};
+ help.expenses.title='Kosten en bonnen';help.vat.title='Btw';help.vat.text='Controleer de bronnen, leg een werkelijk gedane aangifte vast en registreer daarna betalingen of teruggaven. Indienen en betalen gebeurt buiten APPFMZ.';
+ help.overview.text='De periode geldt voor factuurdatum, geboekte omzet en betaaldatum van geldstromen. Recent geregistreerde betalingen staan daarnaast apart, met de oorspronkelijke betaaldatum. Tik op ieder bedrag voor de bronnen.';
+ sources.rounding=['Belastingdienst · Btw-bedrag afronden',bd+'bldcontentnl/belastingdienst/zakelijk/btw/administratie_bijhouden/facturen_maken/btw-bedrag_afronden'];lessons[20].refs.push('rounding');
  const beginner=typeof module!=='undefined'?require('./beginner-content.js'):root.FMZBeginnerContent;
  const content={beginner,version,checked,disclaimer,sources,headings,lessons,glossary,tasks,ingSteps,fieldHelp,help};
  if(typeof module!=='undefined')module.exports=content;else root.FMZCourseContent=content;

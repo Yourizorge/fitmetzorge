@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-18T08:38:12.169Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "syntheticOnly": true,
+  "realPostgREST": true,
+  "invoiceDiscount350": true,
+  "concurrentInvoicePaymentExactlyOnce": true,
+  "existingReceiptNoDuplicate": true,
+  "paidDateVsRegisteredDate": true,
+  "readOnlyVATPreview": true,
+  "explicitDeclarationRoundingDifference74Cents": true,
+  "vatPartial20Then40": true,
+  "concurrentAndLostResponseVATExactlyOnce": true,
+  "conflict": {
+    "status": 409,
+    "code": "PT409",
+    "ms": 85,
+    "completeRollback": true
+  },
+  "wrongPeriodUnlinkAndRelinkKeepsBank": true,
+  "refundAndCounterentry": true,
+  "noSecondRevenueVATOrProfit": true,
+  "invoiceDocumentUnchanged": true,
+  "allJournalsBalanced": true,
+  "memberAndOtherTrainerDenied": true,
+  "revokedSessionDenied": true,
+  "reloginPersistence": true,
+  "noEmailsPaymentsOrPush": true
+}

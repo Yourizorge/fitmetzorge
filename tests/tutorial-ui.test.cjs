@@ -29,6 +29,6 @@ test('every lesson and exercise works through the opaque browser UI, PDFs and co
   console.log('PASS lesson',id);
  }
  assert.match(await f.locator('#lessonComplete').innerText(),/Je hebt de APPFMZ-beginnerscursus boekhouden afgerond/);assert.deepEqual(server.calls,[]);assert.equal(server.blobs.size,0);assert.deepEqual(errors,[]);
- const progress=await p.evaluate(()=>JSON.parse(localStorage.getItem('fmz-course-progress-v1')));assert.equal(progress.completed.length,27);assert.deepEqual(Object.keys(progress).sort(),['beginnerDone','completed','current','last','reviewed','tasks','version']);
+ const progress=await p.evaluate(()=>JSON.parse(localStorage.getItem('fmz-course-progress-v1')));assert.equal(progress.completed.length,27);assert.deepEqual(Object.keys(progress).sort(),['beginnerDone','completed','current','last','reviewed','tasks','version','video']);
  fs.writeFileSync(dir+'/all-lessons.json',JSON.stringify({lessons:27,exercises:Object.values(M.plans).reduce((n,p)=>n+p.length,0),progress,writes:server.calls.length,storageUploads:server.blobs.size},null,2));
  }finally{await browser.close();await server.close();}});

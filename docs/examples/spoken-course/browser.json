@@ -2,24 +2,26 @@
   {
     "browser": "edge-laptop",
     "physicalDevice": false,
-    "duration": 2983.833333,
+    "duration": 3256.667,
     "muted": false,
     "volume": 1,
     "readyState": 4,
     "audioTracks": null,
-    "audioDecodedBytes": 127463,
+    "audioDecodedBytes": 114659,
     "videoWidth": 1280,
     "videoHeight": 960,
     "chapters": 20,
     "captions": true,
     "seeking": true,
     "rateControl": true,
-    "noOverflow": true
+    "noOverflow": true,
+    "resumeAfterReload": true,
+    "volumeAndMute": true
   },
   {
     "browser": "webkit-iphone-emulation",
     "physicalDevice": false,
-    "duration": 2983.834,
+    "duration": 3256.667,
     "muted": false,
     "volume": 1,
     "readyState": 4,
@@ -31,6 +33,8 @@
     "captions": true,
     "seeking": true,
     "rateControl": true,
-    "noOverflow": true
+    "noOverflow": true,
+    "resumeAfterReload": true,
+    "volumeAndMute": true
   }
 ]

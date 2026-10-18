@@ -1,10 +1,10 @@
 {
-  "version": "3.0.0",
-  "checked": "2026-10-15",
+  "version": "4.0.0",
+  "checked": "2026-10-18",
   "title": "APPFMZ — volledige gesproken administratierondleiding",
   "synthetic": true,
   "company": "FitMetZorge Oefenbedrijf",
-  "voice": "Piper nl_NL-ronnie-medium, lokaal gegenereerd",
+  "voice": "Microsoft Edge Colette, Nederlands (nl-NL-ColetteNeural)",
   "chapters": [
     {
       "id": 1,
@@ -27,19 +27,19 @@
         },
         {
           "id": "01-overzicht",
-          "text": "Ik open Administratie. Overzicht is je startpunt. Nog open betekent wat klanten op dit moment nog moeten betalen. Te laat is het openstaande deel waarvan de betaaltermijn voorbij is. Ontvangen in periode gaat over geld dat in de gekozen periode aan facturen is gekoppeld. Dat is niet hetzelfde als omzet."
+          "text": "Ik open Administratie. Overzicht scheidt drie dingen: facturen, het resultaat en geld op je rekening. De factuurkaarten gaan over facturen uit de gekozen periode, met de betaalstand tot het einde van die periode. Verderop staan nog openstaande facturen uit eerdere perioden. Omzet, ontvangen geld en winst zijn verschillende bedragen. Je kunt op ieder bedrag tikken om de bronnen te bekijken."
         },
         {
           "id": "01-periode",
-          "text": "Ik kies september 2026 en pas de periode toe. In deze nieuwe oefenadministratie zijn de tellers nog nul. Tijdens de volgende hoofdstukken bouwen we de administratie op. Kijk steeds naar de periode boven het overzicht. Openstaande bedragen kijken naar de huidige toestand; ontvangen bedragen horen bij het gekozen tijdvak."
+          "text": "Ik kies september 2026 en pas de periode toe. In deze nieuwe oefenadministratie zijn de tellers nog nul. Tijdens de volgende hoofdstukken bouwen we de administratie op. Let op het verschil tussen factuurdatum, werkelijke betaaldatum en het moment waarop je iets registreert. Een betaling van september die je pas in oktober invoert, hoort bij de geldstromen van september."
         },
         {
           "id": "01-routes",
-          "text": "Links staan de dagelijkse routes: Overzicht, Facturen, Bank/Kas en Overzichten. Onder Meer administratie vind je Uitgaven en bonnen, Privé, Bezittingen en schulden, Btw-overzicht en Instellingen. Je hoeft een gebeurtenis niet in ieder scherm opnieuw in te voeren. Eén bevestigde boeking kan in meerdere overzichten terugkomen."
+          "text": "Links staan Overzicht, Facturen, Inkomsten, Uitgaven, Winst, Bank/Kas, Btw en Overzichten. Onder Meer administratie vind je Kosten en bonnen, Privé, Bezittingen en schulden en Instellingen. Een boeking komt op meerdere plekken terug. Voer dezelfde gebeurtenis daarom nooit opnieuw in om een ander overzicht te vullen."
         },
         {
           "id": "01-hulp",
-          "text": "Het vraagteken geeft uitleg over dit onderdeel. Uitleg en oefenen opent de cursus en de veilige voorbeelden. Je kunt deze video pauzeren, tien seconden teruggaan, een hoofdstuk kiezen of langzamer afspelen. Oefen eerst met de voorbeeldgegevens. Gewoon de video bekijken doet niets in je echte administratie."
+          "text": "Het vraagteken geeft uitleg over het onderdeel. Uitleg en oefenen opent de cursus en de veilige voorbeelden. De nieuwe financiële oefenroute laat je ook btw-betalingen en teruggaven proberen. In de video kun je pauzeren, terugspoelen, een hoofdstuk kiezen, het volume aanpassen en verdergaan waar je gebleven was. Alleen kijken verandert niets in je administratie."
         }
       ]
     },
@@ -203,7 +203,7 @@
         },
         {
           "id": "06-fout",
-          "text": "Bij een verbindingsfout blijft de invoer in het open venster staan en kun je dezelfde handeling opnieuw proberen. Bij een conflict ververs en vergelijk je eerst. Maak niet blind een nieuwe ontvangst. Sluit een venster met onopgeslagen invoer niet zomaar; herstel na het sluiten van een tabblad wordt niet beloofd."
+          "text": "De factuurkaart toont nu driehonderdvijftig euro ontvangen en nul euro open. Je ziet de werkelijke betaaldatum en de rekening. Geregistreerd betekent het moment van invoeren, niet de betaaldatum. Naar Bank/Kas opent de bijbehorende ontvangst. De volledige betaal- en correctiehistorie blijft bereikbaar. Controleer dit vóór je een betaling nogmaals invoert."
         }
       ]
     },
@@ -366,7 +366,7 @@
         },
         {
           "id": "11-uitgave",
-          "text": "Ik open Uitgaven en bonnen. We voeren een fictieve aankoop van trainingsmateriaal in: vierentwintig euro twintig inclusief btw. Ik vul leverancier, factuurdatum, omschrijving en de passende categorie in. De aankoop wordt maar één keer als uitgave vastgelegd."
+          "text": "Ik open Kosten en bonnen. We voeren een fictieve aankoop van trainingsmateriaal in: vierentwintig euro twintig inclusief btw. Ik vul leverancier, factuurdatum, omschrijving en de passende categorie in. De aankoop wordt maar één keer als uitgave vastgelegd."
         },
         {
           "id": "11-bon",
@@ -537,35 +537,105 @@
     },
     {
       "id": 17,
-      "title": "Omzet, ontvangsten, kosten en btw",
+      "title": "Inkomsten, uitgaven, winst en volledige btw-verwerking",
       "coverage": [
         "vat",
         "period-filter",
         "report-vat",
         "report-sales",
         "report-expenses",
-        "reports"
+        "reports",
+        "income",
+        "outgoings",
+        "profit",
+        "finance-metric",
+        "finance-bank",
+        "vat-period",
+        "vat-payment",
+        "vat-refund",
+        "vat-correct",
+        "vat-detail"
       ],
       "scenes": [
         {
           "id": "17-periode",
-          "text": "Ik open Overzichten en kies het derde kwartaal van 2026. Dat is juli tot en met september. Omzet is de verkoopopbrengst zonder btw. Ontvangen bedragen zijn geldstromen. Kosten horen bij zakelijke aankopen en verbruik. Resultaat is hier omzet min de geboekte kosten; het is niet je banksaldo."
+          "text": "We gaan nu de financiële overzichten vergelijken. Ik kies kwartaal drie van 2026. September bevat de Progressie-factuur van driehonderdvijftig euro en een nog openstaande voorbeeldfactuur van vijfenzeventig euro. Een factuur kan omzet bevatten terwijl het geld nog niet ontvangen is. Houd die twee begrippen apart."
         },
         {
           "id": "17-verschil",
-          "text": "Onze septemberfactuur van driehonderdvijftig euro bevat in dit fictieve voorbeeld tweehonderdnegenentachtig euro zesentwintig omzet en zestig euro vierenzeventig btw. De ontvangst betaalt diezelfde factuur. Ze voegt geen tweede omzet of btw toe. Een lening, privéstorting of eigen overboeking is evenmin een verkoop."
+          "text": "Op de factuur zie je de betaling en het resterende bedrag. Een septemberbetaling blijft in september zichtbaar, ook wanneer je die later registreert. Vanuit de betaalregel open je Bank/Kas; daar kun je weer terug naar de factuur. Je hoeft geen tweede betaling te maken om deze informatie op een andere plaats te zien."
+        },
+        {
+          "id": "17-inkomsten",
+          "text": "Ik open Inkomsten en kies oktober. Hier staan de werkelijk ontvangen factuurbetalingen, met datum, rekening, btw-deel en een link naar de factuur. De verdeling in netto en btw is uitleg van dezelfde ontvangst. Ze boekt geen extra omzet of extra btw. Onbekende ontvangsten blijven apart te beoordelen."
+        },
+        {
+          "id": "17-uitgaven",
+          "text": "Bij Uitgaven zie je geld dat van Bank of Kas weggaat. Zakelijke kosten staan daarnaast met hun bron. De oefenbon van vierentwintig euro en twintig cent bestaat hier uit twintig euro kosten en vier euro en twintig cent aftrekbare btw. Privéopnames en btw-betalingen zijn andere geldbewegingen en geen gewone kosten."
+        },
+        {
+          "id": "17-winst",
+          "text": "Winst toont omzet exclusief btw min zakelijke kosten zonder aftrekbare btw. Klik op de bedragen voor de boekingen. Winst vóór inkomstenbelasting is niet wat je vrij van de bank kunt opnemen. Op de bank staan ook btw, leningen en privégeld. Niet-aftrekbare btw kan wel bij kosten horen; de bevestigde verwerking blijft leidend."
         },
         {
           "id": "17-btw",
-          "text": "Ik open Btw-overzicht. Hier zie je de ingestelde methode, bedragen en controlepunten. Bij factuurstelsel en kasstelsel verschilt het moment waarop omzet-btw meetelt. Voorbelasting is de aftrekbare btw op zakelijke inkopen; aftrek heeft voorwaarden. Volg je bevestigde instellingen en de officiële regels, niet het oefentarief."
+          "text": "Ik open Btw en kies kwartaal drie. Het fictieve bedrijf gebruikt het factuurstelsel en eenentwintig procent. De twee verkoopfacturen bevatten samen drieënzeventig euro en zesenzeventig cent btw. In dit kwartaal hebben we nog geen aftrekbare kostenbron geboekt. Tik op Btw over verkopen om beide facturen terug te zien. Dit berekende bedrag is nog geen aangifte."
         },
         {
           "id": "17-waarschuwingen",
-          "text": "Lees waarschuwingen vóór je de bedragen gebruikt. Een ontbrekende bon, onbekende behandeling of nog niet aangesloten historie kan een overzicht onvolledig maken. Technisch afgestemd betekent dat de berekening aansluit op de aanwezige boekingen. Het is geen fiscaal akkoord en geen ingediende aangifte."
+          "text": "Lees de controlepunten. Een ontbrekend bewijsstuk, een onbekende beginstand of een ongekoppelde bankmutatie kan verder onderzoek vragen. Onbekend betekent niet nul. APPFMZ rekent met wat is geregistreerd en weet niet of jouw administratie volledig is. Controleer de bronnen vóór je een aangifte indient."
         },
         {
           "id": "17-aangifte",
-          "text": "Je kunt het btw-overzicht als PDF downloaden om te controleren of met je boekhouder te bespreken. De daadwerkelijke aangifte en betaling gebeuren buiten APPFMZ. Ook zonder omzet kan aangifte nodig blijven. Je persoonlijke inkomstenbelasting en eventuele bijzondere fiscale situaties worden niet met één knop in deze app geregeld."
+          "text": "Het btw-overzicht is ook als PDF te bewaren. Controleer jouw werkelijke aangifte buiten APPFMZ en neem daarna pas het daadwerkelijk aangegeven bedrag en de datum over. Aangifte doen en geld overmaken gebeuren niet automatisch vanuit deze app. Een verschil met de berekening, bijvoorbeeld gecontroleerde afronding, blijft met jouw toelichting zichtbaar."
+        },
+        {
+          "id": "17-vastleggen",
+          "text": "Terug bij Btw kies ik kwartaal drie. Ik open Gekozen periode: concept of aangifte vastleggen. Alleen voor deze fictieve opname bevestig ik dat de aangifte buiten de app is gedaan. Ik vul drieënzeventig euro en zesenzeventig cent in, met aangiftedatum één oktober. Ik vink aan dat de bronnen en de aangifte zijn gecontroleerd."
+        },
+        {
+          "id": "17-aangifte-effect",
+          "text": "Ik kies Effect bekijken. De berekening toont de verkoop-btw, de voorbelasting en het aangegeven bedrag. Er verandert geen bankbedrag. Pas na het lezen van dit voorstel vink ik de bevestiging aan en sla ik op. Het kwartaal heeft nu de status Aangifte gedaan. De app heeft zelf niets bij de Belastingdienst ingediend."
+        },
+        {
+          "id": "17-btw-deel",
+          "text": "Ik kies Btw-betaling registreren. Ik voer alleen de werkelijk betaalde twintig euro in, met betaaldatum zevenentwintig oktober, Oefenbank en een fictief betalingskenmerk. Effect bekijken toont: twintig euro van de bank en nog drieënvijftig euro en zesenzeventig cent open. De berekende btw en de winst veranderen niet."
+        },
+        {
+          "id": "17-btw-herhalen",
+          "text": "In deze test onderbreken we bewust het antwoord nadat de oefenserver heeft opgeslagen. Daarom zegt het scherm nog geen opslagbevestiging. Ik probeer exact dezelfde opslag opnieuw. Er ontstaat één betaling, geen tweede bankuitgave. Bij een echt conflict moet je eerst verversen en het nieuwe voorstel beoordelen."
+        },
+        {
+          "id": "17-btw-rest",
+          "text": "Ik registreer de resterende drieënvijftig euro en zesenzeventig cent op achtentwintig oktober. Na bevestiging staat nul euro open en is de aangifte administratief betaald. De twee betaaldatums en beide betalingskenmerken blijven zichtbaar in de historie. Dit registreert alleen wat al werkelijk is betaald."
+        },
+        {
+          "id": "17-btw-bank",
+          "text": "Vanuit de btw-periode open ik de bankmutatie. Bank/Kas noemt de categorie Btw-betalingen en de gekoppelde periode. De omzet, kosten en winst veranderen niet. Staat een betaling al in Bank/Kas, selecteer die dan in het btw-venster. Maak dezelfde uitgave niet nogmaals aan."
+        },
+        {
+          "id": "17-btw-correctie",
+          "text": "Nu oefen ik een verkeerde periodekoppeling. Ik kies Corrigeren en laat de bankmutatie staan. In het voorstel is het effect op Bank/Kas nul; alleen de koppeling wordt losgemaakt. De oude koppeling en de reden blijven bewaard. Dit is iets anders dan een volledig verzonnen handmatige betaling tegenboeken."
+        },
+        {
+          "id": "17-btw-koppel",
+          "text": "Ik koppel dezelfde bestaande twintig euro opnieuw aan de juiste aangifteperiode. In het betaalvenster selecteer ik de bestaande bankmutatie. Datum en rekening komen uit die bron. Er wordt geen extra geld uitgeboekt. De periode is weer voldaan en de correctiehistorie blijft zichtbaar."
+        },
+        {
+          "id": "17-teruggaaf-bron",
+          "text": "Voor een afzonderlijk teruggaafvoorbeeld voeg ik een fictieve kostenbron uit kwartaal twee toe. De voorbeeldbon is honderdeenentwintig euro, waarvan eenentwintig euro in dit vaste geval aftrekbare btw is. De aankoop is privé voorgeschoten. Dit is een nieuw oefenvoorbeeld, geen wijziging van de eerder getoonde klantfacturen."
+        },
+        {
+          "id": "17-teruggaaf-aangifte",
+          "text": "In kwartaal twee was in deze oefening geen verkoop-btw. Met eenentwintig euro voorbelasting berekent de app een teruggaaf. Ik leg de fictieve aangifte vast met min eenentwintig euro, gedateerd één juli. Het minteken betekent terug te ontvangen. Controleer altijd het bedrag op je werkelijk ingediende aangifte."
+        },
+        {
+          "id": "17-teruggaaf-ontvangst",
+          "text": "Nu registreer ik de werkelijk ontvangen teruggave van eenentwintig euro op tien juli, op Oefenbank, met een fictieve referentie. Na het gecontroleerde voorstel bevestig ik. De bank neemt één keer toe. De status wordt Teruggaaf ontvangen en er ontstaat geen verkoopomzet."
+        },
+        {
+          "id": "17-periodegrenzen",
+          "text": "Een jaaroverzicht kan meerdere aangifteperioden bevatten. Als niet alle aangiften zijn vastgelegd, is het volledige resterende btw-saldo onbekend. Een maandselectie kan bovendien midden in een kwartaal vallen. Open dan de volledige aangifteperiode. Vul ontbrekende gegevens nooit aan met een vermoeden."
         }
       ]
     },
@@ -675,5 +745,6 @@
       ]
     }
   ],
-  "examplePeriod": "september–oktober 2026 (vaste fictieve tijdlijn; geen terugwerkende klantafspraak)"
+  "examplePeriod": "september–oktober 2026 (vaste fictieve tijdlijn; geen terugwerkende klantafspraak)",
+  "voiceTechnology": "Kunstmatige Nederlandse stem via de kosteloze online voorleesdienst van Microsoft Edge. Alleen het openbare fictieve cursusscript is verwerkt; geen administratiegegevens."
 }
