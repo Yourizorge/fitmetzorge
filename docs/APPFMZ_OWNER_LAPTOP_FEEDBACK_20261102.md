@@ -7,7 +7,7 @@ Datum: 2 november 2026. Alleen de synthetische owner-test wordt vervangen. Deze 
 - Opdrachtbasis / remote main vóór deze correctie: `7ad819d09e5e772980b8ec8bba1889df7027caae`.
 - Bewezen gewone livebasis: `309cb0db3569f14ac54442c8daec678020ba149a`.
 - Hersteltag: `appfmz-live-before-member-onboarding-20261102`; beschermde branch: `backup/appfmz-pre-member-onboarding-20261102`. Beide wijzen naar de livebasis; branch blijft vergrendeld, met admin enforcement en zonder force-push/verwijderen.
-- Voorbereide ontwikkelbron staat afzonderlijk op `codex/members-billing-20261026`. Alleen het verpakte `owner-test/` en controlebestanden/documentatie komen naar main. Geen root-appcode, SQL of Edge-bron uit die ontwikkelbranch wordt uitgerold.
+- Voorbereide ontwikkelbron en uitvoerbare regressietests staan afzonderlijk op `codex/members-billing-20261026`, commit `ba0f9f6288a50d2ad63b7a8ad3024c8671cbee4c`. Browser-/databasetests worden vanuit die broncheckout uitgevoerd, waar de synthetische fixtures en testafhankelijkheden staan. De losse releasecheckout bevat alleen de publicatieverifiers. Alleen het verpakte `owner-test/` en controlebestanden/documentatie komen naar main. Geen root-appcode, SQL of Edge-bron uit die ontwikkelbranch wordt uitgerold.
 - De definitieve hashes, publicatiecommit en data-/livecontrole staan in de gekoppelde bewijsbestanden hieronder. Een afsluitende bewijscommit verandert geen runtime.
 
 ## Verwerkte feedback
@@ -76,4 +76,40 @@ De gids bevat deze vijftien stappen. Je fysieke camerabediening en inhoudelijke 
 
 ## Publicatiestatus
 
-Wordt aangevuld na geslaagde livebytecontrole en read-only vergelijking van de beschermde productietabellen. Tot die controle is dit document geen publicatie-PASS.
+**Gepubliceerd en technisch geverifieerd:** runtimecommit `ecae3454bf4ed97c5e21033a4ea9ad09c1570344`. GitHub Pages bevestigt deze commit op `main`, HTTPS en status `built`. De afsluitende bewijscommit verandert uitsluitend dit rapport en JSON-bewijs; de definitieve remote HEAD wordt bij oplevering gemeld.
+
+- 108/108 gepubliceerde bestanden plus de root-URL byte-identiek aan Git: 88 bestaande runtimeassets en twintig owner-testbestanden.
+- Alle 449 bestanden van de oorspronkelijke livebasis gecontroleerd. Alleen de reeds bestaande launcher-invoeging in index.html en twee bestaande owner-test-attributen wijken van die oude basis af. Ten opzichte van opdrachtbasis `7ad819d…` verandert geen gewoon runtimebestand.
+- Anonieme live Edge-controle: app opent zonder scriptfout, ownerlauncher en sandbox zijn afwezig voor onbevoegden, nul schrijfverzoeken.
+- Twaalf productiemigrations exact gelijk; geen migration, Edge-deployment, schema-/Auth-/Storage- of gegevensschrijfactie uitgevoerd.
+- Bestaande herstelbranch en tag gecontroleerd; geen wijziging aan hun doelen of bescherming.
+
+### Datavergelijking — expliciete beperking
+
+De nulmeting was om 16:05:19 UTC; de nameting om 16:43:51 UTC. **21 van 24 volledige tabelhashes zijn identiek.** Daaronder alle financiële tabellen, betaalafspraken, agenda, profielen, Storage-metadata en fotoannotaties. Patrick, Debora en andere bestaande betaalafspraken zijn niet omgezet. De release heeft geen echte foto of overeenkomst opgeslagen.
+
+Drie afwijkingen worden niet verborgen of als ongewijzigd gerapporteerd:
+
+1. `fmz_private.write_receipts`: van 1482 naar 1499. Alle oorspronkelijke 1482 rijen zijn aantoonbaar byte-identiek behouden. De zeventien toevoegingen dateren van 16:08:36–16:10:16 UTC, ruim vóór het begin van deze publicatie om 16:43:24 UTC.
+2. `public.coach_workspaces`: één rij vóór en na, maar gewijzigde inhoudshash; laatste wijziging 16:10:16 UTC. Zonder eerdere veldsnapshot is niet onafhankelijk te bewijzen welke waarden veranderden of of iedere oude waarde behouden bleef.
+3. `auth.users`: tien accounts vóór en na, geen nieuw account, maar één gewijzigde rijhash/updated_at om 16:08:20 UTC. Geen nieuwe aanmelding of auditregel in dit meetvenster. Zonder eerdere veldsnapshot is de oorzaak niet vastgesteld.
+
+Deze tijdstippen bewijzen dat de afwijkingen vóór deze publicatie optraden. Ze bewijzen niet wie ze veroorzaakte. Er wordt geen gebruikershandeling, sessieverversing of dataverlies verondersteld. Er is niets teruggezet, verwijderd of overschreven. **Volledige hashgelijkheid van alle productiegegevens over het hele meetvenster is dus niet bewezen.** Zie `production-after.json` voor de exacte tellingen, hashes en read-only vervolgcontrole.
+
+### Eindstatus
+
+- Owner laptop retest: **GO**, uitsluitend voor de geïsoleerde test; fysieke eigenaaracceptatie staat open.
+- New member flow live for members: **NO**.
+- Real member photo storage enabled: **NO**.
+- Real invoice automation enabled: **NO**.
+- Real invoice emails enabled: **NO**.
+- Automatic invoice sending enabled: **NO**.
+- Invoice reminders in synthetic test: **YES**.
+- Existing monthly clients preserved: **YES**, overeenkomstentabel hash-identiek.
+- Existing data preserved: **niet volledig bewijsbaar voor de gewijzigde werkruimte/Auth-rij**; bovenstaande 21 tabelhashes en alle oorspronkelijke opslagbevestigingen zijn bewezen behouden. Geen dataverlies vastgesteld of gegevensherstel uitgevoerd.
+- Rollback point verified: **YES**.
+- Staging touched: **NO**.
+- JARVIS touched: **NO**.
+- Business website touched: **NO**.
+
+De volgende stap is jouw vijftienstappen-laptoptest, geen vrijgave van de echte inschrijfroute. Gebruik een voorwerp of fictief beeld bij de camera-oefening en verwijder na afloop de lokale testgegevens via de getoonde verwijderlijst.
