@@ -1,0 +1,521 @@
+{
+  "duration": 727.9166666666665,
+  "chapters": 12,
+  "scenes": 24,
+  "voice": "Microsoft Edge Colette, Nederlands (nl-NL-ColetteNeural)",
+  "voiceLocal": false,
+  "voiceCostsEUR": 0,
+  "voiceService": "Microsoft Edge free read-aloud; fictional public script only",
+  "actualSyntheticDOM": true,
+  "screenPacing": "Original screen frames paced across each spoken scene; final frame held for reading",
+  "format": "H.264 High/yuv420p + AAC mono/48kHz + Dutch mov_text; MP4 faststart",
+  "videoSHA256": "1cc2551a09793f30389e36d8a5289c14195ea2db2a118f5aab4d649da3fb83ce",
+  "videoBytes": 14951471,
+  "runtimeAtCapture": {
+    "accounting-model.js": "0aacbb0734066f9e1a2219ca4375b9a5e1b6fb1cb9c4fea230d1fb85eb381454",
+    "accounting-reports.js": "9f3bbea226a1fd6faa9e9ae7f2a5c7cd0cf283a1c4921abd1765d79f54779f28",
+    "accounting.js": "9d57b4ace5eb56ad9e09ede30845df80914c71cbf5a56c64da3fc3df30ffb2b5",
+    "admin-design.css": "8e1db0b7913ba9b528a5c089ff8d0675df6d160ae9573583a1c006360b7837c0",
+    "agenda-model.js": "e3d982e076ad4f63f5a4e8ee1b5583ad1bb4c95f171b56b7f0df5b385f8ec9cb",
+    "agenda.css": "b15ea29150286b07b067fcae5bfa7b07ba69af1d88852a2430bd3b95295373cc",
+    "agenda.js": "6a189f8eb60b29f3fb21e6b36c967333455092b187f374e9290815c09045ddfa",
+    "app.js": "e5bae33494484ea63f2e82dab97752cfa42c68dd7892f0d4bc515b584879d96a",
+    "autosave.js": "06ad19581b25e84f7cc4556b070fd73f26b0a806c376154d5198877b230d41b3",
+    "bank-repair-ui.js": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+    "billing-notifications.js": "1be301d93066bfa3a3d48657036104cd2271bcdb5f6217fd3236e2920f3eb579",
+    "billing-periods.js": "3b836c6969649373073b1eb68fbe823a213c1ce554f66d8e417c7a8c611a07fa",
+    "billing-planning-model.js": "7068b231e75943427422e386fafe6708b99b0c0e40811be9380ea6de2172b08d",
+    "billing-planning-ui.js": "e23da64d99ff9427db71221487ca9b3bc141e787cea57b50ea32548ad092865c",
+    "billing-planning.css": "1fc9c82401ffff83c182de3c912594e45dc1a0c2032c85bff681d60021eac305",
+    "billing-ui.js": "4f717798c5f3271a17bc85c536fc0c561e01f486af68cce126f4c03c36d276a2",
+    "communications-model.js": "100383e0e7b69d809991e6bc3a10da11a9b5efac4ac2e4e5dd56758ccc1963c5",
+    "communications-ui.js": "fe98167d5200ffb45d0f3f51a80ef7fdb765e7968a430d5fbf0e3c7d969c37c3",
+    "communications.css": "b6c5715994b6599e75486adcf140d13c91de5e15a0ac95344530aaa50004bf9c",
+    "config.js": "b8392b8b8cc1e3aac108196a479549e18728a38b4de456a52e8d633945aa23e9",
+    "finance-model.js": "758a2525cd11a57842f0e8d1b2a4a23e05563a083d95b33bc95ed8983b5b7948",
+    "finance-ui.js": "d0d06a78944a906cb296307e2174aed3cba0891bf9d72d4da964c969cad3c7ed",
+    "finance.css": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+    "Fit_Met_Zorge_Coach_App_standalone.html": "6bd1b6382ff47507530d5bd1a0756ddb55737c59856a35fa924eab4837577f47",
+    "index.html": "bccdf54ea0fda2195bbb1c56abfb0350120a9e09429beb6a199a4765cce56f4f",
+    "invoice-documents.js": "31a9b9bf5e92444e72bce336c121ec9a0095a7b6bb287249548d5241f8ec5e1b",
+    "invoice-editor.js": "172dffdc8052845e9f0a53661ff742571358b796897e74a7bdef7d0907847761",
+    "invoices.js": "c982f683f375cc0c4d1335ae5a5fe3bcdb950c7ebacdb02c109badd56ee9e7ce",
+    "layout.css": "bdc104ea806550005aaf73a0a9516288f35446281a23f4a54748f4e8989acd56",
+    "maintenance.html": "822946bda4506643b1c45f124abcb2af3cce2375b518e869e1ca6129080e5621",
+    "members-documents.js": "a209a06007a3d60f15cbfa146892fa8db32b0ba94e42c23f064caeab1bd91477",
+    "members-model.js": "ee7f3fd3fdf255a56f8e925604a7d21681324f9b8db205a88d5529cc7f4dd176",
+    "members-ui.js": "3d6dc13f4dac3000be4116fecbbcfdca8908ebe0f88329c7c97034c735bbc9be",
+    "members.css": "b0c4640d9ac069ce99c062c505b2be05b2fe105c55ef0d9482cd045a5ab50bea",
+    "payments-model.js": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+    "payments-ui.js": "15e0a885864b38b0806a1eea2bf4521ceef435e22024b952a4974a33cc87fc91",
+    "payments.css": "ac60967d6a88f7094a3210b7d57fbd9c9f995e877cea0a683ae06d9b662d2c73",
+    "photos.js": "40a4fade7132817eecf89ae0ffefdda4bae4993e4584f416a2b781466f170e51",
+    "presentation.js": "fb3fb02ce6779324c8166f36ed4f31ab90ff6e0be61c864ccc5192816b7b88b8",
+    "push.js": "a0c542df833459888ee38943a149b29e4bb5dbfeca371d53f3a82bec2d28d398",
+    "pwa.css": "505262026d0d10ce676af5edf9e50204b151f5dcd3a50e6af735b82bc3559f13",
+    "pwa.js": "2e29e0b1af3439bd9010b7c1f43512e5ca8fe44ba944de0eaae5328a8f9c5ed5",
+    "styles.css": "f23903b13be894342e91a32b77b758dc84ffd915f016c505cbb014ca1eced279",
+    "sw.js": "851e9f2d0715a7536f3d21a841a2f83a49fa64414e63ccc1b57d26c74d78663c",
+    "sync.js": "9474f657e1915addfa3dde14e5131efe879081033d0303fe23b2451ba2b631ee",
+    "tutorial.html": "bf5ec52596f98d65b907c222d10cc77d7e88c813950205d5c1737fc39958adcc",
+    "vat-ui.js": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0"
+  },
+  "sceneEvidence": [
+    {
+      "id": "planning-01-overzicht",
+      "start": 0,
+      "duration": 35.666666666666664,
+      "screenFrames": 5,
+      "rawCaptureSeconds": 1.373,
+      "voiceSeconds": 32.664036281179136,
+      "sourceHash": "50a461fd3c893603f3df27257ea53e0ce0fd32685af8fe608661457ac78c102a",
+      "wavSHA256": "ae347d6f61fc4cede06a62ba81c5f9ecfcca1fee6e81f84836b602399f0f6ad6",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-01-filter",
+      "start": 35.666666666666664,
+      "duration": 31.666666666666668,
+      "screenFrames": 7,
+      "rawCaptureSeconds": 1.726,
+      "voiceSeconds": 28.631972789115647,
+      "sourceHash": "c593021cce553c0793976e7add39cd1302d07f1ce95293d00b74ab65a23f52e9",
+      "wavSHA256": "9a2fc0f47415a3472c342329d1ded995045183fd56c0e45c4728858bcabdaf83",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-02-meldingen",
+      "start": 67.33333333333333,
+      "duration": 25.75,
+      "screenFrames": 6,
+      "rawCaptureSeconds": 1.34,
+      "voiceSeconds": 22.728027210884353,
+      "sourceHash": "b91489a12eb9122f0a7dacc363a4ca762af0f749a66d64a507811631a9ec577d",
+      "wavSHA256": "55923c7ba56bc6dd0e93598a816fa2c87fff8473e4e5e851437732289d8799b8",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-02-toestemming",
+      "start": 93.08333333333333,
+      "duration": 34.583333333333336,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 1.847,
+      "voiceSeconds": 31.56,
+      "sourceHash": "3fcbf5545cf8fbe35b250f783fe2407cd4f370f1fdf006d98f0ea5833495dd0a",
+      "wavSHA256": "dfa541f3f86ca95f1e8450b2b2c56d4101254c8e45c62f7d1e877d1c9a113265",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-03-bijwerken",
+      "start": 127.66666666666666,
+      "duration": 30.916666666666668,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 2.31,
+      "voiceSeconds": 27.911972789115648,
+      "sourceHash": "ae626a2948949b7c4af105f85aacc5254889f305de3737fe0f1f00d33df72874",
+      "wavSHA256": "808113b6c71cad0c87b126173e14abdbde0fb361bb81d758afe3f9258514c6a8",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-03-controleren",
+      "start": 158.58333333333331,
+      "duration": 34.083333333333336,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 2.761,
+      "voiceSeconds": 31.008027210884354,
+      "sourceHash": "ea21ae992bae2183d5f109dcc1dab5d7872c7d8dafe212cd7766b337e61d5cec",
+      "wavSHA256": "9fdb10185d09f35ff05e9e9bd03ce5596c6e8009ba028d2a048d8498e68fba8d",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-04-bewerken",
+      "start": 192.66666666666666,
+      "duration": 33.166666666666664,
+      "screenFrames": 24,
+      "rawCaptureSeconds": 4.821,
+      "voiceSeconds": 30.096009070294784,
+      "sourceHash": "c368d90eacd805400c5dacc22223570850dec235cf495b643f945d6778369b2b",
+      "wavSHA256": "e7fa6da93c3f94c90f84b9a6a9f1d763c5531d1c095b297a4ea424a3691e1697",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-04-bewaren",
+      "start": 225.83333333333331,
+      "duration": 27.083333333333332,
+      "screenFrames": 15,
+      "rawCaptureSeconds": 3.61,
+      "voiceSeconds": 24.02403628117914,
+      "sourceHash": "bddfee687a72ee258ad625c29960d6102d80daab31165dde104f8f5f3f620cc2",
+      "wavSHA256": "4b7c24091872213236065f4f85a14daab7b5cce7859ad74883dcc115cfaf0a6c",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-05-knop",
+      "start": 252.91666666666666,
+      "duration": 25.0,
+      "screenFrames": 5,
+      "rawCaptureSeconds": 1.296,
+      "voiceSeconds": 21.936009070294784,
+      "sourceHash": "4d5d63479f5db2db4a8e5aa9aed5e9ec9b3365d6c92ecf149ad575468da62e3f",
+      "wavSHA256": "ac6f9caaccf45dcd6b6d2f438d73ae7014e2a6855fde3a661d63c9f25d3e7650",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-05-grens",
+      "start": 277.91666666666663,
+      "duration": 35.0,
+      "screenFrames": 6,
+      "rawCaptureSeconds": 1.374,
+      "voiceSeconds": 31.944036281179137,
+      "sourceHash": "25eb7d92cac00b9772f0d362ed44482557ef338c1fbb16c22f13eeda60617068",
+      "wavSHA256": "650c7226b1fb4f406946072c151a8ff874ebb8dcd5f46ab5f6d1104ce16575fb",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": null,
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "planning-06-bevestigen",
+      "start": 312.91666666666663,
+      "duration": 28.583333333333332,
+      "screenFrames": 17,
+      "rawCaptureSeconds": 3.684,
+      "voiceSeconds": 25.511972789115646,
+      "sourceHash": "309113fe8f994d252ba72056fa700669b3bb2f61367d16549ae78931c5a3a019",
+      "wavSHA256": "ceec0c0b45d45f4b8750977cd4da6a74b891b5781987d9fe4ceefe482711fef6",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-06-resultaat",
+      "start": 341.49999999999994,
+      "duration": 31.166666666666668,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 2.193,
+      "voiceSeconds": 28.128027210884355,
+      "sourceHash": "078c40252f479d4d45c28ea1207c5843a8e08cf51bf9f02810eed32cbb5cfc96",
+      "wavSHA256": "d33f88c6022ca950c6201e343e010c4e7f9e579962ff6d6b384871a528c1d2db",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-07-handmatig",
+      "start": 372.66666666666663,
+      "duration": 29.25,
+      "screenFrames": 14,
+      "rawCaptureSeconds": 3.061,
+      "voiceSeconds": 26.18403628117914,
+      "sourceHash": "cfbf90822d30043d34aa89cf7246ae24a2f9527af29ef4154628e50fdafbf24c",
+      "wavSHA256": "36f6ed8d4b3317339e4ff9f1b209a70ccc9ecc6902769392c996c0b87f92083b",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-07-plannen",
+      "start": 401.91666666666663,
+      "duration": 32.0,
+      "screenFrames": 15,
+      "rawCaptureSeconds": 3.372,
+      "voiceSeconds": 28.92,
+      "sourceHash": "e46078c3a11bf0576d2bb10f7efa5db64dfd3718479e58fd0b933220ef3b4583",
+      "wavSHA256": "7a98c626876eabec7c3c69f45b9c3c6100d0341234f205280b1d521c2eec8dc0",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-08-historie",
+      "start": 433.91666666666663,
+      "duration": 27.333333333333332,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 2.045,
+      "voiceSeconds": 24.311972789115647,
+      "sourceHash": "4c5c8f61bd78afc14c43db27cc409f63d5ca1db2e61509d93b34089891d53054",
+      "wavSHA256": "671f949639fa01984d0bd6fdaa0ad4e36e662d972214bed6dc0f4789d05bde4e",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-08-filter",
+      "start": 461.24999999999994,
+      "duration": 29.583333333333332,
+      "screenFrames": 12,
+      "rawCaptureSeconds": 2.804,
+      "voiceSeconds": 26.54403628117914,
+      "sourceHash": "9a74d5f8804f231c1bbb8629ac8b4bd1c4c8e732959c6d2644541223c9ed0866",
+      "wavSHA256": "cbca6c88ad320d23ec6c6242822fdd19151fead6fc62b67c574f6e15182439ad",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-09-grens",
+      "start": 490.83333333333326,
+      "duration": 28.666666666666668,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 3.416,
+      "voiceSeconds": 25.584036281179138,
+      "sourceHash": "36e28b54097555994313a2084a211967e3bdff05a24320b1dda90947b8eed467",
+      "wavSHA256": "450733a95978d86a77537520a46e569f588843f278f3ed27b40bc7d33e5573bc",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-09-bijlage",
+      "start": 519.4999999999999,
+      "duration": 29.0,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 2.238,
+      "voiceSeconds": 25.991972789115646,
+      "sourceHash": "f06146ede312c7d7403febbefebc35f9f1bf722f94622fe0562292416fc82499",
+      "wavSHA256": "000fe224fb0a407cd3d41f260aaba1ca1f3a7ba1e013748f9bdeeeb40e77fc3a",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-10-fout",
+      "start": 548.4999999999999,
+      "duration": 26.666666666666668,
+      "screenFrames": 14,
+      "rawCaptureSeconds": 2.969,
+      "voiceSeconds": 23.591972789115648,
+      "sourceHash": "9b7177a8aad288014943778b66ff13414dbdb789529180221ece14c948d27ef9",
+      "wavSHA256": "328a32caeab0c829fad5a958cc3040e0db6475673d5be70eb15d64e96f9663f6",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-10-onzeker",
+      "start": 575.1666666666665,
+      "duration": 29.083333333333332,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 1.791,
+      "voiceSeconds": 26.04,
+      "sourceHash": "c606a1ee90716abef0c644ccf4d65b4abe1e431db5cac87b21dbae5da85bfc32",
+      "wavSHA256": "7fed69ec29be557215c5b866a621ba0fc500485c47eb6535d70d05efb72ac915",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-11-profiel",
+      "start": 604.2499999999999,
+      "duration": 27.916666666666668,
+      "screenFrames": 12,
+      "rawCaptureSeconds": 2.43,
+      "voiceSeconds": 24.86403628117914,
+      "sourceHash": "22a2ae7f77d66b3b0f5deedc5f8237bc9ecd59042f1dc3602a9569925cf4c6c9",
+      "wavSHA256": "8870af35138e36fcb3c9b486583e32f5d2acaf1876a828ec47d43f5c698ce6f5",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-11-download",
+      "start": 632.1666666666665,
+      "duration": 32.25,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 4.2,
+      "voiceSeconds": 29.18403628117914,
+      "sourceHash": "ca1dddc26ce4565dc8a7386a108eba36bccf54433dbf7f2dbfccc58584d6cf09",
+      "wavSHA256": "26b7ba23a2cf72d63fc30acc68324ab717ebc6a75975295ea6c32cca06c6a625",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-12-openen",
+      "start": 664.4166666666665,
+      "duration": 29.75,
+      "screenFrames": 11,
+      "rawCaptureSeconds": 2.131,
+      "voiceSeconds": 26.736009070294784,
+      "sourceHash": "c4fa23f1c5c25ed8207852063bf5fa145582c25aa1288d49001fcc77a0c7e4c9",
+      "wavSHA256": "47ad4164e2d321a19e9f350178becef250bf875ac4f05afdbc471d97ba4bbcd2",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    },
+    {
+      "id": "planning-12-herstel",
+      "start": 694.1666666666665,
+      "duration": 33.75,
+      "screenFrames": 15,
+      "rawCaptureSeconds": 3.374,
+      "voiceSeconds": 30.696009070294785,
+      "sourceHash": "b94de607e63abe5d6339b23ffe516c80273df144c64213044d244ddd60c51050",
+      "wavSHA256": "c0b35ce697b3bd477a7fef6203073d1b716301310622cf9d214406dffb728e24",
+      "ledger": {
+        "mailEnabled": false,
+        "contracts": 1,
+        "mailAccepted": 0,
+        "invoice": {
+          "number": "OEFEN-2026-0001",
+          "status": "posted"
+        }
+      }
+    }
+  ]
+}

@@ -5,10 +5,14 @@ import json, math, wave, subprocess, hashlib, os, shutil
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent
 FF=Path(os.environ.get('FMZ_FFMPEG',str(ROOT.parent/'appfmz-admin-simple/tests/artifacts/video-tools/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe')))
-TAKE=Path((ROOT/'tests/artifacts/spoken/latest-take.txt').read_text().strip())
+TAKE=Path((ROOT/os.environ.get('FMZ_CAPTURE_DIR','tests/artifacts/spoken')/'latest-take.txt').read_text().strip())
 CAP=json.loads((TAKE/'capture.json').read_text(encoding='utf-8'))
-C=json.loads((ROOT/'tutorial/spoken-course-script.json').read_text(encoding='utf-8'))
-AUDIO=ROOT/'tests/artifacts/spoken/audio'
+C=json.loads((ROOT/os.environ.get('FMZ_COURSE_SCRIPT','tutorial/spoken-course-script.json')).read_text(encoding='utf-8'))
+AUDIO=ROOT/os.environ.get('FMZ_AUDIO_DIR','tests/artifacts/spoken/audio')
+PREFIX=os.environ.get('FMZ_MEDIA_PREFIX','administratie')
+DATA_FILE=os.environ.get('FMZ_DATA_FILE','tutorial/spoken-data.js')
+DATA_GLOBAL=os.environ.get('FMZ_DATA_GLOBAL','FMZSpokenCourse')
+REPORT_DIR=ROOT/os.environ.get('FMZ_MONTAGE_DIR','docs/examples/spoken-course')
 D={r['id']:r for r in json.loads((AUDIO/'durations.json').read_text(encoding='utf-8'))}
 OUT=ROOT/'tutorial/media'; OUT.mkdir(exist_ok=True)
 TMP=TAKE/'encoded';TMP.mkdir(exist_ok=True)
@@ -48,9 +52,9 @@ with wave.open(str(TMP/'narration.wav'),'wb') as joined:
                 manifest.extend(["file '"+quoted(p)+"'",f'duration {(end-tick)/FPS:.9f}'])
             manifest.append("file '"+quoted(changes[-1][1])+"'")
             listing=TMP/(ident+'.ffconcat');listing.write_text('\n'.join(manifest)+'\n',encoding='utf-8',newline='\n')
-            clip=TMP/(ident+'.mp4');cache=TMP/(ident+'.sha256');digest=hashlib.sha256(listing.read_bytes()).hexdigest()
+            clip=TMP/(ident+'.mp4');cache=TMP/(ident+'.sha256');digest=hashlib.sha256(b'limited-yuv420p-v2\n'+listing.read_bytes()).hexdigest()
             if not clip.exists() or not cache.exists() or cache.read_text()!=digest:
-                run(['-f','concat','-safe','0','-i',listing,'-vf','fps=12,format=yuv420p','-t',duration,'-an','-c:v','libx264','-preset','medium','-crf','27','-profile:v','high','-level:v','4.0','-r',FPS,'-video_track_timescale','12000',clip]);cache.write_text(digest)
+                run(['-f','concat','-safe','0','-i',listing,'-vf','fps=12,scale=in_range=full:out_range=tv,format=yuv420p','-color_range','tv','-t',duration,'-an','-c:v','libx264','-threads','4','-preset','medium','-crf','27','-profile:v','high','-level:v','4.0','-r',FPS,'-video_track_timescale','12000',clip]);cache.write_text(digest)
             clips.append(clip)
             with wave.open(str(AUDIO/(ident+'.wav')),'rb') as wav:
                 assert wav.getframerate()==RATE and wav.getnchannels()==1 and wav.getsampwidth()==2
@@ -65,19 +69,20 @@ with wave.open(str(TMP/'narration.wav'),'wb') as joined:
         chapter['end']=position
 data['duration']=position
 vtt='WEBVTT\n\n'+'\n\n'.join(f'{i+1}\n{stamp(c["start"])} --> {stamp(c["end"])}\n{c["text"]}' for i,c in enumerate(data['cues']))+'\n'
-(OUT/'administratie-nl.vtt').write_text(vtt,encoding='utf-8',newline='\n')
-(OUT/'administratie-transcript.txt').write_text(C['title']+'\nVernieuwd 18 oktober 2026. Uitsluitend vaste fictieve gegevens.\n\n'+'\n\n'.join(f'{ch["id"]}. {ch["title"]} ({stamp(ch["start"])})\n'+'\n\n'.join(s['text'] for s in ch['scenes']) for ch in data['chapters']),encoding='utf-8',newline='\n')
+(OUT/(PREFIX+'-nl.vtt')).write_text(vtt,encoding='utf-8',newline='\n')
+(OUT/(PREFIX+'-transcript.txt')).write_text(C['title']+'\nInhoudsversie '+C.get('checked',C['version'])+'. Uitsluitend vaste fictieve gegevens.\n\n'+'\n\n'.join(f'{ch["id"]}. {ch["title"]} ({stamp(ch["start"])})\n'+'\n\n'.join(s['text'] for s in ch['scenes']) for ch in data['chapters']),encoding='utf-8',newline='\n')
 (TMP/'clips.txt').write_text('\n'.join("file '"+quoted(p)+"'" for p in clips),encoding='utf-8',newline='\n')
 meta=[';FFMETADATA1','title=APPFMZ - Nederlandse administratiecursus','artist=FitMetZorge Oefenbedrijf','comment=Uitsluitend synthetische gegevens; kunstmatige Nederlandse Colette-stem; kosteloze Edge-voorleesdienst; geen echte facturen.']
 for ch in data['chapters']:meta.extend(['[CHAPTER]','TIMEBASE=1/1000','START='+str(round(ch['start']*1000)),'END='+str(round(ch['end']*1000)),'title='+ch['title'].replace('=','\\=')])
 (TMP/'chapters.ffmeta').write_text('\n'.join(meta)+'\n',encoding='utf-8',newline='\n')
 run(['-f','concat','-safe','0','-i',TMP/'clips.txt','-c','copy',TMP/'silent-edit.mp4'])
-run(['-i',TMP/'silent-edit.mp4','-i',TMP/'narration.wav','-i',OUT/'administratie-nl.vtt','-i',TMP/'chapters.ffmeta','-map','0:v:0','-map','1:a:0','-map','2:s:0','-map_metadata','3','-map_chapters','3','-c:v','copy','-c:a','aac','-ar','48000','-b:a','96k','-af','loudnorm=I=-18:TP=-1.5:LRA=7','-c:s','mov_text','-metadata:s:a:0','language=nld','-metadata:s:s:0','language=nld','-movflags','+faststart','-t',position,OUT/'administratie-rondleiding.mp4'])
-run(['-ss','2','-i',OUT/'administratie-rondleiding.mp4','-frames:v','1','-q:v','2',OUT/'administratie-poster.jpg'])
-(ROOT/'tutorial/spoken-data.js').write_text('/* Public, synthetic chapter timings and exact spoken transcript. */\nwindow.FMZSpokenCourse='+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n',encoding='utf-8',newline='\n')
-(OUT/'administratie-chapters.json').write_text(json.dumps([{k:c[k] for k in ['id','title','start','end']} for c in data['chapters']],ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
-report={'duration':position,'chapters':len(data['chapters']),'scenes':len(proof),'voice':C['voice'],'voiceLocal':False,'voiceCostsEUR':0,'voiceService':'Microsoft Edge free read-aloud; fictional public script only','actualSyntheticDOM':True,'screenPacing':'Original screen frames paced across each spoken scene; final frame held for reading','format':'H.264 High/yuv420p + AAC mono/48kHz + Dutch mov_text; MP4 faststart','videoSHA256':hashlib.sha256((OUT/'administratie-rondleiding.mp4').read_bytes()).hexdigest(),'videoBytes':(OUT/'administratie-rondleiding.mp4').stat().st_size,'sceneEvidence':proof}
-(ROOT/'docs/examples/spoken-course').mkdir(parents=True,exist_ok=True)
-(ROOT/'docs/examples/spoken-course/montage.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+run(['-i',TMP/'silent-edit.mp4','-i',TMP/'narration.wav','-i',OUT/(PREFIX+'-nl.vtt'),'-i',TMP/'chapters.ffmeta','-map','0:v:0','-map','1:a:0','-map','2:s:0','-map_metadata','3','-map_chapters','3','-c:v','copy','-c:a','aac','-ar','48000','-b:a','96k','-af','loudnorm=I=-18:TP=-1.5:LRA=7','-c:s','mov_text','-metadata:s:a:0','language=nld','-metadata:s:s:0','language=nld','-movflags','+faststart','-t',position,OUT/(PREFIX+'-rondleiding.mp4')])
+run(['-ss','2','-i',OUT/(PREFIX+'-rondleiding.mp4'),'-frames:v','1','-q:v','2',OUT/(PREFIX+'-poster.jpg')])
+assert DATA_GLOBAL.replace('_','').isalnum()
+(ROOT/DATA_FILE).write_text('/* Public, synthetic chapter timings and exact spoken transcript. */\nwindow.'+DATA_GLOBAL+'='+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n',encoding='utf-8',newline='\n')
+(OUT/(PREFIX+'-chapters.json')).write_text(json.dumps([{k:c[k] for k in ['id','title','start','end']} for c in data['chapters']],ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+report={'duration':position,'chapters':len(data['chapters']),'scenes':len(proof),'voice':C['voice'],'voiceLocal':False,'voiceCostsEUR':0,'voiceService':'Microsoft Edge free read-aloud; fictional public script only','actualSyntheticDOM':True,'screenPacing':'Original screen frames paced across each spoken scene; final frame held for reading','format':'H.264 High/yuv420p + AAC mono/48kHz + Dutch mov_text; MP4 faststart','videoSHA256':hashlib.sha256((OUT/(PREFIX+'-rondleiding.mp4')).read_bytes()).hexdigest(),'videoBytes':(OUT/(PREFIX+'-rondleiding.mp4')).stat().st_size,'runtimeAtCapture':CAP['runtimeAtStart'],'sceneEvidence':proof}
+REPORT_DIR.mkdir(parents=True,exist_ok=True)
+(REPORT_DIR/'montage.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 assert report['videoBytes']<100_000_000,'Must fit the existing Git release transport'
 print('COMPLETE',round(position/60,2),'minutes;',report['videoBytes'],'bytes',flush=True)

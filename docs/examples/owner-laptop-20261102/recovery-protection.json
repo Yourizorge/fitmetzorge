@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-02T14:05:23.647Z",
+  "repository": "Yourizorge/fitmetzorge",
+  "branch": "backup/appfmz-pre-member-onboarding-20261102",
+  "commit": "309cb0db3569f14ac54442c8daec678020ba149a",
+  "tag": "appfmz-live-before-member-onboarding-20261102",
+  "branchBefore": {
+    "sha": "309cb0db3569f14ac54442c8daec678020ba149a",
+    "protected": false
+  },
+  "protectionBeforeStatus": 404,
+  "mainChanged": false,
+  "source": "GitHub REST protected branches API 2026-03-10; credential retained only in process memory",
+  "updateStatus": 200,
+  "readbackStatus": 200,
+  "protection": {
+    "lock_branch": true,
+    "enforce_admins": true,
+    "allow_force_pushes": false,
+    "allow_deletions": false,
+    "allow_fork_syncing": false
+  },
+  "branchAfter": {
+    "sha": "309cb0db3569f14ac54442c8daec678020ba149a",
+    "protected": true
+  },
+  "remoteMain": "309cb0db3569f14ac54442c8daec678020ba149a",
+  "remoteRefs": [
+    {
+      "sha": "309cb0db3569f14ac54442c8daec678020ba149a",
+      "ref": "refs/heads/backup/appfmz-pre-member-onboarding-20261102"
+    },
+    {
+      "sha": "eca9beea1577feb797f5188f17f46de3bfef4ee3",
+      "ref": "refs/tags/appfmz-live-before-member-onboarding-20261102"
+    },
+    {
+      "sha": "309cb0db3569f14ac54442c8daec678020ba149a",
+      "ref": "refs/tags/appfmz-live-before-member-onboarding-20261102^{}"
+    }
+  ],
+  "pass": true
+}

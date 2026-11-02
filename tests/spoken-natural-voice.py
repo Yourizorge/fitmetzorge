@@ -8,9 +8,9 @@ ROOT=Path(__file__).resolve().parent.parent
 sys.path.insert(0,str(ROOT/'tests/artifacts/natural-voice-tools'))
 import edge_tts
 FF=Path(os.environ.get('FMZ_FFMPEG',str(ROOT.parent/'appfmz-admin-simple/tests/artifacts/video-tools/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe')))
-VOICE='nl-NL-ColetteNeural';RATE='-4%';OUT=ROOT/'tests/artifacts/spoken/audio'
+VOICE='nl-NL-ColetteNeural';RATE='-4%';OUT=ROOT/os.environ.get('FMZ_AUDIO_DIR','tests/artifacts/spoken/audio')
 OUT.mkdir(parents=True,exist_ok=True)
-course=json.loads((ROOT/'tutorial/spoken-course-script.json').read_text(encoding='utf-8'))
+course=json.loads((ROOT/os.environ.get('FMZ_COURSE_SCRIPT','tutorial/spoken-course-script.json')).read_text(encoding='utf-8'))
 assert course['synthetic'] and course['company']=='FitMetZorge Oefenbedrijf'
 entries=[s for c in course['chapters'] for s in c['scenes']]
 if '--sample' in sys.argv:entries=entries[:1]

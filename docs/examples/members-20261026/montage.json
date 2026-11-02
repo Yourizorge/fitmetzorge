@@ -1,0 +1,570 @@
+{
+  "duration": 778.5000000000002,
+  "chapters": 12,
+  "scenes": 24,
+  "voice": "Microsoft Edge Colette, Nederlands (nl-NL-ColetteNeural)",
+  "voiceLocal": false,
+  "voiceCostsEUR": 0,
+  "voiceService": "Microsoft Edge free read-aloud; fictional public script only",
+  "actualSyntheticDOM": true,
+  "screenPacing": "Original screen frames paced across each spoken scene; final frame held for reading",
+  "format": "H.264 High/yuv420p + AAC mono/48kHz + Dutch mov_text; MP4 faststart",
+  "videoSHA256": "cbc28fd5ff56328f5e410408c8a68e31494f0d297ae04cc3b2d3ce2505a0f960",
+  "videoBytes": 15702310,
+  "runtimeAtCapture": {
+    "accounting-model.js": "0aacbb0734066f9e1a2219ca4375b9a5e1b6fb1cb9c4fea230d1fb85eb381454",
+    "accounting-reports.js": "9f3bbea226a1fd6faa9e9ae7f2a5c7cd0cf283a1c4921abd1765d79f54779f28",
+    "accounting.js": "9d57b4ace5eb56ad9e09ede30845df80914c71cbf5a56c64da3fc3df30ffb2b5",
+    "admin-design.css": "8e1db0b7913ba9b528a5c089ff8d0675df6d160ae9573583a1c006360b7837c0",
+    "agenda-model.js": "e3d982e076ad4f63f5a4e8ee1b5583ad1bb4c95f171b56b7f0df5b385f8ec9cb",
+    "agenda.css": "b15ea29150286b07b067fcae5bfa7b07ba69af1d88852a2430bd3b95295373cc",
+    "agenda.js": "6a189f8eb60b29f3fb21e6b36c967333455092b187f374e9290815c09045ddfa",
+    "app.js": "e5bae33494484ea63f2e82dab97752cfa42c68dd7892f0d4bc515b584879d96a",
+    "autosave.js": "06ad19581b25e84f7cc4556b070fd73f26b0a806c376154d5198877b230d41b3",
+    "bank-repair-ui.js": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+    "billing-notifications.js": "1be301d93066bfa3a3d48657036104cd2271bcdb5f6217fd3236e2920f3eb579",
+    "billing-periods.js": "3b836c6969649373073b1eb68fbe823a213c1ce554f66d8e417c7a8c611a07fa",
+    "billing-planning-model.js": "7068b231e75943427422e386fafe6708b99b0c0e40811be9380ea6de2172b08d",
+    "billing-planning-ui.js": "e23da64d99ff9427db71221487ca9b3bc141e787cea57b50ea32548ad092865c",
+    "billing-planning.css": "1fc9c82401ffff83c182de3c912594e45dc1a0c2032c85bff681d60021eac305",
+    "billing-ui.js": "4f717798c5f3271a17bc85c536fc0c561e01f486af68cce126f4c03c36d276a2",
+    "communications-model.js": "100383e0e7b69d809991e6bc3a10da11a9b5efac4ac2e4e5dd56758ccc1963c5",
+    "communications-ui.js": "fe98167d5200ffb45d0f3f51a80ef7fdb765e7968a430d5fbf0e3c7d969c37c3",
+    "communications.css": "b6c5715994b6599e75486adcf140d13c91de5e15a0ac95344530aaa50004bf9c",
+    "config.js": "b8392b8b8cc1e3aac108196a479549e18728a38b4de456a52e8d633945aa23e9",
+    "finance-model.js": "758a2525cd11a57842f0e8d1b2a4a23e05563a083d95b33bc95ed8983b5b7948",
+    "finance-ui.js": "d0d06a78944a906cb296307e2174aed3cba0891bf9d72d4da964c969cad3c7ed",
+    "finance.css": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+    "Fit_Met_Zorge_Coach_App_standalone.html": "6bd1b6382ff47507530d5bd1a0756ddb55737c59856a35fa924eab4837577f47",
+    "index.html": "bccdf54ea0fda2195bbb1c56abfb0350120a9e09429beb6a199a4765cce56f4f",
+    "invoice-documents.js": "31a9b9bf5e92444e72bce336c121ec9a0095a7b6bb287249548d5241f8ec5e1b",
+    "invoice-editor.js": "172dffdc8052845e9f0a53661ff742571358b796897e74a7bdef7d0907847761",
+    "invoices.js": "c982f683f375cc0c4d1335ae5a5fe3bcdb950c7ebacdb02c109badd56ee9e7ce",
+    "layout.css": "bdc104ea806550005aaf73a0a9516288f35446281a23f4a54748f4e8989acd56",
+    "maintenance.html": "822946bda4506643b1c45f124abcb2af3cce2375b518e869e1ca6129080e5621",
+    "members-documents.js": "a209a06007a3d60f15cbfa146892fa8db32b0ba94e42c23f064caeab1bd91477",
+    "members-model.js": "ee7f3fd3fdf255a56f8e925604a7d21681324f9b8db205a88d5529cc7f4dd176",
+    "members-ui.js": "3d6dc13f4dac3000be4116fecbbcfdca8908ebe0f88329c7c97034c735bbc9be",
+    "members.css": "b0c4640d9ac069ce99c062c505b2be05b2fe105c55ef0d9482cd045a5ab50bea",
+    "payments-model.js": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+    "payments-ui.js": "15e0a885864b38b0806a1eea2bf4521ceef435e22024b952a4974a33cc87fc91",
+    "payments.css": "ac60967d6a88f7094a3210b7d57fbd9c9f995e877cea0a683ae06d9b662d2c73",
+    "photos.js": "40a4fade7132817eecf89ae0ffefdda4bae4993e4584f416a2b781466f170e51",
+    "presentation.js": "fb3fb02ce6779324c8166f36ed4f31ab90ff6e0be61c864ccc5192816b7b88b8",
+    "push.js": "a0c542df833459888ee38943a149b29e4bb5dbfeca371d53f3a82bec2d28d398",
+    "pwa.css": "505262026d0d10ce676af5edf9e50204b151f5dcd3a50e6af735b82bc3559f13",
+    "pwa.js": "2e29e0b1af3439bd9010b7c1f43512e5ca8fe44ba944de0eaae5328a8f9c5ed5",
+    "styles.css": "f23903b13be894342e91a32b77b758dc84ffd915f016c505cbb014ca1eced279",
+    "sw.js": "851e9f2d0715a7536f3d21a841a2f83a49fa64414e63ccc1b57d26c74d78663c",
+    "sync.js": "9474f657e1915addfa3dde14e5131efe879081033d0303fe23b2451ba2b631ee",
+    "tutorial.html": "bf5ec52596f98d65b907c222d10cc77d7e88c813950205d5c1737fc39958adcc",
+    "vat-ui.js": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0"
+  },
+  "sceneEvidence": [
+    {
+      "id": "members-01-naam",
+      "start": 0,
+      "duration": 32.333333333333336,
+      "screenFrames": 14,
+      "rawCaptureSeconds": 3.198,
+      "voiceSeconds": 29.328027210884354,
+      "sourceHash": "1f06839dec0ceef439e8409ff3d122490cd03f0e530fd41bd049615f97370de3",
+      "wavSHA256": "91ec99ddcb53743dcaea671f3bf7759a6f7b7281fc0e9642ff160dca2ceb46db",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-01-anders",
+      "start": 32.333333333333336,
+      "duration": 31.0,
+      "screenFrames": 19,
+      "rawCaptureSeconds": 6.227,
+      "voiceSeconds": 27.984036281179137,
+      "sourceHash": "ef83be780d6a321c1c635ba4ba276dace81bc0a2d43ad3a7b803102afd9daf6e",
+      "wavSHA256": "0b170b1ff38a281d966a2acd752cf945ac1fd2abf18a862aae437d89e1b18c26",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-02-profiel",
+      "start": 63.333333333333336,
+      "duration": 31.333333333333332,
+      "screenFrames": 12,
+      "rawCaptureSeconds": 1.84,
+      "voiceSeconds": 28.296009070294783,
+      "sourceHash": "f8c0d55f384b46a055a60481064b08e601f49e4590bbad48071a9f4aa6ea8a25",
+      "wavSHA256": "81623a7bbe50154309fcc13738a68ff7512b93354d43767f3112bc87edb45a78",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-02-onderdelen",
+      "start": 94.66666666666667,
+      "duration": 36.5,
+      "screenFrames": 19,
+      "rawCaptureSeconds": 4.7,
+      "voiceSeconds": 33.45600907029478,
+      "sourceHash": "58288b17fdd6b7992090a5a1b4134dd790cf60647cfe7b4f269ebd1cb42bfba7",
+      "wavSHA256": "9f4edf57984c6198dd539e85ff5e4dfdd4ba8b155d739cdef1341eb2c1ca8538",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-03-start",
+      "start": 131.16666666666669,
+      "duration": 27.583333333333332,
+      "screenFrames": 14,
+      "rawCaptureSeconds": 2.513,
+      "voiceSeconds": 24.576009070294784,
+      "sourceHash": "c01098e15694e6a2bf34b0759fff86799b4cfdbc0936496a2afba99d8b39cfed",
+      "wavSHA256": "da5df0f5c67d1f66a3585cdda2cf685406918e634db18cebc30da4896722289b",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-03-concept",
+      "start": 158.75000000000003,
+      "duration": 32.583333333333336,
+      "screenFrames": 29,
+      "rawCaptureSeconds": 4.698,
+      "voiceSeconds": 29.52,
+      "sourceHash": "d9510fc92303028a0f3e1e5fba6217172b000708ad10a11792cf3c54912a8926",
+      "wavSHA256": "f50a7c11c99e387f4d78804c5cc819d397bc48d5b5179defcf534ea2d4c516a6",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-04-kaarten",
+      "start": 191.33333333333337,
+      "duration": 32.333333333333336,
+      "screenFrames": 11,
+      "rawCaptureSeconds": 3.015,
+      "voiceSeconds": 29.256009070294784,
+      "sourceHash": "8217410c1228086225751a8dcbf2b41c118f3943fc64913d43737452b01cc9dc",
+      "wavSHA256": "e7a1746ad1ff420ad1c269a009e4b8097e2a9e08fe1c1ea066945c5ee467fa29",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-04-progressie",
+      "start": 223.6666666666667,
+      "duration": 31.333333333333332,
+      "screenFrames": 15,
+      "rawCaptureSeconds": 2.919,
+      "voiceSeconds": 28.271972789115647,
+      "sourceHash": "ee8a88226afc45fb9512fb0440edbfb8d2f0158af166ccf1fe0106764e862de6",
+      "wavSHA256": "cc6e367ad9cec5ca3fb39c6b97cea989746617d85e3c03b417e5231da63c0981",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-05-contact",
+      "start": 255.00000000000006,
+      "duration": 30.416666666666668,
+      "screenFrames": 76,
+      "rawCaptureSeconds": 13.922,
+      "voiceSeconds": 27.36,
+      "sourceHash": "6a0d895ba1f4fdf0795027b142b7705f9514f25cb0c7feea60767fe636da6b7d",
+      "wavSHA256": "faa0f7b586396062602c8dc1ae5c1d35cc22874e75acac4202cb346a097b1cf2",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-05-optioneel",
+      "start": 285.41666666666674,
+      "duration": 38.0,
+      "screenFrames": 23,
+      "rawCaptureSeconds": 4.578,
+      "voiceSeconds": 34.99197278911565,
+      "sourceHash": "16a131e6d1831487cf2a7ee1037a80838ddf4b96b7fd22dee116753f53a0cd0b",
+      "wavSHA256": "e561143bcb4759de07beb782d61cdee43e8bc616a3293f420f399ad6c8cca40a",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-06-betaling",
+      "start": 323.41666666666674,
+      "duration": 32.083333333333336,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 2.219,
+      "voiceSeconds": 29.04,
+      "sourceHash": "35db1c77859b47920a8acca43daaeebd2309b5c0f62972627b8b1d07d15cbedb",
+      "wavSHA256": "c6ab5f1b1f64b6794dc1f3e97d3451aeb4540703736861d0e8a3e5a0cd7fe79e",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-06-terug",
+      "start": 355.50000000000006,
+      "duration": 35.916666666666664,
+      "screenFrames": 14,
+      "rawCaptureSeconds": 3.018,
+      "voiceSeconds": 32.85600907029478,
+      "sourceHash": "a5e407bbb483b122562b25fccaf58b4142d4321746c006072c90086827c20b2f",
+      "wavSHA256": "62a66dfb0e6468b9f6a8211d6b884be94810d88545cb8e380178609c73d939a3",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-07-voorwaarden",
+      "start": 391.41666666666674,
+      "duration": 34.333333333333336,
+      "screenFrames": 13,
+      "rawCaptureSeconds": 2.85,
+      "voiceSeconds": 31.271972789115647,
+      "sourceHash": "451a846894ba1af64da48ae161cd7dba25a3a2781d7d674234b8b9785495749b",
+      "wavSHA256": "4b2fdd7ade2cdfc71da73f42f77b865d2096ec6ccd5087d2535a9e8eddbe18fa",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-07-privacy",
+      "start": 425.75000000000006,
+      "duration": 32.666666666666664,
+      "screenFrames": 9,
+      "rawCaptureSeconds": 1.999,
+      "voiceSeconds": 29.66403628117914,
+      "sourceHash": "7a7449a96ec8962d64f53222087d77b9e5ed2fc16857dfea58df7829c1d90f5a",
+      "wavSHA256": "934a7b72d90c255302632b36783537c50c09fa291c585e710565ad1333932d6e",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-08-leeg",
+      "start": 458.41666666666674,
+      "duration": 28.666666666666668,
+      "screenFrames": 12,
+      "rawCaptureSeconds": 2.751,
+      "voiceSeconds": 25.656009070294786,
+      "sourceHash": "7fa3d69a64edd8f7038273467acc92e0bdb2cad1c1cad44f95e3131255647fe4",
+      "wavSHA256": "da6b1e4296a686e35ab3513e385db5a0625ee79e6b0080e6be2cc5398553a0d1",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-08-tekenen",
+      "start": 487.0833333333334,
+      "duration": 36.583333333333336,
+      "screenFrames": 57,
+      "rawCaptureSeconds": 14.77,
+      "voiceSeconds": 33.57600907029479,
+      "sourceHash": "09701e300b67a25bc7a3b95a93cea4ae48f43764eac8c6273cbf3d04c6fc1609",
+      "wavSHA256": "2ad4a72879e92d2f7b58d74af887be9dd643cdf4e488a15aaf238c90a79ae3c6",
+      "ledger": {
+        "members": 2,
+        "contracts": 0,
+        "agreements": 1,
+        "invoices": 0,
+        "assets": [],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-09-voltooien",
+      "start": 523.6666666666667,
+      "duration": 30.5,
+      "screenFrames": 11,
+      "rawCaptureSeconds": 9.255,
+      "voiceSeconds": 27.456009070294783,
+      "sourceHash": "0f9313128d55371825262298cf12ea13ce2b083ce5c671ac09c1d3e552ed1f97",
+      "wavSHA256": "925fdffb177638da9e15fbaee1194023da7465ecc1852b77c421cd97dad1234f",
+      "ledger": {
+        "members": 3,
+        "contracts": 1,
+        "agreements": 2,
+        "invoices": 0,
+        "assets": [
+          {
+            "kind": "agreement",
+            "status": "ready",
+            "sha256": "e2de86fb15c0707588940b656adfaba5aac2e759d2b8a4f286d2e69e5eb1764d"
+          }
+        ],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-09-document",
+      "start": 554.1666666666667,
+      "duration": 36.083333333333336,
+      "screenFrames": 10,
+      "rawCaptureSeconds": 3.42,
+      "voiceSeconds": 33.024036281179136,
+      "sourceHash": "7aaddb74019128492ab68caabb1b1d47810eeb032df8cecdcac10ecb8445852d",
+      "wavSHA256": "f2511e79d1ceeccc0e7a4933ba71e5156c4c9d550370413241a25c109b30d037",
+      "ledger": {
+        "members": 3,
+        "contracts": 1,
+        "agreements": 2,
+        "invoices": 0,
+        "assets": [
+          {
+            "kind": "agreement",
+            "status": "ready",
+            "sha256": "e2de86fb15c0707588940b656adfaba5aac2e759d2b8a4f286d2e69e5eb1764d"
+          }
+        ],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-10-kiezen",
+      "start": 590.2500000000001,
+      "duration": 29.833333333333332,
+      "screenFrames": 11,
+      "rawCaptureSeconds": 2.258,
+      "voiceSeconds": 26.76,
+      "sourceHash": "e1fca5781ba9656f91d3314e8b8b7df6ab4d346dd9e45a28a9fc7381dbade04e",
+      "wavSHA256": "1e3b8f2162a8cdf50704578aa2296221fdd9f5884c74d674db4c11009a92b5aa",
+      "ledger": {
+        "members": 3,
+        "contracts": 1,
+        "agreements": 2,
+        "invoices": 0,
+        "assets": [
+          {
+            "kind": "agreement",
+            "status": "ready",
+            "sha256": "e2de86fb15c0707588940b656adfaba5aac2e759d2b8a4f286d2e69e5eb1764d"
+          }
+        ],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-10-bewaren",
+      "start": 620.0833333333335,
+      "duration": 29.833333333333332,
+      "screenFrames": 18,
+      "rawCaptureSeconds": 2.717,
+      "voiceSeconds": 26.831972789115646,
+      "sourceHash": "b6c4ef8649fc388e37568ac605db25111593273a29cdf8bd2ca8b6570fd0400b",
+      "wavSHA256": "29e2ddba81c40014f44fa3c7424b55102132eb7cdb98843842620763ec86104f",
+      "ledger": {
+        "members": 3,
+        "contracts": 1,
+        "agreements": 2,
+        "invoices": 0,
+        "assets": [
+          {
+            "kind": "agreement",
+            "status": "ready",
+            "sha256": "e2de86fb15c0707588940b656adfaba5aac2e759d2b8a4f286d2e69e5eb1764d"
+          },
+          {
+            "kind": "photo",
+            "status": "ready",
+            "sha256": "bffdbe767ac04c5b10923635311cf1fc8486bda7fb2216e5da9d2458f47d62eb"
+          }
+        ],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-11-bewerken",
+      "start": 649.9166666666669,
+      "duration": 30.5,
+      "screenFrames": 23,
+      "rawCaptureSeconds": 6.587,
+      "voiceSeconds": 27.48,
+      "sourceHash": "e6933ead1a6d588526a1c74499ade632ba76689e004fbbb6d20342d6e3d8c61b",
+      "wavSHA256": "fc6e44f2ed2473568d1cbb0f801ef4997d40c713675e407a315a1e027db7c3dd",
+      "ledger": {
+        "members": 3,
+        "contracts": 1,
+        "agreements": 2,
+        "invoices": 0,
+        "assets": [
+          {
+            "kind": "agreement",
+            "status": "ready",
+            "sha256": "e2de86fb15c0707588940b656adfaba5aac2e759d2b8a4f286d2e69e5eb1764d"
+          },
+          {
+            "kind": "photo",
+            "status": "ready",
+            "sha256": "bffdbe767ac04c5b10923635311cf1fc8486bda7fb2216e5da9d2458f47d62eb"
+          }
+        ],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-11-historie",
+      "start": 680.4166666666669,
+      "duration": 29.583333333333332,
+      "screenFrames": 17,
+      "rawCaptureSeconds": 4.765,
+      "voiceSeconds": 26.54403628117914,
+      "sourceHash": "9db6056a7afb8ab9038166ddb9d9a3ffda2d394183ee75679264113e400e41eb",
+      "wavSHA256": "5cfcd3353e2a98fd1e89c804e44132b8c5d054e04c01518d51333c11bbcaef99",
+      "ledger": {
+        "members": 3,
+        "contracts": 1,
+        "agreements": 2,
+        "invoices": 0,
+        "assets": [
+          {
+            "kind": "agreement",
+            "status": "ready",
+            "sha256": "e2de86fb15c0707588940b656adfaba5aac2e759d2b8a4f286d2e69e5eb1764d"
+          },
+          {
+            "kind": "photo",
+            "status": "ready",
+            "sha256": "bffdbe767ac04c5b10923635311cf1fc8486bda7fb2216e5da9d2458f47d62eb"
+          }
+        ],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-12-dubbel",
+      "start": 710.0000000000002,
+      "duration": 29.666666666666668,
+      "screenFrames": 121,
+      "rawCaptureSeconds": 20.348,
+      "voiceSeconds": 26.591972789115648,
+      "sourceHash": "8e3b1338cb31a01b7a3c12a12b69555dc8bc5b0b621bc7607b6267ae5ee11048",
+      "wavSHA256": "0dc1b568247ca4e91d1462b342505081a488b7203ecc8918d683ee6b955cef26",
+      "ledger": {
+        "members": 3,
+        "contracts": 1,
+        "agreements": 2,
+        "invoices": 0,
+        "assets": [
+          {
+            "kind": "agreement",
+            "status": "ready",
+            "sha256": "e2de86fb15c0707588940b656adfaba5aac2e759d2b8a4f286d2e69e5eb1764d"
+          },
+          {
+            "kind": "photo",
+            "status": "ready",
+            "sha256": "bffdbe767ac04c5b10923635311cf1fc8486bda7fb2216e5da9d2458f47d62eb"
+          }
+        ],
+        "syntheticTermsOnly": true
+      }
+    },
+    {
+      "id": "members-12-bestaand",
+      "start": 739.6666666666669,
+      "duration": 38.833333333333336,
+      "screenFrames": 46,
+      "rawCaptureSeconds": 7.524,
+      "voiceSeconds": 35.76,
+      "sourceHash": "2988727073e921ce2cc56fdc41a80a587323c351c838854dd9d9a0b16a40ce9e",
+      "wavSHA256": "fbaf8f5e7f2fbdc2e8d5a4478722913cfc1e03f81f1f39f6d0a570732b7a4e35",
+      "ledger": {
+        "members": 3,
+        "contracts": 1,
+        "agreements": 2,
+        "invoices": 0,
+        "assets": [
+          {
+            "kind": "agreement",
+            "status": "ready",
+            "sha256": "e2de86fb15c0707588940b656adfaba5aac2e759d2b8a4f286d2e69e5eb1764d"
+          },
+          {
+            "kind": "photo",
+            "status": "ready",
+            "sha256": "bffdbe767ac04c5b10923635311cf1fc8486bda7fb2216e5da9d2458f47d62eb"
+          }
+        ],
+        "syntheticTermsOnly": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "at": "2026-11-02T14:58:17.979Z",
+  "status": "PASS",
+  "scope": "Focused owner-test release checks across recorded runs, not a new full production regression claim",
+  "manifestSHA256": "3b17d95737af3d0d4f6a1deee885cd3a537de5c87ce6f0fd172687d4dfd60ae9",
+  "tests": [
+    {
+      "name": "Edge full synthetic UI chain",
+      "pass": 1,
+      "durationMs": 89178,
+      "checks": [
+        "seven packages",
+        "enrollment",
+        "keyboard and mouse signature, clear/redraw",
+        "agreement PDF",
+        "photo upload/crop",
+        "profile edit while offline",
+        "restart/search/profile/photo persistence",
+        "mail attachment and failure/retry simulation",
+        "invoice preview text watermark",
+        "TEST-FMZ final invoice PDF",
+        "email edit/save/preview",
+        "seven-day and due-date reminder simulations",
+        "exact-run cleanup and fresh seed",
+        "no parent writes or page errors"
+      ]
+    },
+    {
+      "name": "Official portable Chrome core UI chain",
+      "pass": 1,
+      "durationMs": 99234,
+      "limit": "Core route through invoice preview; extended final-invoice action verified separately in Edge after correction"
+    },
+    {
+      "name": "Chrome native zoom and responsive layout",
+      "pass": 1,
+      "evidence": "layout-evidence.json"
+    },
+    {
+      "name": "Edge host security and browser process persistence",
+      "pass": 1,
+      "evidence": "host-security-evidence.json"
+    },
+    {
+      "name": "Owner adapter lost ACK/idempotency/PDF/cleanup",
+      "pass": 1
+    },
+    {
+      "name": "Owner photo validation and manifest",
+      "pass": 1
+    },
+    {
+      "name": "PostgREST JSON date and Blob fidelity",
+      "pass": 1
+    },
+    {
+      "name": "Mail and reminder simulation rights/deduplication",
+      "pass": 1
+    },
+    {
+      "name": "Direct invoice preparation/review/finalization without typing",
+      "pass": 1
+    }
+  ],
+  "totalPassingFocusedCases": 9,
+  "physicalOwnerAcceptance": false,
+  "productionMutations": 0,
+  "realMail": 0,
+  "realPush": 0
+}

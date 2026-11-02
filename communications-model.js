@@ -1,0 +1,9 @@
+/* Public pure presentation helpers; no mail credentials or transport in the browser. */
+(function(root){'use strict';
+ const labels={draft:'Concept',approved:'Gereed voor controle',scheduled:'Ingepland',sending:'Verzending wordt verwerkt',sent:'Verzonden',archive_pending:'Verzonden — mailboxkopie nog herstellen',temporary_failure:'Tijdelijk mislukt',permanent_failure:'Definitief mislukt',delivery_unknown:'Verzenduitkomst onbekend — eerst controleren',cancelled:'Geannuleerd'};
+ function validate(d){const errors={};if(!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(d.recipient||''))errors.recipient='Vul één volledig e-mailadres in.';if(!String(d.subject||'').trim()||/[\r\n]/.test(d.subject)||d.subject.length>200)errors.subject='Vul een onderwerp van maximaal 200 tekens in.';if(!String(d.body||'').trim()||d.body.length>30000)errors.body='Vul de berichttekst in (maximaal 30.000 tekens).';return errors;}
+ const editable=m=>['draft','approved','scheduled','temporary_failure','permanent_failure','cancelled'].includes(m.status);
+ const retryable=m=>['temporary_failure','archive_pending'].includes(m.status);
+ function amsterdamInstant(value){if(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(value||''))throw Error('Kies een geldig verzendmoment.');const utc=Date.parse(value+'Z'),fmt=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}),matches=[];for(let offset=-180;offset<=180;offset+=15){const d=new Date(utc-offset*60000);if(Number.isFinite(+d)&&fmt.format(d).replace(' ','T')===value)matches.push(d.toISOString());}if(matches.length!==1)throw Error('Dit tijdstip bestaat niet of komt dubbel voor door zomer-/wintertijd. Kies een ander tijdstip.');return matches[0];}
+ const api={labels,validate,editable,retryable,amsterdamInstant};if(typeof module!=='undefined')module.exports=api;else root.FMZCommunicationsModel=api;
+})(typeof window==='undefined'?globalThis:window);

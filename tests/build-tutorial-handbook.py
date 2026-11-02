@@ -129,6 +129,19 @@ for lesson in D['lessons']:
   for ref in lesson['refs']:story.append(link(*D['sources'][ref]))
  if control_start is not None:
   tail=story[control_start:];del story[control_start:];story.append(KeepTogether(tail))
+for collection, label in [('members','Leden zoeken en inschrijven'),('planning','Facturatieplanning en communicatie')]:
+ story.append(PageBreak());heading('Vernieuwd 26 oktober 2026: '+label,'addition-'+collection)
+ story.append(p('Deze aanvullende hoofdstukken gebruiken vaste fictieve personen en de gebouwde APPFMZ-bediening. De bestaande 27 lessen en hun voortgang blijven behouden. De nieuwe route is pas voor echte inschrijvingen beschikbaar na de gecontroleerde release en vaststelling van de voorwaarden. Mailbox- en telefoonvoorbeelden zijn geen bewijs van fysieke ontvangst.'))
+ script=json.loads((ROOT/('tutorial/'+collection+'-spoken-script.json')).read_text(encoding='utf-8'))
+ story.append(link('Gesproken rondleiding: '+label,'https://appfmz.nl/tutorial.html?video='+collection))
+ for chapter in script['chapters']:
+  story.append(link(str(chapter['id'])+'. '+chapter['title'],'https://appfmz.nl/tutorial.html?video='+collection+'&chapter='+str(chapter['id'])))
+ for step in D['additions'][collection]['steps']:
+  story.append(PageBreak());heading(step['title'],step['id'])
+  for label,key in [('Wat is dit?','what'),('Waarom heb ik dit nodig?','why'),('Wat moet ik nu doen?','action'),('Wat hoort het resultaat te zijn?','result'),('Controle: is het goed gegaan?','check')]:
+   story.extend([p(label,'h2'),p(step[key])])
+  if step.get('videoChapter'):
+   story.append(link('Bekijk het bijbehorende videohoofdstuk','https://appfmz.nl/tutorial.html?video='+collection+'&chapter='+str(step['videoChapter'])))
 story.append(PageBreak());heading('Begrippen in gewone taal','glossary')
 for term,definition in sorted(D['glossary'].items(),key=lambda x:x[0].lower()):story.extend([p(term,'h2'),p(definition)])
 story.append(PageBreak());heading('Mijn boekhoudtaken','tasks')
@@ -147,5 +160,7 @@ story.append(p('Wat dit document niet doet','h2'));story.append(p('Geen aangifte
 doc.multiBuild(story)
 reader=PdfReader(OUT/'APPFMZ-boekhouden-voor-beginners.pdf');texts=[page.extract_text() for page in reader.pages]
 for lesson in D['lessons']:assert lesson['title'] in '\n'.join(texts),lesson['title']
+for collection in D['additions'].values():
+ for step in collection['steps']:assert step['title'] in '\n'.join(texts),step['title']
 assert all(len(t.strip())>70 for t in texts)
 print('Handbook:',len(reader.pages),'A4 pages, all 27 lessons and sources present.')

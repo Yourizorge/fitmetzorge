@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Een lid zoeken",
+    "start": 0,
+    "end": 63.333333333333336
+  },
+  {
+    "id": 2,
+    "title": "Een bestaand profiel openen",
+    "start": 63.333333333333336,
+    "end": 131.16666666666669
+  },
+  {
+    "id": 3,
+    "title": "Een nieuwe inschrijving beginnen",
+    "start": 131.16666666666669,
+    "end": 191.33333333333337
+  },
+  {
+    "id": 4,
+    "title": "Het juiste pakket kiezen",
+    "start": 191.33333333333337,
+    "end": 255.00000000000006
+  },
+  {
+    "id": 5,
+    "title": "Persoonsgegevens invullen",
+    "start": 255.00000000000006,
+    "end": 323.41666666666674
+  },
+  {
+    "id": 6,
+    "title": "De betaling per vier weken controleren",
+    "start": 323.41666666666674,
+    "end": 391.41666666666674
+  },
+  {
+    "id": 7,
+    "title": "Voorwaarden volledig bekijken",
+    "start": 391.41666666666674,
+    "end": 458.41666666666674
+  },
+  {
+    "id": 8,
+    "title": "Ondertekenen en het voorbeeld controleren",
+    "start": 458.41666666666674,
+    "end": 523.6666666666667
+  },
+  {
+    "id": 9,
+    "title": "Voltooien en de overeenkomst terugvinden",
+    "start": 523.6666666666667,
+    "end": 590.2500000000001
+  },
+  {
+    "id": 10,
+    "title": "Een profielfoto toevoegen",
+    "start": 590.2500000000001,
+    "end": 649.9166666666669
+  },
+  {
+    "id": 11,
+    "title": "Gegevens aanpassen met historie",
+    "start": 649.9166666666669,
+    "end": 710.0000000000002
+  },
+  {
+    "id": 12,
+    "title": "Een mogelijke dubbele inschrijving oplossen",
+    "start": 710.0000000000002,
+    "end": 778.5000000000002
+  }
+]

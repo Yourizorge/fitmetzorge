@@ -1,0 +1,473 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:02.256
+Welkom.
+
+2
+00:00:02.206 --> 00:00:05.982
+Dit is een oefenopname met fictieve leden.
+
+3
+00:00:05.982 --> 00:00:09.094
+Er gaan geen echte berichten uit.
+
+4
+00:00:09.094 --> 00:00:13.065
+Open in Administratie de Facturatieplanning.
+
+5
+00:00:13.065 --> 00:00:17.570
+Elke kaart hoort bij één betaalperiode van één lid.
+
+6
+00:00:17.570 --> 00:00:26.529
+De planning volgt de opgeslagen afspraak: vier weken betekent achtentwintig dagen; een kalendermaand blijft een kalendermaand.
+
+7
+00:00:26.529 --> 00:00:33.091
+Een geplande periode is nog geen definitieve factuur en ook geen ontvangen betaling.
+
+8
+00:00:36.267 --> 00:00:41.073
+Met de filters vind je een lid, pakket of betaalperiode.
+
+9
+00:00:41.023 --> 00:00:45.529
+Kijk altijd naar de begin- en einddatum op de kaart.
+
+10
+00:00:45.529 --> 00:00:51.753
+Een bestaande maandafspraak verandert niet doordat je hier vier weken als filter kiest.
+
+11
+00:00:51.753 --> 00:00:56.609
+Verzenddatum wijzigen verplaatst alleen het planningsmoment.
+
+12
+00:00:56.609 --> 00:01:04.721
+Controleer de datum en geef een reden; verander hiermee niet ongemerkt de afgesproken prestatieperiode.
+
+13
+00:01:07.933 --> 00:01:11.516
+Boven de planning staan Factuurmeldingen.
+
+14
+00:01:11.466 --> 00:01:17.378
+De server maakt een taak zeven dagen voor de verzenddatum en op de verzenddag.
+
+15
+00:01:17.378 --> 00:01:21.766
+Zonder telefoonmelding blijft de taak hier zichtbaar.
+
+16
+00:01:21.766 --> 00:01:26.414
+Alleen jij als eigenaar ontvangt deze factuurmeldingen.
+
+17
+00:01:26.414 --> 00:01:30.490
+Leden krijgen hierdoor geen betalingsherinnering.
+
+18
+00:01:33.683 --> 00:01:40.938
+Op je eigen iPhone open je de geïnstalleerde App F M Z-app en schakel je meldingen bewust in.
+
+19
+00:01:40.888 --> 00:01:45.263
+Gebruik daarna Eén testmelding naar mijn telefoon.
+
+20
+00:01:45.263 --> 00:01:50.107
+In deze afgesloten oefenomgeving staan meldingen uit.
+
+21
+00:01:50.107 --> 00:01:52.477
+We sturen dus niets.
+
+22
+00:01:52.477 --> 00:01:59.313
+Alleen een melding die echt op jouw telefoon verschijnt, bewijst dat de telefoonverbinding werkt.
+
+23
+00:01:59.313 --> 00:02:05.068
+Meldingen uitschakelen trekt de aparte toestemming voor factuurmeldingen weer in.
+
+24
+00:02:08.267 --> 00:02:12.409
+Planning bijwerken berekent de komende perioden.
+
+25
+00:02:12.359 --> 00:02:17.841
+Dicht bij het factuurmoment kan de app alvast een concept voorbereiden.
+
+26
+00:02:17.841 --> 00:02:23.245
+Dat concept gebruikt de vastgelegde overeenkomst en prijsversie.
+
+27
+00:02:23.245 --> 00:02:28.661
+Een nieuwe catalogusprijs herschrijft een bestaande overeenkomst niet.
+
+28
+00:02:28.661 --> 00:02:36.005
+Concepten boeken geen omzet, btw of betaling en krijgen nog geen definitief factuurnummer.
+
+29
+00:02:39.183 --> 00:02:42.883
+Open Concept controleren of bewerken.
+
+30
+00:02:42.833 --> 00:02:48.771
+Controleer het lid, de trainingsregels, periode, korting en het totaal.
+
+31
+00:02:48.771 --> 00:02:58.055
+In ons losse oefenvoorbeeld is het pakket driehonderdtachtig euro en de korting dertig euro: te betalen driehonderdvijftig euro.
+
+32
+00:02:58.055 --> 00:03:05.229
+Controleer ook de toegepaste btw-instelling; neem die niet over van een willekeurig voorbeeld.
+
+33
+00:03:05.229 --> 00:03:10.034
+Een concept mag je corrigeren voordat je het definitief maakt.
+
+34
+00:03:13.267 --> 00:03:16.693
+Open E-mailconcept bij de factuur.
+
+35
+00:03:16.643 --> 00:03:23.427
+Bovenaan zie je de factuurcontrole; daaronder staan ontvanger, onderwerp en bericht.
+
+36
+00:03:23.427 --> 00:03:27.971
+Pas de tekst aan en geef bij een wijziging een korte reden.
+
+37
+00:03:27.971 --> 00:03:31.487
+Controleer het adres letter voor letter.
+
+38
+00:03:31.487 --> 00:03:35.654
+De tekst aanpassen verandert het factuurbedrag niet.
+
+39
+00:03:35.654 --> 00:03:43.206
+Zolang de factuur nog een concept is, kunnen factuurnummer en totaal als invulvelden in de tekst staan.
+
+40
+00:03:46.433 --> 00:03:51.214
+Klik op Concept opslaan en wacht op de serverbevestiging.
+
+41
+00:03:51.164 --> 00:03:56.307
+Gewoon typen verstuurt niets en maakt geen definitieve factuur.
+
+42
+00:03:56.307 --> 00:04:00.813
+Met Voorbeeld bekijken lees je het bericht rustig terug.
+
+43
+00:04:00.813 --> 00:04:04.641
+Bij een fout blijft je invoer in het venster.
+
+44
+00:04:04.641 --> 00:04:10.305
+Sluit het venster niet zolang je gewijzigde tekst nog niet is opgeslagen.
+
+45
+00:04:13.517 --> 00:04:20.120
+Test naar mijzelf sturen gebruikt uitsluitend het vooraf ingestelde eigen testadres.
+
+46
+00:04:20.070 --> 00:04:28.755
+Bij een conceptfactuur is deze actie nog niet beschikbaar: eerst moeten de definitieve factuur en PDF bestaan.
+
+47
+00:04:28.755 --> 00:04:35.292
+Een test hoort niet naar een klant te gaan en verandert de verzendstatus van de echte factuur niet.
+
+48
+00:04:38.517 --> 00:04:45.615
+Hier meldt App F M Z dat verzending uit blijft totdat de zakelijke mailbox veilig is gekoppeld.
+
+49
+00:04:45.565 --> 00:04:48.469
+Dat is een bewuste beveiliging.
+
+50
+00:04:48.469 --> 00:04:53.781
+Het mailboxwachtwoord hoort nooit in dit formulier of in een chat.
+
+51
+00:04:53.781 --> 00:04:58.365
+De eigenaar stelt het rechtstreeks als serversecret in.
+
+52
+00:04:58.365 --> 00:05:06.047
+Pas na een echte test controleren we de ontvangen PDF, het afzenderadres en de kopie in Verzonden.
+
+53
+00:05:06.047 --> 00:05:10.305
+Deze oefenopname bewijst geen mailbezorging.
+
+54
+00:05:13.517 --> 00:05:21.748
+Controleer nu de volledige factuur: ontvanger, omschrijving, periode, korting, btw en totaal.
+
+55
+00:05:21.698 --> 00:05:26.177
+Vink de controle alleen aan als je dit hebt nagekeken.
+
+56
+00:05:26.177 --> 00:05:30.891
+Klik dan bewust op Factuur en e-mail definitief maken.
+
+57
+00:05:30.891 --> 00:05:35.539
+Deze handeling legt de factuur en PDF vast.
+
+58
+00:05:35.539 --> 00:05:38.872
+Er gaat hiermee nog geen mail uit.
+
+59
+00:05:42.100 --> 00:05:47.506
+Wacht op de bevestiging dat factuur en PDF zijn vastgelegd.
+
+60
+00:05:47.456 --> 00:05:51.466
+Nu is het definitieve factuurnummer ingevuld.
+
+61
+00:05:51.466 --> 00:05:55.750
+Controleer opnieuw de e-mailtekst en het totaal.
+
+62
+00:05:55.750 --> 00:06:02.755
+Bij een PDF-fout probeer je dezelfde factuur opnieuw; maak niet nog een tweede factuur.
+
+63
+00:06:02.755 --> 00:06:10.060
+Een definitief document verander je later via de bestaande correcte credit- of correctieroute.
+
+64
+00:06:13.267 --> 00:06:19.128
+Na controle kun je Nu versturen kiezen, zodra de mailbox is gekoppeld.
+
+65
+00:06:19.078 --> 00:06:23.245
+De veilige standaard blijft handmatig goedkeuren.
+
+66
+00:06:23.245 --> 00:06:29.820
+In deze oefenomgeving weigert de server de verzending omdat het transport uitstaat.
+
+67
+00:06:29.820 --> 00:06:35.276
+Een niet-bevestigde verzending is niet hetzelfde als een verzonden factuur.
+
+68
+00:06:35.276 --> 00:06:39.286
+De definitieve factuur blijft wel bewaard.
+
+69
+00:06:42.517 --> 00:06:50.006
+Voor later verzenden kies je een datum en tijd in Europe Amsterdam en vervolgens Inplannen voor verzending.
+
+70
+00:06:49.956 --> 00:06:54.682
+Annuleren kan alleen zolang de verzending nog niet is begonnen.
+
+71
+00:06:54.682 --> 00:07:00.034
+Automatisch versturen per lid vraagt een aparte uitdrukkelijke instelling.
+
+72
+00:07:00.034 --> 00:07:04.591
+Een gewijzigde ontvanger moet opnieuw worden gecontroleerd.
+
+73
+00:07:04.591 --> 00:07:11.284
+Een pauze of beëindiging mag automatische verzending niet ongemerkt laten doorgaan.
+
+74
+00:07:14.517 --> 00:07:19.727
+Open Communicatiehistorie om de bevestigde handelingen terug te zien.
+
+75
+00:07:19.677 --> 00:07:25.185
+Concept opslaan, goedkeuren en verzenden zijn verschillende gebeurtenissen.
+
+76
+00:07:25.185 --> 00:07:33.115
+Verzonden betekent dat de mailserver het bericht heeft geaccepteerd; het bewijst niet dat de ontvanger het heeft gelezen.
+
+77
+00:07:33.115 --> 00:07:38.661
+Als alleen de mailboxkopie nog ontbreekt, blijft dat apart zichtbaar.
+
+78
+00:07:41.850 --> 00:07:47.399
+In Facturatieplanning kun je op verzendstatus en betaalstatus filteren.
+
+79
+00:07:47.349 --> 00:07:51.021
+Een verzonden factuur kan nog openstaan.
+
+80
+00:07:51.021 --> 00:07:56.112
+Een betaling registreren is een afzonderlijke financiële handeling.
+
+81
+00:07:56.112 --> 00:08:01.008
+Maak geen tweede omzetboeking wanneer je een betaling ontvangt.
+
+82
+00:08:01.008 --> 00:08:08.221
+In onze oefening is niets verzonden, dus het filter Verzonden geeft terecht geen verzonden oefenfactuur.
+
+83
+00:08:11.433 --> 00:08:17.412
+De controle van Outlook en TransIP vindt buiten App F M Z plaats.
+
+84
+00:08:17.362 --> 00:08:24.081
+Open daar na een echte toegestane test de map Verzonden en zoek op onderwerp en berichttijd.
+
+85
+00:08:24.081 --> 00:08:29.940
+Dezelfde e-mail en PDF horen in beide programma's zichtbaar te zijn.
+
+86
+00:08:29.940 --> 00:08:36.854
+We tonen hier geen nagebouwde mailbox en gebruiken in deze opname geen echte mailtoegang.
+
+87
+00:08:40.100 --> 00:08:47.993
+Vergelijk ontvanger, afzender, onderwerp, tekst en de PDF-bijlage met de vastgelegde factuur.
+
+88
+00:08:47.943 --> 00:08:54.427
+Ontbreekt alleen de kopie in Verzonden, stuur de factuur dan niet opnieuw naar de klant.
+
+89
+00:08:54.427 --> 00:08:58.880
+App F M Z moet dan alleen de mailboxkopie herstellen.
+
+90
+00:08:58.880 --> 00:09:05.938
+Deze providercontrole en fysieke ontvangst moeten nog met de eigen mailbox worden bevestigd.
+
+91
+00:09:09.100 --> 00:09:12.618
+Lees een foutmelding eerst rustig.
+
+92
+00:09:12.568 --> 00:09:18.036
+Hier is de mailbox nog niet gekoppeld, dus er is geen mail verstuurd.
+
+93
+00:09:18.036 --> 00:09:21.839
+De factuur en PDF verdwijnen niet.
+
+94
+00:09:21.839 --> 00:09:27.555
+Na het veilig koppelen van de mailbox controleer je hetzelfde bericht opnieuw.
+
+95
+00:09:27.555 --> 00:09:32.529
+Maak hiervoor geen nieuwe factuur en geen nieuw factuurnummer.
+
+96
+00:09:35.767 --> 00:09:41.537
+Een time-out is anders: de mailserver kan het bericht al hebben geaccepteerd.
+
+97
+00:09:41.487 --> 00:09:48.740
+App F M Z houdt een onzekere uitkomst daarom vast voor controle en verstuurt niet blind opnieuw.
+
+98
+00:09:48.740 --> 00:09:58.245
+Als verzending aantoonbaar is gelukt maar alleen de mailboxkopie ontbreekt, mag de herstelactie uitsluitend die kopie opnieuw proberen.
+
+99
+00:09:58.245 --> 00:10:01.630
+Zo voorkom je een dubbele factuurmail.
+
+100
+00:10:04.850 --> 00:10:10.451
+Open het profiel van ons fictieve ingeschreven lid en ga naar Documenten.
+
+101
+00:10:10.401 --> 00:10:18.565
+Hier staat de definitieve ondertekende overeenkomst, met overeenkomstnummer, pakket en voorwaardenversie.
+
+102
+00:10:18.565 --> 00:10:24.854
+Dit document is pas gemaakt nadat de inschrijving succesvol was afgerond.
+
+103
+00:10:24.854 --> 00:10:29.555
+Het betreffende lid kan het ook in de eigen omgeving bekijken.
+
+104
+00:10:32.767 --> 00:10:35.907
+Klik op PDF downloaden.
+
+105
+00:10:35.857 --> 00:10:41.404
+Je krijgt een tijdelijke beveiligde toegang tot het oorspronkelijke document.
+
+106
+00:10:41.404 --> 00:10:47.107
+Een latere profielwijziging herschrijft deze ondertekende PDF niet.
+
+107
+00:10:47.107 --> 00:10:53.370
+Controleer dat naam, pakket, betaalfrequentie en ondertekeningsdatum kloppen.
+
+108
+00:10:53.370 --> 00:11:01.794
+Dit is een fictieve oefenovereenkomst; de voorbeeldvoorwaarden mogen nooit als echte bedrijfsvoorwaarden worden gebruikt.
+
+109
+00:11:05.017 --> 00:11:09.159
+Bij de overeenkomst staat de e-mailstatus.
+
+110
+00:11:09.109 --> 00:11:13.680
+Open Overeenkomstmail bekijken of opnieuw verzenden.
+
+111
+00:11:13.680 --> 00:11:19.695
+Controleer de ontvanger, de persoonlijke bevestiging en de gekoppelde PDF.
+
+112
+00:11:19.695 --> 00:11:27.781
+Na een geslaagde inschrijving wordt dit bericht voorbereid; een mailfout draait de inschrijving niet terug.
+
+113
+00:11:27.781 --> 00:11:31.596
+Maak dus niet nogmaals hetzelfde lid aan.
+
+114
+00:11:34.767 --> 00:11:43.024
+Ook hier geldt: bij een onzekere uitkomst eerst controleren, daarna alleen de passende herstelactie gebruiken.
+
+115
+00:11:42.974 --> 00:11:47.063
+In deze oefenomgeving staat verzending uit.
+
+116
+00:11:47.063 --> 00:11:53.742
+Sluit het bericht en controleer dat de overeenkomst gewoon onder Documenten blijft staan.
+
+117
+00:11:53.742 --> 00:12:00.240
+Je kent nu de route van planning en concept tot controle, verzending en veilig herstel.
+
+118
+00:12:00.240 --> 00:12:05.305
+De echte telefoon- en mailboxproef voer je daarna zelf uit.

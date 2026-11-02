@@ -355,8 +355,8 @@ const CLIENT_PACKAGES = [
   { id: "pt-progressie", legacyLabel: "1-op-1 PT Progressie - 8x per maand", label: "1-op-1 PT Progressie - 8 trainingen per periode", amount: 380, sessions: 8 },
   { id: "pt-transformatie", legacyLabel: "1-op-1 PT Transformatie - 12x per maand", label: "1-op-1 PT Transformatie - 12 trainingen per periode", amount: 480, sessions: 12 },
   { id: "duo-basis", legacyLabel: "Duo Basis - 4x per maand", label: "Duo Basis - 4 trainingen per periode", amount: 260 },
-  { id: "duo-progressie", legacyLabel: "Duo Progressie - 8x per maand", label: "Duo Progressie - 8 trainingen per periode", amount: 520 },
-  { id: "duo-transformatie", legacyLabel: "Duo Transformatie - 12x per maand", label: "Duo Transformatie - 12 trainingen per periode", amount: 780 },
+  { id: "duo-progressie", legacyLabel: "Duo Progressie - 8x per maand", label: "Duo Progressie - 8 trainingen per periode", amount: 500 },
+  { id: "duo-transformatie", legacyLabel: "Duo Transformatie - 12x per maand", label: "Duo Transformatie - 12 trainingen per periode", amount: 660 },
   { id: "online-coaching", label: "Online Coaching", amount: 200 },
   { id: "custom", label: "Anders / handmatig", amount: "" }
 ];
@@ -1775,7 +1775,7 @@ function hasPendingChanges() {
 function lockOnlineSession() {
   if (onlineProfile && hasPendingChanges()) pendingDrafts.set(onlineProfile.id,{state:FMZSync.clone(state),baseline:cloudBaseline,raw:rawCloudState,pendingWrite});
   pendingWrite=null;
-  window.FMZPhotos?.lock(); window.FMZInvoices?.lock(); window.FMZAgenda?.lock();
+  window.FMZPhotos?.lock(); window.FMZInvoices?.lock(); window.FMZAgenda?.lock(); window.FMZMembers?.lock();
   authGeneration++;
   window.clearTimeout(cloudSaveTimer);
   onlineReady=false; onlineProfile=null; cloudBaseline=null; rawCloudState=null;
@@ -3732,6 +3732,7 @@ function renderAll() {
   renderAdministration();
   renderInvoicePage();
   renderSettingsPage();
+  window.FMZMembers?.render();
   if(window.FMZAccounting){
     const legacySettings=document.querySelector('.settings-invoice-card');
     if(legacySettings)legacySettings.innerHTML='<h2>Bedrijfsadministratie</h2><p>Bedrijfsgegevens en factuurinstellingen worden met ingangsdatum beheerd bij Administratie → Administratie-instellingen.</p>';

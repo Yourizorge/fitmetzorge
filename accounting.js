@@ -1,10 +1,10 @@
 /* Owner-only UI. No finance data, document bytes or drafts are persisted in browser storage. */
 window.FMZAccounting=(()=>{
  const M=FMZAccountingModel,esc=s=>escapeHTML(String(s??'')),copy=x=>JSON.parse(JSON.stringify(x)),uid=()=>crypto.randomUUID(),today=()=>todayISO();
- const menus=[['overview','Overzicht'],['sales','Facturen'],['income','Inkomsten'],['outgoings','Uitgaven'],['profit','Winst'],['expenses','Kosten en bonnen'],['bank','Bank/Kas'],['private','Privéstortingen en privéopnames'],['assets','Bezittingen en schulden'],['vat','Btw'],['reports','Overzichten'],['settings','Administratie-instellingen']];
+ const menus=[['overview','Overzicht'],['planning','Facturatieplanning'],['sales','Facturen'],['income','Inkomsten'],['outgoings','Uitgaven'],['profit','Winst'],['expenses','Kosten en bonnen'],['bank','Bank/Kas'],['private','Privéstortingen en privéopnames'],['assets','Bezittingen en schulden'],['vat','Btw'],['reports','Overzichten'],['settings','Administratie-instellingen']];
  let owner=null,epoch=0,access=null,snapshot=null,loading=null,page='overview',revision=0,rendered='',pending=null,commandBusy=false,error='',modal=null,invoice=null,invoiceTimer=null,formBusy=false;
  const formDrafts=new Map(),invoiceDrafts=new Map(),paymentDrafts=new Map(),repairDrafts=new Map(),vatDrafts=new Map(),disclosures=new Map(),urls=new Set();let importData=null;
- let bankFilters={};let customPeriod={from:new Date().toLocaleDateString('sv-SE',{timeZone:'Europe/Amsterdam'}).slice(0,7)+'-01',to:new Date().toLocaleDateString('sv-SE',{timeZone:'Europe/Amsterdam'})};let salesFilter='all';let periodType='month',periodValue=new Date().toISOString().slice(0,7);
+ let planningTaskId=null;let bankFilters={};let customPeriod={from:new Date().toLocaleDateString('sv-SE',{timeZone:'Europe/Amsterdam'}).slice(0,7)+'-01',to:new Date().toLocaleDateString('sv-SE',{timeZone:'Europe/Amsterdam'})};let salesFilter='all';let periodType='month',periodValue=new Date().toISOString().slice(0,7);
  const list=k=>snapshot?.records.filter(r=>r.kind===k)||[],get=id=>snapshot?.records.find(r=>r.id===id),accountOpts=()=>list('account').filter(r=>!r.data.hidden).map(r=>[r.id,r.data.name]);
  const balance=(code,ref)=>M.project(snapshot).balance(code,ref),ready=()=>Boolean(access&&onlineReady&&owner===onlineProfile?.id);
  function assertOwner(gen=epoch){if(!ready()||gen!==epoch)throw Error('Sessie gewijzigd. Log opnieuw in.');}
@@ -27,7 +27,7 @@ window.FMZAccounting=(()=>{
   catch(e){if(gen===epoch&&e.code&&(/^(PT409|22|23|42|P0001)/.test(e.code)))pending=null;throw e;}
   finally{if(gen===epoch)commandBusy=false;}
  }
- function lock(){window.FMZBilling?.lock();window.FMZTutorial?.close();document.body.classList.remove('accounting-mode');epoch++;owner=null;access=null;snapshot=null;loading=null;pending=null;commandBusy=false;invoice=null;clearTimeout(invoiceTimer);modal?.close();modal?.remove();modal=null;formBusy=false;formDrafts.clear();invoiceDrafts.clear();paymentDrafts.clear();repairDrafts.clear();vatDrafts.clear();bankFilters={};disclosures.clear();importData=null;uploadStates.clear();pdfBytes.clear();urls.forEach(URL.revokeObjectURL);urls.clear();document.querySelectorAll('[data-accounting-root]').forEach(e=>e.replaceChildren());rendered='';}
+ function lock(){window.FMZBillingNotifications?.lock();planningTaskId=null;window.FMZBillingPlanning?.lock();window.FMZCommunicationsUI?.lock();window.FMZBilling?.lock();window.FMZTutorial?.close();document.body.classList.remove('accounting-mode');epoch++;owner=null;access=null;snapshot=null;loading=null;pending=null;commandBusy=false;invoice=null;clearTimeout(invoiceTimer);modal?.close();modal?.remove();modal=null;formBusy=false;formDrafts.clear();invoiceDrafts.clear();paymentDrafts.clear();repairDrafts.clear();vatDrafts.clear();bankFilters={};disclosures.clear();importData=null;uploadStates.clear();pdfBytes.clear();urls.forEach(URL.revokeObjectURL);urls.clear();document.querySelectorAll('[data-accounting-root]').forEach(e=>e.replaceChildren());rendered='';}
  function btn(label,action,id='',cls='secondary-btn'){return `<button type="button" class="${cls}" data-acc-action="${esc(action)}" data-id="${esc(id)}">${esc(label)}</button>`;}
  function input(name,label,value='',type='text',extra=''){return `<label class="field"><span>${esc(label)}</span><input name="${name}" type="${type}" value="${esc(value)}" ${extra}></label>`;}
  function area(name,label,value=''){return `<label class="field full"><span>${esc(label)}</span><textarea name="${name}" rows="3">${esc(value)}</textarea></label>`;}
@@ -51,7 +51,7 @@ window.FMZAccounting=(()=>{
    const links=list('invoice').filter(x=>x.parent_id===r.id&&x.status==='posted').map(x=>info('Credit: '+x.number+' · '+M.money(x.data.document.totalCents))+btn('Credit bekijken','detail',x.id)).join('');
    const periodInfo=(d?.billing||r.data.billing);
    const correction=r.parent_id?info('Credit op '+(get(r.parent_id)?.number||'')):cancelled?info('Geannuleerd: '+r.data.cancellation_reason):'';
-   const actions=r.status==='draft'?btn('Concept openen / bewerken','invoice',r.id)+btn('Concept verwijderen','draft-delete',r.id):(i?.outstanding>0&&!r.parent_id&&!cancelled?btn('Betaling registreren','payment',r.id,'primary-btn'):'')+btn('PDF openen','invoice-open',r.id)+btn('PDF downloaden','invoice-pdf',r.id)+btn('Delen','invoice-share',r.id)+(!r.parent_id&&!cancelled?btn('Factuur annuleren','invoice-cancel',r.id)+btn('Creditfactuur maken','credit',r.id):'')+btn('Betalingen bekijken / corrigeren','detail',r.id);
+   const actions=r.status==='draft'?btn('Concept openen / bewerken','invoice',r.id)+btn('E-mailconcept voorbereiden','invoice-mail',r.id)+btn('Concept verwijderen','draft-delete',r.id):(i?.outstanding>0&&!r.parent_id&&!cancelled?btn('Betaling registreren','payment',r.id,'primary-btn'):'')+btn('PDF openen','invoice-open',r.id)+btn('PDF downloaden','invoice-pdf',r.id)+btn('Delen','invoice-share',r.id)+btn('E-mailconcept / verzenden','invoice-mail',r.id)+(!r.parent_id&&!cancelled?btn('Factuur annuleren','invoice-cancel',r.id)+btn('Creditfactuur maken','credit',r.id):'')+btn('Betalingen bekijken / corrigeren','detail',r.id);
    return card(r.number||'Concept — nog geen factuur',info(d?.customer.name||r.data.customer?.name)+info(d?.description||r.data.description)+info(d?`${M.money(d.totalCents)} · ${r.parent_id?'Creditfactuur':i?.statusLabel}${i?' · resterend '+M.money(i.outstanding):''}`:'Alleen een concept; geen omzetboeking')+(periodInfo?info(FMZBillingPeriods.label(periodInfo.cycle)+' · '+FMZBillingPeriods.display(periodInfo.start)+' t/m '+FMZBillingPeriods.display(periodInfo.end)):'' )+correction+links+finance.invoiceSummary(r.id),actions);
   }))+legacyHTML();
  }
@@ -99,11 +99,34 @@ window.FMZAccounting=(()=>{
   const root=document.querySelector(`#${currentView} [data-accounting-root]`);if(!root)return;
   if(!snapshot||!ready()){root.innerHTML=panel('Administratie',info(error||'Ownerrechten controleren…')+btn('Opnieuw laden','reload'));rendered=stamp;return;}
   const selected=currentView==='invoice'?'sales':page;
-  const content={overview, sales:salesHTML,income:finance.income,outgoings:finance.outgoings,profit:finance.profit,expenses,bank:bankHTML,private:privateHTML,assets:assetsHTML,vat:vatHTML,reports,settings:settingsHTML}[selected]();
+  window.FMZBillingPlanning?.lock();
+  window.FMZBillingNotifications?.lock();
+  window.FMZCommunicationsUI?.configure({rpc,refresh,snapshot:()=>snapshot,invoiceReview:mailInvoiceReview,finalizeInvoice:finalizeFromMail});
+  const content={overview,planning:()=>'<div data-billing-notifications-root></div><div data-planning-root></div>',sales:salesHTML,income:finance.income,outgoings:finance.outgoings,profit:finance.profit,expenses,bank:bankHTML,private:privateHTML,assets:assetsHTML,vat:vatHTML,reports,settings:settingsHTML}[selected]();
   root.querySelectorAll('.acc-advanced').forEach(d=>disclosures.set(d.querySelector('summary').textContent,d.open));
-  root.innerHTML=`<div class="acc-heading"><div><p class="eyebrow">FitMetZorge · privé voor de owner</p><h1 tabindex="-1">${esc(menus.find(m=>m[0]===selected)[1])}</h1></div><div class="fmz-course-entry">${btn('Uitleg & oefenen','tutorial')}<button type="button" data-acc-action="tutorial-help" data-id="${selected}" class="fmz-admin-section-help" aria-label="Uitleg bij ${esc(menus.find(m=>m[0]===selected)[1])}">?</button>${btn('Verversen','reload')}</div></div><p data-acc-status role="status">${esc(error)}</p><div class="acc-layout"><div class="acc-navigation"><nav class="acc-menu" aria-label="Administratieonderdelen">${menus.filter(([id])=>['overview','sales','income','outgoings','profit','bank','vat','reports'].includes(id)).map(([id,label])=>`<button type="button" data-acc-page="${id}" class="${id===selected?'active':''}" ${id===selected?'aria-current="page"':''}>${esc(label)}</button>`).join('')}${btn('Uitleg & oefenen','tutorial')}</nav><details class="acc-advanced-nav" ${['expenses','private','assets','settings'].includes(selected)?'open':''}><summary>Meer administratie</summary><nav class="acc-menu" aria-label="Overige administratieonderdelen">${menus.filter(([id])=>!['overview','sales','income','outgoings','profit','bank','vat','reports'].includes(id)).map(([id,label])=>`<button type="button" data-acc-page="${id}" class="${id===selected?'active':''}">${esc(label)}</button>`).join('')}</nav></details></div><div class="acc-content">${content}</div></div>`;
+  root.innerHTML=`<div class="acc-heading"><div><p class="eyebrow">FitMetZorge · privé voor de owner</p><h1 tabindex="-1">${esc(menus.find(m=>m[0]===selected)[1])}</h1></div><div class="fmz-course-entry">${btn('Uitleg & oefenen','tutorial')}<button type="button" data-acc-action="tutorial-help" data-id="${selected}" class="fmz-admin-section-help" aria-label="Uitleg bij ${esc(menus.find(m=>m[0]===selected)[1])}">?</button>${btn('Verversen','reload')}</div></div><p data-acc-status role="status">${esc(error)}</p><div class="acc-layout"><div class="acc-navigation"><nav class="acc-menu" aria-label="Administratieonderdelen">${menus.filter(([id])=>['overview','planning','sales','income','outgoings','profit','bank','vat','reports'].includes(id)).map(([id,label])=>`<button type="button" data-acc-page="${id}" class="${id===selected?'active':''}" ${id===selected?'aria-current="page"':''}>${esc(label)}</button>`).join('')}${btn('Uitleg & oefenen','tutorial')}</nav><details class="acc-advanced-nav" ${['expenses','private','assets','settings'].includes(selected)?'open':''}><summary>Meer administratie</summary><nav class="acc-menu" aria-label="Overige administratieonderdelen">${menus.filter(([id])=>!['overview','planning','sales','income','outgoings','profit','bank','vat','reports'].includes(id)).map(([id,label])=>`<button type="button" data-acc-page="${id}" class="${id===selected?'active':''}">${esc(label)}</button>`).join('')}</nav></details></div><div class="acc-content">${content}</div></div>`;
   root.querySelectorAll('.acc-advanced').forEach(d=>{if(disclosures.has(d.querySelector('summary').textContent))d.open=disclosures.get(d.querySelector('summary').textContent);});
+  if(selected==='planning'){
+   window.FMZBillingNotifications?.mount(root.querySelector('[data-billing-notifications-root]'),{rpc,open:openPlanning});
+   window.FMZBillingPlanning?.mount(root.querySelector('[data-planning-root]'),{invoiceReview:mailInvoiceReview,snapshot:()=>snapshot,read:async()=>{const [data,mail]=await Promise.all([rpc('fmz_billing_planning_read'),rpc('fmz_communication_read')]);data.messages=mail.messages;return data;},command:(a,p)=>command(a,p,'fmz_billing_planning_command'),refresh,openInvoice,mail:async t=>{if(get(t.invoice_id)?.status==='posted')await ensurePDF(get(t.invoice_id));return FMZCommunicationsUI.open({invoiceId:t.invoice_id});},taskId:planningTaskId});
+  }
   root.querySelectorAll('form[data-acc-form]').forEach(f=>{const d=formDrafts.get(f.dataset.accForm);if(d)for(const [k,v]of Object.entries(d.values)){const e=f.elements.namedItem(k);if(e&&e.type!=='file'){if(e.type==='checkbox')e.checked=v;else e.value=v;}}});rendered=stamp;
+ }
+ function mailInvoiceReview(id){
+  assertOwner();const r=get(id);if(!r||r.kind!=='invoice')throw Error('Factuur ontbreekt.');
+  const s=currentSettings(r.data.date||r.date);if(!r.data.document&&!['standard','kor','exempt'].includes(s.vat_status))throw Error('Controleer eerst de fiscale instellingen.');
+  const original=r.parent_id?get(r.parent_id)?.data.document:null;
+  const credited=r.parent_id?-list('invoice').filter(x=>x.parent_id===r.parent_id&&x.status==='posted').reduce((n,x)=>n+x.data.document.totalCents,0):0;
+  const doc=r.data.document||FMZInvoiceEditor.document(r.data,original?.settings||s,r.data.logo,original,credited);
+  return{customer:doc.customer?.name,description:doc.description,period:doc.billing?`${doc.billing.start} t/m ${doc.billing.end}`:doc.serviceDate,subtotalCents:doc.subtotalCents,discountCents:doc.discountCents,vatCents:doc.vatCents,totalCents:doc.totalCents};
+ }
+ async function finalizeFromMail(id){
+  const gen=epoch;assertOwner(gen);
+  if(invoiceDrafts.get(id)?.dirty)throw Error('Er staat nog niet-opgeslagen factuurinvoer open. Sla dat concept eerst op.');
+  let record=get(id);if(!record||record.kind!=='invoice')throw Error('Factuur ontbreekt. Ververs en controleer opnieuw.');
+  if(record.status==='draft'){record=await command('final_invoice',{id,version:record.version});assertOwner(gen);snapshot.records[snapshot.records.findIndex(r=>r.id===id)]=record;revision++;}
+  if(record.status!=='posted')throw Error('Deze factuur kan niet definitief worden gemaakt.');
+  await ensurePDF(record);assertOwner(gen);await refresh();return record;
  }
  function selectChanged(e){
   if(e.target.name==='salesStatus'){salesFilter=e.target.value;render(true);return;}
@@ -148,6 +171,7 @@ window.FMZAccounting=(()=>{
    else if(a==='import-source')await attachImportSource(Number(id),target);
    else if(a==='import-undo'){showModal('Ongekoppelde import terugdraaien',form('import-undo','Import controleren',input('record_id','Import',id,'hidden')+area('reason','Reden voor terugdraaien')+info('Alleen ongekoppelde, niet-afgestemde mutaties in open perioden. De originele CSV en historie blijven behouden; er komen tegenboekingen.'),'Import terugdraaien'));}
    else if(a?.startsWith('report-')){target.disabled=true;try{const data=FMZAccountingReports.build(snapshot,range(),a.slice(7)),bytes=await FMZInvoices.report(data);downloadBlob(new Blob([bytes],{type:'application/pdf'}),`FitMetZorge-${a.slice(7)}-${data.period.from}-${data.period.to}.pdf`);}finally{target.disabled=false;}}
+   else if(a==='invoice-mail'){if(get(id)?.status==='posted')await ensurePDF(get(id));await FMZCommunicationsUI.open({invoiceId:id});}
    else if(a==='invoice-pdf')await downloadInvoice(id);
    else if(a==='invoice-refresh')await refreshInvoice();
    else if(a==='invoice-use-mine'){invoice.version=invoice.remote.version;invoice.conflict=false;invoice.dirty=true;invoice.message.textContent='Vernieuwde versie gekozen. Jouw concept wordt opnieuw opgeslagen.';await persistInvoice(invoice);}
@@ -271,7 +295,7 @@ window.FMZAccounting=(()=>{
   }catch(e){t.textContent=e.message;note.textContent='Vul geldige factuurregels en bedragen in voor het A4-voorbeeld.';root.replaceChildren();}
  }
 
- async function persistInvoice(d,strict=false){if(d.owner!==owner||!ready()||d.busy||d.conflict)return false;clearTimeout(invoiceTimer);if(!d.dirty&&d.version)return true;const gen=epoch;let acknowledged=false;d.busy=true;
+ async function persistInvoice(d,strict=false){if(d.owner!==owner||!ready()||d.busy||d.conflict)return false;clearTimeout(invoiceTimer);if(!d.dirty&&d.version&&!strict)return true;const gen=epoch;let acknowledged=false;d.busy=true;
   try{const payload=d.pending||{id:d.id,version:d.version,data:draftPayload(d,strict)};d.pending=payload;d.message.textContent='Concept opslaan…';const saved=await (d.inflight=command('draft',payload));assertOwner(gen);acknowledged=true;d.pending=null;d.version=saved.version;const current=JSON.stringify(draftPayload(d));d.dirty=current!==JSON.stringify(payload.data);d.message.textContent=d.dirty?'Nieuwere invoer nog niet opgeslagen…':'Concept opgeslagen';if(snapshot){const ix=snapshot.records.findIndex(r=>r.id===d.id);if(ix<0)snapshot.records.push(saved);else snapshot.records[ix]=saved;revision++;}return !d.dirty;
   }catch(e){if(gen===epoch){if(e.code==='PT409'){d.conflict=true;d.pending=null;}else if(e.code&&/^(22|23|42|P0001)/.test(e.code))d.pending=null;d.message.textContent='Niet opgeslagen — '+e.message;}return false;}
   finally{if(gen===epoch){d.busy=false;if(acknowledged&&d.dirty&&!d.conflict&&!d.pending&&invoice===d)invoiceTimer=setTimeout(()=>persistInvoice(d),650);}}
@@ -326,5 +350,6 @@ window.FMZAccounting=(()=>{
   zip['LEESMIJ.html']=fflate.strToU8(html);const payload={id:uid(),data:{file_count:index.length}};await command('export',payload);downloadBlob(new Blob([fflate.zipSync(zip,{level:6})],{type:'application/zip'}),`FitMetZorge-administratie-${today()}.zip`);status('Export gecontroleerd — download gestart');
  }
  window.addEventListener('beforeunload',e=>{if(pending||[...vatDrafts.values(),...repairDrafts.values()].some(d=>d.payload||d.dirty)||[...paymentDrafts.values()].some(d=>d.payload||d.dirty)||[...formDrafts.values()].some(d=>d.dirty)||[...invoiceDrafts.values()].some(d=>d.dirty)){e.preventDefault();e.returnValue='';}});
- return {init,render,lock,get access(){return access},get ready(){return ready()},get snapshot(){return snapshot},refresh,command,newInvoice,openInvoice,saveInvoice,downloadInvoice,legacyCard,exportAll};
+ function openPlanning(taskId=null){assertOwner();planningTaskId=taskId;page='planning';showView('administration');render(true);}
+ return {openPlanning,init,render,lock,get access(){return access},get ready(){return ready()},get snapshot(){return snapshot},refresh,command,newInvoice,openInvoice,saveInvoice,downloadInvoice,legacyCard,exportAll};
 })();

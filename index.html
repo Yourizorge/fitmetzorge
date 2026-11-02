@@ -16,7 +16,10 @@
     <link rel="stylesheet" href="layout.css?v=20261015" />
     <link rel="stylesheet" href="pwa.css?v=20261015" />
     <link rel="stylesheet" href="agenda.css?v=20261015">
-  <link rel="stylesheet" href="payments.css?v=20261015-spoken3"><link rel="stylesheet" href="admin-design.css?v=20261015"><link rel="stylesheet" href="finance.css?v=20261018-finance">
+    <link rel="stylesheet" href="members.css?v=20261026">
+    <link rel="stylesheet" href="billing-planning.css?v=20261026">
+    <link rel="stylesheet" href="communications.css?v=20261026">
+  <link rel="stylesheet" href="payments.css?v=20261015-spoken3"><link rel="stylesheet" href="admin-design.css?v=20261026-members"><link rel="stylesheet" href="finance.css?v=20261018-finance">
   </head>
   <body class="logged-out">
     <section id="loginScreen" class="login-screen">
@@ -347,8 +350,8 @@
                   <option value="pt-progressie">1-op-1 PT Progressie - 8 trainingen - €380 per afgesproken periode</option>
                   <option value="pt-transformatie">1-op-1 PT Transformatie - 12 trainingen - €480 per afgesproken periode</option>
                   <option value="duo-basis">Duo Basis - 4 trainingen - €260 per afgesproken periode</option>
-                  <option value="duo-progressie">Duo Progressie - 8 trainingen - €520 per afgesproken periode</option>
-                  <option value="duo-transformatie">Duo Transformatie - 12 trainingen - €780 per afgesproken periode</option>
+                  <option value="duo-progressie">Duo Progressie - 8 trainingen - €500 voor een nieuwe overeenkomst</option>
+                  <option value="duo-transformatie">Duo Transformatie - 12 trainingen - €660 voor een nieuwe overeenkomst</option>
                   <option value="online-coaching">Online Coaching - €200 per afgesproken periode</option>
                   <option value="custom">Anders / handmatig</option>
                 </select>
@@ -1019,20 +1022,28 @@
     <script src="invoice-editor.js?v=20260924-billing"></script>
     <script src="invoices.js?v=20260911-owner"></script>
     <script src="tutorial/beginner-content.js?v=20261018-finance"></script><script src="tutorial/content.js?v=20261018-finance"></script>
-    <script src="tutorial/host.js?v=20261018-finance"></script>
-    <script src="billing-periods.js?v=20260924"></script>
+    <script src="tutorial/host.js?v=20261026-members"></script>
+    <script src="billing-periods.js?v=20261026-members"></script>
     <script src="payments-model.js?v=20261015-repair"></script>
     <script src="payments-ui.js?v=20261015-repair"></script>
     <script src="bank-repair-ui.js?v=20261015-spoken3"></script>
     <script src="finance-model.js?v=20261018-finance"></script>
     <script src="finance-ui.js?v=20261018-finance"></script>
     <script src="vat-ui.js?v=20261018-finance"></script>
-    <script src="accounting.js?v=20261018-finance"></script>
+    <script src="members-model.js?v=20261026"></script>
+    <script src="billing-planning-model.js?v=20261026"></script>
+    <script src="billing-planning-ui.js?v=20261026"></script>
+    <script src="billing-notifications.js?v=20261026"></script>
+    <script src="communications-model.js?v=20261026"></script>
+    <script src="communications-ui.js?v=20261026"></script>
+    <script src="accounting.js?v=20261026-members"></script>
     <script src="billing-ui.js?v=20260924"></script>
     <script src="agenda-model.js?v=20261015"></script>
     <script src="agenda.js?v=20261015"></script>
-    <script src="push.js?v=20261015"></script>
-    <script src="app.js?v=20261015-agenda"></script>
+    <script src="push.js?v=20261026-members"></script>
+    <script src="app.js?v=20261026-members"></script>
+    <script src="members-documents.js?v=20261026"></script>
+    <script src="members-ui.js?v=20261026"></script>
     <script src="autosave.js?v=20260911-owner"></script>
     <script src="photos.js?v=20260909-autosave-r2"></script>
     <script src="presentation.js?v=20261015"></script>

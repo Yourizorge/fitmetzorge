@@ -10,3 +10,7 @@ tutorial/media/*.mp4 binary
 tutorial/media/*.jpg binary
 tutorial/media/*.wav binary
 tutorial/media/*.m4a binary
+
+# Owner-test packages are integrity-checked byte for byte.
+owner-test/** -text
+owner-test/*.bin binary

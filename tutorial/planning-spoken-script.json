@@ -1,0 +1,243 @@
+{
+  "version": "1.0.0",
+  "checked": "2026-10-26",
+  "title": "Facturatieplanning, e-mail en overeenkomst: veilig oefenen",
+  "synthetic": true,
+  "company": "FitMetZorge Oefenbedrijf",
+  "publicationNote": "Mailbox en fysieke push zijn nog niet gekoppeld of bewezen. Deze opname toont de echte lokale APPFMZ-interface met fictieve gegevens en uitgeschakeld transport.",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Facturatieplanning",
+      "coverage": [
+        "planning",
+        "calendar_month",
+        "four_weeks",
+        "manual_date"
+      ],
+      "scenes": [
+        {
+          "id": "planning-01-overzicht",
+          "text": "Welkom. Dit is een oefenopname met fictieve leden. Er gaan geen echte berichten uit. Open in Administratie de Facturatieplanning. Elke kaart hoort bij één betaalperiode van één lid. De planning volgt de opgeslagen afspraak: vier weken betekent achtentwintig dagen; een kalendermaand blijft een kalendermaand. Een geplande periode is nog geen definitieve factuur en ook geen ontvangen betaling."
+        },
+        {
+          "id": "planning-01-filter",
+          "text": "Met de filters vind je een lid, pakket of betaalperiode. Kijk altijd naar de begin- en einddatum op de kaart. Een bestaande maandafspraak verandert niet doordat je hier vier weken als filter kiest. Verzenddatum wijzigen verplaatst alleen het planningsmoment. Controleer de datum en geef een reden; verander hiermee niet ongemerkt de afgesproken prestatieperiode."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Meldingen op je telefoon",
+      "coverage": [
+        "push",
+        "permission",
+        "in_app_fallback"
+      ],
+      "scenes": [
+        {
+          "id": "planning-02-meldingen",
+          "text": "Boven de planning staan Factuurmeldingen. De server maakt een taak zeven dagen voor de verzenddatum en op de verzenddag. Zonder telefoonmelding blijft de taak hier zichtbaar. Alleen jij als eigenaar ontvangt deze factuurmeldingen. Leden krijgen hierdoor geen betalingsherinnering."
+        },
+        {
+          "id": "planning-02-toestemming",
+          "text": "Op je eigen iPhone open je de geïnstalleerde APPFMZ-app en schakel je meldingen bewust in. Gebruik daarna Eén testmelding naar mijn telefoon. In deze afgesloten oefenomgeving staan meldingen uit. We sturen dus niets. Alleen een melding die echt op jouw telefoon verschijnt, bewijst dat de telefoonverbinding werkt. Meldingen uitschakelen trekt de aparte toestemming voor factuurmeldingen weer in."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Een automatisch voorbereid concept",
+      "coverage": [
+        "draft",
+        "no_invoice_number",
+        "snapshot"
+      ],
+      "scenes": [
+        {
+          "id": "planning-03-bijwerken",
+          "text": "Planning bijwerken berekent de komende perioden. Dicht bij het factuurmoment kan de app alvast een concept voorbereiden. Dat concept gebruikt de vastgelegde overeenkomst en prijsversie. Een nieuwe catalogusprijs herschrijft een bestaande overeenkomst niet. Concepten boeken geen omzet, btw of betaling en krijgen nog geen definitief factuurnummer."
+        },
+        {
+          "id": "planning-03-controleren",
+          "text": "Open Concept controleren of bewerken. Controleer het lid, de trainingsregels, periode, korting en het totaal. In ons losse oefenvoorbeeld is het pakket driehonderdtachtig euro en de korting dertig euro: te betalen driehonderdvijftig euro. Controleer ook de toegepaste btw-instelling; neem die niet over van een willekeurig voorbeeld. Een concept mag je corrigeren voordat je het definitief maakt."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Het e-mailconcept aanpassen",
+      "coverage": [
+        "email_draft",
+        "recipient",
+        "editable_body",
+        "audit"
+      ],
+      "scenes": [
+        {
+          "id": "planning-04-bewerken",
+          "text": "Open E-mailconcept bij de factuur. Bovenaan zie je de factuurcontrole; daaronder staan ontvanger, onderwerp en bericht. Pas de tekst aan en geef bij een wijziging een korte reden. Controleer het adres letter voor letter. De tekst aanpassen verandert het factuurbedrag niet. Zolang de factuur nog een concept is, kunnen factuurnummer en totaal als invulvelden in de tekst staan."
+        },
+        {
+          "id": "planning-04-bewaren",
+          "text": "Klik op Concept opslaan en wacht op de serverbevestiging. Gewoon typen verstuurt niets en maakt geen definitieve factuur. Met Voorbeeld bekijken lees je het bericht rustig terug. Bij een fout blijft je invoer in het venster. Sluit het venster niet zolang je gewijzigde tekst nog niet is opgeslagen."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Een testmail naar jezelf",
+      "coverage": [
+        "self_test",
+        "mail_disabled",
+        "no_real_recipients"
+      ],
+      "scenes": [
+        {
+          "id": "planning-05-knop",
+          "text": "Test naar mijzelf sturen gebruikt uitsluitend het vooraf ingestelde eigen testadres. Bij een conceptfactuur is deze actie nog niet beschikbaar: eerst moeten de definitieve factuur en PDF bestaan. Een test hoort niet naar een klant te gaan en verandert de verzendstatus van de echte factuur niet."
+        },
+        {
+          "id": "planning-05-grens",
+          "text": "Hier meldt APPFMZ dat verzending uit blijft totdat de zakelijke mailbox veilig is gekoppeld. Dat is een bewuste beveiliging. Het mailboxwachtwoord hoort nooit in dit formulier of in een chat. De eigenaar stelt het rechtstreeks als serversecret in. Pas na een echte test controleren we de ontvangen PDF, het afzenderadres en de kopie in Verzonden. Deze oefenopname bewijst geen mailbezorging."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Factuur en PDF definitief maken",
+      "coverage": [
+        "finalize",
+        "pdf",
+        "invoice_number",
+        "immutable"
+      ],
+      "scenes": [
+        {
+          "id": "planning-06-bevestigen",
+          "text": "Controleer nu de volledige factuur: ontvanger, omschrijving, periode, korting, btw en totaal. Vink de controle alleen aan als je dit hebt nagekeken. Klik dan bewust op Factuur en e-mail definitief maken. Deze handeling legt de factuur en PDF vast. Er gaat hiermee nog geen mail uit."
+        },
+        {
+          "id": "planning-06-resultaat",
+          "text": "Wacht op de bevestiging dat factuur en PDF zijn vastgelegd. Nu is het definitieve factuurnummer ingevuld. Controleer opnieuw de e-mailtekst en het totaal. Bij een PDF-fout probeer je dezelfde factuur opnieuw; maak niet nog een tweede factuur. Een definitief document verander je later via de bestaande correcte credit- of correctieroute."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Handmatig verzenden of inplannen",
+      "coverage": [
+        "manual_send",
+        "scheduled_send",
+        "default_manual"
+      ],
+      "scenes": [
+        {
+          "id": "planning-07-handmatig",
+          "text": "Na controle kun je Nu versturen kiezen, zodra de mailbox is gekoppeld. De veilige standaard blijft handmatig goedkeuren. In deze oefenomgeving weigert de server de verzending omdat het transport uitstaat. Een niet-bevestigde verzending is niet hetzelfde als een verzonden factuur. De definitieve factuur blijft wel bewaard."
+        },
+        {
+          "id": "planning-07-plannen",
+          "text": "Voor later verzenden kies je een datum en tijd in Europe Amsterdam en vervolgens Inplannen voor verzending. Annuleren kan alleen zolang de verzending nog niet is begonnen. Automatisch versturen per lid vraagt een aparte uitdrukkelijke instelling. Een gewijzigde ontvanger moet opnieuw worden gecontroleerd. Een pauze of beëindiging mag automatische verzending niet ongemerkt laten doorgaan."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Verzendstatus in APPFMZ terugvinden",
+      "coverage": [
+        "audit",
+        "sent_status",
+        "payment_separate"
+      ],
+      "scenes": [
+        {
+          "id": "planning-08-historie",
+          "text": "Open Communicatiehistorie om de bevestigde handelingen terug te zien. Concept opslaan, goedkeuren en verzenden zijn verschillende gebeurtenissen. Verzonden betekent dat de mailserver het bericht heeft geaccepteerd; het bewijst niet dat de ontvanger het heeft gelezen. Als alleen de mailboxkopie nog ontbreekt, blijft dat apart zichtbaar."
+        },
+        {
+          "id": "planning-08-filter",
+          "text": "In Facturatieplanning kun je op verzendstatus en betaalstatus filteren. Een verzonden factuur kan nog openstaan. Een betaling registreren is een afzonderlijke financiële handeling. Maak geen tweede omzetboeking wanneer je een betaling ontvangt. In onze oefening is niets verzonden, dus het filter Verzonden geeft terecht geen verzonden oefenfactuur."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Outlook en TransIP controleren",
+      "coverage": [
+        "sent_folder",
+        "external_mailbox",
+        "physical_verification"
+      ],
+      "scenes": [
+        {
+          "id": "planning-09-grens",
+          "text": "De controle van Outlook en TransIP vindt buiten APPFMZ plaats. Open daar na een echte toegestane test de map Verzonden en zoek op onderwerp en berichttijd. Dezelfde e-mail en PDF horen in beide programma's zichtbaar te zijn. We tonen hier geen nagebouwde mailbox en gebruiken in deze opname geen echte mailtoegang."
+        },
+        {
+          "id": "planning-09-bijlage",
+          "text": "Vergelijk ontvanger, afzender, onderwerp, tekst en de PDF-bijlage met de vastgelegde factuur. Ontbreekt alleen de kopie in Verzonden, stuur de factuur dan niet opnieuw naar de klant. APPFMZ moet dan alleen de mailboxkopie herstellen. Deze providercontrole en fysieke ontvangst moeten nog met de eigen mailbox worden bevestigd."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Een mislukte verzending veilig herstellen",
+      "coverage": [
+        "retry",
+        "unknown_outcome",
+        "no_duplicate"
+      ],
+      "scenes": [
+        {
+          "id": "planning-10-fout",
+          "text": "Lees een foutmelding eerst rustig. Hier is de mailbox nog niet gekoppeld, dus er is geen mail verstuurd. De factuur en PDF verdwijnen niet. Na het veilig koppelen van de mailbox controleer je hetzelfde bericht opnieuw. Maak hiervoor geen nieuwe factuur en geen nieuw factuurnummer."
+        },
+        {
+          "id": "planning-10-onzeker",
+          "text": "Een time-out is anders: de mailserver kan het bericht al hebben geaccepteerd. APPFMZ houdt een onzekere uitkomst daarom vast voor controle en verstuurt niet blind opnieuw. Als verzending aantoonbaar is gelukt maar alleen de mailboxkopie ontbreekt, mag de herstelactie uitsluitend die kopie opnieuw proberen. Zo voorkom je een dubbele factuurmail."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "De overeenkomst in Documenten",
+      "coverage": [
+        "agreement",
+        "private_documents",
+        "immutable_pdf"
+      ],
+      "scenes": [
+        {
+          "id": "planning-11-profiel",
+          "text": "Open het profiel van ons fictieve ingeschreven lid en ga naar Documenten. Hier staat de definitieve ondertekende overeenkomst, met overeenkomstnummer, pakket en voorwaardenversie. Dit document is pas gemaakt nadat de inschrijving succesvol was afgerond. Het betreffende lid kan het ook in de eigen omgeving bekijken."
+        },
+        {
+          "id": "planning-11-download",
+          "text": "Klik op PDF downloaden. Je krijgt een tijdelijke beveiligde toegang tot het oorspronkelijke document. Een latere profielwijziging herschrijft deze ondertekende PDF niet. Controleer dat naam, pakket, betaalfrequentie en ondertekeningsdatum kloppen. Dit is een fictieve oefenovereenkomst; de voorbeeldvoorwaarden mogen nooit als echte bedrijfsvoorwaarden worden gebruikt."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Overeenkomstmail controleren en herstellen",
+      "coverage": [
+        "agreement_mail",
+        "retry_without_reenrollment",
+        "audit"
+      ],
+      "scenes": [
+        {
+          "id": "planning-12-openen",
+          "text": "Bij de overeenkomst staat de e-mailstatus. Open Overeenkomstmail bekijken of opnieuw verzenden. Controleer de ontvanger, de persoonlijke bevestiging en de gekoppelde PDF. Na een geslaagde inschrijving wordt dit bericht voorbereid; een mailfout draait de inschrijving niet terug. Maak dus niet nogmaals hetzelfde lid aan."
+        },
+        {
+          "id": "planning-12-herstel",
+          "text": "Ook hier geldt: bij een onzekere uitkomst eerst controleren, daarna alleen de passende herstelactie gebruiken. In deze oefenomgeving staat verzending uit. Sluit het bericht en controleer dat de overeenkomst gewoon onder Documenten blijft staan. Je kent nu de route van planning en concept tot controle, verzending en veilig herstel. De echte telefoon- en mailboxproef voer je daarna zelf uit."
+        }
+      ]
+    }
+  ],
+  "voice": "Microsoft Edge Colette, Nederlands (nl-NL-ColetteNeural)",
+  "voiceTechnology": "Kunstmatige Nederlandse instructiestem via de kosteloze Edge-voorleesdienst; geen lokale stem."
+}

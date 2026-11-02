@@ -1,0 +1,36 @@
+[
+  {
+    "Name": "fitmetzorge.com",
+    "Type": 16,
+    "Strings": [
+      "v=spf1 a mx include:_spf.mlsend.com include:_spf.mailersend.net ~all"
+    ],
+    "NameHost": null
+  },
+  {
+    "Name": "_dmarc.fitmetzorge.com",
+    "Type": 16,
+    "Strings": [
+      "v=DMARC1; p=none;"
+    ],
+    "NameHost": null
+  },
+  {
+    "Name": "transip-A._domainkey.fitmetzorge.com",
+    "Type": 5,
+    "Strings": null,
+    "NameHost": "_dkim-A.transip.email"
+  },
+  {
+    "Name": "transip-B._domainkey.fitmetzorge.com",
+    "Type": 5,
+    "Strings": null,
+    "NameHost": "_dkim-B.transip.email"
+  },
+  {
+    "Name": "transip-C._domainkey.fitmetzorge.com",
+    "Type": 5,
+    "Strings": null,
+    "NameHost": "_dkim-C.transip.email"
+  }
+]

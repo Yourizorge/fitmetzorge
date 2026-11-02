@@ -1,14 +1,37 @@
-const http=require('node:http'),fs=require('node:fs'),path=require('node:path'); const {setup}=require('./database.cjs');
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'); const {setup}=require('./database.cjs');
 async function start(port=8876){
- const database=await setup();await require('./accounting-database.cjs').extend(database);await require('./agenda-database.cjs').extend(database);const blobs=new Map();let queue=Promise.resolve();const calls=[];
+ const database=await setup();await require('./accounting-database.cjs').extend(database);await require('./agenda-database.cjs').extend(database);await require('./enrollment-database.cjs').extend(database);const blobs=new Map(),signed=new Map();let queue=Promise.resolve();const calls=[];
  const server=http.createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
   const send=(status,data,type='application/json')=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store'});res.end(type==='application/json'?JSON.stringify(data):data)};
+  if(url.pathname==='/__test__/signed'){const token=signed.get(url.searchParams.get('token'));if(!token||token.until<Date.now())return send(403,{error:'Expired test link'});const blob=blobs.get(token.key);if(!blob)return send(404,{});return send(200,Buffer.from(blob.base64,'base64'),blob.mime);}
   if(url.pathname==='/__test__/rpc'){
    let body='';for await(const chunk of req)body+=chunk;
    const {account,name,params}=JSON.parse(body); calls.push({account,name});
    const run=async()=>{try{
     if(!['trainer','a','b'].includes(account))return send(401,{data:null,error:{message:'No test session',code:'42501'}});
+    if(['fmz_billing_planning_read','fmz_communication_read','fmz_billing_reminders_read'].includes(name))return send(200,{data:(await database.as(account,`select public.${name}() result`)).rows[0].result,error:null});
+    if(name==='fmz_members_read')return send(200,{data:(await database.as(account,'select public.fmz_members_read($1,$2) result',[params.action,JSON.stringify(params.payload||{})])).rows[0].result,error:null});
+    if(['fmz_members_command','fmz_billing_planning_command','fmz_communication_command','fmz_billing_reminders_command'].includes(name))return send(200,{data:(await database.as(account,`select public.${name}($1,$2,$3) result`,[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
+    if(name==='member_verify'){
+     const asset=(await database.as(account,"select public.fmz_members_read($1,$2) r",[params.action==='delete_draft'?'cleanup_asset':'asset',JSON.stringify({id:params.id})])).rows[0].r;
+     if(!asset)throw Error('Bestand niet beschikbaar');
+     if(params.action==='delete_draft'){
+      if(asset.kind!=='agreement'||!['retired','deleted'].includes(asset.status))throw Error('Alleen een ingetrokken ongebruikt concept mag worden verwijderd');
+      await database.db.query('delete from storage.objects where bucket_id=$1 and name=$2',['fmz-members',asset.path]);blobs.delete('fmz-members/'+asset.path);
+      await database.db.query('select public.fmz_member_draft_asset_deleted($1)',[asset.id]);return send(200,{data:{ok:true},error:null});
+     }
+     if(params.action==='delete_photo'){
+      if(asset.kind!=='photo'||!['retired','deleted'].includes(asset.status))throw Error('Alleen een ingetrokken profielfoto mag worden verwijderd');
+      await database.db.query('delete from storage.objects where bucket_id=$1 and name=$2',['fmz-members',asset.path]);blobs.delete('fmz-members/'+asset.path);
+      await database.db.query('select public.fmz_member_photo_deleted($1)',[asset.id]);return send(200,{data:{ok:true},error:null});
+     }
+     const blob=blobs.get('fmz-members/'+asset.path);if(!blob)throw Error('Upload ontbreekt');
+     const bytes=Buffer.from(blob.base64,'base64'),hash=crypto.createHash('sha256').update(bytes).digest('hex');if(hash!==asset.sha256||bytes.length!==Number(asset.bytes))throw Error('Inhoud wijkt af');
+     if(asset.kind==='agreement'){const snapshot=(await database.as(account,"select public.fmz_members_read('document_snapshot',$1) r",[JSON.stringify({id:asset.draft_id})])).rows[0].r;const expected=await require('../members-documents.js').pdf(snapshot,require('pdf-lib'));if(!Buffer.from(expected).equals(bytes))throw Error('PDF wijkt af van ondertekende versie');}
+     else {require('../supabase/functions/member-assets/verify-image.js');await globalThis.FMZMemberVerifyImage(bytes,asset.mime,require('pdf-lib'));}
+     const confirmed=(await database.db.query('select public.fmz_member_verify_asset($1,$2,$3) r',[asset.id,hash,bytes.length])).rows[0].r;return send(200,{data:{ok:true,asset:confirmed},error:null});
+    }
     if(name==='fmz_accounting_read')return send(200,{data:(await database.as(account,'select public.fmz_accounting_read() result')).rows[0].result,error:null});
     if(name==='fmz_billing_command')return send(200,{data:(await database.as(account,'select public.fmz_billing_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
     if(name==='fmz_accounting_command')return send(200,{data:(await database.as(account,'select public.fmz_accounting_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
@@ -17,8 +40,8 @@ async function start(port=8876){
     if(name==='fmz_vat_command')return send(200,{data:(await database.as(account,'select public.fmz_vat_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
     if(name==='fmz_bank_repair_command')return send(200,{data:(await database.as(account,'select public.fmz_bank_repair_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
     if(name==='fmz_payment_command')return send(200,{data:(await database.as(account,'select public.fmz_payment_command($1,$2,$3) result',[params.action,JSON.stringify(params.payload),params.request_id])).rows[0].result,error:null});
-    if(name==='storage_upload'){const bytes=Buffer.from(params.base64,'base64');await database.as(account,'insert into storage.objects(bucket_id,name,metadata) values($1,$2,$3)',['fmz-finance',params.path,JSON.stringify({size:bytes.length})]);if(blobs.has(params.path))return send(409,{error:{message:'Already exists'}});blobs.set(params.path,{base64:params.base64,mime:params.mime});return send(200,{data:{path:params.path},error:null});}
-    if(name==='storage_download'){const rows=(await database.as(account,'select name from storage.objects where bucket_id=$1 and name=$2',['fmz-finance',params.path])).rows;if(!rows.length||!blobs.has(params.path))return send(403,{error:{message:'Denied'}});return send(200,{data:blobs.get(params.path),error:null});}
+    if(name==='storage_upload'){const bytes=Buffer.from(params.base64,'base64'),bucket=params.bucket||'fmz-finance',key=bucket==='fmz-finance'?params.path:bucket+'/'+params.path;await database.as(account,'insert into storage.objects(bucket_id,name,metadata) values($1,$2,$3)',[bucket,params.path,JSON.stringify({size:bytes.length,mimetype:params.mime})]);if(blobs.has(key))return send(409,{error:{message:'Already exists'}});blobs.set(key,{base64:params.base64,mime:params.mime});return send(200,{data:{path:params.path},error:null});}
+    if(name==='storage_download'||name==='storage_sign'){const bucket=params.bucket||'fmz-finance',key=bucket==='fmz-finance'?params.path:bucket+'/'+params.path,rows=(await database.as(account,'select name from storage.objects where bucket_id=$1 and name=$2',[bucket,params.path])).rows;if(!rows.length||!blobs.has(key))return send(403,{error:{message:'Denied'}});if(name==='storage_sign'){const token=crypto.randomUUID();signed.set(token,{key,until:Date.now()+Math.min(params.seconds||60,300)*1000});return send(200,{data:{signedUrl:'/__test__/signed?token='+token},error:null});}return send(200,{data:blobs.get(key),error:null});}
     if(name==='profile'){const result=await database.as(account,'select * from public.profiles where id=auth.uid()');return send(200,{data:result.rows[0],error:null});}
     if(name==='fmz_read_workspace')return send(200,{data:{state:await database.read(account),profile_id:database.ids[account]},error:null});
     if(name==='fmz_save_changes')return send(200,{data:await database.save(account,params.changes),error:null});

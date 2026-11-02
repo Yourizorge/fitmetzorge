@@ -1,0 +1,1848 @@
+{
+  "at": "2026-11-02T13:59:25.249Z",
+  "commit": "309cb0db3569f14ac54442c8daec678020ba149a",
+  "repository": "Yourizorge/fitmetzorge",
+  "host": "https://appfmz.nl",
+  "project": "hgoygcviutmynaihcvpd",
+  "sourceEvidenceAt": "2026-11-02T13:58:13.621Z",
+  "remoteMain": {
+    "name": "main",
+    "sha": "309cb0db3569f14ac54442c8daec678020ba149a",
+    "protected": false
+  },
+  "latestPagesRun": {
+    "id": 39115030390,
+    "name": "pages build and deployment",
+    "head_sha": "309cb0db3569f14ac54442c8daec678020ba149a",
+    "head_branch": "main",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-18T09:21:48Z",
+    "updated_at": "2026-10-18T09:22:38Z",
+    "html_url": "https://github.com/Yourizorge/fitmetzorge/actions/runs/39115030390",
+    "path": "dynamic/pages/pages-build-deployment"
+  },
+  "publicConfiguration": {
+    "cname": "appfmz.nl",
+    "manifest": {
+      "id": "/",
+      "name": "FitMetZorge",
+      "short_name": "FitMetZorge",
+      "description": "Je training, voeding en begeleiding bij FitMetZorge.",
+      "lang": "nl",
+      "start_url": "/",
+      "scope": "/",
+      "display": "standalone",
+      "background_color": "#070b12",
+      "theme_color": "#070b12",
+      "prefer_related_applications": false,
+      "icons": [
+        {
+          "src": "/assets/pwa/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any"
+        },
+        {
+          "src": "/assets/pwa/icon-512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any"
+        },
+        {
+          "src": "/assets/pwa/maskable-512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "maskable"
+        }
+      ]
+    },
+    "projectRefMatches": true
+  },
+  "scope": "All commit-tracked root runtime documents/scripts/styles/images, assets/**, vendor/**, tutorial/** and output/**. Git blobs, never modified working files. Unknown arbitrary server paths cannot be enumerated from HTTP.",
+  "files": [
+    {
+      "file": "Fit_Met_Zorge_Coach_App_standalone.html",
+      "gitBytes": 401,
+      "gitSHA256": "f8659339591402d6b7f467f504e869fc885c019af87b8473c97560c47d0f0b84",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "257",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-191\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "44A2:16464A:1557F34:1581E78:6AE8973C"
+      },
+      "liveBytes": 401,
+      "liveSHA256": "f8659339591402d6b7f467f504e869fc885c019af87b8473c97560c47d0f0b84",
+      "pass": true
+    },
+    {
+      "file": "accounting-model.js",
+      "gitBytes": 13985,
+      "gitSHA256": "e64953b4cfa28f91851f0379f283413a642a5dd30fbbb712d6b811f77abfcaaa",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "5168",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-36a1\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "2438:176CE2:15AA8B7:15D47A3:6AE8973C"
+      },
+      "liveBytes": 13985,
+      "liveSHA256": "e64953b4cfa28f91851f0379f283413a642a5dd30fbbb712d6b811f77abfcaaa",
+      "pass": true
+    },
+    {
+      "file": "accounting-reports.js",
+      "gitBytes": 5320,
+      "gitSHA256": "a257ff0f0d9fbb00841a2ab03357ec70792a79b54d2bb42a567a1b8a18fe07d7",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "2212",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-14c8\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "6E7A:16464A:1557F34:1581E79:6AE8973C"
+      },
+      "liveBytes": 5320,
+      "liveSHA256": "a257ff0f0d9fbb00841a2ab03357ec70792a79b54d2bb42a567a1b8a18fe07d7",
+      "pass": true
+    },
+    {
+      "file": "accounting.js",
+      "gitBytes": 86543,
+      "gitSHA256": "d625f7cb05d16f8c09823064cc891333432c5861032b78af714a8a4b004ac12e",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "26956",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-1520f\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "8866:1547:49BC0A8:4A596DE:6AE8973C"
+      },
+      "liveBytes": 86543,
+      "liveSHA256": "d625f7cb05d16f8c09823064cc891333432c5861032b78af714a8a4b004ac12e",
+      "pass": true
+    },
+    {
+      "file": "admin-design.css",
+      "gitBytes": 7123,
+      "gitSHA256": "d14c9323cd8b3a60a3ea56a079d615abfffc95318ccf9f805a3b4f643e453e7b",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "1951",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-1bd3\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "B794:37B5AE:15AED29:15D8BA9:6AE8973D"
+      },
+      "liveBytes": 7123,
+      "liveSHA256": "d14c9323cd8b3a60a3ea56a079d615abfffc95318ccf9f805a3b4f643e453e7b",
+      "pass": true
+    },
+    {
+      "file": "agenda-model.js",
+      "gitBytes": 3233,
+      "gitSHA256": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "1426",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-ca1\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "56CA:169E6D:1592C7B:15BCBED:6AE8973D"
+      },
+      "liveBytes": 3233,
+      "liveSHA256": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
+      "pass": true
+    },
+    {
+      "file": "agenda.css",
+      "gitBytes": 8792,
+      "gitSHA256": "155398b53ee0d5f1217ef659fbd5a89dabf0c738ece8b3e8aa1ed0bb2e3b5e42",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "2573",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2258\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "5186:176CE2:15AAA6E:15D4956:6AE8973D"
+      },
+      "liveBytes": 8792,
+      "liveSHA256": "155398b53ee0d5f1217ef659fbd5a89dabf0c738ece8b3e8aa1ed0bb2e3b5e42",
+      "pass": true
+    },
+    {
+      "file": "agenda.js",
+      "gitBytes": 25535,
+      "gitSHA256": "66b7c5eda734968b9b4f2bd30ad54c7a9b1548cf4b232a0ea8ed44007ca2f8d6",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "8470",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-63bf\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "70F0:35B135:153D3FA:1567253:6AE8973D"
+      },
+      "liveBytes": 25535,
+      "liveSHA256": "66b7c5eda734968b9b4f2bd30ad54c7a9b1548cf4b232a0ea8ed44007ca2f8d6",
+      "pass": true
+    },
+    {
+      "file": "app.js",
+      "gitBytes": 263137,
+      "gitSHA256": "7f06ffaa05943a4ce450143fde84dbafa8bb2ee74b9c882fc5367f8c572063a9",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "58014",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-403e1\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "C696:341D:14F208A:151BB5C:6AE8973E"
+      },
+      "liveBytes": 263137,
+      "liveSHA256": "7f06ffaa05943a4ce450143fde84dbafa8bb2ee74b9c882fc5367f8c572063a9",
+      "pass": true
+    },
+    {
+      "file": "assets/fit-met-zorge-logo-cropped.png",
+      "gitBytes": 15620,
+      "gitSHA256": "c82010c6b05025acc33c69c3eee185775f7e935f53dfdce99b73f4318ce59008",
+      "status": 200,
+      "headers": {
+        "content-type": "image/png",
+        "content-length": "15620",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-3d04\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "EF80:143EF2:162F138:1659063:6AE8973E"
+      },
+      "liveBytes": 15620,
+      "liveSHA256": "c82010c6b05025acc33c69c3eee185775f7e935f53dfdce99b73f4318ce59008",
+      "pass": true
+    },
+    {
+      "file": "assets/fit-met-zorge-logo.png",
+      "gitBytes": 17316,
+      "gitSHA256": "4b156a6d55569683703b30e4c349d692cdcffc5b0785114fecb7341c81734897",
+      "status": 200,
+      "headers": {
+        "content-type": "image/png",
+        "content-length": "17316",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-43a4\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "843E:238E2:15C6954:15F08B8:6AE8973E"
+      },
+      "liveBytes": 17316,
+      "liveSHA256": "4b156a6d55569683703b30e4c349d692cdcffc5b0785114fecb7341c81734897",
+      "pass": true
+    },
+    {
+      "file": "assets/logo.svg",
+      "gitBytes": 521,
+      "gitSHA256": "17ab07e30519df3052e539e9839a9b4009598ce9f5d93ba4d1e455fcf9e956b8",
+      "status": 200,
+      "headers": {
+        "content-type": "image/svg+xml",
+        "content-length": "304",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-209\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "22C4:157924:157D497:15A73C5:6AE8973E"
+      },
+      "liveBytes": 521,
+      "liveSHA256": "17ab07e30519df3052e539e9839a9b4009598ce9f5d93ba4d1e455fcf9e956b8",
+      "pass": true
+    },
+    {
+      "file": "assets/pwa/apple-touch-icon.png",
+      "gitBytes": 4667,
+      "gitSHA256": "13852f928cc28d5120b25cf764780693d780d07cbd2360aa11f1f122e853077b",
+      "status": 200,
+      "headers": {
+        "content-type": "image/png",
+        "content-length": "4667",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-123b\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "3CE4:181D11:15E1E0C:160BDB6:6AE8973F"
+      },
+      "liveBytes": 4667,
+      "liveSHA256": "13852f928cc28d5120b25cf764780693d780d07cbd2360aa11f1f122e853077b",
+      "pass": true
+    },
+    {
+      "file": "assets/pwa/favicon-32.png",
+      "gitBytes": 489,
+      "gitSHA256": "0ddd2972f011297f7905ea19dc4eefa0ec015b5f40643f5376f877be0fb4ab4c",
+      "status": 200,
+      "headers": {
+        "content-type": "image/png",
+        "content-length": "489",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-1e9\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "228C:16464A:15585FD:158253F:6AE8973F"
+      },
+      "liveBytes": 489,
+      "liveSHA256": "0ddd2972f011297f7905ea19dc4eefa0ec015b5f40643f5376f877be0fb4ab4c",
+      "pass": true
+    },
+    {
+      "file": "assets/pwa/icon-192.png",
+      "gitBytes": 7899,
+      "gitSHA256": "a7d45cc70c9ead061d82eb73727265f0f75659d946813e2c111715c87e7da1bb",
+      "status": 200,
+      "headers": {
+        "content-type": "image/png",
+        "content-length": "7899",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-1edb\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "ACDE:176CE2:15AAEEC:15D4DE7:6AE8973E"
+      },
+      "liveBytes": 7899,
+      "liveSHA256": "a7d45cc70c9ead061d82eb73727265f0f75659d946813e2c111715c87e7da1bb",
+      "pass": true
+    },
+    {
+      "file": "assets/pwa/icon-512.png",
+      "gitBytes": 29247,
+      "gitSHA256": "ccb940517e7028de9e64e2b4e1e29c64ec3f4d963a7655dd4ab19343298b7c33",
+      "status": 200,
+      "headers": {
+        "content-type": "image/png",
+        "content-length": "29247",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fda-723f\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "0D74:157B:1203146:1225551:6AE8973E"
+      },
+      "liveBytes": 29247,
+      "liveSHA256": "ccb940517e7028de9e64e2b4e1e29c64ec3f4d963a7655dd4ab19343298b7c33",
+      "pass": true
+    },
+    {
+      "file": "assets/pwa/maskable-512.png",
+      "gitBytes": 25043,
+      "gitSHA256": "147c6f1b25e2af47e5fadc0813290eed535f31303884a3107dabb2a409db74b5",
+      "status": 200,
+      "headers": {
+        "content-type": "image/png",
+        "content-length": "25043",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-61d3\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "F1D8:369263:1532B3A:155CA59:6AE8973F"
+      },
+      "liveBytes": 25043,
+      "liveSHA256": "147c6f1b25e2af47e5fadc0813290eed535f31303884a3107dabb2a409db74b5",
+      "pass": true
+    },
+    {
+      "file": "assets/pwa/provenance.json",
+      "gitBytes": 1180,
+      "gitSHA256": "63cdb027b5b6b88d13427208f040c7d51a5d5e18483762b1333647301a62e044",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "548",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-49c\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "C800:1671B0:15A7537:15D14C4:6AE8973F"
+      },
+      "liveBytes": 1180,
+      "liveSHA256": "63cdb027b5b6b88d13427208f040c7d51a5d5e18483762b1333647301a62e044",
+      "pass": true
+    },
+    {
+      "file": "autosave.js",
+      "gitBytes": 9506,
+      "gitSHA256": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3805",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2522\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "F238:352E6D:162BDFE:1655C72:6AE8973F"
+      },
+      "liveBytes": 9506,
+      "liveSHA256": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+      "pass": true
+    },
+    {
+      "file": "bank-repair-ui.js",
+      "gitBytes": 8149,
+      "gitSHA256": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3404",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-1fd5\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "C3A0:369263:1532B56:155CA7A:6AE8973F"
+      },
+      "liveBytes": 8149,
+      "liveSHA256": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+      "pass": true
+    },
+    {
+      "file": "billing-periods.js",
+      "gitBytes": 2901,
+      "gitSHA256": "f5efa6cb3fc833749842cdf3d8d0331f049fa78ac303f3b6301d448cb6cacc38",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "1348",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-b55\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "E6A2:15A1:B5AFFB:B6E305:6AE89740"
+      },
+      "liveBytes": 2901,
+      "liveSHA256": "f5efa6cb3fc833749842cdf3d8d0331f049fa78ac303f3b6301d448cb6cacc38",
+      "pass": true
+    },
+    {
+      "file": "billing-ui.js",
+      "gitBytes": 11530,
+      "gitSHA256": "03cd5af11beba690173432ee49e605abf27e93346cedffa41e4c0ada07743eae",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "4301",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2d0a\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "9B3C:146B0:1544255:156E180:6AE89740"
+      },
+      "liveBytes": 11530,
+      "liveSHA256": "03cd5af11beba690173432ee49e605abf27e93346cedffa41e4c0ada07743eae",
+      "pass": true
+    },
+    {
+      "file": "config.js",
+      "gitBytes": 361,
+      "gitSHA256": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "319",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-169\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "C7D4:158D:F5AAB2:F7564B:6AE89740"
+      },
+      "liveBytes": 361,
+      "liveSHA256": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e",
+      "pass": true
+    },
+    {
+      "file": "finance-model.js",
+      "gitBytes": 8481,
+      "gitSHA256": "758a2525cd11a57842f0e8d1b2a4a23e05563a083d95b33bc95ed8983b5b7948",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3152",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2121\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "57F2:369263:1532D9A:155CCA0:6AE89740"
+      },
+      "liveBytes": 8481,
+      "liveSHA256": "758a2525cd11a57842f0e8d1b2a4a23e05563a083d95b33bc95ed8983b5b7948",
+      "pass": true
+    },
+    {
+      "file": "finance-ui.js",
+      "gitBytes": 17955,
+      "gitSHA256": "41c535dd7897c679e926211b5f83adae3e58ee6ec25e55e12f2111a8c52a9d8e",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "6326",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-4623\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "974A:32722:15D5F22:15FFE12:6AE89741"
+      },
+      "liveBytes": 17955,
+      "liveSHA256": "41c535dd7897c679e926211b5f83adae3e58ee6ec25e55e12f2111a8c52a9d8e",
+      "pass": true
+    },
+    {
+      "file": "finance.css",
+      "gitBytes": 2731,
+      "gitSHA256": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "939",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-aab\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "E572:181D11:15E2345:160C2FB:6AE89741"
+      },
+      "liveBytes": 2731,
+      "liveSHA256": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+      "pass": true
+    },
+    {
+      "file": "fit-met-zorge-logo.png",
+      "gitBytes": 257147,
+      "gitSHA256": "940c6c9e66d73a642d67f453fc12e46e78f233e60432ea0ad426324af1493ecf",
+      "status": 200,
+      "headers": {
+        "content-type": "image/png",
+        "content-length": "257147",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-3ec7b\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "8430:143EF2:162F900:1659829:6AE89740"
+      },
+      "liveBytes": 257147,
+      "liveSHA256": "940c6c9e66d73a642d67f453fc12e46e78f233e60432ea0ad426324af1493ecf",
+      "pass": true
+    },
+    {
+      "file": "index.html",
+      "gitBytes": 50109,
+      "gitSHA256": "1f2f7a4d89f9af483e960ba9aa51dce29e85a3b1b15b470ea37c3f63d9a2a174",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "8054",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-c3bd\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "21B8:16464A:1558C0B:1582B5B:6AE89741"
+      },
+      "liveBytes": 50109,
+      "liveSHA256": "1f2f7a4d89f9af483e960ba9aa51dce29e85a3b1b15b470ea37c3f63d9a2a174",
+      "pass": true
+    },
+    {
+      "file": "invoice-documents.js",
+      "gitBytes": 17421,
+      "gitSHA256": "f6eb997e04c45412137c28546d5ca7f8e0bc62e17b05773bde16f4866a5f932e",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "6570",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-440d\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "A37C:D7AA2:14D76F9:1501569:6AE89741"
+      },
+      "liveBytes": 17421,
+      "liveSHA256": "f6eb997e04c45412137c28546d5ca7f8e0bc62e17b05773bde16f4866a5f932e",
+      "pass": true
+    },
+    {
+      "file": "invoice-editor.js",
+      "gitBytes": 2617,
+      "gitSHA256": "4de0482c49a5e54aa6776cf951d99ecaaa93ade6722cc72e5bc8da6f47400a44",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "1181",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-a39\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "465C:35B135:153DE3A:1567C9C:6AE89741"
+      },
+      "liveBytes": 2617,
+      "liveSHA256": "4de0482c49a5e54aa6776cf951d99ecaaa93ade6722cc72e5bc8da6f47400a44",
+      "pass": true
+    },
+    {
+      "file": "invoices.js",
+      "gitBytes": 569,
+      "gitSHA256": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "293",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-239\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "4A00:157B:1203854:1225C69:6AE89740"
+      },
+      "liveBytes": 569,
+      "liveSHA256": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+      "pass": true
+    },
+    {
+      "file": "layout.css",
+      "gitBytes": 10958,
+      "gitSHA256": "a15f3013cb7e605ecb8d35b6b482745161acf38eadac4d88127b74cf12b216b0",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "2852",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2ace\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "EF84:32722:15D6087:15FFF7E:6AE89741"
+      },
+      "liveBytes": 10958,
+      "liveSHA256": "a15f3013cb7e605ecb8d35b6b482745161acf38eadac4d88127b74cf12b216b0",
+      "pass": true
+    },
+    {
+      "file": "maintenance.html",
+      "gitBytes": 1266,
+      "gitSHA256": "b3fe6149b85aeb8d271d841684d1c6c4f3af3e6d2993b354673f445534d3708d",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "779",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-4f2\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "D290:16464A:1558EAD:1582DFC:6AE89742"
+      },
+      "liveBytes": 1266,
+      "liveSHA256": "b3fe6149b85aeb8d271d841684d1c6c4f3af3e6d2993b354673f445534d3708d",
+      "pass": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "gitBytes": 657,
+      "gitSHA256": "c876807f02b2cd17314999c2e4f83018bba444e14507b78f204279b066a486e7",
+      "status": 200,
+      "headers": {
+        "content-type": "application/manifest+json; charset=utf-8",
+        "content-length": "299",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-291\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "BB3A:D7AA2:14D77EB:150165F:6AE89742"
+      },
+      "liveBytes": 657,
+      "liveSHA256": "c876807f02b2cd17314999c2e4f83018bba444e14507b78f204279b066a486e7",
+      "pass": true
+    },
+    {
+      "file": "output/pdf/APPFMZ-boekhouden-voor-beginners.pdf",
+      "gitBytes": 685866,
+      "gitSHA256": "a7812e5bdb61163c37484e987dadb295e060a4a3107cd252608ef1ef2d0dbddd",
+      "status": 200,
+      "headers": {
+        "content-type": "application/pdf",
+        "content-length": "685866",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-a772a\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "522C:143EF2:162FB2C:1659A5F:6AE89742"
+      },
+      "liveBytes": 685866,
+      "liveSHA256": "a7812e5bdb61163c37484e987dadb295e060a4a3107cd252608ef1ef2d0dbddd",
+      "pass": true
+    },
+    {
+      "file": "output/pdf/APPFMZ-oefenfactuur-NIET-GELDIG.pdf",
+      "gitBytes": 3697,
+      "gitSHA256": "8646668759ab1b9623fb1a02f5b785d7cc4e02bbea1bf0d447ac849f56c0a17e",
+      "status": 200,
+      "headers": {
+        "content-type": "application/pdf",
+        "content-length": "3697",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-e71\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "EC2E:369263:1533275:155D1A6:6AE89742"
+      },
+      "liveBytes": 3697,
+      "liveSHA256": "8646668759ab1b9623fb1a02f5b785d7cc4e02bbea1bf0d447ac849f56c0a17e",
+      "pass": true
+    },
+    {
+      "file": "payments-model.js",
+      "gitBytes": 6346,
+      "gitSHA256": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "2513",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-18ca\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "525C:146B0:1544948:156E885:6AE89742"
+      },
+      "liveBytes": 6346,
+      "liveSHA256": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+      "pass": true
+    },
+    {
+      "file": "payments-ui.js",
+      "gitBytes": 8505,
+      "gitSHA256": "eea5623bd944102265ea6996851b7d4e330a554a04bc4a8254f916cd2da127ff",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3357",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2139\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "E954:3EDCF:1564DE2:158ED95:6AE89742"
+      },
+      "liveBytes": 8505,
+      "liveSHA256": "eea5623bd944102265ea6996851b7d4e330a554a04bc4a8254f916cd2da127ff",
+      "pass": true
+    },
+    {
+      "file": "payments.css",
+      "gitBytes": 3160,
+      "gitSHA256": "666e5f8f33011a5278b8bd316c33a2e4ace2ac9415d98a7bbc9d50bbb8978c86",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "871",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-c58\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "EE98:181D11:15E2735:160C6ED:6AE89742"
+      },
+      "liveBytes": 3160,
+      "liveSHA256": "666e5f8f33011a5278b8bd316c33a2e4ace2ac9415d98a7bbc9d50bbb8978c86",
+      "pass": true
+    },
+    {
+      "file": "photos.js",
+      "gitBytes": 8768,
+      "gitSHA256": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3280",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-2240\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "7266:13078D:15599A4:158394C:6AE89742"
+      },
+      "liveBytes": 8768,
+      "liveSHA256": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+      "pass": true
+    },
+    {
+      "file": "presentation.js",
+      "gitBytes": 1114,
+      "gitSHA256": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "553",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-45a\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "42D6:169E6D:1593B92:15BDB10:6AE89742"
+      },
+      "liveBytes": 1114,
+      "liveSHA256": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
+      "pass": true
+    },
+    {
+      "file": "push.js",
+      "gitBytes": 3025,
+      "gitSHA256": "04da09ec758ce4040f8bd31ef1f8244701b7abfb95cfda19b69d7b1ae7af8413",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "1419",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-bd1\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "C25C:E8617:156A01E:1593F7A:6AE89743"
+      },
+      "liveBytes": 3025,
+      "liveSHA256": "04da09ec758ce4040f8bd31ef1f8244701b7abfb95cfda19b69d7b1ae7af8413",
+      "pass": true
+    },
+    {
+      "file": "pwa.css",
+      "gitBytes": 692,
+      "gitSHA256": "572f13f67af1a5f62c645fc1398ca3cb5d8a1ed830ade0f0b36466d2748dfebb",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "375",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2b4\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "CD02:158D:F5B263:F75E09:6AE89743"
+      },
+      "liveBytes": 692,
+      "liveSHA256": "572f13f67af1a5f62c645fc1398ca3cb5d8a1ed830ade0f0b36466d2748dfebb",
+      "pass": true
+    },
+    {
+      "file": "pwa.js",
+      "gitBytes": 3312,
+      "gitSHA256": "8fa0374fdcf6157c43cbbe78fe34944579ca109e821615e9bb9d4ea2afccdea0",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "1522",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-cf0\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "F962:E8617:156A015:1593F58:6AE89741"
+      },
+      "liveBytes": 3312,
+      "liveSHA256": "8fa0374fdcf6157c43cbbe78fe34944579ca109e821615e9bb9d4ea2afccdea0",
+      "pass": true
+    },
+    {
+      "file": "styles.css",
+      "gitBytes": 120054,
+      "gitSHA256": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "20601",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-1d4f6\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "BC3E:3EDCF:1565185:158F137:6AE8973E"
+      },
+      "liveBytes": 120054,
+      "liveSHA256": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "pass": true
+    },
+    {
+      "file": "sw.js",
+      "gitBytes": 2159,
+      "gitSHA256": "e62cefcbd1c749d6cc8643bdd8730ab866b398039d62ec400def128ba3b81ff6",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "1034",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-86f\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "B496:238E2:15C7860:15F17DE:6AE89743"
+      },
+      "liveBytes": 2159,
+      "liveSHA256": "e62cefcbd1c749d6cc8643bdd8730ab866b398039d62ec400def128ba3b81ff6",
+      "pass": true
+    },
+    {
+      "file": "sync.js",
+      "gitBytes": 5532,
+      "gitSHA256": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "1960",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-159c\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "C672:176CE2:15ABD21:15D5C21:6AE89743"
+      },
+      "liveBytes": 5532,
+      "liveSHA256": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+      "pass": true
+    },
+    {
+      "file": "tutorial.html",
+      "gitBytes": 691,
+      "gitSHA256": "bf5ec52596f98d65b907c222d10cc77d7e88c813950205d5c1737fc39958adcc",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "390",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2b3\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "3710:37B5AE:15AFDD8:15D9C61:6AE89743"
+      },
+      "liveBytes": 691,
+      "liveSHA256": "bf5ec52596f98d65b907c222d10cc77d7e88c813950205d5c1737fc39958adcc",
+      "pass": true
+    },
+    {
+      "file": "tutorial/bank-repair-demo-data.js",
+      "gitBytes": 2281,
+      "gitSHA256": "8c94916be5023269b67dae53af6f172e095f8235cd9ee3b077a903b529110095",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "1055",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-8e9\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "4D92:176CE2:15ABEBC:15D5DD1:6AE89744"
+      },
+      "liveBytes": 2281,
+      "liveSHA256": "8c94916be5023269b67dae53af6f172e095f8235cd9ee3b077a903b529110095",
+      "pass": true
+    },
+    {
+      "file": "tutorial/beginner-content.js",
+      "gitBytes": 8431,
+      "gitSHA256": "db64a8b9c1446dec6615d177662aa616c46529e34d95c7d76e83f5a52ba61550",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3495",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-20ef\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "2556:15A1:B5BD34:B6F06F:6AE89744"
+      },
+      "liveBytes": 8431,
+      "liveSHA256": "db64a8b9c1446dec6615d177662aa616c46529e34d95c7d76e83f5a52ba61550",
+      "pass": true
+    },
+    {
+      "file": "tutorial/beginner.css",
+      "gitBytes": 3173,
+      "gitSHA256": "25f9c6e875f8412ac4a41f54892e3aca0280183ed884479165eeff18785f7ce8",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "1126",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-c65\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "33FC:15A1:B5BD20:B6F055:6AE89743"
+      },
+      "liveBytes": 3173,
+      "liveSHA256": "25f9c6e875f8412ac4a41f54892e3aca0280183ed884479165eeff18785f7ce8",
+      "pass": true
+    },
+    {
+      "file": "tutorial/content.js",
+      "gitBytes": 71206,
+      "gitSHA256": "dcb9d02f7d671eff4556b240d91d3259d7bacaa4578112792bd3f9627cf7355a",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "22931",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-11626\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "B848:32722:15D694F:160085A:6AE89744"
+      },
+      "liveBytes": 71206,
+      "liveSHA256": "dcb9d02f7d671eff4556b240d91d3259d7bacaa4578112792bd3f9627cf7355a",
+      "pass": true
+    },
+    {
+      "file": "tutorial/course.css",
+      "gitBytes": 9349,
+      "gitSHA256": "9bca598bc1c829a80dc457f099e02d36aba53f8ffc66c9d6100ea7c023bfaec7",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "2798",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2485\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "6050:1671B0:15A8586:15D254F:6AE89744"
+      },
+      "liveBytes": 9349,
+      "liveSHA256": "9bca598bc1c829a80dc457f099e02d36aba53f8ffc66c9d6100ea7c023bfaec7",
+      "pass": true
+    },
+    {
+      "file": "tutorial/course.html",
+      "gitBytes": 2376,
+      "gitSHA256": "ebbcaaf0d86fe32e9a82e60708b6721e4f236bed5ca7bc2362e34e87ed03a042",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "655",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-948\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "7F08:37B5AE:15B00B0:15D9F62:6AE89744"
+      },
+      "liveBytes": 2376,
+      "liveSHA256": "ebbcaaf0d86fe32e9a82e60708b6721e4f236bed5ca7bc2362e34e87ed03a042",
+      "pass": true
+    },
+    {
+      "file": "tutorial/course.js",
+      "gitBytes": 34450,
+      "gitSHA256": "4d5745e9268094c9e3f737e0c7b51a1a35d9f347a5406bcc4eed187501594914",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "12258",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-8692\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "203E:16464A:155980F:1583788:6AE89744"
+      },
+      "liveBytes": 34450,
+      "liveSHA256": "4d5745e9268094c9e3f737e0c7b51a1a35d9f347a5406bcc4eed187501594914",
+      "pass": true
+    },
+    {
+      "file": "tutorial/demo-data.js",
+      "gitBytes": 1260,
+      "gitSHA256": "f9212a8b0512b64e3949552ab1819e8c1bca1bf861dd84e227c2f92e55c5be06",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "684",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-4ec\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "1E5A:158D:F5B770:F76345:6AE89744"
+      },
+      "liveBytes": 1260,
+      "liveSHA256": "f9212a8b0512b64e3949552ab1819e8c1bca1bf861dd84e227c2f92e55c5be06",
+      "pass": true
+    },
+    {
+      "file": "tutorial/examples/APPFMZ-OEFENBANK-september-2026.csv",
+      "gitBytes": 397,
+      "gitSHA256": "90089dedc1eadf895fc81a5239577a0ee9cce1bcdf38fbca2fed8a74c903a2e1",
+      "status": 200,
+      "headers": {
+        "content-type": "text/csv; charset=utf-8",
+        "content-length": "212",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-18d\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "4BC8:16464A:155996B:15838DF:6AE89745"
+      },
+      "liveBytes": 397,
+      "liveSHA256": "90089dedc1eadf895fc81a5239577a0ee9cce1bcdf38fbca2fed8a74c903a2e1",
+      "pass": true
+    },
+    {
+      "file": "tutorial/finance-content.js",
+      "gitBytes": 5417,
+      "gitSHA256": "3b432bb553d7facd3cc95c9d65b4bf560630715f8b150c250b14c2bbb3e2202b",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "2333",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-1529\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "8404:352E6D:162CE2D:1656CDD:6AE89745"
+      },
+      "liveBytes": 5417,
+      "liveSHA256": "3b432bb553d7facd3cc95c9d65b4bf560630715f8b150c250b14c2bbb3e2202b",
+      "pass": true
+    },
+    {
+      "file": "tutorial/finance-practice-model.js",
+      "gitBytes": 8897,
+      "gitSHA256": "d5916f40f96cfc45fb413bed1d0d391013c9a7fded283cb9a494af4a58fb1fc1",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3504",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-22c1\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "7F08:37B5AE:15B01CC:15DA06D:6AE89745"
+      },
+      "liveBytes": 8897,
+      "liveSHA256": "d5916f40f96cfc45fb413bed1d0d391013c9a7fded283cb9a494af4a58fb1fc1",
+      "pass": true
+    },
+    {
+      "file": "tutorial/finance-practice.js",
+      "gitBytes": 9147,
+      "gitSHA256": "65dbe2a09d765f314df35b1b9a25e01decc3a6c390adddf1151e0234968ba036",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3647",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-23bb\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "B142:238E2:15C7C6C:15F1C00:6AE89745"
+      },
+      "liveBytes": 9147,
+      "liveSHA256": "65dbe2a09d765f314df35b1b9a25e01decc3a6c390adddf1151e0234968ba036",
+      "pass": true
+    },
+    {
+      "file": "tutorial/handbook-manifest.json",
+      "gitBytes": 760,
+      "gitSHA256": "8624b11adeb90e539282a718e605b709b5f325121bbadc98edfc5451b376bcc2",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "491",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2f8\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "F1EA:157924:157E8E9:15A8855:6AE89745"
+      },
+      "liveBytes": 760,
+      "liveSHA256": "8624b11adeb90e539282a718e605b709b5f325121bbadc98edfc5451b376bcc2",
+      "pass": true
+    },
+    {
+      "file": "tutorial/host.css",
+      "gitBytes": 1719,
+      "gitSHA256": "4acf6afe632ad14eeaec37e2994955db1962b852c5fb347966ae5c038712ff37",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "634",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-6b7\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "4344:182FF3:156D597:15975BA:6AE89745"
+      },
+      "liveBytes": 1719,
+      "liveSHA256": "4acf6afe632ad14eeaec37e2994955db1962b852c5fb347966ae5c038712ff37",
+      "pass": true
+    },
+    {
+      "file": "tutorial/host.js",
+      "gitBytes": 6355,
+      "gitSHA256": "e5dbb140fff76c6a40a77a5872bfb5da638cb93dc863c5cb5d5872cbc2416f39",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "2324",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-18d3\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "738A:32722:15D6CDF:1600C00:6AE89745"
+      },
+      "liveBytes": 6355,
+      "liveSHA256": "e5dbb140fff76c6a40a77a5872bfb5da638cb93dc863c5cb5d5872cbc2416f39",
+      "pass": true
+    },
+    {
+      "file": "tutorial/media/administratie-chapters.json",
+      "gitBytes": 2736,
+      "gitSHA256": "9802f038d6bdfd5d4df568b69384a81f536cc65778a683b6e33531ec366e192f",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "846",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-ab0\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "1210:15A1:B5C15E:B6F4A7:6AE89745"
+      },
+      "liveBytes": 2736,
+      "liveSHA256": "9802f038d6bdfd5d4df568b69384a81f536cc65778a683b6e33531ec366e192f",
+      "pass": true
+    },
+    {
+      "file": "tutorial/media/administratie-nl.vtt",
+      "gitBytes": 54693,
+      "gitSHA256": "6ae1039c606d27f5836bdd4e2efdf1a063fbd937996957a68a26451dc61afb55",
+      "status": 200,
+      "headers": {
+        "content-type": "text/vtt; charset=utf-8",
+        "content-length": "18928",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-d5a5\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "B6BC:146B0:154569B:156F617:6AE89746"
+      },
+      "liveBytes": 54693,
+      "liveSHA256": "6ae1039c606d27f5836bdd4e2efdf1a063fbd937996957a68a26451dc61afb55",
+      "pass": true
+    },
+    {
+      "file": "tutorial/media/administratie-poster.jpg",
+      "gitBytes": 142748,
+      "gitSHA256": "097e5c9c65ff2495349f83d0438cf198e3ebeaa96e65c46f37d57a6b1783b77b",
+      "status": 200,
+      "headers": {
+        "content-type": "image/jpeg",
+        "content-length": "142748",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fda-22d9c\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "B880:1671B0:15A8AB0:15D2A7D:6AE89745"
+      },
+      "liveBytes": 142748,
+      "liveSHA256": "097e5c9c65ff2495349f83d0438cf198e3ebeaa96e65c46f37d57a6b1783b77b",
+      "pass": true
+    },
+    {
+      "file": "tutorial/media/administratie-rondleiding.mp4",
+      "gitBytes": 73892420,
+      "gitSHA256": "ca941e7b67897ca5036436ada3e33a9e45b709becb5d8ac4be2406bb3d9c5b0e",
+      "status": 200,
+      "headers": {
+        "content-type": "video/mp4",
+        "content-length": "73892420",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "\"6ad48fdb-4678244\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "DDDA:1547:49BDEAF:4A5B523:6AE89746"
+      },
+      "liveBytes": 73892420,
+      "liveSHA256": "ca941e7b67897ca5036436ada3e33a9e45b709becb5d8ac4be2406bb3d9c5b0e",
+      "pass": true
+    },
+    {
+      "file": "tutorial/media/administratie-transcript.txt",
+      "gitBytes": 37858,
+      "gitSHA256": "cbad18689030ea483f48f67685540c14d1f94af458429e21b6c5264420117f1a",
+      "status": 200,
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "content-length": "12896",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-93e2\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "E5A4:D7AA2:14D84C9:150236A:6AE89746"
+      },
+      "liveBytes": 37858,
+      "liveSHA256": "cbad18689030ea483f48f67685540c14d1f94af458429e21b6c5264420117f1a",
+      "pass": true
+    },
+    {
+      "file": "tutorial/model.js",
+      "gitBytes": 30607,
+      "gitSHA256": "6593fb18f66710b603ebdadc3441f3924cca0536856fa39d6c7ef4cc30d0a89a",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "10806",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-778f\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "0A70:182FF3:156E5D8:1598611:6AE8974B"
+      },
+      "liveBytes": 30607,
+      "liveSHA256": "6593fb18f66710b603ebdadc3441f3924cca0536856fa39d6c7ef4cc30d0a89a",
+      "pass": true
+    },
+    {
+      "file": "tutorial/payment-example.js",
+      "gitBytes": 10123,
+      "gitSHA256": "5c5b06495ffbadcbc07049e62ac7de7f04c75f7ac805ab759d28181751a78656",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "2014",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-278b\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "7F1C:35B135:153F7E3:1569689:6AE8974B"
+      },
+      "liveBytes": 10123,
+      "liveSHA256": "5c5b06495ffbadcbc07049e62ac7de7f04c75f7ac805ab759d28181751a78656",
+      "pass": true
+    },
+    {
+      "file": "tutorial/payment-practice-model.js",
+      "gitBytes": 7924,
+      "gitSHA256": "c20073e87794365ec9f9037f9ffe554c2f28f7e4628d5b7a1ec36154703e8fd7",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "2849",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-1ef4\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "FFAE:1671B0:15A9B3E:15D3B2C:6AE8974B"
+      },
+      "liveBytes": 7924,
+      "liveSHA256": "c20073e87794365ec9f9037f9ffe554c2f28f7e4628d5b7a1ec36154703e8fd7",
+      "pass": true
+    },
+    {
+      "file": "tutorial/payment-practice.js",
+      "gitBytes": 11440,
+      "gitSHA256": "83da8a31d8ecfdba7bc466ce5a77ea769fb3799522707587e93f52095134b523",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "4204",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2cb0\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "D036:35B135:153F7DF:1569682:6AE8974B"
+      },
+      "liveBytes": 11440,
+      "liveSHA256": "83da8a31d8ecfdba7bc466ce5a77ea769fb3799522707587e93f52095134b523",
+      "pass": true
+    },
+    {
+      "file": "tutorial/spoken-course-script.json",
+      "gitBytes": 50688,
+      "gitSHA256": "422ced8be32011765a048cf6facb32186cbcbfc378df56e0f4f179aa0a14480c",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "14887",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-c600\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "0A60:146B0:1546943:15708CF:6AE8974C"
+      },
+      "liveBytes": 50688,
+      "liveSHA256": "422ced8be32011765a048cf6facb32186cbcbfc378df56e0f4f179aa0a14480c",
+      "pass": true
+    },
+    {
+      "file": "tutorial/spoken-data.js",
+      "gitBytes": 124374,
+      "gitSHA256": "402afb6efb3e6d052da4e82bddf77c2bf74dbed40940ab7c87330fd6b95920a2",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "35781",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-1e5d6\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "C04E:158D:F5CC62:F77834:6AE8974B"
+      },
+      "liveBytes": 124374,
+      "liveSHA256": "402afb6efb3e6d052da4e82bddf77c2bf74dbed40940ab7c87330fd6b95920a2",
+      "pass": true
+    },
+    {
+      "file": "tutorial/spoken-player.css",
+      "gitBytes": 1748,
+      "gitSHA256": "438c8bd645783cda25cd9ea206b51555d37f2f639f8224d313e9391bb71f1ece",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "674",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-6d4\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "AEA4:1547:49BEFDA:4A5C662:6AE8974C"
+      },
+      "liveBytes": 1748,
+      "liveSHA256": "438c8bd645783cda25cd9ea206b51555d37f2f639f8224d313e9391bb71f1ece",
+      "pass": true
+    },
+    {
+      "file": "tutorial/spoken-player.js",
+      "gitBytes": 9192,
+      "gitSHA256": "3cf5af1db0f7401b3fc4307a19ea4c4f15d401b1afdac1ebac09cf9a9474f886",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "3587",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-23e8\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "E376:35B135:153F8EF:1569795:6AE8974B"
+      },
+      "liveBytes": 9192,
+      "liveSHA256": "3cf5af1db0f7401b3fc4307a19ea4c4f15d401b1afdac1ebac09cf9a9474f886",
+      "pass": true
+    },
+    {
+      "file": "tutorial/vendor/LICENSE",
+      "gitBytes": 10174,
+      "gitSHA256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "status": 200,
+      "headers": {
+        "content-type": "application/octet-stream",
+        "content-length": "3586",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-27be\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "E548:369263:15354D5:155F44A:6AE8974C"
+      },
+      "liveBytes": 10174,
+      "liveSHA256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "pass": true
+    },
+    {
+      "file": "tutorial/vendor/manifest.json",
+      "gitBytes": 543,
+      "gitSHA256": "692ac70c696b723f688182bbcb9e8e11ff5057d136d5e5a0d9e3d018d0ff6922",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "303",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-21f\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "09B2:146B0:1546B28:1570AD5:6AE8974C"
+      },
+      "liveBytes": 543,
+      "liveSHA256": "692ac70c696b723f688182bbcb9e8e11ff5057d136d5e5a0d9e3d018d0ff6922",
+      "pass": true
+    },
+    {
+      "file": "tutorial/vendor/pdf.js",
+      "gitBytes": 457901,
+      "gitSHA256": "57841059fa4197d5bbffc7e09b23122c8f2b3720c894aa2dddea32544350098a",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "133241",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-6fcad\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "0F8E:157B:1205820:1227C98:6AE8974C"
+      },
+      "liveBytes": 457901,
+      "liveSHA256": "57841059fa4197d5bbffc7e09b23122c8f2b3720c894aa2dddea32544350098a",
+      "pass": true
+    },
+    {
+      "file": "tutorial/vendor/pdf.worker.js",
+      "gitBytes": 1265545,
+      "gitSHA256": "9d7b6ba95dccd6f9526823210a161ba043b751eb5ae4b2c3cb44f2193a483816",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "378400",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-134f89\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "B8E2:32722:15D82DC:1602226:6AE8974C"
+      },
+      "liveBytes": 1265545,
+      "liveSHA256": "9d7b6ba95dccd6f9526823210a161ba043b751eb5ae4b2c3cb44f2193a483816",
+      "pass": true
+    },
+    {
+      "file": "vat-ui.js",
+      "gitBytes": 10881,
+      "gitSHA256": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "4332",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-2a81\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "BC5A:181D11:15E44D2:160E4E3:6AE8974D"
+      },
+      "liveBytes": 10881,
+      "liveSHA256": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0",
+      "pass": true
+    },
+    {
+      "file": "vendor/fflate-0.8.2.js",
+      "gitBytes": 32665,
+      "gitSHA256": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "12546",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-7f99\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "FFF4:15A1:B5DB95:B70F07:6AE8974D"
+      },
+      "liveBytes": 32665,
+      "liveSHA256": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf",
+      "pass": true
+    },
+    {
+      "file": "vendor/fflate-LICENSE.txt",
+      "gitBytes": 1069,
+      "gitSHA256": "805f6cb28bb8b6d3a0badd83c93bccd9671fa01a3b4b92b7042b0743325ac243",
+      "status": 200,
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "content-length": "648",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-42d\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "B930:1671B0:15AA098:15D40A0:6AE8974D"
+      },
+      "liveBytes": 1069,
+      "liveSHA256": "805f6cb28bb8b6d3a0badd83c93bccd9671fa01a3b4b92b7042b0743325ac243",
+      "pass": true
+    },
+    {
+      "file": "vendor/pdf-lib-1.17.1.min.js",
+      "gitBytes": 525099,
+      "gitSHA256": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-length": "207350",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-8032b\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "51EA:146B0:1546D48:1570CEF:6AE8974D"
+      },
+      "liveBytes": 525099,
+      "liveSHA256": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f",
+      "pass": true
+    },
+    {
+      "file": "vendor/pdf-lib-LICENSE.md",
+      "gitBytes": 1070,
+      "gitSHA256": "f2c9fc00fdb66eb99ac156ba52d734af66d8d309f65753ae809ad34ee2883bcb",
+      "status": 200,
+      "headers": {
+        "content-type": "text/markdown; charset=utf-8",
+        "content-length": "648",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fda-42e\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+        "x-github-request-id": "6F5E:158D:F5D0CF:F77CB8:6AE8974D"
+      },
+      "liveBytes": 1070,
+      "liveSHA256": "f2c9fc00fdb66eb99ac156ba52d734af66d8d309f65753ae809ad34ee2883bcb",
+      "pass": true
+    },
+    {
+      "file": "vendor/pdfjs-6.3.289/LICENSE",
+      "gitBytes": 10174,
+      "gitSHA256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "status": 200,
+      "headers": {
+        "content-type": "application/octet-stream",
+        "content-length": "3586",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-27be\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "5BC8:182FF3:156EB96:1598BDC:6AE8974D"
+      },
+      "liveBytes": 10174,
+      "liveSHA256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "pass": true
+    },
+    {
+      "file": "vendor/pdfjs-6.3.289/pdf.mjs",
+      "gitBytes": 458705,
+      "gitSHA256": "f80490490320511e5df18c580b9edd6b5db8058dceebaf6f161992e0a964b9e2",
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript; charset=utf-8",
+        "content-length": "133298",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-6ffd1\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "51F2:16464A:155B5D4:1585574:6AE8974D"
+      },
+      "liveBytes": 458705,
+      "liveSHA256": "f80490490320511e5df18c580b9edd6b5db8058dceebaf6f161992e0a964b9e2",
+      "pass": true
+    },
+    {
+      "file": "vendor/pdfjs-6.3.289/pdf.worker.mjs",
+      "gitBytes": 1265413,
+      "gitSHA256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript; charset=utf-8",
+        "content-length": "378327",
+        "server": "GitHub.com",
+        "cache-control": "max-age=600",
+        "etag": "W/\"6ad48fdb-134f05\"",
+        "last-modified": "Sun, 18 Oct 2026 09:22:35 GMT",
+        "x-github-request-id": "87A8:181D11:15E465C:160E662:6AE8974D"
+      },
+      "liveBytes": 1265413,
+      "liveSHA256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+      "pass": true
+    }
+  ],
+  "migrationComparison": {
+    "method": "Supabase list_migrations read-only API compared with exact Git tree",
+    "local": [
+      {
+        "version": "20260909103959",
+        "name": "appfmz_storage_security",
+        "file": "supabase/migrations/20260909103959_appfmz_storage_security.sql",
+        "sha256": "21d0f6ea93d656b0c4c3238c2630113179c24eaff31ec8e4c5c98f7438c8014c"
+      },
+      {
+        "version": "20260909151429",
+        "name": "appfmz_conflict_response",
+        "file": "supabase/migrations/20260909151429_appfmz_conflict_response.sql",
+        "sha256": "44b57260741898817eda23f37ce28685a73bce8f23e334873b95328645f773fe"
+      },
+      {
+        "version": "20260909172334",
+        "name": "appfmz_autosave_annotations",
+        "file": "supabase/migrations/20260909172334_appfmz_autosave_annotations.sql",
+        "sha256": "67d2f5967b25a3c0ecd2e7756ba0feda3eb3a5591348ddb0c7693fb5dccd4f80"
+      },
+      {
+        "version": "20260910170351",
+        "name": "appfmz_owner_accounting",
+        "file": "supabase/migrations/20260910170351_appfmz_owner_accounting.sql",
+        "sha256": "3599c53aab5eeec0ee6ca9e5ed85ac23f11ecaeb9136a134d9f9608d84ac50f7"
+      },
+      {
+        "version": "20260910171555",
+        "name": "appfmz_accounting_closed_bank_period",
+        "file": "supabase/migrations/20260910171555_appfmz_accounting_closed_bank_period.sql",
+        "sha256": "2b870f6de34c9ebf1b95de139a19b165016ffb0649c1384da74b7670a69367e9"
+      },
+      {
+        "version": "20260911094831",
+        "name": "appfmz_owner_hotfix",
+        "file": "supabase/migrations/20260911094831_appfmz_owner_hotfix.sql",
+        "sha256": "c04dc3f8e67d2eb119b52fdd838cae879237e12dceeae136d1f5f80cfbbe193c"
+      },
+      {
+        "version": "20260924133305",
+        "name": "appfmz_billing_periods",
+        "file": "supabase/migrations/20260924133305_appfmz_billing_periods.sql",
+        "sha256": "1f0678e04120e22c18fcbd20952f9c149ab9ea67a9d83da86eaa18ac99038b0d"
+      },
+      {
+        "version": "20261015102946",
+        "name": "appfmz_agenda_reminders",
+        "file": "supabase/migrations/20261015102946_appfmz_agenda_reminders.sql",
+        "sha256": "b94baebec70b3e9e127ead68c1c2d58861bfaa1bde3e9be3571abf7b29439e55"
+      },
+      {
+        "version": "20261015130925",
+        "name": "appfmz_invoice_payments",
+        "file": "supabase/migrations/20261015130925_appfmz_invoice_payments.sql",
+        "sha256": "b1753191c35f547d2e48cfac83930c6410ba77504b74e19ab9ce23028d84f5e8"
+      },
+      {
+        "version": "20261015152613",
+        "name": "appfmz_bank_repair",
+        "file": "supabase/migrations/20261015152613_appfmz_bank_repair.sql",
+        "sha256": "ba85fe0707fd91503bc8adce6931eff35333e2b834dbe284129cd54e1479892c"
+      },
+      {
+        "version": "20261015154448",
+        "name": "appfmz_unknown_opening_repair",
+        "file": "supabase/migrations/20261015154448_appfmz_unknown_opening_repair.sql",
+        "sha256": "63d0b8f6cd6692b19c84ad0153c7157e864c34cf108a5b9020ca1cba708c5e62"
+      },
+      {
+        "version": "20261018073658",
+        "name": "appfmz_vat_settlements",
+        "file": "supabase/migrations/20261018073658_appfmz_vat_settlements.sql",
+        "sha256": "51254833ccb1085661b7c145a370616ff61dda39166b553985fa6159d5a6a53f"
+      }
+    ],
+    "remote": [
+      {
+        "version": "20260909103959",
+        "name": "appfmz_storage_security"
+      },
+      {
+        "version": "20260909151429",
+        "name": "appfmz_conflict_response"
+      },
+      {
+        "version": "20260909172334",
+        "name": "appfmz_autosave_annotations"
+      },
+      {
+        "version": "20260910170351",
+        "name": "appfmz_owner_accounting"
+      },
+      {
+        "version": "20260910171555",
+        "name": "appfmz_accounting_closed_bank_period"
+      },
+      {
+        "version": "20260911094831",
+        "name": "appfmz_owner_hotfix"
+      },
+      {
+        "version": "20260924133305",
+        "name": "appfmz_billing_periods"
+      },
+      {
+        "version": "20261015102946",
+        "name": "appfmz_agenda_reminders"
+      },
+      {
+        "version": "20261015130925",
+        "name": "appfmz_invoice_payments"
+      },
+      {
+        "version": "20261015152613",
+        "name": "appfmz_bank_repair"
+      },
+      {
+        "version": "20261015154448",
+        "name": "appfmz_unknown_opening_repair"
+      },
+      {
+        "version": "20261018073658",
+        "name": "appfmz_vat_settlements"
+      }
+    ],
+    "pass": true
+  },
+  "databaseWrites": 0,
+  "authenticatedApplicationRequests": 0,
+  "productionCustomerDataRead": false,
+  "privatePDFsRead": false,
+  "rootAlias": {
+    "file": "/",
+    "gitBytes": 50109,
+    "gitSHA256": "1f2f7a4d89f9af483e960ba9aa51dce29e85a3b1b15b470ea37c3f63d9a2a174",
+    "status": 200,
+    "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "content-length": "8054",
+      "server": "GitHub.com",
+      "cache-control": "max-age=600",
+      "etag": "W/\"6ad48fda-c3bd\"",
+      "last-modified": "Sun, 18 Oct 2026 09:22:34 GMT",
+      "x-github-request-id": "F56A:16464A:155B72A:15856BC:6AE8974B"
+    },
+    "liveBytes": 50109,
+    "liveSHA256": "1f2f7a4d89f9af483e960ba9aa51dce29e85a3b1b15b470ea37c3f63d9a2a174",
+    "pass": true
+  },
+  "pagesConfiguration": {
+    "status": 404,
+    "verified": false
+  },
+  "pagesBuild": {
+    "status": 404,
+    "verified": false
+  },
+  "runtimePass": true,
+  "sourcePass": true,
+  "bytesRead": 80352338,
+  "allKnownPublishedRuntimeMatches": true,
+  "overall": "PASS",
+  "limits": [
+    "Read-only evidence; no restore tag or branch created by this script.",
+    "This verifies public artifacts and migration identities, not an exact dump or restoration of private production data.",
+    "Existing production activity may continue; no customer records, invoices, Storage objects or Auth sessions were modified.",
+    "Pages configuration authorization failures are retained explicitly; they are not a successful configuration read."
+  ],
+  "hostingAuthenticatedRead": {
+    "checkedAt": "2026-11-02T14:06:16.724Z",
+    "attempted": true,
+    "method": "Existing Git credential helper held in process memory; GET only; no credential serialized",
+    "pages": {
+      "status": 200,
+      "verified": true,
+      "html_url": "https://appfmz.nl/",
+      "cname": "appfmz.nl",
+      "build_type": "legacy",
+      "https_enforced": true,
+      "source": {
+        "branch": "main",
+        "path": "/"
+      },
+      "siteStatus": "built"
+    },
+    "pages/builds/latest": {
+      "status": 200,
+      "verified": true,
+      "commit": "309cb0db3569f14ac54442c8daec678020ba149a",
+      "buildStatus": "built",
+      "created_at": "2026-10-18T09:21:47Z",
+      "updated_at": "2026-10-18T09:22:35Z",
+      "errorMessage": null
+    }
+  },
+  "hostingPass": true,
+  "dataAggregateEvidence": "data-aggregate-baseline.json",
+  "recoveryReferenceEvidence": "recovery-protection.json"
+}

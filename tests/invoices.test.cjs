@@ -6,7 +6,8 @@ test('invoice regression: both screens edit drafts, delayed acknowledgements, lo
  try{
  await login(p);
  const prices=await p.evaluate(()=>CLIENT_PACKAGES.filter(x=>x.sessions).map(x=>[x.amount,x.sessions,x.amount/x.sessions,packageByValue(x.label).id===x.id]));assert.deepEqual(prices,[[200,4,50,true],[380,8,47.5,true],[480,12,40,true]]);
- assert.deepEqual(await p.evaluate(()=>['duo-basis','duo-progressie','duo-transformatie','online-coaching','custom'].map(packageAmount)),[260,520,780,200,'']);
+ // Owner-confirmed prospective catalogue. Historical agreement snapshots are checked separately.
+ assert.deepEqual(await p.evaluate(()=>['duo-basis','duo-progressie','duo-transformatie','online-coaching','custom'].map(packageAmount)),[260,500,660,200,'']);
  assert.deepEqual(await p.evaluate(()=>{const x=createAppointmentAdminItem(client(),{id:'unissued-synthetic',date:'2026-09-10'});return [x.amount,x.invoiceNo,x.draft]}),['','',true]);
  await p.evaluate(async()=>{await FMZAccounting.command('settings',{id:crypto.randomUUID(),data:{date:'2026-01-01',businessName:'Synthetic',address:'Testweg 1',postalCity:'1000 AA Test',kvk_registered:false,vatNumber:'NL000000000B00',vat_status:'standard',vat_method:'invoice',vat_period:'quarter',vat_basis_points:2100,confirmed:true}});await FMZAccounting.refresh();client().profile.package='pt-progressie';await saveStateToCloud();showView('administration');document.querySelector('[data-acc-page=sales]').click();});
  await require('./billing-fixture.cjs').monthly(preview,p,'pt-progressie');await p.locator('[data-acc-action=new-package]').click();await require('./billing-fixture.cjs').open(p);const f=p.locator('#invoiceDraftForm');assert.match(await f.locator('.invoice-total').innerText(),/380,00/);await f.locator('[name=customerAddress]').fill('Testweg 2');await saved(p);const id=await p.evaluate(()=>FMZAccounting.snapshot.records.find(r=>r.kind==='invoice').id);

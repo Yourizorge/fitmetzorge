@@ -6,10 +6,13 @@ let pushQueue=Promise.resolve();
 self.addEventListener('push',event=>{
  let payload;try{payload=event.data.json();}catch{return;}
  if(!/^[0-9a-f-]{36}$/.test(payload.id||'')||!Number.isFinite(Date.parse(payload.expiresAt))||Date.parse(payload.expiresAt)<=Date.now())return;
+ const billing=['billing_prepare','billing_due','billing_test'].includes(payload.kind),period=/^\d{4}-\d{2}-\d{2} t\/m \d{4}-\d{2}-\d{2}$/.test(payload.period||'')?payload.period:'de geplande periode';
+ const message=billing?(payload.kind==='billing_test'?'Dit is je aangevraagde testmelding voor facturatieplanning.':payload.kind==='billing_prepare'?`De facturen voor ${period} moeten binnenkort worden voorbereid.`:`Controleer de facturen voor ${period} in de facturatieplanning.`):payload.kind==='test'?'Dit is je aangevraagde testmelding.':payload.kind==='reminder'?'Je hebt binnenkort een afspraak bij FitMetZorge.':'Er is een wijziging in je FitMetZorge-agenda. Open de app voor details.';
+ const target=billing?(/^[0-9a-f-]{36}$/.test(payload.taskId||'')?'/#facturatie='+payload.taskId:'/#facturatie'):/^[0-9a-f-]{36}$/.test(payload.eventId||'')?'/#melding='+payload.eventId:'/#meldingen';
  const deliver=async()=>{if(await seen(payload.id).catch(()=>false))return;await self.registration.showNotification('FitMetZorge',{
-  body:payload.kind==='test'?'Dit is je aangevraagde testmelding.':payload.kind==='reminder'?'Je hebt binnenkort een afspraak bij FitMetZorge.':'Er is een wijziging in je FitMetZorge-agenda. Open de app voor details.',
-  icon:'/assets/pwa/icon-192.png',badge:'/assets/pwa/icon-192.png',tag:'fmz-'+payload.id,renotify:false,data:{url:/^[0-9a-f-]{36}$/.test(payload.eventId||'')?'/#melding='+payload.eventId:'/#meldingen'}
+  body:message,
+  icon:'/assets/pwa/icon-192.png',badge:'/assets/pwa/icon-192.png',tag:'fmz-'+payload.id,renotify:false,data:{url:target}
  });await seen(payload.id,Date.parse(payload.expiresAt)).catch(()=>{});};
  pushQueue=pushQueue.then(deliver,deliver);event.waitUntil(pushQueue);
 });
-self.addEventListener('notificationclick',event=>{const url=event.notification.data?.url;event.notification.close();event.waitUntil(self.clients.openWindow(/^\/#melding=[0-9a-f-]{36}$/.test(url||'')?url:'/#meldingen'));});
+self.addEventListener('notificationclick',event=>{const url=event.notification.data?.url;event.notification.close();event.waitUntil(self.clients.openWindow(/^\/#(?:melding=[0-9a-f-]{36}|facturatie(?:=[0-9a-f-]{36})?)$/.test(url||'')?url:'/#meldingen'));});

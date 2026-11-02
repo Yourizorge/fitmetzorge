@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Facturatieplanning",
+    "start": 0,
+    "end": 67.33333333333333
+  },
+  {
+    "id": 2,
+    "title": "Meldingen op je telefoon",
+    "start": 67.33333333333333,
+    "end": 127.66666666666666
+  },
+  {
+    "id": 3,
+    "title": "Een automatisch voorbereid concept",
+    "start": 127.66666666666666,
+    "end": 192.66666666666666
+  },
+  {
+    "id": 4,
+    "title": "Het e-mailconcept aanpassen",
+    "start": 192.66666666666666,
+    "end": 252.91666666666666
+  },
+  {
+    "id": 5,
+    "title": "Een testmail naar jezelf",
+    "start": 252.91666666666666,
+    "end": 312.91666666666663
+  },
+  {
+    "id": 6,
+    "title": "Factuur en PDF definitief maken",
+    "start": 312.91666666666663,
+    "end": 372.66666666666663
+  },
+  {
+    "id": 7,
+    "title": "Handmatig verzenden of inplannen",
+    "start": 372.66666666666663,
+    "end": 433.91666666666663
+  },
+  {
+    "id": 8,
+    "title": "Verzendstatus in APPFMZ terugvinden",
+    "start": 433.91666666666663,
+    "end": 490.83333333333326
+  },
+  {
+    "id": 9,
+    "title": "Outlook en TransIP controleren",
+    "start": 490.83333333333326,
+    "end": 548.4999999999999
+  },
+  {
+    "id": 10,
+    "title": "Een mislukte verzending veilig herstellen",
+    "start": 548.4999999999999,
+    "end": 604.2499999999999
+  },
+  {
+    "id": 11,
+    "title": "De overeenkomst in Documenten",
+    "start": 604.2499999999999,
+    "end": 664.4166666666665
+  },
+  {
+    "id": 12,
+    "title": "Overeenkomstmail controleren en herstellen",
+    "start": 664.4166666666665,
+    "end": 727.9166666666665
+  }
+]

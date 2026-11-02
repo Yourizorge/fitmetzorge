@@ -1,0 +1,62 @@
+APPFMZ — leden zoeken, inschrijven en begeleiden
+Inhoudsversie 2026-10-26. Uitsluitend vaste fictieve gegevens.
+
+1. Een lid zoeken (00:00:00.000)
+Welkom. Dit is de echte gebouwde ledenomgeving van APPFMZ, in een volledig afzonderlijke oefenomgeving. We werken voor FitMetZorge Oefenbedrijf met verzonnen personen. Ik zoek Sam Oefen via de zoekbalk. Een gedeelte van de naam is genoeg; hoofdletters en extra spaties maken niet uit. Controleer steeds de naam en het lidnummer voordat je een profiel opent.
+
+Je kunt ook zoeken op het bekende e-mailadres, telefoonnummer of interne lidnummer. Hier zie je telkens hetzelfde fictieve lid terugkomen. Ik probeer ook een naam die niet bestaat: de app meldt dat er geen leden zijn gevonden. Een leeg resultaat is geen reden om meteen iemand opnieuw in te schrijven. Controleer eerst de spelling of gebruik een ander bekend gegeven.
+
+2. Een bestaand profiel openen (00:01:03.333)
+Ik open Sam vanuit het zoekresultaat. Bovenaan staan de initialen, naam, lidnummer, status en betaalafspraak. Daaronder vind je de persoonsgegevens. Je opent alleen leden waarvoor je bevoegd bent. In dit voorbeeld is Sam een bestaande maandklant. Deze nieuwe inschrijfroute zet zijn kalendermaandafspraak niet om naar vier weken.
+
+De uitklapbare onderdelen houden het profiel overzichtelijk. Coaching, training, voeding en voortgang openen de bestaande schermen. Agenda toont afspraken; aanwezigheid registreren maakt geen factuur en boekt geen betaling. Bij Financiën zie je de betaalafspraak en de link naar financiële details. Documenten en interne notities hebben ieder hun eigen plaats. Bewaar gevoelige informatie alleen waar die werkelijk nodig is.
+
+3. Een nieuwe inschrijving beginnen (00:02:11.167)
+Voor een werkelijk nieuw lid kies ik Nieuw lid inschrijven. Bovenaan zie je de stappen: pakket, persoonsgegevens, betaling, controleren en ondertekenen, en voltooid. In deze opname schrijven we Noor Voorbeeld in. Het openen van deze route maakt nog geen definitief lid, overeenkomst, factuur of betaling.
+
+Ik sla het concept op en sluit het venster. Via Inschrijfconcepten kan ik dezelfde inschrijving weer openen. Een concept is bedoeld om rustig verder te werken zonder een tweede inschrijving te starten. Controleer de bevestiging Concept opgeslagen voordat je afsluit. Bij een netwerkfout behoud je de invoer en probeer je dezelfde handeling opnieuw; een tweede concept is daarvoor niet nodig.
+
+4. Het juiste pakket kiezen (00:03:11.333)
+De pakketkaarten komen uit de actieve APPFMZ-catalogus. Vergelijk de pakketnaam, het aantal trainingen, de prijs en de betaalfrequentie. Bij een duopakket moet duidelijk zijn of het bedrag voor het duo geldt. Online coaching is een afzonderlijk pakket. Neem bedragen niet over uit een oude afbeelding of een ander systeem; gebruik de hier vastgelegde catalogus.
+
+Voor Noor kies ik Personal training Progressie. In dit voorbeeld is dat acht trainingen en driehonderdtachtig euro per vier weken. Vier weken is achtentwintig dagen; er zijn dertien van zulke perioden per jaar. De gekozen prijsversie wordt bij de overeenkomst vastgelegd. Een latere cataloguswijziging mag de ondertekende overeenkomst van Noor niet achteraf veranderen.
+
+5. Persoonsgegevens invullen (00:04:15.000)
+Nu vul ik de fictieve contact- en adresgegevens in. Velden met een ster zijn nodig voor deze inschrijving. Controleer vooral het e-mailadres en de startdatum; die worden later gebruikt bij de overeenkomst en toegang tot de app. De trainer kiest geen wachtwoord namens het lid. Het lid stelt zelf toegang in via een afzonderlijke beveiligde uitnodiging.
+
+Noodcontact, doel, ervaring en voorkeuren zijn afzonderlijke velden. Laat informatie die je niet nodig hebt leeg. De interne trainernotitie is niet bedoeld voor gewone profielinformatie. Marketingtoestemming staat apart en is niet vooraf aangevinkt. Gezondheidsgegevens vullen we hier niet in: de vereiste privacy- en toestemmingsgrondslag moet eerst werkelijk zijn vastgesteld. Controleer de opgeslagen gegevens voordat je doorgaat.
+
+6. De betaling per vier weken controleren (00:05:23.417)
+Bij Betaling controleren lees ik het pakket, het bedrag en de eerste periode. De einddatum hoort bij de startdatum en de gekozen betaalfrequentie. Voor Noor blijft het voorbeeld driehonderdtachtig euro per vier weken. De btw-instelling komt uit de administratie; deze demonstratie stelt geen btw-tarief voor jouw bedrijf vast. Er worden geen inschrijfkosten verzonnen.
+
+Ik ga één stap terug om de startdatum en het adres nogmaals te controleren, en ga daarna weer verder. De invoer blijft staan. Dit overzicht legt de betaalafspraak vast; het bewijst niet dat geld is ontvangen. Een factuur en een betaling blijven afzonderlijke handelingen. Bestaande maandklanten behouden hun eigen afspraak. Deze standaard inschrijfroute toont geen niet-afgesproken korting of naar-ratobedrag.
+
+7. Voorwaarden volledig bekijken (00:06:31.417)
+Op de controlepagina staan persoonsgegevens, pakket en de belangrijkste afspraken bij elkaar. Ik open de volledige algemene voorwaarden. Let op: in deze lokale oefenopname gebruiken we uitdrukkelijk synthetische testvoorwaarden. Dit zijn niet jouw geldende juridische voorwaarden. In productie mag ondertekenen pas beschikbaar worden nadat de echte volledige voorwaarden en privacytekst zijn gecontroleerd.
+
+Ik open ook de volledige privacyvoorwaarden en bekijk de voorwaardenversie. Alleen een korte samenvatting is niet voldoende. Het lid moet weten welke afspraak wordt ondertekend en welke versie daarbij hoort. De getoonde opzeg- en afzegregels zijn hier alleen testinhoud. Neem ze niet over als bedrijfsregel; ontbrekende juridische keuzes moeten eerst door de eigenaar worden vastgesteld.
+
+8. Ondertekenen en het voorbeeld controleren (00:07:38.417)
+Onder de gegevens staat een groot handtekeningvak. Je kunt tekenen met vinger, muis, touchpad of een ondersteunde stylus. Ik probeer eerst zonder te tekenen: de app blokkeert het voorbeeld. Alleen een vinkje is dus niet voldoende. De ondertekenaar moet de gegevens en volledige voorwaarden bekijken en daadwerkelijk tekenen.
+
+Ik teken een fictieve oefenhandtekening, wis die en teken opnieuw. Daarna controleer ik de naam en vink ik de bevestiging aan. Ondertekend PDF-voorbeeld controleren legt de exacte versie klaar. Er is op dat moment nog geen definitief lid aangemaakt. Open het PDF-voorbeeld in je PDF-lezer en controleer alle pagina’s vóór de laatste bevestiging. Dit wordt niet voorgesteld als een gekwalificeerde elektronische handtekening.
+
+9. Voltooien en de overeenkomst terugvinden (00:08:43.667)
+Pas na de controle kies ik Inschrijving definitief bevestigen. De app controleert het document en bewaart de overeenkomst en betaalafspraak. Daarna opent het ledenprofiel van Noor. De bevestigde inschrijving bestaat eenmaal. Een netwerkfout tijdens afronden vraagt controle van dezelfde inschrijving; begin niet opnieuw om die fout te omzeilen.
+
+Bij Documenten staan het overeenkomstnummer, pakket, ondertekeningsdatum en voorwaardenversie. Ik download de PDF via deze actie. Het bestand blijft privé beschikbaar voor het betreffende lid en de bevoegde trainer. De lokale controle vergelijkt de inhoud en de bestandshash. Een verzendstatus is iets anders dan een bewaard document. In deze opname versturen we geen uitnodiging of overeenkomstmail.
+
+10. Een profielfoto toevoegen (00:09:50.250)
+Via Foto toevoegen kies je een bestand of, op een geschikt toestel, de camera. Voor deze opname gebruik ik een lokaal gemaakte afbeelding met gekleurde vormen, geen foto van een echte persoon. Het voorbeeld laat zien welk deel in de avatar komt. Je kunt de uitsnede verschuiven en inzoomen zonder het oorspronkelijke bestand op jouw apparaat te wijzigen.
+
+Ik zoom een beetje in, verschuif de uitsnede en kies Foto opslaan. Wacht op de bevestiging en controleer de avatar. De app bewaart de verwerkte foto privé. Later kun je Foto wijzigen of Foto verwijderen gebruiken. Er wordt geen openbare fotolink gemaakt en de afbeelding wordt niet naar een externe beeld- of AI-dienst gestuurd.
+
+11. Gegevens aanpassen met historie (00:10:49.917)
+Ik kies Profiel bewerken en wijzig in het voorbeeld de plaatsnaam. Eerst verschijnt een overzicht van de oude en nieuwe waarde. Dat is het moment om een typefout te ontdekken. Pas met Deze wijzigingen opslaan bevestig ik de wijziging. Een gewijzigde pakket- of contractafspraak hoort in een nieuwe versie of aanvulling, niet in een overschreven oude overeenkomst.
+
+Bij Wijzigingshistorie kun je de gebeurtenis en de waarden voor en na terugvinden. Ik download de overeenkomst opnieuw. De controle laat zien dat dit exact hetzelfde bestand blijft: de gewijzigde profielplaats herschrijft de ondertekende PDF niet. Zo kunnen actuele contactgegevens en de oorspronkelijke ondertekende afspraak naast elkaar bestaan.
+
+12. Een mogelijke dubbele inschrijving oplossen (00:11:50.000)
+Tot slot begin ik bewust nogmaals met hetzelfde fictieve e-mailadres en telefoonnummer. De app herkent een mogelijk bestaand lid en blokkeert doorgaan. Controleer deze melding zorgvuldig: een andere schrijfwijze van de naam betekent niet automatisch een andere persoon. Er wordt hierdoor geen tweede overeenkomst of tweede betaalafspraak gemaakt.
+
+Ik open het gevonden bestaande profiel van Noor. Daar staan de eerder bewaarde overeenkomst, foto en gewijzigde gegevens. Er is nog steeds één definitieve inschrijving. Via Inschrijfconcepten verwijder ik daarna alleen het ongebruikte dubbele concept en open het bestaande profiel opnieuw. De ondertekende overeenkomst blijft behouden. Hiermee is de route rond: zoeken, controleren, inschrijven, ondertekenen en daarna veilig het juiste profiel onderhouden.
