@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-02T18:59:17.475Z",
+  "attempted": true,
+  "method": "Existing Git credential helper held in process memory; GET only; no credential serialized",
+  "pages": {
+    "status": 200,
+    "verified": true,
+    "html_url": "https://appfmz.nl/",
+    "cname": "appfmz.nl",
+    "build_type": "legacy",
+    "https_enforced": true,
+    "source": {
+      "branch": "main",
+      "path": "/"
+    },
+    "siteStatus": "built"
+  },
+  "pages/builds/latest": {
+    "status": 200,
+    "verified": true,
+    "commit": "b74628b00a8ebb0dd271cdb0fc300e6bbc05a71d",
+    "buildStatus": "built",
+    "created_at": "2026-11-02T18:58:16Z",
+    "updated_at": "2026-11-02T18:59:10Z",
+    "errorMessage": null
+  }
+}
