@@ -47,7 +47,7 @@ window.OwnerTestSimulation=(()=>{
    const periods=await readPeriods(context,payload.periodStart),period=periods.find(p=>p.agreementId===payload.agreementId&&p.start===payload.periodStart);if(!period)fail('Deze betaalafspraak of periode is niet actief.','PT409');
    const kind=action==='reminder-7'?'billing_prepare':'billing_due',key=[runId,period.agreementId,period.start,period.end,kind].join('|');
    result=state.reminders.find(r=>r.key===key&&r.reminderVersion===2);
-   if(!result){const four=period.cycle==='four_weeks';result={id:crypto.randomUUID(),key,reminderVersion:2,runId,...period,kind,period:period.start+' t/m '+period.end,date:kind==='billing_prepare'?period.prepareDate:period.invoiceDate,time:'09:00',timeZone:'Europe/Amsterdam',status:'open',simulated:true,at,text:kind==='billing_prepare'?(four?'Facturen voorbereiden — de facturen voor de volgende vierweekse periode moeten worden gemaakt.':'Facturen voorbereiden — de facturen voor de volgende kalendermaand moeten worden gemaakt.'):'Facturen maken en versturen — controleer en verstuur de facturen voor de nieuwe periode.'};state.reminders.push(result);}
+   if(!result){result={id:crypto.randomUUID(),key,reminderVersion:2,runId,...period,kind,period:period.start+' t/m '+period.end,date:kind==='billing_prepare'?period.prepareDate:period.invoiceDate,time:'09:00',timeZone:'Europe/Amsterdam',status:'open',simulated:true,at,text:kind==='billing_prepare'?'Over één week facturen maken':'Vandaag facturen maken en versturen'};state.reminders.push(result);}
   }
   state.receipts[requestId]={request,result:copy(result)};Object.keys(simulation).forEach(k=>delete simulation[k]);Object.assign(simulation,state);return copy(result);
  }

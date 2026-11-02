@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-02T18:39:24.209Z",
+  "results": [
+    {
+      "browser": "Edge",
+      "version": "155.0.4283.62",
+      "mode": "real native getUserMedia, no frame captured",
+      "pass": true,
+      "supported": true,
+      "secure": true,
+      "width": 1280,
+      "height": 720,
+      "status": "● Camera aan — live voorbeeld, nog geen foto genomen.",
+      "tracksStopped": true,
+      "realFramesStored": false
+    },
+    {
+      "browser": "Edge",
+      "version": "155.0.4283.62",
+      "mode": "synthetic canvas UI fixture, full capture/retake/use",
+      "pass": true,
+      "supported": true,
+      "secure": true,
+      "width": 640,
+      "height": 480,
+      "status": "● Camera aan — live voorbeeld, nog geen foto genomen.",
+      "tracksStopped": true,
+      "realFramesStored": false
+    },
+    {
+      "browser": "Chrome",
+      "version": "156.0.8078.80",
+      "mode": "real native getUserMedia, no frame captured",
+      "pass": true,
+      "supported": true,
+      "secure": true,
+      "width": 1280,
+      "height": 720,
+      "status": "● Camera aan — live voorbeeld, nog geen foto genomen.",
+      "tracksStopped": true,
+      "realFramesStored": false
+    },
+    {
+      "browser": "Chrome",
+      "version": "156.0.8078.80",
+      "mode": "synthetic native device, full capture/retake/use",
+      "pass": true,
+      "supported": true,
+      "secure": true,
+      "width": 1280,
+      "height": 960,
+      "status": "● Camera aan — live voorbeeld, nog geen foto genomen.",
+      "tracksStopped": true,
+      "realFramesStored": false
+    }
+  ],
+  "realSupportPass": true,
+  "physicalOwnerAcceptance": false,
+  "realFramesRecorded": false
+}

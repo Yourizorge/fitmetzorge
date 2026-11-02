@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "finalRuntimeSHA256": "df9df7bc6282bfccd404f3ee1d51e13b553ad7ae1fcd03f7f69349278d47e95e",
+  "previousMatrixRuntimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+  "onlySourceChange": "members-ui.js: respect explicitly refused owner-test navigation",
+  "before": "if(window.OwnerTestMemberViews)showView('clients');",
+  "after": "if(window.OwnerTestMemberViews&&showView('clients')===false)return;",
+  "proof": "Reversing only this guard and its source hash exactly reproduces the full prior runtime SHA-256.",
+  "finalChecks": [
+    "Rendered navigation cancellation guard",
+    "Complete Chrome enrollment with explicit sign-out/sign-in and identical PDF",
+    "Camera bridge and local regressions recorded separately"
+  ]
+}

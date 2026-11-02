@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "browser": "msedge",
+  "version": "155.0.4283.62",
+  "pdfBytes": 268151,
+  "sha256": "f19f82277874cbbf4146843702fc314495f0012ffb042dd483cdd564ab514035",
+  "checks": [
+    "valid PDF MIME/header/EOF",
+    "PDF.js renders all four pages in new parent-origin tab",
+    "same bytes after close-preview and repeated download",
+    "blocked popup explains retry/download",
+    "invalid PDF refused",
+    "session clear closes PDF tab and revokes bytes"
+  ],
+  "physicalOwnerAcceptance": false
+}

@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "synthetic": true,
+  "productionTouched": false,
+  "membersCreated": 2,
+  "agreementsCreated": 1,
+  "invoicesCreated": 0,
+  "totalCents": 50000,
+  "perPersonCents": 25000,
+  "sessions": 8,
+  "sha256": "be8f78fc563ff3df34498056cd955bef9d17cadcabd3981f121a1dde3b410c42",
+  "pdfBytes": 268447,
+  "checks": [
+    "both member documents",
+    "both member read-only storage access",
+    "unrelated member denied",
+    "duplicate partner rejected",
+    "finalize replay idempotent",
+    "restart retains immutable PDF"
+  ]
+}

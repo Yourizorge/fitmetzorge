@@ -1,0 +1,72 @@
+{
+  "pass": true,
+  "assets": [
+    {
+      "key": "runtime",
+      "file": "owner-test/runtime.json",
+      "bytes": 7444299,
+      "sha256": "df9df7bc6282bfccd404f3ee1d51e13b553ad7ae1fcd03f7f69349278d47e95e",
+      "pass": true
+    },
+    {
+      "key": "boot",
+      "file": "owner-test/boot.js",
+      "bytes": 7543,
+      "sha256": "4384348dfa030ff46765730c92cb51f7e656b0ae59fbd5259a3440b235514cd3",
+      "pass": true
+    },
+    {
+      "key": "camera",
+      "file": "owner-test/camera-host.js",
+      "bytes": 6823,
+      "sha256": "0814907b3d8e00edbb1ae777d4a496736befc9ca5f113dd9f5c7953ad7eaae6c",
+      "pass": true
+    },
+    {
+      "key": "documents",
+      "file": "owner-test/documents-host.js",
+      "bytes": 7078,
+      "sha256": "ca43f33c8554754d901efa541b709ebaf28df7685a09d19ac65fbcd7fda06154",
+      "pass": true
+    },
+    {
+      "key": "pglite",
+      "file": "owner-test/pglite-browser.js",
+      "bytes": 605608,
+      "sha256": "9b6c2692daeaaea90c859282627a4415e7a9a796e4a544c6cfb56ed82325601d",
+      "pass": true
+    },
+    {
+      "key": "wasm",
+      "file": "owner-test/pglite.wasm.bin",
+      "bytes": 10088161,
+      "sha256": "356b89f6fcb2ab3a397bec4128327b67b7137ec2a900b13251dade81bcbc0ef0",
+      "pass": true
+    },
+    {
+      "key": "initdb",
+      "file": "owner-test/initdb.wasm.bin",
+      "bytes": 395242,
+      "sha256": "4c8988dca3b2f0bbfd23a0714023e4822a2909ead01804f37acffd9ff3ca9f8a",
+      "pass": true
+    },
+    {
+      "key": "fs",
+      "file": "owner-test/pglite.data.bin",
+      "bytes": 6295316,
+      "sha256": "c574cc331d96e33311470ec57bf58c579d972c111dbd9c0ab54bb42d79ec4c0d",
+      "pass": true
+    },
+    {
+      "key": "seed",
+      "file": "owner-test/seed.bin",
+      "bytes": 5396785,
+      "sha256": "c70d4131839aacdafe70ad9dacc997adc7c9ec419676c57641a6a694c5832c31",
+      "pass": true
+    }
+  ],
+  "ordinaryTrackedChangesFromTaskBaseline": [],
+  "sourceGuardDelta": "guard-delta.json",
+  "priorFullAssembly": "release-assembly.json",
+  "productionWrites": 0
+}

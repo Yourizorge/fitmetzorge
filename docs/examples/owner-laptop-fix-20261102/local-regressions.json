@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "completedAt": "2026-11-02T18:56:08.833Z",
+  "runtimeSHA256": "df9df7bc6282bfccd404f3ee1d51e13b553ad7ae1fcd03f7f69349278d47e95e",
+  "uniqueTests": 10,
+  "initialRun": {
+    "passed": 9,
+    "failed": 1,
+    "durationMs": 139763.8527
+  },
+  "retry": {
+    "test": "owner-feedback-camera-bridge.test.cjs",
+    "passed": 1,
+    "failed": 0,
+    "durationMs": 38879.3246,
+    "reason": "Test selected profile camera action after camera close, while the photo editor correctly remained open. Selector corrected to existing data-photo-camera; no runtime change."
+  },
+  "tests": [
+    "individual model and rendered forms (2)",
+    "duo SQL/PDF/access/idempotency (1)",
+    "camera bridge/permission/retake/save/session expiry/cleanup (1)",
+    "adapter lost acknowledgement/persistence/cleanup (1)",
+    "photo MIME and cleanup manifest (1)",
+    "rendered refused navigation preserves input (1)",
+    "PostgREST date serialization/PDF Blob (1)",
+    "reminder finance separation/persistence (1)",
+    "Amsterdam DST/year/UTC boundaries (1)"
+  ],
+  "productionWrites": 0
+}

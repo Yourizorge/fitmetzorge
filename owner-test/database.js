@@ -13,6 +13,7 @@
   if(fakeActor!==null&&!Object.hasOwn(IDS,fakeActor))throw Error('Alleen synthetische testaccounts zijn toegestaan.');
   async function open(dump){db=new options.PGlite({loadDataDir:dump,pgliteWasmModule:options.pgliteWasmModule,initdbWasmModule:options.initdbWasmModule,fsBundle:options.fsBundle});await db.waitReady;const marker=(await db.query('select * from owner_test.metadata')).rows;if(marker.length!==1||marker[0].fixture!=='APPFMZ-SYNTHETIC-OWNER-TEST'||marker[0].production!==false)throw Error('Dit is geen gecontroleerde synthetische testdatabase.');}
   await open(restored?.dump||options.seed);
+  const duo=options.duo||root.OwnerTestDuo||(typeof require==='function'?require('./duo.js'):null);if(duo)await duo.install(db);
   // Local seed/checkpoint only: no automatic communication may be created by enrollment.
   await db.exec('alter table fmz_members.contracts disable trigger appfmz_contract_communication');
   const emit=()=>listeners.forEach(fn=>{try{fn(getState());}catch{}});
@@ -87,7 +88,7 @@
    const remove=options.removeRun||options.remove;if(typeof remove!=='function')throw Error('Veilige verwijdering is nog niet aangesloten; er is niets verwijderd.');await remove(oldRun);closed=true;await db.close();revoke();blobs.clear();fakeActor=null;guide={version:1,step:0,done:[],skipped:[]};simulation={sent:[],history:[],reminders:[],receipts:{}};dirty=false;emit();return {before,after:{runId:oldRun,members:[],contracts:[],documents:[],invoices:[],messages:[],reminders:[],blobs:[],sessions:[],drafts:[],preliminary:[],files:[],communicationDocuments:[],simulationRecords:[],deleted:true,verification:"Isolated database instance closed; host checkpoint removal acknowledged. This is not a SQL query after deletion."},deletedRunId:oldRun};});}
   const api={sdk,getState,onChange:fn=>{listeners.add(fn);return()=>listeners.delete(fn);},checkpoint:()=>enqueue(()=>persist()),inventory:()=>enqueue(inventoryRaw),manifest:()=>enqueue(inventoryRaw),reset,
    setGuide:value=>enqueue(async()=>{if(!value||value.version!==1||JSON.stringify(value).length>100000)throw Error('Ongeldige testvoortgang.');guide=copy(value);revision++;await persist();return copy(guide);}),
-   reminderPeriods:()=>enqueue(async()=>{const helper=options.simulator||root.OwnerTestSimulation;return helper.readPeriods({db,actor:await actor()});}),
+   reminderPeriods:(asOf)=>enqueue(async()=>{const helper=options.simulator||root.OwnerTestSimulation;return helper.readPeriods({db,actor:await actor()},asOf);}),
    simulate:(action,payload,requestId)=>enqueue(async()=>{const helper=options.simulator||root.OwnerTestSimulation;if(!helper?.run)throw Error('De lokale simulatiemodule is nog niet beschikbaar.');const result=await helper.run({db,blobs,simulation,runId,actor:await actor()},action,payload,requestId);revision++;await persist();return result;}),
    close:()=>enqueue(async()=>{await persist();await db.close();closed=true;revoke();fakeActor=null;authListeners.clear();listeners.clear();})};
   // Explicit fixed synthetic agreements for the two fixture members, including restored v1 runs.
