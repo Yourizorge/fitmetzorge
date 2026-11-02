@@ -13,11 +13,11 @@
 .fmz-test-mini{padding:10px 14px;margin:8px;border:1px solid #d8bb69;border-radius:10px;background:#17140b;font-size:.92rem}.fmz-test-mini h3{font-size:1rem}.fmz-test-mini>summary{color:#f8d97d}.fmz-test-mini .fmz-test-actions{margin-bottom:4px}
 @media(max-width:650px){.fmz-test-banner{gap:6px;padding:6px 10px;flex-wrap:wrap}.fmz-test-banner>span{flex-basis:calc(100% - 125px);font-size:.75rem}.fmz-test-banner button{font-size:.8rem;min-height:36px}.fmz-owner-test-active{padding-top:112px!important}.fmz-test-guide{top:120px;right:8px;width:calc(100vw - 16px);max-height:calc(100dvh - 132px)}.fmz-test-dialog{padding:14px}.fmz-test-dialog h2{font-size:1.1rem}}
 @media(prefers-reduced-motion:reduce){.fmz-test-guide,.fmz-test-dialog{scroll-behavior:auto}}
-/* Reserve a real side column while the laptop guide is open. Dialog top-layer
-   sizing remains viewport-based; its embedded mini-guide stays available. */
-@media(min-width:1101px){body.fmz-owner-test-active.fmz-test-guide-open{padding-right:414px!important}}
-@media(min-width:901px) and (max-width:1100px){body.fmz-owner-test-active.fmz-test-guide-open{padding-right:344px!important}.fmz-test-guide{width:320px;right:12px}}
+/* The guide is an overlay and never takes width from the member profile. */
 /* Local reminders are reused in Dashboard and the existing Agenda view. */
 .fmz-test-reminder-surface{margin:18px 0;padding:18px;border:1px solid #8b793f;border-radius:14px;background:#12161c;overflow-wrap:anywhere}
 .fmz-test-reminder-surface h2{font-size:1.1rem}.fmz-test-reminder-surface button{min-height:44px;padding:10px 14px;border:1px solid #b99a4f;border-radius:10px;background:#211e14;color:#fff1c6;font:inherit;cursor:pointer}
 .fmz-test-reminder-surface button:focus-visible{outline:3px solid #ffe298;outline-offset:3px}
+
+.fmz-test-guide header{align-items:center}.fmz-test-guide header>button{flex:0 0 auto;white-space:nowrap}.fmz-test-guide{max-width:calc(100vw - 24px)}.fmz-test-guide button,.fmz-test-banner button{word-break:normal;overflow-wrap:normal}.fmz-test-reminder-members{padding-left:22px}.fmz-test-reminder-members li{margin:8px 0}
+

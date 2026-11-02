@@ -1,0 +1,339 @@
+{
+  "generatedAt": "2026-11-02T18:56:09.122Z",
+  "aggregationOnly": true,
+  "productionTouched": false,
+  "files": [
+    {
+      "file": "baseline.json",
+      "bytes": 4822,
+      "sha256": "430fe1f3d5ba93aeb0daa6122cecfebf791395b6c361edd081c62a3f6dba8e98",
+      "status": "EVIDENCE_ONLY",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "camera-bridge.json",
+      "bytes": 2139,
+      "sha256": "385f6a833c203e8d802d3d8540420e12c3526917f0b24c3dbc02f2b727aa8c7c",
+      "status": "PASS",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "camera-evidence.json",
+      "bytes": 1688,
+      "sha256": "f5e158744732788219ae1477613dd3b1ae16087ff8297b9853c0ee3aaec840ff",
+      "status": "PASS",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "chrome-layout-evidence.json",
+      "bytes": 50377,
+      "sha256": "20b5527623d4ec245f19dae3d9cf7372447c9210dfc55d4ea478b43be662b382",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "chrome-navigation-evidence.json",
+      "bytes": 562,
+      "sha256": "9844dfa4da727c58408b1e032c210d04f20a94b16071cbcfaaf3e0b3b758e6a5",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": 9,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "duo-database.json",
+      "bytes": 542,
+      "sha256": "8db5bac603b6dfc066440a0bb0b105853dc58d215c4c021552aebb9be80bdb40",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": null,
+      "checkCount": 6,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "edge-layout-evidence.json",
+      "bytes": 50373,
+      "sha256": "ee1472d7d77a7afbc0528ac9e32ce32820e4bbbd39d5219535e6fe06a33d4d4a",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "edge-navigation-evidence.json",
+      "bytes": 562,
+      "sha256": "435bd09089c92d2c15fac54703dcf7ebb7b5a0c74d486bcc0a1902b8041cacda",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": 9,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "enrollment-chrome-before-guard.json",
+      "bytes": 1105,
+      "sha256": "16af11a3a288139e006fb825390e68629ba66a1224da07ef7d34bd02f45d9ef1",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": 14,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "enrollment-chrome-duo.json",
+      "bytes": 1121,
+      "sha256": "5139d504ca8584388dd141a480d21bb203337b91ce6bbebe81875cd58f124208",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": 14,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "enrollment-chrome-final.json",
+      "bytes": 1170,
+      "sha256": "5fe2cf433c78abe7bc9390ea6355f9820dcc78e3dce978feac95dc4abebfe1f2",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "df9df7bc6282bfccd404f3ee1d51e13b553ad7ae1fcd03f7f69349278d47e95e",
+      "checkCount": 14,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "enrollment-chrome.json",
+      "bytes": 1105,
+      "sha256": "16af11a3a288139e006fb825390e68629ba66a1224da07ef7d34bd02f45d9ef1",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": 14,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "enrollment-edge-duo.json",
+      "bytes": 1119,
+      "sha256": "57e7d1738934eee86c89dcd16cf3da3803c70b41870e6ab7f7b977ddb00409bd",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": 14,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "enrollment-edge.json",
+      "bytes": 1102,
+      "sha256": "cabef214f67372f99746acfb82503834d05b3c4c161c049edfd26d27ec5e0dc1",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": 14,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "final-package.json",
+      "bytes": 2032,
+      "sha256": "60373c8260a6031a2c3afe81a210d15188edabebb6aacba2309c120ed4e6143b",
+      "status": "PASS",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "guard-delta.json",
+      "bytes": 776,
+      "sha256": "9cc55d3b1394109c3874a455c307fde6bd7ea1f8b75b2709ab0ea5052e177ede",
+      "status": "PASS",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "historical-readonly-investigation.json",
+      "bytes": 4900,
+      "sha256": "3865662958358be4402a1aee213386380c0812f8f5c77c1f9e2ab336beea5fab",
+      "status": "EVIDENCE_ONLY",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "host-security-evidence.json",
+      "bytes": 752,
+      "sha256": "b21b74e58ace5ce83bb9cb9df5a23408361fa0423a4ef0b27dce8d76c2e0db96",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": null,
+      "checkCount": 6,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "local-regressions.json",
+      "bytes": 1092,
+      "sha256": "534b0c0859b9545c22ae6990fcc9a710e9c54d0b198444fc3df824be0956037c",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "df9df7bc6282bfccd404f3ee1d51e13b553ad7ae1fcd03f7f69349278d47e95e",
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "manifest-before-cleanup-chrome-duo.json",
+      "bytes": 2754,
+      "sha256": "597b6a5e527bc65f2f978e3f2bc479bc9e5ef6c10e1cc39f15d713b90f755156",
+      "status": "EVIDENCE_ONLY",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "manifest-before-cleanup-chrome-final.json",
+      "bytes": 2599,
+      "sha256": "4a1b44a5af774d207a211105e49c121b508f6ba023f738544b0cb64023098bfb",
+      "status": "EVIDENCE_ONLY",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "manifest-before-cleanup-chrome.json",
+      "bytes": 2599,
+      "sha256": "82a526951bae89b97306448fa369e4c76f41c1a5febf5dd5654b1dbb6e43982d",
+      "status": "EVIDENCE_ONLY",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "manifest-before-cleanup-edge-duo.json",
+      "bytes": 2754,
+      "sha256": "d833035badf1d97cd4782dcd31430841352cdb95e0f2ceaaede7a9d3d0670784",
+      "status": "EVIDENCE_ONLY",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "manifest-before-cleanup-edge.json",
+      "bytes": 2599,
+      "sha256": "92fc07f7240aeb19de6c901776a6a4aa09ee6c92fc6da7cbe6906f6d99f474d8",
+      "status": "EVIDENCE_ONLY",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "media-chrome.json",
+      "bytes": 25056,
+      "sha256": "abacd46c39803b7ae2163747c2248700dcb742fb788d3217ba9a5bca8a3ee037",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "media-msedge.json",
+      "bytes": 25056,
+      "sha256": "094f7cad83798f045e67bbb636f58b53cb8ed940c8905c53b3eed6afb17c8055",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "pdf-bridge-chrome.json",
+      "bytes": 512,
+      "sha256": "fd6ad77a236ed400161178ea94040783dbc3582b48f1d35df650044fd07fb1e5",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": null,
+      "checkCount": 6,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "pdf-bridge-msedge.json",
+      "bytes": 512,
+      "sha256": "66971329e512fc5fb06bd7d80aeaf79ed536580e770adfa8231e41ff3eebbcbf",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": null,
+      "checkCount": 6,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "recovery-verification.json",
+      "bytes": 1082,
+      "sha256": "c46cbfecd5a01b6b0741ef8aa877b72fbf1404fd8f38aba9bcb70658c2d15ec0",
+      "status": "PASS",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "release-assembly.json",
+      "bytes": 187108,
+      "sha256": "a0437e12716a83cead81eac93c6859be6ecb61135ee0ef562390f631868559ec",
+      "status": "PASS",
+      "sourceStatus": null,
+      "runtimeSHA256": null,
+      "checkCount": null,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "reminders-chrome.json",
+      "bytes": 8427,
+      "sha256": "da531390a2c3e3425af473f1ef609bdf9a0d5b43db88ef3d10bc2429b97d8197",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": null,
+      "checkCount": 6,
+      "hasFailureEvidence": false
+    },
+    {
+      "file": "reminders-edge.json",
+      "bytes": 8423,
+      "sha256": "565f69d35718029a361361132fd364fead70afaed58d589b5436203012ffae55",
+      "status": "PASS",
+      "sourceStatus": "PASS",
+      "runtimeSHA256": null,
+      "checkCount": 6,
+      "hasFailureEvidence": false
+    }
+  ],
+  "counts": {
+    "EVIDENCE_ONLY": 7,
+    "PASS": 25
+  },
+  "allReportedTestsPass": true,
+  "missingEnrollmentEvidence": [],
+  "limits": [
+    "All source JSON files are indexed; generated summaries are excluded to avoid self-referential hashes.",
+    "Failure messages and screenshots are not copied. FAIL statuses and failure-evidence flags are retained, never silently converted to PASS.",
+    "EVIDENCE_ONLY means the source contains no supported overall test verdict.",
+    "This is a file-level evidence inventory, not an invented total of test assertions or physical owner acceptance."
+  ]
+}

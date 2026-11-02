@@ -1,0 +1,1916 @@
+{
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "nativeZoomMethod": "chrome.tabs.setZoom and getZoom readback in chrome",
+  "runtimeHash": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+  "results": [
+    {
+      "width": 1366,
+      "height": 768,
+      "nativeZoom": 1,
+      "devicePixelRatio": 1,
+      "geometry": {
+        "viewport": 1337,
+        "scroll": 1337,
+        "sidebar": {
+          "left": 0,
+          "right": 176,
+          "top": 66,
+          "bottom": 675,
+          "width": 176,
+          "height": 609
+        },
+        "content": {
+          "left": 176,
+          "right": 1337,
+          "top": 156.1875,
+          "bottom": 1377.203125,
+          "width": 1161,
+          "height": 1221.015625
+        },
+        "profile": {
+          "left": 196,
+          "right": 1317,
+          "top": 174.1875,
+          "bottom": 1359.203125,
+          "width": 1121,
+          "height": 1185.015625
+        },
+        "search": {
+          "left": 213,
+          "right": 664.5,
+          "top": 101.1875,
+          "bottom": 143.1875,
+          "width": 451.5,
+          "height": 42
+        },
+        "menu": [
+          {
+            "left": 9,
+            "right": 165,
+            "top": 196.390625,
+            "bottom": 242.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 248.390625,
+            "bottom": 294.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 300.390625,
+            "bottom": 346.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 352.390625,
+            "bottom": 398.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 404.390625,
+            "bottom": 450.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 456.390625,
+            "bottom": 502.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 508.390625,
+            "bottom": 554.390625,
+            "width": 156,
+            "height": 46
+          }
+        ],
+        "tabs": [
+          {
+            "left": 215,
+            "right": 325.25,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 110.25,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 108,
+            "client": 108
+          },
+          {
+            "left": 330.25,
+            "right": 436.375,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 106.125,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 104,
+            "client": 104
+          },
+          {
+            "left": 441.375,
+            "right": 539.796875,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 98.421875,
+            "height": 42,
+            "text": "Training",
+            "scroll": 96,
+            "client": 96
+          },
+          {
+            "left": 544.796875,
+            "right": 645.078125,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 100.28125,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 98,
+            "client": 98
+          },
+          {
+            "left": 650.078125,
+            "right": 749.09375,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 99.015625,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 97,
+            "client": 97
+          },
+          {
+            "left": 754.09375,
+            "right": 851.59375,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 97.5,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 96,
+            "client": 96
+          },
+          {
+            "left": 856.59375,
+            "right": 963.015625,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 106.421875,
+            "height": 42,
+            "text": "Financiën",
+            "scroll": 104,
+            "client": 104
+          },
+          {
+            "left": 968.015625,
+            "right": 1092.796875,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 124.78125,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 123,
+            "client": 123
+          },
+          {
+            "left": 1097.796875,
+            "right": 1195.578125,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 97.78125,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 96,
+            "client": 96
+          },
+          {
+            "left": 1200.578125,
+            "right": 1298,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 97.421875,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 95,
+            "client": 95
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 461.65625,
+        "bottom": 524.65625,
+        "headerBottom": 156.1875,
+        "height": 675
+      },
+      "host": {
+        "top": 15.359375,
+        "bottom": 752.625,
+        "height": 768
+      },
+      "parentViewport": {
+        "width": 1366,
+        "height": 768,
+        "scrollY": 0,
+        "visual": {
+          "width": 1366,
+          "height": 768,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "nativeZoom": 1.25,
+      "devicePixelRatio": 1.25,
+      "geometry": {
+        "viewport": 1070,
+        "scroll": 1070,
+        "sidebar": {
+          "left": 0,
+          "right": 160,
+          "top": 66,
+          "bottom": 528,
+          "width": 160,
+          "height": 462
+        },
+        "content": {
+          "left": 160,
+          "right": 1069.6000366210938,
+          "top": 151.8000030517578,
+          "bottom": 1352.1625518798828,
+          "width": 909.6000366210938,
+          "height": 1200.362548828125
+        },
+        "profile": {
+          "left": 174,
+          "right": 1055.6000366210938,
+          "top": 165.8000030517578,
+          "bottom": 1338.1625518798828,
+          "width": 881.6000366210938,
+          "height": 1172.362548828125
+        },
+        "search": {
+          "left": 190.8000030517578,
+          "right": 523.0000152587891,
+          "top": 99,
+          "bottom": 141,
+          "width": 332.20001220703125,
+          "height": 42
+        },
+        "menu": [
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 195.8000030517578,
+            "bottom": 241.8000030517578,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 247.8000030517578,
+            "bottom": 293.8000030517578,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 299.8000183105469,
+            "bottom": 345.8000183105469,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 351.8000183105469,
+            "bottom": 397.8000183105469,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 403.8000183105469,
+            "bottom": 449.8000183105469,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 455.8000183105469,
+            "bottom": 501.8000183105469,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 507.8000183105469,
+            "bottom": 553.8000183105469,
+            "width": 141.1999969482422,
+            "height": 46
+          }
+        ],
+        "tabs": [
+          {
+            "left": 186.8000030517578,
+            "right": 274.3500061035156,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 87.55000305175781,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 86,
+            "client": 86
+          },
+          {
+            "left": 279.3500061035156,
+            "right": 362.77500915527344,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 83.42500305175781,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 82,
+            "client": 82
+          },
+          {
+            "left": 367.7749938964844,
+            "right": 443.49999237060547,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 75.7249984741211,
+            "height": 42,
+            "text": "Training",
+            "scroll": 74,
+            "client": 74
+          },
+          {
+            "left": 448.5,
+            "right": 526.0875015258789,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 77.5875015258789,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 76,
+            "client": 76
+          },
+          {
+            "left": 531.0875244140625,
+            "right": 607.4000244140625,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 76.3125,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 75,
+            "client": 75
+          },
+          {
+            "left": 612.4000244140625,
+            "right": 687.2000274658203,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 74.80000305175781,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 73,
+            "client": 73
+          },
+          {
+            "left": 692.2000122070312,
+            "right": 775.9250106811523,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 83.7249984741211,
+            "height": 42,
+            "text": "Financiën",
+            "scroll": 82,
+            "client": 82
+          },
+          {
+            "left": 780.9249877929688,
+            "right": 882.9999923706055,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 102.07500457763672,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 100,
+            "client": 100
+          },
+          {
+            "left": 888,
+            "right": 963.0750045776367,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 75.07500457763672,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 73,
+            "client": 73
+          },
+          {
+            "left": 968.0750122070312,
+            "right": 1042.8000106811523,
+            "top": 455.1000061035156,
+            "bottom": 497.1000061035156,
+            "width": 74.7249984741211,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 73,
+            "client": 73
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 447.1000061035156,
+        "bottom": 509.9000053405762,
+        "headerBottom": 151.8000030517578,
+        "height": 528
+      },
+      "host": {
+        "top": 12.287500381469727,
+        "bottom": 602.1000003814697,
+        "height": 614
+      },
+      "parentViewport": {
+        "width": 1093,
+        "height": 614,
+        "scrollY": 0,
+        "visual": {
+          "width": 1092.800048828125,
+          "height": 614.4000244140625,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "nativeZoom": 1.5,
+      "devicePixelRatio": 1.5,
+      "geometry": {
+        "viewport": 891,
+        "scroll": 891,
+        "sidebar": {
+          "left": 0,
+          "right": 160,
+          "top": 66,
+          "bottom": 430,
+          "width": 160,
+          "height": 364
+        },
+        "content": {
+          "left": 160,
+          "right": 891.3333740234375,
+          "top": 151.53125,
+          "bottom": 1351.25,
+          "width": 731.3333740234375,
+          "height": 1199.71875
+        },
+        "profile": {
+          "left": 174,
+          "right": 877.3333740234375,
+          "top": 165.53125,
+          "bottom": 1337.25,
+          "width": 703.3333740234375,
+          "height": 1171.71875
+        },
+        "search": {
+          "left": 190.6666717529297,
+          "right": 753.8437957763672,
+          "top": 98.86458587646484,
+          "bottom": 140.86458587646484,
+          "width": 563.1771240234375,
+          "height": 42
+        },
+        "menu": [
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 172,
+            "bottom": 218,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 224,
+            "bottom": 270,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 276,
+            "bottom": 322,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 328,
+            "bottom": 374,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 380,
+            "bottom": 426,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 432,
+            "bottom": 478,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 484,
+            "bottom": 530,
+            "width": 140.6666717529297,
+            "height": 46
+          }
+        ],
+        "tabs": [
+          {
+            "left": 186.6666717529297,
+            "right": 256.4270935058594,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 69.76042175292969,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 68,
+            "client": 68
+          },
+          {
+            "left": 261.4270935058594,
+            "right": 327.0520935058594,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 65.625,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 64,
+            "client": 64
+          },
+          {
+            "left": 332.0520935058594,
+            "right": 389.9895935058594,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 57.9375,
+            "height": 42,
+            "text": "Training",
+            "scroll": 57,
+            "client": 57
+          },
+          {
+            "left": 394.9895935058594,
+            "right": 454.7708435058594,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 59.78125,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 58,
+            "client": 58
+          },
+          {
+            "left": 459.7708435058594,
+            "right": 518.2916793823242,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 58.520835876464844,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 57,
+            "client": 57
+          },
+          {
+            "left": 523.2916870117188,
+            "right": 580.2916870117188,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 57,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 56,
+            "client": 56
+          },
+          {
+            "left": 585.2916870117188,
+            "right": 651.2083587646484,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 65.91667175292969,
+            "height": 42,
+            "text": "Financiën",
+            "scroll": 65,
+            "client": 65
+          },
+          {
+            "left": 656.2083740234375,
+            "right": 740.4792098999023,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 84.27083587646484,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 83,
+            "client": 83
+          },
+          {
+            "left": 745.4791870117188,
+            "right": 802.7500228881836,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 57.270835876464844,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 56,
+            "client": 56
+          },
+          {
+            "left": 807.75,
+            "right": 864.6666679382324,
+            "top": 454.6770935058594,
+            "bottom": 496.6770935058594,
+            "width": 56.91666793823242,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 56,
+            "client": 56
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 163.34375,
+        "bottom": 226.01041793823242,
+        "headerBottom": 151.53125,
+        "height": 430
+      },
+      "host": {
+        "top": 10.239583969116211,
+        "bottom": 501.75002098083496,
+        "height": 512
+      },
+      "parentViewport": {
+        "width": 911,
+        "height": 512,
+        "scrollY": 0,
+        "visual": {
+          "width": 910.6666870117188,
+          "height": 512,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "nativeZoom": 2,
+      "devicePixelRatio": 2,
+      "geometry": {
+        "viewport": 667,
+        "scroll": 667,
+        "sidebar": {
+          "left": 0,
+          "right": 148,
+          "top": 66,
+          "bottom": 306.5,
+          "width": 148,
+          "height": 240.5
+        },
+        "content": {
+          "left": 148,
+          "right": 667.5,
+          "top": 94.1953125,
+          "bottom": 1443.078125,
+          "width": 519.5,
+          "height": 1348.8828125
+        },
+        "profile": {
+          "left": 158,
+          "right": 657.5,
+          "top": 104.1953125,
+          "bottom": 1433.078125,
+          "width": 499.5,
+          "height": 1328.8828125
+        },
+        "search": {
+          "left": 179,
+          "right": 529.0078125,
+          "top": 99.1953125,
+          "bottom": 141.1953125,
+          "width": 350.0078125,
+          "height": 42
+        },
+        "menu": [
+          {
+            "left": 9,
+            "right": 137,
+            "top": 173,
+            "bottom": 219,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 225,
+            "bottom": 271,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 277,
+            "bottom": 323,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 329,
+            "bottom": 375,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 381,
+            "bottom": 427,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 433,
+            "bottom": 479,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 485,
+            "bottom": 531,
+            "width": 128,
+            "height": 46
+          }
+        ],
+        "tabs": [
+          {
+            "left": 171,
+            "right": 261.6953125,
+            "top": 393.6953125,
+            "bottom": 435.6953125,
+            "width": 90.6953125,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 266.6953125,
+            "right": 357.3984375,
+            "top": 393.6953125,
+            "bottom": 435.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 362.3984375,
+            "right": 453.09375,
+            "top": 393.6953125,
+            "bottom": 435.6953125,
+            "width": 90.6953125,
+            "height": 42,
+            "text": "Training",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 458.09375,
+            "right": 548.796875,
+            "top": 393.6953125,
+            "bottom": 435.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 553.796875,
+            "right": 644.5,
+            "top": 393.6953125,
+            "bottom": 435.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 171,
+            "right": 261.6953125,
+            "top": 440.6953125,
+            "bottom": 482.6953125,
+            "width": 90.6953125,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 266.6953125,
+            "right": 357.3984375,
+            "top": 440.6953125,
+            "bottom": 482.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Financiën",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 362.3984375,
+            "right": 453.09375,
+            "top": 440.6953125,
+            "bottom": 482.6953125,
+            "width": 90.6953125,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 458.09375,
+            "right": 548.796875,
+            "top": 440.6953125,
+            "bottom": 482.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 553.796875,
+            "right": 644.5,
+            "top": 440.6953125,
+            "bottom": 482.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 89,
+            "client": 89
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 164.1953125,
+        "bottom": 274.1953125,
+        "headerBottom": 152.1953125,
+        "height": 306
+      },
+      "host": {
+        "top": 7.6796875,
+        "bottom": 376.3125,
+        "height": 384
+      },
+      "parentViewport": {
+        "width": 683,
+        "height": 384,
+        "scrollY": 0,
+        "visual": {
+          "width": 683,
+          "height": 384,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "nativeZoom": 1,
+      "devicePixelRatio": 1,
+      "geometry": {
+        "viewport": 1878,
+        "scroll": 1878,
+        "sidebar": {
+          "left": 0,
+          "right": 176,
+          "top": 66,
+          "bottom": 913,
+          "width": 176,
+          "height": 847
+        },
+        "content": {
+          "left": 176,
+          "right": 1878,
+          "top": 156.1875,
+          "bottom": 1377.203125,
+          "width": 1702,
+          "height": 1221.015625
+        },
+        "profile": {
+          "left": 196,
+          "right": 1858,
+          "top": 174.1875,
+          "bottom": 1359.203125,
+          "width": 1662,
+          "height": 1185.015625
+        },
+        "search": {
+          "left": 213,
+          "right": 935,
+          "top": 101.1875,
+          "bottom": 143.1875,
+          "width": 722,
+          "height": 42
+        },
+        "menu": [
+          {
+            "left": 9,
+            "right": 165,
+            "top": 196.390625,
+            "bottom": 242.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 248.390625,
+            "bottom": 294.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 300.390625,
+            "bottom": 346.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 352.390625,
+            "bottom": 398.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 404.390625,
+            "bottom": 450.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 456.390625,
+            "bottom": 502.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 508.390625,
+            "bottom": 554.390625,
+            "width": 156,
+            "height": 46
+          }
+        ],
+        "tabs": [
+          {
+            "left": 215,
+            "right": 379.359375,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 164.359375,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 162,
+            "client": 162
+          },
+          {
+            "left": 384.359375,
+            "right": 544.59375,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 160.234375,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 158,
+            "client": 158
+          },
+          {
+            "left": 549.59375,
+            "right": 702.125,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 152.53125,
+            "height": 42,
+            "text": "Training",
+            "scroll": 151,
+            "client": 151
+          },
+          {
+            "left": 707.125,
+            "right": 861.5,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 154.375,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 152,
+            "client": 152
+          },
+          {
+            "left": 866.5,
+            "right": 1019.625,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 153.125,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 151,
+            "client": 151
+          },
+          {
+            "left": 1024.625,
+            "right": 1176.21875,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 151.59375,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 150,
+            "client": 150
+          },
+          {
+            "left": 1181.21875,
+            "right": 1341.734375,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 160.515625,
+            "height": 42,
+            "text": "Financiën",
+            "scroll": 159,
+            "client": 159
+          },
+          {
+            "left": 1346.734375,
+            "right": 1525.609375,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 178.875,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 177,
+            "client": 177
+          },
+          {
+            "left": 1530.609375,
+            "right": 1682.484375,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 151.875,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 150,
+            "client": 150
+          },
+          {
+            "left": 1687.484375,
+            "right": 1839,
+            "top": 469.65625,
+            "bottom": 511.65625,
+            "width": 151.515625,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 150,
+            "client": 150
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 461.65625,
+        "bottom": 524.65625,
+        "headerBottom": 156.1875,
+        "height": 913
+      },
+      "host": {
+        "top": 21.59375,
+        "bottom": 1058.390625,
+        "height": 1080
+      },
+      "parentViewport": {
+        "width": 1920,
+        "height": 1080,
+        "scrollY": 0,
+        "visual": {
+          "width": 1920,
+          "height": 1080,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "nativeZoom": 1.25,
+      "devicePixelRatio": 1.25,
+      "geometry": {
+        "viewport": 1504,
+        "scroll": 1504,
+        "sidebar": {
+          "left": 0,
+          "right": 176,
+          "top": 66,
+          "bottom": 768,
+          "width": 176,
+          "height": 702
+        },
+        "content": {
+          "left": 176,
+          "right": 1504,
+          "top": 155.8000030517578,
+          "bottom": 1376.1625518798828,
+          "width": 1328,
+          "height": 1220.362548828125
+        },
+        "profile": {
+          "left": 196,
+          "right": 1484,
+          "top": 173.8000030517578,
+          "bottom": 1358.1625518798828,
+          "width": 1288,
+          "height": 1184.362548828125
+        },
+        "search": {
+          "left": 212.8000030517578,
+          "right": 748.2000274658203,
+          "top": 101,
+          "bottom": 143,
+          "width": 535.4000244140625,
+          "height": 42
+        },
+        "menu": [
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 195.8000030517578,
+            "bottom": 241.8000030517578,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 247.8000030517578,
+            "bottom": 293.8000030517578,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 299.8000183105469,
+            "bottom": 345.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 351.8000183105469,
+            "bottom": 397.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 403.8000183105469,
+            "bottom": 449.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 455.8000183105469,
+            "bottom": 501.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 507.8000183105469,
+            "bottom": 553.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          }
+        ],
+        "tabs": [
+          {
+            "left": 214.8000030517578,
+            "right": 341.7875061035156,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 126.98750305175781,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 125,
+            "client": 125
+          },
+          {
+            "left": 346.7875061035156,
+            "right": 469.65000915527344,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 122.86250305175781,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 121,
+            "client": 121
+          },
+          {
+            "left": 474.6499938964844,
+            "right": 589.8249969482422,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 115.17500305175781,
+            "height": 42,
+            "text": "Training",
+            "scroll": 114,
+            "client": 114
+          },
+          {
+            "left": 594.8250122070312,
+            "right": 711.8500137329102,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 117.0250015258789,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 115,
+            "client": 115
+          },
+          {
+            "left": 716.8500366210938,
+            "right": 832.6125411987305,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 115.76250457763672,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 114,
+            "client": 114
+          },
+          {
+            "left": 837.6124877929688,
+            "right": 951.8499908447266,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 114.23750305175781,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 113,
+            "client": 113
+          },
+          {
+            "left": 956.8500366210938,
+            "right": 1080.0125350952148,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 123.1624984741211,
+            "height": 42,
+            "text": "Financiën",
+            "scroll": 122,
+            "client": 122
+          },
+          {
+            "left": 1085.0125732421875,
+            "right": 1226.5250701904297,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 141.5124969482422,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 140,
+            "client": 140
+          },
+          {
+            "left": 1231.5250244140625,
+            "right": 1346.0375289916992,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 114.51250457763672,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 113,
+            "client": 113
+          },
+          {
+            "left": 1351.0374755859375,
+            "right": 1465.1999740600586,
+            "top": 469.1000061035156,
+            "bottom": 511.1000061035156,
+            "width": 114.1624984741211,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 113,
+            "client": 113
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 461.1000061035156,
+        "bottom": 523.9000053405762,
+        "headerBottom": 155.8000030517578,
+        "height": 768
+      },
+      "host": {
+        "top": 17.274999618530273,
+        "bottom": 846.7124996185303,
+        "height": 864
+      },
+      "parentViewport": {
+        "width": 1536,
+        "height": 864,
+        "scrollY": 0,
+        "visual": {
+          "width": 1536,
+          "height": 864,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "nativeZoom": 1.5,
+      "devicePixelRatio": 1.5,
+      "geometry": {
+        "viewport": 1253,
+        "scroll": 1253,
+        "sidebar": {
+          "left": 0,
+          "right": 176,
+          "top": 66,
+          "bottom": 630,
+          "width": 176,
+          "height": 564
+        },
+        "content": {
+          "left": 176,
+          "right": 1253.3333740234375,
+          "top": 155.53125,
+          "bottom": 1375.25,
+          "width": 1077.3333740234375,
+          "height": 1219.71875
+        },
+        "profile": {
+          "left": 196,
+          "right": 1233.3333740234375,
+          "top": 173.53125,
+          "bottom": 1357.25,
+          "width": 1037.3333740234375,
+          "height": 1183.71875
+        },
+        "search": {
+          "left": 212.6666717529297,
+          "right": 623.0000152587891,
+          "top": 100.86458587646484,
+          "bottom": 142.86458587646484,
+          "width": 410.3333435058594,
+          "height": 42
+        },
+        "menu": [
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 195.39584350585938,
+            "bottom": 241.39584350585938,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 247.39584350585938,
+            "bottom": 293.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 299.3958435058594,
+            "bottom": 345.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 351.3958435058594,
+            "bottom": 397.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 403.3958435058594,
+            "bottom": 449.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 455.3958435058594,
+            "bottom": 501.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 507.3958435058594,
+            "bottom": 553.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          }
+        ],
+        "tabs": [
+          {
+            "left": 214.6666717529297,
+            "right": 316.62500762939453,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 101.95833587646484,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 101,
+            "client": 101
+          },
+          {
+            "left": 321.625,
+            "right": 419.4479217529297,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 97.82292175292969,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 96,
+            "client": 96
+          },
+          {
+            "left": 424.44793701171875,
+            "right": 514.5833587646484,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 90.13542175292969,
+            "height": 42,
+            "text": "Training",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 519.5833740234375,
+            "right": 611.5729598999023,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 91.98958587646484,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 91,
+            "client": 91
+          },
+          {
+            "left": 616.5729370117188,
+            "right": 707.2916870117188,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 90.71875,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 712.2916870117188,
+            "right": 801.5000228881836,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 89.20833587646484,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 88,
+            "client": 88
+          },
+          {
+            "left": 806.5,
+            "right": 904.6145858764648,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 98.11458587646484,
+            "height": 42,
+            "text": "Financiën",
+            "scroll": 97,
+            "client": 97
+          },
+          {
+            "left": 909.6146240234375,
+            "right": 1026.0833740234375,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 116.46875,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 115,
+            "client": 115
+          },
+          {
+            "left": 1031.0833740234375,
+            "right": 1120.5521240234375,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 89.46875,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 88,
+            "client": 88
+          },
+          {
+            "left": 1125.5521240234375,
+            "right": 1214.6667098999023,
+            "top": 468.6770935058594,
+            "bottom": 510.6770935058594,
+            "width": 89.11458587646484,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 88,
+            "client": 88
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 167.34375,
+        "bottom": 230.01041793823242,
+        "headerBottom": 155.53125,
+        "height": 630
+      },
+      "host": {
+        "top": 14.395833969116211,
+        "bottom": 705.593770980835,
+        "height": 720
+      },
+      "parentViewport": {
+        "width": 1280,
+        "height": 720,
+        "scrollY": 0,
+        "visual": {
+          "width": 1280,
+          "height": 720,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "nativeZoom": 2,
+      "devicePixelRatio": 2,
+      "geometry": {
+        "viewport": 939,
+        "scroll": 939,
+        "sidebar": {
+          "left": 0,
+          "right": 160,
+          "top": 66,
+          "bottom": 456.5,
+          "width": 160,
+          "height": 390.5
+        },
+        "content": {
+          "left": 160,
+          "right": 939,
+          "top": 152.1953125,
+          "bottom": 1353.296875,
+          "width": 779,
+          "height": 1201.1015625
+        },
+        "profile": {
+          "left": 174,
+          "right": 925,
+          "top": 166.1953125,
+          "bottom": 1339.296875,
+          "width": 751,
+          "height": 1173.1015625
+        },
+        "search": {
+          "left": 191,
+          "right": 800.5078125,
+          "top": 99.1953125,
+          "bottom": 141.1953125,
+          "width": 609.5078125,
+          "height": 42
+        },
+        "menu": [
+          {
+            "left": 9,
+            "right": 150,
+            "top": 196.3984375,
+            "bottom": 242.3984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 248.3984375,
+            "bottom": 294.3984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 300.3984375,
+            "bottom": 346.3984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 352.3984375,
+            "bottom": 398.3984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 404.3984375,
+            "bottom": 450.3984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 456.3984375,
+            "bottom": 502.3984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 508.3984375,
+            "bottom": 554.3984375,
+            "width": 141,
+            "height": 46
+          }
+        ],
+        "tabs": [
+          {
+            "left": 187,
+            "right": 261.4609375,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 74.4609375,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 72,
+            "client": 72
+          },
+          {
+            "left": 266.4609375,
+            "right": 336.78125,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 70.3203125,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 68,
+            "client": 68
+          },
+          {
+            "left": 341.78125,
+            "right": 404.4140625,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 62.6328125,
+            "height": 42,
+            "text": "Training",
+            "scroll": 61,
+            "client": 61
+          },
+          {
+            "left": 409.4140625,
+            "right": 473.8984375,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 64.484375,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 62,
+            "client": 62
+          },
+          {
+            "left": 478.8984375,
+            "right": 542.1171875,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 63.21875,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 61,
+            "client": 61
+          },
+          {
+            "left": 547.1171875,
+            "right": 608.8203125,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 61.703125,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 60,
+            "client": 60
+          },
+          {
+            "left": 613.8203125,
+            "right": 684.4375,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 70.6171875,
+            "height": 42,
+            "text": "Financiën",
+            "scroll": 69,
+            "client": 69
+          },
+          {
+            "left": 689.4375,
+            "right": 778.4140625,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 88.9765625,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 87,
+            "client": 87
+          },
+          {
+            "left": 783.4140625,
+            "right": 845.3828125,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 61.96875,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 60,
+            "client": 60
+          },
+          {
+            "left": 850.3828125,
+            "right": 912,
+            "top": 455.6953125,
+            "bottom": 497.6953125,
+            "width": 61.6171875,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 60,
+            "client": 60
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 164.1953125,
+        "bottom": 227.1953125,
+        "headerBottom": 152.1953125,
+        "height": 456
+      },
+      "host": {
+        "top": 10.796875,
+        "bottom": 529.1953125,
+        "height": 540
+      },
+      "parentViewport": {
+        "width": 960,
+        "height": 540,
+        "scrollY": 0,
+        "visual": {
+          "width": 960,
+          "height": 540,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "noOverflow": true,
+      "tenTabsReachable": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "noOverflow": true,
+      "tenTabsReachable": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "noOverflow": true,
+      "tenTabsReachable": true
+    }
+  ],
+  "errors": [],
+  "physicalOwnerTest": false
+}

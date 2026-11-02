@@ -11,7 +11,7 @@ window.FMZOwnerLaptopTest=(()=>{
  function active(){return owner&&ready()&&onlineProfile.id===owner;}
  function send(type,body={}){frame?.contentWindow.postMessage({channel:CHANNEL,nonce,type,...body},'*');}
  function release(){if(pending===0&&releaseWanted){releaseLease?.();releaseLease=null;releaseWanted=false;}}
- function close(){window.FMZOwnerTestCamera?.cancel();frame?.remove();frame=null;dialog?.remove();dialog=null;nonce='';owner=null;opening=false;releaseWanted=true;release();}
+ function close(){window.FMZOwnerTestCamera?.cancel();window.FMZOwnerTestDocuments?.clear();frame?.remove();frame=null;dialog?.remove();dialog=null;nonce='';owner=null;opening=false;releaseWanted=true;release();}
  async function lease(id){if(!navigator.locks)throw Error('Gebruik een actuele Edge- of Chrome-browser voor de veilige laptoptest.');return new Promise((resolve,reject)=>{navigator.locks.request('fmz-owner-test:'+id,{ifAvailable:true},async lock=>{if(!lock){resolve(false);return;}await new Promise(done=>{releaseLease=done;releaseWanted=false;resolve(true);});}).catch(reject);});}
  async function verify(){
   if(!ready())throw Error('Deze laptoptest is alleen beschikbaar voor de geverifieerde eigenaar.');
@@ -41,14 +41,16 @@ window.FMZOwnerLaptopTest=(()=>{
    const loaded=await Promise.all(Object.entries(manifest.files).map(async([key,v])=>[key,await bytes(v.path,v.sha256)]));
    if(!active())throw Error('Sessie gewijzigd.');
    const assets=Object.fromEntries(loaded),runtime=JSON.parse(new TextDecoder().decode(assets.runtime)),restore=await store('get',owner);
-   if(!assets.camera)throw Error('Cameramodule ontbreekt in deze testversie.');
+   if(!assets.camera||!assets.documents)throw Error('Camera- of documentmodule ontbreekt in deze testversie.');
    const cameraScript=document.createElement('script');cameraScript.textContent=new TextDecoder().decode(assets.camera);window.FMZOwnerTestCamera?.cancel();document.head.append(cameraScript);cameraScript.remove();
+   const documentScript=document.createElement('script');documentScript.textContent=new TextDecoder().decode(assets.documents);window.FMZOwnerTestDocuments?.clear();document.head.append(documentScript);documentScript.remove();window.FMZOwnerTestDocuments.configure(runtime.pdfRenderer);
    if(!active())throw Error('Sessie gewijzigd.');
    frame=document.createElement('iframe');frame.title='APPFMZ synthetische trainerstest';frame.setAttribute('sandbox','allow-scripts allow-downloads allow-modals allow-forms');frame.referrerPolicy='no-referrer';
    frame.allow="camera 'none'; microphone 'none'; geolocation 'none'; payment 'none'";
-   const csp=`default-src 'none'; script-src 'nonce-${nonce}' 'wasm-unsafe-eval' blob:; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; worker-src blob:; frame-src blob:; object-src 'none'; form-action 'none'; base-uri 'none'; font-src data:`;
+   const images=(runtime.exerciseImages||[]);if(!Array.isArray(images)||images.some(url=>!/^https:\/\/fitnessprogramer\.com\/wp-content\/uploads\/[0-9]{4}\/[0-9]{2}\/[a-zA-Z0-9_-]+\.gif$/.test(url)))throw Error('Ongeldige oefenmediabron.');
+   const csp=`default-src 'none'; script-src 'nonce-${nonce}' 'wasm-unsafe-eval' blob:; style-src 'unsafe-inline'; img-src data: blob: ${images.join(' ')}; connect-src 'none'; worker-src blob:; frame-src blob:; object-src 'none'; form-action 'none'; base-uri 'none'; font-src data:`;
    const boot=new TextDecoder().decode(assets.boot).replaceAll('</script','<\\/script');
-   frame.srcdoc=`<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="${csp}"><title>APPFMZ TESTMODUS</title></head><body><p>Testomgeving starten…</p><script nonce="${nonce}">window.__OWNER_TEST_NONCE=${JSON.stringify(nonce)};${boot}<\/script></body></html>`;
+   frame.srcdoc=`<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="${csp}"><title>APPFMZ TESTMODUS</title></head><body><p>Testomgeving starten…</p><script nonce="${nonce}">window.__OWNER_TEST_NONCE=${JSON.stringify(nonce)};${boot}<\/script></body></html>`;
    frame.addEventListener('load',()=>{if(active())send('init',{runtime,wasm:assets.wasm,initdb:assets.initdb,fs:assets.fs,seed:assets.seed,pglite:new TextDecoder().decode(assets.pglite),restore:restore||null});},{once:true});
    status.remove();dialog.append(frame);
   }catch(e){close();alert(e.message||'Laptoptest openen mislukt.');}finally{opening=false;}
@@ -63,7 +65,10 @@ window.FMZOwnerLaptopTest=(()=>{
    try{const photo=await window.FMZOwnerTestCamera.capture({isCurrent:()=>active()&&generation===nonce});if(active()&&generation===nonce)send('ack',{id:m.id,ok:true,value:photo});}
    catch(error){if(active()&&generation===nonce)send('ack',{id:m.id,ok:false,error:error.message});}return;
   }
-  if(m.type==='camera-cancel'){window.FMZOwnerTestCamera?.cancel();return;}
+    if(m.type==='document-request'&&typeof m.id==='string'){
+   try{const result=await window.FMZOwnerTestDocuments.show(m.blob,{filename:m.filename,mode:m.mode,isCurrent:()=>active()&&generation===nonce});if(active()&&generation===nonce)send('ack',{id:m.id,ok:true,value:result});}
+   catch(error){if(active()&&generation===nonce)send('ack',{id:m.id,ok:false,error:error.message});}return;
+  }  if(m.type==='camera-cancel'){window.FMZOwnerTestCamera?.cancel();return;}
   if(!['checkpoint','delete-run'].includes(m.type)||typeof m.id!=='string')return;
   pending++;
   try{
@@ -72,7 +77,7 @@ window.FMZOwnerLaptopTest=(()=>{
     await store('put',key,m.value);
    }else{
     const old=await store('get',key);if(old&&old.runId!==m.runId)throw Error('De testrun is veranderd; vernieuw eerst.');
-    await store('delete',key);if(await store('get',key))throw Error('Verwijdering nog niet bevestigd.');
+    window.FMZOwnerTestDocuments?.clear();await store('delete',key);if(await store('get',key))throw Error('Verwijdering nog niet bevestigd.');
    }
    if(active()&&generation===nonce)send('ack',{id:m.id,ok:true});
   }catch(error){if(active()&&generation===nonce)send('ack',{id:m.id,ok:false,error:error.message});}finally{pending--;release();}

@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "duo": true,
+  "browser": "edge-duo",
+  "completedAt": "2026-11-02T18:29:19.370Z",
+  "durationMs": 149873,
+  "runtimeSHA256": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+  "physicalOwnerTest": false,
+  "checks": [
+    "six catalog-derived individual and duo packages",
+    "full name and separate house addition preserved",
+    "draft retained across reload and sandbox restart",
+    "500 EUR total /250 EUR per person /31.25 EUR per training per person; both profiles same PDF",
+    "invoice date follows period end",
+    "empty signature blocked; keyboard clear and mouse signing",
+    "real PDF text/watermark; no zero-discount wording",
+    "local photo fallback decoded and saved",
+    "profile edited offline with audit",
+    "profile and photo retained after restart",
+    "stored agreement byte-identical after profile edit",
+    "exact synthetic cleanup and member absence after restart",
+    "parent datastore untouched; parent read-only RPCs",
+    "no page errors"
+  ],
+  "agreementSHA256": "4a3f2bc8b33e284dde99f66e6c80671a41bca57e8f2f8de99334e788f2e36e47"
+}

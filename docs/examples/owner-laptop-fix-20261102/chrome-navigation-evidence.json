@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "runtimeHash": "f5ece19ab7d37aefc8748c01727357e1186c461a6bdd32343ebd62887ad85e0b",
+  "checks": [
+    "seven global routes with visible searchable global member search",
+    "active inactive concept filters",
+    "ten tabs preserve member",
+    "browser back restores profile",
+    "dashboard clears context",
+    "explicit schema search and member confirmation",
+    "cancel does not assign",
+    "repeat does not duplicate",
+    "schema retained in checkpoint"
+  ],
+  "errors": [],
+  "physicalTest": false
+}

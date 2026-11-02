@@ -1,0 +1,2358 @@
+{
+  "generatedAt": "2026-11-02T18:56:09.122Z",
+  "aggregationOnly": true,
+  "productionTouched": false,
+  "sourceDirectory": "owner-laptop-fix-20261102",
+  "allExpectedEnrollmentEvidencePresent": true,
+  "missingEnrollmentEvidence": [],
+  "allIncludedCleanupConfirmed": true,
+  "runCount": 10,
+  "manifestEntryTotalsAcrossRuns": {
+    "members": 27,
+    "contracts": 5,
+    "documents": 11,
+    "invoices": 0,
+    "messages": 0,
+    "reminders": 0,
+    "blobs": 11,
+    "sessions": 40,
+    "drafts": 5,
+    "preliminary": 0,
+    "files": 0,
+    "communicationDocuments": 0,
+    "simulationRecords": 6,
+    "schemaDrafts": 2
+  },
+  "runs": [
+    {
+      "source": "camera-bridge.json",
+      "sourceSHA256": "385f6a833c203e8d802d3d8540420e12c3526917f0b24c3dbc02f2b727aa8c7c",
+      "runId": "TEST-7ccaf6e7-cf5a-4593-95b4-a8d9280598ee",
+      "revision": 4,
+      "synthetic": true,
+      "manifestHash": "a392e30d21385532d333f80405d4d2ab353e01e2cabd14d88e92266825e233db",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "camera-bridge.json",
+        "basis": "camera bridge pass plus reset/closed assertion"
+      },
+      "groups": {
+        "members": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 0,
+          "records": []
+        },
+        "documents": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "3832974c-9b81-43e8-9ed6-55aeb5d9623d"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/photos/3832974c-9b81-43e8-9ed6-55aeb5d9623d"
+                }
+              ],
+              "kind": "photo",
+              "status": "ready",
+              "sha256": "4226344918f12a226f1e491e3e31615e3f6a9e7807760235f2bb6cb3ee9d44e1",
+              "recordSHA256": "67b910be9aacc3e3239619a8193efa5cdb8ad4dd6f1f944c87bb12469dbfb482"
+            }
+          ]
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/photos/3832974c-9b81-43e8-9ed6-55aeb5d9623d"
+                }
+              ],
+              "mime": "image/jpeg",
+              "bytes": 7066,
+              "recordSHA256": "465104610ce3700b6fc40d90830b598e5e9aa94f7da71e2632d51779de5d24b3"
+            }
+          ]
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 0,
+          "records": []
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 0,
+          "records": []
+        },
+        "schemaDrafts": {
+          "count": 0,
+          "records": []
+        }
+      }
+    },
+    {
+      "source": "manifest-before-cleanup-chrome-duo.json",
+      "sourceSHA256": "597b6a5e527bc65f2f978e3f2bc479bc9e5ef6c10e1cc39f15d713b90f755156",
+      "runId": "TEST-0c19cc04-1241-434d-99d6-ea7ed1b3f316",
+      "revision": 14,
+      "synthetic": true,
+      "manifestHash": "4cf63da5b9b5f5e1ac3e067030269173f876bf5a8ae0e61bf6216fc4c4629163",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "enrollment-chrome-duo.json",
+        "sha256": "5139d504ca8584388dd141a480d21bb203337b91ce6bbebe81875cd58f124208",
+        "basis": "Enrollment PASS plus explicit exact-cleanup/member-absence assertion; manifest alone is not deletion proof."
+      },
+      "groups": {
+        "members": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "m-d0108d52-e5e9-4ea4-98aa-271581339a83"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "130a34cdaad37c5b067272cce8d958e6831e47aab044524078be591570360b25"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "m-d0108d52-e5e9-4ea4-98aa-271581339a83-duo"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "5a0766d847d4c29197356b1500271685c375bb9746fc738291738226e4f3431a"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "d0108d52-e5e9-4ea4-98aa-271581339a83"
+                },
+                {
+                  "field": "number",
+                  "value": "TEST-FMZ-OV-D0108D52E5E94EA498AA271581339A83"
+                },
+                {
+                  "field": "client_id",
+                  "value": "m-d0108d52-e5e9-4ea4-98aa-271581339a83"
+                }
+              ],
+              "recordSHA256": "f74daddd9067fa2b216b8df5e91217683999e92054d0b737a3d478c10d67cc31"
+            }
+          ]
+        },
+        "documents": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "38ebb4a0-278a-4377-b0ac-fb4657ea2f20"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/agreements/38ebb4a0-278a-4377-b0ac-fb4657ea2f20.pdf"
+                }
+              ],
+              "kind": "agreement",
+              "status": "ready",
+              "sha256": "02721928fdb819c3f45a0672ca301cb9b8a7d38670066e31e0c08866562d2d3a",
+              "recordSHA256": "181683983e1c71082405ec37f61e6fd5c21ea56206fe2b25450e5d7d4237f110"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "57e70c73-db6a-4e28-90dc-7c4982cf36ab"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/photos/57e70c73-db6a-4e28-90dc-7c4982cf36ab"
+                }
+              ],
+              "kind": "photo",
+              "status": "ready",
+              "sha256": "bdc75ae3a5f3f4b646ca30e250bb08dbee50719f25644bfbb2ea247b25ba73bb",
+              "recordSHA256": "161f06e435dc405c168fbfbbbe6ee92e9f8ba5b5ee29a3e330ad553b9abd81e9"
+            }
+          ]
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/agreements/38ebb4a0-278a-4377-b0ac-fb4657ea2f20.pdf"
+                }
+              ],
+              "mime": "application/pdf",
+              "bytes": 268804,
+              "recordSHA256": "86a94f057343b58b86989556163398bc67c16a700154c8f14d67b016f972ce0b"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/photos/57e70c73-db6a-4e28-90dc-7c4982cf36ab"
+                }
+              ],
+              "mime": "image/jpeg",
+              "bytes": 6942,
+              "recordSHA256": "10199881be6200350cdb2244de87da646533a9e6f2448d5a93f492a16bd6d343"
+            }
+          ]
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "d0108d52-e5e9-4ea4-98aa-271581339a83"
+                }
+              ],
+              "status": "completed",
+              "recordSHA256": "13ef773081c5ebf158d96c8cfdfb761544ebc8f1c613eff9bcfa8027cd042f9a"
+            }
+          ]
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 0,
+          "records": []
+        },
+        "schemaDrafts": {
+          "count": 0,
+          "records": []
+        }
+      }
+    },
+    {
+      "source": "manifest-before-cleanup-chrome-final.json",
+      "sourceSHA256": "4a1b44a5af774d207a211105e49c121b508f6ba023f738544b0cb64023098bfb",
+      "runId": "TEST-9aed807a-5872-4a69-94da-882a8cf28e6d",
+      "revision": 13,
+      "synthetic": true,
+      "manifestHash": "16d10f9f8bb781603c2bd6ac718993165b50e41b41dcccc835ddb129061d9aad",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "enrollment-chrome-final.json",
+        "sha256": "5fe2cf433c78abe7bc9390ea6355f9820dcc78e3dce978feac95dc4abebfe1f2",
+        "basis": "Enrollment PASS plus explicit exact-cleanup/member-absence assertion; manifest alone is not deletion proof."
+      },
+      "groups": {
+        "members": {
+          "count": 3,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "m-6589a0f0-5498-4e1f-82c1-0847a48e9c73"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "0568a0d67964c19844dda300db2382ad8f41594a9ab49a374190e63ef3798d4e"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "6589a0f0-5498-4e1f-82c1-0847a48e9c73"
+                },
+                {
+                  "field": "number",
+                  "value": "TEST-FMZ-OV-6589A0F054984E1F82C10847A48E9C73"
+                },
+                {
+                  "field": "client_id",
+                  "value": "m-6589a0f0-5498-4e1f-82c1-0847a48e9c73"
+                }
+              ],
+              "recordSHA256": "2abbe5f222e9e8de63ca71e9862cec6ad24da9cccba936f3b76fe61a873dc2ed"
+            }
+          ]
+        },
+        "documents": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "5ae4b6f3-c00c-4341-b470-168b3e5a0753"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/agreements/5ae4b6f3-c00c-4341-b470-168b3e5a0753.pdf"
+                }
+              ],
+              "kind": "agreement",
+              "status": "ready",
+              "sha256": "adeb85be57caa993dcff7dab5211f7590034b122a353288d41cbb197c7031c0f",
+              "recordSHA256": "f896cfd0dafd00e1ae544a4eff3bdc156bf24d8725cc4214c672efe21dd6ed74"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "181b05b1-2951-420b-833b-f1553b8fbb97"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/photos/181b05b1-2951-420b-833b-f1553b8fbb97"
+                }
+              ],
+              "kind": "photo",
+              "status": "ready",
+              "sha256": "bdc75ae3a5f3f4b646ca30e250bb08dbee50719f25644bfbb2ea247b25ba73bb",
+              "recordSHA256": "81b1a4589385c7e78164f01a6448ec5ebc2e15aef4d4d6e287c434ae365aed8c"
+            }
+          ]
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/agreements/5ae4b6f3-c00c-4341-b470-168b3e5a0753.pdf"
+                }
+              ],
+              "mime": "application/pdf",
+              "bytes": 268162,
+              "recordSHA256": "53e485627ed1edd7c3919019ab996cc760a3afdf0a3b0857263799ba91b4c59c"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/photos/181b05b1-2951-420b-833b-f1553b8fbb97"
+                }
+              ],
+              "mime": "image/jpeg",
+              "bytes": 6942,
+              "recordSHA256": "d53da680ee9b57498f833db06f096a5daff40a737e038f50180c5020e6151487"
+            }
+          ]
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "6589a0f0-5498-4e1f-82c1-0847a48e9c73"
+                }
+              ],
+              "status": "completed",
+              "recordSHA256": "852a21cc1e7bd08db7f623708ad21187e752fa25f616cdc9b60c62070a6e4f33"
+            }
+          ]
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 0,
+          "records": []
+        },
+        "schemaDrafts": {
+          "count": 0,
+          "records": []
+        }
+      }
+    },
+    {
+      "source": "manifest-before-cleanup-chrome.json",
+      "sourceSHA256": "82a526951bae89b97306448fa369e4c76f41c1a5febf5dd5654b1dbb6e43982d",
+      "runId": "TEST-74f4ec21-8491-49fc-ba21-3f0550445c30",
+      "revision": 13,
+      "synthetic": true,
+      "manifestHash": "e12dfc3e9fe78a90561e6b1ba1bce017a338695af22bb5a90709e229080b017a",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "enrollment-chrome.json",
+        "sha256": "16af11a3a288139e006fb825390e68629ba66a1224da07ef7d34bd02f45d9ef1",
+        "basis": "Enrollment PASS plus explicit exact-cleanup/member-absence assertion; manifest alone is not deletion proof."
+      },
+      "groups": {
+        "members": {
+          "count": 3,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "m-f0bd9f0c-3327-4805-ae3e-7569e3de7e32"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "cdc6af334bbebbfde8e3010c01a6bcf1feb588f86dfdc42cc1cf464cfdc2b320"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "f0bd9f0c-3327-4805-ae3e-7569e3de7e32"
+                },
+                {
+                  "field": "number",
+                  "value": "TEST-FMZ-OV-F0BD9F0C33274805AE3E7569E3DE7E32"
+                },
+                {
+                  "field": "client_id",
+                  "value": "m-f0bd9f0c-3327-4805-ae3e-7569e3de7e32"
+                }
+              ],
+              "recordSHA256": "5753649c3fc734d7d8cba07457f18daeb02ca51e339c8d2d59744ec929f4adc6"
+            }
+          ]
+        },
+        "documents": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "855e9666-6d9a-4383-bd30-f259e723b251"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/agreements/855e9666-6d9a-4383-bd30-f259e723b251.pdf"
+                }
+              ],
+              "kind": "agreement",
+              "status": "ready",
+              "sha256": "f5cb434278814a821a4786fc2d6a89d5df6f358a4a32b7b883afe2ea364ac96a",
+              "recordSHA256": "27e049f60e7d9d907c17b8046c1f59f7e4339083c634fb6a3cfa6e230552cdb9"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "cc8d11b4-2912-42bd-81a2-506f905e2b63"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/photos/cc8d11b4-2912-42bd-81a2-506f905e2b63"
+                }
+              ],
+              "kind": "photo",
+              "status": "ready",
+              "sha256": "bdc75ae3a5f3f4b646ca30e250bb08dbee50719f25644bfbb2ea247b25ba73bb",
+              "recordSHA256": "ca45106f6a38f31d0e208a131a98be0b6cddb757af39daa30b27b0783ec0cf1b"
+            }
+          ]
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/agreements/855e9666-6d9a-4383-bd30-f259e723b251.pdf"
+                }
+              ],
+              "mime": "application/pdf",
+              "bytes": 268150,
+              "recordSHA256": "491561682a5f4577f38055a571fac44a12d699c9c7e3453b24805f20faeaacdb"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/photos/cc8d11b4-2912-42bd-81a2-506f905e2b63"
+                }
+              ],
+              "mime": "image/jpeg",
+              "bytes": 6942,
+              "recordSHA256": "2277695bd96d306389103aeb7a30a780ca8478bcf73804063c0d1519e2790647"
+            }
+          ]
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "f0bd9f0c-3327-4805-ae3e-7569e3de7e32"
+                }
+              ],
+              "status": "completed",
+              "recordSHA256": "535c213fcc83a199985426bdd5650c65e5e6062b9ad7f2950395b06932b51e12"
+            }
+          ]
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 0,
+          "records": []
+        },
+        "schemaDrafts": {
+          "count": 0,
+          "records": []
+        }
+      }
+    },
+    {
+      "source": "manifest-before-cleanup-edge-duo.json",
+      "sourceSHA256": "d833035badf1d97cd4782dcd31430841352cdb95e0f2ceaaede7a9d3d0670784",
+      "runId": "TEST-b779a8be-2504-4ae7-97c3-e37ea575e32b",
+      "revision": 13,
+      "synthetic": true,
+      "manifestHash": "35e8a0d6ff0c859930cc251728c8a19841aa041a10801a177013bdca65ae1985",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "enrollment-edge-duo.json",
+        "sha256": "57e7d1738934eee86c89dcd16cf3da3803c70b41870e6ab7f7b977ddb00409bd",
+        "basis": "Enrollment PASS plus explicit exact-cleanup/member-absence assertion; manifest alone is not deletion proof."
+      },
+      "groups": {
+        "members": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "m-77d2a857-c17e-407a-834f-de235803035b"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d60a21b0af092fcdb39c577d1e4f61109af746a5daa24cc2bc4084b2c43d28ee"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "m-77d2a857-c17e-407a-834f-de235803035b-duo"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "1d96744e77c5db9268d8debeab35618c8e1f58f5922f56bc42f2ab9d3b27c6c3"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "77d2a857-c17e-407a-834f-de235803035b"
+                },
+                {
+                  "field": "number",
+                  "value": "TEST-FMZ-OV-77D2A857C17E407A834FDE235803035B"
+                },
+                {
+                  "field": "client_id",
+                  "value": "m-77d2a857-c17e-407a-834f-de235803035b"
+                }
+              ],
+              "recordSHA256": "f8d83db0b7cc3a449e5593b58979347a40373150f6981a545b9ff66444c2a74c"
+            }
+          ]
+        },
+        "documents": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "3130ae6d-91b7-4883-8d5d-ff5a4858daaf"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/agreements/3130ae6d-91b7-4883-8d5d-ff5a4858daaf.pdf"
+                }
+              ],
+              "kind": "agreement",
+              "status": "ready",
+              "sha256": "4a3f2bc8b33e284dde99f66e6c80671a41bca57e8f2f8de99334e788f2e36e47",
+              "recordSHA256": "d61aaa5438f2e2b212e272c4b05f7178065faa89b8dfc0b94a3ec40cbcddb3d2"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "c114c2e7-79d9-42ce-9377-908ca9a01b6e"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/photos/c114c2e7-79d9-42ce-9377-908ca9a01b6e"
+                }
+              ],
+              "kind": "photo",
+              "status": "ready",
+              "sha256": "bdc75ae3a5f3f4b646ca30e250bb08dbee50719f25644bfbb2ea247b25ba73bb",
+              "recordSHA256": "27dcd7612a698730e3e3a98b13f6c9b3b76099aa71c47130aceaaa67537af56e"
+            }
+          ]
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/agreements/3130ae6d-91b7-4883-8d5d-ff5a4858daaf.pdf"
+                }
+              ],
+              "mime": "application/pdf",
+              "bytes": 268800,
+              "recordSHA256": "33ff8dbc37e9c2b87bd596431a28b404173effe3ca85d1dfcea72c8be663b690"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/photos/c114c2e7-79d9-42ce-9377-908ca9a01b6e"
+                }
+              ],
+              "mime": "image/jpeg",
+              "bytes": 6942,
+              "recordSHA256": "5d2abf6ade29690532f2c9116af5a18e0d170a9e9a33d13cbd1f6a66120a7a32"
+            }
+          ]
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "77d2a857-c17e-407a-834f-de235803035b"
+                }
+              ],
+              "status": "completed",
+              "recordSHA256": "720b0d6278e02cb59ceead42341a481dab55a4bdda60b1103aa7106ae206e7a1"
+            }
+          ]
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 0,
+          "records": []
+        },
+        "schemaDrafts": {
+          "count": 0,
+          "records": []
+        }
+      }
+    },
+    {
+      "source": "manifest-before-cleanup-edge.json",
+      "sourceSHA256": "92fc07f7240aeb19de6c901776a6a4aa09ee6c92fc6da7cbe6906f6d99f474d8",
+      "runId": "TEST-47388de1-d68a-4462-944f-c2638a6c645b",
+      "revision": 13,
+      "synthetic": true,
+      "manifestHash": "f15b94d58d990e6be70270afa0ad13c8ea4e26b71974587d155cc509eb2b7b1b",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "enrollment-edge.json",
+        "sha256": "cabef214f67372f99746acfb82503834d05b3c4c161c049edfd26d27ec5e0dc1",
+        "basis": "Enrollment PASS plus explicit exact-cleanup/member-absence assertion; manifest alone is not deletion proof."
+      },
+      "groups": {
+        "members": {
+          "count": 3,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "m-3ea6a894-7753-410d-bee8-3364a24a9209"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "70b1b41cb5f7ba5af66f17186de91fa5e697c584164ed0ee9892578ad08312b1"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "3ea6a894-7753-410d-bee8-3364a24a9209"
+                },
+                {
+                  "field": "number",
+                  "value": "TEST-FMZ-OV-3EA6A8947753410DBEE83364A24A9209"
+                },
+                {
+                  "field": "client_id",
+                  "value": "m-3ea6a894-7753-410d-bee8-3364a24a9209"
+                }
+              ],
+              "recordSHA256": "e01c244fff8ddab93955ba4bd7258d76f495d80708cc590b013bc80c988593cd"
+            }
+          ]
+        },
+        "documents": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "503cc24d-06f8-4d34-9b6e-2ed1818e7786"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/agreements/503cc24d-06f8-4d34-9b6e-2ed1818e7786.pdf"
+                }
+              ],
+              "kind": "agreement",
+              "status": "ready",
+              "sha256": "cc8049795f98e7fa1f45f3c25a4809fef35a0b6b83e1e0d5c68b4f5244b09a9c",
+              "recordSHA256": "bb955f1e658de94f600c4e56eafea7b20c46658d1d0926bb0e0e285719f15af1"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "b99ac8d6-d457-4b7b-ae0e-a6deaca5fc63"
+                },
+                {
+                  "field": "path",
+                  "value": "11111111-1111-4111-8111-111111111111/photos/b99ac8d6-d457-4b7b-ae0e-a6deaca5fc63"
+                }
+              ],
+              "kind": "photo",
+              "status": "ready",
+              "sha256": "bdc75ae3a5f3f4b646ca30e250bb08dbee50719f25644bfbb2ea247b25ba73bb",
+              "recordSHA256": "188ba8e144871640edc9dfcdaf6ab4489db745cf152f4725cb231659c747a137"
+            }
+          ]
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/agreements/503cc24d-06f8-4d34-9b6e-2ed1818e7786.pdf"
+                }
+              ],
+              "mime": "application/pdf",
+              "bytes": 268161,
+              "recordSHA256": "6643cb26b97d813d8cc9bc3ad376b525f1dbdc68e5469a56cfcf9697bd730777"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "path",
+                  "value": "fmz-members/11111111-1111-4111-8111-111111111111/photos/b99ac8d6-d457-4b7b-ae0e-a6deaca5fc63"
+                }
+              ],
+              "mime": "image/jpeg",
+              "bytes": 6942,
+              "recordSHA256": "963dcaf435ccbd275c4e7c26ce26dccf9f0201fec3c0c81416defc1602aa0980"
+            }
+          ]
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "3ea6a894-7753-410d-bee8-3364a24a9209"
+                }
+              ],
+              "status": "completed",
+              "recordSHA256": "2b94858815ba660f31164da37fbbcf0cfb214bc4d5a83a72b0ee12ea310cc4f1"
+            }
+          ]
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 0,
+          "records": []
+        },
+        "schemaDrafts": {
+          "count": 0,
+          "records": []
+        }
+      }
+    },
+    {
+      "source": "media-chrome.json",
+      "sourceSHA256": "abacd46c39803b7ae2163747c2248700dcb742fb788d3217ba9a5bca8a3ee037",
+      "runId": "TEST-6d508d20-dcc5-4139-a48e-912ca16b99a9",
+      "revision": 5,
+      "synthetic": true,
+      "manifestHash": "4b53be40a47b250f5adf9e80eaad0e9b1cf2013852ecbd39f7d518c6f70b4a9a",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "media-chrome.json",
+        "basis": "cleanup.completed === true and status PASS"
+      },
+      "groups": {
+        "members": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 0,
+          "records": []
+        },
+        "documents": {
+          "count": 0,
+          "records": []
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 0,
+          "records": []
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 0,
+          "records": []
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 0,
+          "records": []
+        },
+        "schemaDrafts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "schema-builder"
+                },
+                {
+                  "field": "data.client.id",
+                  "value": "OWNER-TEST-UNASSIGNED-SCHEMA"
+                },
+                {
+                  "field": "data.client.trainingPlan.0.id",
+                  "value": "training-17936445305906465d512febac"
+                },
+                {
+                  "field": "data.assignments.TEST-NOOR|1.id",
+                  "value": "4d1edf0f-eabd-4692-a8ac-29a54b8cddb4"
+                },
+                {
+                  "field": "data.assignments.TEST-NOOR|1.memberId",
+                  "value": "TEST-NOOR"
+                },
+                {
+                  "field": "data.assignments.TEST-NOOR|1.entries.0.id",
+                  "value": "training-1793644536758db6d3ab99619e8"
+                }
+              ],
+              "recordSHA256": "7866aa5bbcfcdd90181dc416b09ebf8c36f2450b8d831d93c8f52f69e91d81ed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "media-msedge.json",
+      "sourceSHA256": "094f7cad83798f045e67bbb636f58b53cb8ed940c8905c53b3eed6afb17c8055",
+      "runId": "TEST-3819e35f-3e57-482a-8010-f39dc20aa3e5",
+      "revision": 5,
+      "synthetic": true,
+      "manifestHash": "7035212bf14e8827fee74fc5475b8cc2e0a597d22006d2390a48fdacd2b48d58",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "media-msedge.json",
+        "basis": "cleanup.completed === true and status PASS"
+      },
+      "groups": {
+        "members": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 0,
+          "records": []
+        },
+        "documents": {
+          "count": 0,
+          "records": []
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 0,
+          "records": []
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 0,
+          "records": []
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 0,
+          "records": []
+        },
+        "schemaDrafts": {
+          "count": 1,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "schema-builder"
+                },
+                {
+                  "field": "data.client.id",
+                  "value": "OWNER-TEST-UNASSIGNED-SCHEMA"
+                },
+                {
+                  "field": "data.client.trainingPlan.0.id",
+                  "value": "training-17936444786748f998cd6a9bd18"
+                },
+                {
+                  "field": "data.assignments.TEST-NOOR|1.id",
+                  "value": "7fc36ae0-53e2-4328-a70d-0068ca757750"
+                },
+                {
+                  "field": "data.assignments.TEST-NOOR|1.memberId",
+                  "value": "TEST-NOOR"
+                },
+                {
+                  "field": "data.assignments.TEST-NOOR|1.entries.0.id",
+                  "value": "training-179364448588998a5f088f79ad"
+                }
+              ],
+              "recordSHA256": "a3bef89938cc734bcaf4e846b48069b1948913592bc9c459bf44f367cf88d796"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "reminders-chrome.json",
+      "sourceSHA256": "da531390a2c3e3425af473f1ef609bdf9a0d5b43db88ef3d10bc2429b97d8197",
+      "runId": "TEST-d5b2669a-146e-44bd-8776-dbeec8744f48",
+      "revision": 7,
+      "synthetic": true,
+      "manifestHash": "d9582a2b31712c702ff00d74f1956cdfea33a54d285cd37d756d7952e02b3d41",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "reminders-chrome.json",
+        "basis": "cleanupConfirmed === true and status PASS; test asserts no reminders in fresh run"
+      },
+      "groups": {
+        "members": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 0,
+          "records": []
+        },
+        "documents": {
+          "count": 0,
+          "records": []
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 0,
+          "records": []
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 0,
+          "records": []
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 3,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "reminders:0"
+                },
+                {
+                  "field": "runId",
+                  "value": "TEST-d5b2669a-146e-44bd-8776-dbeec8744f48"
+                },
+                {
+                  "field": "agreementId",
+                  "value": "0b9c3ae6-ea7c-4254-874d-ea0772abd824"
+                },
+                {
+                  "field": "clientId",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "kind": "billing_prepare",
+              "status": "done",
+              "reminderVersion": 2,
+              "cycle": "four_weeks",
+              "date": "2026-11-22",
+              "start": "2026-11-02",
+              "end": "2026-11-29",
+              "recordSHA256": "cac71789d50e6b540407bf0afcd9a437ccba820516cb304e80610d13725637cd"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "reminders:1"
+                },
+                {
+                  "field": "runId",
+                  "value": "TEST-d5b2669a-146e-44bd-8776-dbeec8744f48"
+                },
+                {
+                  "field": "agreementId",
+                  "value": "0b9c3ae6-ea7c-4254-874d-ea0772abd824"
+                },
+                {
+                  "field": "clientId",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "kind": "billing_due",
+              "status": "done",
+              "reminderVersion": 2,
+              "cycle": "four_weeks",
+              "date": "2026-11-29",
+              "start": "2026-11-02",
+              "end": "2026-11-29",
+              "recordSHA256": "6a30026459970651545d1646155547a78d75d1d577ad48272e0ed4f7b24f855c"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "reminders:2"
+                },
+                {
+                  "field": "runId",
+                  "value": "TEST-d5b2669a-146e-44bd-8776-dbeec8744f48"
+                },
+                {
+                  "field": "agreementId",
+                  "value": "aadb5b33-a33f-4a3d-9398-4e9c7184c855"
+                },
+                {
+                  "field": "clientId",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "kind": "billing_prepare",
+              "status": "open",
+              "reminderVersion": 2,
+              "cycle": "calendar_month",
+              "date": "2026-11-23",
+              "start": "2026-11-01",
+              "end": "2026-11-30",
+              "recordSHA256": "bc03c01302e256f85868a9cb40066c8de217d4aeae94613217c3d52b8b916a6a"
+            }
+          ]
+        },
+        "schemaDrafts": {
+          "count": 0,
+          "records": []
+        }
+      }
+    },
+    {
+      "source": "reminders-edge.json",
+      "sourceSHA256": "565f69d35718029a361361132fd364fead70afaed58d589b5436203012ffae55",
+      "runId": "TEST-151ad118-a721-435f-ae1a-3923e9e611f9",
+      "revision": 7,
+      "synthetic": true,
+      "manifestHash": "b6be99d5a0fa2f1460774f161fb488b94fed427764c6138c38bdff74255a1b95",
+      "cleanupConfirmed": true,
+      "confirmation": {
+        "file": "reminders-edge.json",
+        "basis": "cleanupConfirmed === true and status PASS; test asserts no reminders in fresh run"
+      },
+      "groups": {
+        "members": {
+          "count": 2,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "2e6a97a35b1e6893557621412674ea76f8129683a1b5d02cc6d660da56210829"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "status": "active",
+              "recordSHA256": "d516bcd2aa503dc2fab6a22ada97ef9ec2ed97c98ec6a2f185b4d33cc4ae96c7"
+            }
+          ]
+        },
+        "contracts": {
+          "count": 0,
+          "records": []
+        },
+        "documents": {
+          "count": 0,
+          "records": []
+        },
+        "invoices": {
+          "count": 0,
+          "records": []
+        },
+        "messages": {
+          "count": 0,
+          "records": []
+        },
+        "reminders": {
+          "count": 0,
+          "records": []
+        },
+        "blobs": {
+          "count": 0,
+          "records": []
+        },
+        "sessions": {
+          "count": 4,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                },
+                {
+                  "field": "user_id",
+                  "value": "11111111-1111-4111-8111-111111111111"
+                }
+              ],
+              "recordSHA256": "23f58cf1a28f11c3ff4a1d0ad78fd0cb32fc4d52118c0967d5cbf479d26c058a"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                },
+                {
+                  "field": "user_id",
+                  "value": "22222222-2222-4222-8222-222222222222"
+                }
+              ],
+              "recordSHA256": "2c9d88e063624de244a05528ef60df2493526c45532ae762252bd9841e625578"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                },
+                {
+                  "field": "user_id",
+                  "value": "33333333-3333-4333-8333-333333333333"
+                }
+              ],
+              "recordSHA256": "8e0f84aec0a8364c3c344fca5ede83f2815a5a70f87505d9ff9f50b3e2a380ea"
+            },
+            {
+              "index": 3,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                },
+                {
+                  "field": "user_id",
+                  "value": "44444444-4444-4444-8444-444444444444"
+                }
+              ],
+              "recordSHA256": "d5a1d315fcdb122cbbba3feebcd05c6596ef006de6201486e14455f7caa36301"
+            }
+          ]
+        },
+        "drafts": {
+          "count": 0,
+          "records": []
+        },
+        "preliminary": {
+          "count": 0,
+          "records": []
+        },
+        "files": {
+          "count": 0,
+          "records": []
+        },
+        "communicationDocuments": {
+          "count": 0,
+          "records": []
+        },
+        "simulationRecords": {
+          "count": 3,
+          "records": [
+            {
+              "index": 0,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "reminders:0"
+                },
+                {
+                  "field": "runId",
+                  "value": "TEST-151ad118-a721-435f-ae1a-3923e9e611f9"
+                },
+                {
+                  "field": "agreementId",
+                  "value": "4e5d47f6-4d09-4d04-b391-3e97ec876794"
+                },
+                {
+                  "field": "clientId",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "kind": "billing_prepare",
+              "status": "done",
+              "reminderVersion": 2,
+              "cycle": "four_weeks",
+              "date": "2026-11-22",
+              "start": "2026-11-02",
+              "end": "2026-11-29",
+              "recordSHA256": "21624fc6b0acd65fb3dfc82c72189e42cbb08ff0a7847842e22c3f7a3c778a28"
+            },
+            {
+              "index": 1,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "reminders:1"
+                },
+                {
+                  "field": "runId",
+                  "value": "TEST-151ad118-a721-435f-ae1a-3923e9e611f9"
+                },
+                {
+                  "field": "agreementId",
+                  "value": "4e5d47f6-4d09-4d04-b391-3e97ec876794"
+                },
+                {
+                  "field": "clientId",
+                  "value": "TEST-NOOR"
+                }
+              ],
+              "kind": "billing_due",
+              "status": "done",
+              "reminderVersion": 2,
+              "cycle": "four_weeks",
+              "date": "2026-11-29",
+              "start": "2026-11-02",
+              "end": "2026-11-29",
+              "recordSHA256": "6dea0522d032944a450984fdc546c19c984471f07d40788ad279f58aac3d26ce"
+            },
+            {
+              "index": 2,
+              "identifiers": [
+                {
+                  "field": "id",
+                  "value": "reminders:2"
+                },
+                {
+                  "field": "runId",
+                  "value": "TEST-151ad118-a721-435f-ae1a-3923e9e611f9"
+                },
+                {
+                  "field": "agreementId",
+                  "value": "de9b7983-f4c3-448a-943e-e5f46dae1455"
+                },
+                {
+                  "field": "clientId",
+                  "value": "TEST-SAM"
+                }
+              ],
+              "kind": "billing_prepare",
+              "status": "open",
+              "reminderVersion": 2,
+              "cycle": "calendar_month",
+              "date": "2026-11-23",
+              "start": "2026-11-01",
+              "end": "2026-11-30",
+              "recordSHA256": "40471ade9fa60b5fd81f60352038d00c632e3f4a160734261472caa98e44f202"
+            }
+          ]
+        },
+        "schemaDrafts": {
+          "count": 0,
+          "records": []
+        }
+      }
+    }
+  ],
+  "additionalBrowserProfileCleanup": {
+    "source": "host-security-evidence.json",
+    "sourceSHA256": "b21b74e58ace5ce83bb9cb9df5a23408361fa0423a4ef0b27dce8d76c2e0db96",
+    "runId": "TEST-7c243e93-b214-4dd8-a28f-c5e2d7e21396",
+    "draftId": "39174972-bb91-479b-8abf-160712fe13e2",
+    "confirmed": true
+  },
+  "limits": [
+    "This generator performs no deletion, database operation, browser operation or network request.",
+    "Counts are exact manifest entries across isolated runs, not distinct production objects or SQL row counts. Shared fixtures are counted separately for each run.",
+    "Only identifiers/types and record hashes are copied; full synthetic record content remains in each hashed source manifest.",
+    "Reset removes the isolated run; creation of fresh fixture data in a subsequent run is not evidence of retained old records.",
+    "Missing enrollment evidence is reported explicitly; rerun after the remaining tests finish."
+  ]
+}

@@ -7,6 +7,7 @@
  async function close(){const event=new Event('beforeunload',{cancelable:true});if(!dispatchEvent(event)){alert('Er is nog onopgeslagen testinvoer. Sla het concept op voordat je de test sluit.');return;}try{if(adapter&&!adapter.getState().closed)await adapter.checkpoint();send('close');}catch(error){alert(error.message);}}
  window.OwnerTestHost={close,restart(){if(!adapter?.getState().closed)throw Error('Verwijder eerst de huidige testrun met de gecontroleerde verwijderlijst.');send('restart');}};
  window.OwnerTestCamera={capture:async()=>{const b=await request('camera-request',{});if(!(b instanceof Blob)||b.type!=='image/jpeg'||b.size>4000000)throw Error('Ongeldige camerafoto.');return b;},cancel:()=>send('camera-cancel')};
+ window.OwnerTestDocuments={show:(blob,options={})=>request('document-request',{blob,filename:options.filename,mode:options.mode||'view'})};
  const memoryStorage=()=>{const data=new Map();return{getItem:k=>data.get(String(k))??null,setItem:(k,v)=>data.set(String(k),String(v)),removeItem:k=>data.delete(String(k)),clear:()=>data.clear(),key:i=>[...data.keys()][i]??null,get length(){return data.size}};};
  async function start(m){
   const r=m.runtime;if(r?.synthetic!==true)throw Error('Geen geldige synthetische test.');
@@ -32,7 +33,7 @@
   document.addEventListener('submit',e=>e.preventDefault());
   document.addEventListener('click',e=>{const a=e.target.closest('a');if(a&&!a.download&&!a.href.startsWith('blob:')&&!a.href.startsWith('#'))e.preventDefault();},true);
   for(const {code} of r.scripts)script(code);
-  script(r.verifyImage);
+  script(r.media);script(r.verifyImage);
   const invoice=window.FMZDocuments.pdf;
   window.FMZDocuments.pdf=async(...args)=>{
    const result=await invoice(...args),doc=await PDFLib.PDFDocument.load(result),font=await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);

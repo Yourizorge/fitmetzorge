@@ -1,0 +1,198 @@
+{
+  "project": "hgoygcviutmynaihcvpd",
+  "readOnly": true,
+  "windowUTC": [
+    "2026-11-02T16:05:00Z",
+    "2026-11-02T16:12:00Z"
+  ],
+  "aggregateRequests": [
+    {
+      "auth_action": "token_refreshed",
+      "entries": 1,
+      "grant_type": "",
+      "method": "",
+      "origin_host": "",
+      "route": "/",
+      "source": "auth_audit_logs",
+      "status": ""
+    },
+    {
+      "auth_action": "token_revoked",
+      "entries": 1,
+      "grant_type": "",
+      "method": "",
+      "origin_host": "",
+      "route": "/",
+      "source": "auth_audit_logs",
+      "status": ""
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "",
+      "origin_host": "",
+      "route": "/",
+      "source": "auth_logs",
+      "status": ""
+    },
+    {
+      "auth_action": "",
+      "entries": 27,
+      "grant_type": "",
+      "method": "GET",
+      "origin_host": "appfmz.nl",
+      "route": "/",
+      "source": "auth_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "token_revoked",
+      "entries": 1,
+      "grant_type": "refresh_token",
+      "method": "POST",
+      "origin_host": "appfmz.nl",
+      "route": "/",
+      "source": "auth_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "POST",
+      "origin_host": "appfmz.nl",
+      "route": "/auth/v1/token",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "OPTIONS",
+      "origin_host": "appfmz.nl",
+      "route": "/auth/v1/token",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 27,
+      "grant_type": "",
+      "method": "GET",
+      "origin_host": "appfmz.nl",
+      "route": "/auth/v1/user",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "OPTIONS",
+      "origin_host": "appfmz.nl",
+      "route": "/auth/v1/user",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "GET",
+      "origin_host": "appfmz.nl",
+      "route": "/rest/v1/profiles",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "OPTIONS",
+      "origin_host": "appfmz.nl",
+      "route": "/rest/v1/profiles",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "OPTIONS",
+      "origin_host": "appfmz.nl",
+      "route": "/rest/v1/rpc/fmz_agenda_read",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 4,
+      "grant_type": "",
+      "method": "POST",
+      "origin_host": "appfmz.nl",
+      "route": "/rest/v1/rpc/fmz_agenda_read",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "OPTIONS",
+      "origin_host": "appfmz.nl",
+      "route": "/rest/v1/rpc/fmz_read_workspace",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 2,
+      "grant_type": "",
+      "method": "POST",
+      "origin_host": "appfmz.nl",
+      "route": "/rest/v1/rpc/fmz_read_workspace",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 17,
+      "grant_type": "",
+      "method": "POST",
+      "origin_host": "appfmz.nl",
+      "route": "/rest/v1/rpc/fmz_save_changes_once",
+      "source": "edge_logs",
+      "status": "200"
+    },
+    {
+      "auth_action": "",
+      "entries": 1,
+      "grant_type": "",
+      "method": "OPTIONS",
+      "origin_host": "appfmz.nl",
+      "route": "/rest/v1/rpc/fmz_save_changes_once",
+      "source": "edge_logs",
+      "status": "200"
+    }
+  ],
+  "timing": {
+    "saveRPC": {
+      "count": 17,
+      "firstUTC": "2026-11-02T16:08:36.517Z",
+      "lastUTC": "2026-11-02T16:10:16.803Z"
+    },
+    "newReceipts": {
+      "count": 17,
+      "firstUTC": "2026-11-02T16:08:36.535725Z",
+      "lastUTC": "2026-11-02T16:10:16.831311Z"
+    },
+    "workspaceUpdatedUTC": "2026-11-02T16:10:16.84874Z",
+    "authTokenPOSTUTC": "2026-11-02T16:08:19.979Z",
+    "authAuditActionsUTC": "2026-11-02T16:08:20Z",
+    "authRowUpdatedUTC": "2026-11-02T16:08:20.30948Z"
+  },
+  "conclusion": "Production save RPC activity and refresh-token activity are observed and match the earlier receipt/workspace/Auth timestamps. No person or particular UI action is attributed. No previous workspace field snapshot exists, so complete historical field preservation is not proven.",
+  "productionWritesByThisInvestigation": 0
+}

@@ -1,0 +1,94 @@
+{
+  "runId": "TEST-47388de1-d68a-4462-944f-c2638a6c645b",
+  "revision": 13,
+  "synthetic": true,
+  "members": [
+    {
+      "id": "TEST-NOOR",
+      "label": "Noor Voorbeeld",
+      "member_number": 1,
+      "status": "active"
+    },
+    {
+      "id": "TEST-SAM",
+      "label": "Sam Test",
+      "member_number": 2,
+      "status": "active"
+    },
+    {
+      "id": "m-3ea6a894-7753-410d-bee8-3364a24a9209",
+      "label": "Mila Laptoptest",
+      "member_number": 34,
+      "status": "active"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "3ea6a894-7753-410d-bee8-3364a24a9209",
+      "number": "TEST-FMZ-OV-3EA6A8947753410DBEE83364A24A9209",
+      "client_id": "m-3ea6a894-7753-410d-bee8-3364a24a9209"
+    }
+  ],
+  "documents": [
+    {
+      "id": "503cc24d-06f8-4d34-9b6e-2ed1818e7786",
+      "kind": "agreement",
+      "path": "11111111-1111-4111-8111-111111111111/agreements/503cc24d-06f8-4d34-9b6e-2ed1818e7786.pdf",
+      "status": "ready",
+      "sha256": "cc8049795f98e7fa1f45f3c25a4809fef35a0b6b83e1e0d5c68b4f5244b09a9c"
+    },
+    {
+      "id": "b99ac8d6-d457-4b7b-ae0e-a6deaca5fc63",
+      "kind": "photo",
+      "path": "11111111-1111-4111-8111-111111111111/photos/b99ac8d6-d457-4b7b-ae0e-a6deaca5fc63",
+      "status": "ready",
+      "sha256": "bdc75ae3a5f3f4b646ca30e250bb08dbee50719f25644bfbb2ea247b25ba73bb"
+    }
+  ],
+  "invoices": [],
+  "messages": [],
+  "reminders": [],
+  "blobs": [
+    {
+      "path": "fmz-members/11111111-1111-4111-8111-111111111111/agreements/503cc24d-06f8-4d34-9b6e-2ed1818e7786.pdf",
+      "bytes": 268161,
+      "mime": "application/pdf"
+    },
+    {
+      "path": "fmz-members/11111111-1111-4111-8111-111111111111/photos/b99ac8d6-d457-4b7b-ae0e-a6deaca5fc63",
+      "bytes": 6942,
+      "mime": "image/jpeg"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "user_id": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222",
+      "user_id": "22222222-2222-4222-8222-222222222222"
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "user_id": "33333333-3333-4333-8333-333333333333"
+    },
+    {
+      "id": "44444444-4444-4444-8444-444444444444",
+      "user_id": "44444444-4444-4444-8444-444444444444"
+    }
+  ],
+  "drafts": [
+    {
+      "id": "3ea6a894-7753-410d-bee8-3364a24a9209",
+      "status": "completed",
+      "label": "Mila"
+    }
+  ],
+  "preliminary": [],
+  "files": [],
+  "communicationDocuments": [],
+  "simulationRecords": [],
+  "schemaDrafts": [],
+  "hash": "f15b94d58d990e6be70270afa0ad13c8ea4e26b71974587d155cc509eb2b7b1b"
+}
