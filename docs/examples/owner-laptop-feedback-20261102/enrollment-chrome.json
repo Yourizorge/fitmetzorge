@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "browser": "chrome",
+  "completedAt": "2026-11-02T16:31:56.379Z",
+  "durationMs": 47479,
+  "runtimeSHA256": "d790c6691d98ceebb1e3e0183ca624f4ba972d12626b79cb13dc4983c7bb1be7",
+  "physicalOwnerTest": false,
+  "checks": [
+    "three catalog-derived PT packages",
+    "full name and separate house addition preserved",
+    "draft retained across reload and sandbox restart",
+    "380 EUR and 47.50 EUR per training",
+    "invoice date follows period end",
+    "empty signature blocked; keyboard clear and mouse signing",
+    "real PDF text/watermark; no zero-discount wording",
+    "local photo fallback decoded and saved",
+    "profile edited offline with audit",
+    "profile and photo retained after restart",
+    "stored agreement byte-identical after profile edit",
+    "exact synthetic cleanup and member absence after restart",
+    "parent datastore untouched; parent read-only RPCs",
+    "no page errors"
+  ],
+  "agreementSHA256": "f19f82277874cbbf4146843702fc314495f0012ffb042dd483cdd564ab514035"
+}

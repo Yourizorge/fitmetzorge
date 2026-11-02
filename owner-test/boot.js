@@ -2,10 +2,11 @@
 (()=>{
  'use strict';const nonce=window.__OWNER_TEST_NONCE,CHANNEL='fmz-owner-laptop-v1',waiting=new Map();let started=false,adapter=null;
  const send=(type,body={})=>parent.postMessage({channel:CHANNEL,nonce,type,...body},'*');
- async function request(type,body){const id=crypto.randomUUID();return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{waiting.delete(id);reject(Error('Testopslag kreeg geen bevestiging. Probeer opnieuw.'));},20000);waiting.set(id,{resolve,reject,timer});send(type,{id,...body});});}
+ async function request(type,body){const id=crypto.randomUUID();return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{waiting.delete(id);if(type==='camera-request')send('camera-cancel');reject(Error(type==='camera-request'?'Camera gesloten na vijf minuten. Kies opnieuw Foto maken.':'Testopslag kreeg geen bevestiging. Probeer opnieuw.'));},type==='camera-request'?300000:20000);waiting.set(id,{resolve,reject,timer});send(type,{id,...body});});}
  function script(code){const el=document.createElement('script');el.nonce=nonce;el.textContent=code;document.head.append(el);}
  async function close(){const event=new Event('beforeunload',{cancelable:true});if(!dispatchEvent(event)){alert('Er is nog onopgeslagen testinvoer. Sla het concept op voordat je de test sluit.');return;}try{if(adapter&&!adapter.getState().closed)await adapter.checkpoint();send('close');}catch(error){alert(error.message);}}
  window.OwnerTestHost={close,restart(){if(!adapter?.getState().closed)throw Error('Verwijder eerst de huidige testrun met de gecontroleerde verwijderlijst.');send('restart');}};
+ window.OwnerTestCamera={capture:async()=>{const b=await request('camera-request',{});if(!(b instanceof Blob)||b.type!=='image/jpeg'||b.size>4000000)throw Error('Ongeldige camerafoto.');return b;},cancel:()=>send('camera-cancel')};
  const memoryStorage=()=>{const data=new Map();return{getItem:k=>data.get(String(k))??null,setItem:(k,v)=>data.set(String(k),String(v)),removeItem:k=>data.delete(String(k)),clear:()=>data.clear(),key:i=>[...data.keys()][i]??null,get length(){return data.size}};};
  async function start(m){
   const r=m.runtime;if(r?.synthetic!==true)throw Error('Geen geldige synthetische test.');
@@ -45,13 +46,13 @@
     if(!element.isConnected||!isCurrent())return;const page=await pdf.getPage(i),viewport=page.getViewport({scale:1.4}),canvas=document.createElement('canvas');canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);canvas.style.cssText='max-width:100%;height:auto;display:block;margin:12px auto';canvas.setAttribute('aria-label',`Test-PDF pagina ${i} van ${pdf.numPages}`);await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;fragment.append(canvas);
    }if(element.isConnected&&isCurrent())element.replaceChildren(fragment);}finally{await task.destroy();}
   };
-  script(r.guide);
+  script(r.navigation);script(r.guide);
   const timeout=Date.now()+30000;while(!window.FMZAccounting?.ready){if(Date.now()>timeout)throw Error('Synthetische traineromgeving kon niet worden gestart.');await new Promise(resolve=>setTimeout(resolve,100));}
-  showView('administration');FMZAccounting.render(true);showView('clients');FMZMembers.render();await FMZOwnerGuide.start(adapter);
+  showView('administration');FMZAccounting.render(true);showView('clients');FMZMembers.render();await FMZOwnerNavigation.start(adapter);await FMZOwnerGuide.start(adapter);
  }
  addEventListener('message',async e=>{
   const m=e.data;if(e.source!==parent||m?.channel!==CHANNEL||m.nonce!==nonce)return;
-  if(m.type==='ack'){const p=waiting.get(m.id);if(!p)return;clearTimeout(p.timer);waiting.delete(m.id);m.ok?p.resolve():p.reject(Error(m.error));return;}
+  if(m.type==='ack'){const p=waiting.get(m.id);if(!p)return;clearTimeout(p.timer);waiting.delete(m.id);m.ok?p.resolve(m.value):p.reject(Error(m.error));return;}
   if(m.type==='init'&&!started){started=true;try{await start(m);}catch(error){document.body.replaceChildren();const p=document.createElement('p');p.textContent='Laptoptest niet gestart: '+error.message;const b=document.createElement('button');b.textContent='Terug naar de echte app';b.onclick=()=>send('close');document.body.append(p,b);}}
   if(m.type==='request-close')await close();
  });

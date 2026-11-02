@@ -6,6 +6,11 @@
  const normalize=value=>String(value??'').normalize('NFKC').trim().replace(/\s+/g,' '),phone=value=>String(value??'').replace(/\D/g,'').replace(/^0031/,'31').replace(/^310(?=\d{9}$)/,'31').replace(/^0(?=[1-9]\d{2,}$)/,'31');
  function person(input={}){const out=Object.fromEntries(personalFields.map(k=>[k,normalize(input[k])]));out.email=out.email.toLowerCase();out.marketing=input.marketing===true;return out;}
  const name=p=>[p.firstName,p.insertion,p.lastName].filter(Boolean).join(' ');
+ // One readable name field; the established storage/document fields stay unchanged.
+ function nameParts(value){const parts=normalize(value).split(' ').filter(Boolean);return {firstName:parts.shift()||'',insertion:'',lastName:parts.join(' ')};}
+ function addressParts(value){const match=normalize(value).match(/^(\d+)\s*(.*)$/);return match?{number:match[1],addition:match[2]}:{number:normalize(value),addition:''};}
+ function individualCatalog(catalog=[]){return catalog.filter(v=>v.active!==false&&v.enrollable!==false&&v.snapshot?.mode==='individual'&&v.snapshot?.cycle==='four_weeks'&&/^pt-/.test(v.package_id||v.snapshot.id||'')&&Number.isSafeInteger(v.snapshot.cents)&&v.snapshot.cents>0&&Number.isInteger(v.snapshot.sessions)&&v.snapshot.sessions>0);}
+ function enrollmentPriceNeedsReview(input={}){return (input.discountAmount!=null&&cents(input.discountAmount)!==0)||input.firstPeriodCustom===true||Number(input.discountCents||0)!==0;}
  function date(value){if(!/^\d{4}-\d\d-\d\d$/.test(value||''))return null;const d=new Date(value+'T12:00:00Z');return Number.isFinite(+d)&&d.toISOString().slice(0,10)===value?d:null;}
  function add(value,n){const d=date(value);if(!d)throw Error('Kies een geldige datum.');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}
  function validate(input,today=new Date().toISOString().slice(0,10)){
@@ -26,5 +31,5 @@
  const initials=p=>normalize(typeof p==='string'?p:name(p)).split(' ').filter(Boolean).map(s=>[...s][0]).filter(Boolean).slice(0,2).join('').toUpperCase();
  function match(member,query){const q=normalize(query).toLowerCase(),parts=q.split(' '),text=normalize([member.name,member.email,member.phone,member.member_number,member.client_id].join(' ')).toLowerCase();return parts.every(p=>text.includes(p))||/\d{4}/.test(q)&&phone(member.phone).includes(phone(q));}
  const money=c=>new Intl.NumberFormat('nl-NL',{style:'currency',currency:'EUR'}).format(c/100),cycle=c=>c==='calendar_month'?'per kalendermaand':c==='none'?'eenmalig':'per vier weken (28 dagen)';
- const api={steps,personalFields,normalize,phone,person,name,date,add,validate,validateProfile,cents,payment,period,signatureValid,initials,match,money,cycle};if(typeof module!=='undefined')module.exports=api;else root.FMZMembersModel=api;
+ const api={steps,personalFields,normalize,phone,person,name,nameParts,addressParts,individualCatalog,enrollmentPriceNeedsReview,date,add,validate,validateProfile,cents,payment,period,signatureValid,initials,match,money,cycle};if(typeof module!=='undefined')module.exports=api;else root.FMZMembersModel=api;
 })(typeof window==='undefined'?globalThis:window);

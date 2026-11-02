@@ -7,3 +7,12 @@ test('members PDF: immutable deterministic A4 snapshot, long full text and safe 
 });
 test('members image verifier: pooled byte offsets, invalid bytes and bounds',async()=>{require('../supabase/functions/member-assets/verify-image.js');const images=require('./members-images.cjs');assert.deepEqual(await globalThis.FMZMemberVerifyImage(images.png,'image/png',PDFLib),{width:640,height:480});await assert.rejects(globalThis.FMZMemberVerifyImage(Buffer.from('NOT PNG'),'image/png',PDFLib));await assert.rejects(globalThis.FMZMemberVerifyImage(images.png,'image/webp',PDFLib),/JPEG of PNG/);});
 test('members course: twelve additive five-part lessons with truthful release gates',()=>{const c=require('../tutorial/members-lessons.js');assert.equal(c.steps.length,12);assert.equal(new Set(c.steps.map(s=>s.id)).size,12);for(const s of c.steps)for(const k of ['what','why','action','result','check'])assert.ok(s[k].length>30);assert.match(JSON.stringify(c),/privacy/);assert.equal(c.videoStatus,'recorded-awaiting-media-verification');assert.deepEqual(c.steps.map(s=>s.videoChapter),Array.from({length:12},(_,i)=>i+1));});
+
+test('new undiscounted agreement PDF omits discount wording while historical discounted snapshots remain explicit',async()=>{
+ const M=require('../members-model.js'),source=snapshot();source.payment=M.payment(source.package,'2026-11-02',{}).value;const before=JSON.stringify(source),seen=[],draw=PDFLib.PDFPage.prototype.drawText;
+ PDFLib.PDFPage.prototype.drawText=function(text,options){seen.push(text);return draw.call(this,text,options);};
+ try{
+  const bytes=await renderer.pdf(source,PDFLib);assert.equal(Buffer.from(bytes).subarray(0,5).toString(),'%PDF-');assert.match(seen.join(' '),/Kosten en eerste periode/);assert.match(seen.join(' '),/380,00/);assert.doesNotMatch(seen.join(' '),/korting/i);assert.equal(JSON.stringify(source),before);
+  seen.length=0;const historic=structuredClone(source);historic.payment=M.payment(source.package,'2026-11-02',{discountAmount:'30',discountPeriods:1,discountReason:'Vastgelegde historische afspraak'}).value;await renderer.pdf(historic,PDFLib);assert.match(seen.join(' '),/Korting:.*30,00/);assert.match(seen.join(' '),/350,00/);assert.equal(JSON.stringify(source),before);
+ }finally{PDFLib.PDFPage.prototype.drawText=draw;}
+});

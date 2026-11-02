@@ -13,6 +13,8 @@
   if(fakeActor!==null&&!Object.hasOwn(IDS,fakeActor))throw Error('Alleen synthetische testaccounts zijn toegestaan.');
   async function open(dump){db=new options.PGlite({loadDataDir:dump,pgliteWasmModule:options.pgliteWasmModule,initdbWasmModule:options.initdbWasmModule,fsBundle:options.fsBundle});await db.waitReady;const marker=(await db.query('select * from owner_test.metadata')).rows;if(marker.length!==1||marker[0].fixture!=='APPFMZ-SYNTHETIC-OWNER-TEST'||marker[0].production!==false)throw Error('Dit is geen gecontroleerde synthetische testdatabase.');}
   await open(restored?.dump||options.seed);
+  // Local seed/checkpoint only: no automatic communication may be created by enrollment.
+  await db.exec('alter table fmz_members.contracts disable trigger appfmz_contract_communication');
   const emit=()=>listeners.forEach(fn=>{try{fn(getState());}catch{}});
   function getState(){return copy({version:1,synthetic:true,runId,fakeActor,guide,simulation,revision,dirty,closed});}
   function enqueue(fn){const task=queue.catch(()=>{}).then(()=>{if(closed)throw Error('Deze testrun is afgesloten.');return fn();});queue=task;return task;}
@@ -43,6 +45,7 @@
   const READS=new Set(['fmz_billing_planning_read','fmz_communication_read','fmz_billing_reminders_read','fmz_accounting_read','fmz_agenda_read']);
   const COMMANDS=new Set(['fmz_members_command','fmz_billing_planning_command','fmz_communication_command','fmz_billing_reminders_command','fmz_billing_command','fmz_accounting_command','fmz_vat_command','fmz_bank_repair_command','fmz_payment_command','fmz_agenda_command']);
   async function dispatch(name,params={}){
+   if(['fmz_billing_planning_read','fmz_billing_planning_command','fmz_communication_read','fmz_communication_command','fmz_billing_reminders_command'].includes(name))throw Error('Facturatieplanning en automatische communicatie zijn uitgeschakeld in deze owner-test.');
    if(READS.has(name))return {data:await scalar(`select public.${name}() result`,[]),write:false};
    if(name==='fmz_members_read')return {data:await scalar('select public.fmz_members_read($1,$2) result',[params.action,JSON.stringify(params.payload||{})]),write:false};
    if(COMMANDS.has(name))return {data:await scalar(`select public.${name}($1,$2,$3) result`,[params.action,JSON.stringify(params.payload||{}),params.request_id]),write:true};
@@ -77,15 +80,25 @@
    result.files=await query("select id,record_id,original_name as label,mime,bytes,sha256,path,status,'fmz-finance' as bucket from fmz_accounting.files order by id");
    result.communicationDocuments=await query("select id,kind,client_id,recipient,bucket,path,sha256,bytes,name,metadata,'application/pdf' as mime from fmz_communication.documents order by kind,id");
    result.simulationRecords=['sent','history','reminders'].flatMap(kind=>(simulation[kind]||[]).map((item,index)=>({...copy(item),id:kind+':'+index,simulationKind:kind})));
+   result.schemaDrafts=guide.schemaBuilder?[{id:'schema-builder',label:'Schema builder — lokaal testschema en koppelingen',data:copy(guide.schemaBuilder)}]:[];
    result.hash=await digest(new TextEncoder().encode(JSON.stringify(result)));return result;
   }
   async function reset(expected){return enqueue(async()=>{const before=await inventoryRaw();if(!expected||expected.runId!==runId||expected.hash!==before.hash)throw Error('Testgegevens zijn veranderd. Bekijk de verwijderlijst opnieuw.');const oldRun=runId;
    const remove=options.removeRun||options.remove;if(typeof remove!=='function')throw Error('Veilige verwijdering is nog niet aangesloten; er is niets verwijderd.');await remove(oldRun);closed=true;await db.close();revoke();blobs.clear();fakeActor=null;guide={version:1,step:0,done:[],skipped:[]};simulation={sent:[],history:[],reminders:[],receipts:{}};dirty=false;emit();return {before,after:{runId:oldRun,members:[],contracts:[],documents:[],invoices:[],messages:[],reminders:[],blobs:[],sessions:[],drafts:[],preliminary:[],files:[],communicationDocuments:[],simulationRecords:[],deleted:true,verification:"Isolated database instance closed; host checkpoint removal acknowledged. This is not a SQL query after deletion."},deletedRunId:oldRun};});}
   const api={sdk,getState,onChange:fn=>{listeners.add(fn);return()=>listeners.delete(fn);},checkpoint:()=>enqueue(()=>persist()),inventory:()=>enqueue(inventoryRaw),manifest:()=>enqueue(inventoryRaw),reset,
    setGuide:value=>enqueue(async()=>{if(!value||value.version!==1||JSON.stringify(value).length>100000)throw Error('Ongeldige testvoortgang.');guide=copy(value);revision++;await persist();return copy(guide);}),
+   reminderPeriods:()=>enqueue(async()=>{const helper=options.simulator||root.OwnerTestSimulation;return helper.readPeriods({db,actor:await actor()});}),
    simulate:(action,payload,requestId)=>enqueue(async()=>{const helper=options.simulator||root.OwnerTestSimulation;if(!helper?.run)throw Error('De lokale simulatiemodule is nog niet beschikbaar.');const result=await helper.run({db,blobs,simulation,runId,actor:await actor()},action,payload,requestId);revision++;await persist();return result;}),
    close:()=>enqueue(async()=>{await persist();await db.close();closed=true;revoke();fakeActor=null;authListeners.clear();listeners.clear();})};
-  if(!restored)await persist();return api;
+  // Explicit fixed synthetic agreements for the two fixture members, including restored v1 runs.
+  // No existing agreement is replaced and no invoice/payment is prepared.
+  let fixtureAdded=false;
+  if(fakeActor==='trainer')for(const [clientId,cycle,start]of [['TEST-NOOR','four_weeks','2026-11-02'],['TEST-SAM','calendar_month','2026-11-01']]){
+   const exists=(await db.query('select 1 from fmz_accounting.agreement_versions where client_id=$1',[clientId])).rows.length;
+   const member=(await db.query('select 1 from fmz_members.directory where client_id=$1 and trainer_id=$2',[clientId,IDS.trainer])).rows.length;
+   if(!exists&&member){await db.query("insert into fmz_accounting.agreement_versions(org_id,client_id,version,effective_from,cycle,package_id,package_label,amount_cents,sessions,enabled,origin,reason,created_by) select o.id,$1,1,$2::date,$3,'pt-basis',c->>'label',(c->>'cents')::bigint,(c->>'sessions')::integer,true,'owner-test-fixture','Vaste fictieve betaalafspraak voor owner-herinneringentest',o.owner_id from fmz_accounting.organizations o cross join lateral fmz_accounting.billing_catalog('pt-basis') c where o.owner_id=$4",[clientId,start,cycle,IDS.trainer]);fixtureAdded=true;}
+  }
+  if(!restored||fixtureAdded)await persist();return api;
  }
  const api={create};if(typeof module!=='undefined')module.exports=api;else root.OwnerTestDatabase=api;
 })(typeof globalThis==='undefined'?window:globalThis);

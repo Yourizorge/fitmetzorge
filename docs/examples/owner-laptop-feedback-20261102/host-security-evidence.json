@@ -1,0 +1,17 @@
+{
+  "browser": "Microsoft Edge, Playwright headless on Windows; no physical device",
+  "synthetic": true,
+  "productionTouched": false,
+  "checks": [
+    "member denied, including direct launcher call",
+    "verified non-owner trainer denied",
+    "second owner tab blocked by exclusive WebLock",
+    "browser context and process closed/reopened; same IndexedDB run and confirmed draft restored",
+    "sign-out/account change removes test iframe and owner launcher",
+    "host backend received read-only RPCs; synthetic child draft absent from host database"
+  ],
+  "errors": [],
+  "runId": "TEST-2bc8d17a-12bc-422d-b98d-e59937dffa11",
+  "draftId": "be3d6a9a-2a37-426b-b58d-5462ebf81ba0",
+  "status": "PASS"
+}

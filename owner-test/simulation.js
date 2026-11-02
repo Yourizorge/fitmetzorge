@@ -1,47 +1,55 @@
-/* Isolated laptop-test transport. This module contains no network or provider client. */
+/* Synthetic reminders only. No network, financial commands, mail or push transport. */
 window.OwnerTestSimulation=(()=>{
  'use strict';
  const fail=(message,code='P0001')=>{throw Object.assign(Error(message),{code});};
- const hex=bytes=>Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');
- const digest=async bytes=>hex(await crypto.subtle.digest('SHA-256',bytes));
  const copy=value=>structuredClone(value);
  const day=value=>typeof value?.toISOString==='function'?value.toISOString().slice(0,10):String(value).slice(0,10);
- async function run({db,blobs,simulation,runId,actor},action,payload={},requestId){
-  if(!db?.query||!blobs?.get||typeof runId!=='string'||runId.length<8||!actor?.id||actor.role!=='trainer')fail('Alleen de geïsoleerde trainerstest mag simuleren.','42501');
+ function amsterdamDay(value=new Date()){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(value));}
+ function addDays(value,n){const d=new Date(day(value)+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}
+ async function organization({db,actor}){
+  if(!db?.query||!actor?.id||actor.role!=='trainer')fail('Alleen de geïsoleerde trainerstest mag herinneringen bekijken.','42501');
+  const org=(await db.query('select id from fmz_accounting.organizations where owner_id=$1',[actor.id])).rows[0]?.id;if(!org)fail('Geen eigenaar van deze oefenadministratie.','42501');return org;
+ }
+ async function readPeriods(context,asOf=amsterdamDay()){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(asOf)||!Number.isFinite(Date.parse(asOf)))fail('Ongeldige testdatum.');
+  const org=await organization(context);
+  const result=await context.db.query(`
+   with periods as (
+    select distinct v.id agreement_id,v.client_id,v.cycle,v.package_label,v.version,p.value period,
+     coalesce(d.name,v.client_id) client_name,r.state,r.pause_from,r.pause_until,r.end_date
+    from fmz_accounting.agreement_versions v
+    cross join lateral generate_series(greatest(v.effective_from,$2::date),$2::date+63,interval '1 day') x(at_date)
+    cross join lateral (select fmz_accounting.billing_period(v,x.at_date::date) value) p
+    left join fmz_members.directory d on d.client_id=v.client_id and d.trainer_id=$3
+    left join fmz_accounting.billing_plan_rules r on r.org_id=v.org_id and r.client_id=v.client_id
+    where v.org_id=$1 and v.enabled and v.cycle in ('four_weeks','calendar_month')
+    and v.id=(select z.id from fmz_accounting.agreement_versions z where z.org_id=v.org_id and z.client_id=v.client_id and z.effective_from<=(p.value->>'start')::date order by z.effective_from desc,z.version desc limit 1)
+    and not exists(select 1 from fmz_accounting.agreement_versions z where z.org_id=v.org_id and z.client_id=v.client_id and z.effective_from>(p.value->>'start')::date and z.effective_from<=(p.value->>'end')::date)
+   ) select * from periods where
+    (state is distinct from 'ended' or (period->>'invoiceDate')::date<end_date)
+    and (state is distinct from 'paused' or pause_from is not null and ((period->>'invoiceDate')::date<pause_from or pause_until is not null and (period->>'invoiceDate')::date>pause_until))
+    order by period->>'invoiceDate',client_name,agreement_id`,[org,asOf,context.actor.id]);
+  return result.rows.map(row=>({agreementId:row.agreement_id,clientId:row.client_id,clientName:row.client_name,cycle:row.cycle,packageLabel:row.package_label,agreementVersion:row.version,start:day(row.period.start),end:day(row.period.end),invoiceDate:day(row.period.invoiceDate),prepareDate:addDays(row.period.invoiceDate,-7),timeZone:'Europe/Amsterdam'}));
+ }
+ async function run(context,action,payload={},requestId){
+  if(!['reminder-7','reminder-today','reminder-complete'].includes(action))fail('Factuurautomatisering en e-mailsimulaties zijn uitgeschakeld in deze owner-test.','OWNER_TEST_DISABLED');
+  const {simulation,runId}=context;await organization(context);
+  if(typeof runId!=='string'||runId.length<8||!simulation)fail('De geïsoleerde testrun ontbreekt.','42501');
   if(!/^[a-f0-9-]{36}$/i.test(requestId||''))fail('Een uniek testverzoek ontbreekt.');
-  const state=copy(simulation||{});state.sent??=[];state.history??=[];state.reminders??=[];state.receipts??={};
+  const state=copy(simulation);state.reminders??=[];state.receipts??={};
   const request=JSON.stringify({action,payload,runId}),prior=state.receipts[requestId];
   if(prior){if(prior.request!==request)fail('Dit testverzoek is al voor een andere handeling gebruikt.','PT409');return copy(prior.result);}
-  const rows=await db.query('select id from fmz_accounting.organizations where owner_id=$1',[actor.id]);const org=rows.rows[0]?.id;if(!org)fail('Geen eigenaar van deze oefenadministratie.','42501');
-  const at=new Date().toISOString();let result;
-  if(['reminder-7','reminder-today'].includes(action)){
-   const task=(await db.query('select * from fmz_accounting.billing_plan_tasks where org_id=$1 and id=$2',[org,payload.taskId])).rows[0];if(!task||task.status!=='active')fail('Kies een actieve synthetische factuurperiode.');
-   const kind=action==='reminder-7'?'billing_prepare':'billing_due',existing=state.reminders.find(r=>r.taskId===task.id&&r.kind===kind);
-   if(existing)result=existing;else{const date=new Date(day(task.send_date)+'T12:00:00Z');if(kind==='billing_prepare')date.setUTCDate(date.getUTCDate()-7);result={id:crypto.randomUUID(),runId,taskId:task.id,kind,period:day(task.start_date)+' t/m '+day(task.end_date),date:date.toISOString().slice(0,10),time:'09:00',timeZone:'Europe/Amsterdam',status:'simulated',at,text:kind==='billing_prepare'?'De facturen voor deze periode moeten binnenkort worden voorbereid.':'Controleer de facturen voor deze periode vóór verzending.'};state.reminders.push(result);}
-   state.history.push({id:crypto.randomUUID(),action,at,runId,taskId:task.id,status:'simulated',description:'Alleen een in-appvoorbeeld; geen pushprovider benaderd.'});
-  }else if(['mail-send','mail-fail','mail-retry'].includes(action)){
-   if(payload.confirmed!==true)fail('Controleer het e-mailconcept en de PDF vóór de simulatie.');
-   const m=(await db.query('select * from fmz_communication.messages where org_id=$1 and id=$2',[org,payload.messageId])).rows[0];if(!m)fail('Open eerst een definitief synthetisch document met e-mailconcept.');
-   if(Number(m.version)!==Number(payload.version))fail('Het testconcept is gewijzigd. Ververs en controleer opnieuw.','PT409');
-   if(m.purpose!=='document')fail('Kies de documentmail in de oefenomgeving.');
-   if(m.status==='sent'){const sent=state.sent.find(x=>x.messageId===m.id);if(!sent||!m.acceptance?.simulated)fail('Geen herstelbare simulatie gevonden.');result=sent;}
-   else{
-    if(!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(m.recipient)||!m.subject?.trim()||/[\r\n]/.test(m.subject)||!m.body?.trim())fail('Controleer de ontvanger, het onderwerp en de tekst in het e-mailconcept.');
-    const previous=state.history.filter(h=>h.messageId===m.id).at(-1);
-    if(action==='mail-retry'&&previous?.status!=='failed')fail('Alleen de eerder gesimuleerde mislukking kan opnieuw worden geprobeerd.');
-    if(!['draft','approved','scheduled','temporary_failure','permanent_failure'].includes(m.status))fail('Deze testmail kan niet opnieuw worden verstuurd.');
-    const doc=(await db.query('select * from fmz_communication.documents where org_id=$1 and id=$2 and kind=$3',[org,m.document_id,m.kind])).rows[0];if(!doc)fail('De definitieve PDF ontbreekt.');
-    const blob=blobs.get(doc.bucket+'/'+doc.path),bytes=blob?.bytes;if(!(bytes instanceof Uint8Array)||bytes.length!==Number(doc.bytes)||new TextDecoder().decode(bytes.slice(0,5))!=='%PDF-'||await digest(bytes)!==doc.sha256)fail('De lokale PDF-bijlage is niet volledig bevestigd.');
-    if(m.kind==='invoice'){const inv=(await db.query("select status,data from fmz_accounting.records where org_id=$1 and id=$2 and kind='invoice'",[org,m.document_id])).rows[0];if(!inv||inv.status!=='posted'||inv.data?.cancellation_id)fail('De oefenfactuur is niet meer geldig.');}
-    const failed=action==='mail-fail';result={id:crypto.randomUUID(),runId,messageId:m.id,documentId:m.document_id,kind:m.kind,recipient:m.recipient,subject:m.subject,body:m.body,attachmentName:doc.name,attachmentHash:doc.sha256,attachmentPath:doc.bucket+'/'+doc.path,status:failed?'failed':'sent',at,simulated:true};
-    await db.exec('begin');try{
-     await db.query("update fmz_communication.messages set status=$3,acceptance=$4,archive=$5,last_code=$6,version=version+1,updated_at=now() where org_id=$1 and id=$2",[org,m.id,failed?'temporary_failure':'sent',failed?null:JSON.stringify({simulated:true,method:'local-owner-test',from:'oefenmail@example.test',at}),failed?null:JSON.stringify({simulated:true,folder:'Verzonden — simulatie',messageId:m.id}),failed?'simulated_failure':'simulated_success']);
-     await db.query("insert into fmz_communication.audit(org_id,message_id,actor,action,detail) values($1,$2,$3,$4,$5)",[org,m.id,actor.id,'owner_test_'+action,JSON.stringify(result)]);await db.exec('commit');
-    }catch(error){await db.exec('rollback');throw error;}
-    if(!failed)state.sent.push(result);state.history.push({...result,action,description:failed?'Bewust nagebootste mailfout. Geen externe verzending.':'Alleen lokaal als verzonden getoond; niets naar een mailbox verstuurd.'});
-   }
-  }else fail('Onbekende simulatieactie.');
-  state.receipts[requestId]={request,result};Object.keys(simulation).forEach(k=>delete simulation[k]);Object.assign(simulation,state);return copy(result);
+  let result;const at=new Date().toISOString();
+  if(action==='reminder-complete'){
+   result=state.reminders.find(r=>r.id===payload.id&&r.runId===runId&&r.reminderVersion===2);if(!result)fail('Deze herinnering bestaat niet in deze testrun.');
+   if(result.status!=='done'){result.status='done';result.completedAt=at;}
+  }else{
+   const periods=await readPeriods(context,payload.periodStart),period=periods.find(p=>p.agreementId===payload.agreementId&&p.start===payload.periodStart);if(!period)fail('Deze betaalafspraak of periode is niet actief.','PT409');
+   const kind=action==='reminder-7'?'billing_prepare':'billing_due',key=[runId,period.agreementId,period.start,period.end,kind].join('|');
+   result=state.reminders.find(r=>r.key===key&&r.reminderVersion===2);
+   if(!result){const four=period.cycle==='four_weeks';result={id:crypto.randomUUID(),key,reminderVersion:2,runId,...period,kind,period:period.start+' t/m '+period.end,date:kind==='billing_prepare'?period.prepareDate:period.invoiceDate,time:'09:00',timeZone:'Europe/Amsterdam',status:'open',simulated:true,at,text:kind==='billing_prepare'?(four?'Facturen voorbereiden — de facturen voor de volgende vierweekse periode moeten worden gemaakt.':'Facturen voorbereiden — de facturen voor de volgende kalendermaand moeten worden gemaakt.'):'Facturen maken en versturen — controleer en verstuur de facturen voor de nieuwe periode.'};state.reminders.push(result);}
+  }
+  state.receipts[requestId]={request,result:copy(result)};Object.keys(simulation).forEach(k=>delete simulation[k]);Object.assign(simulation,state);return copy(result);
  }
- return{run};
+ return{run,readPeriods,amsterdamDay,addDays};
 })();

@@ -11,7 +11,7 @@ window.FMZOwnerLaptopTest=(()=>{
  function active(){return owner&&ready()&&onlineProfile.id===owner;}
  function send(type,body={}){frame?.contentWindow.postMessage({channel:CHANNEL,nonce,type,...body},'*');}
  function release(){if(pending===0&&releaseWanted){releaseLease?.();releaseLease=null;releaseWanted=false;}}
- function close(){frame?.remove();frame=null;dialog?.remove();dialog=null;nonce='';owner=null;opening=false;releaseWanted=true;release();}
+ function close(){window.FMZOwnerTestCamera?.cancel();frame?.remove();frame=null;dialog?.remove();dialog=null;nonce='';owner=null;opening=false;releaseWanted=true;release();}
  async function lease(id){if(!navigator.locks)throw Error('Gebruik een actuele Edge- of Chrome-browser voor de veilige laptoptest.');return new Promise((resolve,reject)=>{navigator.locks.request('fmz-owner-test:'+id,{ifAvailable:true},async lock=>{if(!lock){resolve(false);return;}await new Promise(done=>{releaseLease=done;releaseWanted=false;resolve(true);});}).catch(reject);});}
  async function verify(){
   if(!ready())throw Error('Deze laptoptest is alleen beschikbaar voor de geverifieerde eigenaar.');
@@ -41,6 +41,8 @@ window.FMZOwnerLaptopTest=(()=>{
    const loaded=await Promise.all(Object.entries(manifest.files).map(async([key,v])=>[key,await bytes(v.path,v.sha256)]));
    if(!active())throw Error('Sessie gewijzigd.');
    const assets=Object.fromEntries(loaded),runtime=JSON.parse(new TextDecoder().decode(assets.runtime)),restore=await store('get',owner);
+   if(!assets.camera)throw Error('Cameramodule ontbreekt in deze testversie.');
+   const cameraScript=document.createElement('script');cameraScript.textContent=new TextDecoder().decode(assets.camera);window.FMZOwnerTestCamera?.cancel();document.head.append(cameraScript);cameraScript.remove();
    if(!active())throw Error('Sessie gewijzigd.');
    frame=document.createElement('iframe');frame.title='APPFMZ synthetische trainerstest';frame.setAttribute('sandbox','allow-scripts allow-downloads allow-modals allow-forms');frame.referrerPolicy='no-referrer';
    frame.allow="camera 'none'; microphone 'none'; geolocation 'none'; payment 'none'";
@@ -57,6 +59,11 @@ window.FMZOwnerLaptopTest=(()=>{
   const generation=nonce,key=owner;
   if(m.type==='close'){close();return;}
   if(m.type==='restart'){close();open();return;}
+  if(m.type==='camera-request'&&typeof m.id==='string'){
+   try{const photo=await window.FMZOwnerTestCamera.capture({isCurrent:()=>active()&&generation===nonce});if(active()&&generation===nonce)send('ack',{id:m.id,ok:true,value:photo});}
+   catch(error){if(active()&&generation===nonce)send('ack',{id:m.id,ok:false,error:error.message});}return;
+  }
+  if(m.type==='camera-cancel'){window.FMZOwnerTestCamera?.cancel();return;}
   if(!['checkpoint','delete-run'].includes(m.type)||typeof m.id!=='string')return;
   pending++;
   try{
