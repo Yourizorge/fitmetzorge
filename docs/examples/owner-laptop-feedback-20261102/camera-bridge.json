@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "browser": "156.0.8078.80",
+  "device": "synthetic native Chrome device",
+  "parentPrivacyBoundary": true,
+  "permissionOnlyAfterClick": true,
+  "fullCaptureRetakeSave": true,
+  "oneLocalPhoto": true,
+  "tracksStopped": true,
+  "reset": true,
+  "productionWrites": 0,
+  "errors": []
+}

@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "test": "owner navigation uses seven sections, correct member context and explicit idempotent schema assignment",
+  "testFile": "tests/owner-test-navigation.test.cjs",
+  "browser": "Microsoft Edge, Playwright msedge channel",
+  "runDurationMs": 47117.3615,
+  "verifiedAt": "2026-11-02T16:40:27.967Z",
+  "runtimeSHA256": "0f777cfb4d9b78d3bc5d8a09626791d2293530ab81dd8e5fc1bcf0fcc2365d1a",
+  "checks": {
+    "sevenMainMenus": true,
+    "mainMenus": [
+      "Dashboard",
+      "Agenda",
+      "Schema builder",
+      "Leden",
+      "Administratie",
+      "Facturen",
+      "Instellingen"
+    ],
+    "dashboardWithoutMemberList": true,
+    "noGlobalSelectedMemberBanner": true,
+    "fullProfileTenTabs": true,
+    "correctContextAcrossTabs": true,
+    "NoorToSamSeparation": true,
+    "dashboardClearsMemberContext": true,
+    "readOnlySamTrainingHasNoPendingWrite": true,
+    "realExistingTrainingEditor": true,
+    "explicitNameAndMemberNumberConfirmation": true,
+    "cancelledAssignmentLeavesNoPlan": true,
+    "confirmedAssignmentAppearsUnderCorrectMemberTraining": true,
+    "otherMemberReceivesNoPlan": true,
+    "repeatingSameAssignmentCreatesNoDuplicate": true,
+    "draftAndAssignmentReceiptsPersistedInSyntheticCheckpoint": true,
+    "parentProductionWrites": 0,
+    "pageErrors": []
+  },
+  "screenshots": [
+    "docs/images/owner-laptop-feedback-20261102/laptop-dashboard.png",
+    "docs/images/owner-laptop-feedback-20261102/laptop-schema-builder.png",
+    "docs/images/owner-laptop-feedback-20261102/laptop-member-training.png"
+  ],
+  "physicalOwnerTest": false,
+  "notes": [
+    "Only the isolated synthetic owner runtime was exercised.",
+    "Repeated assignment was tested; a physical owner test remains separate."
+  ]
+}

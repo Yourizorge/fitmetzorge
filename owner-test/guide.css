@@ -17,3 +17,7 @@
    sizing remains viewport-based; its embedded mini-guide stays available. */
 @media(min-width:1101px){body.fmz-owner-test-active.fmz-test-guide-open{padding-right:414px!important}}
 @media(min-width:901px) and (max-width:1100px){body.fmz-owner-test-active.fmz-test-guide-open{padding-right:344px!important}.fmz-test-guide{width:320px;right:12px}}
+/* Local reminders are reused in Dashboard and the existing Agenda view. */
+.fmz-test-reminder-surface{margin:18px 0;padding:18px;border:1px solid #8b793f;border-radius:14px;background:#12161c;overflow-wrap:anywhere}
+.fmz-test-reminder-surface h2{font-size:1.1rem}.fmz-test-reminder-surface button{min-height:44px;padding:10px 14px;border:1px solid #b99a4f;border-radius:10px;background:#211e14;color:#fff1c6;font:inherit;cursor:pointer}
+.fmz-test-reminder-surface button:focus-visible{outline:3px solid #ffe298;outline-offset:3px}

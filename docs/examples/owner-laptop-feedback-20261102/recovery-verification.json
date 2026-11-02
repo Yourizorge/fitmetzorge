@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-02T16:30:21.449Z",
+  "repository": "Yourizorge/fitmetzorge",
+  "refs": [
+    [
+      "309cb0db3569f14ac54442c8daec678020ba149a",
+      "refs/heads/backup/appfmz-pre-member-onboarding-20261102"
+    ],
+    [
+      "7ad819d09e5e772980b8ec8bba1889df7027caae",
+      "refs/heads/main"
+    ],
+    [
+      "eca9beea1577feb797f5188f17f46de3bfef4ee3",
+      "refs/tags/appfmz-live-before-member-onboarding-20261102"
+    ],
+    [
+      "309cb0db3569f14ac54442c8daec678020ba149a",
+      "refs/tags/appfmz-live-before-member-onboarding-20261102^{}"
+    ]
+  ],
+  "protection": {
+    "locked": true,
+    "admins": true,
+    "forcePush": false,
+    "deletions": false
+  },
+  "readOnly": true,
+  "pass": true
+}
