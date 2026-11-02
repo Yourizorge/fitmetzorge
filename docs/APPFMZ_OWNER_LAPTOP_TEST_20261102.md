@@ -1,6 +1,8 @@
 # APPFMZ — afgeschermde eigenaarstest op laptop
 
-Status: technische eigenaarstest PASS; afzonderlijke publicatiecontrole volgt. Owneracceptatie is nog niet gegeven.
+Status: technische eigenaarstest en publicatiecontrole PASS. Alleen de afgeschermde synthetische eigenaarstest is gepubliceerd. Owneracceptatie is nog niet gegeven.
+
+Testlink: https://appfmz.nl/?owner-test=1 — aanmelden met het bestaande eigenaaraccount. De ingebouwde begeleiding bevat dezelfde vijftien stappen hieronder. Gebruik uitsluitend de aangeboden fictieve gegevens en voorbeeldfoto.
 
 De opdracht van 2 november gaat vóór de eerdere toestemming om de normale nieuwe routes vrij te geven. Eerst beoordeelt de eigenaar de volledige synthetische laptoproute. Een technische test is geen owner-GO.
 
@@ -82,7 +84,7 @@ Negen gerichte geslaagde testgevallen over de vastgelegde runs; zie [test-eviden
 
 Telefoon, fysieke push, Outlook/TransIP en natuurlijke hoorbaarheid op iPhone zijn afzonderlijke latere controles. Geen browseremulatie wordt als die fysieke controles gerapporteerd.
 
-Owner laptop test: GO voor de synthetische laptoptest na liveverificatie; geen toestemming voor normale productieroutes.
+Owner laptop test: GO voor de synthetische laptoptest; liveverificatie geslaagd. Geen toestemming voor normale productieroutes.
 
 New member flow live for members: NO.
 
@@ -90,7 +92,7 @@ Real emails enabled: NO.
 
 Automatic invoice sending enabled: NO.
 
-Existing data preserved: YES — geen productiedata gewijzigd; nulmeting vastgelegd.
+Existing data preserved: YES — geen productiedata gewijzigd; alle 24 gecontroleerde tabellen hebben na publicatie exact dezelfde aantallen en inhoudshashes als de nulmeting, inclusief Auth, Storagemetadata, bestaande financiële gegevens en agenda.
 
 Rollback point verified: YES.
 
@@ -101,3 +103,17 @@ Staging touched: NO. JARVIS touched: NO. Business website touched: NO.
 Voorbereide broncode/tests: `61ff747dfe755a932fa43cb116681e428568a251` op `codex/members-billing-20261026`. Deze werkbranch is niet main en niet de gepubliceerde normale app. De release is apart vanaf309cb0 samengesteld. Gebruik voor browsertests die voorbereidingscommit met bestaande npm-dependencies; de releasebranch bevat de zelfdragende owner-testbundel en een verifier zonder extra dependencies.
 
 `node tests/verify-owner-test-release.cjs --root . --commit HEAD` controleert de byte-identieke bestaande bestanden en de ene launcher-insertie. Met `--live` worden tevens de gepubliceerde bytes gecontroleerd. Geen database- of hostingmutaties door deze verifier.
+
+## Publicatiebewijs
+
+Runtimecommit: `2604d4ea28402817301be754437e3c271cd755c4`, gepusht naar `main` en `codex/owner-laptop-test-20261102`. De daaropvolgende bewijscommit verandert uitsluitend documentatie en read-only controlehulpmiddelen; runtime blijft byte-identiek aan deze commit.
+
+- GitHub Pages bevestigde `built` voor deze commit om 15:07:41 UTC; HTTPS en `appfmz.nl` behouden. Zie [release-hosting.json](examples/owner-laptop-20261102/release-hosting.json).
+- Alle 105 publieke bestanden (88 bestaande plus 17 owner-testbestanden) en de rootalias komen byte voor byte overeen met Git. Zie [release-live-verification.json](examples/owner-laptop-20261102/release-live-verification.json).
+- Alle 449 bestaande Git-bestanden gecontroleerd. Alleen `index.html` kreeg de 42-byte launcher-insertie en `.gitattributes` twee regels voor exacte owner-testbytes. De andere bestaande bestanden zijn byte-identiek.
+- Geen migration, Edge-, Auth-, RLS- of Storagewijziging uitgevoerd. De twaalf geregistreerde productiemigrations zijn ongewijzigd. Zie [postrelease-data.json](examples/owner-laptop-20261102/postrelease-data.json).
+- Alle 24 gecontroleerde productietabellen hebben identieke aantallen en SHA-256 vóór en na publicatie; geen klantinhoud in het rapport. Zie [postrelease-data-comparison.json](examples/owner-laptop-20261102/postrelease-data-comparison.json). Dit vergelijkt Storagemetadata; private documentbytes zijn niet opnieuw gedownload.
+- Anonieme Edge-controle op de echte livepagina: HTTP200, launcher geladen maar verborgen, geen testiframe, geen paginafouten of schrijfverzoeken. Zie [live-browser-smoke.json](examples/owner-laptop-20261102/live-browser-smoke.json).
+- De volledige geauthenticeerde route is met geïsoleerde fictieve accounts gecontroleerd; jouw fysieke laptopacceptatie blijft de volgende stap. Geen echte mailbox- of telefoon-PASS geclaimd.
+
+De automatische goedkeuringscontrole blokkeerde aanvankelijk de push wegens vermeende normale vrijgave vóór owner-GO. Na aanvullende bewijscontrole van de expliciete toestemming in §11.1 en de beperkte diff werd dezelfde push toegestaan. Geen alternatieve publicatieroute gebruikt.

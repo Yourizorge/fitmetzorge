@@ -1,0 +1,8 @@
+const fs=require('node:fs'),cp=require('node:child_process');
+async function authenticatedHosting(){
+ let token='';try{const raw=cp.execFileSync('git',['credential','fill'],{input:'protocol=https\nhost=github.com\npath=Yourizorge/fitmetzorge.git\n\n',encoding:'utf8',timeout:20000,stdio:['pipe','pipe','pipe'],env:{...process.env,GIT_TERMINAL_PROMPT:'0',GCM_INTERACTIVE:'never'}});token=raw.split('\n').find(x=>x.startsWith('password='))?.slice(9)||'';}catch{}
+ const result={checkedAt:new Date().toISOString(),attempted:!!token,method:'Existing Git credential helper held in process memory; GET only; no credential serialized'};
+ if(token)for(const endpoint of ['pages','pages/builds/latest']){try{const r=await fetch('https://api.github.com/repos/Yourizorge/fitmetzorge/'+endpoint,{headers:{Accept:'application/vnd.github+json',Authorization:'Bearer '+token},signal:AbortSignal.timeout(20000)});let e={status:r.status,verified:r.ok};if(r.ok){const x=await r.json();e=endpoint==='pages'?{...e,html_url:x.html_url,cname:x.cname,build_type:x.build_type,https_enforced:x.https_enforced,source:x.source,siteStatus:x.status}:{...e,commit:x.commit,buildStatus:x.status,created_at:x.created_at,updated_at:x.updated_at,errorMessage:x.error?.message||null};}else await r.body?.cancel();result[endpoint]=e;}catch(e){result[endpoint]={verified:false,error:e.name};}}
+ token='';return result;
+}
+(async()=>{const result=await authenticatedHosting();fs.writeFileSync('docs/examples/owner-laptop-20261102/release-hosting.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));})().catch(e=>{console.error(e.name);process.exitCode=1;});

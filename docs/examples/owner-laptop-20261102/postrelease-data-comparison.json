@@ -1,0 +1,98 @@
+[
+  {
+    "table": "auth.users",
+    "pass": true
+  },
+  {
+    "table": "auth.identities",
+    "pass": true
+  },
+  {
+    "table": "public.profiles",
+    "pass": true
+  },
+  {
+    "table": "storage.buckets",
+    "pass": true
+  },
+  {
+    "table": "storage.objects",
+    "pass": true
+  },
+  {
+    "table": "fmz_agenda.config",
+    "pass": true
+  },
+  {
+    "table": "fmz_agenda.events",
+    "pass": true
+  },
+  {
+    "table": "fmz_agenda.requests",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.audit",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.files",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.lines",
+    "pass": true
+  },
+  {
+    "table": "fmz_agenda.deliveries",
+    "pass": true
+  },
+  {
+    "table": "public.client_invites",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.records",
+    "pass": true
+  },
+  {
+    "table": "fmz_agenda.preferences",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.accounts",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.journals",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.receipts",
+    "pass": true
+  },
+  {
+    "table": "public.coach_workspaces",
+    "pass": true
+  },
+  {
+    "table": "fmz_agenda.subscriptions",
+    "pass": true
+  },
+  {
+    "table": "fmz_private.write_receipts",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.organizations",
+    "pass": true
+  },
+  {
+    "table": "fmz_private.photo_annotations",
+    "pass": true
+  },
+  {
+    "table": "fmz_accounting.agreement_versions",
+    "pass": true
+  }
+]
