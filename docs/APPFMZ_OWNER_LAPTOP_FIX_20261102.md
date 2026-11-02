@@ -6,6 +6,7 @@
 
 - Opdrachtbasis main: `8f19bbe4a1f3243534f186283764625c3d3997d0`.
 - Gewone livebasis: `309cb0db3569f14ac54442c8daec678020ba149a`.
+- Ontwikkelcommit: `944827ae64d664703b81764d24a82e5bef678afc` (gepusht).
 - Ontwikkelbron en uitvoerbare tests: branch `codex/members-billing-20261026`; de release bevat alleen `owner-test/**`, controlecode en documentatie. De ontwikkelbranch wordt niet naar main samengevoegd.
 - Bestaande herstelbranch `backup/appfmz-pre-member-onboarding-20261102` en tag `appfmz-live-before-member-onboarding-20261102` blijven naar de livebasis verwijzen. De branch is vergrendeld; admin enforcement aan, force-push en verwijderen uit.
 - Geen productiemigration, SQL-replay, Edge-deployment, Auth-, Storage- of financiële schrijfactie. Geen echte inschrijving, overeenkomst, foto, factuur, e-mail of push. Staging, JARVIS en de bedrijfswebsite blijven buiten scope.
@@ -28,7 +29,7 @@
 
 ## Controles en bewijs
 
-De uitvoerbare tests staan in de ontwikkelbranch; de publicatieverifiers staan ook in de release. Bewijs wordt opgeslagen in [examples/owner-laptop-fix-20261102](examples/owner-laptop-fix-20261102/) en screenshots in [images/owner-laptop-fix-20261102](images/owner-laptop-fix-20261102/). De controles hieronder zijn afgerond vóór publicatie; live- en Git-bewijs wordt afzonderlijk vastgelegd.
+De uitvoerbare tests staan in de ontwikkelbranch; de publicatieverifiers staan ook in de release. Bewijs wordt opgeslagen in [examples/owner-laptop-fix-20261102](examples/owner-laptop-fix-20261102/) en screenshots in [images/owner-laptop-fix-20261102](images/owner-laptop-fix-20261102/). De gerichte controles en de livecontrole zijn PASS. Dit is geen fysieke eigenaaracceptatie.
 
 Geen browseremulatie wordt als fysieke laptop-, camera-, telefoon- of eigenaaracceptatie aangeduid. Oude owner-testbrowsertests die de inmiddels expliciet verwijderde automatische factuur-/mailsimulatie verwachten, zijn geen acceptatiecriteria voor deze release. De productierenderer-mirrortest is geen PASS: de ontwikkelbron is bewust nog niet voor productie-Edge vrijgegeven.
 
@@ -89,4 +90,13 @@ De brede browsermatrix gebruikte runtime-SHA-256 `f5ece19ab7d37aefc8748c01727357
 
 ## Publicatiebewijs
 
-De geteste owner-test wordt afzonderlijk naar main gepubliceerd. Definitieve Git-, hosting-, live-byte- en productiehashcontroles volgen in deze sectie na de publicatie. Gewone APPFMZ-runtimebestanden blijven gelijk aan de opdrachtbasis; de bestaande launcher-invoeging uit de vorige release blijft behouden.
+De afgeschermde owner-test is gepubliceerd vanuit commit [b74628b00a8ebb0dd271cdb0fc300e6bbc05a71d](https://github.com/Yourizorge/fitmetzorge/commit/b74628b00a8ebb0dd271cdb0fc300e6bbc05a71d). De ontwikkelbron staat afzonderlijk op commit [944827ae64d664703b81764d24a82e5bef678afc](https://github.com/Yourizorge/fitmetzorge/commit/944827ae64d664703b81764d24a82e5bef678afc). De laatste documentatiecommit verandert geen runtime; het definitieve remote main-HEAD en de hostingcontrole staan in [final-delivery.json op de ontwikkelbranch](https://github.com/Yourizorge/fitmetzorge/blob/codex/members-billing-20261026/docs/examples/owner-laptop-fix-20261102/final-delivery.json).
+
+- [release-live.json](examples/owner-laptop-fix-20261102/release-live.json): 449 bestaande Git-bestanden gecontroleerd; 103 pakketcontroles PASS. Alle 111 live bestanden (88 gewone bestanden en 23 owner-testbestanden) en de root-URL komen byte-identiek overeen met de release.
+- [release-files.json](examples/owner-laptop-fix-20261102/release-files.json): volledige gewijzigde-bestandenlijst. Geen gewone runtimewijziging ten opzichte van opdrachtbasis 8f19bbe. Alleen de al bestaande launcher-invoeging uit de vorige release verschilt van de oudere livebasis 309cb0d.
+- [release-hosting.json](examples/owner-laptop-fix-20261102/release-hosting.json): GitHub Pages bouwde exact b74628b op main, domein appfmz.nl, HTTPS ingeschakeld.
+- [live-browser-smoke.json](examples/owner-laptop-fix-20261102/live-browser-smoke.json): anonieme Edge-controle PASS, geen owner-launcher of iframe toegankelijk, geen paginafouten of schrijfverzoeken.
+- [production-after.json](examples/owner-laptop-fix-20261102/production-after.json): alle 24 gemeten tabellen hebben gelijke aantallen en SHA-256 tussen 18:06:33 en 18:58:36 UTC; alle twaalf migrations gelijk. Query expliciet READ ONLY. Dit is het behoudsbewijs voor deze correctie, niet alsnog een volledige reconstructie van de oudere workspaceverschillen.
+- [recovery-after.json](examples/owner-laptop-fix-20261102/recovery-after.json): herstelbranch/tag en branchbescherming na publicatie ongewijzigd.
+
+Production touched: uitsluitend statische afgeschermde owner-test en bewijsdocumentatie. Database/Edge/Auth/Storage writes: NO. Staging touched: NO. Bedrijfswebsite touched: NO. JARVIS touched: NO. Echte ledenfunctionaliteit blijft niet vrijgegeven.

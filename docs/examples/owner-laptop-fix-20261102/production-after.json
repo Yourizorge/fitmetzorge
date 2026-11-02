@@ -1,0 +1,405 @@
+{
+  "status": "PASS",
+  "releaseCommit": "b74628b00a8ebb0dd271cdb0fc300e6bbc05a71d",
+  "project": "hgoygcviutmynaihcvpd",
+  "method": "Same BEGIN READ ONLY aggregate SHA-256 query before/after; no raw table records returned",
+  "baselineAt": "2026-11-02T19:06:33.639169+01:00",
+  "afterAt": "2026-11-02T19:58:36.044016+01:00",
+  "tables": [
+    {
+      "table": "auth.users",
+      "before": {
+        "rows": 10,
+        "sha256": "01af75f06df6a0f9f509f07850aa3cf1b715a1d817e5e0ab60bd677da732210d"
+      },
+      "after": {
+        "rows": 10,
+        "sha256": "01af75f06df6a0f9f509f07850aa3cf1b715a1d817e5e0ab60bd677da732210d"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "auth.identities",
+      "before": {
+        "rows": 10,
+        "sha256": "b46c3d5008755b2457dbb4c38d992b20ff01db2e4601d5b6c9e3c88446f7f062"
+      },
+      "after": {
+        "rows": 10,
+        "sha256": "b46c3d5008755b2457dbb4c38d992b20ff01db2e4601d5b6c9e3c88446f7f062"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "public.profiles",
+      "before": {
+        "rows": 6,
+        "sha256": "bdbdb25afb3369127c0596696bf2641810fa27af7c0b9733cdad70d80bf1f2d6"
+      },
+      "after": {
+        "rows": 6,
+        "sha256": "bdbdb25afb3369127c0596696bf2641810fa27af7c0b9733cdad70d80bf1f2d6"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "storage.buckets",
+      "before": {
+        "rows": 1,
+        "sha256": "d76c9d3cbcd12d82a26ce93c1f4375dc24fee669c688238fa1c51b07e21f5f9c"
+      },
+      "after": {
+        "rows": 1,
+        "sha256": "d76c9d3cbcd12d82a26ce93c1f4375dc24fee669c688238fa1c51b07e21f5f9c"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "storage.objects",
+      "before": {
+        "rows": 7,
+        "sha256": "9c22351d7400991fdf67f7a3caf0365771fe9e2d5e143f8f3ec0701732a7bc71"
+      },
+      "after": {
+        "rows": 7,
+        "sha256": "9c22351d7400991fdf67f7a3caf0365771fe9e2d5e143f8f3ec0701732a7bc71"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.config",
+      "before": {
+        "rows": 1,
+        "sha256": "8a385df70140cce91d8d6361650a30b481af14e6eb2adbf9fad1e6b2bc2d9dd9"
+      },
+      "after": {
+        "rows": 1,
+        "sha256": "8a385df70140cce91d8d6361650a30b481af14e6eb2adbf9fad1e6b2bc2d9dd9"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.events",
+      "before": {
+        "rows": 24,
+        "sha256": "b95c69c933c4146aff38922948792e39a42a6babf98fd61f209cb9f6b626505c"
+      },
+      "after": {
+        "rows": 24,
+        "sha256": "b95c69c933c4146aff38922948792e39a42a6babf98fd61f209cb9f6b626505c"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.requests",
+      "before": {
+        "rows": 39,
+        "sha256": "3f1461a20a6c5930491b7b440c1ce9197f1824ea6d8b3bf800a4f47aadd24011"
+      },
+      "after": {
+        "rows": 39,
+        "sha256": "3f1461a20a6c5930491b7b440c1ce9197f1824ea6d8b3bf800a4f47aadd24011"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.audit",
+      "before": {
+        "rows": 136,
+        "sha256": "4d12af8ff559246c9875901ca58ddfa83a754516af3ed8e53c635002478d34c0"
+      },
+      "after": {
+        "rows": 136,
+        "sha256": "4d12af8ff559246c9875901ca58ddfa83a754516af3ed8e53c635002478d34c0"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.files",
+      "before": {
+        "rows": 7,
+        "sha256": "d0bcef917e6f3a41ab1ec98ba25eab00939141475b1acd01399aec0a4be0cf27"
+      },
+      "after": {
+        "rows": 7,
+        "sha256": "d0bcef917e6f3a41ab1ec98ba25eab00939141475b1acd01399aec0a4be0cf27"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.lines",
+      "before": {
+        "rows": 71,
+        "sha256": "edf69650fbf4984b00005b496c244020355f02dd529a57d4920880d42a39c220"
+      },
+      "after": {
+        "rows": 71,
+        "sha256": "edf69650fbf4984b00005b496c244020355f02dd529a57d4920880d42a39c220"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.deliveries",
+      "before": {
+        "rows": 7,
+        "sha256": "64fb70c869475733fccc4bfa1e8e6e1e867abc38c38546d3120458217c5cfb91"
+      },
+      "after": {
+        "rows": 7,
+        "sha256": "64fb70c869475733fccc4bfa1e8e6e1e867abc38c38546d3120458217c5cfb91"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "public.client_invites",
+      "before": {
+        "rows": 12,
+        "sha256": "f17d3a7926d2ef26bbedc3337dd1ea6f4b5cdb3b0e19f1b00f0967830d0131c1"
+      },
+      "after": {
+        "rows": 12,
+        "sha256": "f17d3a7926d2ef26bbedc3337dd1ea6f4b5cdb3b0e19f1b00f0967830d0131c1"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.records",
+      "before": {
+        "rows": 38,
+        "sha256": "ae90086e55e93801a46634ab3630133c1f5599a3dbb0e6467519fc9367b508e9"
+      },
+      "after": {
+        "rows": 38,
+        "sha256": "ae90086e55e93801a46634ab3630133c1f5599a3dbb0e6467519fc9367b508e9"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.preferences",
+      "before": {
+        "rows": 1,
+        "sha256": "54b5b169d11d190ef1ddc4b67512b704dbf1597c950ff26a66848003a3d525d2"
+      },
+      "after": {
+        "rows": 1,
+        "sha256": "54b5b169d11d190ef1ddc4b67512b704dbf1597c950ff26a66848003a3d525d2"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.accounts",
+      "before": {
+        "rows": 23,
+        "sha256": "f0a23284dfb665fc947c4863f3ea01983bd7499b6ce6c17b06d7871dee02403e"
+      },
+      "after": {
+        "rows": 23,
+        "sha256": "f0a23284dfb665fc947c4863f3ea01983bd7499b6ce6c17b06d7871dee02403e"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.journals",
+      "before": {
+        "rows": 31,
+        "sha256": "deb263ec1354c909fecb94f5d2c7745c4c525f28ea077c3cbe9143e1fc2f6d73"
+      },
+      "after": {
+        "rows": 31,
+        "sha256": "deb263ec1354c909fecb94f5d2c7745c4c525f28ea077c3cbe9143e1fc2f6d73"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.receipts",
+      "before": {
+        "rows": 132,
+        "sha256": "a8e0138feb66aa6c86c1f9a34ca18c92f58b0af2e95c23d3c2a3e8752f8a6e24"
+      },
+      "after": {
+        "rows": 132,
+        "sha256": "a8e0138feb66aa6c86c1f9a34ca18c92f58b0af2e95c23d3c2a3e8752f8a6e24"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "public.coach_workspaces",
+      "before": {
+        "rows": 1,
+        "sha256": "54aee8dc8479d9413500ddd05291c582c639d7419de30d62423230f004aa0620"
+      },
+      "after": {
+        "rows": 1,
+        "sha256": "54aee8dc8479d9413500ddd05291c582c639d7419de30d62423230f004aa0620"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.subscriptions",
+      "before": {
+        "rows": 3,
+        "sha256": "2f6a4c892727cc50d4b735cffc0653f7561a74d6d6593464b63fc67237f6afba"
+      },
+      "after": {
+        "rows": 3,
+        "sha256": "2f6a4c892727cc50d4b735cffc0653f7561a74d6d6593464b63fc67237f6afba"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_private.write_receipts",
+      "before": {
+        "rows": 1499,
+        "sha256": "7236f751c1085326656e3dd794084b3ea59632275ce4ec1318b4e3a3e11cb1f4"
+      },
+      "after": {
+        "rows": 1499,
+        "sha256": "7236f751c1085326656e3dd794084b3ea59632275ce4ec1318b4e3a3e11cb1f4"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.organizations",
+      "before": {
+        "rows": 1,
+        "sha256": "5df8dc5c8229201445c6ade6ea5841b91c56442d32e4d1db3d985a9401ad2244"
+      },
+      "after": {
+        "rows": 1,
+        "sha256": "5df8dc5c8229201445c6ade6ea5841b91c56442d32e4d1db3d985a9401ad2244"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_private.photo_annotations",
+      "before": {
+        "rows": 1,
+        "sha256": "5332daa863227ee9967bd590d95319919eb8ec2d90b9f6c8b029e9b5eea2598a"
+      },
+      "after": {
+        "rows": 1,
+        "sha256": "5332daa863227ee9967bd590d95319919eb8ec2d90b9f6c8b029e9b5eea2598a"
+      },
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.agreement_versions",
+      "before": {
+        "rows": 4,
+        "sha256": "66a1c94c9829b9111d9a80c24d9058c9fabe3b23fdc9487987c6e95e5546ffc3"
+      },
+      "after": {
+        "rows": 4,
+        "sha256": "66a1c94c9829b9111d9a80c24d9058c9fabe3b23fdc9487987c6e95e5546ffc3"
+      },
+      "unchanged": true
+    }
+  ],
+  "migrationsBefore": [
+    {
+      "version": "20260909103959",
+      "name": "appfmz_storage_security"
+    },
+    {
+      "version": "20260909151429",
+      "name": "appfmz_conflict_response"
+    },
+    {
+      "version": "20260909172334",
+      "name": "appfmz_autosave_annotations"
+    },
+    {
+      "version": "20260910170351",
+      "name": "appfmz_owner_accounting"
+    },
+    {
+      "version": "20260910171555",
+      "name": "appfmz_accounting_closed_bank_period"
+    },
+    {
+      "version": "20260911094831",
+      "name": "appfmz_owner_hotfix"
+    },
+    {
+      "version": "20260924133305",
+      "name": "appfmz_billing_periods"
+    },
+    {
+      "version": "20261015102946",
+      "name": "appfmz_agenda_reminders"
+    },
+    {
+      "version": "20261015130925",
+      "name": "appfmz_invoice_payments"
+    },
+    {
+      "version": "20261015152613",
+      "name": "appfmz_bank_repair"
+    },
+    {
+      "version": "20261015154448",
+      "name": "appfmz_unknown_opening_repair"
+    },
+    {
+      "version": "20261018073658",
+      "name": "appfmz_vat_settlements"
+    }
+  ],
+  "migrationsAfter": [
+    {
+      "version": "20260909103959",
+      "name": "appfmz_storage_security"
+    },
+    {
+      "version": "20260909151429",
+      "name": "appfmz_conflict_response"
+    },
+    {
+      "version": "20260909172334",
+      "name": "appfmz_autosave_annotations"
+    },
+    {
+      "version": "20260910170351",
+      "name": "appfmz_owner_accounting"
+    },
+    {
+      "version": "20260910171555",
+      "name": "appfmz_accounting_closed_bank_period"
+    },
+    {
+      "version": "20260911094831",
+      "name": "appfmz_owner_hotfix"
+    },
+    {
+      "version": "20260924133305",
+      "name": "appfmz_billing_periods"
+    },
+    {
+      "version": "20261015102946",
+      "name": "appfmz_agenda_reminders"
+    },
+    {
+      "version": "20261015130925",
+      "name": "appfmz_invoice_payments"
+    },
+    {
+      "version": "20261015152613",
+      "name": "appfmz_bank_repair"
+    },
+    {
+      "version": "20261015154448",
+      "name": "appfmz_unknown_opening_repair"
+    },
+    {
+      "version": "20261018073658",
+      "name": "appfmz_vat_settlements"
+    }
+  ],
+  "migrationsUnchanged": true,
+  "productionWritesPerformed": false,
+  "limits": [
+    "Covers the 24 enumerated tables and migration history in this time window; not all possible Postgres objects.",
+    "Does not resolve missing old workspace-field snapshot from the earlier release; historical limit remains documented.",
+    "No raw customer, invoice, Auth or Storage records exported."
+  ]
+}

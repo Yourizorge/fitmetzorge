@@ -1,0 +1,576 @@
+{
+  "status": "PASS",
+  "baseCommit": "8f19bbe4a1f3243534f186283764625c3d3997d0",
+  "runtimeReleaseCommit": "b74628b00a8ebb0dd271cdb0fc300e6bbc05a71d",
+  "sourceCommit": "944827ae64d664703b81764d24a82e5bef678afc",
+  "changedFileCount": 140,
+  "files": [
+    {
+      "status": "A",
+      "file": "docs/APPFMZ_OWNER_LAPTOP_FIX_20261102.md"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-chrome-duo.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-chrome-final.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-chrome.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-edge-duo.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-edge.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-redownload-chrome-duo.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-redownload-chrome-final.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-redownload-chrome.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-redownload-edge-duo.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/agreement-redownload-edge.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/baseline.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/camera-bridge.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/camera-evidence.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/camera-preview.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/chrome-layout-evidence.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/chrome-navigation-evidence.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/cleanup-summary.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/documents-chrome-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/documents-chrome-final.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/documents-chrome.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/documents-edge-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/documents-edge.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/download-chrome.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/download-msedge.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/duo-agreement.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/duo-database.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/duo-page-1.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/duo-page-2.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/duo-page-3.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/duo-page-4.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/edge-layout-evidence.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/edge-navigation-evidence.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/enrollment-chrome-before-guard.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/enrollment-chrome-duo.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/enrollment-chrome-final.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/enrollment-chrome.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/enrollment-edge-duo.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/enrollment-edge.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/final-package.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/guard-delta.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/historical-readonly-investigation.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/host-security-evidence.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/host-security-restored-synthetic-draft.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/host-security-saved-synthetic-draft.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/local-regressions.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/manifest-before-cleanup-chrome-duo.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/manifest-before-cleanup-chrome-final.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/manifest-before-cleanup-chrome.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/manifest-before-cleanup-edge-duo.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/manifest-before-cleanup-edge.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/media-chrome.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/media-msedge.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/package-selected-chrome-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/package-selected-chrome-final.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/package-selected-chrome.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/package-selected-edge.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/packages-chrome-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/packages-chrome-final.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/packages-chrome.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/packages-edge-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/packages-edge.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/partner-chrome-duo.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/partner-edge-duo.pdf"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-bridge-chrome.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-bridge-msedge.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-open-chrome.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-open-msedge.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-preview-chrome-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-preview-chrome-final.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-preview-chrome.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-preview-edge-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/pdf-preview-edge.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/profile-chrome-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/profile-chrome-final.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/profile-chrome.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/profile-edge-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/profile-edge.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/recovery-verification.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/release-assembly-final.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/release-assembly.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/reminder-period-members.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/reminders-agenda.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/reminders-chrome.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/reminders-cleanup-list.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/reminders-edge.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/test-matrix-summary.json"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/vertical-form-chrome-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/vertical-form-chrome-final.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/vertical-form-chrome.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/vertical-form-edge-duo.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/examples/owner-laptop-fix-20261102/vertical-form-edge.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-builder-animation.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-dashboard-1366.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-mobile-animation.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1024.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1366-zoom-100.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1366-zoom-125.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1366-zoom-150.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1366-zoom-200.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1920-zoom-100.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1920-zoom-125.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1920-zoom-150.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-1920-zoom-200.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-390.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-profile-844.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/chrome-training-animation.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-dashboard-1366.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1024.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1366-zoom-100.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1366-zoom-125.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1366-zoom-150.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1366-zoom-200.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1920-zoom-100.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1920-zoom-125.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1920-zoom-150.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-1920-zoom-200.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-390.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/edge-profile-844.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/laptop-dashboard.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/laptop-member-training.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/laptop-schema-builder.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/msedge-builder-animation.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/msedge-mobile-animation.png"
+    },
+    {
+      "status": "A",
+      "file": "docs/images/owner-laptop-fix-20261102/msedge-training-animation.png"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/boot.js"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/database.js"
+    },
+    {
+      "status": "A",
+      "file": "owner-test/documents-host.js"
+    },
+    {
+      "status": "A",
+      "file": "owner-test/duo.js"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/guide.css"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/guide.js"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/host.js"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/manifest.json"
+    },
+    {
+      "status": "A",
+      "file": "owner-test/media.js"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/navigation.css"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/navigation.js"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/runtime.json"
+    },
+    {
+      "status": "M",
+      "file": "owner-test/simulation.js"
+    },
+    {
+      "status": "M",
+      "file": "tests/verify-owner-test-recovery.cjs"
+    },
+    {
+      "status": "M",
+      "file": "tests/verify-owner-test-release.cjs"
+    }
+  ],
+  "ordinaryAppRuntimeChanged": false,
+  "unexpected": [],
+  "evidenceGitHashCheck": {
+    "files": 32,
+    "pass": true,
+    "mismatches": []
+  }
+}

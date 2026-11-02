@@ -1,0 +1,82 @@
+{
+  "checkedAt": "2026-11-02T19:03:35.212Z",
+  "finalMainHEAD": "018caab368aff244b1b95c2f70474fe98486790e",
+  "remote": [
+    {
+      "ref": "refs/heads/codex/owner-laptop-test-20261102",
+      "hash": "018caab368aff244b1b95c2f70474fe98486790e"
+    },
+    {
+      "ref": "refs/heads/main",
+      "hash": "018caab368aff244b1b95c2f70474fe98486790e"
+    }
+  ],
+  "remoteMatches": true,
+  "runtimeReleaseCommit": "b74628b00a8ebb0dd271cdb0fc300e6bbc05a71d",
+  "developmentImplementationCommit": "944827ae64d664703b81764d24a82e5bef678afc",
+  "finalDocumentationOnly": true,
+  "documentationChanges": [
+    "docs/APPFMZ_OWNER_LAPTOP_FIX_20261102.md",
+    "docs/examples/owner-laptop-fix-20261102/live-browser-smoke.json",
+    "docs/examples/owner-laptop-fix-20261102/production-after.json",
+    "docs/examples/owner-laptop-fix-20261102/recovery-after.json",
+    "docs/examples/owner-laptop-fix-20261102/release-files.json",
+    "docs/examples/owner-laptop-fix-20261102/release-hosting.json",
+    "docs/examples/owner-laptop-fix-20261102/release-live.json"
+  ],
+  "fullLiveProof": {
+    "file": "release-live.json",
+    "pass": true,
+    "commit": "b74628b00a8ebb0dd271cdb0fc300e6bbc05a71d",
+    "liveFiles": 111,
+    "gitBaselineFiles": 449
+  },
+  "finalPublicSpotChecks": [
+    {
+      "file": "index.html",
+      "status": 200,
+      "expectedSHA256": "098e6df6498a17e2c8e1187b4729811765c193956f1b685ff167b93d83ca3983",
+      "liveSHA256": "098e6df6498a17e2c8e1187b4729811765c193956f1b685ff167b93d83ca3983",
+      "pass": true
+    },
+    {
+      "file": "app.js",
+      "status": 200,
+      "expectedSHA256": "7f06ffaa05943a4ce450143fde84dbafa8bb2ee74b9c882fc5367f8c572063a9",
+      "liveSHA256": "7f06ffaa05943a4ce450143fde84dbafa8bb2ee74b9c882fc5367f8c572063a9",
+      "pass": true
+    },
+    {
+      "file": "owner-test/host.js",
+      "status": 200,
+      "expectedSHA256": "96d1a94c25e3921a5b7a74d26907fcefafc155447d546a2738134ed05968efbd",
+      "liveSHA256": "96d1a94c25e3921a5b7a74d26907fcefafc155447d546a2738134ed05968efbd",
+      "pass": true
+    },
+    {
+      "file": "owner-test/manifest.json",
+      "status": 200,
+      "expectedSHA256": "2465362e0a2763f16e9c9187041dcdf8ff03e2eda29ea8fc5f574cf6b81e5ff2",
+      "liveSHA256": "2465362e0a2763f16e9c9187041dcdf8ff03e2eda29ea8fc5f574cf6b81e5ff2",
+      "pass": true
+    },
+    {
+      "file": "owner-test/documents-host.js",
+      "status": 200,
+      "expectedSHA256": "ca43f33c8554754d901efa541b709ebaf28df7685a09d19ac65fbcd7fda06154",
+      "liveSHA256": "ca43f33c8554754d901efa541b709ebaf28df7685a09d19ac65fbcd7fda06154",
+      "pass": true
+    }
+  ],
+  "finalRuntimeSHA256": "df9df7bc6282bfccd404f3ee1d51e13b553ad7ae1fcd03f7f69349278d47e95e",
+  "scope": "Isolated owner-test only; ordinary app files unchanged; no DB/Edge/Auth/Storage writes",
+  "status": "PASS",
+  "hosting": {
+    "file": "final-hosting.json",
+    "commit": "018caab368aff244b1b95c2f70474fe98486790e",
+    "status": "built",
+    "cname": "appfmz.nl",
+    "https": true,
+    "checkedAt": "2026-11-02T19:03:44.498Z"
+  }
+}
