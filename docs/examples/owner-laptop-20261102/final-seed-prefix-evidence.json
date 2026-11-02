@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-02T14:59:51.424Z",
+  "syntheticOnly": true,
+  "seedSHA256": "c70d4131839aacdafe70ad9dacc997adc7c9ec419676c57641a6a694c5832c31",
+  "manifestSHA256": "3b17d95737af3d0d4f6a1deee885cd3a537de5c87ce6f0fd172687d4dfd60ae9",
+  "deltaAfterIndependentReview": "Only local seed final_invoice function received one asserted FMZ- to TEST-FMZ- literal replacement. No production migration file was changed for this prefix.",
+  "source": "tests/build-owner-test-seed.cjs in prepared commit",
+  "verifiedBy": "Final full Edge UI test: TEST-FMZ-2026-0001 saved/downloaded; e-mail edited; cleanup and fresh run passed",
+  "pdfSHA256": "2448c2449a5f7c941cc8d08bf448d0d1c66dac13883ede77182acbcf50f2c9cf",
+  "productionWrites": 0
+}

@@ -10,3 +10,7 @@ tutorial/media/*.mp4 binary
 tutorial/media/*.jpg binary
 tutorial/media/*.wav binary
 tutorial/media/*.m4a binary
+
+# Exact owner-test integrity bytes.
+owner-test/** -text
+owner-test/*.bin binary

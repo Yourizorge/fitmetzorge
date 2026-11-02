@@ -1,0 +1,84 @@
+{
+  "format": 1,
+  "synthetic": true,
+  "production": false,
+  "generatedAt": "2026-11-02T14:53:15.327Z",
+  "pgliteVersion": "0.5.8",
+  "seedBytes": 5396785,
+  "sha256": "c70d4131839aacdafe70ad9dacc997adc7c9ec419676c57641a6a694c5832c31",
+  "testNumberPrefix": "TEST-FMZ",
+  "termsHash": "34f71a007e5d4d3cac0659dc1345accbad0e7fbac1613459fa954b5c88bc73d8",
+  "sourceMigrationHashes": [
+    {
+      "name": "20260909103959_appfmz_storage_security.sql",
+      "sha256": "e37c72705cecbf074ec15b5145a3585d132445d9ef9b3b764db6c0cd4fcb230c"
+    },
+    {
+      "name": "20260909151429_appfmz_conflict_response.sql",
+      "sha256": "58aa4da9ca88562b139b1f7b4eb968fb93e79793831e7e594839df24459025e4"
+    },
+    {
+      "name": "20260909172334_appfmz_autosave_annotations.sql",
+      "sha256": "d1058c72bd1de82f9f935a7fb8ece16d1d99873146a9235b211b70169d534f1c"
+    },
+    {
+      "name": "20260910170351_appfmz_owner_accounting.sql",
+      "sha256": "fb187e4851de1bf236bd3758243cf751e87199c87fbf4047a695355892c019dd"
+    },
+    {
+      "name": "20260910171555_appfmz_accounting_closed_bank_period.sql",
+      "sha256": "642b9464f0eac86ab59dc2aed054257119d294164b059cc3860345b88dc48263"
+    },
+    {
+      "name": "20260911094831_appfmz_owner_hotfix.sql",
+      "sha256": "2fa25096952ed05374c262d6357b5bfb0931dc8ce15b30b4a110a2f102b79f4f"
+    },
+    {
+      "name": "20260924133305_appfmz_billing_periods.sql",
+      "sha256": "a4678f3edf9c3955a427913f0ab0754ed4677c2ed77a3f977d98ce0585dfaee7"
+    },
+    {
+      "name": "20261015102946_appfmz_agenda_reminders.sql",
+      "sha256": "9e00c8d3ea84cdd4a85683441cf5e4559ab4ef0aefa25b211c739473202cd3c0"
+    },
+    {
+      "name": "20261015130925_appfmz_invoice_payments.sql",
+      "sha256": "56d1fa9523f4b4f747cb1027b8264d51d8ae7acf71fc3701718abf5f6e635baf"
+    },
+    {
+      "name": "20261015152613_appfmz_bank_repair.sql",
+      "sha256": "7b3214d7a4c91876c3e12a09e9270a0b7232a58b753e35eb579cfa1f4bded7bd"
+    },
+    {
+      "name": "20261015154448_appfmz_unknown_opening_repair.sql",
+      "sha256": "7c41127d508dec1edf13119836e182a406813e310f7077e7decc065b33ab46e7"
+    },
+    {
+      "name": "20261018073658_appfmz_vat_settlements.sql",
+      "sha256": "51254833ccb1085661b7c145a370616ff61dda39166b553985fa6159d5a6a53f"
+    },
+    {
+      "name": "20261026154916_appfmz_members.sql",
+      "sha256": "9e93487243838b41b4cd577f0ca53360be1caf6412ec77d3f8de3b6651763e2f"
+    },
+    {
+      "name": "20261026154917_appfmz_billing_planning.sql",
+      "sha256": "57346c47f2810d13905a367cc6eaaa373a87980f0b9992f8cca8834486817cbe"
+    },
+    {
+      "name": "20261026154918_appfmz_communication.sql",
+      "sha256": "757140d5cfd0c760190b361706bd466a2dfaca720f4e318b10a708785ef698c9"
+    }
+  ],
+  "localOverrides": [
+    "Synthetic owner/settings/Noor/Sam and test policy only",
+    "Organizations number_prefix=TEST-FMZ",
+    "One asserted FMZ-OV- prefix replacement in local function copy",
+    "One asserted FMZ- invoice prefix replacement in local function copy"
+  ],
+  "actors": {
+    "trainer": "11111111-1111-4111-8111-111111111111",
+    "a": "22222222-2222-4222-8222-222222222222",
+    "b": "33333333-3333-4333-8333-333333333333"
+  }
+}

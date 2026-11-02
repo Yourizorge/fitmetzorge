@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "files": {
+    "runtime": {
+      "path": "owner-test/runtime.json",
+      "bytes": 7420916,
+      "sha256": "8a4f6bb90dcbbb530d93a4091504500c157eb2d226e3df0092d0796735c74f91"
+    },
+    "boot": {
+      "path": "owner-test/boot.js",
+      "bytes": 6980,
+      "sha256": "ffc79c69e776ed10a77e0cf4a2a569bdb42eec69ecfb477e6bc0168baaf0581a"
+    },
+    "pglite": {
+      "path": "owner-test/pglite-browser.js",
+      "bytes": 605608,
+      "sha256": "9b6c2692daeaaea90c859282627a4415e7a9a796e4a544c6cfb56ed82325601d"
+    },
+    "wasm": {
+      "path": "owner-test/pglite.wasm.bin",
+      "bytes": 10088161,
+      "sha256": "356b89f6fcb2ab3a397bec4128327b67b7137ec2a900b13251dade81bcbc0ef0"
+    },
+    "initdb": {
+      "path": "owner-test/initdb.wasm.bin",
+      "bytes": 395242,
+      "sha256": "4c8988dca3b2f0bbfd23a0714023e4822a2909ead01804f37acffd9ff3ca9f8a"
+    },
+    "fs": {
+      "path": "owner-test/pglite.data.bin",
+      "bytes": 6295316,
+      "sha256": "c574cc331d96e33311470ec57bf58c579d972c111dbd9c0ab54bb42d79ec4c0d"
+    },
+    "seed": {
+      "path": "owner-test/seed.bin",
+      "bytes": 5396785,
+      "sha256": "c70d4131839aacdafe70ad9dacc997adc7c9ec419676c57641a6a694c5832c31"
+    }
+  },
+  "sources": {
+    "sync.js": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+    "vendor/pdf-lib-1.17.1.min.js": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f",
+    "vendor/fflate-0.8.2.js": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf",
+    "accounting-model.js": "e64953b4cfa28f91851f0379f283413a642a5dd30fbbb712d6b811f77abfcaaa",
+    "accounting-reports.js": "a257ff0f0d9fbb00841a2ab03357ec70792a79b54d2bb42a567a1b8a18fe07d7",
+    "invoice-documents.js": "f6eb997e04c45412137c28546d5ca7f8e0bc62e17b05773bde16f4866a5f932e",
+    "invoice-editor.js": "4de0482c49a5e54aa6776cf951d99ecaaa93ade6722cc72e5bc8da6f47400a44",
+    "invoices.js": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+    "tutorial/beginner-content.js": "db64a8b9c1446dec6615d177662aa616c46529e34d95c7d76e83f5a52ba61550",
+    "tutorial/content.js": "dcb9d02f7d671eff4556b240d91d3259d7bacaa4578112792bd3f9627cf7355a",
+    "billing-periods.js": "cfcccea33fbab3b491be1f151231a3dc3ce2bc5e575cf9f67d4deac883fc5ee8",
+    "payments-model.js": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+    "payments-ui.js": "eea5623bd944102265ea6996851b7d4e330a554a04bc4a8254f916cd2da127ff",
+    "bank-repair-ui.js": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+    "finance-model.js": "758a2525cd11a57842f0e8d1b2a4a23e05563a083d95b33bc95ed8983b5b7948",
+    "finance-ui.js": "41c535dd7897c679e926211b5f83adae3e58ee6ec25e55e12f2111a8c52a9d8e",
+    "vat-ui.js": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0",
+    "members-model.js": "6563c3d40da878f38bca2aeb12edf6aa1cbae58fd3dc08d0334f22c59db5249c",
+    "billing-planning-model.js": "7068b231e75943427422e386fafe6708b99b0c0e40811be9380ea6de2172b08d",
+    "billing-planning-ui.js": "1280c908aeba56c8770b61be2b95a7aab2ca1906dc787fb3d0d13971dc63a40b",
+    "communications-model.js": "100383e0e7b69d809991e6bc3a10da11a9b5efac4ac2e4e5dd56758ccc1963c5",
+    "communications-ui.js": "ac9219f42af5f51d61409549e5ee93e121872a2db1a0095b5e780bcf80906bff",
+    "accounting.js": "512685ca7700a6143902025a9450333fe61dd166433ca8166ea607f718e27944",
+    "billing-ui.js": "03cd5af11beba690173432ee49e605abf27e93346cedffa41e4c0ada07743eae",
+    "agenda-model.js": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
+    "agenda.js": "66b7c5eda734968b9b4f2bd30ad54c7a9b1548cf4b232a0ea8ed44007ca2f8d6",
+    "app.js": "d39be74d5d91bd8c12f2b77c92104d4bfeecae7ef30814fda3f34cae5b98b8a0",
+    "members-documents.js": "be2aed1a3f19c0f96728785c4eb8a8787f8e5bf2687ac708699384a8c435e4a7",
+    "members-ui.js": "d7fb4b905c209147c5821b309248b7238d3b57843f166e629f5bac4718f00e80",
+    "autosave.js": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+    "photos.js": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+    "presentation.js": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
+    "styles.css": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+    "tutorial/host.css": "4acf6afe632ad14eeaec37e2994955db1962b852c5fb347966ae5c038712ff37",
+    "layout.css": "a15f3013cb7e605ecb8d35b6b482745161acf38eadac4d88127b74cf12b216b0",
+    "pwa.css": "572f13f67af1a5f62c645fc1398ca3cb5d8a1ed830ade0f0b36466d2748dfebb",
+    "agenda.css": "155398b53ee0d5f1217ef659fbd5a89dabf0c738ece8b3e8aa1ed0bb2e3b5e42",
+    "members.css": "b0c4640d9ac069ce99c062c505b2be05b2fe105c55ef0d9482cd045a5ab50bea",
+    "billing-planning.css": "1fc9c82401ffff83c182de3c912594e45dc1a0c2032c85bff681d60021eac305",
+    "communications.css": "b6c5715994b6599e75486adcf140d13c91de5e15a0ac95344530aaa50004bf9c",
+    "payments.css": "666e5f8f33011a5278b8bd316c33a2e4ace2ac9415d98a7bbc9d50bbb8978c86",
+    "admin-design.css": "0bc2c76618002462238ee20a87a4e8455c8ce1e75d22c5b5abe02e06eae0f61f",
+    "finance.css": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+    "owner-test/database.js": "26d201f1a78dbb8bd916d66789c94bc37505b8d3b5e0582f5962d299bbb1b671",
+    "owner-test/guide.js": "fc1b9a8854f129688bd666b68d3ef0eec352ec77813bd488f431599fe85d5e17",
+    "owner-test/simulation.js": "16b694a59c661e548d8dee71fa64cd9fcb87cad73e8411daac5d3e3c4fde4709"
+  },
+  "flags": {
+    "ownerTest": true,
+    "memberSearch": false,
+    "enrollment": false,
+    "signature": false,
+    "memberProfile": false,
+    "billingPlanning": false,
+    "emailSending": false,
+    "billingPush": false,
+    "automaticInvoiceSending": false
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "at": "2026-11-02T13:58:13.621Z",
+  "method": "read-only connected GitHub/Supabase APIs",
+  "repository": "Yourizorge/fitmetzorge",
+  "project": "hgoygcviutmynaihcvpd",
+  "remoteMain": {
+    "name": "main",
+    "sha": "309cb0db3569f14ac54442c8daec678020ba149a",
+    "protected": false
+  },
+  "recentWorkflowRuns": [
+    {
+      "id": 39115030390,
+      "name": "pages build and deployment",
+      "head_sha": "309cb0db3569f14ac54442c8daec678020ba149a",
+      "head_branch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T09:21:48Z",
+      "updated_at": "2026-10-18T09:22:38Z",
+      "html_url": "https://github.com/Yourizorge/fitmetzorge/actions/runs/39115030390",
+      "path": "dynamic/pages/pages-build-deployment"
+    },
+    {
+      "id": 39114461197,
+      "name": "pages build and deployment",
+      "head_sha": "4c8cb8a8d2f46bdaca9c1d667eef33cbbb8c04c6",
+      "head_branch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T09:13:04Z",
+      "updated_at": "2026-10-18T09:14:00Z",
+      "html_url": "https://github.com/Yourizorge/fitmetzorge/actions/runs/39114461197",
+      "path": "dynamic/pages/pages-build-deployment"
+    },
+    {
+      "id": 38776387995,
+      "name": "pages build and deployment",
+      "head_sha": "368cdb37f5e21bc09f0d99a09d51c7fd07c61e4b",
+      "head_branch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-15T17:19:35Z",
+      "updated_at": "2026-10-15T17:20:24Z",
+      "html_url": "https://github.com/Yourizorge/fitmetzorge/actions/runs/38776387995",
+      "path": "dynamic/pages/pages-build-deployment"
+    }
+  ],
+  "migrations": [
+    {
+      "version": "20260909103959",
+      "name": "appfmz_storage_security"
+    },
+    {
+      "version": "20260909151429",
+      "name": "appfmz_conflict_response"
+    },
+    {
+      "version": "20260909172334",
+      "name": "appfmz_autosave_annotations"
+    },
+    {
+      "version": "20260910170351",
+      "name": "appfmz_owner_accounting"
+    },
+    {
+      "version": "20260910171555",
+      "name": "appfmz_accounting_closed_bank_period"
+    },
+    {
+      "version": "20260911094831",
+      "name": "appfmz_owner_hotfix"
+    },
+    {
+      "version": "20260924133305",
+      "name": "appfmz_billing_periods"
+    },
+    {
+      "version": "20261015102946",
+      "name": "appfmz_agenda_reminders"
+    },
+    {
+      "version": "20261015130925",
+      "name": "appfmz_invoice_payments"
+    },
+    {
+      "version": "20261015152613",
+      "name": "appfmz_bank_repair"
+    },
+    {
+      "version": "20261015154448",
+      "name": "appfmz_unknown_opening_repair"
+    },
+    {
+      "version": "20261018073658",
+      "name": "appfmz_vat_settlements"
+    }
+  ]
+}
