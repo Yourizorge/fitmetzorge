@@ -1,0 +1,303 @@
+{
+  "browser": "edge",
+  "synthetic": true,
+  "productionTouched": false,
+  "physicalOwnerAcceptance": false,
+  "clock": "2026-12-01T10:00:00Z (synthetic browser clock)",
+  "checks": [
+    "Actual day/week/month/list calendar; four 28-day periods, retained monthly cadence and overdue labels",
+    "Per-member action opens existing invoice chooser with exact member+period; no concept created",
+    "Inactive member searchable/filterable; past overdue task retained, future tasks paused only after three explicit choices",
+    "Status, audit and independent completion survive reload/reopen; entire finance snapshot including open invoice unchanged"
+  ],
+  "runtimeSHA256": "5b99c1b92a2994d16351a1db2db861825ca2c3257385b938f94eaf51ac8c8058",
+  "openInvoiceFixture": {
+    "id": "5977281a-8ccd-4d34-aad4-62af8577cbc5",
+    "number": "TEST-FMZ-2026-0001"
+  },
+  "cleanupManifest": {
+    "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+    "revision": 24,
+    "synthetic": true,
+    "members": [
+      {
+        "id": "TEST-NOOR",
+        "label": "Noor Voorbeeld",
+        "member_number": 1,
+        "status": "active"
+      },
+      {
+        "id": "TEST-SAM",
+        "label": "Sam Test",
+        "member_number": 2,
+        "status": "active"
+      }
+    ],
+    "contracts": [],
+    "documents": [],
+    "invoices": [
+      {
+        "id": "5977281a-8ccd-4d34-aad4-62af8577cbc5",
+        "number": "TEST-FMZ-2026-0001",
+        "status": "posted",
+        "label": "Bewust aangemaakte synthetische openstaande factuur"
+      }
+    ],
+    "messages": [],
+    "reminders": [],
+    "blobs": [],
+    "sessions": [
+      {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "user_id": "11111111-1111-4111-8111-111111111111"
+      },
+      {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "user_id": "22222222-2222-4222-8222-222222222222"
+      },
+      {
+        "id": "33333333-3333-4333-8333-333333333333",
+        "user_id": "33333333-3333-4333-8333-333333333333"
+      },
+      {
+        "id": "44444444-4444-4444-8444-444444444444",
+        "user_id": "44444444-4444-4444-8444-444444444444"
+      }
+    ],
+    "drafts": [],
+    "preliminary": [],
+    "files": [],
+    "communicationDocuments": [],
+    "simulationRecords": [],
+    "calendarViews": [
+      {
+        "id": "calendar-views",
+        "data": {
+          "agenda": {
+            "view": "month",
+            "date": "2026-11-22"
+          }
+        }
+      }
+    ],
+    "memberStatusEvents": [
+      {
+        "id": "35302f1f-4c54-4f91-ac6f-1c4639bbe2ae",
+        "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+        "clientId": "TEST-NOOR",
+        "version": 1,
+        "oldStatus": "active",
+        "newStatus": "inactive",
+        "effectiveDate": "2026-12-01",
+        "operationalFrom": "2026-12-01",
+        "at": "2026-12-01T10:00:00.000Z",
+        "actorId": "11111111-1111-4111-8111-111111111111",
+        "reason": "Fictieve pauze",
+        "note": "",
+        "effects": {
+          "coaching": "pause",
+          "billing": "pause",
+          "reminders": "pause"
+        }
+      },
+      {
+        "id": "d7520cb7-20ea-43f7-85fc-070dde481f48",
+        "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+        "clientId": "TEST-NOOR",
+        "version": 2,
+        "oldStatus": "inactive",
+        "newStatus": "active",
+        "effectiveDate": "2026-12-01",
+        "operationalFrom": "2026-12-01",
+        "at": "2026-12-01T10:00:00.000Z",
+        "actorId": "11111111-1111-4111-8111-111111111111",
+        "reason": "Fictieve hervatting",
+        "note": "",
+        "effects": {
+          "coaching": "resume",
+          "billing": "resume",
+          "reminders": "resume"
+        }
+      }
+    ],
+    "statusReceipts": [
+      {
+        "id": "38e1f497-cac8-48a7-a668-ada54629ad68",
+        "signature": "{\"runId\":\"TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29\",\"payload\":{\"clientId\":\"TEST-NOOR\",\"status\":\"inactive\",\"effectiveDate\":\"2026-12-01\",\"expectedVersion\":0,\"reason\":\"Fictieve pauze\",\"note\":\"\",\"effects\":{\"coaching\":\"pause\",\"billing\":\"pause\",\"reminders\":\"pause\"},\"confirmed\":true}}",
+        "result": {
+          "event": {
+            "id": "35302f1f-4c54-4f91-ac6f-1c4639bbe2ae",
+            "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+            "clientId": "TEST-NOOR",
+            "version": 1,
+            "oldStatus": "active",
+            "newStatus": "inactive",
+            "effectiveDate": "2026-12-01",
+            "operationalFrom": "2026-12-01",
+            "at": "2026-12-01T10:00:00.000Z",
+            "actorId": "11111111-1111-4111-8111-111111111111",
+            "reason": "Fictieve pauze",
+            "note": "",
+            "effects": {
+              "coaching": "pause",
+              "billing": "pause",
+              "reminders": "pause"
+            }
+          },
+          "member": {
+            "client_id": "TEST-NOOR",
+            "name": "Noor Voorbeeld",
+            "member_number": 1,
+            "status": "inactive",
+            "coaching": false,
+            "billing": false,
+            "reminders": false,
+            "version": 1,
+            "scheduled": [],
+            "history": [
+              {
+                "id": "35302f1f-4c54-4f91-ac6f-1c4639bbe2ae",
+                "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+                "clientId": "TEST-NOOR",
+                "version": 1,
+                "oldStatus": "active",
+                "newStatus": "inactive",
+                "effectiveDate": "2026-12-01",
+                "operationalFrom": "2026-12-01",
+                "at": "2026-12-01T10:00:00.000Z",
+                "actorId": "11111111-1111-4111-8111-111111111111",
+                "reason": "Fictieve pauze",
+                "note": "",
+                "effects": {
+                  "coaching": "pause",
+                  "billing": "pause",
+                  "reminders": "pause"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "da0481b6-bce1-4462-942e-ce14714bebd4",
+        "signature": "{\"runId\":\"TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29\",\"payload\":{\"clientId\":\"TEST-NOOR\",\"status\":\"active\",\"effectiveDate\":\"2026-12-01\",\"expectedVersion\":1,\"reason\":\"Fictieve hervatting\",\"note\":\"\",\"effects\":{\"coaching\":\"resume\",\"billing\":\"resume\",\"reminders\":\"resume\"},\"confirmed\":true}}",
+        "result": {
+          "event": {
+            "id": "d7520cb7-20ea-43f7-85fc-070dde481f48",
+            "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+            "clientId": "TEST-NOOR",
+            "version": 2,
+            "oldStatus": "inactive",
+            "newStatus": "active",
+            "effectiveDate": "2026-12-01",
+            "operationalFrom": "2026-12-01",
+            "at": "2026-12-01T10:00:00.000Z",
+            "actorId": "11111111-1111-4111-8111-111111111111",
+            "reason": "Fictieve hervatting",
+            "note": "",
+            "effects": {
+              "coaching": "resume",
+              "billing": "resume",
+              "reminders": "resume"
+            }
+          },
+          "member": {
+            "client_id": "TEST-NOOR",
+            "name": "Noor Voorbeeld",
+            "member_number": 1,
+            "status": "active",
+            "coaching": true,
+            "billing": true,
+            "reminders": true,
+            "version": 2,
+            "scheduled": [],
+            "history": [
+              {
+                "id": "35302f1f-4c54-4f91-ac6f-1c4639bbe2ae",
+                "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+                "clientId": "TEST-NOOR",
+                "version": 1,
+                "oldStatus": "active",
+                "newStatus": "inactive",
+                "effectiveDate": "2026-12-01",
+                "operationalFrom": "2026-12-01",
+                "at": "2026-12-01T10:00:00.000Z",
+                "actorId": "11111111-1111-4111-8111-111111111111",
+                "reason": "Fictieve pauze",
+                "note": "",
+                "effects": {
+                  "coaching": "pause",
+                  "billing": "pause",
+                  "reminders": "pause"
+                }
+              },
+              {
+                "id": "d7520cb7-20ea-43f7-85fc-070dde481f48",
+                "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+                "clientId": "TEST-NOOR",
+                "version": 2,
+                "oldStatus": "inactive",
+                "newStatus": "active",
+                "effectiveDate": "2026-12-01",
+                "operationalFrom": "2026-12-01",
+                "at": "2026-12-01T10:00:00.000Z",
+                "actorId": "11111111-1111-4111-8111-111111111111",
+                "reason": "Fictieve hervatting",
+                "note": "",
+                "effects": {
+                  "coaching": "resume",
+                  "billing": "resume",
+                  "reminders": "resume"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "calendarCompletions": [
+      {
+        "date": "2026-11-22",
+        "kind": "billing_prepare",
+        "time": "09:00",
+        "timeZone": "Europe/Amsterdam",
+        "text": "Over één week facturen maken",
+        "items": [
+          {
+            "agreementId": "28a59ccc-c76a-4aa6-8d98-0066574b3d0c",
+            "clientId": "TEST-NOOR",
+            "clientName": "Noor Voorbeeld",
+            "participants": [
+              {
+                "clientId": "TEST-NOOR",
+                "name": "Noor Voorbeeld",
+                "memberNumber": 1,
+                "primary": true
+              }
+            ],
+            "duo": false,
+            "amountCents": 20000,
+            "cycle": "four_weeks",
+            "packageLabel": "Personal training Basis",
+            "agreementVersion": 1,
+            "start": "2026-11-02",
+            "end": "2026-11-29",
+            "invoiceDate": "2026-11-29",
+            "prepareDate": "2026-11-22",
+            "timeZone": "Europe/Amsterdam"
+          }
+        ],
+        "id": "calendar|TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29|2026-11-22|billing_prepare|28a59ccc-c76a-4aa6-8d98-0066574b3d0c:2026-11-02",
+        "runId": "TEST-2f0cceae-718c-4d73-b435-076ff6c5aa29",
+        "status": "done",
+        "completedAt": "2026-12-01T10:00:00.000Z",
+        "totalCents": 20000
+      }
+    ],
+    "schemaDrafts": [],
+    "hash": "9b0ec2340c7dce6fd215d561c401f4910d5f5f13c9df18d0f96c228cf364ae28"
+  },
+  "cleanupConfirmed": true,
+  "status": "PASS",
+  "errors": []
+}

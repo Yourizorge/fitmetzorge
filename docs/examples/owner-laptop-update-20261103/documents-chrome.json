@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "browser": "chrome",
+  "version": "156.0.8078.80",
+  "runtimeSHA256": "ee78c3df7fe247894a37c4cfd34504893088be5f0661ebeadd91c7e7250fe0a0",
+  "agreementSHA256": "c0a73063e5c367e7ee0c3581b74ea9921c5ce2e36b3db7aa612da3d4f54d3d64",
+  "pdfBytes": 391612,
+  "syntheticOnly": true,
+  "productionTouched": false,
+  "physicalOwnerAcceptance": false,
+  "checks": [
+    "metadata and stable filename",
+    "actual stored PDF preview and new tab",
+    "blocked popup then explicit retry",
+    "native download MIME and identical bytes",
+    "missing/wrong MIME/corrupt transport response blocked and retry recovers stored original",
+    "profile edit and inactive status retain exact bytes",
+    "reload and expired trainer session/relogin retain PDF",
+    "other member profile and storage denied by local Postgres",
+    "repeated finalized request and document operations leave one agreement and one PDF",
+    "exact synthetic inventory cleanup"
+  ],
+  "externalOrigins": []
+}

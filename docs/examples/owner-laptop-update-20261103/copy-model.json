@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "uniqueTests": 11,
+  "checks": [
+    "actual training renderer no longer creates empty result writes for a copied schema; real log entry remains writable",
+    "strict structural allowlist strips source identifiers, weights, private data and completed results",
+    "real content snapshots expose independent versions, never invent legacy history",
+    "same member and inaccessible member are blocked; empty source is clear",
+    "copy confirmation creates only an independent concept; final save appends once with audit",
+    "double confirm and double finalize preserve one identity",
+    "lost ACK retains frozen operation; restore and retry cannot duplicate or silently change saved content",
+    "signout, member account and paused coaching block copying and finalization",
+    "invalid and incomplete input never produces a definitive schema",
+    "separate editable concepts survive switching and recreation; definitive version cannot be overwritten",
+    "retry after unconfirmed checkpoint preserves the already saved identity"
+  ],
+  "completedAt": "2026-11-03T11:32:37.644490+00:00",
+  "sha256": {
+    "owner-test/schema-copy.js": "92a1e52f4ff8d82f476f978b2573f03060f05cbf06b3960683d59dfa65fb3a81",
+    "owner-test/navigation.js": "c55fb7b8d46d2ff62108073e35b3702ca0b384b912bf789aee31b75242bdb316",
+    "tests/owner-test-schema-copy.test.cjs": "39ea06a19327003bf6004cc69898d584cb0cc171f55d56eaed9db65437493de0",
+    "tests/owner-test-copy-read.test.cjs": "043500b925193ae625f1b0518bf5f0c5380767cc4b31b7916740ddc2a816ab1c"
+  },
+  "scope": "Isolated model and actual renderTraining causal regression; not physical device or production test",
+  "normalizerFixture": "Actual existing normalizeState training block separately verified: exact empty result defaults; all original schema fields retained."
+}

@@ -1,0 +1,209 @@
+{
+  "at": "2026-11-03T11:57:54.002Z",
+  "pass": true,
+  "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "uniqueLocalTests": 23,
+  "localGroups": {
+    "existingDocumentAndImage": 4,
+    "storedDocuments": 3,
+    "branding": 2,
+    "copyAndActualRender": 11,
+    "statusCalendar": 3
+  },
+  "browserSuites": 12,
+  "nativeLayoutCases": 22,
+  "browser": [
+    {
+      "file": "documents-msedge.json",
+      "sha256": "772023a5fbc2b0fe6da22c09071cffccb3ca69bfba3ec33cbf195189f1a13b9a",
+      "runtimeSHA256": "ee78c3df7fe247894a37c4cfd34504893088be5f0661ebeadd91c7e7250fe0a0",
+      "browser": "155.0.4283.62",
+      "pass": true,
+      "checks": [
+        "metadata and stable filename",
+        "actual stored PDF preview and new tab",
+        "blocked popup then explicit retry",
+        "native download MIME and identical bytes",
+        "missing/wrong MIME/corrupt transport response blocked and retry recovers stored original",
+        "profile edit and inactive status retain exact bytes",
+        "reload and expired trainer session/relogin retain PDF",
+        "other member profile and storage denied by local Postgres",
+        "repeated finalized request and document operations leave one agreement and one PDF",
+        "exact synthetic inventory cleanup"
+      ],
+      "layoutCases": 0
+    },
+    {
+      "file": "documents-chrome.json",
+      "sha256": "b447fcd8c96f9a58700e47f4122439271452d897018a1a2c3d8f8a550dcf6431",
+      "runtimeSHA256": "ee78c3df7fe247894a37c4cfd34504893088be5f0661ebeadd91c7e7250fe0a0",
+      "browser": "156.0.8078.80",
+      "pass": true,
+      "checks": [
+        "metadata and stable filename",
+        "actual stored PDF preview and new tab",
+        "blocked popup then explicit retry",
+        "native download MIME and identical bytes",
+        "missing/wrong MIME/corrupt transport response blocked and retry recovers stored original",
+        "profile edit and inactive status retain exact bytes",
+        "reload and expired trainer session/relogin retain PDF",
+        "other member profile and storage denied by local Postgres",
+        "repeated finalized request and document operations leave one agreement and one PDF",
+        "exact synthetic inventory cleanup"
+      ],
+      "layoutCases": 0
+    },
+    {
+      "file": "edge-schema-copy.json",
+      "sha256": "ec472c8e7a4096a7b7febbb80d49b4d921867752fced31ced3c8c4d575834c35",
+      "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "browser": "155.0.4283.62",
+      "pass": true,
+      "checks": [
+        "source schema built and explicitly assigned via real UI",
+        "real source search and two actual snapshots",
+        "complete preview and same-member rejection",
+        "explicit independent concept; no target write before finalize",
+        "edited draft restored after reload",
+        "source identity/results/private notes excluded; media retained",
+        "lost save response frozen and retried once without duplicate",
+        "source remains unchanged by copy",
+        "rendering saved training creates no phantom result writes",
+        "reauthentication retains copied schema",
+        "audit records source version and actor",
+        "parent read-only and no invoices changed"
+      ],
+      "layoutCases": 0
+    },
+    {
+      "file": "chrome-schema-copy.json",
+      "sha256": "521a1d515323e9a0ba89c3bdb8dda0cc2af3e275002c8d593bac94b4846a0a26",
+      "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "browser": "156.0.8078.80",
+      "pass": true,
+      "checks": [
+        "source schema built and explicitly assigned via real UI",
+        "real source search and two actual snapshots",
+        "complete preview and same-member rejection",
+        "explicit independent concept; no target write before finalize",
+        "edited draft restored after reload",
+        "source identity/results/private notes excluded; media retained",
+        "lost save response frozen and retried once without duplicate",
+        "source remains unchanged by copy",
+        "rendering saved training creates no phantom result writes",
+        "reauthentication retains copied schema",
+        "audit records source version and actor",
+        "parent read-only and no invoices changed"
+      ],
+      "layoutCases": 0
+    },
+    {
+      "file": "edge-layout-evidence.json",
+      "sha256": "089e9fedc0faeb38eab6339161d61a4c2230e54e5469747a12b76c23bca08ff3",
+      "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "browser": "155.0.4283.62",
+      "pass": true,
+      "checks": [
+        "7 local SVGs",
+        "1.7 stroke",
+        "20px box",
+        "centered labels",
+        "active state stable dimensions"
+      ],
+      "layoutCases": 11
+    },
+    {
+      "file": "chrome-layout-evidence.json",
+      "sha256": "892652fb4a07769c824d3316bd1857d2b52f92b88b368830eb9d51eb5fe8c666",
+      "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "browser": "156.0.8078.80",
+      "pass": true,
+      "checks": [
+        "7 local SVGs",
+        "1.7 stroke",
+        "20px box",
+        "centered labels",
+        "active state stable dimensions"
+      ],
+      "layoutCases": 11
+    },
+    {
+      "file": "status-calendar-edge.json",
+      "sha256": "8503a61705e072e03d5da7be190d0580f049afe31d9c53d3168266ee7e3c2500",
+      "runtimeSHA256": "5b99c1b92a2994d16351a1db2db861825ca2c3257385b938f94eaf51ac8c8058",
+      "browser": "edge",
+      "pass": true,
+      "checks": [
+        "Actual day/week/month/list calendar; four 28-day periods, retained monthly cadence and overdue labels",
+        "Per-member action opens existing invoice chooser with exact member+period; no concept created",
+        "Inactive member searchable/filterable; past overdue task retained, future tasks paused only after three explicit choices",
+        "Status, audit and independent completion survive reload/reopen; entire finance snapshot including open invoice unchanged"
+      ],
+      "layoutCases": 0
+    },
+    {
+      "file": "status-calendar-chrome.json",
+      "sha256": "cf3c0d959f5148aea4359000a359822748b67628926ff62ff8755b58fd53b228",
+      "runtimeSHA256": "5b99c1b92a2994d16351a1db2db861825ca2c3257385b938f94eaf51ac8c8058",
+      "browser": "chrome",
+      "pass": true,
+      "checks": [
+        "Actual day/week/month/list calendar; four 28-day periods, retained monthly cadence and overdue labels",
+        "Per-member action opens existing invoice chooser with exact member+period; no concept created",
+        "Inactive member searchable/filterable; past overdue task retained, future tasks paused only after three explicit choices",
+        "Status, audit and independent completion survive reload/reopen; entire finance snapshot including open invoice unchanged"
+      ],
+      "layoutCases": 0
+    },
+    {
+      "file": "camera-bridge.json",
+      "sha256": "ed5d9605820fb635b17954bfa20918fc00be50bc358922867f3a54350036664b",
+      "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "browser": "156.0.8078.80",
+      "pass": true,
+      "checks": null,
+      "layoutCases": 0
+    },
+    {
+      "file": "host-security-evidence.json",
+      "sha256": "4dbe85e9fd0434db0e9abb1d181065fbd94476baf5c7c9c1d849aa9be048abc4",
+      "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "browser": "Microsoft Edge, Playwright headless on Windows; no physical device",
+      "pass": true,
+      "checks": [
+        "member denied, including direct launcher call",
+        "verified non-owner trainer denied",
+        "second owner tab blocked by exclusive WebLock",
+        "browser context and process closed/reopened; same IndexedDB run and confirmed draft restored",
+        "sign-out/account change removes test iframe and owner launcher",
+        "host backend received read-only RPCs; synthetic child draft absent from host database"
+      ],
+      "layoutCases": 0
+    },
+    {
+      "file": "media-msedge.json",
+      "sha256": "5e4b6fd3886e7c852cffae5e48b506f9abd9f6498a4353dba2e1cb0266b464f9",
+      "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "browser": "155.0.4283.62",
+      "pass": true,
+      "checks": null,
+      "layoutCases": 0
+    },
+    {
+      "file": "media-chrome.json",
+      "sha256": "8f28fb87e6d16503024d124d33dc73783c577205d69a085f4a1bb3ef40af1dae",
+      "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "browser": "156.0.8078.80",
+      "pass": true,
+      "checks": null,
+      "layoutCases": 0
+    }
+  ],
+  "physicalOwnerAcceptance": false,
+  "physicalPhoneTest": false,
+  "limits": [
+    "Browser tests use local synthetic data and the actual owner-test bundle.",
+    "Earlier document/calendar runs are linked to the final package by exact reproducible inverse patches.",
+    "No production role or customer mutation performed."
+  ]
+}

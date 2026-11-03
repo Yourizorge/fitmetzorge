@@ -1,0 +1,171 @@
+{
+  "status": "PASS",
+  "logos": [
+    {
+      "alt": "Logo op donker oppervlak",
+      "naturalWidth": 960,
+      "naturalHeight": 480,
+      "fit": "contain",
+      "source": "data:image/png;base64,iVBORw0K"
+    },
+    {
+      "alt": "Logo op licht oppervlak",
+      "naturalWidth": 960,
+      "naturalHeight": 480,
+      "fit": "contain",
+      "source": "data:image/png;base64,iVBORw0K"
+    },
+    {
+      "alt": "Appicoon testvoorbeeld",
+      "naturalWidth": 192,
+      "naturalHeight": 192,
+      "fit": "contain",
+      "source": "data:image/png;base64,iVBORw0K"
+    },
+    {
+      "alt": "Favicon testvoorbeeld",
+      "naturalWidth": 32,
+      "naturalHeight": 32,
+      "fit": "contain",
+      "source": "data:image/png;base64,iVBORw0K"
+    }
+  ],
+  "cleanup": {
+    "manifest": {
+      "runId": "TEST-051b52d5-7f2d-4b59-b5b3-caf5779f1cf5",
+      "revision": 0,
+      "synthetic": true,
+      "members": [
+        {
+          "id": "TEST-NOOR",
+          "label": "Noor Voorbeeld",
+          "member_number": 1,
+          "status": "active"
+        },
+        {
+          "id": "TEST-SAM",
+          "label": "Sam Test",
+          "member_number": 2,
+          "status": "active"
+        }
+      ],
+      "contracts": [],
+      "documents": [],
+      "invoices": [],
+      "messages": [],
+      "reminders": [],
+      "blobs": [],
+      "sessions": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "user_id": "11111111-1111-4111-8111-111111111111"
+        },
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "user_id": "22222222-2222-4222-8222-222222222222"
+        },
+        {
+          "id": "33333333-3333-4333-8333-333333333333",
+          "user_id": "33333333-3333-4333-8333-333333333333"
+        },
+        {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "user_id": "44444444-4444-4444-8444-444444444444"
+        }
+      ],
+      "drafts": [],
+      "preliminary": [],
+      "files": [],
+      "communicationDocuments": [],
+      "simulationRecords": [],
+      "calendarViews": [],
+      "memberStatusEvents": [],
+      "statusReceipts": [],
+      "calendarCompletions": [],
+      "schemaDrafts": [],
+      "hash": "1c4e24e18a2d9f99cbcdb4aad022e5fd5150e0537a196aa77edae5d28465aae4"
+    },
+    "result": {
+      "before": {
+        "runId": "TEST-051b52d5-7f2d-4b59-b5b3-caf5779f1cf5",
+        "revision": 0,
+        "synthetic": true,
+        "members": [
+          {
+            "id": "TEST-NOOR",
+            "label": "Noor Voorbeeld",
+            "member_number": 1,
+            "status": "active"
+          },
+          {
+            "id": "TEST-SAM",
+            "label": "Sam Test",
+            "member_number": 2,
+            "status": "active"
+          }
+        ],
+        "contracts": [],
+        "documents": [],
+        "invoices": [],
+        "messages": [],
+        "reminders": [],
+        "blobs": [],
+        "sessions": [
+          {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "user_id": "11111111-1111-4111-8111-111111111111"
+          },
+          {
+            "id": "22222222-2222-4222-8222-222222222222",
+            "user_id": "22222222-2222-4222-8222-222222222222"
+          },
+          {
+            "id": "33333333-3333-4333-8333-333333333333",
+            "user_id": "33333333-3333-4333-8333-333333333333"
+          },
+          {
+            "id": "44444444-4444-4444-8444-444444444444",
+            "user_id": "44444444-4444-4444-8444-444444444444"
+          }
+        ],
+        "drafts": [],
+        "preliminary": [],
+        "files": [],
+        "communicationDocuments": [],
+        "simulationRecords": [],
+        "calendarViews": [],
+        "memberStatusEvents": [],
+        "statusReceipts": [],
+        "calendarCompletions": [],
+        "schemaDrafts": [],
+        "hash": "1c4e24e18a2d9f99cbcdb4aad022e5fd5150e0537a196aa77edae5d28465aae4"
+      },
+      "after": {
+        "runId": "TEST-051b52d5-7f2d-4b59-b5b3-caf5779f1cf5",
+        "members": [],
+        "contracts": [],
+        "documents": [],
+        "invoices": [],
+        "messages": [],
+        "reminders": [],
+        "blobs": [],
+        "sessions": [],
+        "drafts": [],
+        "preliminary": [],
+        "files": [],
+        "communicationDocuments": [],
+        "simulationRecords": [],
+        "schemaDrafts": [],
+        "calendarViews": [],
+        "memberStatusEvents": [],
+        "statusReceipts": [],
+        "calendarCompletions": [],
+        "deleted": true,
+        "verification": "Isolated database instance closed; host checkpoint removal acknowledged. This is not a SQL query after deletion."
+      },
+      "deletedRunId": "TEST-051b52d5-7f2d-4b59-b5b3-caf5779f1cf5"
+    }
+  },
+  "runtimeHash": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "hostSHA256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac"
+}

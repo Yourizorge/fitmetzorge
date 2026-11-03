@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "physicalOwnerTest": false,
+  "checks": [
+    "source schema built and explicitly assigned via real UI",
+    "real source search and two actual snapshots",
+    "complete preview and same-member rejection",
+    "explicit independent concept; no target write before finalize",
+    "edited draft restored after reload",
+    "source identity/results/private notes excluded; media retained",
+    "lost save response frozen and retried once without duplicate",
+    "source remains unchanged by copy",
+    "rendering saved training creates no phantom result writes",
+    "reauthentication retains copied schema",
+    "audit records source version and actor",
+    "parent read-only and no invoices changed"
+  ],
+  "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+  "sourceVersionHash": "15b3ed57924b17585bc65ca3cb339bfffde62a13f4a7153e5f4c150975dc5cc5"
+}

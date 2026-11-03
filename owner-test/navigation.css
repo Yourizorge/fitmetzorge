@@ -9,7 +9,7 @@ body.ot-navigation .ot-main-nav{display:flex!important;flex-direction:column!imp
 body.ot-navigation .ot-main-nav .nav-btn{display:flex!important;align-items:center;justify-content:flex-start!important;gap:7px;min-height:46px;width:100%;padding:10px 8px;text-align:left;font-size:13px;line-height:1.3;white-space:nowrap;border-radius:9px}
 body.ot-navigation .ot-main-nav .nav-btn span{display:inline!important;overflow:visible;white-space:nowrap}
 body.ot-navigation .ot-main-nav i{font-style:normal;width:19px;flex:none;font-size:18px}
-body.ot-navigation .topbar{grid-column:2;grid-row:1;position:sticky!important;top:var(--ot-top)!important;left:auto!important;right:auto!important;display:flex!important;flex-wrap:wrap;gap:10px!important;padding:12px 20px!important;margin:0!important;width:100%;min-width:0;z-index:46;background:var(--bg,#101114);border-radius:0!important}
+body.ot-navigation .topbar{grid-column:2;grid-row:1;position:sticky!important;top:var(--ot-top)!important;left:auto!important;right:auto!important;display:flex!important;flex-wrap:wrap;gap:10px!important;padding:12px 20px!important;margin:0!important;width:100%;min-width:0;z-index:46;background:var(--bg,var(--ot-background));border-radius:0!important}
 body.ot-navigation .topbar>.brand,body.ot-navigation .trainer-top-brand{display:none!important}
 body.ot-navigation .topbar-controls{display:flex!important;flex-wrap:wrap;gap:6px;justify-content:flex-end;order:2;max-width:100%;min-width:0;margin-left:auto}
 body.ot-navigation .topbar-controls button,body.ot-navigation .topbar-controls summary{min-height:36px;font-size:12px;padding:7px 10px;white-space:nowrap}
@@ -21,7 +21,7 @@ body.ot-navigation .content{grid-column:2;grid-row:2;padding:18px 20px!important
 body.ot-navigation .content>.view{max-width:none!important;width:100%;min-width:0}
 body.ot-navigation .ot-hidden-context,body.ot-navigation .ot-dashboard-legacy{display:none!important}
 body.ot-navigation .ot-quick-actions,body.ot-navigation .ot-member-filters [role=group]{display:flex;flex-wrap:wrap;gap:10px}
-body.ot-navigation [data-ot-member-filter][aria-pressed=true]{border-color:#d4a64c;background:#d4a64c22;color:#f1cd7d}
+body.ot-navigation [data-ot-member-filter][aria-pressed=true]{border-color:var(--ot-gold);background:var(--ot-surface-raised);color:var(--ot-gold-highlight)}
 body.ot-navigation #clientCards .client-card[hidden]{display:none!important}
 body.ot-navigation #clients>.split-layout{display:block}
 body.ot-navigation #clients>#goalForm{display:none!important}
@@ -34,7 +34,7 @@ body.ot-navigation .ot-member-component>.view-head{display:none}
 body.ot-navigation .ot-member-component{max-width:100%;min-width:0}
 body.ot-navigation .ot-builder-assignment{display:grid;gap:14px;margin-bottom:20px}
 body.ot-navigation .ot-builder-assignment label{max-width:640px}
-body.ot-navigation .ot-selected-member{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #bd9546;border-radius:10px}
+body.ot-navigation .ot-selected-member{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--ot-gold-edge);border-radius:10px}
 body.ot-navigation .ot-selected-member small{display:block;margin-top:6px}
 body.ot-navigation .ot-selected-member img{width:48px;height:48px;object-fit:cover;border-radius:50%}
 body.ot-navigation .ot-builder-assignment button{white-space:normal}
@@ -46,7 +46,7 @@ body.ot-navigation #ot-dashboard-reminders:empty,body.ot-navigation #ot-agenda-r
 body.ot-navigation .ot-menu-toggle{display:none!important}
 @media(max-width:1150px){body.ot-navigation{--ot-rail:160px}body.ot-navigation .content{padding:14px!important}body.ot-navigation .topbar{padding:10px 14px!important}body.ot-navigation .members-profile-page{padding:12px}body.ot-navigation #schema-builder .training-builder{grid-template-columns:1fr}}
 @media(max-width:760px){body.ot-navigation{--ot-rail:148px}body.ot-navigation .members-profile-tabs [role=tab]{flex-basis:calc(20% - 5px)}body.ot-navigation .ot-main-nav .nav-btn{font-size:12px;padding:9px 5px}body.ot-navigation .content{padding:10px!important}}
-@media(max-width:650px){body.ot-navigation{--ot-top:112px}body.ot-navigation .app-shell{grid-template-columns:minmax(0,1fr)!important}body.ot-navigation .topbar{grid-column:1;position:relative!important;top:auto!important;padding:10px!important}body.ot-navigation .content{grid-column:1;padding:10px!important}body.ot-navigation .sidebar{display:none!important;position:fixed!important;top:var(--ot-top)!important;left:0!important;width:190px!important;height:calc(100dvh - var(--ot-top))!important;z-index:80;box-shadow:10px 0 30px #0008}body.ot-navigation.ot-sidebar-open .sidebar{display:block!important}body.ot-navigation .ot-menu-toggle{display:block!important;order:0;align-self:center}body.ot-navigation .ot-members-search{min-width:180px;flex-basis:200px}body.ot-navigation .topbar-controls{justify-content:flex-start;margin:0}body.ot-navigation .members-profile-tabs [role=tab]{flex-basis:calc(33.333% - 5px)}body.ot-navigation #schema-builder .training-form{grid-template-columns:1fr}body.ot-navigation .members-profile-page{padding:10px}}
+@media(max-width:650px){body.ot-navigation{--ot-top:112px}body.ot-navigation .app-shell{grid-template-columns:minmax(0,1fr)!important}body.ot-navigation .topbar{grid-column:1;position:relative!important;top:auto!important;padding:10px!important}body.ot-navigation .content{grid-column:1;padding:10px!important}body.ot-navigation .sidebar{display:none!important;position:fixed!important;top:var(--ot-top)!important;left:0!important;width:190px!important;height:calc(100dvh - var(--ot-top))!important;z-index:80;box-shadow:10px 0 30px var(--ot-veil)}body.ot-navigation.ot-sidebar-open .sidebar{display:block!important}body.ot-navigation .ot-menu-toggle{display:block!important;order:0;align-self:center}body.ot-navigation .ot-members-search{min-width:180px;flex-basis:200px}body.ot-navigation .topbar-controls{justify-content:flex-start;margin:0}body.ot-navigation .members-profile-tabs [role=tab]{flex-basis:calc(33.333% - 5px)}body.ot-navigation #schema-builder .training-form{grid-template-columns:1fr}body.ot-navigation .members-profile-page{padding:10px}}
 
 body.ot-navigation.fmz-owner-test-active{padding-top:var(--ot-top)!important}
 body.ot-navigation .ot-menu-close,body.ot-navigation .ot-tools-toggle{display:none!important}
@@ -54,3 +54,15 @@ body.ot-navigation .ot-menu-close,body.ot-navigation .ot-tools-toggle{display:no
 @media(max-width:650px){body.ot-navigation .ot-menu-close{display:block!important;width:100%;margin-bottom:12px}}
 
 html.ot-navigation-root{scroll-padding-top:calc(var(--ot-top,74px) + var(--ot-header-height,80px) + 12px)}
+body.ot-navigation .ot-schema-copy{display:grid;gap:16px;margin-bottom:20px;min-width:0}
+body.ot-navigation .ot-schema-copy[hidden]{display:none}
+body.ot-navigation .ot-schema-copy .field{display:grid;gap:8px;max-width:700px}
+body.ot-navigation .ot-copy-plan{display:grid;gap:14px;padding-left:24px}
+body.ot-navigation .ot-copy-plan li{min-width:0;overflow-wrap:anywhere}
+body.ot-navigation .ot-copy-plan img{display:block;width:180px;max-width:100%;height:130px;object-fit:contain;border-radius:8px}
+body.ot-navigation .ot-schema-copy .ot-selected-member{margin:12px 0}
+body.ot-navigation .ot-schema-copy select{max-width:100%;width:100%;white-space:normal}
+body.ot-navigation #schema-builder .view-head{flex-wrap:wrap;gap:12px}
+body.ot-navigation .ot-copy-history-row{min-width:0;overflow-wrap:anywhere;padding:12px 0;border-bottom:1px solid var(--line)}
+body.ot-navigation .ot-copy-history-row summary{cursor:pointer;padding:10px 0}
+body.ot-navigation #schema-builder [hidden]{display:none!important}

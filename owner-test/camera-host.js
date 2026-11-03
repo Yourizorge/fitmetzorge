@@ -1,13 +1,14 @@
 /* Top-level camera UI for the opaque owner-test iframe. No upload, recording, or persistent storage. */
 window.FMZOwnerTestCamera=(()=>{
- 'use strict';let current=null;
+ 'use strict';let current=null,theme={};
+ function configure(tokens){theme=tokens||{};}
  function cancel(){current?.cancel();}
  function capture({isCurrent=()=>false}={}){
   if(current||!isCurrent())return Promise.reject(Error('Camera niet beschikbaar voor deze testsessie.'));
   return new Promise((resolve,reject)=>{
    let stream=null,photo=null,photoURL=null,finished=false,requestVersion=0;
-   const d=document.createElement('dialog');d.className='fmz-owner-camera';d.setAttribute('aria-label','Foto maken — uitsluitend lokale test');
-   d.innerHTML='<style>.fmz-owner-camera{width:min(680px,94vw);max-height:94dvh;overflow:auto;background:#111824;color:#f7f4e8;border:1px solid #d7b668;border-radius:16px;padding:20px}.fmz-owner-camera::backdrop{background:#000c}.fmz-owner-camera video,.fmz-owner-camera img{display:block;width:100%;max-height:55dvh;aspect-ratio:4/3;object-fit:contain;background:#080b10}.fmz-owner-camera [hidden]{display:none!important}.fmz-owner-camera button{min-height:44px;margin:5px;padding:10px 16px;background:#d7b668;color:#13151b;border:0;border-radius:8px;font-weight:bold}.fmz-owner-camera p{line-height:1.5}</style><h2>Foto maken</h2><p>TESTMODUS — richt de camera op een fictief voorbeeld of een voorwerp. Alleen de gekozen foto komt lokaal in deze testbrowser. Er wordt geen video of geluid bewaard.</p><p data-camera-status role="status">Camera staat uit.</p><video autoplay muted playsinline aria-label="Live cameravoorbeeld" hidden></video><img alt="Voorbeeld van de zojuist gemaakte testfoto" hidden><div><button type="button" data-camera-start>Camera inschakelen</button><button type="button" data-camera-take hidden>Foto nemen</button><button type="button" data-camera-retake hidden>Opnieuw maken</button><button type="button" data-camera-use hidden>Foto gebruiken</button><button type="button" data-camera-close>Sluiten</button></div>';
+   const d=document.createElement('dialog');d.className='fmz-owner-camera';for(const[k,v]of Object.entries(theme))d.style.setProperty('--ot-'+k,v);d.setAttribute('aria-label','Foto maken — uitsluitend lokale test');
+   d.innerHTML='<style>.fmz-owner-camera{width:min(680px,94vw);max-height:94dvh;overflow:auto;background:var(--ot-surface,var(--bg));color:var(--ot-text,var(--text));border:1px solid var(--ot-gold,var(--gold));border-radius:16px;padding:20px}.fmz-owner-camera::backdrop{background:#000c}.fmz-owner-camera video,.fmz-owner-camera img{display:block;width:100%;max-height:55dvh;aspect-ratio:4/3;object-fit:contain;background:var(--ot-background,var(--bg))}.fmz-owner-camera [hidden]{display:none!important}.fmz-owner-camera button{min-height:44px;margin:5px;padding:10px 16px;background:var(--ot-gold,var(--gold));color:var(--ot-ink,#111);border:0;border-radius:8px;font-weight:bold}.fmz-owner-camera p{line-height:1.5}</style><h2>Foto maken</h2><p>TESTMODUS — richt de camera op een fictief voorbeeld of een voorwerp. Alleen de gekozen foto komt lokaal in deze testbrowser. Er wordt geen video of geluid bewaard.</p><p data-camera-status role="status">Camera staat uit.</p><video autoplay muted playsinline aria-label="Live cameravoorbeeld" hidden></video><img alt="Voorbeeld van de zojuist gemaakte testfoto" hidden><div><button type="button" data-camera-start>Camera inschakelen</button><button type="button" data-camera-take hidden>Foto nemen</button><button type="button" data-camera-retake hidden>Opnieuw maken</button><button type="button" data-camera-use hidden>Foto gebruiken</button><button type="button" data-camera-close>Sluiten</button></div>';
    const q=s=>d.querySelector(s),video=q('video'),img=q('img'),status=q('[data-camera-status]'),start=q('[data-camera-start]'),take=q('[data-camera-take]'),retake=q('[data-camera-retake]'),use=q('[data-camera-use]');
    function stop(){requestVersion++;stream?.getTracks().forEach(t=>t.stop());stream=null;video.srcObject=null;video.hidden=true;}
    function clearPhoto(){if(photoURL)URL.revokeObjectURL(photoURL);photoURL=null;photo=null;img.removeAttribute('src');img.hidden=true;use.hidden=true;retake.hidden=true;}
@@ -36,5 +37,5 @@ window.FMZOwnerTestCamera=(()=>{
    document.addEventListener('visibilitychange',visibility);window.addEventListener('pagehide',leave);document.body.append(d);d.showModal();start.focus();
   });
  }
- return {capture,cancel};
+ return {capture,cancel,configure};
 })();

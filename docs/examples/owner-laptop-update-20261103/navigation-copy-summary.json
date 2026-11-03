@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "completedAt": "2026-11-03T11:53:44.020723+00:00",
+  "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "hostSHA256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac",
+  "counts": {
+    "uniqueModelAndCausalTests": 11,
+    "completeCopyFlows": 2,
+    "nativeZoomAndResponsiveCases": 22,
+    "additionalBrandingCaptureRuns": 2
+  },
+  "browsers": [
+    "Edge",
+    "Chrome"
+  ],
+  "checks": [
+    "source built via actual UI",
+    "versioned preview and explicit source/target identities",
+    "independent editable persistent copy concepts",
+    "lost acknowledgement retry preserves one saved identity",
+    "real reauthentication and exact empty normalization",
+    "actual training renderer does not create phantom writes",
+    "seven consistent vectors, stable active navigation",
+    "ten profile tabs and status block responsive at 100/125/150/200 percent native zoom",
+    "all captures synthetic; exact inventory cleanup per run"
+  ],
+  "visualReview": [
+    "chrome-schema-confirmation.png",
+    "edge-schema-saved.png",
+    "edge-profile-1366-zoom-200.png",
+    "chrome-profile-390.png",
+    "edge-profile-1366-zoom-100.png",
+    "chrome-logo-light-dark.png",
+    "chrome-dashboard-1366.png"
+  ],
+  "scope": "Owner-test only. No production or physical owner test. Source snapshot history includes observed content versions only; copied draft title is neutral to avoid source-person data.",
+  "filesSHA256": {
+    "owner-test/schema-copy.js": "92a1e52f4ff8d82f476f978b2573f03060f05cbf06b3960683d59dfa65fb3a81",
+    "owner-test/navigation.js": "c55fb7b8d46d2ff62108073e35b3702ca0b384b912bf789aee31b75242bdb316",
+    "owner-test/navigation.css": "a959304b6dee5a674d2ebc1e1094a8a1ea79381ce9f99bf5d0e3283b1eaa6fb2",
+    "tests/owner-test-schema-copy.test.cjs": "39ea06a19327003bf6004cc69898d584cb0cc171f55d56eaed9db65437493de0",
+    "tests/owner-test-copy-read.test.cjs": "043500b925193ae625f1b0518bf5f0c5380767cc4b31b7916740ddc2a816ab1c",
+    "tests/owner-update-schema-copy-browser.test.cjs": "2f5fdf7b99d9e87fc806da822d654a14c3e6ab130d93f4c20faa13334c5910b9",
+    "tests/owner-update-layout.test.cjs": "e4e2da7700c7422e5148ac762fff44119c21c1fa4648d30224459c268a0155b7"
+  }
+}

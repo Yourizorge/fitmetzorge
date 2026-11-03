@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "browser": "msedge",
+  "version": "155.0.4283.62",
+  "runtimeSHA256": "ee78c3df7fe247894a37c4cfd34504893088be5f0661ebeadd91c7e7250fe0a0",
+  "agreementSHA256": "9e543f452c662840a92af986b6cc34335ce06d3fed639e82fc46114e197bc73e",
+  "pdfBytes": 391613,
+  "syntheticOnly": true,
+  "productionTouched": false,
+  "physicalOwnerAcceptance": false,
+  "checks": [
+    "metadata and stable filename",
+    "actual stored PDF preview and new tab",
+    "blocked popup then explicit retry",
+    "native download MIME and identical bytes",
+    "missing/wrong MIME/corrupt transport response blocked and retry recovers stored original",
+    "profile edit and inactive status retain exact bytes",
+    "reload and expired trainer session/relogin retain PDF",
+    "other member profile and storage denied by local Postgres",
+    "repeated finalized request and document operations leave one agreement and one PDF",
+    "exact synthetic inventory cleanup"
+  ],
+  "externalOrigins": []
+}

@@ -1,0 +1,17 @@
+{
+  "gold": "#dfa639",
+  "gold-highlight": "#f1bf4b",
+  "gold-edge": "#bf8329",
+  "background": "#080808",
+  "surface": "#141414",
+  "surface-raised": "#202020",
+  "text": "#f7f7f5",
+  "muted": "#b7b7b2",
+  "border": "#73736b",
+  "success": "#9bd7b0",
+  "warning": "#f1bf4b",
+  "error": "#ffb0a7",
+  "focus": "#f1bf4b",
+  "ink": "#111008",
+  "veil": "#000000bb"
+}

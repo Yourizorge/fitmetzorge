@@ -1,0 +1,164 @@
+{
+  "runId": "TEST-5dd2fff3-aa33-4641-9359-6410a96a8184",
+  "revision": 11,
+  "synthetic": true,
+  "members": [
+    {
+      "id": "TEST-NOOR",
+      "label": "Noor Voorbeeld",
+      "member_number": 1,
+      "status": "active"
+    },
+    {
+      "id": "TEST-SAM",
+      "label": "Sam Test",
+      "member_number": 2,
+      "status": "active"
+    },
+    {
+      "id": "m-001b1c13-a801-4ffe-8ae1-ed6990d18d63",
+      "label": "Fictieve van Test",
+      "member_number": 34,
+      "status": "inactive"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "001b1c13-a801-4ffe-8ae1-ed6990d18d63",
+      "number": "TEST-FMZ-OV-001B1C13A8014FFE8AE1ED6990D18D63",
+      "client_id": "m-001b1c13-a801-4ffe-8ae1-ed6990d18d63"
+    }
+  ],
+  "documents": [
+    {
+      "id": "1697167a-3e8e-4c2d-a05d-baad212193e3",
+      "kind": "agreement",
+      "path": "11111111-1111-4111-8111-111111111111/agreements/1697167a-3e8e-4c2d-a05d-baad212193e3.pdf",
+      "status": "ready",
+      "sha256": "9e543f452c662840a92af986b6cc34335ce06d3fed639e82fc46114e197bc73e"
+    }
+  ],
+  "invoices": [],
+  "messages": [],
+  "reminders": [],
+  "blobs": [
+    {
+      "path": "fmz-members/11111111-1111-4111-8111-111111111111/agreements/1697167a-3e8e-4c2d-a05d-baad212193e3.pdf",
+      "bytes": 391613,
+      "mime": "application/pdf"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "user_id": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222",
+      "user_id": "22222222-2222-4222-8222-222222222222"
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "user_id": "33333333-3333-4333-8333-333333333333"
+    },
+    {
+      "id": "44444444-4444-4444-8444-444444444444",
+      "user_id": "44444444-4444-4444-8444-444444444444"
+    }
+  ],
+  "drafts": [
+    {
+      "id": "001b1c13-a801-4ffe-8ae1-ed6990d18d63",
+      "status": "completed",
+      "label": "Fictieve"
+    }
+  ],
+  "preliminary": [],
+  "files": [],
+  "communicationDocuments": [],
+  "simulationRecords": [],
+  "calendarViews": [],
+  "memberStatusEvents": [
+    {
+      "id": "29942e5f-2f64-4d73-ba46-faa5ea9fdb1e",
+      "runId": "TEST-5dd2fff3-aa33-4641-9359-6410a96a8184",
+      "clientId": "m-001b1c13-a801-4ffe-8ae1-ed6990d18d63",
+      "version": 1,
+      "oldStatus": "active",
+      "newStatus": "inactive",
+      "effectiveDate": "2026-11-03",
+      "operationalFrom": "2026-11-03",
+      "at": "2026-11-03T11:07:54.107Z",
+      "actorId": "11111111-1111-4111-8111-111111111111",
+      "reason": "Fictieve documentbehoudtest",
+      "note": "Alleen synthetische gegevens",
+      "effects": {
+        "coaching": "pause",
+        "billing": "pause",
+        "reminders": "pause"
+      }
+    }
+  ],
+  "statusReceipts": [
+    {
+      "id": "987f9665-6f51-4686-a6e1-cf6cc35136c3",
+      "signature": "{\"runId\":\"TEST-5dd2fff3-aa33-4641-9359-6410a96a8184\",\"payload\":{\"clientId\":\"m-001b1c13-a801-4ffe-8ae1-ed6990d18d63\",\"status\":\"inactive\",\"expectedVersion\":0,\"effectiveDate\":\"2026-11-03\",\"effects\":{\"coaching\":\"pause\",\"billing\":\"pause\",\"reminders\":\"pause\"},\"reason\":\"Fictieve documentbehoudtest\",\"note\":\"Alleen synthetische gegevens\",\"confirmed\":true}}",
+      "result": {
+        "event": {
+          "id": "29942e5f-2f64-4d73-ba46-faa5ea9fdb1e",
+          "runId": "TEST-5dd2fff3-aa33-4641-9359-6410a96a8184",
+          "clientId": "m-001b1c13-a801-4ffe-8ae1-ed6990d18d63",
+          "version": 1,
+          "oldStatus": "active",
+          "newStatus": "inactive",
+          "effectiveDate": "2026-11-03",
+          "operationalFrom": "2026-11-03",
+          "at": "2026-11-03T11:07:54.107Z",
+          "actorId": "11111111-1111-4111-8111-111111111111",
+          "reason": "Fictieve documentbehoudtest",
+          "note": "Alleen synthetische gegevens",
+          "effects": {
+            "coaching": "pause",
+            "billing": "pause",
+            "reminders": "pause"
+          }
+        },
+        "member": {
+          "client_id": "m-001b1c13-a801-4ffe-8ae1-ed6990d18d63",
+          "name": "Fictieve van Test",
+          "member_number": 34,
+          "status": "inactive",
+          "coaching": false,
+          "billing": false,
+          "reminders": false,
+          "version": 1,
+          "scheduled": [],
+          "history": [
+            {
+              "id": "29942e5f-2f64-4d73-ba46-faa5ea9fdb1e",
+              "runId": "TEST-5dd2fff3-aa33-4641-9359-6410a96a8184",
+              "clientId": "m-001b1c13-a801-4ffe-8ae1-ed6990d18d63",
+              "version": 1,
+              "oldStatus": "active",
+              "newStatus": "inactive",
+              "effectiveDate": "2026-11-03",
+              "operationalFrom": "2026-11-03",
+              "at": "2026-11-03T11:07:54.107Z",
+              "actorId": "11111111-1111-4111-8111-111111111111",
+              "reason": "Fictieve documentbehoudtest",
+              "note": "Alleen synthetische gegevens",
+              "effects": {
+                "coaching": "pause",
+                "billing": "pause",
+                "reminders": "pause"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "calendarCompletions": [],
+  "schemaDrafts": [],
+  "hash": "d0a2c79373f6dfd45e3d9c71207b518372453d3e1e1a7875aa20b1342ca58ed4"
+}

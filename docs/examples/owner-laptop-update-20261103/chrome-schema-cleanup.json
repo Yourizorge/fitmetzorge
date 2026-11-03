@@ -1,0 +1,2440 @@
+{
+  "before": {
+    "runId": "TEST-04c62e2d-4d59-40d4-88bd-1a653b1ced5c",
+    "revision": 27,
+    "synthetic": true,
+    "members": [
+      {
+        "id": "TEST-NOOR",
+        "label": "Noor Voorbeeld",
+        "member_number": 1,
+        "status": "active"
+      },
+      {
+        "id": "TEST-SAM",
+        "label": "Sam Test",
+        "member_number": 2,
+        "status": "active"
+      }
+    ],
+    "contracts": [],
+    "documents": [],
+    "invoices": [],
+    "messages": [],
+    "reminders": [],
+    "blobs": [],
+    "sessions": [
+      {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "user_id": "11111111-1111-4111-8111-111111111111"
+      },
+      {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "user_id": "22222222-2222-4222-8222-222222222222"
+      },
+      {
+        "id": "33333333-3333-4333-8333-333333333333",
+        "user_id": "33333333-3333-4333-8333-333333333333"
+      },
+      {
+        "id": "44444444-4444-4444-8444-444444444444",
+        "user_id": "44444444-4444-4444-8444-444444444444"
+      }
+    ],
+    "drafts": [],
+    "preliminary": [],
+    "files": [],
+    "communicationDocuments": [],
+    "simulationRecords": [],
+    "calendarViews": [],
+    "memberStatusEvents": [],
+    "statusReceipts": [],
+    "calendarCompletions": [],
+    "schemaDrafts": [
+      {
+        "id": "schema-builder",
+        "label": "Schema builder — lokaal testschema en koppelingen",
+        "data": {
+          "name": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+          "revision": 2,
+          "copyId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+          "copyTarget": "TEST-SAM",
+          "copyTargetNumber": 2,
+          "client": {
+            "id": "OWNER-TEST-UNASSIGNED-SCHEMA",
+            "name": "Los schema",
+            "email": "schema@example.test",
+            "password": "",
+            "registered": false,
+            "profile": {
+              "firstName": "",
+              "lastName": "",
+              "phone": "",
+              "birthDate": "",
+              "age": "",
+              "height": "",
+              "currentWeight": "",
+              "address": "",
+              "postalCode": "",
+              "city": "",
+              "country": "Nederland",
+              "emergencyName": "",
+              "emergencyPhone": "",
+              "injuries": "",
+              "package": ""
+            },
+            "goal": "",
+            "startDate": "2026-11-03",
+            "goals": {
+              "kcalTraining": 2600,
+              "kcalRest": 2300,
+              "protein": 160,
+              "carbsTraining": 250,
+              "carbsRest": 180,
+              "fat": 70,
+              "steps": 10000,
+              "sleep": 8,
+              "water": 3,
+              "wellbeing": 8,
+              "targetWeight": ""
+            },
+            "planSummary": "Plan nog invullen.",
+            "trainingPlan": [
+              {
+                "day": "Maandag",
+                "exercise": "Bench Press",
+                "sets": "3",
+                "reps": "12",
+                "rest": "90 sec",
+                "tempo": "3010",
+                "group": "Borst",
+                "equipment": "Barbell",
+                "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                "targetRir": "2",
+                "targetRpe": "8",
+                "schemaInstructions": "Beweeg rustig en gecontroleerd",
+                "id": "f28d5f8e-91a0-4c63-a825-9bcf3fd7a1bd",
+                "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+                "schemaVersion": 1,
+                "schemaName": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                "targetWeight": "",
+                "published": false
+              }
+            ],
+            "trainingAttendanceByWeek": {
+              "2026-11-02": [
+                {
+                  "day": "Maandag",
+                  "status": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "status": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "status": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "status": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "status": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "status": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "status": "",
+                  "date": "2026-11-08"
+                }
+              ]
+            },
+            "nutritionPlan": [],
+            "foodLog": [],
+            "steps": [
+              {
+                "day": "Maandag",
+                "value": ""
+              },
+              {
+                "day": "Dinsdag",
+                "value": ""
+              },
+              {
+                "day": "Woensdag",
+                "value": ""
+              },
+              {
+                "day": "Donderdag",
+                "value": ""
+              },
+              {
+                "day": "Vrijdag",
+                "value": ""
+              },
+              {
+                "day": "Zaterdag",
+                "value": ""
+              },
+              {
+                "day": "Zondag",
+                "value": ""
+              }
+            ],
+            "stepsByWeek": {},
+            "dailyWeight": [
+              {
+                "day": "Maandag",
+                "value": ""
+              },
+              {
+                "day": "Dinsdag",
+                "value": ""
+              },
+              {
+                "day": "Woensdag",
+                "value": ""
+              },
+              {
+                "day": "Donderdag",
+                "value": ""
+              },
+              {
+                "day": "Vrijdag",
+                "value": ""
+              },
+              {
+                "day": "Zaterdag",
+                "value": ""
+              },
+              {
+                "day": "Zondag",
+                "value": ""
+              }
+            ],
+            "dailyWeightByWeek": {},
+            "measurements": [],
+            "wellbeing": [
+              {
+                "day": "Maandag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Dinsdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Woensdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Donderdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Vrijdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Zaterdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Zondag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              }
+            ],
+            "wellbeingByWeek": {},
+            "sleep": [
+              {
+                "day": "Maandag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Dinsdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Woensdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Donderdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Vrijdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Zaterdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Zondag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              }
+            ],
+            "sleepByWeek": {},
+            "water": 0,
+            "waterByWeek": {},
+            "appointments": []
+          }
+        }
+      },
+      {
+        "id": "schemaCopies",
+        "label": "Schemakopieën, versies en audit",
+        "data": {
+          "version": 1,
+          "versions": [
+            {
+              "id": "4fa239d1-dfb6-459f-ab6d-9cabdf0221a2",
+              "memberId": "TEST-NOOR",
+              "key": "Bronschema voorbeeld",
+              "name": "Bronschema voorbeeld",
+              "hash": "15b3ed57924b17585bc65ca3cb339bfffde62a13f4a7153e5f4c150975dc5cc5",
+              "number": 1,
+              "recordedAt": "2026-11-03T11:43:54.633Z",
+              "plan": [
+                {
+                  "day": "Maandag",
+                  "exercise": "Bench Press",
+                  "sets": "3",
+                  "reps": "8",
+                  "rest": "90 sec",
+                  "tempo": "3010",
+                  "group": "Borst",
+                  "equipment": "Barbell",
+                  "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                  "targetRir": "2",
+                  "targetRpe": "8",
+                  "schemaInstructions": "Beweeg rustig en gecontroleerd"
+                }
+              ]
+            },
+            {
+              "id": "ec7d6196-99f5-4650-969d-c1195386a7e5",
+              "memberId": "TEST-NOOR",
+              "key": "Bronschema voorbeeld",
+              "name": "Bronschema voorbeeld",
+              "hash": "ff8d6c1ee4af02a0d0bf0b6b102281ab0437ed9114af2c164825652ef6a4e943",
+              "number": 2,
+              "recordedAt": "2026-11-03T11:43:57.372Z",
+              "plan": [
+                {
+                  "day": "Maandag",
+                  "exercise": "Bench Press",
+                  "sets": "3",
+                  "reps": "10",
+                  "rest": "90 sec",
+                  "tempo": "3010",
+                  "group": "Borst",
+                  "equipment": "Barbell",
+                  "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                  "targetRir": "2",
+                  "targetRpe": "8",
+                  "schemaInstructions": "Beweeg rustig en gecontroleerd"
+                }
+              ]
+            }
+          ],
+          "operations": [
+            {
+              "id": "6883d866-11c3-4ba9-8227-6bca64b15989",
+              "requestId": "1c20d240-7699-4529-a219-741558bc438b",
+              "sourceId": "TEST-NOOR",
+              "sourceVersionId": "4fa239d1-dfb6-459f-ab6d-9cabdf0221a2",
+              "sourceHash": "15b3ed57924b17585bc65ca3cb339bfffde62a13f4a7153e5f4c150975dc5cc5",
+              "sourceVersion": 1,
+              "targetId": "TEST-SAM",
+              "actor": "11111111-1111-4111-8111-111111111111",
+              "createdAt": "2026-11-03T11:43:59.090Z",
+              "status": "saved",
+              "name": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+              "entries": [
+                {
+                  "day": "Maandag",
+                  "exercise": "Bench Press",
+                  "sets": "3",
+                  "reps": "12",
+                  "rest": "90 sec",
+                  "tempo": "3010",
+                  "group": "Borst",
+                  "equipment": "Barbell",
+                  "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                  "targetRir": "2",
+                  "targetRpe": "8",
+                  "schemaInstructions": "Beweeg rustig en gecontroleerd",
+                  "id": "f28d5f8e-91a0-4c63-a825-9bcf3fd7a1bd",
+                  "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+                  "schemaVersion": 1,
+                  "schemaName": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                  "targetWeight": "",
+                  "published": true
+                }
+              ],
+              "history": [
+                {
+                  "event": "copy_draft",
+                  "at": "2026-11-03T11:43:59.090Z",
+                  "actor": "11111111-1111-4111-8111-111111111111",
+                  "sourceId": "TEST-NOOR",
+                  "sourceVersion": 1,
+                  "sourceHash": "15b3ed57924b17585bc65ca3cb339bfffde62a13f4a7153e5f4c150975dc5cc5",
+                  "targetId": "TEST-SAM",
+                  "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989"
+                },
+                {
+                  "event": "finalize_requested",
+                  "at": "2026-11-03T11:44:14.470Z",
+                  "actor": "11111111-1111-4111-8111-111111111111",
+                  "version": 1,
+                  "hash": "898271897eae6f796140a33a0707493594f0d0d1c1f0af6dc16d7808c553872a"
+                },
+                {
+                  "event": "saved",
+                  "at": "2026-11-03T11:44:17.841Z",
+                  "actor": "11111111-1111-4111-8111-111111111111",
+                  "version": 1,
+                  "hash": "898271897eae6f796140a33a0707493594f0d0d1c1f0af6dc16d7808c553872a"
+                }
+              ],
+              "draft": {
+                "name": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                "revision": 2,
+                "updatedAt": "2026-11-03T11:44:13.606Z",
+                "entries": [
+                  {
+                    "day": "Maandag",
+                    "exercise": "Bench Press",
+                    "sets": "3",
+                    "reps": "12",
+                    "rest": "90 sec",
+                    "tempo": "3010",
+                    "group": "Borst",
+                    "equipment": "Barbell",
+                    "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                    "targetRir": "2",
+                    "targetRpe": "8",
+                    "schemaInstructions": "Beweeg rustig en gecontroleerd",
+                    "id": "f28d5f8e-91a0-4c63-a825-9bcf3fd7a1bd",
+                    "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+                    "schemaVersion": 1,
+                    "schemaName": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                    "targetWeight": "",
+                    "published": false
+                  }
+                ]
+              },
+              "finalHash": "898271897eae6f796140a33a0707493594f0d0d1c1f0af6dc16d7808c553872a",
+              "savedAt": "2026-11-03T11:44:17.841Z"
+            }
+          ]
+        }
+      },
+      {
+        "id": "schemaGeneralDraft",
+        "label": "Algemeen schemaconcept",
+        "data": {
+          "name": "Bronschema voorbeeld",
+          "revision": 2,
+          "client": {
+            "id": "OWNER-TEST-UNASSIGNED-SCHEMA",
+            "name": "Los schema",
+            "email": "schema@example.test",
+            "password": "",
+            "registered": false,
+            "profile": {
+              "firstName": "",
+              "lastName": "",
+              "phone": "",
+              "birthDate": "",
+              "age": "",
+              "height": "",
+              "currentWeight": "",
+              "address": "",
+              "postalCode": "",
+              "city": "",
+              "country": "Nederland",
+              "emergencyName": "",
+              "emergencyPhone": "",
+              "injuries": "",
+              "package": ""
+            },
+            "goal": "",
+            "startDate": "2026-11-03",
+            "goals": {
+              "kcalTraining": 2600,
+              "kcalRest": 2300,
+              "protein": 160,
+              "carbsTraining": 250,
+              "carbsRest": 180,
+              "fat": 70,
+              "steps": 10000,
+              "sleep": 8,
+              "water": 3,
+              "wellbeing": 8,
+              "targetWeight": ""
+            },
+            "planSummary": "Plan nog invullen.",
+            "trainingPlan": [
+              {
+                "id": "training-1793706228414188adfedd5dd88",
+                "day": "Maandag",
+                "exercise": "Bench Press",
+                "group": "Borst",
+                "equipment": "Barbell",
+                "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                "schemaName": "Trainingsschema",
+                "sets": 3,
+                "reps": "8",
+                "targetWeight": 90,
+                "tempo": "3010",
+                "rest": "90 sec",
+                "actualSets": "",
+                "actualReps": "",
+                "actualWeight": "",
+                "notes": "",
+                "published": false,
+                "logsByWeek": {
+                  "2026-11-02": {
+                    "actualSets": "",
+                    "actualReps": "",
+                    "actualWeight": "",
+                    "notes": ""
+                  }
+                }
+              }
+            ],
+            "trainingAttendanceByWeek": {
+              "2026-11-02": [
+                {
+                  "day": "Maandag",
+                  "status": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "status": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "status": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "status": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "status": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "status": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "status": "",
+                  "date": "2026-11-08"
+                }
+              ]
+            },
+            "nutritionPlan": [],
+            "foodLog": [],
+            "steps": [
+              {
+                "day": "Maandag",
+                "value": ""
+              },
+              {
+                "day": "Dinsdag",
+                "value": ""
+              },
+              {
+                "day": "Woensdag",
+                "value": ""
+              },
+              {
+                "day": "Donderdag",
+                "value": ""
+              },
+              {
+                "day": "Vrijdag",
+                "value": ""
+              },
+              {
+                "day": "Zaterdag",
+                "value": ""
+              },
+              {
+                "day": "Zondag",
+                "value": ""
+              }
+            ],
+            "stepsByWeek": {
+              "2026-11-02": [
+                {
+                  "day": "Maandag",
+                  "value": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "value": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "value": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "value": "",
+                  "date": "2026-11-08"
+                }
+              ]
+            },
+            "dailyWeight": [
+              {
+                "day": "Maandag",
+                "value": "",
+                "waist": "",
+                "chest": "",
+                "armLeft": "",
+                "armRight": "",
+                "legLeft": "",
+                "legRight": "",
+                "note": "",
+                "photoFront": "",
+                "photoSide": "",
+                "photoBack": "",
+                "photoExtra": "",
+                "date": "2026-11-02"
+              },
+              {
+                "day": "Dinsdag",
+                "value": "",
+                "waist": "",
+                "chest": "",
+                "armLeft": "",
+                "armRight": "",
+                "legLeft": "",
+                "legRight": "",
+                "note": "",
+                "photoFront": "",
+                "photoSide": "",
+                "photoBack": "",
+                "photoExtra": "",
+                "date": "2026-11-03"
+              },
+              {
+                "day": "Woensdag",
+                "value": "",
+                "waist": "",
+                "chest": "",
+                "armLeft": "",
+                "armRight": "",
+                "legLeft": "",
+                "legRight": "",
+                "note": "",
+                "photoFront": "",
+                "photoSide": "",
+                "photoBack": "",
+                "photoExtra": "",
+                "date": "2026-11-04"
+              },
+              {
+                "day": "Donderdag",
+                "value": "",
+                "waist": "",
+                "chest": "",
+                "armLeft": "",
+                "armRight": "",
+                "legLeft": "",
+                "legRight": "",
+                "note": "",
+                "photoFront": "",
+                "photoSide": "",
+                "photoBack": "",
+                "photoExtra": "",
+                "date": "2026-11-05"
+              },
+              {
+                "day": "Vrijdag",
+                "value": "",
+                "waist": "",
+                "chest": "",
+                "armLeft": "",
+                "armRight": "",
+                "legLeft": "",
+                "legRight": "",
+                "note": "",
+                "photoFront": "",
+                "photoSide": "",
+                "photoBack": "",
+                "photoExtra": "",
+                "date": "2026-11-06"
+              },
+              {
+                "day": "Zaterdag",
+                "value": "",
+                "waist": "",
+                "chest": "",
+                "armLeft": "",
+                "armRight": "",
+                "legLeft": "",
+                "legRight": "",
+                "note": "",
+                "photoFront": "",
+                "photoSide": "",
+                "photoBack": "",
+                "photoExtra": "",
+                "date": "2026-11-07"
+              },
+              {
+                "day": "Zondag",
+                "value": "",
+                "waist": "",
+                "chest": "",
+                "armLeft": "",
+                "armRight": "",
+                "legLeft": "",
+                "legRight": "",
+                "note": "",
+                "photoFront": "",
+                "photoSide": "",
+                "photoBack": "",
+                "photoExtra": "",
+                "date": "2026-11-08"
+              }
+            ],
+            "dailyWeightByWeek": {
+              "2026-11-02": [
+                {
+                  "day": "Maandag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-08"
+                }
+              ]
+            },
+            "measurements": [],
+            "wellbeing": [
+              {
+                "day": "Maandag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Dinsdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Woensdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Donderdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Vrijdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Zaterdag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              },
+              {
+                "day": "Zondag",
+                "energy": "",
+                "stress": "",
+                "motivation": "",
+                "mood": ""
+              }
+            ],
+            "wellbeingByWeek": {
+              "2026-11-02": [
+                {
+                  "day": "Maandag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": "",
+                  "date": "2026-11-08"
+                }
+              ]
+            },
+            "sleep": [
+              {
+                "day": "Maandag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Dinsdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Woensdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Donderdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Vrijdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Zaterdag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              },
+              {
+                "day": "Zondag",
+                "hours": "",
+                "quality": "",
+                "bed": "",
+                "wake": ""
+              }
+            ],
+            "sleepByWeek": {
+              "2026-11-02": [
+                {
+                  "day": "Maandag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": "",
+                  "date": "2026-11-08"
+                }
+              ]
+            },
+            "water": 0,
+            "waterByWeek": {
+              "2026-11-02": [
+                {
+                  "day": "Maandag",
+                  "value": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "value": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "value": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "value": "",
+                  "date": "2026-11-08"
+                }
+              ]
+            },
+            "appointments": []
+          },
+          "assignments": {
+            "TEST-NOOR|2": {
+              "id": "c25e0792-92e9-49ad-942e-cba7ce585293",
+              "memberId": "TEST-NOOR",
+              "revision": 2,
+              "entries": [
+                {
+                  "id": "training-1793706231251cea3b5619703c",
+                  "day": "Maandag",
+                  "exercise": "Bench Press",
+                  "group": "Borst",
+                  "equipment": "Barbell",
+                  "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                  "schemaName": "Bronschema voorbeeld",
+                  "sets": 3,
+                  "reps": "10",
+                  "targetWeight": 90,
+                  "tempo": "3010",
+                  "rest": "90 sec",
+                  "actualSets": "",
+                  "actualReps": "",
+                  "actualWeight": "100",
+                  "notes": "NIET KOPIEREN PRIVE",
+                  "published": true,
+                  "logsByWeek": {
+                    "private": "NIET KOPIEREN"
+                  },
+                  "targetRir": "2",
+                  "targetRpe": "8",
+                  "schemaInstructions": "Beweeg rustig en gecontroleerd",
+                  "health": "NIET KOPIEREN"
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "hash": "8351b6724fec31b6c462ec1b92b20bf74b0987bffc205c9b5763c4bad90764a2"
+  },
+  "result": {
+    "before": {
+      "runId": "TEST-04c62e2d-4d59-40d4-88bd-1a653b1ced5c",
+      "revision": 27,
+      "synthetic": true,
+      "members": [
+        {
+          "id": "TEST-NOOR",
+          "label": "Noor Voorbeeld",
+          "member_number": 1,
+          "status": "active"
+        },
+        {
+          "id": "TEST-SAM",
+          "label": "Sam Test",
+          "member_number": 2,
+          "status": "active"
+        }
+      ],
+      "contracts": [],
+      "documents": [],
+      "invoices": [],
+      "messages": [],
+      "reminders": [],
+      "blobs": [],
+      "sessions": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "user_id": "11111111-1111-4111-8111-111111111111"
+        },
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "user_id": "22222222-2222-4222-8222-222222222222"
+        },
+        {
+          "id": "33333333-3333-4333-8333-333333333333",
+          "user_id": "33333333-3333-4333-8333-333333333333"
+        },
+        {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "user_id": "44444444-4444-4444-8444-444444444444"
+        }
+      ],
+      "drafts": [],
+      "preliminary": [],
+      "files": [],
+      "communicationDocuments": [],
+      "simulationRecords": [],
+      "calendarViews": [],
+      "memberStatusEvents": [],
+      "statusReceipts": [],
+      "calendarCompletions": [],
+      "schemaDrafts": [
+        {
+          "id": "schema-builder",
+          "label": "Schema builder — lokaal testschema en koppelingen",
+          "data": {
+            "name": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+            "revision": 2,
+            "copyId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+            "copyTarget": "TEST-SAM",
+            "copyTargetNumber": 2,
+            "client": {
+              "id": "OWNER-TEST-UNASSIGNED-SCHEMA",
+              "name": "Los schema",
+              "email": "schema@example.test",
+              "password": "",
+              "registered": false,
+              "profile": {
+                "firstName": "",
+                "lastName": "",
+                "phone": "",
+                "birthDate": "",
+                "age": "",
+                "height": "",
+                "currentWeight": "",
+                "address": "",
+                "postalCode": "",
+                "city": "",
+                "country": "Nederland",
+                "emergencyName": "",
+                "emergencyPhone": "",
+                "injuries": "",
+                "package": ""
+              },
+              "goal": "",
+              "startDate": "2026-11-03",
+              "goals": {
+                "kcalTraining": 2600,
+                "kcalRest": 2300,
+                "protein": 160,
+                "carbsTraining": 250,
+                "carbsRest": 180,
+                "fat": 70,
+                "steps": 10000,
+                "sleep": 8,
+                "water": 3,
+                "wellbeing": 8,
+                "targetWeight": ""
+              },
+              "planSummary": "Plan nog invullen.",
+              "trainingPlan": [
+                {
+                  "day": "Maandag",
+                  "exercise": "Bench Press",
+                  "sets": "3",
+                  "reps": "12",
+                  "rest": "90 sec",
+                  "tempo": "3010",
+                  "group": "Borst",
+                  "equipment": "Barbell",
+                  "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                  "targetRir": "2",
+                  "targetRpe": "8",
+                  "schemaInstructions": "Beweeg rustig en gecontroleerd",
+                  "id": "f28d5f8e-91a0-4c63-a825-9bcf3fd7a1bd",
+                  "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+                  "schemaVersion": 1,
+                  "schemaName": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                  "targetWeight": "",
+                  "published": false
+                }
+              ],
+              "trainingAttendanceByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "status": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "status": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "status": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "status": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "status": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "status": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "status": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "nutritionPlan": [],
+              "foodLog": [],
+              "steps": [
+                {
+                  "day": "Maandag",
+                  "value": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "value": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "value": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": ""
+                },
+                {
+                  "day": "Zondag",
+                  "value": ""
+                }
+              ],
+              "stepsByWeek": {},
+              "dailyWeight": [
+                {
+                  "day": "Maandag",
+                  "value": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "value": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "value": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": ""
+                },
+                {
+                  "day": "Zondag",
+                  "value": ""
+                }
+              ],
+              "dailyWeightByWeek": {},
+              "measurements": [],
+              "wellbeing": [
+                {
+                  "day": "Maandag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Zondag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                }
+              ],
+              "wellbeingByWeek": {},
+              "sleep": [
+                {
+                  "day": "Maandag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Zondag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                }
+              ],
+              "sleepByWeek": {},
+              "water": 0,
+              "waterByWeek": {},
+              "appointments": []
+            }
+          }
+        },
+        {
+          "id": "schemaCopies",
+          "label": "Schemakopieën, versies en audit",
+          "data": {
+            "version": 1,
+            "versions": [
+              {
+                "id": "4fa239d1-dfb6-459f-ab6d-9cabdf0221a2",
+                "memberId": "TEST-NOOR",
+                "key": "Bronschema voorbeeld",
+                "name": "Bronschema voorbeeld",
+                "hash": "15b3ed57924b17585bc65ca3cb339bfffde62a13f4a7153e5f4c150975dc5cc5",
+                "number": 1,
+                "recordedAt": "2026-11-03T11:43:54.633Z",
+                "plan": [
+                  {
+                    "day": "Maandag",
+                    "exercise": "Bench Press",
+                    "sets": "3",
+                    "reps": "8",
+                    "rest": "90 sec",
+                    "tempo": "3010",
+                    "group": "Borst",
+                    "equipment": "Barbell",
+                    "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                    "targetRir": "2",
+                    "targetRpe": "8",
+                    "schemaInstructions": "Beweeg rustig en gecontroleerd"
+                  }
+                ]
+              },
+              {
+                "id": "ec7d6196-99f5-4650-969d-c1195386a7e5",
+                "memberId": "TEST-NOOR",
+                "key": "Bronschema voorbeeld",
+                "name": "Bronschema voorbeeld",
+                "hash": "ff8d6c1ee4af02a0d0bf0b6b102281ab0437ed9114af2c164825652ef6a4e943",
+                "number": 2,
+                "recordedAt": "2026-11-03T11:43:57.372Z",
+                "plan": [
+                  {
+                    "day": "Maandag",
+                    "exercise": "Bench Press",
+                    "sets": "3",
+                    "reps": "10",
+                    "rest": "90 sec",
+                    "tempo": "3010",
+                    "group": "Borst",
+                    "equipment": "Barbell",
+                    "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                    "targetRir": "2",
+                    "targetRpe": "8",
+                    "schemaInstructions": "Beweeg rustig en gecontroleerd"
+                  }
+                ]
+              }
+            ],
+            "operations": [
+              {
+                "id": "6883d866-11c3-4ba9-8227-6bca64b15989",
+                "requestId": "1c20d240-7699-4529-a219-741558bc438b",
+                "sourceId": "TEST-NOOR",
+                "sourceVersionId": "4fa239d1-dfb6-459f-ab6d-9cabdf0221a2",
+                "sourceHash": "15b3ed57924b17585bc65ca3cb339bfffde62a13f4a7153e5f4c150975dc5cc5",
+                "sourceVersion": 1,
+                "targetId": "TEST-SAM",
+                "actor": "11111111-1111-4111-8111-111111111111",
+                "createdAt": "2026-11-03T11:43:59.090Z",
+                "status": "saved",
+                "name": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                "entries": [
+                  {
+                    "day": "Maandag",
+                    "exercise": "Bench Press",
+                    "sets": "3",
+                    "reps": "12",
+                    "rest": "90 sec",
+                    "tempo": "3010",
+                    "group": "Borst",
+                    "equipment": "Barbell",
+                    "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                    "targetRir": "2",
+                    "targetRpe": "8",
+                    "schemaInstructions": "Beweeg rustig en gecontroleerd",
+                    "id": "f28d5f8e-91a0-4c63-a825-9bcf3fd7a1bd",
+                    "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+                    "schemaVersion": 1,
+                    "schemaName": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                    "targetWeight": "",
+                    "published": true
+                  }
+                ],
+                "history": [
+                  {
+                    "event": "copy_draft",
+                    "at": "2026-11-03T11:43:59.090Z",
+                    "actor": "11111111-1111-4111-8111-111111111111",
+                    "sourceId": "TEST-NOOR",
+                    "sourceVersion": 1,
+                    "sourceHash": "15b3ed57924b17585bc65ca3cb339bfffde62a13f4a7153e5f4c150975dc5cc5",
+                    "targetId": "TEST-SAM",
+                    "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989"
+                  },
+                  {
+                    "event": "finalize_requested",
+                    "at": "2026-11-03T11:44:14.470Z",
+                    "actor": "11111111-1111-4111-8111-111111111111",
+                    "version": 1,
+                    "hash": "898271897eae6f796140a33a0707493594f0d0d1c1f0af6dc16d7808c553872a"
+                  },
+                  {
+                    "event": "saved",
+                    "at": "2026-11-03T11:44:17.841Z",
+                    "actor": "11111111-1111-4111-8111-111111111111",
+                    "version": 1,
+                    "hash": "898271897eae6f796140a33a0707493594f0d0d1c1f0af6dc16d7808c553872a"
+                  }
+                ],
+                "draft": {
+                  "name": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                  "revision": 2,
+                  "updatedAt": "2026-11-03T11:44:13.606Z",
+                  "entries": [
+                    {
+                      "day": "Maandag",
+                      "exercise": "Bench Press",
+                      "sets": "3",
+                      "reps": "12",
+                      "rest": "90 sec",
+                      "tempo": "3010",
+                      "group": "Borst",
+                      "equipment": "Barbell",
+                      "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                      "targetRir": "2",
+                      "targetRpe": "8",
+                      "schemaInstructions": "Beweeg rustig en gecontroleerd",
+                      "id": "f28d5f8e-91a0-4c63-a825-9bcf3fd7a1bd",
+                      "schemaId": "6883d866-11c3-4ba9-8227-6bca64b15989",
+                      "schemaVersion": 1,
+                      "schemaName": "Eigen aangepast schema voor gecontroleerde krachtopbouw met rustige uitvoering en voldoende herstel",
+                      "targetWeight": "",
+                      "published": false
+                    }
+                  ]
+                },
+                "finalHash": "898271897eae6f796140a33a0707493594f0d0d1c1f0af6dc16d7808c553872a",
+                "savedAt": "2026-11-03T11:44:17.841Z"
+              }
+            ]
+          }
+        },
+        {
+          "id": "schemaGeneralDraft",
+          "label": "Algemeen schemaconcept",
+          "data": {
+            "name": "Bronschema voorbeeld",
+            "revision": 2,
+            "client": {
+              "id": "OWNER-TEST-UNASSIGNED-SCHEMA",
+              "name": "Los schema",
+              "email": "schema@example.test",
+              "password": "",
+              "registered": false,
+              "profile": {
+                "firstName": "",
+                "lastName": "",
+                "phone": "",
+                "birthDate": "",
+                "age": "",
+                "height": "",
+                "currentWeight": "",
+                "address": "",
+                "postalCode": "",
+                "city": "",
+                "country": "Nederland",
+                "emergencyName": "",
+                "emergencyPhone": "",
+                "injuries": "",
+                "package": ""
+              },
+              "goal": "",
+              "startDate": "2026-11-03",
+              "goals": {
+                "kcalTraining": 2600,
+                "kcalRest": 2300,
+                "protein": 160,
+                "carbsTraining": 250,
+                "carbsRest": 180,
+                "fat": 70,
+                "steps": 10000,
+                "sleep": 8,
+                "water": 3,
+                "wellbeing": 8,
+                "targetWeight": ""
+              },
+              "planSummary": "Plan nog invullen.",
+              "trainingPlan": [
+                {
+                  "id": "training-1793706228414188adfedd5dd88",
+                  "day": "Maandag",
+                  "exercise": "Bench Press",
+                  "group": "Borst",
+                  "equipment": "Barbell",
+                  "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                  "schemaName": "Trainingsschema",
+                  "sets": 3,
+                  "reps": "8",
+                  "targetWeight": 90,
+                  "tempo": "3010",
+                  "rest": "90 sec",
+                  "actualSets": "",
+                  "actualReps": "",
+                  "actualWeight": "",
+                  "notes": "",
+                  "published": false,
+                  "logsByWeek": {
+                    "2026-11-02": {
+                      "actualSets": "",
+                      "actualReps": "",
+                      "actualWeight": "",
+                      "notes": ""
+                    }
+                  }
+                }
+              ],
+              "trainingAttendanceByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "status": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "status": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "status": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "status": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "status": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "status": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "status": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "nutritionPlan": [],
+              "foodLog": [],
+              "steps": [
+                {
+                  "day": "Maandag",
+                  "value": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "value": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "value": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": ""
+                },
+                {
+                  "day": "Zondag",
+                  "value": ""
+                }
+              ],
+              "stepsByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "value": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "value": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "value": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "value": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "value": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "value": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "value": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "dailyWeight": [
+                {
+                  "day": "Maandag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-08"
+                }
+              ],
+              "dailyWeightByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "measurements": [],
+              "wellbeing": [
+                {
+                  "day": "Maandag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Zondag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                }
+              ],
+              "wellbeingByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "sleep": [
+                {
+                  "day": "Maandag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Zondag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                }
+              ],
+              "sleepByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "water": 0,
+              "waterByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "value": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "value": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "value": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "value": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "value": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "value": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "value": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "appointments": []
+            },
+            "assignments": {
+              "TEST-NOOR|2": {
+                "id": "c25e0792-92e9-49ad-942e-cba7ce585293",
+                "memberId": "TEST-NOOR",
+                "revision": 2,
+                "entries": [
+                  {
+                    "id": "training-1793706231251cea3b5619703c",
+                    "day": "Maandag",
+                    "exercise": "Bench Press",
+                    "group": "Borst",
+                    "equipment": "Barbell",
+                    "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                    "schemaName": "Bronschema voorbeeld",
+                    "sets": 3,
+                    "reps": "10",
+                    "targetWeight": 90,
+                    "tempo": "3010",
+                    "rest": "90 sec",
+                    "actualSets": "",
+                    "actualReps": "",
+                    "actualWeight": "100",
+                    "notes": "NIET KOPIEREN PRIVE",
+                    "published": true,
+                    "logsByWeek": {
+                      "private": "NIET KOPIEREN"
+                    },
+                    "targetRir": "2",
+                    "targetRpe": "8",
+                    "schemaInstructions": "Beweeg rustig en gecontroleerd",
+                    "health": "NIET KOPIEREN"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "hash": "8351b6724fec31b6c462ec1b92b20bf74b0987bffc205c9b5763c4bad90764a2"
+    },
+    "after": {
+      "runId": "TEST-04c62e2d-4d59-40d4-88bd-1a653b1ced5c",
+      "members": [],
+      "contracts": [],
+      "documents": [],
+      "invoices": [],
+      "messages": [],
+      "reminders": [],
+      "blobs": [],
+      "sessions": [],
+      "drafts": [],
+      "preliminary": [],
+      "files": [],
+      "communicationDocuments": [],
+      "simulationRecords": [],
+      "schemaDrafts": [],
+      "calendarViews": [],
+      "memberStatusEvents": [],
+      "statusReceipts": [],
+      "calendarCompletions": [],
+      "deleted": true,
+      "verification": "Isolated database instance closed; host checkpoint removal acknowledged. This is not a SQL query after deletion."
+    },
+    "deletedRunId": "TEST-04c62e2d-4d59-40d4-88bd-1a653b1ced5c"
+  }
+}

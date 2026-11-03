@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-03T11:11:28.300Z",
+  "command": "node --test tests/members-documents.test.cjs tests/owner-update-brand.test.cjs tests/owner-update-documents.test.cjs tests/owner-test-schema-copy.test.cjs",
+  "tests": 18,
+  "passed": 18,
+  "failed": 0,
+  "durationMs": 35126.7389,
+  "sourceSHA256": {
+    "tests/members-documents.test.cjs": "f52564dc5fedabaf6b255de532c6a5bbd6e787e4fbc88fe196d8a468a29b3a00",
+    "tests/owner-update-brand.test.cjs": "6355147b856f43667205ad63524246ff041df61e6419ecadf34a1a2b27103cba",
+    "tests/owner-update-documents.test.cjs": "b0f94b338b1dd4d6cf41772f7ddc93b8e1b393691b3e0a99f1cb37be924743eb",
+    "tests/owner-test-schema-copy.test.cjs": "39ea06a19327003bf6004cc69898d584cb0cc171f55d56eaed9db65437493de0",
+    "members-documents.js": "0b6c6645945b7e1df3185f157ba36d547b563ed525e53066a66cfb4e01a5d952",
+    "members-ui.js": "6402db109da6427d4e7ad030f0334b3dbce281c227937249f7ee1165f91f0ef2",
+    "owner-test/schema-copy.js": "b2c50c326277a8085122de69204b52e6ed2b7e2d7363c40eaab65e8c5939eac0",
+    "owner-test/brand-tokens.json": "cd3310ad97f15c47983392428c2e79347d5f4407b51d2e6dbce128b48383e2dc"
+  },
+  "limits": "Local targeted regressions; browser evidence recorded separately."
+}

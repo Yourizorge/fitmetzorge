@@ -1,0 +1,80 @@
+{
+  "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "hostSHA256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac",
+  "browser": "Microsoft Edge, Playwright headless on Windows; no physical device",
+  "synthetic": true,
+  "productionTouched": false,
+  "checks": [
+    "member denied, including direct launcher call",
+    "verified non-owner trainer denied",
+    "second owner tab blocked by exclusive WebLock",
+    "browser context and process closed/reopened; same IndexedDB run and confirmed draft restored",
+    "sign-out/account change removes test iframe and owner launcher",
+    "host backend received read-only RPCs; synthetic child draft absent from host database"
+  ],
+  "errors": [],
+  "runId": "TEST-92593cd8-6253-4e47-8e9d-d7313c815f6f",
+  "draftId": "e527897c-8f45-423b-8358-ac2d39377429",
+  "cleanupManifest": {
+    "runId": "TEST-92593cd8-6253-4e47-8e9d-d7313c815f6f",
+    "revision": 2,
+    "synthetic": true,
+    "members": [
+      {
+        "id": "TEST-NOOR",
+        "label": "Noor Voorbeeld",
+        "member_number": 1,
+        "status": "active"
+      },
+      {
+        "id": "TEST-SAM",
+        "label": "Sam Test",
+        "member_number": 2,
+        "status": "active"
+      }
+    ],
+    "contracts": [],
+    "documents": [],
+    "invoices": [],
+    "messages": [],
+    "reminders": [],
+    "blobs": [],
+    "sessions": [
+      {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "user_id": "11111111-1111-4111-8111-111111111111"
+      },
+      {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "user_id": "22222222-2222-4222-8222-222222222222"
+      },
+      {
+        "id": "33333333-3333-4333-8333-333333333333",
+        "user_id": "33333333-3333-4333-8333-333333333333"
+      },
+      {
+        "id": "44444444-4444-4444-8444-444444444444",
+        "user_id": "44444444-4444-4444-8444-444444444444"
+      }
+    ],
+    "drafts": [
+      {
+        "id": "e527897c-8f45-423b-8358-ac2d39377429",
+        "status": "draft",
+        "label": "Veilige"
+      }
+    ],
+    "preliminary": [],
+    "files": [],
+    "communicationDocuments": [],
+    "simulationRecords": [],
+    "calendarViews": [],
+    "memberStatusEvents": [],
+    "statusReceipts": [],
+    "calendarCompletions": [],
+    "schemaDrafts": [],
+    "hash": "eb9d214626dc6b6dbe709603989242e2072329c63f036263509b25880bdbbe31"
+  },
+  "status": "PASS",
+  "syntheticBrowserProfileRemoved": true
+}

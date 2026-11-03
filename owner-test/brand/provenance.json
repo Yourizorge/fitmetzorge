@@ -1,0 +1,142 @@
+{
+  "sourceFilename": "Logo 02-11-2026.png",
+  "sourceSHA256": "f60fd1fd2d34c02cfae5a7cb833e2cfc32c4c1284e200880cb0f68a0d05b315a",
+  "sourceOrigin": "Local file explicitly supplied by owner in this task; not retrieved from website",
+  "sourceDimensions": [
+    1774,
+    887
+  ],
+  "sourceAlphaRange": [
+    0,
+    255
+  ],
+  "sourcePreservedByteIdentical": true,
+  "contentCrop": false,
+  "designModified": false,
+  "goldSamples": {
+    "primary": {
+      "hex": "#dfa639",
+      "sourcePixel": [
+        651,
+        199
+      ],
+      "sourceRGBA": [
+        223,
+        166,
+        57,
+        253
+      ]
+    },
+    "highlight": {
+      "hex": "#f1bf4b",
+      "sourcePixel": [
+        1024,
+        311
+      ],
+      "sourceRGBA": [
+        241,
+        191,
+        75,
+        252
+      ]
+    },
+    "edge": {
+      "hex": "#bf8329",
+      "sourcePixel": [
+        389,
+        196
+      ],
+      "sourceRGBA": [
+        191,
+        131,
+        41,
+        253
+      ]
+    }
+  },
+  "variants": {
+    "horizontal": {
+      "path": "owner-test/brand/horizontal.png",
+      "width": 960,
+      "height": 480,
+      "imageBounds": [
+        0,
+        0,
+        960,
+        480
+      ],
+      "operation": "proportional resize of complete source; transparent padding only",
+      "sha256": "426976aab202cecda9bb4706122440810c04a15173d59e8801831f70effeb843"
+    },
+    "sidebar": {
+      "path": "owner-test/brand/sidebar.png",
+      "width": 320,
+      "height": 160,
+      "imageBounds": [
+        0,
+        0,
+        320,
+        160
+      ],
+      "operation": "proportional resize of complete source; transparent padding only",
+      "sha256": "b559866f0de2910c102e5cc3fb7403227cf15e19041c650c41ed85cf7309fc6b"
+    },
+    "app-512": {
+      "path": "owner-test/brand/app-512.png",
+      "width": 512,
+      "height": 512,
+      "imageBounds": [
+        26,
+        141,
+        460,
+        230
+      ],
+      "operation": "proportional resize of complete source; transparent padding only",
+      "sha256": "1ba9bcb8a70732e9b88a52ae9b296c6290eeb6eefcd7dabd4b7251d0cc00b022"
+    },
+    "app-192": {
+      "path": "owner-test/brand/app-192.png",
+      "width": 192,
+      "height": 192,
+      "imageBounds": [
+        10,
+        53,
+        172,
+        86
+      ],
+      "operation": "proportional resize of complete source; transparent padding only",
+      "sha256": "5c3453b97fcc9a898ff803d3f48f543ad6b5582193c99592ad6e3d8036ca5ed9"
+    },
+    "favicon-64": {
+      "path": "owner-test/brand/favicon-64.png",
+      "width": 64,
+      "height": 64,
+      "imageBounds": [
+        3,
+        17,
+        57,
+        29
+      ],
+      "operation": "proportional resize of complete source; transparent padding only",
+      "sha256": "3ce0eee48e7429375e985f40537e54b03a701d2173a5484980d83c4e9a227ae3"
+    },
+    "favicon-32": {
+      "path": "owner-test/brand/favicon-32.png",
+      "width": 32,
+      "height": 32,
+      "imageBounds": [
+        2,
+        9,
+        28,
+        14
+      ],
+      "operation": "proportional resize of complete source; transparent padding only",
+      "sha256": "d5754b57c58d26f9f836d892e08d94a6e82e1734135b92c46136920f08067c8d"
+    }
+  },
+  "limits": [
+    "Small icon uses full horizontal mark without redesign; tiny lettering is naturally less readable at favicon size.",
+    "PWA and favicon are test previews only; no ordinary production manifest/icon changed.",
+    "Neutral surfaces and semantic status colours are accessibility choices, not invented colours attributed to the logo."
+  ]
+}

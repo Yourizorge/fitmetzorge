@@ -1,0 +1,29 @@
+{
+  "pass": true,
+  "testKind": "calendar",
+  "testRuntime": "5b99c1b92a2994d16351a1db2db861825ca2c3257385b938f94eaf51ac8c8058",
+  "finalRuntime": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "changedPaths": [
+    "styles.11",
+    "styles.12",
+    "styles.13",
+    "sources.owner-test/navigation.js",
+    "sources.owner-test/schema-copy.js",
+    "sources.owner-test/navigation.css",
+    "sources.owner-test/status-reminders.css",
+    "schemaCopy",
+    "navigation"
+  ],
+  "exactEarlierRuntimeReproduced": true,
+  "allEmbeddedApplicationScriptsByteIdentical": true,
+  "calendarFunctionalCodeByteIdentical": true,
+  "explanation": [
+    "Central colour tokens and field contrast corrected; calendar dialog centred",
+    "Schema copy scoped hidden rule, confirmation identities, Dutch labels and unconfirmed checkpoint retry",
+    "Owner-only lazy week log prevents read-only Training render from creating unsaved records",
+    "Guide explains explicitly creating a source schema",
+    "Calendar day layout and async error feedback (already present in calendar-tested runtime)",
+    "Cleanup evidence lists all new empty groups (already present in calendar-tested runtime)"
+  ],
+  "limits": "calendar Edge/Chrome tests used the earlier runtime; changed schema/layout and host paths are tested separately on final runtime."
+}
