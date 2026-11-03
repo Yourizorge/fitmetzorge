@@ -1,0 +1,87 @@
+{
+  "at": "2026-11-03T12:08:17.904Z",
+  "pass": true,
+  "finalRemoteHEAD": "985b3d37f65b119bb82d479c8b0c3077f47d3d16",
+  "codeRelease": "ff28c1d82adfc7de42927fb04d2d7e68279ec48c",
+  "sourceCodeCommit": "d8350786e7c5e7bc6e996aa5d22795755ddc31e9",
+  "remoteRefs": [
+    [
+      "985b3d37f65b119bb82d479c8b0c3077f47d3d16",
+      "refs/heads/codex/owner-laptop-test-20261102"
+    ],
+    [
+      "985b3d37f65b119bb82d479c8b0c3077f47d3d16",
+      "refs/heads/main"
+    ]
+  ],
+  "hosting": {
+    "checkedAt": "2026-11-03T12:08:12.325Z",
+    "attempted": true,
+    "method": "Existing Git credential helper held in process memory; GET only; no credential serialized",
+    "pages": {
+      "status": 200,
+      "verified": true,
+      "html_url": "https://appfmz.nl/",
+      "cname": "appfmz.nl",
+      "build_type": "legacy",
+      "https_enforced": true,
+      "source": {
+        "branch": "main",
+        "path": "/"
+      },
+      "siteStatus": "built"
+    },
+    "pages/builds/latest": {
+      "status": 200,
+      "verified": true,
+      "commit": "985b3d37f65b119bb82d479c8b0c3077f47d3d16",
+      "buildStatus": "built",
+      "created_at": "2026-11-03T12:05:34Z",
+      "updated_at": "2026-11-03T12:06:54Z",
+      "errorMessage": null
+    }
+  },
+  "documentationOnlyFollowup": [
+    "docs/APPFMZ_OWNER_LAPTOP_UPDATE_20261103.md",
+    "docs/examples/owner-laptop-update-20261103/live-browser-smoke.json",
+    "docs/examples/owner-laptop-update-20261103/production-after.json",
+    "docs/examples/owner-laptop-update-20261103/recovery-after.json",
+    "docs/examples/owner-laptop-update-20261103/release-assembly-commit.json",
+    "docs/examples/owner-laptop-update-20261103/release-change-inventory.json",
+    "docs/examples/owner-laptop-update-20261103/release-hosting.json",
+    "docs/examples/owner-laptop-update-20261103/release-live-verification.json"
+  ],
+  "allRuntimeFilesUnchanged": true,
+  "finalLiveFiles": [
+    {
+      "file": "index.html",
+      "bytes": 50151,
+      "sha256": "098e6df6498a17e2c8e1187b4729811765c193956f1b685ff167b93d83ca3983",
+      "pass": true
+    },
+    {
+      "file": "owner-test/host.js",
+      "bytes": 12657,
+      "sha256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac",
+      "pass": true
+    },
+    {
+      "file": "owner-test/manifest.json",
+      "bytes": 6808,
+      "sha256": "3f13275149c8ce83acdf26bb90e0c92f5e9c345c9fd4f93faf277f7d43ec4ec8",
+      "pass": true
+    },
+    {
+      "file": "owner-test/runtime.json",
+      "bytes": 8587807,
+      "sha256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "pass": true
+    }
+  ],
+  "fullPublicByteCheck": "release-live-verification.json: 127 files plus root alias, code release",
+  "productionCheck": "production-after.json: 24 tables and 12 migrations unchanged",
+  "physicalOwnerAcceptance": false,
+  "stagingTouched": false,
+  "businessWebsiteTouched": false,
+  "jarvisTouched": false
+}

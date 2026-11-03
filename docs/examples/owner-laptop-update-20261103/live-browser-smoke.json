@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-03T12:04:14.842Z",
+  "browser": "Edge headless, anonymous new context",
+  "pass": true,
+  "status": 200,
+  "launcherLoaded": true,
+  "anonymousLauncherHidden": true,
+  "anonymousSandboxAbsent": true,
+  "pageErrors": [],
+  "blockedWriteRequests": [],
+  "limitations": [
+    "No real owner login or physical owner acceptance",
+    "Authenticated full route covered separately with isolated fixtures"
+  ]
+}
