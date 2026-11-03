@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "completedAt": "2026-11-03T14:11:06.275408+00:00",
+  "browserTestRuntimeSHA256": "d2825de37e39911050d1375d43aa0bc71cbddca52f24acc144699be8c7c9fb64",
+  "browserTestHostSHA256": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+  "browsers": [
+    {
+      "browser": "edge",
+      "browserVersion": "155.0.4283.62",
+      "runtimeHash": "d2825de37e39911050d1375d43aa0bc71cbddca52f24acc144699be8c7c9fb64",
+      "hostHash": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+      "PDFHashes": [
+        "589c460b4c87e7a82febee7a54e711de271136737a4a696545676d0cc3dfce50",
+        "589c460b4c87e7a82febee7a54e711de271136737a4a696545676d0cc3dfce50"
+      ]
+    },
+    {
+      "browser": "chrome",
+      "browserVersion": "156.0.8078.80",
+      "runtimeHash": "d2825de37e39911050d1375d43aa0bc71cbddca52f24acc144699be8c7c9fb64",
+      "hostHash": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+      "PDFHashes": [
+        "e393265da4b3bae4f95237e59551f84e506e8c879bd578de3123a82f1be2e8b8",
+        "e393265da4b3bae4f95237e59551f84e506e8c879bd578de3123a82f1be2e8b8"
+      ]
+    }
+  ],
+  "unitAndProvenanceTests": 5,
+  "nativeDashboardZoomCases": 16,
+  "renderedContrastScreensPerBrowser": 38,
+  "minimumRenderedContrast": 5.33,
+  "sourceHashes": {
+    "owner-test/theme.js": "1b7960138ebb790fc1eb31af1cd1eebe4c475415c353c586c62bdabeb32db3b2",
+    "owner-test/brand.js": "dab3151e7335951c4936064e97e2a46ea339c2c273c1e80802383f1a6c0101e5",
+    "owner-test/brand.css": "860c468508658c0ef391d6909037113b88ce7538920e4b62b02e61ae5d7cd0f5",
+    "owner-test/host.js": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+    "owner-test/boot.js": "2464309c07459ea717a4db120a5e1ba3d79041e5dda30f012e59272b63daf116",
+    "owner-test/documents-host.js": "6727f5f8ef829fa36e159f3551c92a54adb89e422d414eb7f7fe6c0a5322c08b",
+    "owner-test/camera-host.js": "c0280f960e105d973913bae376e703254d2114c3c59a46bd34990c519f6b3c90",
+    "tests/owner-correction-theme.test.cjs": "a67e76e79649ad852ddb470cf39569abf8f4f4040f25579a61e44c41204413b7",
+    "tests/owner-correction-theme-browser.test.cjs": "a2549cadfdd00b42509e7687dec8c567457d054715f9cd494a1ec030bcb82990",
+    "tests/owner-theme-document-fixture.cjs": "d101576788b6efc62808176195e9c2bd423e5f7176f8e9977645f8220d8e8ac3",
+    "tests/owner-update-brand.test.cjs": "ca524b472ab048520c804e4ee390619fed301f6dd4e608806ac0cdc39ddc8813"
+  },
+  "checks": [
+    "true light/dark palettes; manual override of system preference",
+    "owner-id namespaced local IndexedDB; no production preference write",
+    "theme selected before loading dialog and initial sandbox markup",
+    "reload; expired real outer test session and relogin; closed/restarted persistent browser",
+    "all seven routes, search/profile/training/documents, package/person/cost forms",
+    "actual field values, placeholders, disabled controls, focus outlines and rendered errors/success/warnings",
+    "PDF viewer chrome changes; stored PDF hashes identical",
+    "exact synthetic state reset, exact test owner preference deletion, temporary browser profiles removed"
+  ],
+  "limitations": [
+    "Technical Edge/Chrome tests only; no physical owner acceptance",
+    "Full theme/zoom matrix retains runtime d2825d…; final runtime be9448… has separate parent-verified review-guard delta. Eight targeted profile/invoice captures on final runtime pass with ancestor opacity1. Theme/host sources remain unchanged.",
+    "Test-guide open/close evidence delegated to the existing calendar browser flow to avoid another suite"
+  ],
+  "finalRuntimeStableCaptureEvidence": [
+    {
+      "file": "edge-stable-captures.json",
+      "browser": "edge",
+      "browserVersion": "155.0.4283.62",
+      "runtimeHash": "be9448c579be66175ab7cfda3c5974935ca614e2be0db57844c789fa4c4e5601",
+      "hostHash": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+      "cases": 4,
+      "minimumAncestorOpacity": 1,
+      "minimumRenderedContrast": 5.82,
+      "exactCleanup": true
+    },
+    {
+      "file": "chrome-stable-captures.json",
+      "browser": "chrome",
+      "browserVersion": "156.0.8078.80",
+      "runtimeHash": "be9448c579be66175ab7cfda3c5974935ca614e2be0db57844c789fa4c4e5601",
+      "hostHash": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+      "cases": 4,
+      "minimumAncestorOpacity": 1,
+      "minimumRenderedContrast": 5.82,
+      "exactCleanup": true
+    }
+  ],
+  "stableCaptureCases": 8,
+  "screenshotReview": {
+    "status": "PASS",
+    "screens": [
+      "edge-dashboard-light-100.png",
+      "edge-dashboard-light-200.png",
+      "edge-pdf-light.png",
+      "edge-invoice-light.png",
+      "chrome-profile-light.png",
+      "chrome-dashboard-dark-100.png"
+    ],
+    "finding": "Existing 240ms view entrance animation caused early captures to fade. Harness now awaits finite animations and asserts ancestor opacity1; no runtime change needed."
+  }
+}

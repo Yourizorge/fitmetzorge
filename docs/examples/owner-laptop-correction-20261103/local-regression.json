@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "syntheticOnly": true,
+  "productionTouched": false,
+  "recordedAt": "2026-11-03T13:52:54.472Z",
+  "testsPassed": 7,
+  "testsFailed": 0,
+  "executed": [
+    {
+      "command": "node --test --test-concurrency=1 tests/owner-billing-cycle.test.cjs tests/owner-status-reminders.test.cjs",
+      "passed": 5,
+      "failed": 0,
+      "note": "First complete model, adapter and status run; 55.2 seconds."
+    },
+    {
+      "command": "node --test tests/owner-billing-cycle.test.cjs",
+      "passed": 2,
+      "failed": 0,
+      "note": "Final adapter rerun adds comparison against the HEAD PDF renderer and three historical future invoice dates; 25.9 seconds. Same two cases, not counted twice."
+    },
+    {
+      "command": "node --test --test-name-pattern=\"owner cost UI\" tests/owner-billing-cycle.test.cjs",
+      "passed": 1,
+      "failed": 0,
+      "note": "Additional focused UI case: preserved duo names and unit price; invalid dates produce inline explanation, 1.2 seconds."
+    },
+    {
+      "command": "node --test --test-name-pattern=\"legacy reviewed draft\" tests/owner-billing-cycle.test.cjs",
+      "passed": 1,
+      "failed": 0,
+      "note": "Targeted new guard case; actual historical finalized agreement without marker replays unchanged. 11.9 seconds."
+    }
+  ],
+  "checks": [
+    "29 start offsets including next boundary",
+    "half-up integer cents, including half-cent tie",
+    "calendar-day year and DST boundaries",
+    "two stable task IDs per cycle even zero members",
+    "late enrollment updates completed task contents without reopening or third task",
+    "configuration version and persisted restore",
+    "before-base and stale config review blocked",
+    "review/reserve/upload/verify/finalize through real isolated local SQL",
+    "first 19000 cents then 38000 cents, no discount or training-count change",
+    "stored PDF deterministic across restored local database",
+    "legacy snapshot PDF byte-identical to HEAD renderer",
+    "existing finance records and agreements unchanged; one authorized synthetic new agreement",
+    "no invoice, email or payment created",
+    "owner-only reads; other member denied",
+    "exact config and synthetic run cleanup"
+  ],
+  "legacyPdfProof": {
+    "reference": "HEAD:members-documents.js at e46453ecc9ce868b42f495eb9540ca41202c55da",
+    "method": "Same legacy snapshot with no owner_test_cycle marker rendered through HEAD and modified renderer; assert.deepEqual on every PDF byte passed."
+  },
+  "sourceSHA256": {
+    "owner-test/billing-cycle.js": "94a67272a02711172ebb9f34d3e7d54ca1bcb2d585fab95f40e3c187cd08977c",
+    "owner-test/billing-cycle-ui.js": "ec754c68282876aa301dbbcbaea9b5f514b3f555a48557c78806a4c3d0cec164",
+    "owner-test/database.js": "dea6edbac6d11856659b73645848c8517f1f5e7946f4f3d403cdb15ef37f22af",
+    "owner-test/simulation.js": "24e8f8f044ec04ffe4af3e53dae7acf4d24ec64ad1066bd51815c51ff6751500",
+    "members-ui.js": "4c12924e774b3b82e5b26c0d2ecb890137f08c7920239db07cf6b61af84d9005",
+    "members-documents.js": "b1c192d1e24bc1a89de5fcd99deb2c66a0659e6cbbdb5d3a9deb85ac6f8eee6d"
+  },
+  "lineEndingNormalization": {
+    "recordedAt": "2026-11-03T13:55:54.538Z",
+    "note": "After executed tests the parent normalized the source line endings only. Embedded runtime already normalizes LF; no executable-content change.",
+    "files": {
+      "owner-test/database.js": {
+        "testedSourceSHA256": "dea6edbac6d11856659b73645848c8517f1f5e7946f4f3d403cdb15ef37f22af",
+        "currentSourceSHA256": "23f1ea12ef30c93141e9a633ab29c60fa24cb69fb08ba1cc8dc1186a57a3c4c1",
+        "lfSHA256": "23f1ea12ef30c93141e9a633ab29c60fa24cb69fb08ba1cc8dc1186a57a3c4c1",
+        "reconstructedCRLFSHA256": "dea6edbac6d11856659b73645848c8517f1f5e7946f4f3d403cdb15ef37f22af",
+        "reconstructedCRLFMatchesTested": true,
+        "currentBytesAreLF": true
+      },
+      "owner-test/simulation.js": {
+        "testedSourceSHA256": "24e8f8f044ec04ffe4af3e53dae7acf4d24ec64ad1066bd51815c51ff6751500",
+        "currentSourceSHA256": "ad40a23234f0eeb856fc23ec90bbbddd150b09eddd62b05f6fe5e54719292440",
+        "lfSHA256": "ad40a23234f0eeb856fc23ec90bbbddd150b09eddd62b05f6fe5e54719292440",
+        "reconstructedCRLFSHA256": "24e8f8f044ec04ffe4af3e53dae7acf4d24ec64ad1066bd51815c51ff6751500",
+        "reconstructedCRLFMatchesTested": true,
+        "currentBytesAreLF": true
+      }
+    }
+  },
+  "finalGuard": {
+    "recordedAt": "2026-11-03T14:07:10.930Z",
+    "evidence": "legacy-cycle-guard.json",
+    "runtimeSHA256": "be9448c579be66175ab7cfda3c5974935ca614e2be0db57844c789fa4c4e5601",
+    "sourceSHA256": {
+      "members-ui.js": "cf8d2866f08fde276f35158a401eee1fc1a10f355df18bacd911d392859e752d",
+      "owner-test/database.js": "f8204adbf713842cf44b48020d7286b214bd5eb6c273ed9e5488cf587d298769",
+      "owner-test/billing-cycle-ui.js": "768581a95bc1dc18cc64a290e1ffe2247a3dc439b7aff3fe96dbdce24862c0b5"
+    }
+  }
+}

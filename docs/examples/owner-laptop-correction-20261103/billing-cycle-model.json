@@ -1,0 +1,1021 @@
+{
+  "status": "PASS",
+  "synthetic": true,
+  "productionTouched": false,
+  "config": {
+    "baseDate": "2026-11-02",
+    "invoiceDate": "2026-11-30",
+    "timeZone": "Europe/Amsterdam",
+    "days": 28,
+    "synthetic": true,
+    "version": 1
+  },
+  "offsets": [
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-02",
+      "remainingDays": 28,
+      "firstPartial": false,
+      "firstAmountCents": 38000,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 28 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-03",
+      "remainingDays": 27,
+      "firstPartial": true,
+      "firstAmountCents": 36643,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 27 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-04",
+      "remainingDays": 26,
+      "firstPartial": true,
+      "firstAmountCents": 35286,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 26 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-05",
+      "remainingDays": 25,
+      "firstPartial": true,
+      "firstAmountCents": 33929,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 25 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-06",
+      "remainingDays": 24,
+      "firstPartial": true,
+      "firstAmountCents": 32571,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 24 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-07",
+      "remainingDays": 23,
+      "firstPartial": true,
+      "firstAmountCents": 31214,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 23 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-08",
+      "remainingDays": 22,
+      "firstPartial": true,
+      "firstAmountCents": 29857,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 22 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-09",
+      "remainingDays": 21,
+      "firstPartial": true,
+      "firstAmountCents": 28500,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 21 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-10",
+      "remainingDays": 20,
+      "firstPartial": true,
+      "firstAmountCents": 27143,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 20 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-11",
+      "remainingDays": 19,
+      "firstPartial": true,
+      "firstAmountCents": 25786,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 19 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-12",
+      "remainingDays": 18,
+      "firstPartial": true,
+      "firstAmountCents": 24429,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 18 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-13",
+      "remainingDays": 17,
+      "firstPartial": true,
+      "firstAmountCents": 23071,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 17 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-14",
+      "remainingDays": 16,
+      "firstPartial": true,
+      "firstAmountCents": 21714,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 16 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-15",
+      "remainingDays": 15,
+      "firstPartial": true,
+      "firstAmountCents": 20357,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 15 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-16",
+      "remainingDays": 14,
+      "firstPartial": true,
+      "firstAmountCents": 19000,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 14 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-17",
+      "remainingDays": 13,
+      "firstPartial": true,
+      "firstAmountCents": 17643,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 13 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-18",
+      "remainingDays": 12,
+      "firstPartial": true,
+      "firstAmountCents": 16286,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 12 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-19",
+      "remainingDays": 11,
+      "firstPartial": true,
+      "firstAmountCents": 14929,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 11 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-20",
+      "remainingDays": 10,
+      "firstPartial": true,
+      "firstAmountCents": 13571,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 10 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-21",
+      "remainingDays": 9,
+      "firstPartial": true,
+      "firstAmountCents": 12214,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 9 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-22",
+      "remainingDays": 8,
+      "firstPartial": true,
+      "firstAmountCents": 10857,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 8 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-23",
+      "remainingDays": 7,
+      "firstPartial": true,
+      "firstAmountCents": 9500,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 7 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-24",
+      "remainingDays": 6,
+      "firstPartial": true,
+      "firstAmountCents": 8143,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 6 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-25",
+      "remainingDays": 5,
+      "firstPartial": true,
+      "firstAmountCents": 6786,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 5 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-26",
+      "remainingDays": 4,
+      "firstPartial": true,
+      "firstAmountCents": 5429,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 4 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-27",
+      "remainingDays": 3,
+      "firstPartial": true,
+      "firstAmountCents": 4071,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 3 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-28",
+      "remainingDays": 2,
+      "firstPartial": true,
+      "firstAmountCents": 2714,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 2 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 0,
+        "start": "2026-11-02",
+        "end": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30"
+      },
+      "startDate": "2026-11-29",
+      "remainingDays": 1,
+      "firstPartial": true,
+      "firstAmountCents": 1357,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-11-30",
+      "nextInvoiceDate": "2026-12-28",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 1 ÷ 28"
+    },
+    {
+      "config": {
+        "baseDate": "2026-11-02",
+        "invoiceDate": "2026-11-30",
+        "timeZone": "Europe/Amsterdam",
+        "days": 28,
+        "synthetic": true,
+        "version": 1
+      },
+      "currentCycle": {
+        "index": 1,
+        "start": "2026-11-30",
+        "end": "2026-12-27",
+        "endExclusive": "2026-12-28",
+        "invoiceDate": "2026-12-28"
+      },
+      "startDate": "2026-11-30",
+      "remainingDays": 28,
+      "firstPartial": false,
+      "firstAmountCents": 38000,
+      "fullAmountCents": 38000,
+      "firstInvoiceDate": "2026-12-28",
+      "nextInvoiceDate": "2027-01-25",
+      "rounding": "half-up op het definitieve bedrag in centen",
+      "formula": "38000 cent × 28 ÷ 28"
+    }
+  ],
+  "calendar": [
+    {
+      "id": "central-calendar|TEST-model|2026-11-02|2026-11-02|billing_prepare",
+      "runId": "TEST-model",
+      "date": "2026-11-23",
+      "kind": "billing_prepare",
+      "text": "Facturen maken",
+      "time": "09:00",
+      "timeZone": "Europe/Amsterdam",
+      "cycleStart": "2026-11-02",
+      "cycleEnd": "2026-11-29",
+      "endExclusive": "2026-11-30",
+      "invoiceDate": "2026-11-30",
+      "status": "done",
+      "completedAt": "2026-11-23T09:00:00Z",
+      "items": [
+        {
+          "clientId": "TEST-LATE",
+          "clientName": "Fictief Later",
+          "startDate": "2026-11-25",
+          "normalAmountCents": 38000,
+          "cycle": "four_weeks",
+          "start": "2026-11-25",
+          "end": "2026-11-29",
+          "invoiceDate": "2026-11-30",
+          "amountCents": 6786,
+          "firstPartial": true,
+          "prorataDays": 5
+        }
+      ],
+      "totalCents": 6786
+    },
+    {
+      "id": "central-calendar|TEST-model|2026-11-02|2026-11-02|billing_due",
+      "runId": "TEST-model",
+      "date": "2026-11-30",
+      "kind": "billing_due",
+      "text": "Facturen versturen",
+      "time": "09:00",
+      "timeZone": "Europe/Amsterdam",
+      "cycleStart": "2026-11-02",
+      "cycleEnd": "2026-11-29",
+      "endExclusive": "2026-11-30",
+      "invoiceDate": "2026-11-30",
+      "status": "open",
+      "completedAt": null,
+      "items": [
+        {
+          "clientId": "TEST-LATE",
+          "clientName": "Fictief Later",
+          "startDate": "2026-11-25",
+          "normalAmountCents": 38000,
+          "cycle": "four_weeks",
+          "start": "2026-11-25",
+          "end": "2026-11-29",
+          "invoiceDate": "2026-11-30",
+          "amountCents": 6786,
+          "firstPartial": true,
+          "prorataDays": 5
+        }
+      ],
+      "totalCents": 6786
+    },
+    {
+      "id": "central-calendar|TEST-model|2026-11-02|2026-11-30|billing_prepare",
+      "runId": "TEST-model",
+      "date": "2026-12-21",
+      "kind": "billing_prepare",
+      "text": "Facturen maken",
+      "time": "09:00",
+      "timeZone": "Europe/Amsterdam",
+      "cycleStart": "2026-11-30",
+      "cycleEnd": "2026-12-27",
+      "endExclusive": "2026-12-28",
+      "invoiceDate": "2026-12-28",
+      "status": "open",
+      "completedAt": null,
+      "items": [
+        {
+          "clientId": "TEST-LATE",
+          "clientName": "Fictief Later",
+          "startDate": "2026-11-25",
+          "normalAmountCents": 38000,
+          "cycle": "four_weeks",
+          "start": "2026-11-30",
+          "end": "2026-12-27",
+          "invoiceDate": "2026-12-28",
+          "amountCents": 38000,
+          "firstPartial": false,
+          "prorataDays": 28
+        }
+      ],
+      "totalCents": 38000
+    },
+    {
+      "id": "central-calendar|TEST-model|2026-11-02|2026-11-30|billing_due",
+      "runId": "TEST-model",
+      "date": "2026-12-28",
+      "kind": "billing_due",
+      "text": "Facturen versturen",
+      "time": "09:00",
+      "timeZone": "Europe/Amsterdam",
+      "cycleStart": "2026-11-30",
+      "cycleEnd": "2026-12-27",
+      "endExclusive": "2026-12-28",
+      "invoiceDate": "2026-12-28",
+      "status": "open",
+      "completedAt": null,
+      "items": [
+        {
+          "clientId": "TEST-LATE",
+          "clientName": "Fictief Later",
+          "startDate": "2026-11-25",
+          "normalAmountCents": 38000,
+          "cycle": "four_weeks",
+          "start": "2026-11-30",
+          "end": "2026-12-27",
+          "invoiceDate": "2026-12-28",
+          "amountCents": 38000,
+          "firstPartial": false,
+          "prorataDays": 28
+        }
+      ],
+      "totalCents": 38000
+    },
+    {
+      "id": "central-calendar|TEST-model|2026-11-02|2026-12-28|billing_prepare",
+      "runId": "TEST-model",
+      "date": "2027-01-18",
+      "kind": "billing_prepare",
+      "text": "Facturen maken",
+      "time": "09:00",
+      "timeZone": "Europe/Amsterdam",
+      "cycleStart": "2026-12-28",
+      "cycleEnd": "2027-01-24",
+      "endExclusive": "2027-01-25",
+      "invoiceDate": "2027-01-25",
+      "status": "open",
+      "completedAt": null,
+      "items": [
+        {
+          "clientId": "TEST-LATE",
+          "clientName": "Fictief Later",
+          "startDate": "2026-11-25",
+          "normalAmountCents": 38000,
+          "cycle": "four_weeks",
+          "start": "2026-12-28",
+          "end": "2027-01-24",
+          "invoiceDate": "2027-01-25",
+          "amountCents": 38000,
+          "firstPartial": false,
+          "prorataDays": 28
+        }
+      ],
+      "totalCents": 38000
+    },
+    {
+      "id": "central-calendar|TEST-model|2026-11-02|2026-12-28|billing_due",
+      "runId": "TEST-model",
+      "date": "2027-01-25",
+      "kind": "billing_due",
+      "text": "Facturen versturen",
+      "time": "09:00",
+      "timeZone": "Europe/Amsterdam",
+      "cycleStart": "2026-12-28",
+      "cycleEnd": "2027-01-24",
+      "endExclusive": "2027-01-25",
+      "invoiceDate": "2027-01-25",
+      "status": "open",
+      "completedAt": null,
+      "items": [
+        {
+          "clientId": "TEST-LATE",
+          "clientName": "Fictief Later",
+          "startDate": "2026-11-25",
+          "normalAmountCents": 38000,
+          "cycle": "four_weeks",
+          "start": "2026-12-28",
+          "end": "2027-01-24",
+          "invoiceDate": "2027-01-25",
+          "amountCents": 38000,
+          "firstPartial": false,
+          "prorataDays": 28
+        }
+      ],
+      "totalCents": 38000
+    },
+    {
+      "id": "central-calendar|TEST-model|2026-11-02|2027-01-25|billing_prepare",
+      "runId": "TEST-model",
+      "date": "2027-02-15",
+      "kind": "billing_prepare",
+      "text": "Facturen maken",
+      "time": "09:00",
+      "timeZone": "Europe/Amsterdam",
+      "cycleStart": "2027-01-25",
+      "cycleEnd": "2027-02-21",
+      "endExclusive": "2027-02-22",
+      "invoiceDate": "2027-02-22",
+      "status": "open",
+      "completedAt": null,
+      "items": [
+        {
+          "clientId": "TEST-LATE",
+          "clientName": "Fictief Later",
+          "startDate": "2026-11-25",
+          "normalAmountCents": 38000,
+          "cycle": "four_weeks",
+          "start": "2027-01-25",
+          "end": "2027-02-21",
+          "invoiceDate": "2027-02-22",
+          "amountCents": 38000,
+          "firstPartial": false,
+          "prorataDays": 28
+        }
+      ],
+      "totalCents": 38000
+    },
+    {
+      "id": "central-calendar|TEST-model|2026-11-02|2027-01-25|billing_due",
+      "runId": "TEST-model",
+      "date": "2027-02-22",
+      "kind": "billing_due",
+      "text": "Facturen versturen",
+      "time": "09:00",
+      "timeZone": "Europe/Amsterdam",
+      "cycleStart": "2027-01-25",
+      "cycleEnd": "2027-02-21",
+      "endExclusive": "2027-02-22",
+      "invoiceDate": "2027-02-22",
+      "status": "open",
+      "completedAt": null,
+      "items": [
+        {
+          "clientId": "TEST-LATE",
+          "clientName": "Fictief Later",
+          "startDate": "2026-11-25",
+          "normalAmountCents": 38000,
+          "cycle": "four_weeks",
+          "start": "2027-01-25",
+          "end": "2027-02-21",
+          "invoiceDate": "2027-02-22",
+          "amountCents": 38000,
+          "firstPartial": false,
+          "prorataDays": 28
+        }
+      ],
+      "totalCents": 38000
+    }
+  ],
+  "rounding": "integer cents half-up once",
+  "creditsChanged": false
+}

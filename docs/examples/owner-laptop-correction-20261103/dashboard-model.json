@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "Read-only derived dashboard/unit checks; no browser or production change",
+  "tests": 4,
+  "failed": 0,
+  "durationMs": 385.7144,
+  "checks": [
+    "Effective active/inactive membership, draft exclusion, real outstanding invoice projection",
+    "Compact next and overdue task independently from completed tasks",
+    "Only existing invoice page action and explicit local completion",
+    "Europe/Amsterdam midnight/week boundaries across DST"
+  ],
+  "sourceSHA256": {
+    "owner-test/navigation.js": "84982632103f7f22181080d52e7a6f891766f348de1c13eeafe8f31be613703b",
+    "owner-test/navigation.css": "f16669f27c9e2f77efcdf66790f2eee62fccf5ff96a28d97ca263fd6fec55d5b",
+    "owner-test/reminder-calendar.js": "cc3c6e57c8a02a8791cf6a7f1656a393d35559d87bcdb7a453ed657e4a22350b",
+    "owner-test/status-reminders.css": "61bb6dd89c65e1f375206802e18db2a3828d917278309352eb4dcb4833b36f89",
+    "tests/owner-correction-dashboard.test.cjs": "df96a07ac87cf5ec4b9f3756643e0828331ed18cd469b3bdd5cf83e03c74804d"
+  }
+}

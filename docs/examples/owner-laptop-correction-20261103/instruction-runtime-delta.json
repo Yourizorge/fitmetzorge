@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "testRuntime": "be9448c579be66175ab7cfda3c5974935ca614e2be0db57844c789fa4c4e5601",
+  "finalRuntime": "3ad658dc51c94d8b58585f9dece12c0855d46632c739ae896a42ef3bacae01bd",
+  "changedPaths": [
+    "sources.owner-test/guide.js",
+    "guide"
+  ],
+  "exactEarlierRuntimeReproduced": true,
+  "themeAndLayoutByteIdentical": true,
+  "otherApplicationScriptsByteIdentical": true,
+  "explanation": "Only one test-guide sentence changes the full-period example from the already past 2 November to the next boundary, 30 November. Exact replacement asserted; every application script, adapter, stylesheet and host remains identical.",
+  "limits": "Earlier browser runs are reproduced exactly; they are not claimed to have run on the final hash."
+}

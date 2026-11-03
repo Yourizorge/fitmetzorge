@@ -28,15 +28,15 @@ async function verify(o){
  try{
   const manifest=JSON.parse(read('owner-test/manifest.json')),runtime=JSON.parse(read('owner-test/runtime.json')),seed=JSON.parse(read('owner-test/seed-manifest.json'));
   check('manifest identity',manifest.version===1&&manifest.synthetic===true);check('runtime identity and normalization',runtime.version===1&&runtime.synthetic===true&&runtime.sourceTextNormalization==='LF');
-  const expected=['boot','camera','documents','fs','initdb','pglite','runtime','seed','wasm'];check('exact nine manifest assets',JSON.stringify(Object.keys(manifest.files||{}).sort())===JSON.stringify(expected));
+  const expected=['boot','camera','documents','fs','initdb','pglite','runtime','seed','theme','wasm'];check('exact ten manifest assets',JSON.stringify(Object.keys(manifest.files||{}).sort())===JSON.stringify(expected));
   for(const [key,v]of Object.entries(manifest.files||{})){const safe=/^owner-test\/[a-zA-Z0-9._/-]+$/.test(v.path)&&!v.path.includes('..');if(!safe){check('manifest '+key,false,'invalid path');continue;}const b=read(v.path);check('manifest '+key,b.length===v.bytes&&sha(b)===v.sha256,{file:v.path,bytes:b.length,sha256:sha(b)});}
   check('seed checksum and synthetic marker',seed.synthetic===true&&seed.production===false&&seed.testNumberPrefix==='TEST-FMZ'&&sha(read('owner-test/seed.bin'))===seed.sha256);
   check('source manifest equality',JSON.stringify(manifest.sources)===JSON.stringify(runtime.sources));
   const scriptMap=new Map((runtime.scripts||[]).map(s=>[s.file,s.code]));check('unique script paths',scriptMap.size===(runtime.scripts||[]).length);
   for(const [f,h]of Object.entries(runtime.sources||{})){let code,method;if(scriptMap.has(f)){code=scriptMap.get(f);method='embedded script';}else if(f.startsWith('owner-test/')){code=read(f).toString('utf8');method='packaged helper';}else if(f.endsWith('.css')){code=(runtime.styles||[]).find(s=>sha(lf(s))===h);method='embedded stylesheet';}check('source '+f,typeof code==='string'&&sha(lf(code))===h,{method:method||'unmapped source'});}
   for(const f of scriptMap.keys())check('script tracked '+f,Object.hasOwn(runtime.sources||{},f));
-  check('embedded helper assembly',runtime.database===['member-status','duo','simulation','database'].map(n=>lf(read('owner-test/'+n+'.js').toString('utf8'))).join('\n')&&runtime.guide===lf(read('owner-test/guide.js').toString('utf8')));
-  for(const [key,file]of Object.entries({brandScript:'brand',schemaCopy:'schema-copy',statusUI:'status-ui',reminderCalendar:'reminder-calendar'}))check('embedded '+key,runtime[key]===lf(read('owner-test/'+file+'.js').toString('utf8')));
+  check('embedded helper assembly',runtime.database===['billing-cycle','member-status','duo','simulation','database'].map(n=>lf(read('owner-test/'+n+'.js').toString('utf8'))).join('\n')&&runtime.guide===lf(read('owner-test/guide.js').toString('utf8')));
+  for(const [key,file]of Object.entries({themeScript:'theme',billingCycleUI:'billing-cycle-ui',brandScript:'brand',schemaCopy:'schema-copy',statusUI:'status-ui',reminderCalendar:'reminder-calendar'}))check('embedded '+key,runtime[key]===lf(read('owner-test/'+file+'.js').toString('utf8')));
   const provenance=JSON.parse(read('owner-test/brand/provenance.json')),tokens=JSON.parse(read('owner-test/brand-tokens.json'));
   const officialSHA='f60fd1fd2d34c02cfae5a7cb833e2cfc32c4c1284e200880cb0f68a0d05b315a';
   check('official owner supplied logo identity',sha(read('owner-test/brand/source-logo-20261102.png'))===officialSHA&&provenance.sourceSHA256===officialSHA&&runtime.brand.sourceSHA256===officialSHA);

@@ -35,22 +35,20 @@ window.OwnerTestSimulation=(()=>{
   const secondary=new Set([...duo.values()].map(x=>x.secondClientId));
   return result.rows.filter(row=>!secondary.has(row.client_id)).map(row=>{const pair=duo.get(row.client_id),second=pair?.secondPerson;const participants=[{clientId:row.client_id,name:row.client_name,memberNumber:row.member_number,primary:true}];if(pair?.secondClientId)participants.push({clientId:pair.secondClientId,name:[second?.firstName,second?.insertion,second?.lastName].filter(Boolean).join(' ')||'Tweede duodeelnemer',primary:false});return{agreementId:row.agreement_id,clientId:row.client_id,clientName:row.client_name,participants,duo:Boolean(pair),amountCents:Number(row.amount_cents),cycle:row.cycle,packageLabel:row.package_label,agreementVersion:row.version,start:day(row.period.start),end:day(row.period.end),invoiceDate:day(row.period.invoiceDate),prepareDate:addDays(row.period.invoiceDate,-7),timeZone:'Europe/Amsterdam'};});
  }
+ async function centralMembers(context){
+  const org=await organization(context),rows=(await context.db.query(`select v.client_id,v.id agreement_id,v.package_label,v.amount_cents,v.effective_from,v.cycle,d.name client_name,k.snapshot
+   from fmz_accounting.agreement_versions v left join fmz_members.directory d on d.client_id=v.client_id and d.trainer_id=$2
+   left join fmz_members.contracts k on k.agreement_id=v.id
+   where v.org_id=$1 and v.enabled and v.cycle='four_weeks' and (k.snapshot ? 'owner_test_cycle' or v.client_id='TEST-NOOR' and v.origin='owner-test-fixture')
+   and not exists(select 1 from fmz_accounting.agreement_versions z where z.org_id=v.org_id and z.client_id=v.client_id and z.version>v.version) order by v.client_id`,[org,context.actor.id])).rows;
+  return rows.map(r=>{const pair=r.snapshot?.duo,participants=[{clientId:r.client_id,name:r.client_name,primary:true}];if(pair)participants.push({clientId:pair.secondClientId,name:[pair.secondPerson.firstName,pair.secondPerson.insertion,pair.secondPerson.lastName].filter(Boolean).join(' '),primary:false});return{agreementId:r.agreement_id,clientId:r.client_id,clientName:r.client_name,participants,duo:Boolean(pair),packageLabel:r.package_label,normalAmountCents:Number(r.amount_cents),startDate:r.client_id==='TEST-NOOR'?(context.simulation.billingCycle||window.OwnerTestBillingCycle.DEFAULT_CONFIG).baseDate:day(r.effective_from),syntheticFixture:r.client_id==='TEST-NOOR'};});
+ }
  async function calendar(context,options={}){
   await organization(context);if(!/^TEST-/.test(context.runId||''))fail('Geïsoleerde testrun ontbreekt.','42501');
-  const asOf=options.asOf||amsterdamDay(),from=options.from||asOf,to=options.to||addDays(asOf,120);
-  for(const d of [asOf,from,to])if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||new Date(d+'T12:00:00Z').toISOString().slice(0,10)!==d)fail('Ongeldige agendadatum.');
-  if(to<from||to>addDays(from,400))fail('Kies een agendaweergave van maximaal 400 dagen.');
-  const periods=await readPeriods(context,asOf,{includeHistory:true,through:to>asOf?to:asOf}),groups=new Map(),completed=context.simulation?.calendarCompleted||{},model=window.OwnerTestMemberStatus;
-  for(const p of periods)for(const kind of ['billing_prepare','billing_due']){
-   const date=kind==='billing_prepare'?p.prepareDate:p.invoiceDate;if(date>to||date<from&&date>=asOf)continue;
-   const flags=model?.at(context.simulation,p.clientId,'active',date);if(flags&&(!flags.billing||!flags.reminders))continue;
-   const key=date+'|'+kind;let group=groups.get(key);if(!group){group={date,kind,time:'09:00',timeZone:'Europe/Amsterdam',text:kind==='billing_prepare'?'Over één week facturen maken':'Vandaag facturen maken en versturen',items:[]};groups.set(key,group);}group.items.push(p);
-  }
-  const itemKey=(p,kind)=>[p.agreementId,p.start,p.end,kind].join('|'),covered=new Set(Object.values(completed).filter(t=>t.runId===context.runId).flatMap(t=>t.items.map(p=>itemKey(p,t.kind))));
-  const tasks=[...groups.values()].map(g=>({...g,items:g.items.filter(p=>!covered.has(itemKey(p,g.kind)))})).filter(g=>g.items.length).map(g=>{g.items.sort((a,b)=>a.agreementId.localeCompare(b.agreementId));const id=['calendar',context.runId,g.date,g.kind,...g.items.map(p=>p.agreementId+':'+p.start)].join('|');return{...g,id,runId:context.runId,status:g.date<asOf?'overdue':'open',completedAt:null,totalCents:g.items.reduce((s,p)=>s+p.amountCents,0)};});
-  // Completed historical items retain their exact participant/price snapshot.
-  for(const done of Object.values(completed))if(done.runId===context.runId&&done.date>=from&&done.date<=to&&!tasks.some(t=>t.id===done.id))tasks.push({...copy(done),status:'done'});
-  return tasks.filter(t=>t.date>=from&&t.date<=to||t.status==='overdue').sort((a,b)=>a.date.localeCompare(b.date)||a.kind.localeCompare(b.kind));
+  const model=window.OwnerTestBillingCycle||globalThis.OwnerTestBillingCycle;if(!model)fail('Gezamenlijke testcyclus ontbreekt.');
+  const asOf=options.asOf||amsterdamDay(),from=options.from||asOf,to=options.to||addDays(asOf,120),config=context.simulation.billingCycle||model.DEFAULT_CONFIG;
+  const tasks=model.tasks(config,{from,to,asOf,runId:context.runId,completed:context.simulation.calendarCompleted||{},items:await centralMembers(context)}),status=window.OwnerTestMemberStatus;
+  for(const task of tasks){task.items=task.items.filter(p=>{const flags=status?.at(context.simulation,p.clientId,'active',task.date);return !flags||flags.billing&&flags.reminders;});task.totalCents=task.items.reduce((n,p)=>n+p.amountCents,0);}return tasks;
  }
  async function run(context,action,payload={},requestId){
   if(!['reminder-7','reminder-today','reminder-complete','calendar-complete'].includes(action))fail('Factuurautomatisering en e-mailsimulaties zijn uitgeschakeld in deze owner-test.','OWNER_TEST_DISABLED');

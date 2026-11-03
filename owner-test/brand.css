@@ -1,5 +1,5 @@
 /* Owner-test only. All colours come from brand-tokens.json through build/boot. */
-body.ot-brand,body.ot-brand.light{color-scheme:dark;--bg:var(--ot-background);--surface:var(--ot-surface);--surface-2:var(--ot-surface-raised);--surface-3:var(--ot-surface-raised);--text:var(--ot-text);--muted:var(--ot-muted);--line:var(--ot-border);--gold:var(--ot-gold);--gold-2:var(--ot-gold-highlight);--blue:var(--ot-surface);--blue-2:var(--ot-surface-raised);--danger:var(--ot-error);--ok:var(--ot-success);background:var(--ot-background)!important;color:var(--ot-text)!important}
+body.ot-brand{color-scheme:inherit;--bg:var(--ot-background);--surface:var(--ot-surface);--surface-2:var(--ot-surface-raised);--surface-3:var(--ot-surface-raised);--text:var(--ot-text);--muted:var(--ot-muted);--line:var(--ot-border);--gold:var(--ot-gold-highlight);--gold-2:var(--ot-gold-highlight);--blue:var(--ot-surface);--blue-2:var(--ot-surface-raised);--danger:var(--ot-error);--ok:var(--ot-success);background:var(--ot-background)!important;color:var(--ot-text)!important}
 body.ot-brand :is(.sidebar,.topbar,.panel,.card,.members-dialog,.members-profile-page,.members-catalog-card,.members-package-card,.members-choice,.package-card,.training-exercise,.exercise-card,.fmz-test-guide,.fmz-test-dialog,.fmz-test-mini,.fmz-test-reminder-surface,dialog){background:var(--ot-surface)!important;color:var(--ot-text)!important;border-color:var(--ot-border)!important;background-image:none!important;box-shadow:none!important;min-width:0}
 body.ot-brand :is(h1,h2,h3,h4,strong,label){color:inherit}
 body.ot-brand :is(.muted,.hint,.eyebrow,.fmz-test-small,small){color:var(--ot-muted)}
@@ -30,10 +30,43 @@ body.ot-brand .ot-brand-heading img{width:220px;max-width:100%;height:auto;objec
 body.ot-brand .ot-brand-preview{display:flex;flex-wrap:wrap;gap:16px;align-items:start}
 body.ot-brand .ot-brand-preview figure{margin:0;max-width:100%;flex:1 1 160px}
 body.ot-brand .ot-brand-preview img{display:block;max-width:100%;height:auto;object-fit:contain}
-body.ot-brand .ot-brand-preview .ot-light-sample{background:var(--ot-text);padding:12px;border-radius:10px}
+body.ot-brand .ot-brand-preview .ot-light-sample{background:var(--ot-paper);padding:12px;border-radius:10px}
 body.ot-brand .ot-brand-preview figcaption{font-size:13px;line-height:1.5;margin-top:8px;color:var(--ot-muted)}
 body.ot-brand .ot-brand-preview .ot-app-icon{width:112px;height:112px;border-radius:24px;border:1px solid var(--ot-border);background:var(--ot-background)}
 body.ot-brand .ot-brand-preview .ot-favicon{width:32px;height:32px}
 body.ot-brand .ot-brand-loading{display:grid;justify-items:center;gap:12px;text-align:center}
 body.ot-brand .ot-brand-loading img{max-width:260px;width:70%;height:auto}
 @media(max-width:650px){body.ot-brand .ot-brand-heading img{width:170px}body.ot-brand .ot-brand-preview figure{flex-basis:100%}}
+
+/* Semantic surfaces override inherited dark-only component colours in both themes. */
+html[data-owner-theme=light]{background:var(--ot-background);color-scheme:light}
+html[data-owner-theme=dark]{background:var(--ot-background);color-scheme:dark}
+body.ot-brand :is(.view-head,.field,.settings-card,.stat-card,.metric-card,.acc-card,.acc-panel,.acc-dialog,.acc-table,.members-step,.members-review,.members-summary,.members-profile-summary,.members-profile-head,.members-doc-card,.members-status-card,.calendar-day,.calendar-event,.agenda-day,.agenda-event,.exercise-log,.mini-target,.invoice-preview,.finance-card,.empty-state){background-color:var(--ot-surface)!important;color:var(--ot-text)!important;border-color:var(--ot-border)!important;background-image:none!important}
+body.ot-brand :is(a,.text-link,.eyebrow,.gold-text){color:var(--ot-gold-highlight)}
+body.ot-brand :is(th,td){color:var(--ot-text)!important;border-color:var(--ot-border)!important;background:var(--ot-surface)!important}
+body.ot-brand th{background:var(--ot-surface-raised)!important}
+body.ot-brand :is(.pill,.badge,.status,.status-badge,.package-badge,.tag,.chip){color:var(--ot-text)!important;background:var(--ot-surface-raised)!important;border-color:var(--ot-border)!important}
+body.ot-brand :is(button:disabled,input:disabled,select:disabled,textarea:disabled){opacity:1!important;color:var(--ot-muted)!important;background:var(--ot-surface-raised)!important;border-color:var(--ot-border)!important;cursor:not-allowed}
+body.ot-brand :is(.error,.danger,[role=alert],.field-error,.members-error){color:var(--ot-error)!important}
+body.ot-brand :is(.success,.status-success,.save-status.ok){color:var(--ot-success)!important}
+body.ot-brand :is(.warning,.status-warning){color:var(--ot-warning)!important}
+body.ot-brand :is(.muted,.hint,.subtitle,.description,.field-note,.field-help,.help-text,small){color:var(--ot-muted)!important}
+body.ot-brand .ot-main-nav .nav-btn i{color:var(--ot-gold-highlight)}
+body.ot-brand .ot-main-nav .nav-btn.active i{color:var(--ot-ink)}
+body.ot-brand input::placeholder,body.ot-brand textarea::placeholder{color:var(--ot-muted)!important;opacity:1}
+body.ot-brand select option{background:var(--ot-surface);color:var(--ot-text)}
+body.ot-brand .ot-brand-preview [data-brand-dark]{background:var(--ot-logo-dark)}
+body.ot-brand #themeToggle{width:auto;min-width:98px;white-space:nowrap}
+
+body.ot-brand :is(.members-search-results,.members-package,.members-document,.members-warning,.acc-dialog header,.acc-dialog .acc-actions,.acc-menu,.calendar-cell,.invoice-card){background:var(--ot-surface)!important;color:var(--ot-text)!important;border-color:var(--ot-border)!important}
+body.ot-brand :is(.members-avatar,.members-initials,.ot-status-heading>strong,.members-steps [aria-current]){color:var(--ot-gold-highlight)!important}
+body.ot-brand .members-steps{color:var(--ot-muted)}
+body.ot-brand .members-signature{background:var(--ot-surface)!important;border-color:var(--ot-border)!important;--ot-gold:var(--ot-gold-highlight)}
+body.ot-brand .members-field-error{color:var(--ot-error)!important}
+body.ot-brand .members-package[data-selected=true],body.ot-brand .acc-menu button.active{background:var(--ot-surface-raised)!important;border-color:var(--ot-gold-highlight)!important;color:var(--ot-gold-highlight)!important}
+body.ot-brand .invoice-a4,body.ot-brand .invoice-a4 :is(th,td){background:var(--ot-paper)!important;color:var(--ot-paper-ink)!important}
+
+body.ot-brand :is(.training-day-tab.active,.tracker-day-tab.active){background:var(--ot-gold)!important;color:var(--ot-ink)!important;border-color:var(--ot-gold)!important}
+body.ot-brand :is(.training-day-tab.active,.tracker-day-tab.active) :is(strong,span,small){color:var(--ot-ink)!important}
+
+body.ot-brand :is(.training-day-tab:not(.active),.tracker-day-tab:not(.active)) strong{color:var(--ot-gold-highlight)!important}
