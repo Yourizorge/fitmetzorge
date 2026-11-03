@@ -22,13 +22,14 @@
   window.FMZ_CONFIG={SUPABASE_URL:'https://synthetic.invalid',SUPABASE_ANON_KEY:'synthetic-owner-laptop',INVITE_FUNCTION_NAME:'disabled'};
   script(m.pglite);script(r.database);
   const pgliteWasmModule=await WebAssembly.compile(m.wasm),initdbWasmModule=await WebAssembly.compile(m.initdb);
-  adapter=await OwnerTestDatabase.create({PGlite:OwnerTestPGlite,pgliteWasmModule,initdbWasmModule,fsBundle:new Blob([m.fs]),seed:new Blob([m.seed]),restore:m.restore,persist:value=>request('checkpoint',{value}),remove:runId=>request('delete-run',{runId})});
+  adapter=await OwnerTestDatabase.create({PGlite:OwnerTestPGlite,pgliteWasmModule,initdbWasmModule,fsBundle:new Blob([m.fs]),seed:new Blob([m.seed]),branding:{dataURL:r.brand.variants.horizontal,width:960,height:480,sha256:r.brand.variantHashes.horizontal,sourceSHA256:r.brand.sourceSHA256,version:"owner-test-brand-20261103"},restore:m.restore,persist:value=>request('checkpoint',{value}),remove:runId=>request('delete-run',{runId})});
   window.OwnerTestAdapter=adapter;window.supabase={createClient:()=>adapter.sdk};
-  window.FMZPush={render(){},lock(){},mount(){},openBillingTask(){}};
+  window.FMZPush={render(){},lock(){},clearLocal(){},mount(){},openBillingTask(){}};
   window.FMZBillingNotifications={mount(){},lock(){}};
   window.FMZTutorial={open(){alert('Deze test behandelt de nieuwe ledenroute. De bestaande cursus staat in je echte app.');},close(){},help(){}};
   document.body.className='logged-out';document.body.innerHTML=r.html;
   for(const css of r.styles){const el=document.createElement('style');el.textContent=css;document.head.append(el);}
+  script(r.brandScript);OwnerTestBrand.start(r.brand);
   const style=document.createElement('style');style.textContent='html{scroll-behavior:auto}body{padding-top:54px}a[href^="http"],a[href^="mailto:"]{pointer-events:none}';document.head.append(style);
   document.addEventListener('submit',e=>e.preventDefault());
   document.addEventListener('click',e=>{const a=e.target.closest('a');if(a&&!a.download&&!a.href.startsWith('blob:')&&!a.href.startsWith('#'))e.preventDefault();},true);
@@ -47,9 +48,9 @@
     if(!element.isConnected||!isCurrent())return;const page=await pdf.getPage(i),viewport=page.getViewport({scale:1.4}),canvas=document.createElement('canvas');canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);canvas.style.cssText='max-width:100%;height:auto;display:block;margin:12px auto';canvas.setAttribute('aria-label',`Test-PDF pagina ${i} van ${pdf.numPages}`);await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;fragment.append(canvas);
    }if(element.isConnected&&isCurrent())element.replaceChildren(fragment);}finally{await task.destroy();}
   };
-  script(r.navigation);script(r.guide);
+  script(r.schemaCopy);script(r.navigation);script(r.statusUI);script(r.reminderCalendar);script(r.guide);
   const timeout=Date.now()+30000;while(!window.FMZAccounting?.ready){if(Date.now()>timeout)throw Error('Synthetische traineromgeving kon niet worden gestart.');await new Promise(resolve=>setTimeout(resolve,100));}
-  showView('administration');FMZAccounting.render(true);showView('clients');FMZMembers.render();await FMZOwnerNavigation.start(adapter);await FMZOwnerGuide.start(adapter);
+  showView('administration');FMZAccounting.render(true);showView('clients');FMZMembers.render();await FMZOwnerNavigation.start(adapter);await FMZOwnerGuide.start(adapter);await FMZOwnerStatusUI.start(adapter);
  }
  addEventListener('message',async e=>{
   const m=e.data;if(e.source!==parent||m?.channel!==CHANNEL||m.nonce!==nonce)return;

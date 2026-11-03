@@ -1,0 +1,842 @@
+{
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "runtimeHash": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "hostSHA256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac",
+  "source": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+  "gifBytes": 316421,
+  "gifFrames": 12,
+  "sha256": "5d8f4c247630ccba9b8df09432d6174a96f8df3d3450164a6cabbde766de93a8",
+  "builder": {
+    "image": {
+      "x": 240,
+      "y": 365.34375,
+      "w": 110,
+      "h": 110
+    },
+    "box": {
+      "x": 239,
+      "y": 364.34375,
+      "w": 112,
+      "h": 112
+    },
+    "fit": "contain",
+    "natural": [
+      360,
+      360
+    ],
+    "overflow": false
+  },
+  "training": {
+    "image": {
+      "x": 259,
+      "y": 425.4375,
+      "w": 110,
+      "h": 110
+    },
+    "box": {
+      "x": 258,
+      "y": 424.4375,
+      "w": 112,
+      "h": 112
+    },
+    "fit": "contain",
+    "natural": [
+      360,
+      360
+    ],
+    "overflow": false
+  },
+  "mobile": {
+    "image": {
+      "x": 57,
+      "y": 451.5,
+      "w": 94,
+      "h": 94
+    },
+    "box": {
+      "x": 56,
+      "y": 450.5,
+      "w": 96,
+      "h": 96
+    },
+    "fit": "contain",
+    "natural": [
+      360,
+      360
+    ],
+    "overflow": false
+  },
+  "noReferrer": true,
+  "reload": true,
+  "errors": [],
+  "cleanup": {
+    "manifest": {
+      "runId": "TEST-f0ddd077-a2d5-48ed-b5b1-081cee8dc87c",
+      "revision": 5,
+      "synthetic": true,
+      "members": [
+        {
+          "id": "TEST-NOOR",
+          "label": "Noor Voorbeeld",
+          "member_number": 1,
+          "status": "active"
+        },
+        {
+          "id": "TEST-SAM",
+          "label": "Sam Test",
+          "member_number": 2,
+          "status": "active"
+        }
+      ],
+      "contracts": [],
+      "documents": [],
+      "invoices": [],
+      "messages": [],
+      "reminders": [],
+      "blobs": [],
+      "sessions": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "user_id": "11111111-1111-4111-8111-111111111111"
+        },
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "user_id": "22222222-2222-4222-8222-222222222222"
+        },
+        {
+          "id": "33333333-3333-4333-8333-333333333333",
+          "user_id": "33333333-3333-4333-8333-333333333333"
+        },
+        {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "user_id": "44444444-4444-4444-8444-444444444444"
+        }
+      ],
+      "drafts": [],
+      "preliminary": [],
+      "files": [],
+      "communicationDocuments": [],
+      "simulationRecords": [],
+      "calendarViews": [],
+      "memberStatusEvents": [],
+      "statusReceipts": [],
+      "calendarCompletions": [],
+      "schemaDrafts": [
+        {
+          "id": "schema-builder",
+          "label": "Schema builder — lokaal testschema en koppelingen",
+          "data": {
+            "name": "Mijn testschema",
+            "revision": 1,
+            "client": {
+              "id": "OWNER-TEST-UNASSIGNED-SCHEMA",
+              "name": "Los schema",
+              "email": "schema@example.test",
+              "password": "",
+              "registered": false,
+              "profile": {
+                "firstName": "",
+                "lastName": "",
+                "phone": "",
+                "birthDate": "",
+                "age": "",
+                "height": "",
+                "currentWeight": "",
+                "address": "",
+                "postalCode": "",
+                "city": "",
+                "country": "Nederland",
+                "emergencyName": "",
+                "emergencyPhone": "",
+                "injuries": "",
+                "package": ""
+              },
+              "goal": "",
+              "startDate": "2026-11-03",
+              "goals": {
+                "kcalTraining": 2600,
+                "kcalRest": 2300,
+                "protein": 160,
+                "carbsTraining": 250,
+                "carbsRest": 180,
+                "fat": 70,
+                "steps": 10000,
+                "sleep": 8,
+                "water": 3,
+                "wellbeing": 8,
+                "targetWeight": ""
+              },
+              "planSummary": "Plan nog invullen.",
+              "trainingPlan": [
+                {
+                  "id": "training-17937070195607e579e87dad6a",
+                  "day": "Maandag",
+                  "exercise": "Bench Press",
+                  "group": "Borst",
+                  "equipment": "Barbell",
+                  "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                  "schemaName": "Trainingsschema",
+                  "sets": 3,
+                  "reps": "8",
+                  "targetWeight": "",
+                  "tempo": "",
+                  "rest": "",
+                  "actualSets": "",
+                  "actualReps": "",
+                  "actualWeight": "",
+                  "notes": "",
+                  "published": false,
+                  "logsByWeek": {
+                    "2026-11-02": {
+                      "actualSets": "",
+                      "actualReps": "",
+                      "actualWeight": "",
+                      "notes": ""
+                    }
+                  }
+                }
+              ],
+              "trainingAttendanceByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "status": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "status": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "status": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "status": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "status": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "status": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "status": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "nutritionPlan": [],
+              "foodLog": [],
+              "steps": [
+                {
+                  "day": "Maandag",
+                  "value": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "value": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "value": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": ""
+                },
+                {
+                  "day": "Zondag",
+                  "value": ""
+                }
+              ],
+              "stepsByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "value": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "value": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "value": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "value": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "value": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "value": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "value": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "dailyWeight": [
+                {
+                  "day": "Maandag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-02"
+                },
+                {
+                  "day": "Dinsdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-03"
+                },
+                {
+                  "day": "Woensdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-04"
+                },
+                {
+                  "day": "Donderdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-05"
+                },
+                {
+                  "day": "Vrijdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-06"
+                },
+                {
+                  "day": "Zaterdag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-07"
+                },
+                {
+                  "day": "Zondag",
+                  "value": "",
+                  "waist": "",
+                  "chest": "",
+                  "armLeft": "",
+                  "armRight": "",
+                  "legLeft": "",
+                  "legRight": "",
+                  "note": "",
+                  "photoFront": "",
+                  "photoSide": "",
+                  "photoBack": "",
+                  "photoExtra": "",
+                  "date": "2026-11-08"
+                }
+              ],
+              "dailyWeightByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "value": "",
+                    "waist": "",
+                    "chest": "",
+                    "armLeft": "",
+                    "armRight": "",
+                    "legLeft": "",
+                    "legRight": "",
+                    "note": "",
+                    "photoFront": "",
+                    "photoSide": "",
+                    "photoBack": "",
+                    "photoExtra": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "measurements": [],
+              "wellbeing": [
+                {
+                  "day": "Maandag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                },
+                {
+                  "day": "Zondag",
+                  "energy": "",
+                  "stress": "",
+                  "motivation": "",
+                  "mood": ""
+                }
+              ],
+              "wellbeingByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "energy": "",
+                    "stress": "",
+                    "motivation": "",
+                    "mood": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "sleep": [
+                {
+                  "day": "Maandag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Dinsdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Woensdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Donderdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Vrijdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Zaterdag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                },
+                {
+                  "day": "Zondag",
+                  "hours": "",
+                  "quality": "",
+                  "bed": "",
+                  "wake": ""
+                }
+              ],
+              "sleepByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "hours": "",
+                    "quality": "",
+                    "bed": "",
+                    "wake": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "water": 0,
+              "waterByWeek": {
+                "2026-11-02": [
+                  {
+                    "day": "Maandag",
+                    "value": "",
+                    "date": "2026-11-02"
+                  },
+                  {
+                    "day": "Dinsdag",
+                    "value": "",
+                    "date": "2026-11-03"
+                  },
+                  {
+                    "day": "Woensdag",
+                    "value": "",
+                    "date": "2026-11-04"
+                  },
+                  {
+                    "day": "Donderdag",
+                    "value": "",
+                    "date": "2026-11-05"
+                  },
+                  {
+                    "day": "Vrijdag",
+                    "value": "",
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "day": "Zaterdag",
+                    "value": "",
+                    "date": "2026-11-07"
+                  },
+                  {
+                    "day": "Zondag",
+                    "value": "",
+                    "date": "2026-11-08"
+                  }
+                ]
+              },
+              "appointments": []
+            },
+            "assignments": {
+              "TEST-NOOR|1": {
+                "id": "94e91f60-4dec-4709-aebe-58bff2eef85f",
+                "memberId": "TEST-NOOR",
+                "revision": 1,
+                "entries": [
+                  {
+                    "id": "training-1793707023307b4e7e0b715f7b8",
+                    "day": "Maandag",
+                    "exercise": "Bench Press",
+                    "group": "Borst",
+                    "equipment": "Barbell",
+                    "image": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+                    "schemaName": "Mijn testschema",
+                    "sets": 3,
+                    "reps": "8",
+                    "targetWeight": "",
+                    "tempo": "",
+                    "rest": "",
+                    "actualSets": "",
+                    "actualReps": "",
+                    "actualWeight": "",
+                    "notes": "",
+                    "published": true,
+                    "logsByWeek": {}
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "hash": "d7df9128176966feed6b8c6d88d984ce6ea67da0b645eccbf626e5653646ef03"
+    },
+    "completed": true
+  },
+  "physicalTest": false
+}

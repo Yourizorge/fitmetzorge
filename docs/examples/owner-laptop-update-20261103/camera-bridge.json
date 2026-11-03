@@ -1,0 +1,84 @@
+{
+  "pass": true,
+  "runtimeSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "hostSHA256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac",
+  "browser": "156.0.8078.80",
+  "device": "synthetic native Chrome device",
+  "parentPrivacyBoundary": true,
+  "permissionOnlyAfterClick": true,
+  "fullCaptureRetakeSave": true,
+  "oneLocalPhoto": true,
+  "tracksStopped": true,
+  "sessionExpiryStopsCamera": true,
+  "reset": true,
+  "exactDeletionManifest": {
+    "runId": "TEST-2b6462c3-6871-4311-ba52-44a893e8e987",
+    "revision": 4,
+    "synthetic": true,
+    "members": [
+      {
+        "id": "TEST-NOOR",
+        "label": "Noor Voorbeeld",
+        "member_number": 1,
+        "status": "active"
+      },
+      {
+        "id": "TEST-SAM",
+        "label": "Sam Test",
+        "member_number": 2,
+        "status": "active"
+      }
+    ],
+    "contracts": [],
+    "documents": [
+      {
+        "id": "ddb5a111-a3b7-47cc-8c9d-61a930240280",
+        "kind": "photo",
+        "path": "11111111-1111-4111-8111-111111111111/photos/ddb5a111-a3b7-47cc-8c9d-61a930240280",
+        "status": "ready",
+        "sha256": "31730b823e7c2d3802faf567d3be67e757b09e1d3e7c41ae0ee73cdfd4f67527"
+      }
+    ],
+    "invoices": [],
+    "messages": [],
+    "reminders": [],
+    "blobs": [
+      {
+        "path": "fmz-members/11111111-1111-4111-8111-111111111111/photos/ddb5a111-a3b7-47cc-8c9d-61a930240280",
+        "bytes": 7423,
+        "mime": "image/jpeg"
+      }
+    ],
+    "sessions": [
+      {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "user_id": "11111111-1111-4111-8111-111111111111"
+      },
+      {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "user_id": "22222222-2222-4222-8222-222222222222"
+      },
+      {
+        "id": "33333333-3333-4333-8333-333333333333",
+        "user_id": "33333333-3333-4333-8333-333333333333"
+      },
+      {
+        "id": "44444444-4444-4444-8444-444444444444",
+        "user_id": "44444444-4444-4444-8444-444444444444"
+      }
+    ],
+    "drafts": [],
+    "preliminary": [],
+    "files": [],
+    "communicationDocuments": [],
+    "simulationRecords": [],
+    "calendarViews": [],
+    "memberStatusEvents": [],
+    "statusReceipts": [],
+    "calendarCompletions": [],
+    "schemaDrafts": [],
+    "hash": "80f9e14ba50a4b18c322ab5bafb648773632a95e2280676ef4651ca4ff6fb475"
+  },
+  "productionWrites": 0,
+  "errors": []
+}

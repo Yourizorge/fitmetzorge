@@ -1,0 +1,23 @@
+/* Local vector controls and owner-provided raster mark; no network or logo redesign. */
+window.OwnerTestBrand=(()=>{
+ 'use strict';let brand=null,started=false;
+ const paths={
+  'trainer-dashboard':'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  agenda:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18M7 14h2m3 0h2m3 0h1M7 17h2m3 0h2"/>',
+  'schema-builder':'<rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="m8 11 1 1 2-2m2 1h3m-8 5 1 1 2-2m2 1h3"/>',
+  clients:'<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m1 4a5 5 0 0 1 3 4v3"/>',
+  administration:'<path d="M3 21h18M5 17V9m7 8V4m7 13v-6"/><path d="m3 5 5-2 5 2 8-3"/>',
+  invoice:'<path d="M14 2H5a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8zM14 2v6h6m-5 4a3.5 3.5 0 1 0 0 6M7 14h7m-7 2h6"/>',
+  settings:'<path d="m10 3-.5 2-2 .9-1.8-.7-2 3.5 1.5 1.4v2.8l-1.5 1.4 2 3.5 1.8-.7 2 .9.5 2h4l.5-2 2-.9 1.8.7 2-3.5-1.5-1.4v-2.8l1.5-1.4-2-3.5-1.8.7-2-.9L14 3z"/><circle cx="12" cy="11.5" r="3"/>'
+ };
+ function icon(id){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${paths[id]||paths['trainer-dashboard']}</svg>`;}
+ function tokensCSS(tokens){return Object.entries(tokens).map(([k,v])=>`--ot-${k}:${v}`).join(';');}
+ function decorate(){if(!brand)return;for(const b of document.querySelectorAll('.ot-main-nav [data-ot-nav]')){const i=b.querySelector('i');if(i&&!i.querySelector('svg')){i.innerHTML=icon(b.dataset.otNav);i.dataset.otVector='';}}
+  for(const img of document.querySelectorAll('.brand-logo,.brand-logo-wrap img,.sidebar-brand img'))if(img.src!==brand.variants.sidebar){img.src=brand.variants.sidebar;img.alt='Fit Met Zorge — officieel logo';img.removeAttribute('width');img.removeAttribute('height');}
+  const heading=document.querySelector('[data-ot-dashboard]>.view-head');if(heading&&!heading.querySelector('[data-ot-brand-logo]')){heading.classList.add('ot-brand-heading');const img=document.createElement('img');img.dataset.otBrandLogo='';img.src=brand.variants.horizontal;img.alt='Fit Met Zorge';heading.append(img);}
+  const settings=document.getElementById('settings');if(settings&&!settings.querySelector('[data-ot-brand-preview]')){const section=document.createElement('section');section.className='panel';section.dataset.otBrandPreview='';section.innerHTML='<h2>Nieuwe huisstijl — testvoorbeeld</h2><p>Het officiële aangeleverde logo, zonder hertekenen of afsnijden. Deze voorbeelden wijzigen je geïnstalleerde app niet.</p><div class="ot-brand-preview"><figure><img data-brand-dark alt="Logo op donker oppervlak"><figcaption>Volledig logo op de donkere appachtergrond</figcaption></figure><figure><div class="ot-light-sample"><img data-brand-light alt="Logo op licht oppervlak"></div><figcaption>Transparante bron op een licht oppervlak</figcaption></figure><figure><img data-brand-icon class="ot-app-icon" alt="Appicoon testvoorbeeld"><figcaption>PWA-voorbeeld · geen installatie</figcaption></figure><figure><img data-brand-favicon class="ot-favicon" alt="Favicon testvoorbeeld"><figcaption>Favicon · alleen test</figcaption></figure></div>';settings.prepend(section);section.querySelector('[data-brand-dark]').src=section.querySelector('[data-brand-light]').src=brand.variants.horizontal;section.querySelector('[data-brand-icon]').src=brand.variants['app-192'];section.querySelector('[data-brand-favicon]').src=brand.variants['favicon-32'];}
+ }
+ function start(value){if(started)return;started=true;brand=value;if(!brand||brand.sourceSHA256!=='f60fd1fd2d34c02cfae5a7cb833e2cfc32c4c1284e200880cb0f68a0d05b315a')throw Error('Officiële logobron ontbreekt.');document.body.classList.add('ot-brand');document.body.classList.remove('light');for(const[k,v]of Object.entries(brand.tokens))document.documentElement.style.setProperty('--ot-'+k,v);const favicon=document.createElement('link');favicon.rel='icon';favicon.type='image/png';favicon.href=brand.variants['favicon-32'];document.head.append(favicon);decorate();new MutationObserver(decorate).observe(document.body,{childList:true,subtree:true});}
+ function pdfBranding(){return brand?{dataURL:brand.variants.horizontal,width:960,height:480,sha256:brand.variantHashes.horizontal,sourceSHA256:brand.sourceSHA256,version:'owner-test-brand-20261103'}:undefined;}
+ return {start,decorate,icon,tokensCSS,pdfBranding};
+})();

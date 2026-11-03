@@ -1,0 +1,2834 @@
+{
+  "status": "PASS",
+  "cleanup": {
+    "manifest": {
+      "runId": "TEST-dc966253-2702-4ddc-a4c6-17b088742eb3",
+      "revision": 0,
+      "synthetic": true,
+      "members": [
+        {
+          "id": "TEST-NOOR",
+          "label": "Noor Voorbeeld",
+          "member_number": 1,
+          "status": "active"
+        },
+        {
+          "id": "TEST-SAM",
+          "label": "Sam Test",
+          "member_number": 2,
+          "status": "active"
+        }
+      ],
+      "contracts": [],
+      "documents": [],
+      "invoices": [],
+      "messages": [],
+      "reminders": [],
+      "blobs": [],
+      "sessions": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "user_id": "11111111-1111-4111-8111-111111111111"
+        },
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "user_id": "22222222-2222-4222-8222-222222222222"
+        },
+        {
+          "id": "33333333-3333-4333-8333-333333333333",
+          "user_id": "33333333-3333-4333-8333-333333333333"
+        },
+        {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "user_id": "44444444-4444-4444-8444-444444444444"
+        }
+      ],
+      "drafts": [],
+      "preliminary": [],
+      "files": [],
+      "communicationDocuments": [],
+      "simulationRecords": [],
+      "calendarViews": [],
+      "memberStatusEvents": [],
+      "statusReceipts": [],
+      "calendarCompletions": [],
+      "schemaDrafts": [],
+      "hash": "b93d05a9e82aa263ce54631e583f2d4a7eac5dec92b545111617f012733eda1c"
+    },
+    "result": {
+      "before": {
+        "runId": "TEST-dc966253-2702-4ddc-a4c6-17b088742eb3",
+        "revision": 0,
+        "synthetic": true,
+        "members": [
+          {
+            "id": "TEST-NOOR",
+            "label": "Noor Voorbeeld",
+            "member_number": 1,
+            "status": "active"
+          },
+          {
+            "id": "TEST-SAM",
+            "label": "Sam Test",
+            "member_number": 2,
+            "status": "active"
+          }
+        ],
+        "contracts": [],
+        "documents": [],
+        "invoices": [],
+        "messages": [],
+        "reminders": [],
+        "blobs": [],
+        "sessions": [
+          {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "user_id": "11111111-1111-4111-8111-111111111111"
+          },
+          {
+            "id": "22222222-2222-4222-8222-222222222222",
+            "user_id": "22222222-2222-4222-8222-222222222222"
+          },
+          {
+            "id": "33333333-3333-4333-8333-333333333333",
+            "user_id": "33333333-3333-4333-8333-333333333333"
+          },
+          {
+            "id": "44444444-4444-4444-8444-444444444444",
+            "user_id": "44444444-4444-4444-8444-444444444444"
+          }
+        ],
+        "drafts": [],
+        "preliminary": [],
+        "files": [],
+        "communicationDocuments": [],
+        "simulationRecords": [],
+        "calendarViews": [],
+        "memberStatusEvents": [],
+        "statusReceipts": [],
+        "calendarCompletions": [],
+        "schemaDrafts": [],
+        "hash": "b93d05a9e82aa263ce54631e583f2d4a7eac5dec92b545111617f012733eda1c"
+      },
+      "after": {
+        "runId": "TEST-dc966253-2702-4ddc-a4c6-17b088742eb3",
+        "members": [],
+        "contracts": [],
+        "documents": [],
+        "invoices": [],
+        "messages": [],
+        "reminders": [],
+        "blobs": [],
+        "sessions": [],
+        "drafts": [],
+        "preliminary": [],
+        "files": [],
+        "communicationDocuments": [],
+        "simulationRecords": [],
+        "schemaDrafts": [],
+        "calendarViews": [],
+        "memberStatusEvents": [],
+        "statusReceipts": [],
+        "calendarCompletions": [],
+        "deleted": true,
+        "verification": "Isolated database instance closed; host checkpoint removal acknowledged. This is not a SQL query after deletion."
+      },
+      "deletedRunId": "TEST-dc966253-2702-4ddc-a4c6-17b088742eb3"
+    }
+  },
+  "browser": "155.0.4283.62",
+  "nativeZoomMethod": "chrome.tabs.setZoom and getZoom readback in edge",
+  "runtimeHash": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+  "results": [
+    {
+      "width": 1366,
+      "height": 768,
+      "nativeZoom": 1,
+      "devicePixelRatio": 1,
+      "geometry": {
+        "viewport": 1337,
+        "scroll": 1337,
+        "sidebar": {
+          "left": 0,
+          "right": 176,
+          "top": 66,
+          "bottom": 664,
+          "width": 176,
+          "height": 598
+        },
+        "content": {
+          "left": 176,
+          "right": 1337,
+          "top": 89.1875,
+          "bottom": 1512.203125,
+          "width": 1161,
+          "height": 1423.015625
+        },
+        "profile": {
+          "left": 196,
+          "right": 1317,
+          "top": 107.1875,
+          "bottom": 1494.203125,
+          "width": 1121,
+          "height": 1387.015625
+        },
+        "search": {
+          "left": 213,
+          "right": 664.5,
+          "top": 101.1875,
+          "bottom": 145.1875,
+          "width": 451.5,
+          "height": 44
+        },
+        "menu": [
+          {
+            "left": 9,
+            "right": 165,
+            "top": 208.390625,
+            "bottom": 254.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 260.390625,
+            "bottom": 306.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 312.390625,
+            "bottom": 358.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 364.390625,
+            "bottom": 410.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 416.390625,
+            "bottom": 462.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 468.390625,
+            "bottom": 514.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 520.390625,
+            "bottom": 566.390625,
+            "width": 156,
+            "height": 46
+          }
+        ],
+        "icons": [
+          {
+            "left": 18,
+            "right": 38,
+            "top": 221.390625,
+            "bottom": 241.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Dashboard",
+            "iconCenter": 231.390625,
+            "labelCenter": 231.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 273.390625,
+            "bottom": 293.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Agenda",
+            "iconCenter": 283.390625,
+            "labelCenter": 283.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 325.390625,
+            "bottom": 345.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Schema builder",
+            "iconCenter": 335.390625,
+            "labelCenter": 335.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 377.390625,
+            "bottom": 397.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Leden",
+            "iconCenter": 387.390625,
+            "labelCenter": 387.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 429.390625,
+            "bottom": 449.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Administratie",
+            "iconCenter": 439.390625,
+            "labelCenter": 439.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 481.390625,
+            "bottom": 501.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Facturen",
+            "iconCenter": 491.390625,
+            "labelCenter": 491.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 533.390625,
+            "bottom": 553.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Instellingen",
+            "iconCenter": 543.390625,
+            "labelCenter": 543.390625
+          }
+        ],
+        "tabs": [
+          {
+            "left": 215,
+            "right": 325.25,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 110.25,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 108,
+            "client": 108
+          },
+          {
+            "left": 330.25,
+            "right": 436.375,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 106.125,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 104,
+            "client": 104
+          },
+          {
+            "left": 441.375,
+            "right": 539.796875,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 98.421875,
+            "height": 42,
+            "text": "Training",
+            "scroll": 96,
+            "client": 96
+          },
+          {
+            "left": 544.796875,
+            "right": 645.078125,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 100.28125,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 98,
+            "client": 98
+          },
+          {
+            "left": 650.078125,
+            "right": 749.09375,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 99.015625,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 97,
+            "client": 97
+          },
+          {
+            "left": 754.09375,
+            "right": 851.59375,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 97.5,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 96,
+            "client": 96
+          },
+          {
+            "left": 856.59375,
+            "right": 963.015625,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 106.421875,
+            "height": 42,
+            "text": "Financi\u00c3\u00abn",
+            "scroll": 104,
+            "client": 104
+          },
+          {
+            "left": 968.015625,
+            "right": 1092.796875,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 124.78125,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 123,
+            "client": 123
+          },
+          {
+            "left": 1097.796875,
+            "right": 1195.578125,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 97.78125,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 96,
+            "client": 96
+          },
+          {
+            "left": 1200.578125,
+            "right": 1298,
+            "top": 604.65625,
+            "bottom": 646.65625,
+            "width": 97.421875,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 95,
+            "client": 95
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 596.65625,
+        "bottom": 659.65625,
+        "headerBottom": 158.1875,
+        "height": 664
+      },
+      "host": {
+        "top": 15.359375,
+        "bottom": 752.625,
+        "height": 768
+      },
+      "parentViewport": {
+        "width": 1366,
+        "height": 768,
+        "scrollY": 0,
+        "visual": {
+          "width": 1366,
+          "height": 768,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "nativeZoom": 1.25,
+      "devicePixelRatio": 1.25,
+      "geometry": {
+        "viewport": 1070,
+        "scroll": 1070,
+        "sidebar": {
+          "left": 0,
+          "right": 160,
+          "top": 66,
+          "bottom": 517.6000061035156,
+          "width": 160,
+          "height": 451.6000061035156
+        },
+        "content": {
+          "left": 160,
+          "right": 1069.6000366210938,
+          "top": 94.5999984741211,
+          "bottom": 1496.3625717163086,
+          "width": 909.6000366210938,
+          "height": 1401.7625732421875
+        },
+        "profile": {
+          "left": 174,
+          "right": 1055.6000366210938,
+          "top": 108.5999984741211,
+          "bottom": 1482.3625717163086,
+          "width": 881.6000366210938,
+          "height": 1373.7625732421875
+        },
+        "search": {
+          "left": 190.8000030517578,
+          "right": 523.0000152587891,
+          "top": 99,
+          "bottom": 143,
+          "width": 332.20001220703125,
+          "height": 44
+        },
+        "menu": [
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 202.60000610351562,
+            "bottom": 248.60000610351562,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 254.60000610351562,
+            "bottom": 300.6000061035156,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 306.6000061035156,
+            "bottom": 352.6000061035156,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 358.6000061035156,
+            "bottom": 404.6000061035156,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 410.6000061035156,
+            "bottom": 456.6000061035156,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 462.6000061035156,
+            "bottom": 508.6000061035156,
+            "width": 141.1999969482422,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 149.99999713897705,
+            "top": 514.6000366210938,
+            "bottom": 560.6000366210938,
+            "width": 141.1999969482422,
+            "height": 46
+          }
+        ],
+        "icons": [
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 215.60000610351562,
+            "bottom": 235.60000610351562,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Dashboard",
+            "iconCenter": 225.60000610351562,
+            "labelCenter": 225.60000038146973
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 267.6000061035156,
+            "bottom": 287.6000061035156,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Agenda",
+            "iconCenter": 277.6000061035156,
+            "labelCenter": 277.6000003814697
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 319.6000061035156,
+            "bottom": 339.6000061035156,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Schema builder",
+            "iconCenter": 329.6000061035156,
+            "labelCenter": 329.6000003814697
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 371.6000061035156,
+            "bottom": 391.6000061035156,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Leden",
+            "iconCenter": 381.6000061035156,
+            "labelCenter": 381.6000003814697
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 423.6000061035156,
+            "bottom": 443.6000061035156,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Administratie",
+            "iconCenter": 433.6000061035156,
+            "labelCenter": 433.6000003814697
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 475.6000061035156,
+            "bottom": 495.6000061035156,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Facturen",
+            "iconCenter": 485.6000061035156,
+            "labelCenter": 485.6000003814697
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 527.6000366210938,
+            "bottom": 547.6000366210938,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Instellingen",
+            "iconCenter": 537.6000366210938,
+            "labelCenter": 537.6000003814697
+          }
+        ],
+        "tabs": [
+          {
+            "left": 186.8000030517578,
+            "right": 274.3500061035156,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 87.55000305175781,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 86,
+            "client": 86
+          },
+          {
+            "left": 279.3500061035156,
+            "right": 362.77500915527344,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 83.42500305175781,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 82,
+            "client": 82
+          },
+          {
+            "left": 367.7749938964844,
+            "right": 443.49999237060547,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 75.7249984741211,
+            "height": 42,
+            "text": "Training",
+            "scroll": 74,
+            "client": 74
+          },
+          {
+            "left": 448.5,
+            "right": 526.0875015258789,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 77.5875015258789,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 76,
+            "client": 76
+          },
+          {
+            "left": 531.0875244140625,
+            "right": 607.4000244140625,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 76.3125,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 75,
+            "client": 75
+          },
+          {
+            "left": 612.4000244140625,
+            "right": 687.2000274658203,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 74.80000305175781,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 73,
+            "client": 73
+          },
+          {
+            "left": 692.2000122070312,
+            "right": 775.9250106811523,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 83.7249984741211,
+            "height": 42,
+            "text": "Financi\u00c3\u00abn",
+            "scroll": 82,
+            "client": 82
+          },
+          {
+            "left": 780.9249877929688,
+            "right": 882.9999923706055,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 102.07500457763672,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 100,
+            "client": 100
+          },
+          {
+            "left": 888,
+            "right": 963.0750045776367,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 75.07500457763672,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 73,
+            "client": 73
+          },
+          {
+            "left": 968.0750122070312,
+            "right": 1042.8000106811523,
+            "top": 599.2999877929688,
+            "bottom": 641.2999877929688,
+            "width": 74.7249984741211,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 73,
+            "client": 73
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 591.2999877929688,
+        "bottom": 654.0999870300293,
+        "headerBottom": 153.8000030517578,
+        "height": 518
+      },
+      "host": {
+        "top": 12.287500381469727,
+        "bottom": 602.1000003814697,
+        "height": 614
+      },
+      "parentViewport": {
+        "width": 1093,
+        "height": 614,
+        "scrollY": 0,
+        "visual": {
+          "width": 1092.800048828125,
+          "height": 614.4000244140625,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "nativeZoom": 1.5,
+      "devicePixelRatio": 1.5,
+      "geometry": {
+        "viewport": 891,
+        "scroll": 891,
+        "sidebar": {
+          "left": 0,
+          "right": 160,
+          "top": 66,
+          "bottom": 419.3333435058594,
+          "width": 160,
+          "height": 353.3333435058594
+        },
+        "content": {
+          "left": 160,
+          "right": 891.3333740234375,
+          "top": 94.86458587646484,
+          "bottom": 1495.5833358764648,
+          "width": 731.3333740234375,
+          "height": 1400.71875
+        },
+        "profile": {
+          "left": 174,
+          "right": 877.3333740234375,
+          "top": 108.86458587646484,
+          "bottom": 1481.5833358764648,
+          "width": 703.3333740234375,
+          "height": 1372.71875
+        },
+        "search": {
+          "left": 190.6666717529297,
+          "right": 753.8437957763672,
+          "top": 98.86458587646484,
+          "bottom": 142.86458587646484,
+          "width": 563.1771240234375,
+          "height": 44
+        },
+        "menu": [
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 178.6666717529297,
+            "bottom": 224.6666717529297,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 230.6666717529297,
+            "bottom": 276.6666717529297,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 282.66668701171875,
+            "bottom": 328.66668701171875,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 334.66668701171875,
+            "bottom": 380.66668701171875,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 386.66668701171875,
+            "bottom": 432.66668701171875,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 438.66668701171875,
+            "bottom": 484.66668701171875,
+            "width": 140.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 149.3333387374878,
+            "top": 490.66668701171875,
+            "bottom": 536.6666870117188,
+            "width": 140.6666717529297,
+            "height": 46
+          }
+        ],
+        "icons": [
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 191.6666717529297,
+            "bottom": 211.6666717529297,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Dashboard",
+            "iconCenter": 201.6666717529297,
+            "labelCenter": 201.6614589691162
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 243.6666717529297,
+            "bottom": 263.6666717529297,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Agenda",
+            "iconCenter": 253.6666717529297,
+            "labelCenter": 253.6614589691162
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 295.66668701171875,
+            "bottom": 315.66668701171875,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Schema builder",
+            "iconCenter": 305.66668701171875,
+            "labelCenter": 305.6614589691162
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 347.66668701171875,
+            "bottom": 367.66668701171875,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Leden",
+            "iconCenter": 357.66668701171875,
+            "labelCenter": 357.6614589691162
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 399.66668701171875,
+            "bottom": 419.66668701171875,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Administratie",
+            "iconCenter": 409.66668701171875,
+            "labelCenter": 409.6614589691162
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 451.66668701171875,
+            "bottom": 471.66668701171875,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Facturen",
+            "iconCenter": 461.66668701171875,
+            "labelCenter": 461.6614589691162
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 503.66668701171875,
+            "bottom": 523.6666870117188,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Instellingen",
+            "iconCenter": 513.6666870117188,
+            "labelCenter": 513.6614589691162
+          }
+        ],
+        "tabs": [
+          {
+            "left": 186.6666717529297,
+            "right": 256.4270935058594,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 69.76042175292969,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 68,
+            "client": 68
+          },
+          {
+            "left": 261.4270935058594,
+            "right": 327.0520935058594,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 65.625,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 64,
+            "client": 64
+          },
+          {
+            "left": 332.0520935058594,
+            "right": 389.9895935058594,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 57.9375,
+            "height": 42,
+            "text": "Training",
+            "scroll": 57,
+            "client": 57
+          },
+          {
+            "left": 394.9895935058594,
+            "right": 454.7708435058594,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 59.78125,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 58,
+            "client": 58
+          },
+          {
+            "left": 459.7708435058594,
+            "right": 518.2916793823242,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 58.520835876464844,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 57,
+            "client": 57
+          },
+          {
+            "left": 523.2916870117188,
+            "right": 580.2916870117188,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 57,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 56,
+            "client": 56
+          },
+          {
+            "left": 585.2916870117188,
+            "right": 651.2083587646484,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 65.91667175292969,
+            "height": 42,
+            "text": "Financi\u00c3\u00abn",
+            "scroll": 65,
+            "client": 65
+          },
+          {
+            "left": 656.2083740234375,
+            "right": 740.4792098999023,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 84.27083587646484,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 83,
+            "client": 83
+          },
+          {
+            "left": 745.4791870117188,
+            "right": 802.7500228881836,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 57.270835876464844,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 56,
+            "client": 56
+          },
+          {
+            "left": 807.75,
+            "right": 864.6666679382324,
+            "top": 599.0104370117188,
+            "bottom": 641.0104370117188,
+            "width": 56.91666793823242,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 56,
+            "client": 56
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 165.67709350585938,
+        "bottom": 228.3437614440918,
+        "headerBottom": 153.53125,
+        "height": 419
+      },
+      "host": {
+        "top": 10.239583969116211,
+        "bottom": 501.75002098083496,
+        "height": 512
+      },
+      "parentViewport": {
+        "width": 911,
+        "height": 512,
+        "scrollY": 0,
+        "visual": {
+          "width": 910.6666870117188,
+          "height": 512,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "nativeZoom": 2,
+      "devicePixelRatio": 2,
+      "geometry": {
+        "viewport": 667,
+        "scroll": 667,
+        "sidebar": {
+          "left": 0,
+          "right": 148,
+          "top": 66,
+          "bottom": 314.5,
+          "width": 148,
+          "height": 248.5
+        },
+        "content": {
+          "left": 148,
+          "right": 667.5,
+          "top": 99.1953125,
+          "bottom": 1650.078125,
+          "width": 519.5,
+          "height": 1550.8828125
+        },
+        "profile": {
+          "left": 158,
+          "right": 657.5,
+          "top": 109.1953125,
+          "bottom": 1640.078125,
+          "width": 499.5,
+          "height": 1530.8828125
+        },
+        "search": {
+          "left": 179,
+          "right": 529.0078125,
+          "top": 99.1953125,
+          "bottom": 143.1953125,
+          "width": 350.0078125,
+          "height": 44
+        },
+        "menu": [
+          {
+            "left": 9,
+            "right": 137,
+            "top": 173,
+            "bottom": 219,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 225,
+            "bottom": 271,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 277,
+            "bottom": 323,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 329,
+            "bottom": 375,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 381,
+            "bottom": 427,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 433,
+            "bottom": 479,
+            "width": 128,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 137,
+            "top": 485,
+            "bottom": 531,
+            "width": 128,
+            "height": 46
+          }
+        ],
+        "icons": [
+          {
+            "left": 15,
+            "right": 35,
+            "top": 186,
+            "bottom": 206,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Dashboard",
+            "iconCenter": 196,
+            "labelCenter": 196
+          },
+          {
+            "left": 15,
+            "right": 35,
+            "top": 238,
+            "bottom": 258,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Agenda",
+            "iconCenter": 248,
+            "labelCenter": 248
+          },
+          {
+            "left": 15,
+            "right": 35,
+            "top": 290,
+            "bottom": 310,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Schema builder",
+            "iconCenter": 300,
+            "labelCenter": 300
+          },
+          {
+            "left": 15,
+            "right": 35,
+            "top": 342,
+            "bottom": 362,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Leden",
+            "iconCenter": 352,
+            "labelCenter": 352
+          },
+          {
+            "left": 15,
+            "right": 35,
+            "top": 394,
+            "bottom": 414,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Administratie",
+            "iconCenter": 404,
+            "labelCenter": 404
+          },
+          {
+            "left": 15,
+            "right": 35,
+            "top": 446,
+            "bottom": 466,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Facturen",
+            "iconCenter": 456,
+            "labelCenter": 456
+          },
+          {
+            "left": 15,
+            "right": 35,
+            "top": 498,
+            "bottom": 518,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Instellingen",
+            "iconCenter": 508,
+            "labelCenter": 508
+          }
+        ],
+        "tabs": [
+          {
+            "left": 171,
+            "right": 261.6953125,
+            "top": 600.6953125,
+            "bottom": 642.6953125,
+            "width": 90.6953125,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 266.6953125,
+            "right": 357.3984375,
+            "top": 600.6953125,
+            "bottom": 642.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 362.3984375,
+            "right": 453.09375,
+            "top": 600.6953125,
+            "bottom": 642.6953125,
+            "width": 90.6953125,
+            "height": 42,
+            "text": "Training",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 458.09375,
+            "right": 548.796875,
+            "top": 600.6953125,
+            "bottom": 642.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 553.796875,
+            "right": 644.5,
+            "top": 600.6953125,
+            "bottom": 642.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 171,
+            "right": 261.6953125,
+            "top": 647.6953125,
+            "bottom": 689.6953125,
+            "width": 90.6953125,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 266.6953125,
+            "right": 357.3984375,
+            "top": 647.6953125,
+            "bottom": 689.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Financi\u00c3\u00abn",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 362.3984375,
+            "right": 453.09375,
+            "top": 647.6953125,
+            "bottom": 689.6953125,
+            "width": 90.6953125,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 458.09375,
+            "right": 548.796875,
+            "top": 647.6953125,
+            "bottom": 689.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 553.796875,
+            "right": 644.5,
+            "top": 647.6953125,
+            "bottom": 689.6953125,
+            "width": 90.703125,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 89,
+            "client": 89
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 166.1953125,
+        "bottom": 276.1953125,
+        "headerBottom": 154.1953125,
+        "height": 314
+      },
+      "host": {
+        "top": 7.6796875,
+        "bottom": 376.3125,
+        "height": 384
+      },
+      "parentViewport": {
+        "width": 683,
+        "height": 384,
+        "scrollY": 0,
+        "visual": {
+          "width": 683,
+          "height": 384,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "nativeZoom": 1,
+      "devicePixelRatio": 1,
+      "geometry": {
+        "viewport": 1598,
+        "scroll": 1598,
+        "sidebar": {
+          "left": 0,
+          "right": 176,
+          "top": 66,
+          "bottom": 964,
+          "width": 176,
+          "height": 898
+        },
+        "content": {
+          "left": 176,
+          "right": 1598,
+          "top": 158.1875,
+          "bottom": 1581.203125,
+          "width": 1422,
+          "height": 1423.015625
+        },
+        "profile": {
+          "left": 196,
+          "right": 1578,
+          "top": 176.1875,
+          "bottom": 1563.203125,
+          "width": 1382,
+          "height": 1387.015625
+        },
+        "search": {
+          "left": 213,
+          "right": 795,
+          "top": 101.1875,
+          "bottom": 145.1875,
+          "width": 582,
+          "height": 44
+        },
+        "menu": [
+          {
+            "left": 9,
+            "right": 165,
+            "top": 208.390625,
+            "bottom": 254.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 260.390625,
+            "bottom": 306.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 312.390625,
+            "bottom": 358.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 364.390625,
+            "bottom": 410.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 416.390625,
+            "bottom": 462.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 468.390625,
+            "bottom": 514.390625,
+            "width": 156,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 165,
+            "top": 520.390625,
+            "bottom": 566.390625,
+            "width": 156,
+            "height": 46
+          }
+        ],
+        "icons": [
+          {
+            "left": 18,
+            "right": 38,
+            "top": 221.390625,
+            "bottom": 241.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Dashboard",
+            "iconCenter": 231.390625,
+            "labelCenter": 231.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 273.390625,
+            "bottom": 293.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Agenda",
+            "iconCenter": 283.390625,
+            "labelCenter": 283.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 325.390625,
+            "bottom": 345.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Schema builder",
+            "iconCenter": 335.390625,
+            "labelCenter": 335.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 377.390625,
+            "bottom": 397.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Leden",
+            "iconCenter": 387.390625,
+            "labelCenter": 387.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 429.390625,
+            "bottom": 449.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Administratie",
+            "iconCenter": 439.390625,
+            "labelCenter": 439.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 481.390625,
+            "bottom": 501.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Facturen",
+            "iconCenter": 491.390625,
+            "labelCenter": 491.390625
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 533.390625,
+            "bottom": 553.390625,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Instellingen",
+            "iconCenter": 543.390625,
+            "labelCenter": 543.390625
+          }
+        ],
+        "tabs": [
+          {
+            "left": 215,
+            "right": 351.359375,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 136.359375,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 134,
+            "client": 134
+          },
+          {
+            "left": 356.359375,
+            "right": 488.59375,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 132.234375,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 130,
+            "client": 130
+          },
+          {
+            "left": 493.59375,
+            "right": 618.125,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 124.53125,
+            "height": 42,
+            "text": "Training",
+            "scroll": 123,
+            "client": 123
+          },
+          {
+            "left": 623.125,
+            "right": 749.5,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 126.375,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 124,
+            "client": 124
+          },
+          {
+            "left": 754.5,
+            "right": 879.625,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 125.125,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 123,
+            "client": 123
+          },
+          {
+            "left": 884.625,
+            "right": 1008.21875,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 123.59375,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 122,
+            "client": 122
+          },
+          {
+            "left": 1013.21875,
+            "right": 1145.734375,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 132.515625,
+            "height": 42,
+            "text": "Financi\u00c3\u00abn",
+            "scroll": 131,
+            "client": 131
+          },
+          {
+            "left": 1150.734375,
+            "right": 1301.609375,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 150.875,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 149,
+            "client": 149
+          },
+          {
+            "left": 1306.609375,
+            "right": 1430.484375,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 123.875,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 122,
+            "client": 122
+          },
+          {
+            "left": 1435.484375,
+            "right": 1559,
+            "top": 673.65625,
+            "bottom": 715.65625,
+            "width": 123.515625,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 122,
+            "client": 122
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 665.65625,
+        "bottom": 728.65625,
+        "headerBottom": 158.1875,
+        "height": 964
+      },
+      "host": {
+        "top": 21.59375,
+        "bottom": 1058.390625,
+        "height": 1080
+      },
+      "parentViewport": {
+        "width": 1920,
+        "height": 1080,
+        "scrollY": 0,
+        "visual": {
+          "width": 1920,
+          "height": 1080,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "nativeZoom": 1.25,
+      "devicePixelRatio": 1.25,
+      "geometry": {
+        "viewport": 1504,
+        "scroll": 1504,
+        "sidebar": {
+          "left": 0,
+          "right": 176,
+          "top": 66,
+          "bottom": 756.7999877929688,
+          "width": 176,
+          "height": 690.7999877929688
+        },
+        "content": {
+          "left": 176,
+          "right": 1504,
+          "top": 157.8000030517578,
+          "bottom": 1579.5625762939453,
+          "width": 1328,
+          "height": 1421.7625732421875
+        },
+        "profile": {
+          "left": 196,
+          "right": 1484,
+          "top": 175.8000030517578,
+          "bottom": 1561.5625762939453,
+          "width": 1288,
+          "height": 1385.7625732421875
+        },
+        "search": {
+          "left": 212.8000030517578,
+          "right": 748.2000274658203,
+          "top": 101,
+          "bottom": 145,
+          "width": 535.4000244140625,
+          "height": 44
+        },
+        "menu": [
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 207.8000030517578,
+            "bottom": 253.8000030517578,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 259.8000183105469,
+            "bottom": 305.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 311.8000183105469,
+            "bottom": 357.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 363.8000183105469,
+            "bottom": 409.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 415.8000183105469,
+            "bottom": 461.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 467.8000183105469,
+            "bottom": 513.8000183105469,
+            "width": 156.40000915527344,
+            "height": 46
+          },
+          {
+            "left": 8.800000190734863,
+            "right": 165.2000093460083,
+            "top": 519.7999877929688,
+            "bottom": 565.7999877929688,
+            "width": 156.40000915527344,
+            "height": 46
+          }
+        ],
+        "icons": [
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 220.8000030517578,
+            "bottom": 240.8000030517578,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Dashboard",
+            "iconCenter": 230.8000030517578,
+            "labelCenter": 230.7999973297119
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 272.8000183105469,
+            "bottom": 292.8000183105469,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Agenda",
+            "iconCenter": 282.8000183105469,
+            "labelCenter": 282.800012588501
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 324.8000183105469,
+            "bottom": 344.8000183105469,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Schema builder",
+            "iconCenter": 334.8000183105469,
+            "labelCenter": 334.800012588501
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 376.8000183105469,
+            "bottom": 396.8000183105469,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Leden",
+            "iconCenter": 386.8000183105469,
+            "labelCenter": 386.800012588501
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 428.8000183105469,
+            "bottom": 448.8000183105469,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Administratie",
+            "iconCenter": 438.8000183105469,
+            "labelCenter": 438.800012588501
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 480.8000183105469,
+            "bottom": 500.8000183105469,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Facturen",
+            "iconCenter": 490.8000183105469,
+            "labelCenter": 490.800012588501
+          },
+          {
+            "left": 17.600000381469727,
+            "right": 37.60000038146973,
+            "top": 532.7999877929688,
+            "bottom": 552.7999877929688,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Instellingen",
+            "iconCenter": 542.7999877929688,
+            "labelCenter": 542.800012588501
+          }
+        ],
+        "tabs": [
+          {
+            "left": 214.8000030517578,
+            "right": 341.7875061035156,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 126.98750305175781,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 125,
+            "client": 125
+          },
+          {
+            "left": 346.7875061035156,
+            "right": 469.65000915527344,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 122.86250305175781,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 121,
+            "client": 121
+          },
+          {
+            "left": 474.6499938964844,
+            "right": 589.8249969482422,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 115.17500305175781,
+            "height": 42,
+            "text": "Training",
+            "scroll": 114,
+            "client": 114
+          },
+          {
+            "left": 594.8250122070312,
+            "right": 711.8500137329102,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 117.0250015258789,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 115,
+            "client": 115
+          },
+          {
+            "left": 716.8500366210938,
+            "right": 832.6125411987305,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 115.76250457763672,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 114,
+            "client": 114
+          },
+          {
+            "left": 837.6124877929688,
+            "right": 951.8499908447266,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 114.23750305175781,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 113,
+            "client": 113
+          },
+          {
+            "left": 956.8500366210938,
+            "right": 1080.0125350952148,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 123.1624984741211,
+            "height": 42,
+            "text": "Financi\u00c3\u00abn",
+            "scroll": 122,
+            "client": 122
+          },
+          {
+            "left": 1085.0125732421875,
+            "right": 1226.5250701904297,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 141.5124969482422,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 140,
+            "client": 140
+          },
+          {
+            "left": 1231.5250244140625,
+            "right": 1346.0375289916992,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 114.51250457763672,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 113,
+            "client": 113
+          },
+          {
+            "left": 1351.0374755859375,
+            "right": 1465.1999740600586,
+            "top": 672.5,
+            "bottom": 714.5,
+            "width": 114.1624984741211,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 113,
+            "client": 113
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 664.5,
+        "bottom": 727.2999992370605,
+        "headerBottom": 157.8000030517578,
+        "height": 757
+      },
+      "host": {
+        "top": 17.274999618530273,
+        "bottom": 846.7124996185303,
+        "height": 864
+      },
+      "parentViewport": {
+        "width": 1536,
+        "height": 864,
+        "scrollY": 0,
+        "visual": {
+          "width": 1536,
+          "height": 864,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "nativeZoom": 1.5,
+      "devicePixelRatio": 1.5,
+      "geometry": {
+        "viewport": 1253,
+        "scroll": 1253,
+        "sidebar": {
+          "left": 0,
+          "right": 176,
+          "top": 66,
+          "bottom": 618.6666870117188,
+          "width": 176,
+          "height": 552.6666870117188
+        },
+        "content": {
+          "left": 176,
+          "right": 1253.3333740234375,
+          "top": 157.53125,
+          "bottom": 1578.25,
+          "width": 1077.3333740234375,
+          "height": 1420.71875
+        },
+        "profile": {
+          "left": 196,
+          "right": 1233.3333740234375,
+          "top": 175.53125,
+          "bottom": 1560.25,
+          "width": 1037.3333740234375,
+          "height": 1384.71875
+        },
+        "search": {
+          "left": 212.6666717529297,
+          "right": 623.0000152587891,
+          "top": 100.86458587646484,
+          "bottom": 144.86458587646484,
+          "width": 410.3333435058594,
+          "height": 44
+        },
+        "menu": [
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 207.39584350585938,
+            "bottom": 253.39584350585938,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 259.3958435058594,
+            "bottom": 305.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 311.3958435058594,
+            "bottom": 357.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 363.3958435058594,
+            "bottom": 409.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 415.3958435058594,
+            "bottom": 461.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 467.3958435058594,
+            "bottom": 513.3958435058594,
+            "width": 156.6666717529297,
+            "height": 46
+          },
+          {
+            "left": 8.666666984558105,
+            "right": 165.3333387374878,
+            "top": 519.3958740234375,
+            "bottom": 565.3958740234375,
+            "width": 156.6666717529297,
+            "height": 46
+          }
+        ],
+        "icons": [
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 220.39584350585938,
+            "bottom": 240.39584350585938,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Dashboard",
+            "iconCenter": 230.39584350585938,
+            "labelCenter": 230.3906307220459
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 272.3958435058594,
+            "bottom": 292.3958435058594,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Agenda",
+            "iconCenter": 282.3958435058594,
+            "labelCenter": 282.39064598083496
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 324.3958435058594,
+            "bottom": 344.3958435058594,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Schema builder",
+            "iconCenter": 334.3958435058594,
+            "labelCenter": 334.39064598083496
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 376.3958435058594,
+            "bottom": 396.3958435058594,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Leden",
+            "iconCenter": 386.3958435058594,
+            "labelCenter": 386.39064598083496
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 428.3958435058594,
+            "bottom": 448.3958435058594,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Administratie",
+            "iconCenter": 438.3958435058594,
+            "labelCenter": 438.39064598083496
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 480.3958435058594,
+            "bottom": 500.3958435058594,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Facturen",
+            "iconCenter": 490.3958435058594,
+            "labelCenter": 490.39064598083496
+          },
+          {
+            "left": 17.33333396911621,
+            "right": 37.33333396911621,
+            "top": 532.3958740234375,
+            "bottom": 552.3958740234375,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Instellingen",
+            "iconCenter": 542.3958740234375,
+            "labelCenter": 542.390645980835
+          }
+        ],
+        "tabs": [
+          {
+            "left": 214.6666717529297,
+            "right": 316.62500762939453,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 101.95833587646484,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 101,
+            "client": 101
+          },
+          {
+            "left": 321.625,
+            "right": 419.4479217529297,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 97.82292175292969,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 96,
+            "client": 96
+          },
+          {
+            "left": 424.44793701171875,
+            "right": 514.5833587646484,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 90.13542175292969,
+            "height": 42,
+            "text": "Training",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 519.5833740234375,
+            "right": 611.5729598999023,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 91.98958587646484,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 91,
+            "client": 91
+          },
+          {
+            "left": 616.5729370117188,
+            "right": 707.2916870117188,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 90.71875,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 89,
+            "client": 89
+          },
+          {
+            "left": 712.2916870117188,
+            "right": 801.5000228881836,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 89.20833587646484,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 88,
+            "client": 88
+          },
+          {
+            "left": 806.5,
+            "right": 904.6145858764648,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 98.11458587646484,
+            "height": 42,
+            "text": "Financi\u00c3\u00abn",
+            "scroll": 97,
+            "client": 97
+          },
+          {
+            "left": 909.6146240234375,
+            "right": 1026.0833740234375,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 116.46875,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 115,
+            "client": 115
+          },
+          {
+            "left": 1031.0833740234375,
+            "right": 1120.5521240234375,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 89.46875,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 88,
+            "client": 88
+          },
+          {
+            "left": 1125.5521240234375,
+            "right": 1214.6667098999023,
+            "top": 671.6771240234375,
+            "bottom": 713.6771240234375,
+            "width": 89.11458587646484,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 88,
+            "client": 88
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 169.67709350585938,
+        "bottom": 232.3437614440918,
+        "headerBottom": 157.53125,
+        "height": 619
+      },
+      "host": {
+        "top": 14.395833969116211,
+        "bottom": 705.593770980835,
+        "height": 720
+      },
+      "parentViewport": {
+        "width": 1280,
+        "height": 720,
+        "scrollY": 0,
+        "visual": {
+          "width": 1280,
+          "height": 720,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "nativeZoom": 2,
+      "devicePixelRatio": 2,
+      "geometry": {
+        "viewport": 939,
+        "scroll": 939,
+        "sidebar": {
+          "left": 0,
+          "right": 160,
+          "top": 66,
+          "bottom": 445.5,
+          "width": 160,
+          "height": 379.5
+        },
+        "content": {
+          "left": 160,
+          "right": 939,
+          "top": 154.1953125,
+          "bottom": 1557.296875,
+          "width": 779,
+          "height": 1403.1015625
+        },
+        "profile": {
+          "left": 174,
+          "right": 925,
+          "top": 168.1953125,
+          "bottom": 1543.296875,
+          "width": 751,
+          "height": 1375.1015625
+        },
+        "search": {
+          "left": 191,
+          "right": 800.5078125,
+          "top": 99.1953125,
+          "bottom": 143.1953125,
+          "width": 609.5078125,
+          "height": 44
+        },
+        "menu": [
+          {
+            "left": 9,
+            "right": 150,
+            "top": 202.8984375,
+            "bottom": 248.8984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 254.8984375,
+            "bottom": 300.8984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 306.8984375,
+            "bottom": 352.8984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 358.8984375,
+            "bottom": 404.8984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 410.8984375,
+            "bottom": 456.8984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 462.8984375,
+            "bottom": 508.8984375,
+            "width": 141,
+            "height": 46
+          },
+          {
+            "left": 9,
+            "right": 150,
+            "top": 514.8984375,
+            "bottom": 560.8984375,
+            "width": 141,
+            "height": 46
+          }
+        ],
+        "icons": [
+          {
+            "left": 18,
+            "right": 38,
+            "top": 215.8984375,
+            "bottom": 235.8984375,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Dashboard",
+            "iconCenter": 225.8984375,
+            "labelCenter": 225.89453125
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 267.8984375,
+            "bottom": 287.8984375,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Agenda",
+            "iconCenter": 277.8984375,
+            "labelCenter": 277.89453125
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 319.8984375,
+            "bottom": 339.8984375,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Schema builder",
+            "iconCenter": 329.8984375,
+            "labelCenter": 329.89453125
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 371.8984375,
+            "bottom": 391.8984375,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Leden",
+            "iconCenter": 381.8984375,
+            "labelCenter": 381.89453125
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 423.8984375,
+            "bottom": 443.8984375,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Administratie",
+            "iconCenter": 433.8984375,
+            "labelCenter": 433.89453125
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 475.8984375,
+            "bottom": 495.8984375,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Facturen",
+            "iconCenter": 485.8984375,
+            "labelCenter": 485.89453125
+          },
+          {
+            "left": 18,
+            "right": 38,
+            "top": 527.8984375,
+            "bottom": 547.8984375,
+            "width": 20,
+            "height": 20,
+            "stroke": "1.7",
+            "fill": "none",
+            "label": "Instellingen",
+            "iconCenter": 537.8984375,
+            "labelCenter": 537.89453125
+          }
+        ],
+        "tabs": [
+          {
+            "left": 187,
+            "right": 261.4609375,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 74.4609375,
+            "height": 42,
+            "text": "Overzicht",
+            "scroll": 72,
+            "client": 72
+          },
+          {
+            "left": 266.4609375,
+            "right": 336.78125,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 70.3203125,
+            "height": 42,
+            "text": "Coaching",
+            "scroll": 68,
+            "client": 68
+          },
+          {
+            "left": 341.78125,
+            "right": 404.4140625,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 62.6328125,
+            "height": 42,
+            "text": "Training",
+            "scroll": 61,
+            "client": 61
+          },
+          {
+            "left": 409.4140625,
+            "right": 473.8984375,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 64.484375,
+            "height": 42,
+            "text": "Voeding",
+            "scroll": 62,
+            "client": 62
+          },
+          {
+            "left": 478.8984375,
+            "right": 542.1171875,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 63.21875,
+            "height": 42,
+            "text": "Trackers",
+            "scroll": 61,
+            "client": 61
+          },
+          {
+            "left": 547.1171875,
+            "right": 608.8203125,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 61.703125,
+            "height": 42,
+            "text": "Agenda",
+            "scroll": 60,
+            "client": 60
+          },
+          {
+            "left": 613.8203125,
+            "right": 684.4375,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 70.6171875,
+            "height": 42,
+            "text": "Financi\u00c3\u00abn",
+            "scroll": 69,
+            "client": 69
+          },
+          {
+            "left": 689.4375,
+            "right": 778.4140625,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 88.9765625,
+            "height": 42,
+            "text": "Documenten",
+            "scroll": 87,
+            "client": 87
+          },
+          {
+            "left": 783.4140625,
+            "right": 845.3828125,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 61.96875,
+            "height": 42,
+            "text": "Notities",
+            "scroll": 60,
+            "client": 60
+          },
+          {
+            "left": 850.3828125,
+            "right": 912,
+            "top": 659.6953125,
+            "bottom": 701.6953125,
+            "width": 61.6171875,
+            "height": 42,
+            "text": "Historie",
+            "scroll": 60,
+            "client": 60
+          }
+        ],
+        "guideOpen": false
+      },
+      "visible": {
+        "top": 166.1953125,
+        "bottom": 229.1953125,
+        "headerBottom": 154.1953125,
+        "height": 445
+      },
+      "host": {
+        "top": 10.796875,
+        "bottom": 529.1953125,
+        "height": 540
+      },
+      "parentViewport": {
+        "width": 960,
+        "height": 540,
+        "scrollY": 0,
+        "visual": {
+          "width": 960,
+          "height": 540,
+          "offsetTop": 0,
+          "pageTop": 0,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "noOverflow": true,
+      "tenTabsReachable": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "noOverflow": true,
+      "tenTabsReachable": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "noOverflow": true,
+      "tenTabsReachable": true
+    }
+  ],
+  "logos": [
+    {
+      "alt": "Logo op donker oppervlak",
+      "naturalWidth": 960,
+      "naturalHeight": 480,
+      "fit": "contain",
+      "source": "data:image/png;base64,iVBORw0K"
+    },
+    {
+      "alt": "Logo op licht oppervlak",
+      "naturalWidth": 960,
+      "naturalHeight": 480,
+      "fit": "contain",
+      "source": "data:image/png;base64,iVBORw0K"
+    },
+    {
+      "alt": "Appicoon testvoorbeeld",
+      "naturalWidth": 192,
+      "naturalHeight": 192,
+      "fit": "contain",
+      "source": "data:image/png;base64,iVBORw0K"
+    },
+    {
+      "alt": "Favicon testvoorbeeld",
+      "naturalWidth": 32,
+      "naturalHeight": 32,
+      "fit": "contain",
+      "source": "data:image/png;base64,iVBORw0K"
+    }
+  ],
+  "iconChecks": [
+    "7 local SVGs",
+    "1.7 stroke",
+    "20px box",
+    "centered labels",
+    "active state stable dimensions"
+  ],
+  "errors": [],
+  "physicalOwnerTest": false,
+  "hostSHA256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac"
+}

@@ -13,7 +13,14 @@ async function verify(o){
  const revision=o.commit?git('rev-parse','--verify',o.commit+'^{commit}').toString().trim():null;
  const tree=ref=>git('ls-tree','-r','--name-only','-z',ref).toString('utf8').split('\0').filter(Boolean),baseFiles=tree(BASE);
  const files=revision?tree(revision):[...new Set(git('ls-files','--cached','--others','--exclude-standard','-z').toString('utf8').split('\0').filter(Boolean))].sort();
- const blob=(ref,f)=>git('show',ref+':'+f),read=f=>{if(revision)return blob(revision,f);const resolved=path.resolve(o.root,f);if(!resolved.startsWith(o.root+path.sep))throw Error('Path escapes release root');if(fs.lstatSync(resolved).isSymbolicLink())throw Error('Symlink not permitted in release evidence: '+f);return fs.readFileSync(resolved);};
+ // Read exact Git blobs in bounded batches: the same byte checks without hundreds of subprocesses.
+ const blobCaches=new Map();
+ const blob=(ref,f)=>{const list=ref===BASE?baseFiles:files,index=list.indexOf(f),start=index<0?-1:Math.floor(index/20)*20;let cache=blobCaches.get(ref);
+  if(!cache||cache.start!==start){const names=start<0?[f]:list.slice(start,start+20);if(names.some(n=>/[\r\n]/.test(n)))throw Error('Unsupported Git filename');
+   const output=cp.execFileSync('git',['-C',o.root,'cat-file','--batch'],{input:names.map(n=>ref+':'+n+'\n').join(''),maxBuffer:240*1024*1024,stdio:['pipe','pipe','pipe']});cache={start,values:new Map()};let cursor=0;
+   for(const name of names){const end=output.indexOf(10,cursor);if(end<0)throw Error('Incomplete Git batch header');const header=output.subarray(cursor,end).toString(),match=header.match(/^[0-9a-f]+ blob (\d+)$/);if(!match)throw Error('Git blob unavailable: '+name);const size=Number(match[1]);cursor=end+1;if(cursor+size>=output.length||output[cursor+size]!==10)throw Error('Incomplete Git blob');cache.values.set(name,output.subarray(cursor,cursor+size));cursor+=size+1;}if(cursor!==output.length)throw Error('Unexpected Git batch trailing data');blobCaches.set(ref,cache);
+  }if(!cache.values.has(f))throw Error('Git blob missing: '+f);return cache.values.get(f);};
+ const read=f=>{if(revision)return blob(revision,f);const resolved=path.resolve(o.root,f);if(!resolved.startsWith(o.root+path.sep))throw Error('Path escapes release root');if(fs.lstatSync(resolved).isSymbolicLink())throw Error('Symlink not permitted in release evidence: '+f);return fs.readFileSync(resolved);};
  const report={at:new Date().toISOString(),repository:'Yourizorge/fitmetzorge',baselineCommit:BASE,releaseCommit:revision,source:revision?'Git blobs':'Working files, including untracked non-ignored files',assembly:[],newFiles:[],package:{checks:[]},live:null,productionWrites:0,remoteWrites:0};
  for(const f of baseFiles){const old=blob(BASE,f),row={file:f,baselineBytes:old.length,baselineSHA256:sha(old)};try{const now=read(f);Object.assign(row,{releaseBytes:now.length,releaseSHA256:sha(now)});if(old.equals(now)){row.pass=true;row.rule='byte-identical';}else if(f==='index.html'){row.rule='single launcher insertion';row.detail=insertionOnly(old,now);row.pass=row.detail.pass;}else if(f==='.gitattributes'){row.rule='owner-test/** -text addition only';row.pass=attributesOnly(old,now);}else{row.pass=false;row.rule='existing file must remain byte-identical';}}catch{row.pass=false;row.rule='baseline file missing or unreadable';}report.assembly.push(row);}
  const baseSet=new Set(baseFiles);for(const f of files.filter(f=>!baseSet.has(f)))report.newFiles.push({file:f,pass:allowedNew(f)});
@@ -28,7 +35,14 @@ async function verify(o){
   const scriptMap=new Map((runtime.scripts||[]).map(s=>[s.file,s.code]));check('unique script paths',scriptMap.size===(runtime.scripts||[]).length);
   for(const [f,h]of Object.entries(runtime.sources||{})){let code,method;if(scriptMap.has(f)){code=scriptMap.get(f);method='embedded script';}else if(f.startsWith('owner-test/')){code=read(f).toString('utf8');method='packaged helper';}else if(f.endsWith('.css')){code=(runtime.styles||[]).find(s=>sha(lf(s))===h);method='embedded stylesheet';}check('source '+f,typeof code==='string'&&sha(lf(code))===h,{method:method||'unmapped source'});}
   for(const f of scriptMap.keys())check('script tracked '+f,Object.hasOwn(runtime.sources||{},f));
-  check('embedded helper assembly',runtime.database===lf(read('owner-test/duo.js').toString('utf8'))+'\n'+lf(read('owner-test/simulation.js').toString('utf8'))+'\n'+lf(read('owner-test/database.js').toString('utf8'))&&runtime.guide===lf(read('owner-test/guide.js').toString('utf8')));
+  check('embedded helper assembly',runtime.database===['member-status','duo','simulation','database'].map(n=>lf(read('owner-test/'+n+'.js').toString('utf8'))).join('\n')&&runtime.guide===lf(read('owner-test/guide.js').toString('utf8')));
+  for(const [key,file]of Object.entries({brandScript:'brand',schemaCopy:'schema-copy',statusUI:'status-ui',reminderCalendar:'reminder-calendar'}))check('embedded '+key,runtime[key]===lf(read('owner-test/'+file+'.js').toString('utf8')));
+  const provenance=JSON.parse(read('owner-test/brand/provenance.json')),tokens=JSON.parse(read('owner-test/brand-tokens.json'));
+  const officialSHA='f60fd1fd2d34c02cfae5a7cb833e2cfc32c4c1284e200880cb0f68a0d05b315a';
+  check('official owner supplied logo identity',sha(read('owner-test/brand/source-logo-20261102.png'))===officialSHA&&provenance.sourceSHA256===officialSHA&&runtime.brand.sourceSHA256===officialSHA);
+  check('central branding tokens',JSON.stringify(tokens)===JSON.stringify(runtime.brand.tokens));
+  for(const [name,v]of Object.entries(provenance.variants)){const bytes=read(v.path);check('official logo variant '+name,sha(bytes)===v.sha256&&runtime.brand.variantHashes[name]===v.sha256&&runtime.brand.variants[name]==='data:image/png;base64,'+bytes.toString('base64'));}
+  check('runtime uses new logo',runtime.logoURL===runtime.brand.variants.horizontal&&!runtime.html.includes('src="fit-met-zorge-logo.png"'));
   check('guide stylesheet embedded',(runtime.styles||[]).includes(lf(read('owner-test/guide.css').toString('utf8'))));
   check('navigation helper assembly',runtime.navigation===lf(read('owner-test/navigation.js').toString('utf8')));
   check('media helper assembly',runtime.media===lf(read('owner-test/media.js').toString('utf8')));

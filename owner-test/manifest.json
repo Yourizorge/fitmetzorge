@@ -4,23 +4,23 @@
   "files": {
     "runtime": {
       "path": "owner-test/runtime.json",
-      "bytes": 7444299,
-      "sha256": "df9df7bc6282bfccd404f3ee1d51e13b553ad7ae1fcd03f7f69349278d47e95e"
+      "bytes": 8587807,
+      "sha256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64"
     },
     "boot": {
       "path": "owner-test/boot.js",
-      "bytes": 7543,
-      "sha256": "4384348dfa030ff46765730c92cb51f7e656b0ae59fbd5259a3440b235514cd3"
+      "bytes": 7896,
+      "sha256": "9b793be6fdc5949145fffeef33e424f360d334bfa8024407619d485a0b6fc9af"
     },
     "camera": {
       "path": "owner-test/camera-host.js",
-      "bytes": 6823,
-      "sha256": "0814907b3d8e00edbb1ae777d4a496736befc9ca5f113dd9f5c7953ad7eaae6c"
+      "bytes": 7072,
+      "sha256": "d85b09797b48e1552e874f71eecadec7f42d77477a9fdedb63a48173a767ff84"
     },
     "documents": {
       "path": "owner-test/documents-host.js",
-      "bytes": 7078,
-      "sha256": "ca43f33c8554754d901efa541b709ebaf28df7685a09d19ac65fbcd7fda06154"
+      "bytes": 7964,
+      "sha256": "adf76befc355bb405b06a5324f314e851b264895471fc38ea069389014cef5d6"
     },
     "pglite": {
       "path": "owner-test/pglite-browser.js",
@@ -72,8 +72,8 @@
     "agenda-model.js": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
     "agenda.js": "66b7c5eda734968b9b4f2bd30ad54c7a9b1548cf4b232a0ea8ed44007ca2f8d6",
     "app.js": "d39be74d5d91bd8c12f2b77c92104d4bfeecae7ef30814fda3f34cae5b98b8a0",
-    "members-documents.js": "b799d9c2f97dc9fed2fc1570082b4f971643ed9e75ae2d1eb3e0687ab18b5470",
-    "members-ui.js": "657d002c3fffc412c40732cf97ff596075d13a4ff43131adb1ef135499051515",
+    "members-documents.js": "12f46f4c285f5870175cdc6eaa16670e79add6219a4172058f243e4975de01fb",
+    "members-ui.js": "6402db109da6427d4e7ad030f0334b3dbce281c227937249f7ee1165f91f0ef2",
     "autosave.js": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
     "photos.js": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
     "presentation.js": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
@@ -88,13 +88,20 @@
     "payments.css": "666e5f8f33011a5278b8bd316c33a2e4ace2ac9415d98a7bbc9d50bbb8978c86",
     "admin-design.css": "0bc2c76618002462238ee20a87a4e8455c8ce1e75d22c5b5abe02e06eae0f61f",
     "finance.css": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
-    "owner-test/database.js": "0ed232c8d822db7cc4e419d63d3c520d5454d0904b23517cdbad68a290c25b74",
-    "owner-test/guide.js": "dd88a87c21709b61aa3c0e0dde37a0d6e500a2591e4825b370de3ae597d17229",
-    "owner-test/simulation.js": "7dfd9baae76c9af5ddae06b26e15b3aa283595d8927b69f3270762c0d2e8a4c2",
-    "owner-test/navigation.js": "8e29d6b489c0e7ee5ab9e328d3752ba6905675ddd2de20c4c006fdb97b2612ee",
+    "owner-test/database.js": "a1b62c274647fb283042b297a7ab49f8f33e62ebcdbac44895ed866d997e4680",
+    "owner-test/guide.js": "07c9e8ce152dcc83b7c61f6c4ab5ae7a83f9b7de8feee4d92f75b244f667143f",
+    "owner-test/simulation.js": "9fcc530eb055581630fac10251ad39a3de836190e93e9225f3f540f177e41d22",
+    "owner-test/navigation.js": "c55fb7b8d46d2ff62108073e35b3702ca0b384b912bf789aee31b75242bdb316",
     "owner-test/media.js": "e1cf1e08e533ed4920cad5015580f0ad3ff44e5413dbdaf8488a27a63c5b05a5",
     "owner-test/duo.js": "8c5c726d21d7aa68799c6c1eb554d755749426010e64ae471a76b61593176f60",
-    "owner-test/navigation.css": "179f5ab007dce8a6be49df4d24fb493851d7f49170638d4cd3192cfc8e9e998d"
+    "owner-test/brand.js": "37eadb3d6cfba7a704d879ce59953d05b7218f45d2c4eb6ed4383ccddeccf209",
+    "owner-test/schema-copy.js": "92a1e52f4ff8d82f476f978b2573f03060f05cbf06b3960683d59dfa65fb3a81",
+    "owner-test/member-status.js": "8b989305e8ab532c7afc40f175487a8259e6309d3249ec7f421858620d6f06f8",
+    "owner-test/status-ui.js": "126d3d1a03de1d295b245587d9498c82696b6baf0bfa05bfcd546f43bb24bd36",
+    "owner-test/reminder-calendar.js": "eeebbdd5e9ba45f37078c01a958fb44f9069310ad2d0a7389f0a2f6372938b67",
+    "owner-test/navigation.css": "a959304b6dee5a674d2ebc1e1094a8a1ea79381ce9f99bf5d0e3283b1eaa6fb2",
+    "owner-test/status-reminders.css": "13a1e785d26cc4ed521ea8e08f0c6e7fd76d59e83afda8359fb4cfd34352d2fc",
+    "owner-test/brand.css": "e9e4618ee7b65292dfd0859fabe2f3e434af5bc27a737148f9acf54f3ffc2e73"
   },
   "flags": {
     "ownerTest": true,

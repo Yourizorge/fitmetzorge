@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "completedAt": "2026-11-03T11:05:07.3526715Z",
+  "scope": "Local Node/PGlite model and adapter; no production or browser action",
+  "tests": 3,
+  "failed": 0,
+  "durationMs": 81545.8087,
+  "productionTouched": false,
+  "checks": [
+    "Four exact28-day periods; calendar month remains monthly; Amsterdam DST/year boundaries",
+    "Explicit effective status and independently paused/resumed flags; old tasks retained",
+    "PT409, duplicate/lost ACK, durable checkpoint restore and actor denial",
+    "Whole financial snapshot including explicitly seeded open invoice unchanged",
+    "Completed cohort A stays completed when new B shares its date; joint duo charged once",
+    "Exact local manifest/reset; patchGuide queue merging"
+  ],
+  "sourceSHA256": {
+    "owner-test/member-status.js": "8b989305e8ab532c7afc40f175487a8259e6309d3249ec7f421858620d6f06f8",
+    "owner-test/simulation.js": "09aef3b36e3315c5569766a48ff9b2ea3222a8c516571a3d28f63661a65cdd29",
+    "owner-test/database.js": "d92f1aa12a96bfe2cdb6c5106b04b9b729965d17835c47b9f2f6a148b39dfa0f",
+    "tests/owner-status-reminders.test.cjs": "c0ce81f3bc4c4525d7cca9fa3b6a95aadf363dd2ce8e961bec3079cbed4e0dda"
+  },
+  "targetedRerun": {
+    "status": "PASS",
+    "tests": 2,
+    "durationMs": 977.4256,
+    "checks": [
+      "Cohort expansion preserves completed A and opens only B",
+      "Secondary duo member cannot pause joint agreement without using primary contractholder; state unchanged on denial"
+    ],
+    "testSHA256": "53570a1165852bfb1b2fee8c8cf94915b8015c000a8cdea33089024f93064a37"
+  }
+}
