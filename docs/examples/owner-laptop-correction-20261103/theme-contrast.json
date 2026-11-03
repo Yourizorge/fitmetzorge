@@ -1,0 +1,234 @@
+{
+  "status": "PASS",
+  "standard": "WCAG AA normal text >=4.5:1; disabled controls deliberately included",
+  "results": [
+    {
+      "theme": "dark",
+      "text": "text",
+      "background": "background",
+      "ratio": 18.67
+    },
+    {
+      "theme": "dark",
+      "text": "muted",
+      "background": "background",
+      "ratio": 9.95
+    },
+    {
+      "theme": "dark",
+      "text": "gold-highlight",
+      "background": "background",
+      "ratio": 11.72
+    },
+    {
+      "theme": "dark",
+      "text": "success",
+      "background": "background",
+      "ratio": 12.15
+    },
+    {
+      "theme": "dark",
+      "text": "warning",
+      "background": "background",
+      "ratio": 11.72
+    },
+    {
+      "theme": "dark",
+      "text": "error",
+      "background": "background",
+      "ratio": 11.46
+    },
+    {
+      "theme": "dark",
+      "text": "text",
+      "background": "surface",
+      "ratio": 17.17
+    },
+    {
+      "theme": "dark",
+      "text": "muted",
+      "background": "surface",
+      "ratio": 9.15
+    },
+    {
+      "theme": "dark",
+      "text": "gold-highlight",
+      "background": "surface",
+      "ratio": 10.79
+    },
+    {
+      "theme": "dark",
+      "text": "success",
+      "background": "surface",
+      "ratio": 11.18
+    },
+    {
+      "theme": "dark",
+      "text": "warning",
+      "background": "surface",
+      "ratio": 10.79
+    },
+    {
+      "theme": "dark",
+      "text": "error",
+      "background": "surface",
+      "ratio": 10.54
+    },
+    {
+      "theme": "dark",
+      "text": "text",
+      "background": "surface-raised",
+      "ratio": 15.19
+    },
+    {
+      "theme": "dark",
+      "text": "muted",
+      "background": "surface-raised",
+      "ratio": 8.09
+    },
+    {
+      "theme": "dark",
+      "text": "gold-highlight",
+      "background": "surface-raised",
+      "ratio": 9.54
+    },
+    {
+      "theme": "dark",
+      "text": "success",
+      "background": "surface-raised",
+      "ratio": 9.89
+    },
+    {
+      "theme": "dark",
+      "text": "warning",
+      "background": "surface-raised",
+      "ratio": 9.54
+    },
+    {
+      "theme": "dark",
+      "text": "error",
+      "background": "surface-raised",
+      "ratio": 9.33
+    },
+    {
+      "theme": "dark",
+      "text": "ink",
+      "background": "gold",
+      "ratio": 8.76
+    },
+    {
+      "theme": "light",
+      "text": "text",
+      "background": "background",
+      "ratio": 15.86
+    },
+    {
+      "theme": "light",
+      "text": "muted",
+      "background": "background",
+      "ratio": 6.27
+    },
+    {
+      "theme": "light",
+      "text": "gold-highlight",
+      "background": "background",
+      "ratio": 6.37
+    },
+    {
+      "theme": "light",
+      "text": "success",
+      "background": "background",
+      "ratio": 6.54
+    },
+    {
+      "theme": "light",
+      "text": "warning",
+      "background": "background",
+      "ratio": 7.11
+    },
+    {
+      "theme": "light",
+      "text": "error",
+      "background": "background",
+      "ratio": 6.68
+    },
+    {
+      "theme": "light",
+      "text": "text",
+      "background": "surface",
+      "ratio": 17.46
+    },
+    {
+      "theme": "light",
+      "text": "muted",
+      "background": "surface",
+      "ratio": 6.91
+    },
+    {
+      "theme": "light",
+      "text": "gold-highlight",
+      "background": "surface",
+      "ratio": 7.01
+    },
+    {
+      "theme": "light",
+      "text": "success",
+      "background": "surface",
+      "ratio": 7.21
+    },
+    {
+      "theme": "light",
+      "text": "warning",
+      "background": "surface",
+      "ratio": 7.83
+    },
+    {
+      "theme": "light",
+      "text": "error",
+      "background": "surface",
+      "ratio": 7.35
+    },
+    {
+      "theme": "light",
+      "text": "text",
+      "background": "surface-raised",
+      "ratio": 14.49
+    },
+    {
+      "theme": "light",
+      "text": "muted",
+      "background": "surface-raised",
+      "ratio": 5.73
+    },
+    {
+      "theme": "light",
+      "text": "gold-highlight",
+      "background": "surface-raised",
+      "ratio": 5.82
+    },
+    {
+      "theme": "light",
+      "text": "success",
+      "background": "surface-raised",
+      "ratio": 5.98
+    },
+    {
+      "theme": "light",
+      "text": "warning",
+      "background": "surface-raised",
+      "ratio": 6.5
+    },
+    {
+      "theme": "light",
+      "text": "error",
+      "background": "surface-raised",
+      "ratio": 6.1
+    },
+    {
+      "theme": "light",
+      "text": "ink",
+      "background": "gold",
+      "ratio": 8.76
+    }
+  ]
+}

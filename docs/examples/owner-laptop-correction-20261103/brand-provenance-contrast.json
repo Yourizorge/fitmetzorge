@@ -1,0 +1,199 @@
+{
+  "sourceSHA256": "f60fd1fd2d34c02cfae5a7cb833e2cfc32c4c1284e200880cb0f68a0d05b315a",
+  "tokens": {
+    "gold": "#dfa639",
+    "gold-highlight": "#f1bf4b",
+    "gold-edge": "#bf8329",
+    "background": "#080808",
+    "surface": "#141414",
+    "surface-raised": "#202020",
+    "text": "#f7f7f5",
+    "muted": "#b7b7b2",
+    "border": "#73736b",
+    "success": "#9bd7b0",
+    "warning": "#f1bf4b",
+    "error": "#ffb0a7",
+    "focus": "#f1bf4b",
+    "ink": "#111008",
+    "veil": "#000000bb"
+  },
+  "checks": [
+    {
+      "foreground": "text",
+      "background": "background",
+      "minimum": 4.5,
+      "ratio": 18.671,
+      "pass": true
+    },
+    {
+      "foreground": "muted",
+      "background": "background",
+      "minimum": 4.5,
+      "ratio": 9.947,
+      "pass": true
+    },
+    {
+      "foreground": "gold",
+      "background": "background",
+      "minimum": 4.5,
+      "ratio": 9.204,
+      "pass": true
+    },
+    {
+      "foreground": "success",
+      "background": "background",
+      "minimum": 4.5,
+      "ratio": 12.151,
+      "pass": true
+    },
+    {
+      "foreground": "warning",
+      "background": "background",
+      "minimum": 4.5,
+      "ratio": 11.725,
+      "pass": true
+    },
+    {
+      "foreground": "error",
+      "background": "background",
+      "minimum": 4.5,
+      "ratio": 11.463,
+      "pass": true
+    },
+    {
+      "foreground": "text",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 17.175,
+      "pass": true
+    },
+    {
+      "foreground": "muted",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 9.15,
+      "pass": true
+    },
+    {
+      "foreground": "gold",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 8.467,
+      "pass": true
+    },
+    {
+      "foreground": "success",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 11.177,
+      "pass": true
+    },
+    {
+      "foreground": "warning",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 10.785,
+      "pass": true
+    },
+    {
+      "foreground": "error",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 10.545,
+      "pass": true
+    },
+    {
+      "foreground": "text",
+      "background": "surface-raised",
+      "minimum": 4.5,
+      "ratio": 15.19,
+      "pass": true
+    },
+    {
+      "foreground": "muted",
+      "background": "surface-raised",
+      "minimum": 4.5,
+      "ratio": 8.092,
+      "pass": true
+    },
+    {
+      "foreground": "gold",
+      "background": "surface-raised",
+      "minimum": 4.5,
+      "ratio": 7.488,
+      "pass": true
+    },
+    {
+      "foreground": "success",
+      "background": "surface-raised",
+      "minimum": 4.5,
+      "ratio": 9.885,
+      "pass": true
+    },
+    {
+      "foreground": "warning",
+      "background": "surface-raised",
+      "minimum": 4.5,
+      "ratio": 9.539,
+      "pass": true
+    },
+    {
+      "foreground": "error",
+      "background": "surface-raised",
+      "minimum": 4.5,
+      "ratio": 9.326,
+      "pass": true
+    },
+    {
+      "foreground": "ink",
+      "background": "gold",
+      "minimum": 4.5,
+      "ratio": 8.762,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "background",
+      "minimum": 3,
+      "ratio": 11.725,
+      "pass": true
+    },
+    {
+      "foreground": "border",
+      "background": "background",
+      "minimum": 3,
+      "ratio": 4.19,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "surface",
+      "minimum": 3,
+      "ratio": 10.785,
+      "pass": true
+    },
+    {
+      "foreground": "border",
+      "background": "surface",
+      "minimum": 3,
+      "ratio": 3.854,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "surface-raised",
+      "minimum": 3,
+      "ratio": 9.539,
+      "pass": true
+    },
+    {
+      "foreground": "border",
+      "background": "surface-raised",
+      "minimum": 3,
+      "ratio": 3.409,
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "limits": "Token contrast; rendered browser layouts checked separately. Gold logo artwork is unmodified and not body text."
+}

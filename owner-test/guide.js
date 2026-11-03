@@ -3,182 +3,119 @@ window.FMZOwnerGuide=(()=>{
  'use strict';let active=null;
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const steps=[
- [
-  "logo-v4",
-  "Nieuw logo controleren",
-  "Controleer TESTMODUS en het aangeleverde logo bovenaan en op het Dashboard.",
-  "Alle onderdelen van het nieuwe logo blijven zichtbaar; de gewone app is niet aangepast.",
-  "settings"
- ],
- [
-  "colours-v4",
-  "Nieuwe kleuren controleren",
-  "Bekijk in Instellingen het logo op licht en donker en de appicoonvoorbeelden.",
-  "Rustige zwarte oppervlakken, leesbare tekst en drie goudtinten uit de bron.",
-  "settings"
- ],
- [
-  "icons-v4",
-  "Navigatie-iconen controleren",
-  "Bekijk alle zeven menu-iconen bij 100%, 125%, 150% en 200% browserzoom.",
-  "Scherpe vectoriconen; de actieve knop verspringt niet.",
-  "none"
- ],
- [
-  "source-v4",
-  "Bronlid zoeken",
-  "Klik op Open dit onderdeel voor Schema builder. Heeft Noor nog geen schema? Voeg eerst een oefening toe, zoek Noor bij het doellid en bevestig bewust de koppeling. Ga terug naar Schema builder, klik Schema van ander lid kopiëren en zoek Noor. Er wordt niets automatisch klaargezet.",
-  "Je kiest bewust het bronlid met naam en lidnummer.",
-  "builder"
- ],
- [
-  "version-v4",
-  "Schema en versie bekijken",
-  "Kies een bestaande vastgelegde schemaversie en bekijk alle trainingsdagen en oefeningen.",
-  "Geen verzonnen oudere versies; de gekozen inhoud staat volledig in het voorbeeld.",
-  "none"
- ],
- [
-  "copy-v4",
-  "Naar ander fictief lid kopiëren",
-  "Zoek Sam als doel. Controleer beide identiteiten en bevestig het onafhankelijke concept.",
-  "Bron en doel verschillen; er is nog geen definitief schema toegevoegd.",
-  "none"
- ],
- [
-  "private-v4",
-  "Controleren wat niet is gekopieerd",
-  "Controleer het concept op lege doelgewichten en afwezigheid van resultaten, privénotities en gezondheidsinformatie.",
-  "Alleen schema-inhoud en de bestaande oefenmedia zijn meegenomen.",
-  "none"
- ],
- [
-  "save-copy-v4",
-  "Kopie aanpassen en bewust opslaan",
-  "Pas het concept aan en gebruik de definitieve opslagactie voor het gecontroleerde doellid.",
-  "De bevestigde kopie heeft een eigen identiteit. Herhalen maakt geen duplicaat.",
-  "none"
- ],
- [
-  "source-unchanged-v4",
-  "Bron en kopiehistorie controleren",
-  "Bekijk de kopiehistorie en open daarna het bronlid opnieuw.",
-  "De broninhoud is ongewijzigd; wie, bronversie, doel en nieuwe identiteit zijn vastgelegd.",
-  "none"
- ],
- [
-  "agreement-v4",
-  "Oefenovereenkomst klaarzetten",
-  "Ontbreekt er nog een oefenovereenkomst? Schrijf dan via Nieuw lid inschrijven een fictief individueel of duo-lid in, teken en rond af. Gebruik geen echte gegevens.",
-  "De bestaande inschrijfroute, camera en oefenmedia blijven beschikbaar. De PDF is duidelijk niet geldig.",
-  "signup"
- ],
- [
-  "document-open-v4",
-  "Overeenkomst onder Documenten openen",
-  "Open Documenten van het fictieve lid en kies Openen. Probeer ook Nieuw tabblad.",
-  "De echte opgeslagen PDF verschijnt. Bij pop-upblokkering is opnieuw openen mogelijk.",
-  "none"
- ],
- [
-  "document-download-v4",
-  "Dezelfde PDF downloaden",
-  "Kies Downloaden, herlaad en download dezelfde overeenkomst nogmaals.",
-  "Naam en datum staan in de bestandsnaam; de app controleert bytes en opslaghash vóór downloaden. Er komt geen tweede document.",
-  "none"
- ],
- [
-  "prepare-v4",
-  "Herinnering zeven dagen vooraf controleren",
-  "Open Agenda en kies Lijst. Open Over één week facturen maken.",
-  "Periode, factuurdatum, deelnemers, pakket en verwacht bedrag zijn zichtbaar.",
-  "agenda"
- ],
- [
-  "due-v4",
-  "Herinnering op de factuurdatum controleren",
-  "Open Vandaag facturen maken en versturen voor dezelfde periode.",
-  "Dit herinneringsmoment heeft een eigen status. Er is een link naar de bestaande Facturen-pagina.",
-  "none"
- ],
- [
-  "future-v4",
-  "Drie toekomstige perioden controleren",
-  "Gebruik Lijst en blader vooruit. Vergelijk drie factuurdatums; probeer ook dag, week en maand.",
-  "Vier weken blijft steeds 28 dagen; kalendermaandklanten behouden hun cyclus.",
-  "none"
- ],
- [
-  "no-finance-v4",
-  "Bevestigen dat niets automatisch is geboekt",
-  "Rond alleen de voorbereidingsherinnering af en ververs. Bekijk de facturen en betalingen.",
-  "De factuurdag blijft zelfstandig open. Geen factuur, concept, e-mail of betaling is automatisch gemaakt.",
-  "none"
- ],
- [
-  "inactive-v4",
-  "Fictief lid inactief maken",
-  "Open het gewenste fictieve profiel. Kies Lid inactief maken, datum en reden. Kies afzonderlijk wat moet pauzeren en controleer het effect.",
-  "Pas na jouw bevestiging ontstaat een statuswijziging; documenten en financiële historie blijven behouden.",
-  "none"
- ],
- [
-  "filter-v4",
-  "Inactief lid zoeken",
-  "Gebruik Leden → Inactief en probeer ook de algemene zoekbalk.",
-  "Het lid blijft vindbaar met de juiste status. Een toekomstige ingangsdatum gaat pas op die datum in.",
-  "clients"
- ],
- [
-  "history-v4",
-  "Documenten en historie behouden",
-  "Open opnieuw het inactieve lid. Controleer Documenten, Training, Financiën en Statushistorie.",
-  "De overeenkomst, opgeslagen PDF, trainingshistorie en openstaande facturen blijven bestaan.",
-  "none"
- ],
- [
-  "reactivate-v4",
-  "Lid opnieuw activeren",
-  "Kies Lid opnieuw actief maken en een effectieve startdatum.",
-  "De app toont vooraf welke onderdelen je bewust kunt hervatten.",
-  "none"
- ],
- [
-  "resume-v4",
-  "Bewust kiezen wat hervat",
-  "Bevestig coaching, betaalafspraak en toekomstige herinneringen afzonderlijk. Controleer daarna Agenda.",
-  "Geen gemiste facturen worden gemaakt. Alleen bewust hervatte toekomstige herinneringen verschijnen.",
-  "none"
- ],
- [
-  "manifest-v4",
-  "Volledige verwijderlijst controleren",
-  "Open de verwijderlijst en controleer leden, documenten, foto’s, schemakopieën, statusgebeurtenissen, herinneringen en testbestanden.",
-  "De lijst hoort uitsluitend bij deze synthetische testrun.",
-  "reset"
- ],
- [
-  "cleanup-v4",
-  "Alleen synthetische testgegevens verwijderen",
-  "Vink de gecontroleerde verwijderlijst aan en bevestig het verwijderen van deze testrun.",
-  "De opruimcontrole bevestigt de verwijdering. Echte APPFMZ-gegevens blijven buiten bereik.",
-  "reset"
- ]
+  [
+    "dashboard-v5",
+    "Rustig Dashboard",
+    "Bekijk Vandaag, Snel starten, Overzicht en Komende agenda. Gebruik de ledenzoekbalk wanneer je een lid nodig hebt.",
+    "Geen automatisch geopend lid, profieltabbladen, ledenlijst of lange factuurkalender.",
+    "dashboard"
+  ],
+  [
+    "theme-v5",
+    "Licht en donker wisselen",
+    "Gebruik de themaschakelaar bovenaan. Bekijk ook Leden, Agenda, Administratie en Facturen.",
+    "Lichte kaarten en donkere tekst in Licht; zwart-goud met lichte tekst in Donker.",
+    "none"
+  ],
+  [
+    "theme-restore-v5",
+    "Themakeuze bewaren",
+    "Kies Licht, ververs en meld je opnieuw aan. Sluit en heropen daarna de browser.",
+    "Jouw bevestigde keuze blijft bewaard; het PDF-document zelf verandert niet.",
+    "none"
+  ],
+  [
+    "cycle-v5",
+    "Gezamenlijke testcyclus controleren",
+    "Open Instellingen en bekijk de synthetische cyclusbasis 2 november 2026. De eerstvolgende grens is 30 november.",
+    "Dit is uitsluitend een configureerbare testbasis, geen vastgestelde productiedatum. Iedere volgende grens ligt 28 kalenderdagen later.",
+    "settings"
+  ],
+  [
+    "full-v5",
+    "Volledige eerste periode",
+    "Start een fictieve inschrijving met Progressie en startdatum 30 november 2026 (de volgende gezamenlijke grens). Bekijk Betaling vóór ondertekenen.",
+    "28 van 28 dagen: €380. Het aantal trainingen is niet gewijzigd.",
+    "signup"
+  ],
+  [
+    "half-v5",
+    "Halverwege beginnen",
+    "Gebruik een afzonderlijk fictief inschrijfconcept met Progressie en startdatum 16 november 2026.",
+    "14 dagen tot 30 november: €380 × 14 ÷ 28 = €190. Dit is een eerste deelbedrag, geen korting.",
+    "signup"
+  ],
+  [
+    "costs-v5",
+    "Kostenoverzicht begrijpen",
+    "Controleer de cyclus, resterende dagen, berekening, eerste deelbedrag en het latere volledige bedrag.",
+    "Eerste deelbedrag €190 op de volgende gezamenlijke factuurdatum; daarna €380 per 28 dagen. Geen betaling of factuur is automatisch geboekt.",
+    "none"
+  ],
+  [
+    "prepare-v5",
+    "Algemene taak Facturen maken",
+    "Open de Agenda en kies Lijst. Open Facturen maken voor 23 november 2026.",
+    "Eén algemene taak, zeven dagen vóór 30 november, met de actuele betreffende leden en volledige of gedeeltelijke bedragen.",
+    "agenda"
+  ],
+  [
+    "send-v5",
+    "Algemene taak Facturen versturen",
+    "Open Facturen versturen voor 30 november 2026.",
+    "Afzonderlijke taak en voltooidstatus; de link opent alleen de bestaande Facturen-pagina.",
+    "agenda"
+  ],
+  [
+    "future-v5",
+    "Drie gezamenlijke cycli",
+    "Bekijk de factuurrondes van 30 november, 28 december en 25 januari. Vergelijk Dag, Week, Maand en Lijst.",
+    "Exact twee algemene taken per cyclus. Een later toegevoegd lid krijgt geen derde agenda-item.",
+    "agenda"
+  ],
+  [
+    "completion-v5",
+    "Afzonderlijk voltooien",
+    "Markeer alleen Facturen maken als voltooid, ververs en controleer beide taken opnieuw.",
+    "Facturen versturen blijft open. Gemiste taken blijven achterstallig zichtbaar. Er is niets aangemaakt of verzonden.",
+    "agenda"
+  ],
+  [
+    "transition-v5",
+    "Overstapvoorbeeld bekijken",
+    "Bekijk in Instellingen het read-only voorbeeld voor bestaande maandafspraken.",
+    "Huidige afspraak, voorgestelde datums en eventueel deelbedrag zijn zichtbaar; er is geen omzetting uitgevoerd.",
+    "settings"
+  ],
+  [
+    "smoke-v5",
+    "Bestaande bediening kort controleren",
+    "Zoek een fictief lid, open het profiel, een schema en Documenten. Open een eerder opgeslagen overeenkomst als die aanwezig is.",
+    "De bestaande bediening blijft bereikbaar. Een themawissel herschrijft de opgeslagen PDF niet.",
+    "search"
+  ],
+  [
+    "cleanup-v5",
+    "Verwijderlijst controleren en opruimen",
+    "Open de exacte verwijderlijst en bevestig uitsluitend het opruimen van deze synthetische testrun.",
+    "De testdatabase en het checkpoint worden opgeruimd; echte APPFMZ-data blijft buiten bereik.",
+    "reset"
+  ]
 ];
  const button=(text,action,extra='')=>`<button type="button" data-ot-action="${action}" ${extra}>${text}</button>`;
  function start(adapter){
   active?.stop();if(!adapter?.getState||!adapter?.setGuide||!adapter?.inventory||!adapter?.simulate||!adapter?.reminderPeriods)throw Error('De geïsoleerde owner-test is niet beschikbaar.');
-  let state=null,busy=false,alive=true,panelOpen=window.matchMedia('(min-width: 901px)').matches,dialog=null,pending=null,manifest=null,unsubscribe=null;
+  let state=null,busy=false,alive=true,panelOpen=false,dialog=null,pending=null,manifest=null,unsubscribe=null;
   const mounts=new Set();
   const banner=document.createElement('section');banner.className='fmz-test-banner';banner.setAttribute('aria-label','Geïsoleerde owner-test');
   banner.innerHTML='<strong>TESTMODUS</strong><span>Uitsluitend lokale testgegevens — geen echte factuurautomatisering, e-mail of push.</span>'+button('Testbegeleider','toggle')+button('Sluiten','exit');
-  const panel=document.createElement('aside');panel.className='fmz-test-guide';panel.id='fmz-owner-test-guide';panel.setAttribute('aria-label','Laptoptest in drieëntwintig stappen');document.body.append(banner,panel);document.body.classList.add('fmz-owner-test-active');
-  const guide=()=>state?.guide?.routeVersion===4?{step:0,done:[],skipped:[],...state.guide}:{version:1,routeVersion:4,step:0,done:[],skipped:[]};
+  const panel=document.createElement('aside');panel.className='fmz-test-guide';panel.id='fmz-owner-test-guide';panel.setAttribute('aria-label','Gerichte laptoptest in veertien stappen');document.body.append(banner,panel);document.body.classList.add('fmz-owner-test-active');
+  const guide=()=>state?.guide?.routeVersion===5?{step:0,done:[],skipped:[],...state.guide}:{version:1,routeVersion:5,step:0,done:[],skipped:[]};
   const status=text=>{const node=panel.querySelector('[data-ot-status]');if(node)node.textContent=text;};
   async function refresh(){if(!alive)return;state=await adapter.getState();if(!alive)return;render();refreshMounts();}
-  async function save(patch){state=await adapter.getState();const previous=state.guide||{},g=guide();const next={...previous,...g,...patch,version:1,routeVersion:4,updatedAt:new Date().toISOString()};if(previous.routeVersion!==4)next.previousRouteProgress={step:previous.step,done:previous.done,skipped:previous.skipped};await (adapter.patchGuide?adapter.patchGuide({version:1,routeVersion:next.routeVersion,step:next.step,done:next.done,skipped:next.skipped,updatedAt:next.updatedAt,...(next.previousRouteProgress?{previousRouteProgress:next.previousRouteProgress}:{})}):adapter.setGuide(next));state=await adapter.getState();render();}
+  async function save(patch){state=await adapter.getState();const previous=state.guide||{},g=guide();const next={...previous,...g,...patch,version:1,routeVersion:5,updatedAt:new Date().toISOString()};if(previous.routeVersion!==5)next.previousRouteProgress={step:previous.step,done:previous.done,skipped:previous.skipped,prior:previous.previousRouteProgress};await (adapter.patchGuide?adapter.patchGuide({version:1,routeVersion:next.routeVersion,step:next.step,done:next.done,skipped:next.skipped,updatedAt:next.updatedAt,...(next.previousRouteProgress?{previousRouteProgress:next.previousRouteProgress}:{})}):adapter.setGuide(next));state=await adapter.getState();render();}
   function currentHTML(mini=false){const g=guide(),step=Math.max(0,Math.min(steps.length-1,Number(g.step)||0)),[id,title,doing,result,route]=steps[step];return `<p class="fmz-test-step">${mini?'TESTMODUS · ':''}Stap ${step+1} van ${steps.length} · ${g.done.length} zelf gecontroleerd</p><h${mini?'3':'2'}>${esc(title)}</h${mini?'3':'2'}><p>${esc(doing)}</p><p><strong>Controle:</strong> ${esc(result)}</p><div class="fmz-test-actions">${route!=='none'?button('Open dit onderdeel','route'):''}${button('Vorige','previous',step===0?'disabled':'')}${button('Volgende','next',step===steps.length-1?'disabled':'')}${button(g.done.includes(id)?'Controle opnieuw doen':'Dit heb ik gecontroleerd','done')}${button('Stap overslaan','skip')}</div>`;}
-  function render(){if(!alive)return;const expanded=panel.querySelector('details')?.open,g=guide();panel.hidden=!panelOpen;document.body.classList.toggle('fmz-test-guide-open',panelOpen);const toggle=banner.querySelector('[data-ot-action=toggle]');toggle.setAttribute('aria-expanded',String(panelOpen));toggle.setAttribute('aria-controls',panel.id);panel.innerHTML=`<header><strong>Laptoptest — vernieuwde route</strong>${button('Inklappen','toggle')}</header>${currentHTML()}<details><summary>Alle 23 stappen</summary><ol>${steps.map(([id,title],i)=>`<li><button type="button" data-ot-action="step" data-ot-step="${i}" ${Number(g.step)===i?'aria-current="step"':''}>${esc(title)} <span>${g.done.includes(id)?'✓':g.skipped.includes(id)?'overgeslagen':''}</span></button></li>`).join('')}</ol></details><div class="fmz-test-actions">${button('Factuurherinneringen testen','reminders')}${button('Testgegevens verwijderen en opnieuw beginnen','reset')}</div><p data-ot-status role="status">${busy?'Bezig…':'Voortgang wordt uitsluitend bij deze testrun bewaard.'}</p><p class="fmz-test-small">Zelf afvinken is geen technische PASS of toestemming om nieuwe productieroutes te openen.</p>`;if(expanded)panel.querySelector('details').open=true;syncMini();}
+  function render(){if(!alive)return;const expanded=panel.querySelector('details')?.open,g=guide();panel.hidden=!panelOpen;document.body.classList.toggle('fmz-test-guide-open',panelOpen);const toggle=banner.querySelector('[data-ot-action=toggle]');toggle.setAttribute('aria-expanded',String(panelOpen));toggle.setAttribute('aria-controls',panel.id);panel.innerHTML=`<header><strong>Laptoptest — gerichte correctie</strong>${button('Inklappen','toggle')}</header>${currentHTML()}<details><summary>Alle 14 stappen</summary><ol>${steps.map(([id,title],i)=>`<li><button type="button" data-ot-action="step" data-ot-step="${i}" ${Number(g.step)===i?'aria-current="step"':''}>${esc(title)} <span>${g.done.includes(id)?'✓':g.skipped.includes(id)?'overgeslagen':''}</span></button></li>`).join('')}</ol></details><div class="fmz-test-actions">${button('Factuurherinneringen testen','reminders')}${button('Testgegevens verwijderen en opnieuw beginnen','reset')}</div><p data-ot-status role="status">${busy?'Bezig…':'Voortgang wordt uitsluitend bij deze testrun bewaard.'}</p><p class="fmz-test-small">Zelf afvinken is geen technische PASS of toestemming om nieuwe productieroutes te openen.</p>`;if(expanded)panel.querySelector('details').open=true;syncMini();}
   function syncMini(){if(!alive)return;const g=guide(),key=JSON.stringify([g.step,g.done,g.skipped]);for(const d of document.querySelectorAll('dialog[open]:not([data-owner-test-dialog])')){let mini=d.querySelector('[data-owner-test-mini]');if(!mini){mini=document.createElement('details');mini.dataset.ownerTestMini='';mini.className='fmz-test-mini';d.prepend(mini);}if(mini.dataset.key!==key){const wasOpen=mini.open;mini.dataset.key=key;mini.innerHTML='<summary>TESTMODUS — laptopstappen bekijken</summary>'+currentHTML(true);mini.open=wasOpen;}}}
   let observedProfile=null;function collapseForProfile(){if(panelOpen){panelOpen=false;render();}}
   const observer=new MutationObserver(()=>{syncMini();const current=document.querySelector('.members-profile-page');if(current!==observedProfile){observedProfile=current;if(current)collapseForProfile();}});observer.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['open']});
@@ -186,7 +123,7 @@ window.FMZOwnerGuide=(()=>{
   const retryHTML=()=>pending?'<p class="fmz-test-warning">De opslagbevestiging ontbreekt. Herhaal hetzelfde verzoek; er wordt geen tweede herinnering gemaakt.</p>'+button('Onbevestigde handeling opnieuw proberen','retry-pending'):'';
   const dialogStatus=text=>{const node=dialog?.querySelector('[data-ot-dialog-status]');if(node)node.textContent=text;};
   async function route(){const target=steps[guide().step]?.[4];if(target==='reminders')return reminderDialog();if(target==='reset')return resetDialog();const other=[...document.querySelectorAll('dialog[open]')].find(d=>!d.hasAttribute('data-owner-test-dialog'));if(other){const mini=other.querySelector('[data-owner-test-mini]');if(mini)mini.open=true;status('Rond het huidige venster af of sluit het veilig voordat je een ander onderdeel opent.');return;}
-   if(['settings','agenda','clients'].includes(target)){window.showView?.(target);}
+   if(['settings','agenda','clients','dashboard'].includes(target)){window.showView?.(target==='dashboard'?'trainer-dashboard':target);}
    else if(target==='search'){document.getElementById('globalSearch')?.focus();}
    else if(target==='signup')await window.FMZMembers?.openEnrollment();
    else if(target==='drafts')await window.FMZMembers?.openDrafts();
@@ -206,7 +143,7 @@ window.FMZOwnerGuide=(()=>{
   async function reminderDialog(){if(window.FMZOwnerReminderCalendar)return window.FMZOwnerReminderCalendar.open(adapter);const periods=await adapter.reminderPeriods();state=await adapter.getState();openDialog('Factuurherinneringen testen',`<p>Datums komen uit de vastgelegde betaalafspraak en bestaande perioderegel. Er wordt geen factuurconcept of e-mail gemaakt. De test simuleert de twee momenten; er gaat geen push naar een apparaat.</p><label>Actieve betaalperiode<select data-ot-period><option value="">Kies een periode</option>${periods.map((p,i)=>`<option value="${i}">${esc(p.clientName)} · ${p.cycle==='calendar_month'?'kalendermaand':'vier weken'} · ${esc(p.start)} t/m ${esc(p.end)} · factuurdatum ${esc(p.invoiceDate)}</option>`).join('')}</select></label><div class="fmz-test-actions">${button('Zeven dagen vooraf simuleren','reminder-7')}${button('Factuurdatum simuleren','reminder-today')}</div><div data-ot-reminder-list>${reminderHTML(currentReminders())}</div>${periods.length?'':'<p>Voltooi eerst een synthetische inschrijving met een actieve betaalafspraak.</p>'}`);dialog._periods=periods;}
   async function simulate(action,source){let payload;if(action==='reminder-complete')payload={id:source.dataset.otId};else{const value=dialog.querySelector('[data-ot-period]').value,p=value===''?null:dialog._periods?.[Number(value)];if(!p)throw Error('Kies eerst een actieve betaalperiode.');payload={agreementId:p.agreementId,periodStart:p.start};}
    const body=JSON.stringify({action,payload});if(pending&&pending.body!==body)throw Error('Probeer eerst dezelfde onbevestigde handeling opnieuw.');pending??={body,action,payload,id:crypto.randomUUID()};await adapter.simulate(action,payload,pending.id);pending=null;await refresh();if(dialog?.dataset.reminderId)await reminderDetails(dialog.dataset.reminderId);if(dialog?.querySelector('[data-ot-reminder-list]'))dialog.querySelector('[data-ot-reminder-list]').innerHTML=reminderHTML(currentReminders());dialogStatus('Lokaal bevestigd. Er is geen factuur, boeking, mail of push gemaakt.');}
-  function inventoryHTML(inv){const groups=[['members','Testleden'],['memberStatusEvents','Ledenstatushistorie'],['statusReceipts','Bevestigde statusverzoeken'],['calendarCompletions','Afgeronde agenda-herinneringen'],['calendarViews','Agendaweergaven'],['drafts','Inschrijfconcepten'],['schemaDrafts','Schema’s en koppelingen in deze testbrowser'],['contracts','Testovereenkomsten'],['documents','Testdocumenten'],['communicationDocuments','Bijlagekoppelingen'],['invoices','Testfacturen en concepten'],['messages','Definitieve testmailconcepten'],['preliminary','Voorlopige testmailconcepten'],['files','Factuur-PDF-registraties'],['simulationRecords','Gesimuleerde verzendingen en historie'],['reminders','Testmeldingen'],['blobs','Lokale testbestanden'],['sessions','Synthetische sessies']];return groups.map(([key,label])=>{const rows=inv[key]||[];return `<details ${rows.length?'open':''}><summary>${label}: ${rows.length}</summary>${rows.length?'<ul>'+rows.map(r=>`<li>${esc(r.label||r.name||r.number||r.subject||r.path||r.id)} <small>${esc(r.id||r.path||'')}</small></li>`).join('')+'</ul>':'<p>Geen.</p>'}</details>`;}).join('');}
+  function inventoryHTML(inv){const groups=[['billingCycleConfig','Gezamenlijke synthetische cyclusconfiguratie'],['members','Testleden'],['memberStatusEvents','Ledenstatushistorie'],['statusReceipts','Bevestigde statusverzoeken'],['calendarCompletions','Afgeronde agenda-herinneringen'],['calendarViews','Agendaweergaven'],['drafts','Inschrijfconcepten'],['schemaDrafts','Schema’s en koppelingen in deze testbrowser'],['contracts','Testovereenkomsten'],['documents','Testdocumenten'],['communicationDocuments','Bijlagekoppelingen'],['invoices','Testfacturen en concepten'],['messages','Definitieve testmailconcepten'],['preliminary','Voorlopige testmailconcepten'],['files','Factuur-PDF-registraties'],['simulationRecords','Gesimuleerde verzendingen en historie'],['reminders','Testmeldingen'],['blobs','Lokale testbestanden'],['sessions','Synthetische sessies']];return groups.map(([key,label])=>{const rows=inv[key]||[];return `<details ${rows.length?'open':''}><summary>${label}: ${rows.length}</summary>${rows.length?'<ul>'+rows.map(r=>`<li>${esc(r.label||r.name||r.number||r.subject||r.path||r.id)} <small>${esc(r.id||r.path||'')}</small></li>`).join('')+'</ul>':'<p>Geen.</p>'}</details>`;}).join('');}
   async function resetDialog(){manifest=await (adapter.manifest?adapter.manifest():adapter.inventory());openDialog('Deze testgegevens verwijderen?',`<p>Alleen testrun <strong>${esc(manifest.runId)}</strong> wordt verwijderd. Echte administratie kan deze geïsoleerde opruimactie niet bereiken. Niet-bewaarde invoer in een open testvenster gaat ook verloren.</p>${inventoryHTML(manifest)}<label class="fmz-test-check"><input type="checkbox" data-ot-reset-confirm>Ik heb deze exacte lijst gecontroleerd en wil uitsluitend deze testrun opnieuw beginnen.</label>${button('Deze testgegevens verwijderen','confirm-reset')}`);}
   async function reset(){if(!dialog.querySelector('[data-ot-reset-confirm]').checked)throw Error('Controleer eerst de volledige verwijderlijst.');const result=await adapter.reset(manifest);pending=null;state={...state,guide:{version:1,step:0,done:[],skipped:[]},simulation:{sent:[],history:[],reminders:[]}};window.FMZMembers?.lock();window.FMZCommunicationsUI?.lock();render();openDialog('Opruimcontrole',`<p>De lokale adapter heeft de verwijderopdracht bevestigd. Controleer hieronder het resultaat voor de oude testrun.</p><pre>${esc(JSON.stringify(result,null,2))}</pre><p>Open daarna de nieuwe testrun zodat alle schermen opnieuw uit de geïsoleerde database worden geladen.</p>${button('Nieuwe testrun openen','reload')}`);}
 

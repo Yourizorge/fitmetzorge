@@ -1,0 +1,209 @@
+{
+  "status": "PASS",
+  "synthetic": true,
+  "productionTouched": false,
+  "config": {
+    "baseDate": "2026-11-02",
+    "invoiceDate": "2026-11-30",
+    "timeZone": "Europe/Amsterdam",
+    "days": 28,
+    "synthetic": true,
+    "version": 2
+  },
+  "payment": {
+    "baseCents": 38000,
+    "discountCents": 0,
+    "discountPeriods": 0,
+    "discountReason": "",
+    "regularCents": 38000,
+    "firstPeriodCustom": true,
+    "firstPeriodStart": "2026-11-16",
+    "firstPeriodEnd": "2026-11-29",
+    "firstPeriodCents": 19000,
+    "firstPeriodNetCents": 19000,
+    "firstPeriodReason": "38000 cent × 14 ÷ 28; eenmaal afgerond op centen (half-up).",
+    "nextPeriodStart": "2026-11-30",
+    "invoiceDate": "2026-11-30",
+    "nextInvoiceDate": "2026-12-28"
+  },
+  "pdfSHA256": "740576211e0c815fa89cae6f323378233c41e43eb2122f086994760ff43b912f",
+  "taskIds": [
+    "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2026-11-02|billing_prepare",
+    "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2026-11-02|billing_due",
+    "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2026-11-30|billing_prepare",
+    "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2026-11-30|billing_due",
+    "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2026-12-28|billing_prepare",
+    "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2026-12-28|billing_due",
+    "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2027-01-25|billing_prepare",
+    "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2027-01-25|billing_due"
+  ],
+  "cleanupManifest": {
+    "runId": "TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6",
+    "revision": 12,
+    "synthetic": true,
+    "members": [
+      {
+        "id": "TEST-NOOR",
+        "label": "Noor Voorbeeld",
+        "member_number": 1,
+        "status": "active"
+      },
+      {
+        "id": "TEST-SAM",
+        "label": "Sam Test",
+        "member_number": 2,
+        "status": "active"
+      },
+      {
+        "id": "m-302e8a9c-af2b-414b-b4f5-0b2b698b6f3c",
+        "label": "Fictieve van Test",
+        "member_number": 34,
+        "status": "active"
+      }
+    ],
+    "contracts": [
+      {
+        "id": "302e8a9c-af2b-414b-b4f5-0b2b698b6f3c",
+        "number": "TEST-FMZ-OV-302E8A9CAF2B414BB4F50B2B698B6F3C",
+        "client_id": "m-302e8a9c-af2b-414b-b4f5-0b2b698b6f3c"
+      }
+    ],
+    "documents": [
+      {
+        "id": "d519762a-2b43-4a22-824f-36192bee16bb",
+        "kind": "agreement",
+        "path": "11111111-1111-4111-8111-111111111111/agreements/d519762a-2b43-4a22-824f-36192bee16bb.pdf",
+        "status": "ready",
+        "sha256": "740576211e0c815fa89cae6f323378233c41e43eb2122f086994760ff43b912f"
+      }
+    ],
+    "invoices": [],
+    "messages": [],
+    "reminders": [],
+    "blobs": [
+      {
+        "path": "fmz-members/11111111-1111-4111-8111-111111111111/agreements/d519762a-2b43-4a22-824f-36192bee16bb.pdf",
+        "bytes": 268277,
+        "mime": "application/pdf"
+      }
+    ],
+    "sessions": [
+      {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "user_id": "11111111-1111-4111-8111-111111111111"
+      },
+      {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "user_id": "22222222-2222-4222-8222-222222222222"
+      },
+      {
+        "id": "33333333-3333-4333-8333-333333333333",
+        "user_id": "33333333-3333-4333-8333-333333333333"
+      },
+      {
+        "id": "44444444-4444-4444-8444-444444444444",
+        "user_id": "44444444-4444-4444-8444-444444444444"
+      }
+    ],
+    "drafts": [
+      {
+        "id": "302e8a9c-af2b-414b-b4f5-0b2b698b6f3c",
+        "status": "completed",
+        "label": "Fictieve"
+      }
+    ],
+    "preliminary": [],
+    "files": [],
+    "communicationDocuments": [],
+    "simulationRecords": [],
+    "calendarViews": [],
+    "memberStatusEvents": [],
+    "statusReceipts": [],
+    "billingCycleConfig": [
+      {
+        "id": "shared-billing-cycle",
+        "data": {
+          "baseDate": "2026-11-02",
+          "invoiceDate": "2026-11-30",
+          "timeZone": "Europe/Amsterdam",
+          "days": 28,
+          "synthetic": true,
+          "version": 2
+        }
+      }
+    ],
+    "calendarCompletions": [
+      {
+        "id": "central-calendar|TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6|2026-11-02|2026-11-02|billing_prepare",
+        "runId": "TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6",
+        "date": "2026-11-23",
+        "kind": "billing_prepare",
+        "text": "Facturen maken",
+        "time": "09:00",
+        "timeZone": "Europe/Amsterdam",
+        "cycleStart": "2026-11-02",
+        "cycleEnd": "2026-11-29",
+        "endExclusive": "2026-11-30",
+        "invoiceDate": "2026-11-30",
+        "status": "done",
+        "completedAt": "2026-11-03T13:50:03.469Z",
+        "items": [
+          {
+            "agreementId": "6fd79bd6-311f-4836-9ee1-dee53360501c",
+            "clientId": "TEST-NOOR",
+            "clientName": "Noor Voorbeeld",
+            "participants": [
+              {
+                "clientId": "TEST-NOOR",
+                "name": "Noor Voorbeeld",
+                "primary": true
+              }
+            ],
+            "duo": false,
+            "packageLabel": "Personal training Basis",
+            "normalAmountCents": 20000,
+            "startDate": "2026-11-02",
+            "syntheticFixture": true,
+            "cycle": "four_weeks",
+            "start": "2026-11-02",
+            "end": "2026-11-29",
+            "invoiceDate": "2026-11-30",
+            "amountCents": 20000,
+            "firstPartial": false,
+            "prorataDays": 28
+          }
+        ],
+        "totalCents": 20000
+      }
+    ],
+    "schemaDrafts": [],
+    "hash": "e61f7384c47daa43b0c5e0e261b30d270792222fb3c01c5ec96934dc0354449d"
+  },
+  "cleanup": {
+    "runId": "TEST-43942b15-6cf1-4db7-b5fa-9defe62f3ae6",
+    "members": [],
+    "contracts": [],
+    "documents": [],
+    "invoices": [],
+    "messages": [],
+    "reminders": [],
+    "blobs": [],
+    "sessions": [],
+    "drafts": [],
+    "preliminary": [],
+    "files": [],
+    "communicationDocuments": [],
+    "simulationRecords": [],
+    "schemaDrafts": [],
+    "calendarViews": [],
+    "memberStatusEvents": [],
+    "statusReceipts": [],
+    "calendarCompletions": [],
+    "billingCycleConfig": [],
+    "deleted": true,
+    "verification": "Isolated database instance closed; host checkpoint removal acknowledged. This is not a SQL query after deletion."
+  },
+  "existingFinanceUnchanged": true,
+  "newSyntheticAgreementCount": 1,
+  "invoiceEmailPaymentWrites": 0
+}

@@ -66,3 +66,28 @@ body.ot-navigation #schema-builder .view-head{flex-wrap:wrap;gap:12px}
 body.ot-navigation .ot-copy-history-row{min-width:0;overflow-wrap:anywhere;padding:12px 0;border-bottom:1px solid var(--line)}
 body.ot-navigation .ot-copy-history-row summary{cursor:pointer;padding:10px 0}
 body.ot-navigation #schema-builder [hidden]{display:none!important}
+
+/* Calm owner dashboard; no member list or profile content is mounted here. */
+body.ot-navigation [data-ot-dashboard]{max-width:1280px;margin:0 auto}
+body.ot-navigation .ot-dashboard-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;align-items:start}
+body.ot-navigation .ot-dashboard-grid>.panel{min-width:0;margin:0;padding:22px;background:var(--ot-surface);border:1px solid var(--ot-border);box-shadow:none}
+body.ot-navigation .ot-dashboard-grid h2{margin:0 0 18px;font-size:1.2rem}
+body.ot-navigation .ot-dashboard-grid h3{font-size:1rem;margin:18px 0 10px}
+body.ot-navigation .ot-dashboard-grid p{line-height:1.5;color:var(--ot-muted)}
+body.ot-navigation .ot-dashboard-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+body.ot-navigation .ot-dashboard-actions button{min-height:48px;white-space:normal;text-align:left}
+body.ot-navigation .ot-dashboard-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:0}
+body.ot-navigation .ot-dashboard-stats dt{font-size:.9rem;color:var(--ot-muted)}
+body.ot-navigation .ot-dashboard-stats dd{font-size:1.6rem;font-weight:700;margin:6px 0 0;color:var(--ot-text)}
+body.ot-navigation .ot-dashboard-stats .ot-stat-date{grid-column:1/-1;border-top:1px solid var(--ot-border);padding-top:16px}
+body.ot-navigation .ot-dashboard-stats .ot-stat-date dd{font-size:1.15rem}
+body.ot-navigation .ot-dashboard-agenda{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:12px}
+body.ot-navigation .ot-dashboard-agenda li{display:grid;gap:4px;overflow-wrap:anywhere}
+body.ot-navigation .ot-dashboard-agenda span{color:var(--ot-muted)}
+body.ot-navigation .ot-dashboard-tasks button{display:grid;gap:4px;text-align:left;min-height:48px;width:100%;padding:12px;border:1px solid var(--ot-border);border-radius:8px;background:var(--ot-surface-raised);color:var(--ot-text);white-space:normal}
+body.ot-navigation .ot-dashboard-tasks button span{font-size:.85rem;color:var(--ot-muted)}
+body.ot-navigation .ot-dashboard-tasks [data-ot-late-task]{margin-top:10px}
+body.ot-navigation .ot-dashboard-tasks [data-overdue=true]{border-left:3px solid var(--ot-warning,var(--ot-gold))}
+body.ot-navigation .ot-dashboard-tasks button:focus-visible{outline:3px solid var(--ot-focus);outline-offset:3px}
+@media(max-width:1050px){body.ot-navigation .ot-dashboard-grid{grid-template-columns:1fr;gap:16px}}
+@media(max-width:450px){body.ot-navigation .ot-dashboard-grid>.panel{padding:16px}body.ot-navigation .ot-dashboard-actions{grid-template-columns:1fr}}

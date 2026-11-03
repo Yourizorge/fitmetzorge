@@ -1,0 +1,107 @@
+{
+  "at": "2026-11-03T14:18:44.896Z",
+  "pass": true,
+  "runtimeSHA256": "3ad658dc51c94d8b58585f9dece12c0855d46632c739ae896a42ef3bacae01bd",
+  "hostSHA256": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+  "uniqueLocalTests": 16,
+  "localGroups": {
+    "cycleStatusAndCost": 7,
+    "dashboard": 4,
+    "theme": 3,
+    "logo": 2
+  },
+  "browserSuites": 4,
+  "additionalStableCaptureRuns": 2,
+  "nativeLayoutCases": 16,
+  "browser": [
+    {
+      "file": "edge-theme.json",
+      "sha256": "65b94abac9023a1be6d6185373e7546bfa995ce73e26d830b44f76435b84b389",
+      "browser": "155.0.4283.62",
+      "runtimeSHA256": "d2825de37e39911050d1375d43aa0bc71cbddca52f24acc144699be8c7c9fb64",
+      "hostSHA256": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+      "checks": [
+        "dashboard",
+        "navigation",
+        "search",
+        "profile",
+        "tabs",
+        "agenda",
+        "schema",
+        "packages",
+        "documents",
+        "PDF chrome",
+        "administration",
+        "invoices",
+        "settings"
+      ],
+      "layoutCases": 8
+    },
+    {
+      "file": "chrome-theme.json",
+      "sha256": "692def641f7ef526e9a2400304fd0e3c2e98e2652ca8197e8fc1415ca6266500",
+      "browser": "156.0.8078.80",
+      "runtimeSHA256": "d2825de37e39911050d1375d43aa0bc71cbddca52f24acc144699be8c7c9fb64",
+      "hostSHA256": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+      "checks": [
+        "dashboard",
+        "navigation",
+        "search",
+        "profile",
+        "tabs",
+        "agenda",
+        "schema",
+        "packages",
+        "documents",
+        "PDF chrome",
+        "administration",
+        "invoices",
+        "settings"
+      ],
+      "layoutCases": 8
+    },
+    {
+      "file": "dashboard-calendar-edge.json",
+      "sha256": "1ae912677203893ef3aeea14fc0ef75240ed659ee175892a607cc46b19f61dc1",
+      "browser": "edge",
+      "runtimeSHA256": "be9448c579be66175ab7cfda3c5974935ca614e2be0db57844c789fa4c4e5601",
+      "hostSHA256": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+      "checks": [
+        "Calm dashboard without member list/profile tabs/selection",
+        "Exactly two general tasks per central cycle; at least three future cycles; same day/week/month/list IDs",
+        "One existing invoice-page link, no individual action or draft",
+        "Preparation complete independently from overdue send task",
+        "Completion/deduplication retained after reload and explicit session expiry/login",
+        "Whole accounting snapshot, invoice/mail/document manifests unchanged; isolated cleanup"
+      ],
+      "layoutCases": 0
+    },
+    {
+      "file": "billing-cycle-edge.json",
+      "sha256": "3f15a3fe4ab1790eba98d515e066804420b5c847a12c942961b9fa126bc0a5d5",
+      "browser": "155.0.4283.62",
+      "runtimeSHA256": "be9448c579be66175ab7cfda3c5974935ca614e2be0db57844c789fa4c4e5601",
+      "hostSHA256": "62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5",
+      "checks": [
+        "actual restored pre-correction reviewed draft requires explicit new review; direct finalize blocked",
+        "full cost 380 on boundary",
+        "invalid start inline preserves input",
+        "half cost 190 with equation",
+        "review resume retains prorata",
+        "actual signature controls and finalized immutable PDF",
+        "PDF extracted amounts and shared dates match costs",
+        "reload identical stored bytes",
+        "no invoice/mail/payment creation"
+      ],
+      "layoutCases": 0
+    }
+  ],
+  "physicalOwnerAcceptance": false,
+  "physicalPhoneTest": false,
+  "limits": [
+    "Only the requested correction matrix was rerun.",
+    "Browser flows use the real isolated bundle with synthetic fixtures.",
+    "Theme flows used the exactly reproducible earlier package; targeted enrollment tests cover its only subsequent functional change. A final guide sentence is verified by exact replacement.",
+    "No production customer, database or financial mutation."
+  ]
+}

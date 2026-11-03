@@ -5,12 +5,12 @@
  async function request(type,body){const id=crypto.randomUUID();return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{waiting.delete(id);if(type==='camera-request')send('camera-cancel');reject(Error(type==='camera-request'?'Camera gesloten na vijf minuten. Kies opnieuw Foto maken.':'Testopslag kreeg geen bevestiging. Probeer opnieuw.'));},type==='camera-request'?300000:20000);waiting.set(id,{resolve,reject,timer});send(type,{id,...body});});}
  function script(code){const el=document.createElement('script');el.nonce=nonce;el.textContent=code;document.head.append(el);}
  async function close(){const event=new Event('beforeunload',{cancelable:true});if(!dispatchEvent(event)){alert('Er is nog onopgeslagen testinvoer. Sla het concept op voordat je de test sluit.');return;}try{if(adapter&&!adapter.getState().closed)await adapter.checkpoint();send('close');}catch(error){alert(error.message);}}
- window.OwnerTestHost={close,restart(){if(!adapter?.getState().closed)throw Error('Verwijder eerst de huidige testrun met de gecontroleerde verwijderlijst.');send('restart');}};
+ window.OwnerTestHost={close,setTheme(theme){if(!window.OwnerTestTheme?.valid(theme))return Promise.reject(Error('Ongeldig testthema.'));return request('theme-set',{theme});},restart(){if(!adapter?.getState().closed)throw Error('Verwijder eerst de huidige testrun met de gecontroleerde verwijderlijst.');send('restart');}};
  window.OwnerTestCamera={capture:async()=>{const b=await request('camera-request',{});if(!(b instanceof Blob)||b.type!=='image/jpeg'||b.size>4000000)throw Error('Ongeldige camerafoto.');return b;},cancel:()=>send('camera-cancel')};
  window.OwnerTestDocuments={show:(blob,options={})=>request('document-request',{blob,filename:options.filename,mode:options.mode||'view'})};
  const memoryStorage=()=>{const data=new Map();return{getItem:k=>data.get(String(k))??null,setItem:(k,v)=>data.set(String(k),String(v)),removeItem:k=>data.delete(String(k)),clear:()=>data.clear(),key:i=>[...data.keys()][i]??null,get length(){return data.size}};};
  async function start(m){
-  const r=m.runtime;if(r?.synthetic!==true)throw Error('Geen geldige synthetische test.');
+  const r=m.runtime;if(!['light','dark'].includes(m.theme))throw Error('Ongeldig beginthema.');script(r.themeScript);OwnerTestTheme.apply(document.documentElement,m.theme);if(r?.synthetic!==true)throw Error('Geen geldige synthetische test.');
   for(const key of ['localStorage','sessionStorage'])Object.defineProperty(window,key,{value:memoryStorage(),configurable:false});
   const objects=new Map(),createURL=URL.createObjectURL.bind(URL),revokeURL=URL.revokeObjectURL.bind(URL);
   URL.createObjectURL=blob=>{const url=createURL(blob);objects.set(url,blob);return url;};URL.revokeObjectURL=url=>{objects.delete(url);revokeURL(url);};
@@ -27,13 +27,14 @@
   window.FMZPush={render(){},lock(){},clearLocal(){},mount(){},openBillingTask(){}};
   window.FMZBillingNotifications={mount(){},lock(){}};
   window.FMZTutorial={open(){alert('Deze test behandelt de nieuwe ledenroute. De bestaande cursus staat in je echte app.');},close(){},help(){}};
-  document.body.className='logged-out';document.body.innerHTML=r.html;
+  document.body.className='logged-out'+(m.theme==='light'?' light':'');document.body.innerHTML=r.html;
   for(const css of r.styles){const el=document.createElement('style');el.textContent=css;document.head.append(el);}
-  script(r.brandScript);OwnerTestBrand.start(r.brand);
+  script(r.brandScript);OwnerTestBrand.start(r.brand,m.theme);
   const style=document.createElement('style');style.textContent='html{scroll-behavior:auto}body{padding-top:54px}a[href^="http"],a[href^="mailto:"]{pointer-events:none}';document.head.append(style);
   document.addEventListener('submit',e=>e.preventDefault());
   document.addEventListener('click',e=>{const a=e.target.closest('a');if(a&&!a.download&&!a.href.startsWith('blob:')&&!a.href.startsWith('#'))e.preventDefault();},true);
   for(const {code} of r.scripts)script(code);
+  const originalRenderAll=renderAll;renderAll=(...args)=>{OwnerTestBrand.syncTheme();return originalRenderAll(...args);};OwnerTestBrand.syncTheme();
   script(r.media);script(r.verifyImage);
   const invoice=window.FMZDocuments.pdf;
   window.FMZDocuments.pdf=async(...args)=>{
@@ -48,14 +49,15 @@
     if(!element.isConnected||!isCurrent())return;const page=await pdf.getPage(i),viewport=page.getViewport({scale:1.4}),canvas=document.createElement('canvas');canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);canvas.style.cssText='max-width:100%;height:auto;display:block;margin:12px auto';canvas.setAttribute('aria-label',`Test-PDF pagina ${i} van ${pdf.numPages}`);await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;fragment.append(canvas);
    }if(element.isConnected&&isCurrent())element.replaceChildren(fragment);}finally{await task.destroy();}
   };
-  script(r.schemaCopy);script(r.navigation);script(r.statusUI);script(r.reminderCalendar);script(r.guide);
+  script(r.billingCycleUI);script(r.schemaCopy);script(r.navigation);script(r.statusUI);script(r.reminderCalendar);script(r.guide);
   const timeout=Date.now()+30000;while(!window.FMZAccounting?.ready){if(Date.now()>timeout)throw Error('Synthetische traineromgeving kon niet worden gestart.');await new Promise(resolve=>setTimeout(resolve,100));}
-  showView('administration');FMZAccounting.render(true);showView('clients');FMZMembers.render();await FMZOwnerNavigation.start(adapter);await FMZOwnerGuide.start(adapter);await FMZOwnerStatusUI.start(adapter);
+  showView('administration');FMZAccounting.render(true);showView('clients');FMZMembers.render();await OwnerTestBillingUI.start(adapter);await FMZOwnerNavigation.start(adapter);await FMZOwnerGuide.start(adapter);await FMZOwnerStatusUI.start(adapter);
  }
  addEventListener('message',async e=>{
   const m=e.data;if(e.source!==parent||m?.channel!==CHANNEL||m.nonce!==nonce)return;
   if(m.type==='ack'){const p=waiting.get(m.id);if(!p)return;clearTimeout(p.timer);waiting.delete(m.id);m.ok?p.resolve(m.value):p.reject(Error(m.error));return;}
   if(m.type==='init'&&!started){started=true;try{await start(m);}catch(error){document.body.replaceChildren();const p=document.createElement('p');p.textContent='Laptoptest niet gestart: '+error.message;const b=document.createElement('button');b.textContent='Terug naar de echte app';b.onclick=()=>send('close');document.body.append(p,b);}}
+  if(m.type==='theme-change'&&window.OwnerTestTheme?.valid(m.theme))window.OwnerTestBrand?.applyTheme(m.theme);
   if(m.type==='request-close')await close();
  });
 })();

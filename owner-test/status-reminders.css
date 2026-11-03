@@ -6,3 +6,4 @@
 
 .ot-calendar-grid[data-calendar-view=day]{grid-template-columns:1fr}
 dialog.ot-calendar{margin:auto}
+.ot-calendar [data-ot-cal=open]{display:grid;gap:4px;text-align:left;white-space:normal}.ot-calendar [data-ot-cal=open] span{font-size:.85rem;color:var(--ot-muted)}.ot-calendar-list summary{cursor:pointer;min-height:44px;padding:12px 0}.ot-cycle-members{list-style:none;padding:0;display:grid;gap:12px}.ot-cycle-members li{display:grid;gap:4px}.ot-cycle-members span{color:var(--ot-muted);line-height:1.5}.ot-calendar [data-ot-cal-agreements]{display:grid;gap:18px;margin:18px 0}

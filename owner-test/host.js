@@ -4,7 +4,7 @@ window.FMZOwnerLaptopTest=(()=>{
  'use strict';
  const FLAGS=Object.freeze({ownerTest:true,memberSearch:false,enrollment:false,signature:false,memberProfile:false,billingPlanning:false,emailSending:false,billingPush:false,automaticInvoiceSending:false});
  const CHANNEL='fmz-owner-laptop-v1',DB='fmz-owner-laptop-synthetic-v1';
- let dialog=null,frame=null,nonce='',owner=null,pending=0,dbPromise=null,opening=false,unsubscribe=null,releaseLease=null,releaseWanted=false;
+ let dialog=null,frame=null,nonce='',owner=null,pending=0,dbPromise=null,opening=false,unsubscribe=null,releaseLease=null,releaseWanted=false,themeName=null,manualTheme=null;
  const ready=()=>typeof onlineProfile!=='undefined'&&onlineProfile?.role==='trainer'&&window.FMZAccounting?.ready===true;
  function database(){return dbPromise||=(new Promise((resolve,reject)=>{const q=indexedDB.open(DB,1);q.onupgradeneeded=()=>q.result.createObjectStore('runs');q.onsuccess=()=>resolve(q.result);q.onerror=()=>reject(Error('Testconcepten bewaren is niet beschikbaar in deze browser.'));}));}
  async function store(mode,key,value){const db=await database();return new Promise((resolve,reject)=>{const tx=db.transaction('runs',mode==='get'?'readonly':'readwrite'),os=tx.objectStore('runs');let q=mode==='get'?os.get(key):mode==='delete'?os.delete(key):os.put(value,key);let result;q.onsuccess=()=>{result=q.result;};tx.oncomplete=()=>resolve(result);tx.onerror=()=>reject(Error('Testconcept nog niet opgeslagen. Probeer opnieuw.'));tx.onabort=()=>reject(Error('Testopslag onderbroken.'));});}
@@ -28,31 +28,33 @@ window.FMZOwnerLaptopTest=(()=>{
   const b=await r.arrayBuffer(),hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',b))].map(v=>v.toString(16).padStart(2,'0')).join('');
   if(hash!==expected)throw Error('Testbestanden horen niet bij dezelfde release. Vernieuw de app.');return b;
  }
+ function applyTheme(value){if(!window.OwnerTestTheme?.valid(value))throw Error('Ongeldig testthema.');themeName=value;if(dialog)OwnerTestTheme.apply(dialog,value);window.FMZOwnerTestCamera?.configure(OwnerTestTheme.tokens(value));window.FMZOwnerTestDocuments?.setTheme?.(OwnerTestTheme.tokens(value));}
+ const systemTheme=matchMedia('(prefers-color-scheme: dark)');systemTheme.addEventListener?.('change',()=>{if(active()&&manualTheme===null){applyTheme(OwnerTestTheme.choose(null,systemTheme.matches));send('theme-change',{theme:themeName});}});
  async function open(){
   if(opening||dialog)return;opening=true;
   try{
    owner=await verify();if(!await lease(owner))throw Error('Deze test is al geopend in een ander tabblad. Sluit die test eerst.');nonce=crypto.randomUUID();
-   dialog=document.createElement('dialog');dialog.className='fmz-owner-test-host';dialog.setAttribute('aria-label','Afgeschermde APPFMZ laptoptest');
+   const response=await fetch('owner-test/manifest.json',{cache:'no-store',credentials:'omit'});if(!response.ok)throw Error('Laptoptest nog niet beschikbaar.');const manifest=await response.json();
+   if(manifest.version!==1||manifest.synthetic!==true||!manifest.files.theme)throw Error('Ongeldige testrelease.');const themeBytes=await bytes(manifest.files.theme.path,manifest.files.theme.sha256);const themeScript=document.createElement('script');themeScript.textContent=new TextDecoder().decode(themeBytes);document.head.append(themeScript);themeScript.remove();const pref=await store('get','theme:'+owner);manualTheme=pref?.version===1&&OwnerTestTheme.valid(pref.theme)?pref.theme:null;themeName=OwnerTestTheme.choose(manualTheme,systemTheme.matches);if(!active())throw Error('Sessie gewijzigd.');
+   dialog=document.createElement('dialog');dialog.className='fmz-owner-test-host';OwnerTestTheme.apply(dialog,themeName);dialog.setAttribute('aria-label','Afgeschermde APPFMZ laptoptest');
    const header=document.createElement('header'),title=document.createElement('strong'),exit=document.createElement('button');
    title.innerHTML='TESTMODUS<span class="ot-host-detail"> — geen invloed op je echte administratie</span>';title.setAttribute('aria-label','TESTMODUS — geen invloed op je echte administratie');exit.innerHTML='Terug<span class="ot-host-detail"> naar mijn echte app</span>';exit.setAttribute('aria-label','Terug naar mijn echte app');exit.type='button';exit.onclick=()=>send('request-close');header.append(title,exit);
    const status=document.createElement('p');status.textContent='Afgeschermde test laden en bestanden controleren…';status.setAttribute('role','status');dialog.append(header,status);document.body.append(dialog);dialog.showModal();dialog.addEventListener('cancel',e=>{e.preventDefault();if(frame)send('request-close');else close();});
-   const response=await fetch('owner-test/manifest.json',{cache:'no-store',credentials:'omit'});if(!response.ok)throw Error('Laptoptest nog niet beschikbaar.');const manifest=await response.json();
-   if(manifest.version!==1||manifest.synthetic!==true)throw Error('Ongeldige testrelease.');
    const loaded=await Promise.all(Object.entries(manifest.files).map(async([key,v])=>[key,await bytes(v.path,v.sha256)]));
    if(!active())throw Error('Sessie gewijzigd.');
    const assets=Object.fromEntries(loaded),runtime=JSON.parse(new TextDecoder().decode(assets.runtime)),restore=await store('get',owner);
-   for(const[k,v]of Object.entries(runtime.brand.tokens))dialog.style.setProperty('--ot-'+k,v);const mark=document.createElement('img');mark.src=runtime.brand.variants.sidebar;mark.alt='Fit Met Zorge';mark.style.cssText='width:110px;height:55px;object-fit:contain';header.prepend(mark);
+   applyTheme(themeName);const mark=document.createElement('img');mark.src=runtime.brand.variants.sidebar;mark.alt='Fit Met Zorge';mark.style.cssText='width:110px;height:55px;object-fit:contain';header.prepend(mark);
    if(!assets.camera||!assets.documents)throw Error('Camera- of documentmodule ontbreekt in deze testversie.');
-   const cameraScript=document.createElement('script');cameraScript.textContent=new TextDecoder().decode(assets.camera);window.FMZOwnerTestCamera?.cancel();document.head.append(cameraScript);cameraScript.remove();window.FMZOwnerTestCamera.configure(runtime.brand.tokens);
-   const documentScript=document.createElement('script');documentScript.textContent=new TextDecoder().decode(assets.documents);window.FMZOwnerTestDocuments?.clear();document.head.append(documentScript);documentScript.remove();window.FMZOwnerTestDocuments.configure(runtime.pdfRenderer,runtime.brand.tokens);
+   const cameraScript=document.createElement('script');cameraScript.textContent=new TextDecoder().decode(assets.camera);window.FMZOwnerTestCamera?.cancel();document.head.append(cameraScript);cameraScript.remove();window.FMZOwnerTestCamera.configure(OwnerTestTheme.tokens(themeName));
+   const documentScript=document.createElement('script');documentScript.textContent=new TextDecoder().decode(assets.documents);window.FMZOwnerTestDocuments?.clear();document.head.append(documentScript);documentScript.remove();window.FMZOwnerTestDocuments.configure(runtime.pdfRenderer,OwnerTestTheme.tokens(themeName));
    if(!active())throw Error('Sessie gewijzigd.');
    frame=document.createElement('iframe');frame.title='APPFMZ synthetische trainerstest';frame.setAttribute('sandbox','allow-scripts allow-downloads allow-modals allow-forms');frame.referrerPolicy='no-referrer';
    frame.allow="camera 'none'; microphone 'none'; geolocation 'none'; payment 'none'";
    const images=(runtime.exerciseImages||[]);if(!Array.isArray(images)||images.some(url=>!/^https:\/\/fitnessprogramer\.com\/wp-content\/uploads\/[0-9]{4}\/[0-9]{2}\/[a-zA-Z0-9_-]+\.gif$/.test(url)))throw Error('Ongeldige oefenmediabron.');
    const csp=`default-src 'none'; script-src 'nonce-${nonce}' 'wasm-unsafe-eval' blob:; style-src 'unsafe-inline'; img-src data: blob: ${images.join(' ')}; connect-src 'none'; worker-src blob:; frame-src blob:; object-src 'none'; form-action 'none'; base-uri 'none'; font-src data:`;
    const boot=new TextDecoder().decode(assets.boot).replaceAll('</script','<\\/script');
-   frame.srcdoc=`<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="${csp}"><title>APPFMZ TESTMODUS</title></head><body><p>Testomgeving starten…</p><script nonce="${nonce}">window.__OWNER_TEST_NONCE=${JSON.stringify(nonce)};${boot}<\/script></body></html>`;
-   frame.addEventListener('load',()=>{if(active())send('init',{runtime,wasm:assets.wasm,initdb:assets.initdb,fs:assets.fs,seed:assets.seed,pglite:new TextDecoder().decode(assets.pglite),restore:restore||null});},{once:true});
+   frame.srcdoc=`<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="${csp}"><title>APPFMZ TESTMODUS</title><style>:root{${OwnerTestTheme.css(themeName)};color-scheme:${themeName}}body{margin:0;background:var(--ot-background);color:var(--ot-text);font:16px system-ui}</style></head><body><p>Testomgeving starten…</p><script nonce="${nonce}">window.__OWNER_TEST_NONCE=${JSON.stringify(nonce)};${boot}<\/script></body></html>`;
+   frame.addEventListener('load',()=>{if(active())send('init',{runtime,theme:themeName,wasm:assets.wasm,initdb:assets.initdb,fs:assets.fs,seed:assets.seed,pglite:new TextDecoder().decode(assets.pglite),restore:restore||null});},{once:true});
    status.remove();dialog.append(frame);
   }catch(e){close();alert(e.message||'Laptoptest openen mislukt.');}finally{opening=false;}
  }
@@ -60,6 +62,7 @@ window.FMZOwnerLaptopTest=(()=>{
   const m=e.data;if(!frame||e.source!==frame.contentWindow||e.origin!=='null'||m?.channel!==CHANNEL||m.nonce!==nonce)return;
   if(!active()){close();return;}
   const generation=nonce,key=owner;
+  if(m.type==='theme-set'){if(typeof m.id!=='string'||!OwnerTestTheme.valid(m.theme)){if(typeof m.id==='string')send('ack',{id:m.id,ok:false,error:'Ongeldig testthema.'});return;}pending++;try{await store('put','theme:'+key,{version:1,theme:m.theme});if(active()&&generation===nonce){manualTheme=m.theme;applyTheme(m.theme);send('ack',{id:m.id,ok:true,value:m.theme});}}catch(error){if(active()&&generation===nonce)send('ack',{id:m.id,ok:false,error:error.message});}finally{pending--;release();}return;}
   if(m.type==='close'){close();return;}
   if(m.type==='restart'){close();open();return;}
   if(m.type==='camera-request'&&typeof m.id==='string'){

@@ -1,0 +1,20 @@
+{
+  "pass": true,
+  "testRuntime": "d2825de37e39911050d1375d43aa0bc71cbddca52f24acc144699be8c7c9fb64",
+  "finalRuntime": "3ad658dc51c94d8b58585f9dece12c0855d46632c739ae896a42ef3bacae01bd",
+  "changedPaths": [
+    "scripts.24.code",
+    "sources.members-ui.js",
+    "sources.owner-test/database.js",
+    "sources.owner-test/guide.js",
+    "sources.owner-test/billing-cycle-ui.js",
+    "billingCycleUI",
+    "database",
+    "guide"
+  ],
+  "exactEarlierRuntimeReproduced": true,
+  "themeAndLayoutByteIdentical": true,
+  "otherApplicationScriptsByteIdentical": true,
+  "explanation": "Only the old unfinished-review guard differs in functional code. In addition, one guide sentence uses the next future boundary for the full-period example. All styles, theme code and other application scripts remain identical.",
+  "limits": "Earlier browser runs are reproduced exactly; they are not claimed to have run on the final hash."
+}

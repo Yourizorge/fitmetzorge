@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-03T13:57:16.2636073Z",
+  "status": "PASS",
+  "tests": 9,
+  "failed": 0,
+  "durationMs": 438.3675,
+  "command": "node --test tests/owner-correction-theme.test.cjs tests/owner-correction-dashboard.test.cjs tests/owner-update-brand.test.cjs",
+  "evidenceEnvironment": {
+    "OWNER_BRAND_EVIDENCE": "docs/examples/owner-laptop-correction-20261103/brand-provenance-contrast.json"
+  }
+}
