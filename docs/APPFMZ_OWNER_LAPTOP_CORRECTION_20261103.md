@@ -1,6 +1,6 @@
 # APPFMZ — gerichte correctie van de afgeschermde owner-laptoptest
 
-Deze release is uitsluitend voor de geïsoleerde eigenaarstest. De gewone APPFMZ en bestaande klantgegevens worden niet uitgebreid of omgezet. Fysieke owneracceptatie is nog niet uitgevoerd. De gerichte technische toelating is geslaagd. De actuele publicatiebevestiging wordt aansluitend vastgelegd in de bronbranch, zonder gewone-appbestanden te vervangen.
+Deze release is uitsluitend voor de geïsoleerde eigenaarstest. De gewone APPFMZ en bestaande klantgegevens worden niet uitgebreid of omgezet. Fysieke owneracceptatie is nog niet uitgevoerd. De gerichte technische toelating is geslaagd en beide aparte branches zijn gepusht. **De nieuwe correctie is nog niet live:** de automatische goedkeuringscontrole heeft publicatie via main geblokkeerd. De bestaande liveversie blijft staan.
 
 ## Wat is veranderd
 
@@ -84,7 +84,7 @@ Alle onderstaande personen en bedragen zijn synthetisch. Dit zijn browseropnamen
 
 ## Korte fysieke laptoptest
 
-Open als eigenaar [de afgeschermde test](https://appfmz.nl/?owner-test=1&retest=20261103-correction) zodra de publicatie hieronder is bevestigd. Controleer TESTMODUS, het rustige Dashboard en licht/donker. Kies Progressie met start 16 november 2026 en controleer €380 × 14 ÷ 28 = €190. Bekijk de twee agendataken en rond alleen Facturen maken af. Controleer dat Facturen versturen open blijft. Doorloop de overige gerichte gidsstappen en sluit af met de synthetische verwijderlijst. Browserautomatisering is geen fysieke laptoptest en geen owneracceptatie.
+De [gereserveerde testlink](https://appfmz.nl/?owner-test=1&retest=20261103-correction) toont nu nog de oude liveversie. Gebruik deze voor de nieuwe correctie pas na de hieronder nog geblokkeerde publicatie. Controleer TESTMODUS, het rustige Dashboard en licht/donker. Kies Progressie met start 16 november 2026 en controleer €380 × 14 ÷ 28 = €190. Bekijk de twee agendataken en rond alleen Facturen maken af. Controleer dat Facturen versturen open blijft. Doorloop de overige gerichte gidsstappen en sluit af met de synthetische verwijderlijst. Browserautomatisering is geen fysieke laptoptest en geen owneracceptatie.
 
 ## Geslaagde technische toelating
 
@@ -95,3 +95,17 @@ Open als eigenaar [de afgeschermde test](https://appfmz.nl/?owner-test=1&retest=
 Definitieve runtime SHA-256: `3ad658dc51c94d8b58585f9dece12c0855d46632c739ae896a42ef3bacae01bd`. Host SHA-256: `62aeff2907603c2b5a725c19585a20f3fafdda34dca5a8af4424e422d04379f5`.
 
 De aansluitende live ontvangstbevestiging en remote HEAD zijn te vinden in [het actuele rapport op de bronbranch](https://github.com/Yourizorge/fitmetzorge/blob/codex/members-billing-20261026/docs/APPFMZ_OWNER_LAPTOP_CORRECTION_20261103.md). Deze bronbranch wordt niet naar main samengevoegd.
+
+Geteste broncommit: [5fd360e68b361b74dc6e95cf07a0ecf6b77117f6](https://github.com/Yourizorge/fitmetzorge/commit/5fd360e68b361b74dc6e95cf07a0ecf6b77117f6). [Gewijzigde bronbestanden](examples/owner-laptop-correction-20261103/source-change-inventory.json).
+
+## Definitieve overdracht en publicatiegrens
+
+De geteste release staat op `codex/owner-laptop-test-20261102`: [956e285a72c459c1c9982016ebaa6dd26fa35b18](https://github.com/Yourizorge/fitmetzorge/commit/956e285a72c459c1c9982016ebaa6dd26fa35b18). De broncode/tests staan op `codex/members-billing-20261026`. [Git-blobtoelating](examples/owner-laptop-correction-20261103/release-assembly-commit.json) slaagt; [releasewijzigingen](examples/owner-laptop-correction-20261103/release-change-inventory.json) bevatten nul gewone-appbestanden en nul database-/Edge-bestanden.
+
+De automatische controle wees de atomaire push naar main en releasebranch af vóór uitvoering. Als reden gaf zij dat bijwerken van de standaard/protected main-branch mogelijk publiceert op de live route en volgens haar buiten de huidige geïsoleerde testtoestemming valt. Het door de controle voorgestelde veilige alternatief is uitgevoerd: alleen de aparte releasebranch is gepusht. De afwijzing is niet omzeild.
+
+**Remote main en de door GitHub Pages gebouwde livecommit blijven 985b3d37f65b119bb82d479c8b0c3077f47d3d16.** Zes publieke kernbestanden, inclusief de bestaande owner-runtime, zijn byte-identiek aan die commit: [livebehoud](examples/owner-laptop-correction-20261103/current-live-unchanged.json), [hosting](examples/owner-laptop-correction-20261103/current-hosting.json). Er is geen nieuwe live-PASS geclaimd.
+
+Read-only productienameting van 3 november 2026 14:23 UTC: alle **24 tabel-aantallen en inhoudshashes** en alle **12 migrations** zijn gelijk aan de nulmeting. [Productiebehoud](examples/owner-laptop-correction-20261103/production-after.json). Het bestaande herstelpunt en de branchbescherming zijn intact: [herstelcontrole](examples/owner-laptop-correction-20261103/recovery-after.json).
+
+Enige resterende technische blocker: toestemming/goedkeuring om exact deze geïsoleerde releasecommit via main naar de bestaande owner-testroute te publiceren. Daarna moeten de nieuwe livebytes worden gecontroleerd. De fysieke owner-laptoptest en inhoudelijke acceptatie zijn nog niet uitgevoerd. Geen echte ledenfuncties of productiegegevens worden daarmee omgezet.

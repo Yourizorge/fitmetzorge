@@ -1,0 +1,22 @@
+{
+  "status": "TESTED_AND_PUSHED_RELEASE_PUBLICATION_BLOCKED",
+  "sourceCodeCommit": "5fd360e68b361b74dc6e95cf07a0ecf6b77117f6",
+  "sourceBranch": "codex/members-billing-20261026",
+  "releaseCommit": "956e285a72c459c1c9982016ebaa6dd26fa35b18",
+  "releaseBranch": "codex/owner-laptop-test-20261102",
+  "remoteMain": "985b3d37f65b119bb82d479c8b0c3077f47d3d16",
+  "hostingBuiltCommit": "985b3d37f65b119bb82d479c8b0c3077f47d3d16",
+  "automaticReviewRejectedBeforeExecution": true,
+  "rejectedAction": "Atomic push to main and dedicated owner-test release branch",
+  "reason": "Reviewer interpreted the isolated-test authorization as excluding main/live publication.",
+  "saferAlternativeCompleted": "Pushed only the dedicated owner-test release branch; main untouched.",
+  "newReleasePublished": false,
+  "livePreservationFilesVerified": 6,
+  "productionTablesUnchanged": 24,
+  "migrationsUnchanged": 12,
+  "productionWrites": 0,
+  "physicalOwnerAcceptance": false,
+  "stagingTouched": false,
+  "websiteTouched": false,
+  "jarvisTouched": false
+}

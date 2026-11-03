@@ -1,0 +1,51 @@
+{
+  "at": "2026-11-03T14:25:02.714Z",
+  "pass": true,
+  "expectedLiveCommit": "985b3d37f65b119bb82d479c8b0c3077f47d3d16",
+  "newReleasePublished": false,
+  "readOnly": true,
+  "files": [
+    {
+      "file": "index.html",
+      "status": 200,
+      "expectedSHA256": "098e6df6498a17e2c8e1187b4729811765c193956f1b685ff167b93d83ca3983",
+      "actualSHA256": "098e6df6498a17e2c8e1187b4729811765c193956f1b685ff167b93d83ca3983",
+      "pass": true
+    },
+    {
+      "file": "app.js",
+      "status": 200,
+      "expectedSHA256": "7f06ffaa05943a4ce450143fde84dbafa8bb2ee74b9c882fc5367f8c572063a9",
+      "actualSHA256": "7f06ffaa05943a4ce450143fde84dbafa8bb2ee74b9c882fc5367f8c572063a9",
+      "pass": true
+    },
+    {
+      "file": "styles.css",
+      "status": 200,
+      "expectedSHA256": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "actualSHA256": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "pass": true
+    },
+    {
+      "file": "owner-test/host.js",
+      "status": 200,
+      "expectedSHA256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac",
+      "actualSHA256": "9999e01cf3a858ff400cff6af9cc507c08e721eaaf16d1584ced91e83d1f8dac",
+      "pass": true
+    },
+    {
+      "file": "owner-test/manifest.json",
+      "status": 200,
+      "expectedSHA256": "3f13275149c8ce83acdf26bb90e0c92f5e9c345c9fd4f93faf277f7d43ec4ec8",
+      "actualSHA256": "3f13275149c8ce83acdf26bb90e0c92f5e9c345c9fd4f93faf277f7d43ec4ec8",
+      "pass": true
+    },
+    {
+      "file": "owner-test/runtime.json",
+      "status": 200,
+      "expectedSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "actualSHA256": "ae02e0f19f93bab64217412126df8063f76487bfbfda38560b77810742300c64",
+      "pass": true
+    }
+  ]
+}
