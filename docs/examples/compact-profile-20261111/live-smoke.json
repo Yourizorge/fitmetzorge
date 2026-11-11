@@ -1,0 +1,17 @@
+{
+  "commit": "88ff58de6ae500f443e1cf8a6a6e1553ccdc30cf",
+  "pass": true,
+  "browser": "156.0.4314.58",
+  "authenticated": false,
+  "checks": [
+    "Public login usable",
+    "Production config and runtime files match Git",
+    "No synthetic test banner/adapter",
+    "New Apple icon",
+    "New install help icon loads",
+    "Install help closes",
+    "No page errors"
+  ],
+  "dataWrites": false,
+  "physicalIPhone": false
+}

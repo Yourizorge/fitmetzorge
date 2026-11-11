@@ -1,10 +1,8 @@
 {
   "date": "2026-11-11",
   "kind": "Synthetic isolated browser verification, not physical device test",
-  "command": "node --test --test-reporter=tap --test-concurrency=1 tests/compact-profile-browser.test.cjs tests/owner-navigation.test.cjs",
   "pass": 2,
   "fail": 0,
-  "durationMs": 73634.6138,
   "browsers": [
     "Microsoft Edge headless",
     "Playwright WebKit"
@@ -49,5 +47,11 @@
       "sha256": "adf0191a59e08866e11e4124e4e1e448a263bb1c7614cfdcfc16c896ee5f13b2"
     }
   ],
-  "finalCompactRerun": "PASS 1/1 after final compact header CSS; earlier owner-navigation PASS remains valid; output-path-only change not rerun"
+  "finalCompactRerun": "PASS 1/1 after final compact header CSS; earlier owner-navigation PASS remains valid; output-path-only change not rerun",
+  "testedFiles": [
+    "tests/compact-profile-browser.test.cjs",
+    "tests/owner-navigation.test.cjs"
+  ],
+  "finalCompactRunDurationMs": 73634.6138,
+  "note": "Two distinct tests passed; compact profile was repeated after final scoped CSS refinement. Duration is the final compact-only run."
 }
