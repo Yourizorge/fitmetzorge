@@ -41,3 +41,15 @@ Release via een fast-forward van de geteste branch naar main, gevolgd door GitHu
 Staging touched: NO. Bedrijfswebsite touched: NO. JARVIS touched: NO.
 
 Ownercontrole: (1) Notitie bij een lid toevoegen en profiel heropenen; (2) actuele betaalstand controleren; (3) APPFMZ op iPhone openen en het nieuwe icoon controleren. Geen nieuwe factuur of betaling nodig voor deze controle.
+
+## Bevestigde livecontrole
+
+Runtimecommit **efa6d986a26427429cab7e08280de0a2acc30962** is fast-forward gepubliceerd. GitHub Pages meldt `built` voor exact die commit en de live index is byte-identiek.
+
+- [57/57 livebestanden gelijk aan Git](examples/owner-notes-20261111/live-files.json), inclusief nieuwe iconen, manifest en bestaande config/opslagmodules.
+- [Openbare live Edge-smoketest PASS](examples/owner-notes-20261111/live-smoke.json): aanmeldscherm, nieuwe Apple/iconverwijzing, installatiehulp openen/sluiten, geen page errors en geen testadapter. Geen aangemelde productie-writecanary uitgevoerd in deze frontendrelease; notitie-opslag en rolgrenzen zijn met de echte migraties in geïsoleerde synthetische SQL getest.
+- Testserver, voorstelpagina, owner-testadapter en Edge-bron zijn publiek 404. Het afzonderlijke profielvoorstel is dus niet actief in productie.
+- De documentatieaanvulling na deze runtimecommit verandert geen runtimebestand. De aanwezige private bestanden, financiële gegevens en Auth/Storage zijn door deze release niet benaderd voor mutatie.
+- Gecombineerd voor de laatste wijziging: **13 verschillende gerichte tests PASS** (12 in het releasebestand plus de uitgebreide notitietest). De overlaptest voor navigatie van de tweede agent wordt niet dubbel geteld.
+
+Fysieke installatie/iconverversing op de iPhone blijft door de eigenaar te bevestigen. De veilige lokale preview blijft draaien voor het afzonderlijke profielvoorstel.

@@ -1,0 +1,368 @@
+{
+  "at": "2026-11-11T15:28:04.735Z",
+  "commit": "efa6d986a26427429cab7e08280de0a2acc30962",
+  "host": "https://appfmz.nl",
+  "dataWrites": false,
+  "files": [
+    {
+      "file": "accounting-model.js",
+      "bytes": 13985,
+      "sha256": "e64953b4cfa28f91851f0379f283413a642a5dd30fbbb712d6b811f77abfcaaa",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "accounting-reports.js",
+      "bytes": 5354,
+      "sha256": "36f6a7eb64f12801d96689847fd018a8d6d7d12689ab1f47a2fd4c6ad72feb62",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "accounting.js",
+      "bytes": 86560,
+      "sha256": "a9a69e287af7a11efc755648f4ddbcf7b97488bc1b68fcb8b157580a1e0871ce",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "admin-design.css",
+      "bytes": 7123,
+      "sha256": "d14c9323cd8b3a60a3ea56a079d615abfffc95318ccf9f805a3b4f643e453e7b",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "agenda-model.js",
+      "bytes": 3233,
+      "sha256": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "agenda.css",
+      "bytes": 8792,
+      "sha256": "155398b53ee0d5f1217ef659fbd5a89dabf0c738ece8b3e8aa1ed0bb2e3b5e42",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "agenda.js",
+      "bytes": 28523,
+      "sha256": "bdae0c1274966419dda784c3b4d32f1b8bc04259be74162ddc1ca75421da39ad",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "app.js",
+      "bytes": 258619,
+      "sha256": "49190fd78dee11386b42d2a20fdb3e42c633f87c4da615fbc3258055523de3f2",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "assets/brand/official-20261102-favicon-32.png",
+      "bytes": 1008,
+      "sha256": "d5754b57c58d26f9f836d892e08d94a6e82e1734135b92c46136920f08067c8d",
+      "mime": "image/png"
+    },
+    {
+      "file": "assets/pwa/official-20261102-apple-touch-icon.png",
+      "bytes": 11801,
+      "sha256": "9e3005a3325da5e7bba71583dbb1b5fceb5a4525c18e529e3e1d790f703af4f8",
+      "mime": "image/png"
+    },
+    {
+      "file": "assets/pwa/official-20261102-favicon-32.png",
+      "bytes": 725,
+      "sha256": "a8a50faa6854d6e98d2b144eafe0a995d78f20363dd90ebc00ed7741bd05fa74",
+      "mime": "image/png"
+    },
+    {
+      "file": "assets/pwa/official-20261102-icon-192.png",
+      "bytes": 16762,
+      "sha256": "e8cc3573ea6ccd8bea11279fcb2709106eb45b670bbd13d026a6da878b0dd2f2",
+      "mime": "image/png"
+    },
+    {
+      "file": "assets/pwa/official-20261102-icon-512.png",
+      "bytes": 87931,
+      "sha256": "9fbf6ddf5f7d5a897abafa983c9160ddabfa77bd28d5c79773b466bf35367036",
+      "mime": "image/png"
+    },
+    {
+      "file": "assets/pwa/official-20261102-maskable-512.png",
+      "bytes": 71414,
+      "sha256": "a31ba6b42f9e5ff6d0e7104b575766860ac1937bfbd73ae8298bb052f5657dae",
+      "mime": "image/png"
+    },
+    {
+      "file": "assets/pwa/official-20261102-provenance.json",
+      "bytes": 1292,
+      "sha256": "75713488c6392ce51512d1d17fee78275dca4039eec19b4f27dcbd0c8c8049f6",
+      "mime": "application/json; charset=utf-8"
+    },
+    {
+      "file": "autosave.js",
+      "bytes": 9506,
+      "sha256": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "bank-repair-ui.js",
+      "bytes": 8149,
+      "sha256": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "billing-periods.js",
+      "bytes": 3199,
+      "sha256": "c5848142274803ef3b24199e88a3931889e28853e493df29343ed0994a036706",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "billing-ui.js",
+      "bytes": 13507,
+      "sha256": "bffd103b428ba79205e8eabe286c7a46bc9d1d3eb025a2d2a4875092f3edaa13",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "central-billing.js",
+      "bytes": 7582,
+      "sha256": "fa900073b1e48c53a230df9593c4bbdf9dc9bf16ee287197326a497ba5829260",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "config.js",
+      "bytes": 361,
+      "sha256": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "finance-model.js",
+      "bytes": 8730,
+      "sha256": "f284a719395454fd29e22843d7e569f368c332071900fe7aa56fdd8498c48cda",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "finance-ui.js",
+      "bytes": 18057,
+      "sha256": "7874ef407709e831368483391f94f62f4c2846eb78efca89c61b474ace92b59f",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "finance.css",
+      "bytes": 2731,
+      "sha256": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "fit-met-zorge-logo.png",
+      "bytes": 257147,
+      "sha256": "940c6c9e66d73a642d67f453fc12e46e78f233e60432ea0ad426324af1493ecf",
+      "mime": "image/png"
+    },
+    {
+      "file": "index.html",
+      "bytes": 50842,
+      "sha256": "9626301fa465307d4d40337777fb58059902252000b293db8b4b1a30231a9341",
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "file": "invoice-documents.js",
+      "bytes": 17421,
+      "sha256": "f6eb997e04c45412137c28546d5ca7f8e0bc62e17b05773bde16f4866a5f932e",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "invoice-editor.js",
+      "bytes": 2617,
+      "sha256": "4de0482c49a5e54aa6776cf951d99ecaaa93ade6722cc72e5bc8da6f47400a44",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "invoices.js",
+      "bytes": 569,
+      "sha256": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "layout.css",
+      "bytes": 10958,
+      "sha256": "a15f3013cb7e605ecb8d35b6b482745161acf38eadac4d88127b74cf12b216b0",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "manifest.webmanifest",
+      "bytes": 711,
+      "sha256": "68ec375800e009cca4d26307b11c256ee35d8a9d769e1603b116b373c40771a2",
+      "mime": "application/manifest+json; charset=utf-8"
+    },
+    {
+      "file": "members-documents.js",
+      "bytes": 792028,
+      "sha256": "eaf24f683850da8bab226a4e819a97653412391299f1a1025435a1ae001bb666",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "members-model.js",
+      "bytes": 8325,
+      "sha256": "60c26dfc7362ac1f7ebfdd89458d5e7b9a5da56253c0c8c609e9d0c4f1e31d19",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "members-ui.js",
+      "bytes": 63149,
+      "sha256": "aba2eca928a3311a350662273242984688868e27ed9fdb50ee6d706b4b75cf7f",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "members.css",
+      "bytes": 7127,
+      "sha256": "4067de7b9870d1d84c9e257aa27ebf18e40f682d30604d54e638dbda1cbbfe12",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "payments-model.js",
+      "bytes": 6346,
+      "sha256": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "payments-ui.js",
+      "bytes": 8505,
+      "sha256": "eea5623bd944102265ea6996851b7d4e330a554a04bc4a8254f916cd2da127ff",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "payments.css",
+      "bytes": 3160,
+      "sha256": "666e5f8f33011a5278b8bd316c33a2e4ace2ac9415d98a7bbc9d50bbb8978c86",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "photos.js",
+      "bytes": 8768,
+      "sha256": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "presentation.js",
+      "bytes": 1114,
+      "sha256": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "production-start.js",
+      "bytes": 917,
+      "sha256": "fe22af03903e02aa559e4045ec7e728fe90064837ff940feb8dbd2e8a27dd918",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "production-theme.js",
+      "bytes": 1932,
+      "sha256": "c69e4cbcb465683fb59c8484fdd46ae4c72eddc9dc73157c02f3fa5b36336460",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "production-ui.css",
+      "bytes": 28855,
+      "sha256": "e48831ca5c5eaf86e2c8e0f2e6005774e6043b6e9a6798f7fc7f342df479fdbb",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "production-ui.js",
+      "bytes": 19760,
+      "sha256": "729440876364ecec0062b70b0d4ed87307fd6b8037aa16dc611d054a8b42328b",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "push.js",
+      "bytes": 3025,
+      "sha256": "04da09ec758ce4040f8bd31ef1f8244701b7abfb95cfda19b69d7b1ae7af8413",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "pwa.css",
+      "bytes": 692,
+      "sha256": "572f13f67af1a5f62c645fc1398ca3cb5d8a1ed830ade0f0b36466d2748dfebb",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "pwa.js",
+      "bytes": 3330,
+      "sha256": "bdd7ca816af20a00ed813c0c3284226501cf4b64b680f1fc9ebd5da716d471f0",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "styles.css",
+      "bytes": 120054,
+      "sha256": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "sw.js",
+      "bytes": 2195,
+      "sha256": "e2ba7391b2c77bca9f026f36728d69fc5eab0f9f4d86deefce4be0adba1809ef",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "sync.js",
+      "bytes": 5532,
+      "sha256": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/beginner-content.js",
+      "bytes": 8431,
+      "sha256": "db64a8b9c1446dec6615d177662aa616c46529e34d95c7d76e83f5a52ba61550",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/content.js",
+      "bytes": 71206,
+      "sha256": "dcb9d02f7d671eff4556b240d91d3259d7bacaa4578112792bd3f9627cf7355a",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "tutorial/host.css",
+      "bytes": 1719,
+      "sha256": "4acf6afe632ad14eeaec37e2994955db1962b852c5fb347966ae5c038712ff37",
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "file": "tutorial/host.js",
+      "bytes": 6355,
+      "sha256": "e5dbb140fff76c6a40a77a5872bfb5da638cb93dc863c5cb5d5872cbc2416f39",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "vat-ui.js",
+      "bytes": 10881,
+      "sha256": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "vendor/fflate-0.8.2.js",
+      "bytes": 32665,
+      "sha256": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf",
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "vendor/pdf-lib-1.17.1.min.js",
+      "bytes": 525099,
+      "sha256": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f",
+      "mime": "application/javascript; charset=utf-8"
+    }
+  ],
+  "excluded": [
+    {
+      "file": "tests/profile-proposal.html",
+      "status": 404
+    },
+    {
+      "file": "tests/owner-preview.cjs",
+      "status": 404
+    },
+    {
+      "file": "owner-test/host.js",
+      "status": 404
+    },
+    {
+      "file": "supabase/functions/member-assets/index.ts",
+      "status": 404
+    }
+  ]
+}
