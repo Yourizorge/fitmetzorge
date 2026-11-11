@@ -7,7 +7,7 @@
   const dialog = document.createElement('dialog');
   dialog.id = 'installAppDialog';
   dialog.setAttribute('aria-labelledby','installAppTitle');
-  dialog.innerHTML = '<header><h2 id="installAppTitle">FitMetZorge installeren</h2><button type="button" class="secondary-btn" data-install-close aria-label="Installatiehulp sluiten">Sluiten</button></header><img src="assets/pwa/icon-192.png" alt="Origineel FitMetZorge-logo"><p data-install-instructions></p><p>Open daarna FitMetZorge vanaf je beginscherm. Meld je zo nodig opnieuw aan met je bestaande account. Je krijgt je eigen leden- of traineromgeving.</p><p class="muted">Opslaan en synchroniseren hebben internet nodig. Rond lopende invoer af voordat je het huidige tabblad sluit.</p>';
+  dialog.innerHTML = '<header><h2 id="installAppTitle">FitMetZorge installeren</h2><button type="button" class="secondary-btn" data-install-close aria-label="Installatiehulp sluiten">Sluiten</button></header><img src="assets/pwa/official-20261102-icon-192.png" alt="Origineel FitMetZorge-logo"><p data-install-instructions></p><p>Open daarna FitMetZorge vanaf je beginscherm. Meld je zo nodig opnieuw aan met je bestaande account. Je krijgt je eigen leden- of traineromgeving.</p><p class="muted">Opslaan en synchroniseren hebben internet nodig. Rond lopende invoer af voordat je het huidige tabblad sluit.</p>';
   document.body.append(dialog);
   function update() {
     const isStandalone = standalone.matches || navigator.standalone === true;

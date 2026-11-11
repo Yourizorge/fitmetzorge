@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "proof": [
+    {
+      "browser": "edge",
+      "manifest": true,
+      "iconHashes": true,
+      "maskableOutsidePixels": 0,
+      "installHelp": true
+    },
+    {
+      "browser": "webkit",
+      "manifest": true,
+      "iconHashes": true,
+      "maskableOutsidePixels": 0,
+      "installHelp": true
+    }
+  ],
+  "physicalInstallation": false,
+  "identityUnchanged": true
+}

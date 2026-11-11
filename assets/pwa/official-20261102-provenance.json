@@ -1,0 +1,37 @@
+{
+  "source": "assets/brand/official-20261102-horizontal.png",
+  "sourceSHA256": "426976aab202cecda9bb4706122440810c04a15173d59e8801831f70effeb843",
+  "method": "Full source contain-resized on opaque dark square; original unchanged. Maskable visible logo inside central 80% circle.",
+  "outputs": [
+    {
+      "file": "assets/pwa/official-20261102-icon-192.png",
+      "size": 192,
+      "scale": 0.88,
+      "sha256": "e8cc3573ea6ccd8bea11279fcb2709106eb45b670bbd13d026a6da878b0dd2f2"
+    },
+    {
+      "file": "assets/pwa/official-20261102-icon-512.png",
+      "size": 512,
+      "scale": 0.88,
+      "sha256": "9fbf6ddf5f7d5a897abafa983c9160ddabfa77bd28d5c79773b466bf35367036"
+    },
+    {
+      "file": "assets/pwa/official-20261102-maskable-512.png",
+      "size": 512,
+      "scale": 0.76,
+      "sha256": "a31ba6b42f9e5ff6d0e7104b575766860ac1937bfbd73ae8298bb052f5657dae"
+    },
+    {
+      "file": "assets/pwa/official-20261102-apple-touch-icon.png",
+      "size": 180,
+      "scale": 0.76,
+      "sha256": "9e3005a3325da5e7bba71583dbb1b5fceb5a4525c18e529e3e1d790f703af4f8"
+    },
+    {
+      "file": "assets/pwa/official-20261102-favicon-32.png",
+      "size": 32,
+      "scale": 0.88,
+      "sha256": "a8a50faa6854d6e98d2b144eafe0a995d78f20363dd90ebc00ed7741bd05fa74"
+    }
+  ]
+}

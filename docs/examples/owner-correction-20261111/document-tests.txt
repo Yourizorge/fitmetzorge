@@ -1,0 +1,4 @@
+✔ members PDF: immutable deterministic A4 snapshot, long full text and safe unsupported character (4391.7422ms)
+✔ one-page production layout preserves full legal attachment, exact partial amount and deterministic bytes (751.33ms)
+✔ members image verifier: pooled byte offsets, invalid bytes and bounds (698.1453ms)
+✔ new undiscounted agreement PDF omits discount wording while historical discounted snapshots remain explicit (2462.3973ms)

@@ -2032,6 +2032,8 @@ function renderNav() {
 function showView(id) {
   if (!isLoggedIn()) return;
   if (id !== currentView && window.FMZAutosave?.leaveGoals() === false) return;
+  if (window.FMZMembers?.beforeNavigate(id) === false) return;
+  window.FMZProductionUI?.beforeNavigate(id);
   if (!canAccessView(id)) id = allowedViews()[0]?.[0] || "trainer-dashboard";
   currentView = id;
   document.body.classList.toggle('accounting-mode',['administration','invoice'].includes(id));
@@ -2182,120 +2184,27 @@ function renderTrainerDashboard() {
 }
 
 function renderClientHome() {
-  const selected = client();
-  if (!hasSelectedClient(selected)) {
-    $("#clientSummary").innerHTML = emptyTrackerState("Er is nog geen client gekoppeld aan dit account.");
-    return;
-  }
-  const totals = macroTotals(selected);
-  const appt = nextAppointment(selected);
-  const stepsAvg = average(weekArray(selected, "stepsByWeek", "value").map((step) => step.value));
-  const sleepAvg = average(weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" }).map((sleep) => sleep.hours));
-  const weightAvg = average(weekArray(selected, "dailyWeightByWeek", "value").map((item) => item.value));
-  const profile = selected.profile || defaultClientProfileData();
-  const todayIdx = todayIndex();
-  const todaySteps = weekArray(selected, "stepsByWeek", "value")[todayIdx]?.value || "";
-  const todayWater = weekWaterEntries(selected)[todayIdx]?.value || "";
-  const todaySleep = weekArray(selected, "sleepByWeek", "hours", { quality: "", bed: "", wake: "" })[todayIdx] || {};
-  const todayWellbeing = weekArray(selected, "wellbeingByWeek", "energy", { stress: "", motivation: "", mood: "" })[todayIdx] || {};
-  const todayWeight = weekArray(selected, "dailyWeightByWeek", "value")[todayIdx]?.value || "";
-  const stepGoal = number(selected.goals.steps, 10000) || 10000;
-  const waterGoal = number(selected.goals.water, 2.5) || 2.5;
-  const stepPercent = Math.max(0, Math.min(100, number(todaySteps) / stepGoal * 100));
-  const waterPercent = Math.max(0, Math.min(100, number(todayWater) / waterGoal * 100));
-  const scoreOptions = (value) => ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    .map((option) => `<option value="${option}" ${String(option) === String(value || "") ? "selected" : ""}>${option || "-"}</option>`)
-    .join("");
-
-  $("#clientSummary").innerHTML = `
-    <div class="client-preview-shell">
-      <div class="client-preview-hero">
-        <p class="eyebrow">Vandaag</p>
-        <h1>Goedemorgen ${escapeHTML(selected.name.split(" ")[0] || selected.name)}.</h1>
-        <p class="muted">${escapeHTML(selected.planSummary || "Je training staat klaar. Vul vandaag je training, voeding en trackers in.")}</p>
-        <span class="status ok">Pakket: ${escapeHTML(clientPackageLabel(selected))}</span>
-        <div class="client-preview-actions">
-          <button class="primary-btn" data-action="open-view" data-target="training" type="button">Training starten</button>
-          <button class="secondary-btn" data-action="open-view" data-target="nutrition" type="button">Voeding invullen</button>
-          <button class="secondary-btn" data-action="open-view" data-target="trackers" type="button">Trackers invullen</button>
-        </div>
-      </div>
-
-      <div class="client-preview-grid two">
-        <section class="client-preview-card">
-          <div class="client-row">
-            <div>
-              <h2>Stappen + water</h2>
-              <p class="muted">Samen in een snelle tracker.</p>
-            </div>
-            <span class="status ok">Vandaag</span>
-          </div>
-          <div class="client-combined-circles">
-            <div class="client-progress-circle" style="--progress:${stepPercent}%">
-              <span><strong>${fmt(todaySteps)}</strong><small>van ${fmt(stepGoal)} stappen</small></span>
-            </div>
-            <div class="client-progress-circle water" style="--progress:${waterPercent}%">
-              <span><strong>${fmt(todayWater, 1)}L</strong><small>van ${fmt(waterGoal, 1)}L water</small></span>
-            </div>
-          </div>
-          <div class="client-row compact">
-            <button class="primary-btn" data-water-day="${todayIdx}:0.25" type="button">+250 ml</button>
-            <button class="secondary-btn" data-action="open-view" data-target="trackers" type="button">Alles invullen</button>
-          </div>
-        </section>
-
-        <section class="client-preview-card highlight">
-          <div class="client-row">
-            <div>
-              <h2>Welzijn check-in</h2>
-              <p class="muted">Kies per onderdeel een score van 1 tot 10.</p>
-            </div>
-            <span class="status ${todayWellbeing.energy && todayWellbeing.stress && todayWellbeing.motivation ? "ok" : ""}">${todayWellbeing.energy ? "Ingevuld" : "Nog invullen"}</span>
-          </div>
-          <div class="client-form-grid">
-            <label class="field"><span>Energie</span><select data-wellbeing-day="${todayIdx}" data-wellbeing="${todayIdx}:energy">${scoreOptions(todayWellbeing.energy)}</select></label>
-            <label class="field"><span>Stress</span><select data-wellbeing-day="${todayIdx}" data-wellbeing="${todayIdx}:stress">${scoreOptions(todayWellbeing.stress)}</select></label>
-            <label class="field"><span>Motivatie</span><select data-wellbeing-day="${todayIdx}" data-wellbeing="${todayIdx}:motivation">${scoreOptions(todayWellbeing.motivation)}</select></label>
-            <label class="field"><span>Stemming</span><select data-wellbeing-day="${todayIdx}" data-wellbeing="${todayIdx}:mood">${["", "Goed", "Neutraal", "Laag"].map((value) => `<option value="${value}" ${value === (todayWellbeing.mood || "") ? "selected" : ""}>${value || "-"}</option>`).join("")}</select></label>
-          </div>
-          <button class="primary-btn wide-action" data-save-wellbeing-day="${todayIdx}" type="button">Welzijn opslaan</button>
-          <span class="save-feedback" data-save-feedback="wellbeing-${todayIdx}"></span>
-        </section>
-      </div>
-
-      <div class="client-preview-grid three">
-        <section class="client-preview-card metric">
-          <span class="muted">Slaap</span>
-          <strong>${fmt(todaySleep.hours, 1)}u</strong>
-          <small class="muted">Slaapcijfer ${todaySleep.quality || "-"}/10</small>
-        </section>
-        <section class="client-preview-card metric">
-          <span class="muted">Daggewicht</span>
-          <strong>${fmt(todayWeight, 1)}kg</strong>
-          <small class="muted">Weekgemiddelde ${fmt(weightAvg, 1)}kg</small>
-        </section>
-        <section class="client-preview-card metric">
-          <span class="muted">Volgende afspraak</span>
-          <strong>${appt ? `${appt.time || "--:--"}` : "-"}</strong>
-          <small class="muted">${appt ? `${escapeHTML(formatShortDate(appt.date))} | ${escapeHTML(appt.type || "Afspraak")}` : "Nog niet ingepland"}</small>
-        </section>
-      </div>
-
-      <div class="client-preview-card">
-        <h2>Mijn profielgegevens</h2>
-        <div class="profile-summary-grid">
-          <div><span>Telefoon</span><strong>${escapeHTML(profile.phone || "-")}</strong></div>
-          <div><span>Geboortedatum</span><strong>${escapeHTML(profile.birthDate || "-")}</strong></div>
-          <div><span>Lengte</span><strong>${fmt(profile.height, 1)} cm</strong></div>
-          <div><span>Huidig gewicht</span><strong>${fmt(profile.currentWeight, 1)} kg</strong></div>
-          <div><span>Adres</span><strong>${escapeHTML([profile.address, profile.postalCode, profile.city].filter(Boolean).join(", ") || "-")}</strong></div>
-          <div><span>Noodcontact</span><strong>${escapeHTML([profile.emergencyName, profile.emergencyPhone].filter(Boolean).join(" - ") || "-")}</strong></div>
-          <div><span>Pakket</span><strong>${escapeHTML(clientPackageLabel(selected))}</strong></div>
-          <div><span>Blessures/opmerkingen</span><strong>${escapeHTML(profile.injuries || "-")}</strong></div>
-        </div>
-      </div>
-    </div>
-  `;
+  const selected=client(),out=$("#clientSummary");
+  if(!hasSelectedClient(selected)){out.innerHTML=emptyTrackerState("Er is nog geen lid gekoppeld aan dit account.");return;}
+  const date=todayISO(),index=todayIndex(),day=DAYS[index],week=startOfWeekISO();
+  const published=selected.trainingPlan.filter(e=>e.published!==false),todayPlan=published.filter(e=>e.day===day);
+  const check=selected.wellbeingByWeek?.[week]?.[index]||{},complete=Boolean(check.energy&&check.stress&&check.motivation&&check.mood);
+  const appt=nextAppointment(selected);
+  const route=(label,target,primary=false,trainingDay='')=>`<button type="button" class="${primary?'primary-btn':'secondary-btn'}" data-home-route="${target}" ${trainingDay?`data-home-day="${escapeHTML(trainingDay)}"`:''}>${label}</button>`;
+  const primary=todayPlan.length?route('Training openen','training',true,day):!complete?route('Check-in invullen','trackers',true):'';
+  out.innerHTML=`<div class="member-home-calm">
+    <section class="member-today"><p class="eyebrow">Vandaag · ${escapeHTML(formatShortDate(date))}</p><h1>Hallo ${escapeHTML(selected.name.split(' ')[0])}</h1>
+    <p>${todayPlan.length?`${todayPlan.length} oefeningen in je schema voor ${day.toLowerCase()}.`:'Er staat vandaag geen gepubliceerd trainingsschema voor je klaar.'}</p>
+    ${appt?.date===date?`<p>Afspraak vandaag om <strong>${escapeHTML(appt.time||'tijd nog te bepalen')}</strong> · ${escapeHTML(appt.type||'Training')}</p>`:''}
+    ${primary}<p class="muted">${complete?'Je check-in voor vandaag is ingevuld.':'Je check-in voor vandaag is nog niet compleet.'}</p></section>
+    <section class="member-home-sections" aria-label="Mijn begeleiding">
+      <div><h2>Training</h2><p>${published.length?'Je schema, timer en trainingsregistraties.':'Je trainer heeft nog geen oefeningen gepubliceerd.'}</p>${route('Mijn trainingen','training',false,todayPlan.length?day:published[0]?.day||day)}</div>
+      <div><h2>Voeding</h2><p>Je voedingsschema en dagelijkse invoer.</p>${route('Mijn voeding','nutrition')}</div>
+      <div><h2>Voortgang & check-in</h2><p>Stappen, water, gewicht, slaap en hoe je je voelt.</p>${route('Voortgang bekijken','trackers')}</div>
+      <div><h2>Afspraken</h2><p>${appt?`${escapeHTML(formatShortDate(appt.date))} · ${escapeHTML(appt.time||'Tijd volgt')} · ${escapeHTML(appt.type||'Afspraak')}`:'Er is nog geen volgende afspraak ingepland.'}</p>${route('Mijn agenda','agenda')}</div>
+    </section>
+    <details class="member-home-plan"><summary>Mijn doelen en pakket</summary><p>${escapeHTML(selected.planSummary||'Je trainer vult je plan nog aan.')}</p><p>${escapeHTML(clientPackageLabel(selected))}</p></details>
+  </div>`;
 }
 
 function renderClients() {

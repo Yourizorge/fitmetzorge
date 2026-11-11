@@ -1,0 +1,20 @@
+✔ VAT reports distinguish net business base from non-deductible VAT and unknown opening periods (119.9941ms)
+✔ CSV mapping, signed integer cents, overlaps, ambiguous duplicates, periods and safe exports (36.9559ms)
+✔ cash VAT uses bank receipt dates and cumulative cent rounding, excludes deposits (18.2117ms)
+✔ current invoice cohort: October payments before/after month end, partial, overdue, credit and correction remain ledger-derived (7466.3569ms)
+✔ finance: recorded today, paid in September; invoice and money periods stay distinct; sources and filters remain traceable (11913.2443ms)
+✔ finance: VAT settlement totals use declaration period, preserve profit and make partial/custom coverage unknown (7672.2304ms)
+✔ seven main routes, full member profile, explicit builder choice and calm isolated member home (31098.3636ms)
+✔ loaded authorized client search normalizes names, email and phone without widening input scope (9.2134ms)
+✔ dashboard reflects authoritative loaded appointments and invoice balances, not attendance guesses (5.2633ms)
+✔ presentation delegates existing role gates, routes and autosave instead of replacing writes (1.3025ms)
+✔ approved dark/light palette and original logo variant are retained (2.2877ms)
+✔ official PWA logo: identity, hashes, safe mask, Apple icon, installation help, Edge and WebKit (29345.1902ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93462.8213

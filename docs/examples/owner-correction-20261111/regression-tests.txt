@@ -1,0 +1,22 @@
+✔ VAT reports distinguish net business base from non-deductible VAT and unknown opening periods (113.7004ms)
+✔ CSV mapping, signed integer cents, overlaps, ambiguous duplicates, periods and safe exports (131.9732ms)
+✔ cash VAT uses bank receipt dates and cumulative cent rounding, excludes deposits (21.6886ms)
+✔ October current balances: actual Edge laptop/phone screens, drilldowns, refresh and new login (21498.7629ms)
+✔ current invoice cohort: October payments before/after month end, partial, overdue, credit and correction remain ledger-derived (6773.0836ms)
+✔ finance: recorded today, paid in September; invoice and money periods stay distinct; sources and filters remain traceable (3794.2413ms)
+✔ finance: VAT settlement totals use declaration period, preserve profit and make partial/custom coverage unknown (1974.6245ms)
+✔ seven main routes, full member profile, explicit builder choice and calm isolated member home (19364.9979ms)
+✔ normal trainer routes, themes, authorized server search, member guard and autosave preserved (14464.3897ms)
+✔ loaded authorized client search normalizes names, email and phone without widening input scope (8.5156ms)
+✔ dashboard reflects authoritative loaded appointments and invoice balances, not attendance guesses (2.1303ms)
+✔ presentation delegates existing role gates, routes and autosave instead of replacing writes (1.4312ms)
+✔ approved dark/light palette and original logo variant are retained (6.2329ms)
+✔ WebKit engine: phone/landscape/tablet/laptop, both roles, install help, focus and reload (115420.3995ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 188169.5383

@@ -1,0 +1,17 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto'),{chromium,webkit}=require('playwright');
+test('official PWA logo: identity, hashes, safe mask, Apple icon, installation help, Edge and WebKit',{timeout:120000},async()=>{
+ const manifest=JSON.parse(fs.readFileSync('manifest.webmanifest')),provenance=JSON.parse(fs.readFileSync('assets/pwa/official-20261102-provenance.json'));
+ assert.deepEqual([manifest.id,manifest.start_url,manifest.scope],['/','/','/']);assert.equal(manifest.name,'FitMetZorge');
+ assert.equal(provenance.source,'assets/brand/official-20261102-horizontal.png');
+ const hash=b=>crypto.createHash('sha256').update(b).digest('hex');assert.equal(hash(fs.readFileSync(provenance.source)),provenance.sourceSHA256);
+ for(const f of provenance.outputs){const data=fs.readFileSync(f.file);assert.equal(hash(data),f.sha256);assert.equal(data.readUInt32BE(16),f.size);assert.equal(data.readUInt32BE(20),f.size);}
+ assert(manifest.icons.every(i=>i.src.includes('official-20261102')));assert.match(fs.readFileSync('sw.js','utf8'),/icon:'\/assets\/pwa\/official-20261102-icon-192.png'/);assert.doesNotMatch(fs.readFileSync('sw.js','utf8'),/addEventListener\(['"]fetch|caches\.|skipWaiting\(/);
+ const server=await require('./preview.cjs').start(0),proof=[];fs.mkdirSync('docs/images/owner-notes-20261111',{recursive:true});
+ try{for(const kind of ['edge','webkit']){const browser=kind==='edge'?await chromium.launch({channel:'msedge',headless:true}):await webkit.launch();try{const p=await browser.newPage({viewport:{width:390,height:844}});await p.route('**/*',r=>r.request().url().startsWith(server.url+'/')?r.continue():r.abort());await p.goto(server.url);const apple=await p.locator('link[rel=apple-touch-icon]').getAttribute('href');assert.equal(apple,'assets/pwa/official-20261102-apple-touch-icon.png');
+ for(const src of [...manifest.icons.map(i=>i.src),apple])assert.equal((await p.request.get(server.url+'/'+src.replace(/^\//,''))).status(),200);
+ const mask=await p.evaluate(async()=>{const image=new Image();image.src='/assets/pwa/official-20261102-maskable-512.png';await image.decode();const c=document.createElement('canvas');c.width=c.height=512;const ctx=c.getContext('2d');ctx.drawImage(image,0,0);const d=ctx.getImageData(0,0,512,512).data;let outside=0;for(let y=0;y<512;y++)for(let x=0;x<512;x++){const i=(y*512+x)*4;if(Math.hypot(x-256,y-256)>204.8&&(d[i]!==7||d[i+1]!==11||d[i+2]!==18))outside++;}return outside;});assert.equal(mask,0,'entire visible logo fits maskable safe circle');
+ await p.locator('#loginScreen [data-install-app]').click();await p.locator('#installAppDialog').waitFor({state:'visible'});assert.match(await p.locator('#installAppDialog img').getAttribute('src'),/official-20261102/);await p.locator('#installAppDialog img').evaluate(i=>i.decode());await p.screenshot({path:'docs/images/owner-notes-20261111/install-'+kind+'.png'});await p.locator('[data-install-close]').click();assert(!await p.locator('#installAppDialog').isVisible());
+ proof.push({browser:kind,manifest:true,iconHashes:true,maskableOutsidePixels:mask,installHelp:true});
+ }finally{await browser.close();}}}finally{await server.close();}
+ fs.mkdirSync('docs/examples/owner-notes-20261111',{recursive:true});fs.writeFileSync('docs/examples/owner-notes-20261111/pwa.json',JSON.stringify({pass:true,proof,physicalInstallation:false,identityUnchanged:true},null,2)+'\n');
+});

@@ -5,7 +5,7 @@ async function start(port=8876){
  const blobs=new Map();let queue=Promise.resolve();const calls=[];
  const server=http.createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
-  const send=(status,data,type='application/json')=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store'});res.end(type==='application/json'?JSON.stringify(data):data)};
+  const send=(status,data,type='application/json')=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store','Content-Security-Policy':"default-src 'self'; connect-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; worker-src 'none'; object-src 'none'; frame-src 'self' blob:; form-action 'self'; base-uri 'self'",'Referrer-Policy':'no-referrer'});res.end(type==='application/json'?JSON.stringify(data):data)};
   if(url.pathname==='/__test__/rpc'){
    let body='';for await(const chunk of req)body+=chunk;
    const {account,name,params}=JSON.parse(body); calls.push({account,name});
@@ -43,7 +43,7 @@ async function start(port=8876){
   if(!file.startsWith(root+path.sep) || !['.js','.mjs','.css','.html','.png','.jpg','.svg','.pdf','.csv','.txt','.webmanifest','.mp4','.webm','.vtt','.json'].includes(path.extname(file)) || relative.startsWith('node_modules'))return send(404,{});
   try{let content=fs.readFileSync(file);const type={'.js':'text/javascript','.mjs':'text/javascript','.html':'text/html','.css':'text/css','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.pdf':'application/pdf','.csv':'text/csv','.txt':'text/plain; charset=utf-8','.webmanifest':'application/manifest+json','.mp4':'video/mp4','.webm':'video/webm','.vtt':'text/vtt','.json':'application/json'}[path.extname(file)];
    if(path.extname(file)==='.mp4' && req.headers.range){const match=/^bytes=(\d+)-(\d*)$/.exec(req.headers.range);if(!match)return send(416,{});const start=Number(match[1]),end=Math.min(match[2]?Number(match[2]):content.length-1,content.length-1);if(start>end)return send(416,{});res.writeHead(206,{'Content-Type':type,'Accept-Ranges':'bytes','Content-Range':`bytes ${start}-${end}/${content.length}`,'Content-Length':end-start+1});return res.end(content.subarray(start,end+1));}
-   if(relative==='index.html'){content=content.toString().replace(/https:\/\/cdn.jsdelivr.net\/npm\/@supabase\/supabase-js@2(?:\.\d+\.\d+)?/,'tests/mock-sdk.js').replace('<body class="logged-out">','<body class="logged-out"><aside style="padding:8px;background:#674900;color:white">LOKALE TESTPREVIEW — synthetische gegevens. Accounts: trainer@example.test, a@example.test, b@example.test. Elk wachtwoord werkt; kies Trainer of Lid.</aside>');}
+   if(relative==='index.html'){content=content.toString().replace(/https:\/\/cdn.jsdelivr.net\/npm\/@supabase\/supabase-js@2(?:\.\d+\.\d+)?/,'tests/mock-sdk.js').replace('<body class="logged-out">','<body class="logged-out"><aside class="local-test-banner">LOKALE TESTMODUS — NIET LIVE · Alleen fictieve gegevens</aside><style>.local-test-banner{position:fixed;top:0;left:0;right:0;z-index:9999;padding:7px 10px;background:#674900;color:#fff;font:600 12px/1.5 sans-serif;text-align:center}body{padding-top:38px!important}body .topbar{top:38px!important}body.fmz-trainer-layout .sidebar{top:38px!important;height:calc(100dvh - 38px)!important}</style>');}
    send(200,content,type);
   }catch{send(404,{})}
  });

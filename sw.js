@@ -8,7 +8,7 @@ self.addEventListener('push',event=>{
  if(!/^[0-9a-f-]{36}$/.test(payload.id||'')||!Number.isFinite(Date.parse(payload.expiresAt))||Date.parse(payload.expiresAt)<=Date.now())return;
  const deliver=async()=>{if(await seen(payload.id).catch(()=>false))return;await self.registration.showNotification('FitMetZorge',{
   body:payload.kind==='test'?'Dit is je aangevraagde testmelding.':payload.kind==='reminder'?'Je hebt binnenkort een afspraak bij FitMetZorge.':'Er is een wijziging in je FitMetZorge-agenda. Open de app voor details.',
-  icon:'/assets/pwa/icon-192.png',badge:'/assets/pwa/icon-192.png',tag:'fmz-'+payload.id,renotify:false,data:{url:/^[0-9a-f-]{36}$/.test(payload.eventId||'')?'/#melding='+payload.eventId:'/#meldingen'}
+  icon:'/assets/pwa/official-20261102-icon-192.png',badge:'/assets/pwa/official-20261102-icon-192.png',tag:'fmz-'+payload.id,renotify:false,data:{url:/^[0-9a-f-]{36}$/.test(payload.eventId||'')?'/#melding='+payload.eventId:'/#meldingen'}
  });await seen(payload.id,Date.parse(payload.expiresAt)).catch(()=>{});};
  pushQueue=pushQueue.then(deliver,deliver);event.waitUntil(pushQueue);
 });
