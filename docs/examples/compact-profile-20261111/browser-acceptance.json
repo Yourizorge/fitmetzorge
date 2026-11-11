@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-11",
+  "kind": "Synthetic isolated browser verification, not physical device test",
+  "command": "node --test --test-reporter=tap --test-concurrency=1 tests/compact-profile-browser.test.cjs tests/owner-navigation.test.cjs",
+  "pass": 2,
+  "fail": 0,
+  "durationMs": 73634.6138,
+  "browsers": [
+    "Microsoft Edge headless",
+    "Playwright WebKit"
+  ],
+  "widths": [
+    320,
+    390,
+    768,
+    1440
+  ],
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "screenshots": 16,
+  "checks": [
+    "Three cards show SQL-backed fixture values, including invoice 125 minus received 50 equals 75 outstanding",
+    "All eleven profile tabs, keyboard navigation and original actions reachable",
+    "Notes draft retained across tabs; cancelled navigation and edit preserve draft",
+    "Cancelled profile edit retains input",
+    "200 percent profile text without document overflow",
+    "Reload retains real server-derived values",
+    "Member profile remains original private modal, without trainer notes",
+    "Accounting snapshot unchanged after navigation and cancelled edits",
+    "No external requests or page errors"
+  ],
+  "sourceHashes": [
+    {
+      "file": "members-ui.js",
+      "sha256": "b45873e611598862cfbad1ace4af0d16fcca892bbb1e074f69d669cc68eeaccc"
+    },
+    {
+      "file": "production-ui.js",
+      "sha256": "1e5d9c4df63a7471cf6edbbae8b4ed9997a1fec010f4462a1b5a5f17a29596c9"
+    },
+    {
+      "file": "production-ui.css",
+      "sha256": "d021d79cff3a00913f1bc570527d09d9a5147ed4fe795e76f9955e95f944e2d3"
+    },
+    {
+      "file": "index.html",
+      "sha256": "adf0191a59e08866e11e4124e4e1e448a263bb1c7614cfdcfc16c896ee5f13b2"
+    }
+  ],
+  "finalCompactRerun": "PASS 1/1 after final compact header CSS; earlier owner-navigation PASS remains valid; output-path-only change not rerun"
+}

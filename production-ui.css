@@ -250,3 +250,26 @@ body.fmz-member-layout #client-home>.view-head{display:flex!important;align-item
 .member-home-logo{width:150px;max-width:40%;height:auto;object-fit:contain}
 body.fmz-member-layout #client-home [data-own-member]{font-size:13px;min-height:44px;max-width:55%}
 body.fmz-member-layout .content{padding-bottom:110px!important}
+/* Approved compact trainer profile: scoped, existing member screens remain intact. */
+.members-profile-page>.members-profile-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;padding:24px;margin:0 0 16px;background:var(--fmz-surface);border:1px solid var(--fmz-border)!important;border-radius:18px}
+.members-identity{display:flex;align-items:center;gap:18px;min-width:0;flex:1 1 260px}
+.members-identity-text{min-width:0;overflow-wrap:anywhere}
+.members-profile-page .members-identity h3{display:inline;margin:0 12px 0 0;font-size:1.65rem;line-height:1.3}
+.members-status{color:var(--fmz-accent);font-size:13px;font-weight:600}
+.members-identity p{color:var(--fmz-muted)}
+.members-head-actions{display:flex;flex-wrap:wrap;gap:10px;max-width:100%}
+.members-head-actions button{min-height:44px}
+.members-profile-package{flex-basis:100%;border-top:1px solid var(--fmz-border);padding-top:16px;color:var(--fmz-muted);overflow-wrap:anywhere}
+.members-profile-tabs{margin-bottom:20px}
+.members-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.members-overview-card{padding:22px;border:1px solid var(--fmz-border);border-radius:16px;background:var(--fmz-surface);display:flex;align-items:start;flex-direction:column;min-width:0;overflow-wrap:anywhere}
+.members-overview-card h3{font-size:1rem;margin:0 0 18px}
+.members-overview-card strong{font-size:1.3rem;line-height:1.45}
+.members-overview-card p{color:var(--fmz-muted);margin:10px 0 20px}
+.members-overview-card button{margin-top:auto;min-height:44px;max-width:100%;white-space:normal}
+.members-profile-page .members-contact{margin-top:18px;padding:16px 22px;border:1px solid var(--fmz-border);border-radius:14px;background:var(--fmz-surface)}
+.members-contact summary{min-height:32px}
+.members-head-actions :focus-visible,.members-overview-card :focus-visible,.members-contact :focus-visible{outline:2px solid var(--fmz-accent);outline-offset:3px}
+@media(max-width:899px){.members-overview-grid{grid-template-columns:1fr}.members-profile-page>.members-profile-head{padding:18px}.members-profile-page .members-identity h3{font-size:1.4rem}.members-head-actions{width:100%}.members-status{display:inline-block}.members-overview-card{padding:20px}}
+
+body.fmz-brand .members-profile-page>.members-profile-head{background:var(--fmz-surface)!important;border-color:var(--fmz-border)!important}

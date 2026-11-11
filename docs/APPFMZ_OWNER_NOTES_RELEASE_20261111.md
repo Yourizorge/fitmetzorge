@@ -28,9 +28,9 @@ Geen migration, Auth-, RLS-, Edge- of productiegegevenswijziging uitgevoerd voor
 - [Notities laptop](images/owner-notes-20261111/member-notes-1440.png), [notities telefoon](images/owner-notes-20261111/member-notes-390.png). Uitsluitend fictieve gegevens.
 - [Icoonbron en SHA-256](../assets/pwa/official-20261102-provenance.json). Originele bron ongewijzigd, volledig proportioneel geschaald op donkere achtergrond.
 
-## Afzonderlijk voorstel — niet actief
+## Afzonderlijk voorstel — status bij deze eerdere release
 
-[Voorbeeldbeeld laptop](images/owner-notes-20261111/profile-proposal-1440.png) en [telefoon](images/owner-notes-20261111/profile-proposal-390.png): compacte kop, drie overzichtskaarten, gegevens per tab en uitklapbare contactgegevens. Klikbaar lokaal via `http://127.0.0.1:8896/tests/profile-proposal.html`. Geen backend, geen opslag, alleen fictieve gegevens. De map `tests` is uitgesloten van GitHub Pages. Goedkeuring van deze indeling staat nog open.
+[Voorbeeldbeeld laptop](images/owner-notes-20261111/profile-proposal-1440.png) en [telefoon](images/owner-notes-20261111/profile-proposal-390.png): compacte kop, drie overzichtskaarten, gegevens per tab en uitklapbare contactgegevens. Klikbaar lokaal via `http://127.0.0.1:8896/tests/profile-proposal.html`. Geen backend, geen opslag, alleen fictieve gegevens. De map `tests` is uitgesloten van GitHub Pages. Bij deze eerdere release stond goedkeuring nog open. De eigenaar heeft de indeling daarna goedgekeurd; zie [de vervolgrelease](APPFMZ_COMPACT_PROFILE_RELEASE_20261111.md).
 
 ## Herstel en publicatie
 

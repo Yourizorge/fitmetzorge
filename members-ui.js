@@ -10,7 +10,7 @@ window.FMZMembers=(()=>{
  function close(force=false){if(busy&&!force)return false;if(!force&&window.FMZAutosave?.leaveGoals()===false)return false;if(!force&&profileDirty&&!confirm('Je hebt nog niet opgeslagen profielwijzigingen. Deze invoer verwerpen?'))return false;if(!force&&wizard?.dirty&&!confirm('Er is nog niet-opgeslagen invoer. Teruggaan en dit tabbladconcept sluiten?'))return;clearTimeout(timer);profileMode='';profileDirty=false;profileRequest++;document.body.classList.remove('fmz-profile-open');delete document.body.dataset.activeProfileTab;dialog?.remove();dialog=null;wizard=null;profile=null;for(const url of urls)URL.revokeObjectURL(url);urls.clear();return true;}
  function shell(title){if(wizard?.dirty&&!confirm('Dit concept bevat nog niet-opgeslagen invoer. Deze invoer verwerpen en een ander onderdeel openen?'))throw Error('Bewaar eerst het open concept.');close(true);dialog=document.createElement('dialog');dialog.className='members-dialog';dialog.innerHTML=`<header><h2 tabindex="-1">${esc(title)}</h2><button type="button" class="secondary-btn" data-members-close>Sluiten</button></header><div data-members-body></div><p class="members-message" data-members-message role="status" aria-live="polite"></p>`;dialog.querySelector('[data-members-close]').onclick=()=>close();dialog.addEventListener('cancel',e=>{e.preventDefault();close();});document.body.append(dialog);dialog.showModal();dialog.querySelector('h2').focus();return dialog.querySelector('[data-members-body]');}
  let profileRequest=0,profileTab='overzicht',profileRouting=false,profileMode='',profileDirty=false;
- const profileTabs=[['overzicht','Overzicht'],['coaching','Coaching'],['training','Training'],['voeding','Voeding'],['trackers','Trackers'],['agenda','Agenda'],['financien','Financiën'],['documenten','Documenten'],['notities','Notities'],['historie','Historie']];
+ const profileTabs=[['overzicht','Overzicht'],['gegevens','Gegevens'],['coaching','Coaching'],['training','Training'],['voeding','Voeding'],['trackers','Trackers'],['agenda','Agenda'],['financien','Financiën'],['documenten','Documenten'],['notities','Notities'],['historie','Historie']];
  function profileShell(){
   if(wizard?.dirty&&!confirm('Dit concept bevat nog niet-opgeslagen invoer. Verwerpen?'))throw Error('Bewaar eerst het open concept.');
   close(true);dialog=document.createElement('section');dialog.className='members-profile-page';
@@ -32,7 +32,7 @@ window.FMZMembers=(()=>{
   for(const child of [...body.children]){
    if(child.classList.contains('members-profile-head'))continue;
    const title=child.querySelector(':scope>summary,:scope>h3')?.textContent||'';
-   const tab=title==='Documenten'?'documenten':title==='Agenda'?'agenda':title==='Financiën'?'financien':title==='Interne notities'?'notities':title==='Wijzigingshistorie'?'historie':title.startsWith('Coaching,')||child.classList.contains('members-consent')?'coaching':'overzicht';
+   const tab=title==='Documenten'?'documenten':title==='Agenda'?'agenda':title==='Financiën'?'financien':title==='Interne notities'?'notities':title==='Wijzigingshistorie'?'historie':title.startsWith('Coaching,')||child.classList.contains('members-consent')?'coaching':'gegevens';
    if(child.tagName==='DETAILS')child.open=true;panels[tab].append(child);
   }
   panels.training.innerHTML='<h3>Training en trainingslog</h3><p>Bekijk hieronder de geregistreerde sets, gewichten, opmerkingen en historie van dit lid.</p><button type="button" class="secondary-btn" data-member-plan>Trainingsschema bekijken / bewerken</button>';
@@ -40,8 +40,36 @@ window.FMZMembers=(()=>{
   drawNotes(panels.notities);
   if(window.FMZAccounting?.ready){const invoices=FMZAccountingModel.project(FMZAccounting.snapshot).invoices.filter(i=>i.data.client_id===profile.member.client_id||i.data.billing?.clientId===profile.member.client_id);const list=document.createElement('div');list.innerHTML=invoices.map(i=>'<article class="members-document"><strong>'+esc(i.number||i.data.description||'Factuur')+'</strong><p>'+esc(i.statusLabel||i.status)+' · openstaand '+M.money(i.outstanding)+'</p><button type="button" class="secondary-btn" data-member-invoice="'+esc(i.id)+'">Factuur bekijken</button></article>').join('')||'<p>Geen facturen voor dit lid.</p>';panels.financien.append(list);list.querySelectorAll('button').forEach(b=>b.onclick=()=>{close(true);FMZAccounting.openInvoice(b.dataset.memberInvoice);});}
   for(const panel of Object.values(panels))body.append(panel);
+  compactProfile(panels,nav);
   nav.querySelectorAll('button').forEach(b=>{b.onclick=()=>selectProfileTab(b.dataset.profileTab);b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const buttons=[...nav.querySelectorAll('button')],i=buttons.indexOf(b),n=e.key==='Home'?0:e.key==='End'?buttons.length-1:(i+(e.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;buttons[n].click();buttons[n].focus();};});
   selectProfileTab('overzicht',true);
+ }
+ function compactProfile(panels,nav){
+  const {member:m,personal:p={}}=profile,head=dialog.querySelector('[data-members-body]>.members-profile-head'),avatar=head.querySelector('[data-avatar]');
+  dialog.querySelector(':scope>.members-profile-head')?.remove();
+  const edit=panels.gegevens.querySelector('[data-member-action=edit]');
+  head.innerHTML='<div class="members-identity"><div class="members-identity-text"><h3>'+esc(m.name)+'</h3><span class="members-status">'+esc(({active:'Actief',paused:'Gepauzeerd',ended:'Beëindigd',archived:'Gearchiveerd'}[m.status]||m.status))+'</span><p>Lidnummer '+esc(m.member_number)+'</p></div></div><div class="members-head-actions"><button type="button" class="secondary-btn" data-profile-quick="notities">Notitie toevoegen</button></div><div class="members-profile-package" data-profile-package></div>';
+  head.querySelector('.members-identity').prepend(avatar);if(edit)head.querySelector('.members-head-actions').append(edit);
+  head.querySelector('[data-profile-quick]').onclick=()=>{selectProfileTab('notities');dialog.querySelector('[data-note-form] textarea')?.focus();};
+  dialog.insertBefore(head,nav);
+  panels.overzicht.innerHTML='<div class="members-overview-grid">'+[['appointment','Volgende afspraak','agenda','Agenda bekijken'],['coaching','Begeleiding','training','Training bekijken'],['payments','Betalingen','financien','Financiën bekijken']].map(([id,title,tab,label])=>'<article class="members-overview-card" data-profile-card="'+id+'"><h3>'+title+'</h3><strong data-card-value></strong><p data-card-description></p><button type="button" class="secondary-btn" data-profile-open="'+tab+'">'+label+'</button></article>').join('')+'</div><details class="members-contact"><summary>Contactgegevens</summary><p>'+esc(m.email||'Geen e-mailadres vastgelegd')+'</p><p>'+esc(p.phone||'Geen telefoonnummer vastgelegd')+'</p><button type="button" class="secondary-btn" data-profile-open="gegevens">Alle gegevens bekijken</button></details>';
+  panels.overzicht.querySelectorAll('[data-profile-open]').forEach(b=>b.onclick=()=>selectProfileTab(b.dataset.profileOpen));
+  const period=document.createElement('details');period.open=true;period.innerHTML='<summary>Pakket en periode</summary><div data-profile-period></div>';panels.gegevens.append(period);
+  refreshSummary();
+ }
+ function refreshSummary(){
+  if(!trainer()||!profile||!dialog?.querySelector('[data-profile-card]'))return;
+  const id=profile.member.client_id,selected=state.clients.find(c=>c.id===id),agreement=window.FMZBilling?.get(id)||profile.billing;
+  const set=(selector,text)=>{const el=dialog.querySelector(selector);if(el&&el.textContent!==text)el.textContent=text;};
+  const card=(name,value,description)=>{set('[data-profile-card='+name+'] [data-card-value]',value);set('[data-profile-card='+name+'] [data-card-description]',description);};
+  const label=agreement?.package_label||profile.documents?.[0]?.snapshot?.package?.label||profile.member.package_id||'Geen pakket vastgelegd';
+  set('[data-profile-package]',label+(Number.isSafeInteger(agreement?.amount_cents)?' · '+M.money(agreement.amount_cents)+' '+M.cycle(agreement.cycle):''));
+  set('[data-profile-period]','Start: '+(profile.startDate||agreement?.effective_from||'Niet vastgelegd')+' · Volgende periode: '+nextPeriod(agreement));
+  const a=selected&&window.FMZAgenda?.data?nextAppointment(selected):null;
+  card('appointment',a?FMZAgendaModel.label(a.date,{weekday:'short',day:'numeric',month:'short'}):window.FMZAgenda?.data?'Geen komende afspraak':'Agenda nog niet geladen',a?[a.time,a.type].filter(Boolean).join(' · '):'Bekijk alle afspraken in Agenda.');
+  const days=new Set((selected?.trainingPlan||[]).filter(t=>t.published!==false).map(t=>t.day).filter(Boolean));
+  card('coaching',selected?.goal||profile.goal||'Nog geen doel vastgelegd',days.size?'Gepubliceerd schema: '+days.size+' '+(days.size===1?'trainingsdag':'trainingsdagen'):'Nog geen gepubliceerd trainingsschema.');
+  if(window.FMZAccounting?.ready&&FMZAccounting.snapshot){const rows=FMZAccountingModel.project(FMZAccounting.snapshot).invoices.filter(i=>i.data.client_id===id||i.data.billing?.clientId===id),open=rows.reduce((n,i)=>n+Math.max(0,i.outstanding),0),paid=rows.reduce((n,i)=>n+i.paidCents,0);card('payments',M.money(open)+' openstaand',rows.length?'Ontvangen: '+M.money(paid):'Nog geen facturen voor dit lid.');}else card('payments','Nog niet beschikbaar','Open Financiën voor de beschikbare gegevens.');
  }
  function drawNotes(panel){
   if(!trainer())return;
@@ -87,6 +115,7 @@ window.FMZMembers=(()=>{
   dialog.querySelectorAll('[data-profile-tab]').forEach(b=>{b.setAttribute('aria-selected',String(b.dataset.profileTab===tab));b.tabIndex=b.dataset.profileTab===tab?0:-1;});
   const route={coaching:'clients',training:'training-log',voeding:'nutrition',trackers:'trackers'}[tab]||'clients';
   profileRouting=true;try{showView(route);}finally{profileRouting=false;}
+  refreshSummary();
  }
 
  const button=(label,action,kind='secondary-btn')=>`<button type="button" class="${kind}" data-member-action="${action}">${esc(label)}</button>`;
@@ -177,5 +206,5 @@ window.FMZMembers=(()=>{
  }
  function lock(){epoch++;busy=false;close(true);bootstrap=null;requests.clear();clearTimeout(searchTimer);searchSeq++;const output=document.getElementById('membersSearchResults');if(output){output.replaceChildren();output.hidden=true;}const input=document.getElementById('globalSearch');if(input)input.value='';}
  window.addEventListener('beforeunload',e=>{if(wizard?.dirty||profileDirty){e.preventDefault();e.returnValue='';}});
- return {render,lock,beforeNavigate,selectProfileTab,get profileOpen(){return !!dialog?.classList.contains('members-profile-page');},openProfile,openEnrollment,openDrafts,refresh:load,read,command};
+ return {render,lock,beforeNavigate,selectProfileTab,refreshSummary,get profileOpen(){return !!dialog?.classList.contains('members-profile-page');},openProfile,openEnrollment,openDrafts,refresh:load,read,command};
 })();

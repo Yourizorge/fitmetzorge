@@ -71,7 +71,7 @@
   });
   // Existing RPC handlers update their own DOM asynchronously; refresh only the
   // read-only dashboard when those renderers finish, never inputs or autosave.
-  let scheduled=false;const observer=new MutationObserver(()=>{if(scheduled)return;scheduled=true;queueMicrotask(()=>{scheduled=false;if(trainer())dashboard();else if(ready()&&currentView==='client-home')renderClientHome();});});for(const el of document.querySelectorAll('#agendaRoot,[data-accounting-root]'))observer.observe(el,{childList:true,subtree:true});
+  let scheduled=false;const observer=new MutationObserver(()=>{if(scheduled)return;scheduled=true;queueMicrotask(()=>{scheduled=false;if(trainer()){dashboard();root.FMZMembers?.refreshSummary?.();}else if(ready()&&currentView==='client-home')renderClientHome();});});for(const el of document.querySelectorAll('#agendaRoot,[data-accounting-root]'))observer.observe(el,{childList:true,subtree:true});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync();});document.addEventListener('fmz:workspace-refreshed',sync);root.addEventListener('fmz:billing-planning',sync);renderNav();sync();
  }
  return Object.freeze({start,sync,search,facts,normal,digits,beforeNavigate,selectBuilderMember});

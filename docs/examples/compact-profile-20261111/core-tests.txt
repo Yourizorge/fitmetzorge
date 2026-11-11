@@ -1,0 +1,13 @@
+✔ private profile notes: legacy profiles, confirmation, lost reply, conflict, reload, account boundary (16440.3574ms)
+✔ loaded authorized client search normalizes names, email and phone without widening input scope (9.1088ms)
+✔ dashboard reflects authoritative loaded appointments and invoice balances, not attendance guesses (2.2349ms)
+✔ presentation delegates existing role gates, routes and autosave instead of replacing writes (1.0884ms)
+✔ approved dark/light palette and original logo variant are retained (5.3147ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17156.3967
