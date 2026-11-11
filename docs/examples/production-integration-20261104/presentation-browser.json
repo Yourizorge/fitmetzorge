@@ -1,0 +1,73 @@
+{
+  "pass": true,
+  "browser": "156.0.4314.58",
+  "routes": [
+    "trainer-dashboard",
+    "agenda",
+    "clients",
+    "training",
+    "training-log",
+    "nutrition",
+    "trackers",
+    "administration",
+    "invoice",
+    "finance",
+    "settings"
+  ],
+  "sizes": [
+    {
+      "mode": "dark",
+      "width": 1440,
+      "scroll": 1440,
+      "background": "rgb(29, 34, 40)",
+      "text": "rgb(241, 240, 235)"
+    },
+    {
+      "mode": "dark",
+      "width": 720,
+      "scroll": 720,
+      "background": "rgb(29, 34, 40)",
+      "text": "rgb(241, 240, 235)"
+    },
+    {
+      "mode": "dark",
+      "width": 390,
+      "scroll": 390,
+      "background": "rgb(29, 34, 40)",
+      "text": "rgb(241, 240, 235)"
+    },
+    {
+      "mode": "light",
+      "width": 1440,
+      "scroll": 1440,
+      "background": "rgb(243, 241, 236)",
+      "text": "rgb(37, 43, 50)"
+    },
+    {
+      "mode": "light",
+      "width": 720,
+      "scroll": 720,
+      "background": "rgb(243, 241, 236)",
+      "text": "rgb(37, 43, 50)"
+    },
+    {
+      "mode": "light",
+      "width": 390,
+      "scroll": 390,
+      "background": "rgb(243, 241, 236)",
+      "text": "rgb(37, 43, 50)"
+    }
+  ],
+  "errors": [],
+  "scope": "Normal application with synthetic local test backend; browser emulation, not physical device verification",
+  "checks": [
+    "All 11 allowed trainer routes reachable",
+    "Legacy dashboard statistics reachable on demand",
+    "Light/dark desktop/mobile no page overflow",
+    "Authorized server search opens existing member profile, then Coaching opens original client route",
+    "Cloud save and autosave function identities unchanged",
+    "Logout clears new dashboard/search content",
+    "Client account has no trainer dashboard or invoice route"
+  ],
+  "cleanup": "Temporary browser context and in-memory synthetic database closed in finally"
+}

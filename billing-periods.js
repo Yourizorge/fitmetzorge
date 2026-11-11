@@ -12,6 +12,7 @@
  const display=s=>s.split('-').reverse().join('-');
  function active(versions,client,at){date(at);return versions.filter(v=>v.client_id===client&&v.effective_from<=at).sort((a,b)=>a.effective_from.localeCompare(b.effective_from)||a.version-b.version).at(-1)||null;}
  function period(v,at){date(at);if(at<v.effective_from)throw Error('De overeenkomst is op deze datum nog niet ingegaan.');let start,end;
+  if(v.central_snapshot){const boundary=v.central_snapshot.firstInvoiceDate;if(at<boundary){start=v.effective_from;end=add(boundary,-1);}else{start=add(boundary,Math.floor((date(at)-date(boundary))/86400000/28)*28);end=add(start,27);}return{start,end,invoiceDate:add(end,1),nextStart:add(end,1)};}
   if(v.cycle==='four_weeks'){const n=Math.floor((date(at)-date(v.effective_from))/86400000/28);start=add(v.effective_from,n*28);end=add(start,27);}
   else if(v.cycle==='calendar_month'){start=at.slice(0,7)+'-01';const next=date(start);next.setUTCMonth(next.getUTCMonth()+1);end=add(iso(next),-1);}
   else if(v.cycle==='none'){start=v.effective_from;end=v.effective_from;}

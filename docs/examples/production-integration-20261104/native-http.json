@@ -1,0 +1,20 @@
+{
+  "pass": true,
+  "checkedAt": "2026-11-11T13:34:53.484Z",
+  "postgres": "18",
+  "postgrest": "16.5",
+  "transport": "Real HTTP over loopback; signed test JWTs; isolated synthetic auth/session tables, not hosted GoTrue",
+  "checks": [
+    "Owner-only tasks",
+    "Anonymous/member/expired JWT denied",
+    "58 calendar tasks",
+    "Durable independent completion",
+    "Lost response idempotency",
+    "HTTP409/PT409",
+    "No financial record from completion",
+    "Private own profile only",
+    "Enrollment closed server-side",
+    "Revoked session denied"
+  ],
+  "productionTouched": false
+}

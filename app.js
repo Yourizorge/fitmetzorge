@@ -1775,7 +1775,7 @@ function hasPendingChanges() {
 function lockOnlineSession() {
   if (onlineProfile && hasPendingChanges()) pendingDrafts.set(onlineProfile.id,{state:FMZSync.clone(state),baseline:cloudBaseline,raw:rawCloudState,pendingWrite});
   pendingWrite=null;
-  window.FMZPhotos?.lock(); window.FMZInvoices?.lock(); window.FMZAgenda?.lock();
+  window.FMZProductionIntegrations?.lock(); window.FMZPhotos?.lock(); window.FMZInvoices?.lock(); window.FMZAgenda?.lock();
   authGeneration++;
   window.clearTimeout(cloudSaveTimer);
   onlineReady=false; onlineProfile=null; cloudBaseline=null; rawCloudState=null;
@@ -1798,7 +1798,7 @@ async function refreshOnlineWorkspace() {
     return;
   }
   const ui=FMZSync.clone(state.ui), view=currentView;
-  try { await loadOnlineWorkspace(onlineProfile); state.ui={...state.ui,...ui}; currentView=view; renderAll(); showView(view); }
+  try { await loadOnlineWorkspace(onlineProfile); state.ui={...state.ui,...ui}; currentView=view; renderAll(); showView(view); await window.FMZProductionIntegrations?.sync(true); }
   catch { syncStatus("Verversen mislukt; bestaande gegevens blijven zichtbaar.","error"); }
 }
 
@@ -3732,6 +3732,7 @@ function renderAll() {
   renderAdministration();
   renderInvoicePage();
   renderSettingsPage();
+  window.FMZProductionIntegrations?.sync();
   if(window.FMZAccounting){
     const legacySettings=document.querySelector('.settings-invoice-card');
     if(legacySettings)legacySettings.innerHTML='<h2>Bedrijfsadministratie</h2><p>Bedrijfsgegevens en factuurinstellingen worden met ingangsdatum beheerd bij Administratie → Administratie-instellingen.</p>';

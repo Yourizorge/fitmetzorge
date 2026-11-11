@@ -1,0 +1,33 @@
+{
+  "project": "hgoygcviutmynaihcvpd",
+  "created_at": "2026-11-11T13:10:56.598764+00:00",
+  "verified_at": "2026-11-11T13:11:43.046Z",
+  "plaintext_sha256": "7a11e4879ec6c1f07e34076eca62ef4885df0333f5f36d45305ef349f1fb62d4",
+  "isolatedRowsAndConstraintsRestored": true,
+  "tables": {
+    "public.profiles": 6,
+    "fmz_agenda.config": 1,
+    "fmz_agenda.events": 24,
+    "fmz_agenda.requests": 39,
+    "fmz_accounting.audit": 137,
+    "fmz_accounting.files": 7,
+    "fmz_accounting.lines": 75,
+    "fmz_agenda.deliveries": 7,
+    "public.client_invites": 12,
+    "fmz_accounting.records": 40,
+    "fmz_agenda.preferences": 1,
+    "fmz_accounting.accounts": 23,
+    "fmz_accounting.journals": 33,
+    "fmz_accounting.receipts": 133,
+    "public.coach_workspaces": 1,
+    "fmz_agenda.subscriptions": 3,
+    "fmz_private.write_receipts": 1736,
+    "fmz_accounting.organizations": 1,
+    "fmz_private.photo_annotations": 1,
+    "fmz_accounting.agreement_versions": 4
+  },
+  "storageObjects": 7,
+  "embeddedCustomerPhotosIncluded": true,
+  "authRecordsEncrypted": true,
+  "privateBinariesDecryptedAndVerified": 7
+}

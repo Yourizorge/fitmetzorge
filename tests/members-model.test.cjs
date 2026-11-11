@@ -1,0 +1,7 @@
+const test=require('node:test'),assert=require('node:assert/strict'),M=require('../members-model.js');
+test('members model: normalized search, exact periods, validation and pointer bounds',()=>{
+ assert.equal(M.phone('+31 (0)6 12345678'),'31612345678');assert.equal(M.phone('06 1234 5678'),'31612345678');assert.equal(M.normalize('  Lotte   van  Test '),'Lotte van Test');assert.equal(M.match({name:'Lotte van Test',email:'lotte@example.test',phone:'0612345678',member_number:123},'LOTTE    TEST'),true);
+ assert.equal(M.match({name:'Lotte',phone:'06 12345678'},'061234'),true);assert.deepEqual(M.period({cycle:'four_weeks'},'2026-12-20'),{start:'2026-12-20',end:'2027-01-16',next:'2027-01-17'});assert.deepEqual(M.period({cycle:'calendar_month'},'2028-02-01'),{start:'2028-02-01',end:'2028-02-29',next:'2028-03-01'});
+ assert.equal(M.signatureValid([]),false);assert.equal(M.signatureValid([[[.2,.2],[.2,.2]]]),false);assert.equal(M.signatureValid([[[.2,.2],[.5,.7]]]),true);assert.equal(M.signatureValid([[[.2,.2],[5,.7]]]),false);assert.ok(M.validate({firstName:'A'},'2026-10-26').email);assert.match(M.validate({...require('./members-fixture.cjs').person(),birthDate:'2012-01-01'},'2026-10-26').birthDate,/volwassenen/);
+});
+test('members PDF server and browser renderer are identical copies',()=>{const fs=require('node:fs');assert.deepEqual(fs.readFileSync(require.resolve('../members-documents.js')),fs.readFileSync(require.resolve('../supabase/functions/member-assets/members-documents.js')));});

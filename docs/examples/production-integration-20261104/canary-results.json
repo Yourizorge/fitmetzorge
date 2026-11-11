@@ -1,0 +1,26 @@
+{
+  "pass": true,
+  "at": "2026-11-11T13:41:02.118Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "realGoTrue": true,
+  "realPostgREST": true,
+  "realPrivateStorage": true,
+  "realEdgeVerifier": true,
+  "checks": [
+    "Owner search",
+    "Own profile only",
+    "Profile save and audit",
+    "HTTP409 stale write",
+    "Lost answer idempotence",
+    "Private photo upload/read",
+    "Other member upload/read denied",
+    "Relogin persistence",
+    "58 general tasks",
+    "Independent task completion/retry",
+    "Revoked session denied",
+    "Signing unavailable server-side"
+  ],
+  "noMail": true,
+  "noPush": true,
+  "noRealCustomerWrites": true
+}

@@ -1,0 +1,8 @@
+# GitHub Pages runtime excludes isolated development fixtures and server sources.
+exclude:
+  - owner-test
+  - tests
+  - supabase
+  - node_modules
+  - package.json
+  - pnpm-lock.yaml

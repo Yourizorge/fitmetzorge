@@ -10,10 +10,10 @@ test('A4 preview fits all screens, enlarges privately and keeps archived downloa
   await form.locator('[name=customerName]').fill('Voorbeeldlid — synthetisch');await form.locator('[name=customerAddress]').fill('Voorbeeldstraat 2, 1000 AB Teststad');await form.locator('[name=description]').fill('Personal coaching – Progressie');await form.locator('[name=discount]').fill('30');
   await p.waitForFunction(()=>document.querySelector('[data-preview-status]')?.textContent.startsWith('PDF-voorbeeld'));
   for(const [width,height] of [[320,700],[390,844],[768,1024],[1400,1000]])for(const light of [false,true]){
-   await p.setViewportSize({width,height});await p.evaluate(light=>document.body.classList.toggle('light',light),light);
+   await p.setViewportSize({width,height});await p.evaluate(light=>{if((state.ui.theme==='light')!==light)document.getElementById('themeToggle').click();},light);await p.waitForFunction(light=>document.documentElement.dataset.fmzTheme===(light?'light':'dark'),light);
    await form.locator('.invoice-a4').scrollIntoViewIfNeeded();
    assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-   assert.equal(await p.locator('.acc-dialog header').evaluate(e=>getComputedStyle(e).backgroundColor),light?'rgb(247, 248, 250)':'rgb(24, 24, 24)','Sticky header must be opaque');
+   const header=await p.locator('.acc-dialog header').evaluate(e=>{const probe=document.createElement('span');probe.style.backgroundColor=getComputedStyle(document.documentElement).getPropertyValue('--fmz-surface');document.body.append(probe);const expected=getComputedStyle(probe).backgroundColor;probe.remove();return{background:getComputedStyle(e).backgroundColor,opacity:getComputedStyle(e).opacity,expected};});assert.equal(header.background,header.expected,'Sticky header follows active theme surface');assert.equal(header.opacity,'1','Sticky header is fully opaque');assert.match(header.background,/^rgb\(/,'Theme surface has no transparency');
    const dimensions=await p.locator('[data-pdf-preview] canvas').first().boundingBox();assert(Math.abs(dimensions.width/dimensions.height-595.28/841.89)<.002);
    await p.screenshot({path:`${folder}/preview-${width}-${light?'light':'dark'}.png`});
    const before=JSON.stringify(preview.calls);
