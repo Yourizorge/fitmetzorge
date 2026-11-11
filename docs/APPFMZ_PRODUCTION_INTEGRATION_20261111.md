@@ -52,4 +52,15 @@ Normale runtime importeert geen OwnerTest-adapter. GitHub Pages bouwt vanaf `mai
 
 Tests: `pnpm install --frozen-lockfile`, bestaande Playwright Edge/WebKit-browsers en `node --test --test-concurrency=1 tests/<testnaam>.test.cjs`. Native tests vereisen een eigen lege PostgreSQL 18-cluster op 127.0.0.1:55439 (lokale postgres-testgebruiker) en de officiële PostgREST 16.5 executable onder `tests/artifacts/production-infra/postgrest/postgrest.exe`, met PostgreSQL-bin in PATH. Windows-releasezip SHA-256 `17f595b0d8dd37473d0231417dea07c5ac9f791282ff5b017fae51ff29e5de2f`; testdriver `pg` is vastgezet op 8.16.3. Nooit dit fixture-harnas tegen productie richten. Operationele canary vereist afzonderlijke private credentials/map en is geen onderdeel van de browserbuild.
 
-Frontendpublicatie en definitieve canary-opruiming/live-bestandsvergelijking worden hieronder vastgelegd nadat zij werkelijk zijn uitgevoerd.
+## Definitieve publicatiecontrole
+
+Runtimecommit **ad65cf803080ef1e79aeec1a243fbf2272d6478d** is op 11 november 2026 fast-forward gepubliceerd via `main` naar **https://appfmz.nl**. GitHub Pages meldt `built`. Geen onderhoudsblokkade actief.
+
+- [Live-bestandsbewijs](examples/production-integration-20261104/live-files.json): **52/52** runtimebestanden exact gelijk aan de Git-blobs. Owner-test-adapter, testserver en Edge-bronpad geven publiek 404. Vergelijking gebruikt Git-bytes en is onafhankelijk van Windows CRLF in de werkmap.
+- [Live Edge-smoketest](examples/production-integration-20261104/live-smoke.json): traineraanmelding, twee servergestuurde Dashboardtaken, ledenzoeker, private foto, gewone Agenda, herladen, privacyblokkade en uitloggen/wisselen naar één bevoegd lid **PASS**, geen browserfouten. Alleen fictieve accounts gebruikt. [Live Dashboard](images/production-integration-20261104/live-synthetic-dashboard.png) en [live ledenprofiel](images/production-integration-20261104/live-synthetic-profile.png) zijn gesaneerde testbeelden.
+- Alle drie de eigen fictieve accounts, hun foto en testregels zijn gecontroleerd op de unieke testmarker en opgeruimd. De echte ownercyclus houdt versie 1, **0 omgezette overeenkomsten en 0 door ons afgeronde echte taken**.
+- [Eindvergelijking](examples/production-integration-20261104/data-preservation-final.json): **23/23 bestaande tabellen identiek** aan de nulmeting, inclusief facturen, betalingen, audit, betaalafspraken, Auth en Storage-metadata.
+- [Bestandsvergelijking](examples/production-integration-20261104/private-file-preservation.json): **7/7 bestaande private bestanden byte-identiek** aan de versleutelde back-up. Geen bestaande PDF vervangen.
+- Deze laatste bewijsaanvulling wijzigt alleen documentatie en controlescripts; de gepubliceerde runtime blijft identiek aan `ad65cf8`.
+
+Korte ownercontrole: (1) Dashboard en thema op laptop; (2) Agenda rond 20 en 27 november met afzonderlijke taken Maken/Versturen; (3) Patrick en Debora nog per maand en hun bestaande factuur/PDF openen. Geen factuur definitief maken alleen voor deze controle. Fysieke iPhone/PWA-bediening en owneracceptatie blijven door de eigenaar te bevestigen.

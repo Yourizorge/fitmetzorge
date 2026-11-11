@@ -1,0 +1,385 @@
+{
+  "pass": true,
+  "at": "2026-11-11T13:47:36.922Z",
+  "commit": "ad65cf803080ef1e79aeec1a243fbf2272d6478d",
+  "files": [
+    {
+      "file": "accounting-model.js",
+      "status": 200,
+      "sha256": "e64953b4cfa28f91851f0379f283413a642a5dd30fbbb712d6b811f77abfcaaa",
+      "expected": "e64953b4cfa28f91851f0379f283413a642a5dd30fbbb712d6b811f77abfcaaa",
+      "match": true
+    },
+    {
+      "file": "accounting-reports.js",
+      "status": 200,
+      "sha256": "a257ff0f0d9fbb00841a2ab03357ec70792a79b54d2bb42a567a1b8a18fe07d7",
+      "expected": "a257ff0f0d9fbb00841a2ab03357ec70792a79b54d2bb42a567a1b8a18fe07d7",
+      "match": true
+    },
+    {
+      "file": "accounting.js",
+      "status": 200,
+      "sha256": "d625f7cb05d16f8c09823064cc891333432c5861032b78af714a8a4b004ac12e",
+      "expected": "d625f7cb05d16f8c09823064cc891333432c5861032b78af714a8a4b004ac12e",
+      "match": true
+    },
+    {
+      "file": "admin-design.css",
+      "status": 200,
+      "sha256": "d14c9323cd8b3a60a3ea56a079d615abfffc95318ccf9f805a3b4f643e453e7b",
+      "expected": "d14c9323cd8b3a60a3ea56a079d615abfffc95318ccf9f805a3b4f643e453e7b",
+      "match": true
+    },
+    {
+      "file": "agenda-model.js",
+      "status": 200,
+      "sha256": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
+      "expected": "b2206dd75ff83b0cacc73676d7aa6debc05e09bdb49c43e6bffd26da45e9bd4e",
+      "match": true
+    },
+    {
+      "file": "agenda.css",
+      "status": 200,
+      "sha256": "155398b53ee0d5f1217ef659fbd5a89dabf0c738ece8b3e8aa1ed0bb2e3b5e42",
+      "expected": "155398b53ee0d5f1217ef659fbd5a89dabf0c738ece8b3e8aa1ed0bb2e3b5e42",
+      "match": true
+    },
+    {
+      "file": "agenda.js",
+      "status": 200,
+      "sha256": "bdae0c1274966419dda784c3b4d32f1b8bc04259be74162ddc1ca75421da39ad",
+      "expected": "bdae0c1274966419dda784c3b4d32f1b8bc04259be74162ddc1ca75421da39ad",
+      "match": true
+    },
+    {
+      "file": "app.js",
+      "status": 200,
+      "sha256": "c20db1739f20d39c01491d93c91b279f4f4359610fd5342fe742b9bf7f0aa4e4",
+      "expected": "c20db1739f20d39c01491d93c91b279f4f4359610fd5342fe742b9bf7f0aa4e4",
+      "match": true
+    },
+    {
+      "file": "assets/brand/official-20261102-favicon-32.png",
+      "status": 200,
+      "sha256": "d5754b57c58d26f9f836d892e08d94a6e82e1734135b92c46136920f08067c8d",
+      "expected": "d5754b57c58d26f9f836d892e08d94a6e82e1734135b92c46136920f08067c8d",
+      "match": true
+    },
+    {
+      "file": "assets/brand/official-20261102-horizontal.png",
+      "status": 200,
+      "sha256": "426976aab202cecda9bb4706122440810c04a15173d59e8801831f70effeb843",
+      "expected": "426976aab202cecda9bb4706122440810c04a15173d59e8801831f70effeb843",
+      "match": true
+    },
+    {
+      "file": "assets/brand/official-20261102-sidebar.png",
+      "status": 200,
+      "sha256": "b559866f0de2910c102e5cc3fb7403227cf15e19041c650c41ed85cf7309fc6b",
+      "expected": "b559866f0de2910c102e5cc3fb7403227cf15e19041c650c41ed85cf7309fc6b",
+      "match": true
+    },
+    {
+      "file": "assets/pwa/apple-touch-icon.png",
+      "status": 200,
+      "sha256": "13852f928cc28d5120b25cf764780693d780d07cbd2360aa11f1f122e853077b",
+      "expected": "13852f928cc28d5120b25cf764780693d780d07cbd2360aa11f1f122e853077b",
+      "match": true
+    },
+    {
+      "file": "autosave.js",
+      "status": 200,
+      "sha256": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+      "expected": "fedf78f8605e123ce88438a34a926ca89a89442a3214cd63e03003136d1fb4ba",
+      "match": true
+    },
+    {
+      "file": "bank-repair-ui.js",
+      "status": 200,
+      "sha256": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+      "expected": "d00742791f5a5628045cb19339cef39d0ec5beff5bce721764aa4b37efa70ec9",
+      "match": true
+    },
+    {
+      "file": "billing-periods.js",
+      "status": 200,
+      "sha256": "c5848142274803ef3b24199e88a3931889e28853e493df29343ed0994a036706",
+      "expected": "c5848142274803ef3b24199e88a3931889e28853e493df29343ed0994a036706",
+      "match": true
+    },
+    {
+      "file": "billing-ui.js",
+      "status": 200,
+      "sha256": "bffd103b428ba79205e8eabe286c7a46bc9d1d3eb025a2d2a4875092f3edaa13",
+      "expected": "bffd103b428ba79205e8eabe286c7a46bc9d1d3eb025a2d2a4875092f3edaa13",
+      "match": true
+    },
+    {
+      "file": "central-billing.js",
+      "status": 200,
+      "sha256": "fa900073b1e48c53a230df9593c4bbdf9dc9bf16ee287197326a497ba5829260",
+      "expected": "fa900073b1e48c53a230df9593c4bbdf9dc9bf16ee287197326a497ba5829260",
+      "match": true
+    },
+    {
+      "file": "config.js",
+      "status": 200,
+      "sha256": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e",
+      "expected": "c5dd5bc8a0741c2dd2571d6d0d169bbe49701f5cef1256093877fc96f15eea8e",
+      "match": true
+    },
+    {
+      "file": "finance-model.js",
+      "status": 200,
+      "sha256": "758a2525cd11a57842f0e8d1b2a4a23e05563a083d95b33bc95ed8983b5b7948",
+      "expected": "758a2525cd11a57842f0e8d1b2a4a23e05563a083d95b33bc95ed8983b5b7948",
+      "match": true
+    },
+    {
+      "file": "finance-ui.js",
+      "status": 200,
+      "sha256": "41c535dd7897c679e926211b5f83adae3e58ee6ec25e55e12f2111a8c52a9d8e",
+      "expected": "41c535dd7897c679e926211b5f83adae3e58ee6ec25e55e12f2111a8c52a9d8e",
+      "match": true
+    },
+    {
+      "file": "finance.css",
+      "status": 200,
+      "sha256": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+      "expected": "4f92dd92a24a3b04317fc34727a8bb22dc2ab4d8528b4c3ebdc78785a0d8da93",
+      "match": true
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "sha256": "4aa5161e7e38f8d151869b8011fcc9df0d00829959394ad3286cc498fa3af921",
+      "expected": "4aa5161e7e38f8d151869b8011fcc9df0d00829959394ad3286cc498fa3af921",
+      "match": true
+    },
+    {
+      "file": "invoice-documents.js",
+      "status": 200,
+      "sha256": "f6eb997e04c45412137c28546d5ca7f8e0bc62e17b05773bde16f4866a5f932e",
+      "expected": "f6eb997e04c45412137c28546d5ca7f8e0bc62e17b05773bde16f4866a5f932e",
+      "match": true
+    },
+    {
+      "file": "invoice-editor.js",
+      "status": 200,
+      "sha256": "4de0482c49a5e54aa6776cf951d99ecaaa93ade6722cc72e5bc8da6f47400a44",
+      "expected": "4de0482c49a5e54aa6776cf951d99ecaaa93ade6722cc72e5bc8da6f47400a44",
+      "match": true
+    },
+    {
+      "file": "invoices.js",
+      "status": 200,
+      "sha256": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+      "expected": "ccc7720768b918e7a85a1716458e4d89a10a2c7bf27806e340c968a40fb3d90c",
+      "match": true
+    },
+    {
+      "file": "layout.css",
+      "status": 200,
+      "sha256": "a15f3013cb7e605ecb8d35b6b482745161acf38eadac4d88127b74cf12b216b0",
+      "expected": "a15f3013cb7e605ecb8d35b6b482745161acf38eadac4d88127b74cf12b216b0",
+      "match": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "status": 200,
+      "sha256": "c876807f02b2cd17314999c2e4f83018bba444e14507b78f204279b066a486e7",
+      "expected": "c876807f02b2cd17314999c2e4f83018bba444e14507b78f204279b066a486e7",
+      "match": true
+    },
+    {
+      "file": "members-documents.js",
+      "status": 200,
+      "sha256": "eaf24f683850da8bab226a4e819a97653412391299f1a1025435a1ae001bb666",
+      "expected": "eaf24f683850da8bab226a4e819a97653412391299f1a1025435a1ae001bb666",
+      "match": true
+    },
+    {
+      "file": "members-model.js",
+      "status": 200,
+      "sha256": "60c26dfc7362ac1f7ebfdd89458d5e7b9a5da56253c0c8c609e9d0c4f1e31d19",
+      "expected": "60c26dfc7362ac1f7ebfdd89458d5e7b9a5da56253c0c8c609e9d0c4f1e31d19",
+      "match": true
+    },
+    {
+      "file": "members-ui.js",
+      "status": 200,
+      "sha256": "9b0824b2b5cef0d8856a08a111207d6372b54494dc262d64ed0d596f1fb07eeb",
+      "expected": "9b0824b2b5cef0d8856a08a111207d6372b54494dc262d64ed0d596f1fb07eeb",
+      "match": true
+    },
+    {
+      "file": "members.css",
+      "status": 200,
+      "sha256": "4067de7b9870d1d84c9e257aa27ebf18e40f682d30604d54e638dbda1cbbfe12",
+      "expected": "4067de7b9870d1d84c9e257aa27ebf18e40f682d30604d54e638dbda1cbbfe12",
+      "match": true
+    },
+    {
+      "file": "payments-model.js",
+      "status": 200,
+      "sha256": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+      "expected": "79ccbb1225e74448aa5430d6bcc5c881692fb7ef6da86c7de8c10898c7493dfa",
+      "match": true
+    },
+    {
+      "file": "payments-ui.js",
+      "status": 200,
+      "sha256": "eea5623bd944102265ea6996851b7d4e330a554a04bc4a8254f916cd2da127ff",
+      "expected": "eea5623bd944102265ea6996851b7d4e330a554a04bc4a8254f916cd2da127ff",
+      "match": true
+    },
+    {
+      "file": "payments.css",
+      "status": 200,
+      "sha256": "666e5f8f33011a5278b8bd316c33a2e4ace2ac9415d98a7bbc9d50bbb8978c86",
+      "expected": "666e5f8f33011a5278b8bd316c33a2e4ace2ac9415d98a7bbc9d50bbb8978c86",
+      "match": true
+    },
+    {
+      "file": "photos.js",
+      "status": 200,
+      "sha256": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+      "expected": "77ee7f203106bd1d0539613475c4e34d1bb9ae80e7265dad1f0f92dec6be95a3",
+      "match": true
+    },
+    {
+      "file": "presentation.js",
+      "status": 200,
+      "sha256": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
+      "expected": "59800ce8d292be245bb3df4436e5cd09c6ce81fc214261ee5cc46b3cf5a5941b",
+      "match": true
+    },
+    {
+      "file": "production-start.js",
+      "status": 200,
+      "sha256": "fe22af03903e02aa559e4045ec7e728fe90064837ff940feb8dbd2e8a27dd918",
+      "expected": "fe22af03903e02aa559e4045ec7e728fe90064837ff940feb8dbd2e8a27dd918",
+      "match": true
+    },
+    {
+      "file": "production-theme.js",
+      "status": 200,
+      "sha256": "c69e4cbcb465683fb59c8484fdd46ae4c72eddc9dc73157c02f3fa5b36336460",
+      "expected": "c69e4cbcb465683fb59c8484fdd46ae4c72eddc9dc73157c02f3fa5b36336460",
+      "match": true
+    },
+    {
+      "file": "production-ui.css",
+      "status": 200,
+      "sha256": "257a013239c00fc9fed43b3c27cc23cbe3c2a34db502b0c1961e2cb3401c90fb",
+      "expected": "257a013239c00fc9fed43b3c27cc23cbe3c2a34db502b0c1961e2cb3401c90fb",
+      "match": true
+    },
+    {
+      "file": "production-ui.js",
+      "status": 200,
+      "sha256": "4ac22f20c4d4741fda33019446284e638307bfa1dab2e463d816ee4c28149aef",
+      "expected": "4ac22f20c4d4741fda33019446284e638307bfa1dab2e463d816ee4c28149aef",
+      "match": true
+    },
+    {
+      "file": "push.js",
+      "status": 200,
+      "sha256": "04da09ec758ce4040f8bd31ef1f8244701b7abfb95cfda19b69d7b1ae7af8413",
+      "expected": "04da09ec758ce4040f8bd31ef1f8244701b7abfb95cfda19b69d7b1ae7af8413",
+      "match": true
+    },
+    {
+      "file": "pwa.css",
+      "status": 200,
+      "sha256": "572f13f67af1a5f62c645fc1398ca3cb5d8a1ed830ade0f0b36466d2748dfebb",
+      "expected": "572f13f67af1a5f62c645fc1398ca3cb5d8a1ed830ade0f0b36466d2748dfebb",
+      "match": true
+    },
+    {
+      "file": "pwa.js",
+      "status": 200,
+      "sha256": "8fa0374fdcf6157c43cbbe78fe34944579ca109e821615e9bb9d4ea2afccdea0",
+      "expected": "8fa0374fdcf6157c43cbbe78fe34944579ca109e821615e9bb9d4ea2afccdea0",
+      "match": true
+    },
+    {
+      "file": "styles.css",
+      "status": 200,
+      "sha256": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "expected": "0bf024c8a4ee4c7a4109192ba6b010b3607cf17f71fc5b2012b9578c797877fc",
+      "match": true
+    },
+    {
+      "file": "sync.js",
+      "status": 200,
+      "sha256": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+      "expected": "c8fe197b626131f79425cb6fce720198d822e61890f9d7d439794e6adafdb266",
+      "match": true
+    },
+    {
+      "file": "tutorial/beginner-content.js",
+      "status": 200,
+      "sha256": "db64a8b9c1446dec6615d177662aa616c46529e34d95c7d76e83f5a52ba61550",
+      "expected": "db64a8b9c1446dec6615d177662aa616c46529e34d95c7d76e83f5a52ba61550",
+      "match": true
+    },
+    {
+      "file": "tutorial/content.js",
+      "status": 200,
+      "sha256": "dcb9d02f7d671eff4556b240d91d3259d7bacaa4578112792bd3f9627cf7355a",
+      "expected": "dcb9d02f7d671eff4556b240d91d3259d7bacaa4578112792bd3f9627cf7355a",
+      "match": true
+    },
+    {
+      "file": "tutorial/host.css",
+      "status": 200,
+      "sha256": "4acf6afe632ad14eeaec37e2994955db1962b852c5fb347966ae5c038712ff37",
+      "expected": "4acf6afe632ad14eeaec37e2994955db1962b852c5fb347966ae5c038712ff37",
+      "match": true
+    },
+    {
+      "file": "tutorial/host.js",
+      "status": 200,
+      "sha256": "e5dbb140fff76c6a40a77a5872bfb5da638cb93dc863c5cb5d5872cbc2416f39",
+      "expected": "e5dbb140fff76c6a40a77a5872bfb5da638cb93dc863c5cb5d5872cbc2416f39",
+      "match": true
+    },
+    {
+      "file": "vat-ui.js",
+      "status": 200,
+      "sha256": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0",
+      "expected": "4ea708837f3525f274e9b3f1cf50f50e45ed8e36e1150c7a21592971b1eceda0",
+      "match": true
+    },
+    {
+      "file": "vendor/fflate-0.8.2.js",
+      "status": 200,
+      "sha256": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf",
+      "expected": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf",
+      "match": true
+    },
+    {
+      "file": "vendor/pdf-lib-1.17.1.min.js",
+      "status": 200,
+      "sha256": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f",
+      "expected": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f",
+      "match": true
+    }
+  ],
+  "excluded": [
+    {
+      "file": "owner-test/host.js",
+      "status": 404
+    },
+    {
+      "file": "tests/preview.cjs",
+      "status": 404
+    },
+    {
+      "file": "supabase/functions/member-assets/index.ts",
+      "status": 404
+    }
+  ]
+}

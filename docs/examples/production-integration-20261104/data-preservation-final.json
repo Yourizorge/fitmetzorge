@@ -1,0 +1,143 @@
+{
+  "at": "2026-11-11T13:50:37.860Z",
+  "tables": [
+    {
+      "table": "public.profiles",
+      "unchanged": true,
+      "before": 6,
+      "after": 6
+    },
+    {
+      "table": "public.coach_workspaces",
+      "unchanged": true,
+      "before": 1,
+      "after": 1
+    },
+    {
+      "table": "public.client_invites",
+      "unchanged": true,
+      "before": 12,
+      "after": 12
+    },
+    {
+      "table": "fmz_private.write_receipts",
+      "unchanged": true,
+      "before": 1736,
+      "after": 1736
+    },
+    {
+      "table": "fmz_private.photo_annotations",
+      "unchanged": true,
+      "before": 1,
+      "after": 1
+    },
+    {
+      "table": "fmz_accounting.organizations",
+      "unchanged": true,
+      "before": 1,
+      "after": 1
+    },
+    {
+      "table": "fmz_accounting.accounts",
+      "unchanged": true,
+      "before": 23,
+      "after": 23
+    },
+    {
+      "table": "fmz_accounting.records",
+      "unchanged": true,
+      "before": 40,
+      "after": 40
+    },
+    {
+      "table": "fmz_accounting.journals",
+      "unchanged": true,
+      "before": 33,
+      "after": 33
+    },
+    {
+      "table": "fmz_accounting.lines",
+      "unchanged": true,
+      "before": 75,
+      "after": 75
+    },
+    {
+      "table": "fmz_accounting.files",
+      "unchanged": true,
+      "before": 7,
+      "after": 7
+    },
+    {
+      "table": "fmz_accounting.audit",
+      "unchanged": true,
+      "before": 137,
+      "after": 137
+    },
+    {
+      "table": "fmz_accounting.receipts",
+      "unchanged": true,
+      "before": 133,
+      "after": 133
+    },
+    {
+      "table": "fmz_accounting.agreement_versions",
+      "unchanged": true,
+      "before": 4,
+      "after": 4
+    },
+    {
+      "table": "fmz_agenda.config",
+      "unchanged": true,
+      "before": 1,
+      "after": 1
+    },
+    {
+      "table": "fmz_agenda.events",
+      "unchanged": true,
+      "before": 24,
+      "after": 24
+    },
+    {
+      "table": "fmz_agenda.requests",
+      "unchanged": true,
+      "before": 39,
+      "after": 39
+    },
+    {
+      "table": "fmz_agenda.deliveries",
+      "unchanged": true,
+      "before": 7,
+      "after": 7
+    },
+    {
+      "table": "fmz_agenda.preferences",
+      "unchanged": true,
+      "before": 1,
+      "after": 1
+    },
+    {
+      "table": "fmz_agenda.subscriptions",
+      "unchanged": true,
+      "before": 3,
+      "after": 3
+    },
+    {
+      "table": "auth.users",
+      "unchanged": true,
+      "before": 10,
+      "after": 10
+    },
+    {
+      "table": "auth.identities",
+      "unchanged": true,
+      "before": 10,
+      "after": 10
+    },
+    {
+      "table": "storage.objects",
+      "unchanged": true,
+      "before": 7,
+      "after": 7
+    }
+  ]
+}
