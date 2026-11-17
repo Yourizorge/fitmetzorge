@@ -1,8 +1,9 @@
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path'); const {setup}=require('./database.cjs');
 async function start(port=8876){
  const database=await setup();await require('./accounting-database.cjs').extend(database);await require('./agenda-database.cjs').extend(database);
- await database.db.exec("alter table auth.users add column encrypted_password text default 'synthetic-existing-password';");
+ await database.db.exec("alter table auth.users add column encrypted_password text default 'synthetic-existing-password', add column invited_at timestamptz;");
  await database.db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20261117161135_appfmz_invitation_password_gate.sql'),'utf8'));
+ await database.db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20261117162324_appfmz_invitation_password_proof.sql'),'utf8'));
  for(const file of ['20261026154916_appfmz_members.sql','20261104163836_appfmz_central_billing_opt_in.sql','20261104164206_appfmz_member_release_gate.sql'])await database.db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations',file),'utf8'));
  const blobs=new Map();let queue=Promise.resolve();const calls=[];
  const server=http.createServer(async(req,res)=>{

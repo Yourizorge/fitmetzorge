@@ -1,0 +1,98 @@
+{
+  "pass": true,
+  "at": "2026-11-17T16:25:36.938Z",
+  "tables": [
+    {
+      "table": "public.profiles",
+      "unchanged": true
+    },
+    {
+      "table": "public.coach_workspaces",
+      "unchanged": true
+    },
+    {
+      "table": "public.client_invites",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_private.write_receipts",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_private.photo_annotations",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.organizations",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.accounts",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.records",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.journals",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.lines",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.files",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.audit",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.receipts",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_accounting.agreement_versions",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.config",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.events",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.requests",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.deliveries",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.preferences",
+      "unchanged": true
+    },
+    {
+      "table": "fmz_agenda.subscriptions",
+      "unchanged": true
+    },
+    {
+      "table": "auth.users",
+      "unchanged": true
+    },
+    {
+      "table": "auth.identities",
+      "unchanged": true
+    },
+    {
+      "table": "storage.objects",
+      "unchanged": true
+    }
+  ]
+}

@@ -4714,9 +4714,10 @@ $("#setPasswordForm").addEventListener("submit", async (event) => {
     if(generation!==authGeneration||!passwordSetupRequired||(passwordSetupUserId&&before.user_id!==passwordSetupUserId))throw new Error('Sessie gewijzigd. Open opnieuw je eigen uitnodiging.');
     message.textContent = "Wachtwoord wordt opgeslagen...";
     let { data:updated, error } = await supabaseClient.auth.updateUser({ password });
-    // A previous update may have succeeded while its response was lost.
-    // Verify the entered password through Auth; password presence alone is insufficient.
-    if(error?.code==='same_password'){
+    // Invite verification may create an unknown temporary password. Always prove
+    // the member's chosen password through Auth, including retry after lost reply.
+    if(!error||error.code==='same_password'){
+      if(!error&&updated?.user?.id!==before.user_id)throw new Error('Geen geldige wachtwoordbevestiging ontvangen. Probeer opnieuw.');
       const {data:account}=await supabaseClient.auth.getUser();
       if(generation!==authGeneration||account?.user?.id!==before.user_id)throw new Error('Sessie gewijzigd.');
       const verified=await supabaseClient.auth.signInWithPassword({email:account.user.email,password});

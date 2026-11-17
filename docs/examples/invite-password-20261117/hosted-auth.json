@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-17T16:25:11.196Z",
+  "project": "hgoygcviutmynaihcvpd",
+  "pass": true,
+  "checks": [
+    "Real hosted invite link generated without email",
+    "Real invite verification creates a temporary password but gate stays false",
+    "PostgREST self-only status false",
+    "Real Auth password update acknowledged",
+    "Invite token alone remains insufficient",
+    "Fresh chosen-password sign-in succeeds and status becomes true",
+    "Password proof survives session refresh",
+    "Revoked session rejected"
+  ],
+  "realEmailsSent": 0,
+  "syntheticAuthAccounts": 1,
+  "profilesCreated": 0,
+  "customerWrites": 0,
+  "syntheticAuthCleaned": true
+}

@@ -3,6 +3,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const ids={trainer:'11111111-1111-4111-8111-111111111111',a:'22222222-2222-4222-8222-222222222222',b:'33333333-3333-4333-8333-333333333333',new:'44444444-4444-4444-8444-444444444444'};
 async function setup(){
+ const authMethods={};
  const db=new PGlite();
  await db.exec(`create role anon; create role authenticated; create schema auth;
  create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz);
@@ -33,12 +34,12 @@ async function setup(){
  await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20260909172334_appfmz_autosave_annotations.sql'),'utf8'));
  async function as(name,sql,params=[]){
   await db.exec('reset role');
-  await db.query("select set_config('request.jwt.claims',$1,false)",[JSON.stringify({sub:ids[name],session_id:ids[name],email:`${name}@example.test`})]);
+  await db.query("select set_config('request.jwt.claims',$1,false)",[JSON.stringify({sub:ids[name],session_id:ids[name],email:`${name}@example.test`,amr:(authMethods[name]||['password']).map(method=>({method}))})]);
   await db.exec('set role authenticated');
   try{return await db.query(sql,params);}finally{await db.exec('reset role');}
  }
  const read=async name=>(await as(name,'select public.fmz_read_workspace() as result')).rows[0].result.state;
  const save=async(name,changes)=>(await as(name,'select public.fmz_save_changes($1::jsonb) as result',[JSON.stringify(changes)])).rows[0].result;
- return {db,as,read,save,ids};
+ return {db,as,read,save,ids,authMethods};
 }
 module.exports={setup,ids};

@@ -1,6 +1,6 @@
 {
   "pass": true,
-  "scope": "Rendered local APPFMZ with synthetic SDK callbacks and real isolated migration SQL",
+  "scope": "Rendered local APPFMZ with synthetic SDK callbacks and real isolated migration SQL, including invite-generated temporary password and OTP-to-password AMR",
   "browsers": [
     "Headless Microsoft Edge",
     "Playwright WebKit; no physical iPhone"
@@ -17,7 +17,9 @@
     "Late Auth response after account change does not hydrate prior user",
     "Unavailable server password check fails closed",
     "Existing password login remains available",
-    "Ordinary app navigation hidden behind password gate"
+    "Ordinary app navigation hidden behind password gate",
+    "Provider-generated nonempty temporary password with invited_at and OTP AMR remains blocked",
+    "Successful updateUser requires separate credential sign-in and password AMR before workspace"
   ],
   "finalInviteTestsPassed": 2,
   "benvitaalRegressionPassed": 2,
@@ -29,6 +31,6 @@
   "physicalPhoneVerified": false,
   "runtimeHashes": {
     "productionUiCss": "91CDFB6F17FA96F2CF09F17D79F890170C854613FE7119428361EE9E07AFFAE1",
-    "appJs": "59EB6AE092EA05D30264E7990D9D17C6FB774168B22F5AE0888929EFB6D09191"
+    "appJs": "8330F6714CC560072071D106D91167919ECC8FC21B0AE4E99619F23A5DBD8ADA"
   }
 }

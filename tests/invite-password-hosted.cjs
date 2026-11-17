@@ -20,12 +20,14 @@ async function cleanup(m){if(!m?.id)return;assert(/^fmz-password-[a-f0-9]{16}$/.
   const status=()=>api('/rest/v1/rpc/fmz_password_status','POST',{},session.access_token);
   assert.deepEqual(await status(),{user_id:m.id,password_set:false});
   const password=crypto.randomBytes(26).toString('base64url')+'aA1!';
-  const updated=await api('/auth/v1/user','PUT',{password},session.access_token);assert.equal(updated.id,m.id);assert.deepEqual(await status(),{user_id:m.id,password_set:true});
+  const updated=await api('/auth/v1/user','PUT',{password},session.access_token);assert.equal(updated.id,m.id);assert.deepEqual(await status(),{user_id:m.id,password_set:false},'Invite token alone is still not proof of chosen-password sign-in');
   const signed=await api('/auth/v1/token?grant_type=password','POST',{email:m.marker+'@example.test',password},anon);assert.equal(signed.user.id,m.id);
   assert.deepEqual(await api('/rest/v1/rpc/fmz_password_status','POST',{},signed.access_token),{user_id:m.id,password_set:true});
+  const refreshed=await api('/auth/v1/token?grant_type=refresh_token','POST',{refresh_token:signed.refresh_token},anon);
+  assert.deepEqual(await api('/rest/v1/rpc/fmz_password_status','POST',{},refreshed.access_token),{user_id:m.id,password_set:true});
   await api('/auth/v1/logout?scope=global','POST',{},signed.access_token);
   await assert.rejects(status(),/HTTP (401|403)/);
-  result={at:new Date().toISOString(),project,pass:true,checks:['Real hosted invite link generated without email','Real invite verification produces session without password','PostgREST self-only status false','Real Auth password update acknowledged','PostgREST password status true','Fresh password sign-in succeeds','Revoked session rejected'],realEmailsSent:0,syntheticAuthAccounts:1,profilesCreated:0,customerWrites:0};
+  result={at:new Date().toISOString(),project,pass:true,checks:['Real hosted invite link generated without email','Real invite verification creates a temporary password but gate stays false','PostgREST self-only status false','Real Auth password update acknowledged','Invite token alone remains insufficient','Fresh chosen-password sign-in succeeds and status becomes true','Password proof survives session refresh','Revoked session rejected'],realEmailsSent:0,syntheticAuthAccounts:1,profilesCreated:0,customerWrites:0};
  }finally{if(m.id)await cleanup(m);}
  result.syntheticAuthCleaned=true;fs.mkdirSync('docs/examples/invite-password-20261117',{recursive:true});fs.writeFileSync('docs/examples/invite-password-20261117/hosted-auth.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 })().catch(e=>{console.error(e.message);process.exitCode=1;});
