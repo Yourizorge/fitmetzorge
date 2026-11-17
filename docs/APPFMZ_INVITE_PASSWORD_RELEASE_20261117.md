@@ -37,3 +37,9 @@ Gebruikte primaire documentatie: [Auth-events](https://supabase.com/docs/referen
 ## Bestaande uitnodiging
 
 Als het lid de uitnodiging al heeft geaccepteerd en nog een sessie heeft: APPFMZ verversen. Zonder ingesteld wachtwoord verschijnt alsnog de wachtwoordstap. Bij een verlopen/verbruikte link zonder sessie: Wachtwoord vergeten gebruiken voor een nieuwe resetlink; geen tweede lid/account maken. Wachtwoorden worden niet namens het lid ingesteld of in rapporten opgenomen.
+
+## Live bevestigd
+
+Runtimecommit **f84a292cfaf6ba2c1280d57438dbebd7fd4bf1df** staat via fast-forward op main; GitHub Pages meldt `built` voor exact deze commit. [55/55 live runtimebestanden byte-identiek aan Git](examples/invite-password-20261117/live-files.json). De [openbare Edge-smoketest](examples/invite-password-20261117/live-smoke.json) slaagt, inclusief expliciet verborgen app-shell tijdens uitloggen, correcte aanmeldpagina, installatiehulp en geen page errors. Tests/serverbronnen zijn publiek niet beschikbaar (404).
+
+De opvolgende bewijscommit bevat uitsluitend documentatie, het read-only liveverificatiescript en screenshots/bewijs; runtime blijft exact gelijk. De eigenaar kan nu met de reeds uitgenodigde klant fysiek bevestigen dat eerst tweemaal een eigen wachtwoord wordt ingevuld en daarna haar eigen ledenomgeving opent. Echte mailontvangst en fysieke telefoonbediening zijn niet als test-PASS gerapporteerd.
