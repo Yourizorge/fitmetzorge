@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: Benvitaal free account: safe save/retry, invite opt-in, isolated member schema and no finance
+ok 1 - Benvitaal free account: safe save/retry, invite opt-in, isolated member schema and no finance
+  ---
+  duration_ms: 8609.5866
+  type: 'test'
+  ...
+# Subtest: Benvitaal WebKit mobile: save, profile and reload
+ok 2 - Benvitaal WebKit mobile: save, profile and reload
+  ---
+  duration_ms: 5208.365
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14327.4662

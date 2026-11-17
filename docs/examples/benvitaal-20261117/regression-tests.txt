@@ -1,0 +1,13 @@
+✔ calendar months, leap days and exact consecutive 28-day cycles (5.7802ms)
+✔ agreement migration preserves records; owner-only immutable versions and unique invoice periods (3865.8699ms)
+✔ members model: normalized search, exact periods, validation and pointer bounds (25.6095ms)
+✔ members PDF server and browser renderer are identical copies (72.6919ms)
+✔ production enrollment gate: explicit closure survives active synthetic terms; profile/drafts remain authorized; private bypass denied (2297.9894ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6782.2906

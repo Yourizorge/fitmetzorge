@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: private profile notes: legacy profiles, confirmation, lost reply, conflict, reload, account boundary
+ok 1 - private profile notes: legacy profiles, confirmation, lost reply, conflict, reload, account boundary
+  ---
+  duration_ms: 15375.8427
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16072.4955

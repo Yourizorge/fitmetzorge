@@ -351,6 +351,7 @@ const ADMIN_TYPES = {
 };
 const CLIENT_PACKAGES = [
   { id: "", label: "Geen pakket gekozen", amount: "" },
+  { id: "benvitaal", label: "Benvitaal", amount: "", freeAccess: true },
   { id: "pt-basis", legacyLabel: "1-op-1 PT Basis - 4x per maand", label: "1-op-1 PT Basis - 4 trainingen per periode", amount: 200, sessions: 4 },
   { id: "pt-progressie", legacyLabel: "1-op-1 PT Progressie - 8x per maand", label: "1-op-1 PT Progressie - 8 trainingen per periode", amount: 380, sessions: 8 },
   { id: "pt-transformatie", legacyLabel: "1-op-1 PT Transformatie - 12x per maand", label: "1-op-1 PT Transformatie - 12 trainingen per periode", amount: 480, sessions: 12 },
@@ -1321,6 +1322,7 @@ function packageLabel(value) {
   const clean = String(value || "").trim();
   if (!clean) return "Geen pakket gekozen";
   const found = packageByValue(clean);
+  if (found?.freeAccess) return "Benvitaal — kosteloos";
   return found ? found.label + (found.amount !== "" ? ` - ${currency(found.amount)} per afgesproken periode` : "") : clean;
 }
 
@@ -2445,7 +2447,7 @@ function renderTrainingLog() {
   }
   const dates = weekDates(activeWeekStart());
   const attendance = trainingAttendanceWeek(selected);
-  const coachNote = coachWeekNote(selected);
+  const coachNote = selected.coachNotesByWeek?.[activeWeekStart()] || { nextTraining: "" };
   const logs = DAYS.map((day, dayIndex) => {
     const exercises = selected.trainingPlan
       .map((exercise, index) => ({ exercise, index, log: exerciseWeekLog(exercise) }))

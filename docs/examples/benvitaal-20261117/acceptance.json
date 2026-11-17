@@ -1,0 +1,18 @@
+{
+  "pass": true,
+  "browser": "Headless Microsoft Edge; viewport emulation, not physical device",
+  "checks": [
+    "Free form without payment or password fields",
+    "Double submit sends one create command",
+    "Lost reply retries identical request and payload",
+    "No duplicate member",
+    "Profile retained after reload",
+    "Existing verified invitation only on explicit click; mail mocked",
+    "Actual SQL invitation acceptance and own published schema access",
+    "Other member and other trainer denied",
+    "No finance or contract mutations"
+  ],
+  "realEmailsSent": 0,
+  "productionWrites": 0,
+  "physicalPhone": false
+}
