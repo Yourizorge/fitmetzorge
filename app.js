@@ -64,6 +64,9 @@ let hydratingFromCloud = false;
 let cloudSaveTimer = null;
 let passwordSetupRequired = false;
 let passwordSetupContext = "";
+let passwordSetupUserId = "";
+let passwordSaveBusy = false;
+let pendingAuthLinkType = ['invite','recovery'].includes(INITIAL_AUTH_LINK_TYPE) ? INITIAL_AUTH_LINK_TYPE : '';
 let navMenuOpen = false;
 let rawCloudState = null;
 let cloudBaseline = null;
@@ -1779,6 +1782,7 @@ function lockOnlineSession() {
   pendingWrite=null;
   window.FMZProductionIntegrations?.lock(); window.FMZPhotos?.lock(); window.FMZInvoices?.lock(); window.FMZAgenda?.lock();
   authGeneration++;
+  passwordSetupRequired=false; passwordSetupContext=''; passwordSetupUserId='';
   window.clearTimeout(cloudSaveTimer);
   onlineReady=false; onlineProfile=null; cloudBaseline=null; rawCloudState=null;
   state=normalizeState({...seedState(),clients:[]});
@@ -1896,6 +1900,11 @@ async function hydrateOnlineUser(roleHint = "", nameHint = "") {
   if (hydrationTask?.generation === generation) return hydrationTask.promise;
   const promise = (async () => {
   try {
+    const status=await readPasswordStatus();
+    if(generation!==authGeneration) throw new Error('Sessie gewijzigd.');
+    let remembered=null;try{remembered=JSON.parse(sessionStorage.getItem('fmz-password-setup')||'null');}catch{}
+    const setup=pendingAuthLinkType || (remembered?.userId===status.user_id?remembered.context:'') || (!status.password_set?'invite':'');
+    if(setup || passwordSetupRequired){requirePasswordSetup(setup||passwordSetupContext,status.user_id);return false;}
     const profile = await ensureOnlineProfile(roleHint, nameHint);
     await loadOnlineWorkspace(profile);
     return true;
@@ -1969,9 +1978,22 @@ function showAuthPanel(mode) {
   });
 }
 
-function requirePasswordSetup(context = "invite") {
+async function readPasswordStatus() {
+  const {data:userData,error:userError}=await supabaseClient.auth.getUser();
+  if(userError||!userData?.user)throw new Error('Je sessie is verlopen. Open een geldige uitnodigings- of resetlink.');
+  const {data,error}=await supabaseClient.rpc('fmz_password_status');
+  if(error||data?.user_id!==userData.user.id||typeof data?.password_set!=='boolean')throw new Error('Wachtwoordcontrole niet beschikbaar. Vernieuw de pagina en probeer opnieuw.');
+  return data;
+}
+
+function requirePasswordSetup(context = "invite", userId = "") {
+  if(onlineReady)lockOnlineSession();
+  const already=passwordSetupRequired&&passwordSetupContext===context&&passwordSetupUserId===userId;
   passwordSetupRequired = true;
   passwordSetupContext = context;
+  passwordSetupUserId = userId;
+  if(userId)try{sessionStorage.setItem('fmz-password-setup',JSON.stringify({userId,context}));}catch{}
+  if(already)return;
   const title = $("#setPasswordTitle");
   const intro = $("#setPasswordIntro");
   if (context === "recovery") {
@@ -1986,8 +2008,10 @@ function requirePasswordSetup(context = "invite") {
 }
 
 function finishPasswordSetup() {
+  try{sessionStorage.removeItem('fmz-password-setup');}catch{}
   passwordSetupRequired = false;
   passwordSetupContext = "";
+  passwordSetupUserId = ""; pendingAuthLinkType='';
   window.history.replaceState({}, document.title, window.location.pathname);
 }
 
@@ -4658,6 +4682,7 @@ $("#forgotPasswordForm").addEventListener("submit", async (event) => {
 
 $("#setPasswordForm").addEventListener("submit", async (event) => {
   event.preventDefault();
+  if(passwordSaveBusy)return;
   const form = event.currentTarget;
   const data = new FormData(form);
   const password = String(data.get("password") || "");
@@ -4681,22 +4706,40 @@ $("#setPasswordForm").addEventListener("submit", async (event) => {
     return;
   }
 
+  const generation=authGeneration,setupContext=passwordSetupContext;
+  let passwordConfirmed=false;
+  const submit=form.querySelector('[type=submit]');passwordSaveBusy=true;submit.disabled=true;
   try {
+    const before=await readPasswordStatus();
+    if(generation!==authGeneration||!passwordSetupRequired||(passwordSetupUserId&&before.user_id!==passwordSetupUserId))throw new Error('Sessie gewijzigd. Open opnieuw je eigen uitnodiging.');
     message.textContent = "Wachtwoord wordt opgeslagen...";
-    const { error } = await supabaseClient.auth.updateUser({ password });
+    let { data:updated, error } = await supabaseClient.auth.updateUser({ password });
+    // A previous update may have succeeded while its response was lost.
+    // Verify the entered password through Auth; password presence alone is insufficient.
+    if(error?.code==='same_password'){
+      const {data:account}=await supabaseClient.auth.getUser();
+      if(generation!==authGeneration||account?.user?.id!==before.user_id)throw new Error('Sessie gewijzigd.');
+      const verified=await supabaseClient.auth.signInWithPassword({email:account.user.email,password});
+      updated=verified.data;error=verified.error;
+    }
     if (error) throw error;
+    if(updated?.user?.id!==before.user_id)throw new Error('Geen geldige wachtwoordbevestiging ontvangen. Probeer opnieuw.');
+    const after=await readPasswordStatus();
+    if(generation!==authGeneration||after.user_id!==before.user_id||!after.password_set)throw new Error('Wachtwoordopslag nog niet bevestigd. Probeer opnieuw.');
     message.className = "login-message ok";
     message.textContent = "Wachtwoord aangepast. Je wordt nu ingelogd...";
+    passwordConfirmed=true;
     form.reset();
-    const setupContext = passwordSetupContext;
     finishPasswordSetup();
     await hydrateOnlineUser(setupContext === "invite" ? "client" : "");
   } catch (error) {
+    if(generation!==authGeneration)return;
+    if(passwordConfirmed){showAuthPanel('login');$('#loginMessage').textContent='Je wachtwoord is opgeslagen. Het openen van je account is nog niet gelukt. Probeer opnieuw in te loggen; maak geen nieuw account.';renderRoleVisibility();return;}
     message.className = "login-message error";
     message.textContent = `Wachtwoord aanpassen mislukt: ${error.message}`;
     passwordSetupRequired = true;
     renderRoleVisibility();
-  }
+  } finally {passwordSaveBusy=false;submit.disabled=false;}
 });
 
 $("#registerForm").addEventListener("submit", async (event) => {
@@ -5254,19 +5297,19 @@ async function init() {
   updateRememberControls(); renderNav(); renderAll(); showView(currentView);
   if (DEMO_MODE) return;
   if (!supabaseClient) { syncStatus('Online inloggen niet beschikbaar. Vernieuw de pagina.','error'); $('#onlineStatus').textContent='De online configuratie of SDK ontbreekt. Inloggen is geblokkeerd.'; return; }
+  if(pendingAuthLinkType)requirePasswordSetup(pendingAuthLinkType);
   supabaseClient.auth.onAuthStateChange((event,session)=> {
     if (event === 'SIGNED_OUT' || !session) { lockOnlineSession(); return; }
-    if (onlineProfile && session.user.id !== onlineProfile.id) lockOnlineSession();
-    if (event === 'PASSWORD_RECOVERY') { requirePasswordSetup('recovery'); return; }
+    if ((onlineProfile && session.user.id !== onlineProfile.id) || (passwordSetupUserId && session.user.id !== passwordSetupUserId)) { lockOnlineSession();pendingAuthLinkType=''; }
+    if (event === 'PASSWORD_RECOVERY') { pendingAuthLinkType='recovery'; requirePasswordSetup('recovery',session.user.id); return; }
     // Never await Supabase calls while inside its auth callback lock.
-    if (event === 'SIGNED_IN' && !onlineReady) window.setTimeout(()=>hydrateOnlineUser().catch(()=>{lockOnlineSession();}),0);
+    if (event === 'SIGNED_IN' && !onlineReady && !passwordSaveBusy) window.setTimeout(()=>{if(!passwordSaveBusy)hydrateOnlineUser().catch(()=>{lockOnlineSession();$('#loginMessage').textContent='Aanmelding nog niet voltooid. Vernieuw en probeer opnieuw.';});},0);
   });
   try {
     const {data,error}=await supabaseClient.auth.getSession();
     if(error) throw error;
-    if(!data?.session) { lockOnlineSession(); return; }
-    if(INITIAL_AUTH_LINK_TYPE==='recovery') requirePasswordSetup('recovery');
-    else { await hydrateOnlineUser(); if(INITIAL_AUTH_LINK_TYPE==='invite') requirePasswordSetup('invite'); }
+    if(!data?.session) { lockOnlineSession();showAuthPanel('login');if(pendingAuthLinkType||location.hash.includes('error='))$('#loginMessage').textContent='Deze link is verlopen of al gebruikt. Gebruik Wachtwoord vergeten om een nieuwe resetlink te ontvangen; maak geen tweede account.';return; }
+    await hydrateOnlineUser();
   } catch { lockOnlineSession(); syncStatus('Online laden mislukt. Log opnieuw in.','error'); }
 }
 

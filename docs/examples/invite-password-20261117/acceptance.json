@@ -1,0 +1,34 @@
+{
+  "pass": true,
+  "scope": "Rendered local APPFMZ with synthetic SDK callbacks and real isolated migration SQL",
+  "browsers": [
+    "Headless Microsoft Edge",
+    "Playwright WebKit; no physical iPhone"
+  ],
+  "checks": [
+    "Password gate precedes profile and workspace requests",
+    "SDK URL stripping and reload",
+    "Registration switch cannot bypass gate",
+    "Auth failure retains entered password",
+    "Auth acknowledgment without server password does not unlock",
+    "Double submit and USER_UPDATED/SIGNED_IN callback race",
+    "Lost update reply recovered through same_password and credential verification",
+    "Recovery persists across reload",
+    "Late Auth response after account change does not hydrate prior user",
+    "Unavailable server password check fails closed",
+    "Existing password login remains available",
+    "Ordinary app navigation hidden behind password gate"
+  ],
+  "finalInviteTestsPassed": 2,
+  "benvitaalRegressionPassed": 2,
+  "notesRegressionPassed": 1,
+  "notesInitialFailure": "One conflict-button timeout in first combined run; focused unchanged rerun passed. Both transcripts retained.",
+  "productionWrites": 0,
+  "realEmailsSent": 0,
+  "hostedAuthVerified": false,
+  "physicalPhoneVerified": false,
+  "runtimeHashes": {
+    "productionUiCss": "91CDFB6F17FA96F2CF09F17D79F890170C854613FE7119428361EE9E07AFFAE1",
+    "appJs": "59EB6AE092EA05D30264E7990D9D17C6FB774168B22F5AE0888929EFB6D09191"
+  }
+}

@@ -273,3 +273,7 @@ body.fmz-member-layout .content{padding-bottom:110px!important}
 @media(max-width:899px){.members-overview-grid{grid-template-columns:1fr}.members-profile-page>.members-profile-head{padding:18px}.members-profile-page .members-identity h3{font-size:1.4rem}.members-head-actions{width:100%}.members-status{display:inline-block}.members-overview-card{padding:20px}}
 
 body.fmz-brand .members-profile-page>.members-profile-head{background:var(--fmz-surface)!important;border-color:var(--fmz-border)!important}
+/* Auth gates must outrank the responsive trainer grid, including its !important. */
+body.logged-out.password-required .app-shell,
+body.logged-out .app-shell { display: none !important; }
+body.password-required .auth-tabs { display: none; }

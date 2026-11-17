@@ -1,6 +1,8 @@
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path'); const {setup}=require('./database.cjs');
 async function start(port=8876){
  const database=await setup();await require('./accounting-database.cjs').extend(database);await require('./agenda-database.cjs').extend(database);
+ await database.db.exec("alter table auth.users add column encrypted_password text default 'synthetic-existing-password';");
+ await database.db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20261117161135_appfmz_invitation_password_gate.sql'),'utf8'));
  for(const file of ['20261026154916_appfmz_members.sql','20261104163836_appfmz_central_billing_opt_in.sql','20261104164206_appfmz_member_release_gate.sql'])await database.db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations',file),'utf8'));
  const blobs=new Map();let queue=Promise.resolve();const calls=[];
  const server=http.createServer(async(req,res)=>{
@@ -11,6 +13,7 @@ async function start(port=8876){
    const {account,name,params}=JSON.parse(body); calls.push({account,name});
    const run=async()=>{try{
     if(!['trainer','a','b'].includes(account))return send(401,{data:null,error:{message:'No test session',code:'42501'}});
+    if(name==='fmz_password_status')return send(200,{data:(await database.as(account,'select public.fmz_password_status() r')).rows[0].r,error:null});
     if(['fmz_members_read'].includes(name))return send(200,{data:(await database.as(account,'select public.fmz_members_read($1,$2) r',[params.action,JSON.stringify(params.payload||{})])).rows[0].r,error:null});
     if(['fmz_members_command','fmz_central_billing_command'].includes(name))return send(200,{data:(await database.as(account,'select public.'+name+'($1,$2,$3) r',[params.action,JSON.stringify(params.payload||{}),params.request_id])).rows[0].r,error:null});
     if(name==='fmz_central_billing_read')return send(200,{data:(await database.as(account,'select public.fmz_central_billing_read($1,$2) r',[params.from_date,params.to_date])).rows[0].r,error:null});
