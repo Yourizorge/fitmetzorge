@@ -34,3 +34,14 @@ Definitieve toelating: **8 tests PASS**: 5 bestaande regressietests, [2 gerender
 Visueel gecontroleerd: [formulier op telefoonformaat](examples/benvitaal-20261117/free-form-390.png), [bevestigde opslag](examples/benvitaal-20261117/free-saved-390.png), [profiel op laptop](examples/benvitaal-20261117/free-profile-1440.png), [WebKit op telefoonformaat](examples/benvitaal-20261117/free-profile-webkit-390.png). Dit is browseremulatie met fictieve gegevens.
 
 Production touched: uitsluitend APPFMZ-frontend na toelating. Staging touched: NO. Bedrijfswebsite touched: NO. JARVIS touched: NO.
+
+## Publicatie bevestigd
+
+Runtimecommit **5a9affaea90b26bb1ea54725c2d523c163c2e677** is fast-forward naar `main` gepubliceerd. GitHub Pages meldt `built` voor exact deze commit; de live index komt overeen. Herstelbranch `backup/appfmz-pre-benvitaal-20261117` staat op GitHub op het hierboven genoemde vertrekpunt.
+
+- [55/55 livebestanden byte-identiek aan Git](examples/benvitaal-20261117/live-files.json).
+- [Openbare Edge-smoketest PASS](examples/benvitaal-20261117/live-smoke.json): aanmeldscherm, installatiehulp, geen page errors of synthetische adapter. Test-, owner-test- en Edge-bronpaden geven publiek 404.
+- Geen aangemelde productiewrites uitgevoerd; de volledige opslag-/rechtenketen is getest met de echte SQL in de geïsoleerde oefenomgeving. Hosted uitnodigingsmail en fysieke iPhone blijven afzonderlijke ownercontroles.
+- Deze aansluitende bewijscommit wijzigt uitsluitend documentatie en bewijsbestanden; runtime is ongewijzigd.
+
+Korte ownercontrole: ververs APPFMZ, kies Nieuw lid inschrijven → Benvitaal, sla naam/e-mail op en verstuur daarna bewust de accountuitnodiging. Open het profiel en publiceer het gewenste schema. Er hoort geen betaalafspraak of factuur te ontstaan.
